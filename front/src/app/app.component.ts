@@ -11,7 +11,7 @@ import { TagService } from './core/services/client/client-tag.service';
 import { StateMoodsService } from './core/services/state/state-moods.service';
 import { StateTagsService } from './core/services/state/state-tags.service';
 
-// Startup / Refresh :
+// Startup | Refresh :
 
 @Component({
   selector: 'app-root',
