@@ -1,0 +1,34 @@
+<div id="layout-central">
+
+    <h2>Wall of Tags</h2>
+
+    <div class="row-white">
+        <div class="menu-flex">
+            <app-button-back />
+        </div>
+    </div>
+    
+    <div id="tags-wall" *ngIf="(currentTagList$ | async); else loading">
+        <div class="tags-box" *ngFor="let category of (currentTagList$ | async)">
+            <div class="box-category">
+                <p class="name-cat left">{{ category.category.name }}</p>
+            </div>
+
+            <div class="overflow">
+                <div *ngFor="let tag of category.tags">
+                    <p> ▸ <a class="name-tag" (click)="selectMoods(tag.businessId)">{{ tag.name }}</a></p>
+                </div>
+            </div>
+        </div>   
+    </div>
+
+    <!-- or loading if not -->
+
+    <ng-template #loading>
+        <div class="loading">
+            <p>Loading ...</p>
+            <img src="../../../../assets/app_icons/spinner.gif" />
+        </div>
+    </ng-template>
+    
+</div>

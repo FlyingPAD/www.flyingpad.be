@@ -1,0 +1,114 @@
+<div id="layout_top">
+
+    <!-- Hamburger ( Mobile Menu Toggle Button ) -->
+
+    <div id="toggle">
+        <img (click)="headerService.headerMobileMenuTrigger()" src="../../../../assets/app_icons/icon_hamburger_001.png" />
+    </div>
+
+    <!-- Header - Desktop -->
+
+    <header>
+        <!-- User ( Not Connected ) -->
+
+        <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
+            <a routerLink="/home" routerLinkActive="active">HOME</a>
+            <a routerLink="/about" routerLinkActive="active">ABOUT</a>
+            <a routerLink="/tags" routerLinkActive="active">TAGS</a>
+            <a routerLink="/moods" routerLinkActive="active">MOODS</a>
+            <a routerLink="/tools" routerLinkActive="active">TOOLS</a> 
+            <a routerLink="/links" routerLinkActive="active">LINKS</a> 
+            <a routerLink="/authentication/login" routerLinkActive="active">LOGIN</a>
+        </div>
+
+        <!-- User ( Connnected ) -->
+
+        <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
+            <a routerLink="/home" routerLinkActive="active">HOME</a>
+            <a routerLink="/about" routerLinkActive="active">ABOUT</a>
+            <a routerLink="/tags" routerLinkActive="active">TAGS</a>
+            <a routerLink="/moods" routerLinkActive="active">MOODS</a>
+            <a routerLink="/tools" routerLinkActive="active">TOOLS</a> 
+            <a routerLink="/links" routerLinkActive="active">LINKS</a> 
+            <a routerLink="/home" (click)="logout()">LOGOUT</a>
+        </div>
+
+        <!-- Administrator -->
+
+        <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
+            <a routerLink="/dashboard" routerLinkActive="active">ADMIN</a>
+            <a routerLink="/tags" routerLinkActive="active">TAGS</a>
+            <a routerLink="/moods" routerLinkActive="active">MOODS</a>
+            <a routerLink="/tools" routerLinkActive="active">TOOLS</a> 
+            <a routerLink="/links" routerLinkActive="active">LINKS</a> 
+            <a routerLink="/home" (click)="logout()">LOGOUT</a>
+        </div>           
+    </header>
+
+    <!-- Header - Mobile -->
+
+    <div id="header_mobile" [ngClass]="headerService.headerMobileMenuActive ? 'active_header' : 'hidden_header'" [ngStyle]="{'top': menuScrollService.topPosition + 'px'}">
+        <div id="menu_content_common">
+
+            <!-- Mobile Menu Logo -->
+
+            <img class="header-logo" (click)="headerService.headerMobileMenuTrigger()" src="../../../../assets/app_logos/fp_logo_02.png" />
+            
+            <!-- Mobile Menu -->
+
+            <h1 class="item-middle">Main Menu</h1>
+
+            <div class="header-buttons">
+
+                <!-- User ( Not Connected ) -->
+
+                <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
+                    <a routerLink="/home" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Home</a>
+                    <a routerLink="/about" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">About</a>
+                    <a routerLink="/tags" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Tags</a>
+                    <a routerLink="/moods" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Moods</a>
+                    <a routerLink="/tools" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Tools</a> 
+                    <a routerLink="/links" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Links</a> 
+                    <a routerLink="/authentication/login" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Login</a>
+                </div>
+
+                <!-- User ( Connnected ) -->
+
+                <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
+                    <a routerLink="/home" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Home</a>
+                    <a routerLink="/about" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">About</a>
+                    <a routerLink="/tags" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Tags</a>
+                    <a routerLink="/moods" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Moods</a>
+                    <a routerLink="/tools" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Tools</a> 
+                    <a routerLink="/links" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Links</a> 
+                    <a routerLink="/home" (click)="logout()" (click)="headerService.headerMobileMenuTrigger()">Logout</a>
+                </div>
+
+                <!-- Administrator -->
+
+                <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
+                    <a routerLink="/dashboard" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Dashboard</a>
+                    <a routerLink="/tags" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Tags</a>
+                    <a routerLink="/moods" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Moods</a>
+                    <a routerLink="/tools" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Tools</a> 
+                    <a routerLink="/links" routerLinkActive="active" (click)="headerService.headerMobileMenuTrigger()">Links</a> 
+                    <a routerLink="/home" (click)="logout()" (click)="headerService.headerMobileMenuTrigger()">Logout</a>
+                </div>   
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overlay -->
+    
+    <div (click)="headerService.headerMobileMenuTrigger()" *ngIf="headerService.headerMobileMenuActive" id="overlay"></div>
+
+    <!-- Router Outlet -->
+
+    <router-outlet />
+</div>
+  
+<div id="layout_bottom">
+    <footer>
+        <p>© <a routerLink="/about">Flying PAD</a> | {{currentYear}} | All rights reserved.</p>
+    </footer>
+</div>

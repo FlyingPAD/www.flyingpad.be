@@ -1,0 +1,163 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "flying-pad": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/flying-pad",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/design/01_normalize.scss",
+              "src/design/02_global_variables.scss",
+              "src/design/03_global_settings.scss",
+
+              "src/design/central/layout-top.scss",
+              "src/design/central/layout-bottom.scss",
+
+              "src/design/central/elements_boxes.scss",
+              "src/design/central/elements_text.scss",
+
+              "src/design/central/component_box_social.scss",
+
+              "src/design/central/component_tags_gallery.scss",
+              "src/design/central/component_tags_full_wall.scss",
+              "src/design/central/component_gallery.scss",
+              "src/design/central/component_gallery_wall.scss",
+
+              "src/design/central/component_menu_flex.scss",
+              "src/design/central/component_list.scss",
+              "src/design/central/component_form_cat_flex.scss",
+              "src/design/central/component_display_model.scss",
+              "src/design/central/component_user_details.scss",
+              "src/design/central/component_viewer.scss",
+              "src/design/central/components_scripts_tools.scss",
+              "src/design/central/components_crud_forms.scss",
+              
+              "src/design/menu/elements.scss",
+              "src/design/menu/component_box_buttons.scss",
+              "src/design/menu/component_box_score.scss",
+              "src/design/menu/component_categories_list_admin.scss",
+              "src/design/menu/component_flex_created.scss",
+              "src/design/menu/component_flex_tags.scss",
+              "src/design/menu/component_flex.scss",
+              "src/design/menu/component_list_categories.scss",
+              "src/design/menu/component_model_flex.scss",
+              
+              "src/design/menu/menu-left-desktop.scss",
+              "src/design/menu/menu-left-mobile.scss",
+              "src/design/menu/menu-left-trigger.scss",
+              "src/design/menu/menu-right-desktop.scss",
+              "src/design/menu/menu-right-mobile.scss",
+              "src/design/menu/menu-right-trigger.scss",
+
+              "./node_modules/ngx-toastr/toastr.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],  
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.prod.ts",
+                  "with": "src/environments/environment.ts"
+                }
+              ],  
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "flying-pad:build:production"
+            },
+            "development": {
+              "buildTarget": "flying-pad:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "flying-pad:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  }
+}

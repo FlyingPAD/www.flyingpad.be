@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  mb_api:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    ports:
+      - "7211:443"
+      - "5019:80"
+    volumes:
+      - ./back:/app
+      - data_protection_keys:/root/.aspnet/DataProtection-Keys
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=https://+:7211;http://+:5019
+    depends_on:
+      - sql1
+
+  mb_front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4200"
+    volumes:
+      - ./front:/usr/share/nginx/html
+    depends_on:
+      - mb_api
+
+  sql1:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: "Password12345,"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1415:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+
+volumes:
+  sql_data:
+  data_protection_keys:
+
+networks:
+  default:
+    driver: bridge

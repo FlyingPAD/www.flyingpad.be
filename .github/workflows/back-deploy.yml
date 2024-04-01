@@ -1,0 +1,74 @@
+# https://github.com/rasmusbuchholdt/simply-web-deploy/blob/main/action.yml
+# https://github.com/aarhusit/deploy?tab=readme-ov-file
+name: Publish, Test, and Migrate to SmarterASP.NET
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'back/**'
+
+jobs:
+  build_and_deploy:
+    name: Build, Test, Migrate, and Deploy to SmarterASP.NET
+    runs-on: windows-latest
+
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Setup .NET Core SDK
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.x' # Assurez-vous que cela correspond à votre version cible de .NET
+
+      # Install Entity Framework Core CLI
+      - name: Install Entity Framework Core CLI
+        run: dotnet tool install --global dotnet-ef --version 8.0.1
+
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore ./back/MB.API/MB.API.csproj
+
+      # Run MB.API tests
+      - name: Run MB.API tests
+        run: dotnet test ./back/MB.API.Test/MB.API.Test.csproj
+
+      # Run MB.Application tests
+      - name: Run MB.Application tests
+        run: dotnet test ./back/MB.Application.Test/MB.Application.Test.csproj
+
+      # Run MB.Domain tests
+      - name: Run MB.Domain tests
+        run: dotnet test ./back/MB.Domain.Test/MB.Domain.Test.csproj
+
+      # Run MB.Infrastructure tests
+      - name: Run MB.Infrastructure tests
+        run: dotnet test ./back/MB.Infrastructure.Test/MB.Infrastructure.Test.csproj
+
+      # Run MB.Persistence tests
+      - name: Run MB.Persistence tests
+        run: dotnet test ./back/MB.Persistence.Test/MB.Persistence.Test.csproj
+
+      # Publish .NET project
+      - name: Publish .NET project
+        run: dotnet publish ./back/MB.API/MB.API.csproj -c Release -o ./publish
+
+      # Apply EF Core Migrations
+      - name: Apply EF Core Migrations
+        run: dotnet ef database update --project ./back/MB.Persistence/MB.Persistence.csproj
+        env:
+          ConnectionStrings__DB: ${{ secrets.PRODUCTION_CONNECTION_STRING }}
+
+      # Deploy to SmarterASP.NET
+      - name: Deploy to SmarterASP.NET
+        uses: aarhusit/deploy@main
+        with:
+          csproj-filepath: ${{ secrets.PROJECT }}
+          website-name: ${{ secrets.IIS_APP_NAME }}
+          server-computer-name: ${{ secrets.MSDEPLOY_SERVICE_URL }}
+          server-username: ${{ secrets.IIS_USER }}
+          server-password: ${{ secrets.IIS_PASSWORD }}

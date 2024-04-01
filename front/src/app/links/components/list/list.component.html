@@ -1,0 +1,66 @@
+<app-menu-right-desktop>
+    <div class="content_right_desktop">
+        <!-- Random Button -->
+        <div class="item-top box_buttons">
+            <a routerLink="/moods/mood-details/">Random Mood</a>
+        </div>
+
+        <div id="categories_list_admin">
+            <!-- Display All Links -->
+            <div class="link_flex">
+                <a [class]="linkCategoryId === null ? 'active' : 'category'" (click)="allLinks()">Display All Links</a>
+            </div>
+
+            <!-- Display Links By Category -->
+            <div class="link_flex" *ngFor="let category of (totalLinkCategories$ | async)">
+                <a id="{{category.businessId}}" class="active" 
+                (click)="loadLinks(category.businessId)" *ngIf="category.businessId === linkCategoryId"> ▸ {{category.name}}</a>
+                <a id="{{category.businessId}}" class="category"
+                (click)="loadLinks(category.businessId)" *ngIf="category.businessId !== linkCategoryId"> ▸ {{category.name}}</a>
+            </div>
+        </div>
+    </div>
+</app-menu-right-desktop>
+
+<div id="layout-central">
+    <!-- Title -->
+    <h2>{{ linkCategoryId === null ? 'All Links' : (currentLinkCategory$ | async)?.name }}</h2>
+
+    <div *ngIf="(currentLinks$ | async); else loading">
+        <!-- Pagination controls -->
+        <div class="row-sticky" *ngIf="linkCategoryId === null ? ((totalLinks$ | async)?.length ?? 0) : ((currentLinks$ | async)?.length ?? 0) > itemsPerPage">
+            <div id="pagination">
+                <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
+            </div>  
+        </div> 
+        
+        <!-- Links List -->    
+        <div id="list" *ngIf="linkCategoryId === null">
+            <div *ngFor="let link of (totalLinks$ | async) || [] | paginate : { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index">
+                <div class="list-flex">
+                    <img id="favicon" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + link.url + '&sz=96'" />
+                    <p class="list-item num">{{ i + 1 }}</p>     
+                    <a class="list-item link" target="_blank" href="{{ link.url }}"> ▸ {{ link.name }}</a>   
+                </div>  
+            </div>
+        </div>
+    
+        <div id="list" *ngIf="linkCategoryId !== null">
+            <div *ngFor="let link of (currentLinks$ | async ) || [] | paginate : { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index">
+                <div class="list-flex">
+                    <img id="favicon" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + link.url + '&sz=96'" />
+                    <p class="list-item num">{{ i + 1 }}</p>     
+                    <a class="list-item link" target="_blank" href="{{ link.url }}"> ▸ {{ link.name }}</a>   
+                </div>  
+            </div>
+        </div> 
+    </div>
+
+    <!-- or loading if not -->
+    <ng-template #loading>
+        <div class="loading">
+            <p>Loading ...</p>
+            <img src="../../../../assets/app_icons/spinner.gif" />
+        </div>
+    </ng-template>
+</div>

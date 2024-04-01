@@ -1,0 +1,7 @@
+<div id="layout-central">
+    <h2>Links</h2>
+
+    <div *ngFor="let link of (links$ | async)">
+        <p>{{ link.url }}</p>
+    </div>
+</div>

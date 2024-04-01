@@ -1,0 +1,80 @@
+// ==============================================
+// - MoodBoard | Central Pages | Central Layout
+// ==============================================
+
+#layout-central
+{
+    // Viewer ( Mood Details ) :
+
+    // - Desktop Version
+
+    #viewer 
+    {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        #mood_content 
+        {
+            margin-top: 10px;
+            margin-bottom: 12px;
+            
+            img, video
+            {
+                border: 15px solid rgb(255, 255, 255);
+                border-radius: 10px;
+                box-shadow: 0 6px 12px 0px #502a0e;
+                transition: height 500ms ease-out, box-shadow 500ms ease-out;
+            }
+        }
+
+        #page_previous 
+        {
+            position: absolute;
+            left: 0;
+            width: 50%;
+            height: 100%;
+        }
+    
+        #page_next 
+        {
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 100%;
+        }
+    }
+    #viewer:hover #mood_content 
+    {
+        img, video
+        {
+            box-shadow: 0 6px 12px 0px #502a0e00;
+            transition: height 500ms ease-out, box-shadow 500ms ease-out;
+        }
+    }
+    #viewer:hover 
+    {
+        cursor: pointer;
+    }
+
+    @media (max-width: 1150px) 
+    {
+        #viewer 
+        {
+            #mood_content 
+            {
+                margin: 0;
+
+                img, video 
+                {
+                    width: 100%;
+                    height: auto !important;
+                    border: none;
+                    border-radius: 0;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+}

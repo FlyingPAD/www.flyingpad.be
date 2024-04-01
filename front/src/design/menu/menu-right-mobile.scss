@@ -1,0 +1,81 @@
+// ==============================================
+// - MoodBoard | Side Menu | 
+// ==============================================
+
+// Menu Right Mobile :
+
+#menu_right_mobile
+{
+    display: block;
+    position: fixed;
+    width: 300px;
+    max-height: calc(100vh - 85px);
+
+    overflow-y: scroll;
+
+    background-color: rgba(255, 253, 251, 0.95);
+    border-radius: 15px;
+
+    z-index: 15;
+    transition-duration: 500ms;
+
+    img
+    {
+        display: block;
+        width: 100px;
+        margin: auto;
+        margin-top: 15px; margin-bottom: 5px;
+        opacity: 0.7;
+        transition-duration: 500ms;
+    }
+    img:hover
+    {
+        opacity: 1;
+        cursor: pointer;
+    }
+}
+
+.menu_out_right_mobile
+{
+    right: 50%;
+    top: 85px;
+
+    transform: translateX(50%);
+
+    opacity: 1;
+    transition-duration: 500ms;
+}
+.menu_hidden_right_mobile
+{
+    right: -1150px;
+    top: 85px;
+
+    opacity: 0;
+    transition-duration: 500ms;
+}
+
+#overlay
+{
+    position: fixed;
+    top:0;
+    left:0;
+    height:100vh;
+    width: 100vw;
+    background-color:rgba(107, 82, 64, 0.5);
+    z-index: 1;
+}
+
+// -----------------------
+// - MEDIA QUERIES :
+
+@media (min-width: 1150px) 
+{
+    #menu_right_mobile
+    {
+        display: none;
+    }
+    #overlay
+    {
+        display: none;
+    }
+}

@@ -1,0 +1,195 @@
+// ==============================================
+// - MoodBoard | Side Menu | 
+// ==============================================
+
+#menu_content_common
+{
+    // menu items position
+
+    .item-top       { margin-top: 10px; }
+    .item-middle    { margin-top:  6px; }
+    .item-bottom    { margin-top: 10px; margin-bottom: 15px; }
+
+    // menu items
+
+    h1 
+    {
+        margin: 0px;
+        font-size: 15px;
+        text-align: center;
+        color: var(--colorMain);
+        font-weight: normal;
+        text-shadow: none;    // Why ? //TODO: Why (there should be no need to override ... ) ???? 
+        letter-spacing: 0;    // Why ?
+    }
+    
+    #picture
+    {
+        img
+        {
+            border: 2px solid #6b524000; 
+            border-radius: 5px;
+            display: block;
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            padding: 25px;
+        }
+        img:hover
+        {
+            border: 2px solid var(--colorMain); 
+            cursor: pointer;
+            transition-duration: 500ms;
+        }
+    }
+
+    .picture
+    {
+        img
+        {
+            display: block;
+
+            width: 50px;
+            height: 50px;
+
+            margin: auto;
+        }
+    }
+
+    .box-pic
+    {
+        margin: 15px;
+
+        img
+        {
+            display: block;
+            margin: auto;
+        }
+    }
+
+    #tag_list_main
+    {
+        #tags_container
+        {
+            border: 1px solid var(--colorMain);
+            border-radius: 5px;
+
+            margin: 15px;
+            padding: 15px; padding-top: 0px;
+
+            background-color: #6b52401d;
+
+            .category_name
+            {
+                font-size: 13px;
+                font-weight: bold;
+                color : var(--colorMain);
+            }
+            #tag_box
+            {
+                display: flex;
+                justify-content: space-between;
+        
+                a
+                {
+                    line-height: 30px;
+                    margin-bottom: 5px;
+                }
+                .name-tag
+                {       
+                    display: block;
+        
+                    width: 180px;
+            
+                    border: 1px solid var(--colorMain);
+                    border-radius: 5px;
+            
+                    background-color: rgba(255, 255, 255, 0.5);
+            
+                    color: var(--colorMain);
+                    text-align: left;
+                    text-indent: 10px;
+                    text-decoration: none;
+                    font-size: 12px;
+
+                    flex-grow: 1;
+                }
+                .name-tag:hover
+                {
+                    cursor: pointer;
+                    background-color: #92715a;
+                    color: rgba(255, 255, 255, 0.79);      
+                    transition-duration: 250ms;  
+                }
+                .active
+                {
+                    background-color: var(--colorMain);
+                    color: white;
+                }
+            
+                .btn_plus
+                {
+                    display: block;
+        
+                    width: 28px;
+            
+                    border: 1px solid #ff8800;
+                    border-radius: 5px;
+            
+                    background-color: rgba(255, 255, 255, 0.5);
+            
+                    color: #ff8800;
+                    text-align: center;
+                    text-decoration: none;
+                    font-size: 15px;
+                }
+                .btn_plus:hover
+                {
+                    background-color:#ff8800;   
+                    color: white;
+                    cursor: pointer;    
+                    transition-duration: 250ms;  
+                }
+                .btn_plus_active
+                {
+                    background-color:#ff8800;
+                    color: white;
+                    cursor: pointer;    
+                    transition-duration: 250ms;  
+                }
+
+                .btn_minus
+                {
+                    display: block;
+        
+                    width: 28px;
+            
+                    border: 1px solid #ff7135;
+                    border-radius: 5px;
+            
+                    background-color: rgba(255, 255, 255, 0.5);
+            
+                    color: #ff7135;
+                    text-align: center;
+                    text-decoration: none;
+                    font-size: 15px;
+                    font-weight: bold;
+                }
+                .btn_minus:hover
+                {
+                    background-color: #ff7135;  
+                    color: white;
+                    cursor: pointer;    
+                    transition-duration: 250ms;  
+                }
+                .btn_minus_active
+                {
+                    background-color: #ff7135;     
+                    color: white;
+                    cursor: pointer;    
+                    transition-duration: 250ms;  
+                }
+            }
+        }
+    } 
+}

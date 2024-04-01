@@ -1,0 +1,124 @@
+// ==============================================
+// - MoodBoard | Central Pages | Central Layout
+// ==============================================
+
+#layout-central
+{
+    #list
+    {
+        margin-top: 15px; margin-bottom: 50px;
+        
+        .list-flex
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .list-item
+            {
+                display: block;
+
+                width: 20px;
+                height: 20px;
+
+                margin: 3px;
+                padding: 5px;
+
+                background-color: white;
+                border: 1px solid #6b5240;
+                border-radius: 5px;
+                
+                color: #6b5240;
+                text-decoration: none;
+                font-size: 14px;
+                line-height: 20px;
+
+                z-index: 0;
+            }
+
+            .list-space
+            {
+                display: block;
+
+                width: 97px;
+                height: 20px;
+
+                margin: 3px;
+                padding: 5px;
+            }
+
+            img
+            {
+                height: 20px;
+                width: 20px;
+                margin-right: 5px;
+            }
+
+            .num
+            {
+                text-align: center;
+            }
+
+            .update-cat
+            {
+                border: 1px solid #9c6e4e;
+                text-align: center;
+                font-weight: bold;
+                color: #9c6e4e;
+                opacity: 0.8;
+            }
+            .update-cat:hover
+            {
+                background-color: #9c6e4e;
+                color: white;
+                opacity: 1;
+                transition-duration: 200ms;  
+            }
+
+            .update
+            {
+                border: 1px solid orange;
+                text-align: center;
+                font-weight: bold;
+                color: orange;
+                opacity: 0.7;
+            }
+            .update:hover
+            {
+                background-color: orange;
+                color: white;
+                opacity: 1;
+                transition-duration: 200ms;  
+            }
+
+            .delete
+            {
+                border: 1px solid red;
+                text-align: center;
+                font-weight: bold;
+                color: red;
+                opacity: 0.6;
+            }
+            .delete:hover
+            {
+                background-color: red;
+                color: white;
+                opacity: 1;
+                transition-duration: 200ms;
+            }
+
+            .link
+            {
+                width: 225px;
+                font-size: 13px;
+            }
+            .link:hover
+            {
+                background-color: #92715a;
+                color: white;
+                opacity: 1;
+                transition-duration: 200ms;  
+            }
+        }
+    }
+}

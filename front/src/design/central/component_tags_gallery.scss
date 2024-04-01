@@ -1,0 +1,66 @@
+// ==============================================
+// - MoodBoard | Central Pages | Central Layout
+// ==============================================
+
+#layout-central
+{
+    // => TAGS - Tags Gallery
+
+    #tag-gallery
+    {
+        width: 250px;
+        margin: auto;
+        margin-top: 25px; margin-bottom: 75px;
+
+        padding: 0 25px 15px 25px;
+
+        background-color: rgba(107, 82, 64, 0.2);
+        border: 1px solid #6b5240;
+        border-radius: 5px;
+
+        p
+        {
+            color:#3d2d21; 
+            letter-spacing: 1px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        a
+        {
+            display: block;
+            background-color: rgba(255, 255, 255, 0.7);
+
+            border: 1px solid #6b5240;  
+            border-radius: 5px;
+
+            padding: 8px;
+            margin: 5px;
+
+            color:#6b5240;  
+            text-decoration: none;
+            font-size: 14px;
+        }
+        a:hover
+        {
+            cursor: pointer;
+            background-color: #92715a;  
+            color:#ffffff;
+            transition-duration: 500ms;
+        }
+        .active
+        {
+            background-color: #92715a;  
+            color:#ffffff;
+            transition-duration: 500ms; 
+        }
+
+        img
+        {
+            display: block;
+            margin: auto;
+
+            width: 100px;
+        }
+    }
+}

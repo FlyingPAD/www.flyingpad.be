@@ -1,0 +1,58 @@
+<app-menu-right-desktop>
+    <div class="content_right_desktop">  
+        <!-- Logo -->
+        <div class="box-pic"><img src="../../../../assets/app_logos/fp_logo_02.png" /></div>
+
+        <!-- Title -->
+        <h1 class="item-top">Artists CRUD</h1>
+
+        <!-- Artists Menu -->
+        <div class="item-top flex">
+            <p><b>Total Artists</b></p>
+            <p>{{ (artists$ | async)?.length | number : '3.0'}}</p>
+        </div> 
+        <div class="item-top list_categories">
+            <a routerLink="/artists/create-artist"> ▸ Create Artist</a>
+        </div>
+
+        <!-- Styles Menu  -->
+        <h1 class="item-top">Styles</h1>
+        <div class="item-top flex">
+            <p><b>Total</b></p>
+            <p>{{ (styles$ | async)?.length | number : '3.0'}}</p>
+        </div> 
+        <div class="item-top list_categories">
+            <a routerLink="/artists/create-style"> ▸ Create Style</a>
+        </div>
+              
+        <!-- Link Categories -->
+
+        <div id="categories_list_admin">
+
+            <div class="link_flex">
+                <a routerLink="/artists/list" 
+                    [ngClass]="(style$ | async )?.businessId === 0 ? 'active' : 'category'" 
+                    (click)="setAllStyles()"> ▸ All Styles
+                </a>
+            </div>
+
+            <div *ngFor="let style of (styles$ | async )">
+                <div class="link_flex">
+                    <a [id]="style.businessId" class="active" routerLink="/artists/list/{{style.businessId}}" 
+                        (click)="setStyle(style)" 
+                        *ngIf="(style$ | async )?.businessId === style.businessId"> ▸ {{style.name}}
+                    </a>
+                    <a [id]="style.businessId" class="category" routerLink="/artists/list/{{style.businessId}}" 
+                        (click)="setStyle(style)" 
+                        *ngIf="(style$ | async )?.businessId !== style.businessId"> ▸ {{style.name}}
+                    </a>
+
+                    <a class="update" routerLink="/artists/update-style/{{style.businessId}}" routerLinkActive="update-active" (click)="setStyle(style)">U</a>
+                    <a class="delete" routerLink="/artists/delete-style/{{style.businessId}}" routerLinkActive="delete-active" (click)="setStyle(style)">D</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-menu-right-desktop>
+
+<router-outlet />

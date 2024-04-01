@@ -1,0 +1,50 @@
+// ==============================================
+// - MoodBoard | Side Menu | 
+// ==============================================
+
+// Menu Right Desktop :
+
+#menu_right_desktop
+{
+    display: none;
+
+    width: 330px;
+    height: 94%;
+
+    overflow-y: scroll;
+
+    border-left: 1px solid #6b5240;
+    background-color: rgba(255, 253, 251, 0.8);
+    backdrop-filter: blur(3px);
+
+    z-index: 3;
+    transition-duration: 500ms;
+}
+
+.menu_out_right_desktop
+{
+    position: fixed;
+    top: 1;
+    right: 0;
+    opacity: 1;
+    transition-duration: 500ms;
+}
+.menu_hidden_right_desktop
+{
+    position: fixed;
+    top: 0;
+    right: -1150px;
+    opacity: 0;
+    transition-duration: 500ms;
+}
+
+// -----------------------
+// - MEDIA QUERIES :
+
+@media (min-width: 1150px) 
+{
+    #menu_right_desktop
+    {
+        display: block;
+    }
+}

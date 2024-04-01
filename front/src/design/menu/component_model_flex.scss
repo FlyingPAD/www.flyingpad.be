@@ -1,0 +1,48 @@
+// ==============================================
+// - MoodBoard | Side Menu | 
+// ==============================================
+
+#menu_content_common
+{
+    .model-flex
+    {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        a
+        {
+            display: block;
+            width: 120px;
+
+            border: 1px solid #6b5240;
+            border-radius: 5px;
+
+            background-color: rgba(255, 255, 255, 0.5);
+
+            margin: 3px;
+            padding: 8px;
+
+            color: #6b5240;	
+            font-size: 13px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        a:hover
+        {
+            transition-duration: 500ms;
+
+            background-color: #6b5240;
+            color: white;	
+            cursor: pointer;
+        }
+        .active
+        {
+            transition-duration: 500ms;
+
+            background-color: #8d684d;
+            color: white;	
+        }
+    }
+}

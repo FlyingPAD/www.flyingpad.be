@@ -1,0 +1,86 @@
+<div id="layout-central">
+
+  <!-- Title -->
+
+  <h2>User Register</h2>
+  
+  <!-- Form -->
+
+  <div id="crud_form">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        
+      <!-- First Name Field -->
+
+      <label for="in_first_name">First Name :</label>
+      <input type="text" id="in_first_name" formControlName="firstName" placeholder="First Name">
+      <div *ngIf="formGroup.get('firstName')?.touched && formGroup.get('firstName')?.errors">
+        <p class="error" *ngIf="formGroup.get('firstName')?.errors?.['required']">
+          First name is required.
+        </p>
+      </div>
+
+      <!-- Last Name Field -->
+
+      <label for="in_last_name">Last Name :</label>
+      <input type="text" id="in_last_name" formControlName="lastName" placeholder="Last Name">
+      <div *ngIf="formGroup.get('lastName')?.touched && formGroup.get('lastName')?.errors">
+        <p class="error" *ngIf="formGroup.get('lastName')?.errors?.['required']">
+          Last name is required.
+        </p>
+      </div>
+
+      <!-- Birthdate Field -->
+
+      <label for="in_birthdate">Birthdate :</label>
+      <input type="date" id="in_birthdate" formControlName="birthdate">
+
+      <!-- No specific validation for the birthdate in this example -->
+
+      <!-- Email Field -->
+
+      <label for="in_email">Email :</label>
+      <input type="text" id="in_email" formControlName="email" placeholder="example@domain.com">
+      <div *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.errors">
+        <p class="error" *ngIf="formGroup.get('email')?.errors?.['required']">
+          Email is required.
+        </p>
+        <p class="error" *ngIf="formGroup.get('email')?.errors?.['email']">
+          Please enter a valid email address.
+        </p>
+      </div>
+
+      <!-- Password Field -->
+
+      <label for="in_password">Password :</label>
+      <input type="password" id="in_password" formControlName="pass" placeholder="Min. 8 characters">
+      <div *ngIf="formGroup.get('pass')?.touched && formGroup.get('pass')?.errors">
+        <p class="error" *ngIf="formGroup.get('pass')?.errors?.['required']">
+          A password is required.
+        </p>
+        <p class="error" *ngIf="formGroup.get('pass')?.errors?.['minLength']">
+          The password must be at least 8 characters long.
+        </p>
+      </div>
+
+      <!-- Confirm Password Field -->
+
+      <label for="in_confirm_password">Confirm Password :</label>
+      <input type="password" id="in_confirm_password" formControlName="confirmPass" placeholder="Min. 8 characters">
+      <div *ngIf="formGroup.get('confirmPass')?.touched && formGroup.get('confirmPass')?.errors">
+        <p class="error" *ngIf="formGroup.get('confirmPass')?.errors?.['required']">
+          Confirming the password is required.
+        </p>
+        <p class="error" *ngIf="formGroup.get('confirmPass')?.errors?.['match']">
+          Passwords must match.
+        </p>
+      </div>
+
+      <!-- Submit Button -->
+
+      <div class="form_buttons">
+        <button type="submit" [disabled]="formGroup.invalid">Sign up</button>
+      </div> 
+      
+    </form> 
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div id="layout-central">
+    <!-- Title  -->
+    <h2>Tags Gallery</h2>
+
+    <!-- Navigation Menu -->
+    <div class="row-white desktop">
+        <div class="menu-flex">
+            <a routerLink="/tags/wall" class="break-point">Wall View</a>
+        </div>
+    </div>
+    <div class="row-white mobile">
+        <div class="menu-flex">
+            <app-button-back />
+        </div>
+    </div>
+    
+    <!-- If tags, show them -->
+    <div id="tag-gallery" *ngIf="(currentTagList$ | async); else loading">
+        <div *ngFor="let category of (currentTagList$ | async)">
+            <!-- Category Name -->
+            <p class="name-cat left">{{ category.category.name }}</p>
+
+            <!-- Tag List -->
+            <div *ngFor="let tag of category.tags">
+                <a id="{{tag.businessId}}" [ngClass]="tag.businessId === currentTag.businessId ? 'active' : '' " 
+                    routerLink="/moods/gallery/{{tag.businessId}}">▸ {{ tag.name }}
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- or loading if not -->
+    <ng-template #loading>
+        <div id="tag-gallery">
+            <br/>
+            <p>Loading ...</p>
+            <img src="../../../../assets/app_icons/spinner.gif" />
+            <br/>
+        </div>
+    </ng-template>
+</div>

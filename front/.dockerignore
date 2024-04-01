@@ -1,0 +1,18 @@
+# General files and directories to ignore
+.DS_Store
+.git
+.gitignore
+README.md
+.dockerignore
+.vscode
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Dependency directories
+node_modules
+
+# Angular build artifacts
+dist/
+tmp/
+out-tsc/

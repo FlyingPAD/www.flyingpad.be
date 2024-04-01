@@ -1,0 +1,46 @@
+name: Deploy to FTP
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'front/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      # Install Angular CLI globally
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      # Install project dependencies
+      - name: Install project dependencies
+        run: npm install
+        working-directory: ./front
+
+      # Build Angular
+      - name: Build Angular
+        run: ng build --configuration production
+        working-directory: ./front
+
+      # Install lftp
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
+      # Deploy to FTP
+      - name: Deploy to FTP
+        run: |
+          lftp -e "set ftp:ssl-allow no; set mirror:use-pget-n 5; mirror --reverse --delete --verbose=3 --no-perms --exclude .well-known/ --exclude web.config ./dist/flying-pad/browser /${{ secrets.FTP_DIR }}; bye" ftp://${{ secrets.FTP_HOST }} -u ${{ secrets.FTP_USER }},${{ secrets.FTP_PASS }}
+        working-directory: ./front

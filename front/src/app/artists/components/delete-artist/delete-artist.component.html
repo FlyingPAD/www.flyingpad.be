@@ -1,0 +1,25 @@
+<div id="layout-central">
+    <h2>Artists API</h2>
+
+    <div class="row-white">
+        <div class="menu-flex">
+          <app-button-back></app-button-back>
+        </div>
+    </div>
+    
+    <h2>Delete Artist</h2>
+    
+    <div class="row-white">
+        <p>You are about to permanently delete the artist " <strong>{{ (artist | async )?.name }}</strong> " !</p>
+        <p>This action <u>cannot</u> be undone !!</p>
+        <p><strong>Attention :</strong> This will also remove all relations of this artist with any styles.</p>
+    </div>
+
+    <p>Are you sure you want to proceed ?</p>
+    
+    <div class="row-white">
+        <div class="menu-flex">
+            <a id="yes" (click)="onDelete()">YES</a>
+        </div>
+    </div>
+</div>

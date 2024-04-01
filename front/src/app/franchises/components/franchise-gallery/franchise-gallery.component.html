@@ -1,0 +1,171 @@
+<!-- RIGHT MENU -->
+<app-menu-right-desktop>
+    <div class="content_right_desktop">  
+        <!-- Random Mood Button -->
+        <div class="item-top box_buttons">
+            <a routerLink="/moods/mood-details">Random Mood</a>
+        </div>
+        <!-- Franchise Details -->
+        <h1 class="item-top">{{ (franchise$ | async)?.franchise?.name}}</h1>
+        <div class="item-top flex">
+            <p><b>Moods</b></p>
+            <p>{{ (moods$ | async)?.length | number : '3.0' }} / <b>{{ totalMoodsByFranchise | number : '3.0' }}</b></p>
+        </div>
+        <div class="item-top flex">
+            <p><b>Models</b></p>
+            <p>{{ (models$ | async )?.length | number : '3.0'}}</p>
+        </div>        
+        <div>
+            <!-- Creation / Modification Data -->
+            <div class="item-top flex_created">
+                <div class="box_created">
+                    <p>Created :</p>
+                    <p>{{(franchise$ | async)?.franchise?.created | date : 'MMMM d, y | HH:mm'}}</p>
+                </div>
+                <div class="box_created">
+                    <p>Modified :</p>
+                    <p>{{(franchise$ | async)?.franchise?.modified | date : 'MMMM d, y | HH:mm'}}</p>
+                </div>
+            </div> 
+        </div>
+        <!-- Select All Models Button -->
+        <div class="item-top box_buttons">
+            <a (click)="getMoods()">Select All Models</a>
+        </div>
+        <!-- Related Models // Females -->
+        <div *ngIf="(modelsF$ | async)?.length !== 0">  
+            <div class="item-top picture">
+                <img src="../../../../assets/app_icons/gender/female.png">
+            </div>    
+            <div class="item-top flex">
+                <p><b>Models</b></p>
+                <p>{{(modelsF$ | async)?.length | number : '2.0'}}</p>
+            </div>   
+            <div class="item-top model-flex">
+                <div *ngFor="let m of (modelsF$ | async)">
+                    <div *ngIf="m.pseudonym === (model$ | async)?.pseudonym">
+                        <a class="active" (click)="getModel(m.businessId)">{{m.pseudonym}}</a>  
+                    </div>
+                    <div *ngIf="m.pseudonym !== (model$ | async)?.pseudonym">
+                        <a (click)="getModel(m.businessId)">{{m.pseudonym}}</a>  
+                    </div>              
+                </div> 
+            </div>
+        </div> 
+        <!-- Related Models // Males -->
+        <div *ngIf="(modelsM$ | async)?.length !== 0">              
+            <div class="item-top picture">
+                <img src="../../../../assets/app_icons/gender/male.png">
+            </div>  
+            <div class="item-top flex">
+                <p><b>Models</b></p>
+                <p>{{(modelsM$ | async)?.length | number : '2.0'}}</p>
+            </div>    
+            <div class="item-bottom model-flex">
+                <div *ngFor="let m of (modelsM$ | async)">
+                    <div *ngIf="m.pseudonym === (model$ | async)?.pseudonym">
+                        <a class="active" (click)="getModel(m.businessId)">{{m.pseudonym}}</a>  
+                    </div>
+                    <div *ngIf="m.pseudonym!== (model$ | async)?.pseudonym">
+                        <a (click)="getModel(m.businessId)">{{m.pseudonym}}</a>  
+                    </div>                 
+                </div>
+            </div>
+        </div> 
+        <div *ngIf="(franchise$ | async)?.franchise?.name != '# Unknown Artist'">
+            <!-- Search -->
+            <div class="item-bottom box_buttons">
+                <a target="_blank" href="https://www.google.com/search?q={{(franchise$ | async)?.franchise?.name}}">Search Google</a>
+                <a target="_blank" href="https://images.google.com/images?q={{(franchise$ | async)?.franchise?.name}}">Google Images</a>
+            </div>  
+
+            <!-- Related Links -->
+            <!-- <div *ngIf="links.length != 0">
+                <h1>Dedicated Links</h1>
+                <div class="list_categories" >            
+                    <div *ngFor="let l of links">
+                        <a target="_blank" href="{{l.url}}">{{l.name}}</a>      
+                    </div>
+                </div>   
+            </div> -->
+        </div> 
+        <!-- Model Details -->
+        <div *ngIf="(model$ | async)?.businessId !== 0">
+            <!--  Gender -->
+            <div *ngIf="(model$ | async)?.pseudonym !== '# Unknown Model'">
+                <div class="item-top picture" *ngIf="(model$ | async)?.gender === 'F'">
+                    <img src="../../../../assets/app_icons/gender/female.png">
+                </div>  
+                <div class="item-top picture" *ngIf="(model$ | async)?.gender === 'M'">
+                    <img src="../../../../assets/app_icons/gender/male.png">
+                </div>  
+            </div>   
+            <div *ngIf="(model$ | async)?.pseudonym !== '# Unknown Model'">
+                <div class="item-middle flex" *ngIf="(model$ | async)?.firstName !== '...' ">
+                    <p><b>First Name</b></p>
+                    <p>{{(model$ | async)?.firstName}}</p>
+                </div>
+                <div class="item-middle flex" *ngIf="(model$ | async)?.lastName !== '...' ">
+                    <p><b>Last Name</b></p>
+                    <p>{{(model$ | async)?.lastName}}</p>
+                </div>
+            </div>            
+            <div class="item-top list_categories">
+                <a routerLink="/models/model-gallery/{{ (model$ | async)?.businessId }}"> ▸ {{ (model$ | async)?.pseudonym }}</a>
+            </div>            
+            <div>
+                <!-- Creation / Modification Data -->
+                <div class="item-top flex_created">
+                    <div class="box_created">
+                        <p>Created :</p>
+                        <p>{{(model$ | async)?.created | date : 'MMMM d, y | HH:mm'}}</p>
+                    </div>
+                    <div class="box_created">
+                        <p>Modified :</p>
+                        <p>{{(model$ | async)?.modified | date : 'MMMM d, y | HH:mm'}}</p>
+                    </div>
+                </div> 
+            </div>
+            <div *ngIf="(model$ | async)?.pseudonym != '# Unknown Model'">
+                <!-- Search -->            
+                <div class="item-bottom box_buttons">
+                    <a target="_blank" href="https://www.google.com/search?q={{(model$ | async)?.pseudonym}}">Search Google</a>
+                    <a target="_blank" href="https://images.google.com/images?q={{(model$ | async)?.pseudonym}}">Google Images</a>
+                </div>   
+                <!-- Related Links -->
+                <!-- <div *ngIf="links.length != 0">
+                    <h1>Dedicated Links</h1>
+                    <div class="list_categories" >            
+                        <div *ngFor="let l of links">
+                            <a target="_blank" href="{{l.url}}">{{l.name}}</a>      
+                        </div>
+                    </div>   
+                </div> -->
+            </div> 
+        </div>
+    </div>
+</app-menu-right-desktop>
+
+<!-- CENTERED CONTENT -->
+
+<div id="layout-central">
+    <!-- Pagination -->
+    <div class="row-sticky">
+        <div id="pagination">
+            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>    
+    <!-- Gallery -->
+    <div id="sub_gallery">
+        <div *ngFor="let m of (moods$ | async) || [] | paginate : { itemsPerPage: mpp, currentPage: p }">
+            <section>
+                <div *ngIf="m.type == 1">           
+                    <a routerLink="/moods/mood-details/franchise/{{m.businessId}}"><img src="{{environment}}/Content/img_thumbs/{{m.businessId}}.{{m.extension}}"/></a>
+                </div>
+                <div *ngIf="m.type == 2">
+                    <a routerLink="/moods/mood-details/franchise/{{m.businessId}}"><img src="{{environment}}/Content/video_thumbs/{{m.businessId}}.jpg"/></a>         
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

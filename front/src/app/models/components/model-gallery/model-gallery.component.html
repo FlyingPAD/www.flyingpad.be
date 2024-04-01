@@ -1,0 +1,107 @@
+<app-menu-trigger-right></app-menu-trigger-right>
+
+<app-menu-right-desktop>
+    <div class="content_right_desktop">  
+        <!-- Random Mood Button -->
+        <div class="item-top box_buttons">
+            <a routerLink="/moods/mood-details">Random Mood</a>
+        </div>
+
+        <!-- Related Franchises -->
+        <div *ngIf="(franchises$ | async )?.length">
+            <h1 class="item-top">From</h1>
+            <div class="item-bottom box_buttons">
+                <div *ngFor="let franchise of (franchises$ | async )">
+                    <a routerLink="/franchises/franchise-gallery/{{franchise.businessId}}">{{franchise.name}}</a>             
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="box-pic" *ngIf="(model$ | async)?.pseudonym === '# Unknown Model'"><img src="../../../../assets/app_logos/fp_logo_02.png" /></div>
+        <!-- or Gender -->
+        <div *ngIf="(model$ | async)?.pseudonym !== '# Unknown Model'">
+            <div class="item-top picture" *ngIf="(model$ | async)?.gender === 'F'">
+                <img src="../../../../assets/app_icons/gender/female.png">
+            </div>  
+            <div class="item-top picture" *ngIf="(model$ | async)?.gender === 'M'">
+                <img src="../../../../assets/app_icons/gender/male.png">
+            </div>  
+        </div>
+
+        <!-- Model Details -->
+        <h1 class="item-top">{{ (model$ | async)?.pseudonym}}</h1>
+        <div class="item-top flex">
+            <p><b>Moods</b></p>
+            <p>{{(moods$ | async)?.length | number : '3.0'}}</p>
+        </div>
+        <div *ngIf="(model$ | async)?.pseudonym !== '# Unknown Model'">
+            <div class="item-middle flex" *ngIf="(model$ | async)?.firstName !== '...' ">
+                <p><b>First Name</b></p>
+                <p>{{(model$ | async)?.firstName}}</p>
+            </div>
+            <div class="item-middle flex" *ngIf="(model$ | async)?.lastName !== '...' ">
+                <p><b>Last Name</b></p>
+                <p>{{(model$ | async)?.lastName}}</p>
+            </div>
+        </div>
+        
+        <div>
+            <!-- Creation / Modification Data -->
+            <div class="item-top flex_created">
+                <div class="box_created">
+                    <p>Created :</p>
+                    <p>{{(model$ | async)?.created | date : 'MMMM d, y | HH:mm'}}</p>
+                </div>
+                <div class="box_created">
+                    <p>Modified :</p>
+                    <p>{{(model$ | async)?.modified | date : 'MMMM d, y | HH:mm'}}</p>
+                </div>
+            </div> 
+        </div>
+
+        <div *ngIf="(model$ | async)?.pseudonym != '# Unknown Model'">
+            <!-- Search -->            
+            <div class="item-top box_buttons">
+                <a target="_blank" href="https://www.google.com/search?q={{(model$ | async)?.pseudonym}}">Search Google</a>
+                <a target="_blank" href="https://images.google.com/images?q={{(model$ | async)?.pseudonym}}">Google Images</a>
+            </div>   
+
+            <!-- Related Links -->
+            <!-- <div *ngIf="links.length != 0">
+                <h1>Dedicated Links</h1>
+                <div class="list_categories" >            
+                    <div *ngFor="let l of links">
+                        <a target="_blank" href="{{l.url}}">{{l.name}}</a>      
+                    </div>
+                </div>   
+            </div> -->
+        </div> 
+    </div>
+</app-menu-right-desktop>
+
+<div id="layout-central">
+    <!-- Title -->
+    <h2>{{(model$ | async)?.pseudonym}}</h2>
+    
+    <!-- Pagination -->
+    <div class="row-sticky">
+        <div id="pagination">
+            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+    
+    <!-- Gallery -->
+    <div id="sub_gallery">
+        <div *ngFor="let mood of (moods$ | async) || [] | paginate : { itemsPerPage: mpp, currentPage: p }">
+            <section>
+                <div *ngIf="mood.type == 1">           
+                    <a routerLink="/moods/mood-details/model/{{mood.businessId}}"><img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"/></a>
+                </div>
+                <div *ngIf="mood.type == 2">
+                    <a routerLink="/moods/mood-details/model/{{mood.businessId}}"><img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"/></a>         
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div id="layout-central">
+    <h2>Profile Update</h2>
+  
+    <div class="row-white">
+      <div class="menu-flex">
+        <app-button-back></app-button-back>
+      </div>
+    </div>
+    
+    <div id="crud_form" class="top_margin">
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+         
+        <label for="in_first_name">First Name :</label>
+        <input type="text" id="in_first_name" formControlName="firstName">
+    
+        <label for="in_last_name">Last Name :</label>
+        <input type="text" id="in_last_name" formControlName="lastName">
+    
+        <label for="in_birthdate">Birthdate :</label>
+        <input type="date" id="in_birthdate" formControlName="birthdate">
+    
+        <div class="form_buttons">
+          <button type="submit">Submit</button>
+        </div>
+    
+      </form> 
+    </div>
+  </div>

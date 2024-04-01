@@ -1,0 +1,54 @@
+<div id="layout-central">
+
+  <!-- Title -->
+
+  <h2>User Login</h2>
+
+  <!-- Form -->
+
+  <div id="crud_form">
+    <form [formGroup]="formGroup" (ngSubmit)="onLogin()">
+
+      <!-- Email Field -->
+
+      <div>
+        <label for="in_email">Email :</label>
+        <input type="email" id="in_email" formControlName="email" placeholder="example@domain.com">
+        <div *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.errors">
+          <p class="error" *ngIf="formGroup.get('email')?.errors?.['required']">
+            Email is required.
+          </p>
+          <p class="error" *ngIf="formGroup.get('email')?.errors?.['email']">
+            Please enter a valid email address.
+          </p>
+          <p class="error" *ngIf="formGroup.get('email')?.errors?.['maxLength']">
+            The email must not exceed 384 characters.
+          </p>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+
+      <div>
+        <label for="in_password">Password :</label>
+        <input type="password" id="in_password" formControlName="password" placeholder="●●●●●●●●">
+        <div *ngIf="formGroup.get('password')?.touched && formGroup.get('password')?.errors">
+          <p class="error" *ngIf="formGroup.get('password')?.errors?.['required']">
+            A password is required.
+          </p>
+          <p class="error" *ngIf="formGroup.get('password')?.errors?.['minLength']">
+            The password must be at least 8 characters long.
+          </p>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+
+      <div class="form_buttons">
+        <button type="submit" [disabled]="formGroup.invalid">Sign in</button>
+      </div>  
+
+    </form> 
+  </div>
+
+</div>

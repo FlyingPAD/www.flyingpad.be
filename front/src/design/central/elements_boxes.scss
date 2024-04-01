@@ -1,0 +1,186 @@
+// ==============================================
+// - MoodBoard | Central Pages | Central Layout
+// ==============================================
+
+#layout-central
+{
+    // Pictures :
+
+    #logo
+    {
+        display: flex;
+        justify-content: center;
+    
+        img
+        {
+            width: 700px;
+        }
+    }
+    @media (max-width: 500px) 
+    {
+        #logo
+        {
+            img
+            {
+                width: 100%;
+            }
+        }
+    }
+    
+    .row-white
+    {
+        margin-top: 15px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .row-sticky
+    {   
+        top: 0;
+        position : sticky;
+        padding: 1px;
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(3px);
+        // box-shadow: 0 3px 6px 0px rgba(80, 42, 14, 0.3);
+    
+        z-index: 1;
+    }
+
+    // => HOME | Big Button
+
+    .button-big
+    {
+        display : block;
+
+        width : 215px;
+
+        margin : auto;
+        margin-top : 25px; margin-bottom: 25px;
+        padding : 20px; 
+        
+        background-color : var(--colorMain);  
+        border : 2px solid var(--colorMain);  
+        border-radius : 8px;
+
+        color : var(--colorWhite);  
+        letter-spacing : 1px;
+        text-align : center;
+        text-decoration : none;
+    }
+    .button-big:hover
+    {
+        background-color : rgba(255, 255, 255, 0.5);  
+        color : var(--colorMain); 
+        transition-duration : 500ms;
+    }
+    
+    .avatar
+    {
+        display: block;
+
+        width: 150px;
+        height: 150px;
+
+        margin: auto;
+        margin-top: 45px; margin-bottom: 45px;
+    }
+  
+    // MOOD UPDATE TAG
+
+    #sticky-pic
+    {
+        margin-top: 15px;
+        margin-bottom: 15px;
+
+        transform: translateX(-50%);
+
+        position: sticky;
+        
+        top: 64px;
+        left: 50%;
+
+        width: 200px;
+
+        background-color: white;
+        border: 1px solid #6b5240;
+        border-radius: 5px;
+
+        padding: 15px;
+        padding-bottom: 12px;
+
+        opacity: 0.5;
+
+        img
+        {
+            width: 100%;
+        }
+
+    }
+    #sticky-pic:hover
+    {
+        opacity: 1;
+        transition-duration: 300ms;
+    }
+
+    #form-tag-flex
+    {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        
+        .form-tag-box
+        {
+            width: 180px;
+            height: 180px;
+            overflow-y: scroll;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #6b5240;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.269);
+            color : #6b5240;	
+            
+            h3
+            {
+                padding:0;
+                margin: 0;
+                text-align: center;
+                font-size: 14px;
+            }
+
+            p
+            {
+                display: flex;
+                justify-content: space-between;
+                margin: 0;
+                padding: 0;
+            }
+
+            label
+            {
+                font-size: 14px;
+            }
+        }
+    }
+
+    // LOADING
+
+    .loading
+    {
+        margin: 30px;
+
+        p
+        {
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        img
+        {
+            height: 100px;
+            display: block;
+            margin: auto;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+<div id="layout-central">
+  <!-- Category Name -->
+  <h2>{{ ( styleId$ | async ) !== null ? (style$ | async)?.name : 'All Styles' }}</h2>
+
+  <!-- User Input -->
+  <div class="user-input">
+      <input #searchInput type="text" placeholder="Search" [formControl]="nameSearchField">
+  </div>
+
+  <!-- Pagination -->
+  <ng-container *ngIf="(artistPage$ | async) as artistPage">
+
+    <div class="user-pagination">
+      <!-- Previous Page -->
+      <button (click)="pagination(artistPage.previousId)" [disabled]="artistPage.itemPosition === 0"> ◀ </button>
+
+      <!-- Slider -->
+      <div id="slider">
+        <p>{{ artistPage.itemPosition | number : '3.0'}}</p>
+        <input 
+          type="range" 
+          name="slider" 
+          min="0" 
+          max="{{ artistPage.totalItems }}"
+          step="1" 
+          [(ngModel)]="artistPage.itemPosition"
+          disabled
+        >        
+        <p>{{ artistPage.totalItems | number : '3.0'}}</p>
+      </div>
+
+      <!-- Next Page -->
+      <button (click)="pagination(artistPage.nextId)" [disabled]="artistPage.itemPosition > artistPage.totalItems - 20"> ▶ </button>
+    </div>    
+
+    <!-- List -->
+    <div id="list">
+      <div *ngFor="let artist of artistPage.artistsPage; let i = index">
+        <div class="list-flex">
+          <p class="list-item num">{{i + 1}}</p>   
+          <a class="list-item link" routerLink="/artists/artist-gallery/{{artist.businessId}}"> ▸ {{artist.name}}</a>   
+          <a class="list-item update" routerLink="/artists/update-artist/{{artist.businessId}}">U</a>      
+          <a class="list-item delete" routerLink="/artists/delete-artist/{{artist.businessId}}">D</a>     
+        </div>  
+      </div>
+    </div>
+
+  </ng-container>
+  
+</div>

@@ -1,0 +1,136 @@
+// ==============================================
+// - MoodBoard | Side Menu | 
+// ==============================================
+
+#menu_content_common
+{
+    // List of Categories with UPDATE & DELETE button
+
+    #categories_list_admin
+    {   
+        background-color: #6b52401d;
+        border-radius: 10px;
+
+        margin: 15px;
+        padding: 25px;
+
+        .link_flex
+        {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 5px;
+
+            font-size: 13px;
+            text-indent: 2px;
+            line-height: 20px;
+    
+            .category
+            {
+                display: block;
+                flex-grow: 1;
+                height: 20px;
+
+                padding: 5px;
+        
+                background-color: rgba(255, 255, 255, 0.79);
+                border: 1px solid #6b5240;
+                border-radius: 5px;
+
+                color: #6b5240;       
+                text-decoration: none;
+            }
+            .category:hover
+            {
+                cursor: pointer;
+                background-color: #92715a;
+                color: rgba(255, 255, 255, 0.79);      
+                transition-duration: 500ms;  
+            }
+            .active
+            {
+                display: block;
+                flex-grow: 1;
+                height: 20px;
+
+                padding: 5px;
+        
+                background-color: #6b5240;  
+                border: 1px solid #6b5240;
+                border-radius: 5px;
+
+                color:#ffffff;     
+                text-decoration: none;
+            }
+            
+            .update
+            {
+                display: block;
+
+                width: 20px;
+                height: 20px;
+
+                padding: 5px;
+
+                background-color: white;
+                border: 1px solid orange;
+                border-radius: 5px;
+
+                text-align: center;
+                font-weight: bold;
+                color: orange;
+                text-decoration: none;
+                opacity: 0.7;
+            }
+            .update:hover
+            {
+                background-color: orange;
+                color: white;
+                opacity: 1;
+                transition-duration: 200ms;          
+            }
+            .update-active
+            {
+                background-color: orange;
+                color: white;
+                opacity: 0.8;
+                transition-duration: 200ms;          
+            }
+
+            .delete
+            {
+                display: block;
+
+                width: 20px;
+                height: 20px;
+
+                padding: 5px;
+
+                background-color: white;
+                border: 1px solid red;
+                border-radius: 5px;
+
+                text-align: center;
+                font-weight: bold;
+                color: red;
+                text-decoration: none;
+                opacity: 0.6;
+            }
+            .delete:hover
+            {
+                background-color: red;
+                color: white;
+                opacity: 1;
+                transition-duration: 200ms;
+            }
+            .delete-active
+            {
+                background-color: red;
+                color: white;
+                opacity: 0.8;
+                transition-duration: 200ms;
+            }
+        }
+    }
+}

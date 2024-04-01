@@ -1,0 +1,48 @@
+﻿using MB.Application.Contracts.Persistence;
+using MB.Application.Features.Styles.Queries.GetStylesCheck;
+using MB.Domain.Entities;
+using MB.Persistence.Repositories.Common;
+using Microsoft.EntityFrameworkCore;
+
+namespace MB.Persistence.Repositories
+{
+    public class StyleRepository : BaseRepository<Style>, IStyleRepository
+    {
+        public StyleRepository(Context context) : base(context) { }
+
+        // Retrieves primary entity ID based on business ID.
+
+        public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
+        {
+            // Use LINQ to query styles by business ID and select their entity ID.
+
+            return await _context.Styles
+                                 .Where(style => businessIds.Contains(style.BusinessId))
+                                 .Select(style => style.EntityId)
+                                 .ToListAsync();
+        }
+
+        // Gets styles with a check mark if they're linked to a specified artist.
+
+        public async Task<List<GetStylesCheckQueryDto>> GetStylesWithCheck(Guid artistGuid)
+        {
+            // Optimize the query by joining artist and RArtistStyle tables to fetch necessary data in a single query.
+
+            var stylesWithCheck = await (from style in _context.Styles
+                                         join rArtistStyle in _context.RArtistStyle on style.EntityId equals rArtistStyle.StyleId into styleGroup
+                                         from subStyle in styleGroup.DefaultIfEmpty()
+                                         join artist in _context.Artists on subStyle.ArtistId equals artist.EntityId into artistGroup
+                                         from subArtist in artistGroup.DefaultIfEmpty()
+                                         where subArtist.BusinessId == artistGuid || artistGuid == Guid.Empty
+                                         select new GetStylesCheckQueryDto
+                                         {
+                                             BusinessId = style.BusinessId,
+                                             Name = style.Name,
+                                             // Check if style is linked to the artist by checking for non-null artist entity.
+                                             IsChecked = subArtist != null && subArtist.BusinessId == artistGuid
+                                         }).ToListAsync();
+
+            return stylesWithCheck;
+        }
+    }
+}

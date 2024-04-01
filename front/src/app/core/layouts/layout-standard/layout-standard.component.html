@@ -1,0 +1,158 @@
+<div class="layout-standard">
+    <div class="left-side" [ngClass]="menuStandard.menuOutFull == true ? 'left-out-full' : 'left-out'">
+        <!-- Menu Trigger -->
+        <div class="section-top">
+            <img src="../../../../assets/app_icons/icon_hamburger_001.png" (click)="menuStandard.triggerMenu()"/>
+        </div>
+        <div class="section-elements">
+            <!-- User ( Not Connected ) -->
+            <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
+                <div class="element-group" (click)="goTo('home')">
+                    <img src="../../../../assets/app_icons/icon_home_001.png" />
+                    <a routerLink="/home" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Home</a>
+                </div>
+                <div class="element-group" (click)="goTo('about')">
+                    <img src="../../../../assets/app_icons/icon_info_001.png" />
+                    <a routerLink="/about" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">About</a>
+                </div>
+                <div class="element-group" (click)="goTo('tags')">
+                    <img src="../../../../assets/app_icons/icon_tags_001.png" />
+                    <a routerLink="/tags" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Tags</a>
+                </div>
+                <div class="element-group" (click)="goTo('moods')">
+                    <img src="../../../../assets/app_icons/icon_search_001.png" />
+                    <a routerLink="/moods" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Moods</a>
+                </div>
+                <div class="element-group" (click)="goTo('scripts')">
+                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
+                    <a routerLink="/scripts" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Scripts</a> 
+                </div>
+                <div class="element-group" (click)="goTo('tools')">
+                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
+                    <a routerLink="/tools" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Tools</a> 
+                </div>
+                <div class="element-group" (click)="goTo('links')">
+                    <img src="../../../../assets/app_icons/icon_links_001.png" />
+                    <a routerLink="/links" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Links</a> 
+                </div>
+            </div>
+            <!-- User ( Connnected ) -->
+            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
+                <div class="element-group" (click)="goTo('home')">
+                    <img src="../../../../assets/app_icons/icon_home_001.png" />
+                    <a routerLink="/home" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Home</a>
+                </div>
+                <div class="element-group" (click)="goTo('about')">
+                    <img src="../../../../assets/app_icons/icon_info_001.png" />
+                    <a routerLink="/about" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">About</a>
+                </div>
+                <div class="element-group" (click)="goTo('tags')">
+                    <img src="../../../../assets/app_icons/icon_tags_001.png" />
+                    <a routerLink="/tags" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Tags</a>
+                </div>
+                <div class="element-group" (click)="goTo('moods')">
+                    <img src="../../../../assets/app_icons/icon_search_001.png" />
+                    <a routerLink="/moods" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Moods</a>
+                </div>
+                <div class="element-group" (click)="goTo('scripts')">
+                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
+                    <a routerLink="/scripts" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Scripts</a> 
+                </div>
+                <div class="element-group" (click)="goTo('tools')">
+                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
+                    <a routerLink="/tools" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Tools</a> 
+                </div>
+                <div class="element-group" (click)="goTo('links')">
+                    <img src="../../../../assets/app_icons/icon_links_001.png" />
+                    <a routerLink="/links" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Links</a> 
+                </div>
+            </div>
+            <!-- Administrator -->
+            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
+                <div class="element-group" (click)="goTo('home')">
+                    <img src="../../../../assets/app_icons/icon_home_001.png" />
+                    <a routerLink="/dashboard" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Admin</a>
+                </div>
+                <div class="element-group" (click)="goTo('about')">
+                    <img src="../../../../assets/app_icons/icon_info_001.png" />
+                    <a routerLink="/about" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">About</a>
+                </div>
+                <div class="element-group" (click)="goTo('tags')">
+                    <img src="../../../../assets/app_icons/icon_tags_001.png" />
+                    <a routerLink="/tags" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Tags</a>
+                </div>
+                <div class="element-group" (click)="goTo('moods')">
+                    <img src="../../../../assets/app_icons/icon_search_001.png" />
+                    <a routerLink="/moods" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Moods</a>
+                </div>
+                <div class="element-group" (click)="goTo('scripts')">
+                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
+                    <a routerLink="/scripts" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Scripts</a> 
+                </div>
+                <div class="element-group" (click)="goTo('tools')">
+                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
+                    <a routerLink="/tools" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Tools</a> 
+                </div>
+                <div class="element-group" (click)="goTo('artists')">
+                    <img src="../../../../assets/app_icons/icon_artists_001.png" />
+                    <a routerLink="/artists" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Artists</a> 
+                </div>
+                <div class="element-group" (click)="goTo('models')">
+                    <img src="../../../../assets/app_icons/icon_models_001.png" />
+                    <a routerLink="/models" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Models</a> 
+                </div>
+                <div class="element-group" (click)="goTo('franchises')">
+                    <img src="../../../../assets/app_icons/icon_franchises_001.png" />
+                    <a routerLink="/franchises" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Franchises</a> 
+                </div>
+                <div class="element-group" (click)="goTo('links')">
+                    <img src="../../../../assets/app_icons/icon_links_001.png" />
+                    <a routerLink="/links" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Links</a>
+                </div>
+            </div>   
+        </div>
+    </div>
+    <div class="right-side" [ngClass]="menuStandard.menuOutFull == true ? 'right-out' : 'right-out-full'">
+        <div class="section-top">
+            <div *ngIf="!(authService.isConnectedSub | async)">
+                <!-- <a routerLink="/authentication/register" class="disabled">Register</a> -->
+                <span>Register</span>
+              </div>
+              <div *ngIf="!(authService.isConnectedSub | async)">
+                <a routerLink="/authentication/login">Login</a>
+              </div>
+
+              <div *ngIf="authService.isConnectedSub | async">
+                <a routerLink="/users/user-details">User Details</a>
+              </div>
+              <div *ngIf="authService.isConnectedSub | async">
+                <a routerLink="/home" (click)="logout()">Logout</a>
+              </div>
+        </div>     
+        <router-outlet />
+    </div>
+</div>

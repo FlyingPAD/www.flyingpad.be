@@ -1,0 +1,180 @@
+<div id="layout-central">
+    <h2>Chord Wheel - SVG</h2>
+  
+    <div class="row-white">
+        <div class="menu-flex">
+            <app-button-back></app-button-back>
+            <a (click)="rotateImage(30)">To Left</a>
+            <a (click)="rotateImage(-30)">To Right</a>
+            <a (click)="randomPosition()">Random</a>
+        </div>
+    </div>
+  
+    <div id="container-wheel">
+      <div id="wheel-full">
+        <svg #wheel width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- Circle 1 -->
+          <g id="circle1">
+            <!-- <circle cx="150" cy="150" r="100" fill="none" stroke="black" stroke-width="1" />
+            <circle id="c1270" cx="124.12" cy="53.41" r="2" fill="black" />
+            <circle id="c1300" cx="175.88" cy="53.41" r="2" fill="black" />
+            <circle id="c1330" cx="220.71" cy="79.29" r="2" fill="black" />
+            <circle id="c10" cx="246.59" cy="124.12" r="2" fill="black" />
+            <circle id="c130" cx="246.59" cy="175.88" r="2" fill="black" />
+            <circle id="c160" cx="220.71" cy="220.71" r="2" fill="black" />
+            <circle id="c190" cx="175.88" cy="246.59" r="2" fill="black" />
+            <circle id="c1120" cx="124.12" cy="246.59" r="2" fill="black" />
+            <circle id="c1150" cx="79.29" cy="220.71" r="2" fill="black" />
+            <circle id="c1180" cx="79.29" cy="220.71" r="2" fill="black" />
+            <circle id="c1210" cx="53.41" cy="124.12" r="2" fill="black" />
+            <circle id="c1240" cx="79.29" cy="79.29" r="2" fill="black" /> -->
+          </g>
+          <!-- Circle 2 -->
+          <g id="circle2">
+            <!-- <circle cx="150" cy="150" r="140" fill="none" stroke="black" stroke-width="1" />
+            <circle id="c2270" cx="113.77" cy="14.77" r="2" fill="black" />
+            <circle id="c2300" cx="186.23" cy="14.77" r="2" fill="black" />
+            <circle id="c2330" cx="248.99" cy="51.01" r="2" fill="black" />
+            <circle id="c20" cx="285.23" cy="113.77" r="2" fill="black" />
+            <circle id="c230" cx="285.23" cy="186.23" r="2" fill="black" />
+            <circle id="c260" cx="248.99" cy="248.99" r="2" fill="black" />
+            <circle id="c290" cx="186.23" cy="285.23" r="2" fill="black" />
+            <circle id="c2120" cx="113.77" cy="285.23" r="2" fill="black" />
+            <circle id="c2150" cx="51.01" cy="248.99" r="2" fill="black" />
+            <circle id="c2180" cx="14.77" cy="186.23" r="2" fill="black" />
+            <circle id="c2210" cx="14.77" cy="113.77" r="2" fill="black" />
+            <circle id="c2240" cx="51.01" cy="51.01" r="2" fill="black" /> -->
+          </g>
+  
+          <!-- Cells -->
+  
+          <!-- Cellule pour C -->
+          <!-- <g id="cellC">
+            <path d="M 113.77 14.77 A 140 140 0 0 1 186.23 14.77" stroke="black" fill="none" stroke-width="2"/>
+            <path d="M 124.12 53.41 A 140 140 0 0 1 175.88 53.41" stroke="black" fill="none" stroke-width="2"/>
+            <line x1="113.77" y1="14.77" x2="124.12" y2="53.41" stroke="black" stroke-width="2"/>
+            <line x1="186.23" y1="14.77" x2="175.88" y2="53.41" stroke="black" stroke-width="2"/>
+            <text x="150" y="33" text-anchor="middle" dominant-baseline="middle" fill="black">C</text>
+          </g> -->
+  
+          <g id="cellC">
+            <!-- Chemin unique pour toute la cellule -->
+            <path d="M 113.77 14.77 A 140 140 0 0 1 186.23 14.77 L 175.88 53.41 A 140 140 0 0 0 124.12 53.41 Z" fill="red" stroke="black" stroke-width="2"/>
+            <text x="150" y="33" text-anchor="middle" dominant-baseline="middle" fill="black">C</text>
+          </g>
+          
+  
+          <!-- Cellule pour G -->
+          <g id="cellG">
+            <path d="M 186.23 14.77 A 140 140 0 0 1 248.99 51.01" stroke="black" fill="none" stroke-width="2"/>
+            <path d="M 175.88 53.41 A 100 100 0 0 1 220.71 79.29" stroke="black" fill="none" stroke-width="2"/>
+            <line x1="186.23" y1="14.77" x2="175.88" y2="53.41" stroke="black" stroke-width="2"/>
+            <line x1="248.99" y1="51.01" x2="220.71" y2="79.29" stroke="black" stroke-width="2"/>
+            <text x="210" y="47" text-anchor="middle" dominant-baseline="middle" fill="black">G</text>
+          </g>        
+        
+          <!-- Cellule pour D -->
+          <g id="cellD">
+            <path d="M 248.99 51.01 A 140 140 0 0 1 285.23 113.77" stroke="black" fill="none" stroke-width="2"/>
+            <path d="M 220.71 79.29 A 100 100 0 0 1 246.59 124.12" stroke="black" fill="none" stroke-width="2"/>
+            <line x1="248.99" y1="51.01" x2="220.71" y2="79.29" stroke="black" stroke-width="2"/>
+            <line x1="285.23" y1="113.77" x2="246.59" y2="124.12" stroke="black" stroke-width="2"/>
+            <text x="253" y="91" text-anchor="middle" dominant-baseline="middle" fill="black">D</text>
+          </g>
+  
+          <!-- Cellule pour A -->
+          <g id="cellA">
+            <path d="M 285.23 113.77 A 140 140 0 0 1 285.23 186.23" stroke="black" fill="none" stroke-width="2"/>
+            <path d="M 246.59 124.12 A 100 100 0 0 1 246.59 175.88" stroke="black" fill="none" stroke-width="2"/>
+            <line x1="285.23" y1="113.77" x2="246.59" y2="124.12" stroke="black" stroke-width="2"/>
+            <line x1="285.23" y1="186.23" x2="246.59" y2="175.88" stroke="black" stroke-width="2"/>
+            <text x="270" y="149" text-anchor="middle" dominant-baseline="middle" fill="black">A</text>
+          </g>
+  
+          <!-- Cellule pour E -->
+          <g id="cellE">
+            <path d="M 285.23 186.23 A 140 140 0 0 1 248.99 248.99" stroke="black" fill="none" stroke-width="2"/>
+            <path d="M 246.59 175.88 A 100 100 0 0 1 220.71 220.71" stroke="black" fill="none" stroke-width="2"/>
+            <line x1="285.23" y1="186.23" x2="246.59" y2="175.88" stroke="black" stroke-width="2"/>
+            <line x1="248.99" y1="248.99" x2="220.71" y2="220.71" stroke="black" stroke-width="2"/>
+            <text x="253" y="211" text-anchor="middle" dominant-baseline="middle" fill="black">E</text>
+          </g>
+  
+          <!-- Cellule pour B -->
+          <g id="cellB">
+            <path d="M 248.99 248.99 A 140 140 0 0 1 186.23 285.23" stroke="black" fill="none" stroke-width="2"/>
+            <path d="M 220.71 220.71 A 100 100 0 0 1 175.88 246.59" stroke="black" fill="none" stroke-width="2"/>
+            <line x1="248.99" y1="248.99" x2="220.71" y2="220.71" stroke="black" stroke-width="2"/>
+            <line x1="186.23" y1="285.23" x2="175.88" y2="246.59" stroke="black" stroke-width="2"/>
+            <text x="210" y="255" text-anchor="middle" dominant-baseline="middle" fill="black">B</text>
+          </g>
+  
+          <!-- Cellule pour Gb -->
+          <g id="cellGb">
+            <path d="M 186.23 285.23 A 140 140 0 0 1 113.77 285.23" stroke="black" fill="none" stroke-width="2"/>
+            <path d="M 175.88 246.59 A 100 100 0 0 1 124.12 246.59" stroke="black" fill="none" stroke-width="2"/>
+            <line x1="186.23" y1="285.23" x2="175.88" y2="246.59" stroke="black" stroke-width="2"/>
+            <line x1="113.77" y1="285.23" x2="124.12" y2="246.59" stroke="black" stroke-width="2"/>
+            <text x="150" y="270" text-anchor="middle" dominant-baseline="middle" fill="black">Gb</text>
+          </g>        
+  
+          <!-- Cellule pour Db -->
+          <g id="cellDb">
+            <path d="M 113.77 285.23 A 140 140 0 0 1 51.01 248.99" stroke="black" fill="none" stroke-width="2"/>
+            <path d="M 124.12 246.59 A 100 100 0 0 1 79.29 220.71" stroke="black" fill="none" stroke-width="2"/>
+            <line x1="113.77" y1="285.23" x2="124.12" y2="246.59" stroke="black" stroke-width="2"/>
+            <line x1="51.01" y1="248.99" x2="79.29" y2="220.71" stroke="black" stroke-width="2"/>
+            <text x="90" y="255" text-anchor="middle" dominant-baseline="middle" fill="black">Db</text>
+          </g>        
+  
+          <!-- Cellule pour Ab -->
+          <g id="cellAb">
+            <path d="M 51.01 248.99 A 140 140 0 0 1 14.77 186.23" stroke="black" fill="none" stroke-width="2"/>
+            <path d="M 79.29 220.71 A 100 100 0 0 1 53.41 175.88" stroke="black" fill="none" stroke-width="2"/>
+            <line x1="51.01" y1="248.99" x2="79.29" y2="220.71" stroke="black" stroke-width="2"/>
+            <line x1="14.77" y1="186.23" x2="53.41" y2="175.88" stroke="black" stroke-width="2"/>
+            <text x="45" y="211" text-anchor="middle" dominant-baseline="middle" fill="black">Ab</text>
+          </g>        
+  
+          <!-- Cellule pour Eb -->
+          <g id="cellEb">
+            <path d="M 14.777145279378402 113.76714527937841 A 140 140 0 0 0 14.77 186.23" stroke="black" fill="none" stroke-width="2"/>
+            <path d="M 53.40834369840235 124.11834369840233 A 100 100 0 0 0 53.41 175.88" stroke="black" fill="none" stroke-width="2"/>
+            <line x1="14.77" y1="113.76" x2="53.40" y2="124.11" stroke="black" stroke-width="2"/>
+            <line x1="14.77" y1="186.23" x2="53.41" y2="175.88" stroke="black" stroke-width="2"/>
+            <text x="31" y="149" text-anchor="middle" dominant-baseline="middle" fill="black">Eb</text>
+          </g>
+  
+          <!-- Cellule pour Bb -->
+          <g id="cellBb">
+            <path d="M 51.01 51.01 A 140 140 0 0 0 14.77 113.77" stroke="black" fill="none" stroke-width="2"/>
+            <path d="M 79.29 79.29 A 100 100 0 0 0 53.41 124.12" stroke="black" fill="none" stroke-width="2"/>
+            <line x1="51.01" y1="51.01" x2="79.29" y2="79.29" stroke="black" stroke-width="2"/>
+            <line x1="14.77" y1="113.77" x2="53.41" y2="124.12" stroke="black" stroke-width="2"/>
+            <text x="45" y="90" text-anchor="middle" dominant-baseline="middle" fill="black">Bb</text>
+          </g>        
+  
+          <!-- Cellule pour F -->
+          <g id="cellF">
+            <path d="M 113.77 14.77 A 140 140 0 0 0 51.01 51.01" stroke="black" fill="none" stroke-width="2"/>
+            <path d="M 124.12 53.41 A 100 100 0 0 0 79.29 79.29" stroke="black" fill="none" stroke-width="2"/>
+            <line x1="113.77" y1="14.77" x2="124.12" y2="53.41" stroke="black" stroke-width="2"/>
+            <line x1="51.01" y1="51.01" x2="79.29" y2="79.29" stroke="black" stroke-width="2"/>
+            <text x="90" y="47" text-anchor="middle" dominant-baseline="middle" fill="black">F</text>
+          </g>
+        </svg>
+      </div>
+
+      <div id="#wheel-focus">
+        <svg>
+          <g id="cellFocus">
+            <path d="M 113.77 14.77 A 140 140 0 0 1 186.23 14.77" stroke="black" fill="none" stroke-width="3"/>
+            <path d="M 124.12 53.41 A 140 140 0 0 1 175.88 53.41" stroke="black" fill="none" stroke-width="3"/>
+            <line x1="113.77" y1="14.77" x2="124.12" y2="53.41" stroke="black" stroke-width="3"/>
+            <line x1="186.23" y1="14.77" x2="175.88" y2="53.41" stroke="black" stroke-width="3"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+</div>

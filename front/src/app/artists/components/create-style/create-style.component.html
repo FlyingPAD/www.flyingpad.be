@@ -1,0 +1,20 @@
+<div id="layout-central">
+
+  <h2>Artists API</h2>
+
+  <div class="row-white">
+    <div class="menu-flex">
+      <app-button-back></app-button-back>
+    </div>
+  </div>
+
+  <h2>Create Style</h2>
+  
+  <div class="style-form">  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input #styleNameInput class="form-item" type="text" formControlName="name" placeholder="New Style Name">
+      <button class="form-item" type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+
+</div>

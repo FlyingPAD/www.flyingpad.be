@@ -1,0 +1,21 @@
+<!-- Menu Right Mobile -->
+
+<div id="menu_right_mobile" 
+    [ngClass]="menuMobileService.menuRActive == true ? 'menu_out_right_mobile' : 'menu_hidden_right_mobile'" 
+    [ngStyle]="{'top': menuScrollService.topPosition + 'px'}">
+
+    <div id="menu_content_common">
+
+        <!-- Logo -->
+
+        <img (click)="menuMobileService.allMenuTriggerOff()" src="../../../../assets/app_logos/fp_logo_02.png" />
+
+        <!-- Menu Content -->
+
+        <ng-content select=".content_right_mobile"></ng-content>
+    </div>
+</div>
+
+<!-- Overlay -->
+
+<div (click)="menuMobileService.allMenuTriggerOff()" *ngIf="menuMobileService.menuRActive" id="overlay"></div>
