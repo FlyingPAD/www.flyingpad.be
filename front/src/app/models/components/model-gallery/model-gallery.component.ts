@@ -9,6 +9,7 @@ import { FranchiseService } from '../../../core/services/client/client-franchise
 import { StateFranchisesService } from '../../../core/services/state/state-franchises.service';
 import { StateModelsService } from '../../../core/services/state/state-models.service';
 import { StateMoodsService } from '../../../core/services/state/state-moods.service';
+import { MoodLight } from '../../../core/models/mood';
 
 @Component({
   selector: 'app-model-gallery',
@@ -33,6 +34,8 @@ export class ModelGalleryComponent
   model$ = this.#modelsState.currentModel$
   franchises$ = this.#franchisesState.currentFranchises$
   moods$ = this.#moodsState.currentMoodsByModel$
+
+  moods : MoodLight[] = []
 
   modelSubscription = new Subscription()
   franchisesSubscription = new Subscription()
@@ -88,6 +91,7 @@ export class ModelGalleryComponent
       this.moodsSubscription = this.#moodsService.GetByModel(this.modelId).subscribe({
         next : (data) => {
           this.#moodsState.updateCurrentMoodsByModel(data.moods)
+          this.moods = data.moods
         }
       })
     }

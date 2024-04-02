@@ -4,22 +4,12 @@
         <div class="item-top box_buttons">
             <a routerLink="/moods/mood-details/" (click)="getRandomMood()">Random Mood</a>
         </div>
-        <!-- Options -->
-        <div class="item-top box_buttons">
-            <!-- Focus -->
-            <a (click)="toggleFocus()" *ngIf="isFocused === true" class="active" >Toggle Size</a>
-            <a (click)="toggleFocus()" *ngIf="isFocused === false">Toggle Size</a>
-
-            <!-- Download -->
-            <a (click)="openDownload()">Open / Download</a>  
-        </div>
-
+        <!-- Mood Name -->
         <h1 class="item-top" *ngIf="(currentMood$ | async )?.name != '...'">{{ (currentMood$ | async )?.name }}</h1>
-
+        <!-- Mood Description -->
         <div class="box_buttons item-top" *ngIf="(currentMood$ | async )?.description != '...'">
             <h1>{{(currentMood$ | async )?.description}}</h1>
         </div>
-
         <div *ngIf="userService.appUser.role === 2 || userService.appUser.role === 1">
             <!-- Related Models -->
             <h1 class="item-top">Starring</h1>
@@ -28,7 +18,6 @@
                     <a routerLink="/models/model-gallery/{{model.businessId}}" (click)="menuService.allMenuTriggerOff()">{{model.pseudonym}}</a>
                 </div>
             </div>
-
             <!-- Related Franchises -->
             <div *ngIf="(franchisesByMood$ | async )?.length">
                 <h1 class="item-top">From</h1>
@@ -38,7 +27,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Related Artists -->
             <div *ngIf="userService.appUser.role === 2 || userService.appUser.role === 1">
                 <h1 class="item-top">Art by</h1>
@@ -50,7 +38,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Related Tags -->
         <h1 class="item-top">Tags ( {{ (currentTagsByMood$ | async )?.length }} )</h1>
         <div class="item-bottom list_categories">
@@ -63,7 +50,14 @@
                 </div>               
             </div>
         </div>
-
+        <!-- Options -->
+        <div class="item-top box_buttons">
+            <!-- Focus -->
+            <a (click)="toggleFocus()" *ngIf="isFocused === true" class="active" >Toggle Size</a>
+            <a (click)="toggleFocus()" *ngIf="isFocused === false">Toggle Size</a>
+            <!-- Download -->
+            <a (click)="openDownload()">Open / Download</a>  
+        </div>
         <!-- Diaporama -->
         <h1 class="item-top">Diaporama</h1>
         <div class="item-top box_buttons_flex">
@@ -75,21 +69,17 @@
             <div *ngIf="!diaporamaSwitch">                
                 <a *ngIf="intervalId !== undefined" (click)="diaporamaRStop()">Stop</a>
             </div>
-        </div>
-        
+        </div>        
         <!-- Gallery Title -->
-        <h1 class="item-top" *ngIf="galleryMode === 'tag'">{{ (currentTag$ | async)?.name }}</h1>
-        
+        <h1 class="item-top" *ngIf="galleryMode === 'tag'">{{ (currentTag$ | async)?.name }}</h1>        
         <h1 class="item-top" *ngIf="galleryMode === 'artist'">{{ ( currentArtist$ | async)?.name }}</h1>
         <h1 class="item-top" *ngIf="galleryMode === 'model' ">{{ ( currentModel$ | async) }}</h1>
         <h1 class="item-top" *ngIf="galleryMode === 'franchise' ">{{(currentFranchise$ | async)?.name }}</h1>
-
         <!-- Mood Details -->
         <div class="item-top flex">
             <p><b>Mood</b></p>
             <p>{{ moodIndexPosition | number : '3.0'}} / {{moods.length | number : '3.0'}}</p>
         </div>
-
         <!-- Mood Type : IMAGE -->
         <div *ngIf="(currentMood$ | async)?.type === 1">
             <div *ngIf="(currentImage$ | async) as currentImage">
@@ -111,7 +101,7 @@
                 </div>
             </div>
         </div>
-
+        <!-- Mood Type : VIDEO -->
         <div *ngIf="mood.type === 2">
             <div class="item-middle flex">
                 <p><b>Size</b></p>
@@ -134,7 +124,7 @@
                 <p>{{video.duration | formatDuration }}</p>
             </div>
         </div>
-
+        <!-- Auditable Info -->
         <div class="item-bottom flex_created">
             <div class="box_created">
                 <p>Created :</p>
@@ -145,7 +135,6 @@
                 <p>{{ (currentMood$ | async)?.modified | date : 'MMMM d, y | HH:mm' }}</p>
             </div>
         </div>
-
         <!-- Score Settings -->
         <div *ngIf="userService.appUser.role === 2">
             <div class="item-top box-score">
@@ -156,7 +145,6 @@
                 <button (click)="updateMoodScore(mood.businessId, 10)">+10</button>
             </div>
         </div>
-
         <!-- Mood Settings -->      
         <div *ngIf="userService.appUser.role === 2">    
             <div class="item-top list_categories">
@@ -170,7 +158,8 @@
     </div>
 </app-menu-right-desktop>
 
-<div id="layout-central">    
+<div id="layout-central"> 
+    <!-- // Viewer    -->
     <div id="viewer">
         <div id="mood_content" *ngIf="(currentMood$ | async )?.type === 1">
             <img [ngStyle]="{'height.px' : moodHeight}"
@@ -188,8 +177,7 @@
         </div>
         <div id="mood_content" *ngIf="(currentMood$ | async)?.type === 4" class="youtube">
             <div *ngIf="(currentVideoYouTube$ | async) as currentVideoYouTube" [innerHTML]="getSafeContent(currentVideoYouTube.url)"></div>
-        </div>
-        
+        </div>        
         <div (click)="previousMood()" id="page_previous"></div>
         <div (click)="nextMood()" id="page_next"></div>
     </div> 

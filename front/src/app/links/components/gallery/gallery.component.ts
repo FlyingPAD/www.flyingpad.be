@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { LinksStateService } from '../../../core/services/links-state.service';
-import { Link } from '../../../core/models/link';
 
 @Component({
   selector: 'app-gallery',
@@ -11,7 +10,8 @@ export class GalleryComponent
 {
   linksState = inject(LinksStateService)
 
-  // links : Link[] = []
+  itemsPerPage : number = 20   // Pagination
+  currentPage : number = 1     // Pagination
 
-  links$ = this.linksState.links$
+  links = this.linksState.links
 }

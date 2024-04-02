@@ -3,38 +3,33 @@
         <!-- Random Mood Button -->
         <div class="item-top box_buttons">
             <a routerLink="/moods/mood-details">Random Mood</a>
-        </div>
-                
+        </div>                
         <!-- Artist Name -->
-        <h1 class="item-top">{{(artist$ | async)?.artist?.name}}</h1>
-
+        <h1 class="item-top">{{artist.name}}</h1>
         <!-- Number of Moods -->
         <div class="item-top flex">
             <p><b>Moods</b></p>
-            <p>{{(moods$ | async)?.moods?.length | number : '3.0'}}</p>
+            <p>{{ moods.length | number : '3.0'}}</p>
         </div>   
-
         <div>
             <!-- Creation / Modification Data -->
             <div class="item-top flex_created">
                 <div class="box_created">
                     <p>Created :</p>
-                    <p>{{(artist$ | async)?.artist?.created | date : 'MMMM d, y | HH:mm'}}</p>
+                    <p>{{artist.created | date : 'MMMM d, y | HH:mm'}}</p>
                 </div>
                 <div class="box_created">
                     <p>Modified :</p>
-                    <p>{{(artist$ | async)?.artist?.modified | date : 'MMMM d, y | HH:mm'}}</p>
+                    <p>{{artist.modified | date : 'MMMM d, y | HH:mm'}}</p>
                 </div>
             </div> 
         </div>
-
-        <div *ngIf="(artist$ | async)?.artist?.name != '# Unknown Artist'">
+        <div *ngIf="artist.name != '# Unknown Artist'">
             <!-- Search -->            
             <div class="item-top box_buttons">
-                <a target="_blank" href="https://www.google.com/search?q={{(artist$ | async)?.artist?.name}}">Search Google</a>
-                <a target="_blank" href="https://images.google.com/images?q={{(artist$ | async)?.artist?.name}}">Google Images</a>
+                <a target="_blank" href="https://www.google.com/search?q={{artist.name}}">Search Google</a>
+                <a target="_blank" href="https://images.google.com/images?q={{artist.name}}">Google Images</a>
             </div>   
-
             <!-- Related Links -->
             <!-- <div *ngIf="links.length != 0">
                 <h1>Dedicated Links</h1>
@@ -50,15 +45,14 @@
 
 <div id="layout-central">   
     <!-- Pagination -->
-    <div class="row-sticky">
+    <div class="row-sticky" *ngIf="moods.length > mpp">
         <div id="pagination">
             <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="p = $event"></pagination-controls>
         </div>
-    </div>
-    
+    </div>   
     <!-- Gallery -->
     <div id="sub_gallery">
-        <div *ngFor="let mood of (moods$ | async)?.moods || [] | paginate : { itemsPerPage: mpp, currentPage: p }">
+        <div *ngFor="let mood of moods | paginate : { itemsPerPage: mpp, currentPage: p }">
             <section>
                 <div *ngIf="mood.type == 1">           
                     <a routerLink="/moods/mood-details/artist/{{mood.businessId}}"><img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"/></a>

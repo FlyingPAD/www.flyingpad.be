@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class MenuStandardService 
 {
-
   menuOutFull : boolean = false
+  page : string = ''
 
   triggerMenu()
   {

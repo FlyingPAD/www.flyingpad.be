@@ -47,6 +47,7 @@ export class ListComponent implements OnInit, OnDestroy
   loadLinks( categoryId : number ) : void 
   {
     this.linkCategoryId = categoryId
+    this.currentPage = 1
 
     this.#subscription = this.#linksService.GetByCategory( this.linkCategoryId ).subscribe({
       next : (data) => 
@@ -65,6 +66,7 @@ export class ListComponent implements OnInit, OnDestroy
   allLinks()
   {
     this.linkCategoryId = null
+    this.currentPage = 1
   }
   
 }

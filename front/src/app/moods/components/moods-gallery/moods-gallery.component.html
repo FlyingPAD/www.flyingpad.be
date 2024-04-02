@@ -1,13 +1,10 @@
 <app-menu-right-desktop>
     <div class="content_right_desktop">
         <!-- Random Button -->
-
         <div id="random" class="item-top box_buttons">
             <a routerLink="/moods/mood-details">Random Mood</a>
         </div>
-
         <!-- Tags List -->
-
         <div id="tag_list_main">
             <div *ngFor="let tagList of currentTagList$ | async">
                 <div id="tags_container">
@@ -33,19 +30,14 @@
 </app-menu-right-desktop>
 
 <div id="layout-central">
-    <!-- Title -->
-    <h1>{{ (currentTag$ | async )?.name }}</h1>
-
     <div *ngIf="(currentMoods$ | async); else loading">
         <!-- Pagination -->
-        <div class="row-sticky" *ngIf="(currentMoods$ | async)?.length || 0 > moodsPerPage">
+        <div class="row-sticky" *ngIf="moods.length > moodsPerPage">
             <div id="pagination">
                 <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
             </div>  
-        </div>
-        
-        <!-- Gallery -->
-        
+        </div>        
+        <!-- Gallery -->        
         <div id="sub_gallery">
             <div *ngFor="let mood of (currentMoods$ | async) || [] | paginate : { itemsPerPage : moodsPerPage, currentPage : currentPage }">
                 <section>
@@ -73,9 +65,7 @@
             </div>
         </div>
     </div>
-
     <!-- or loading if not -->
-
     <ng-template #loading>
         <div class="loading">
             <p>Loading ...</p>

@@ -14,16 +14,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 100%;
     
         #mood_content 
-        {
-            margin-top: 10px;
-            margin-bottom: 12px;
-            
+        {           
             img, video
             {
-                border: 15px solid rgb(255, 255, 255);
-                border-radius: 10px;
                 box-shadow: 0 6px 12px 0px #502a0e;
                 transition: height 500ms ease-out, box-shadow 500ms ease-out;
             }
@@ -64,8 +60,6 @@
         {
             #mood_content 
             {
-                margin: 0;
-
                 img, video 
                 {
                     width: 100%;
