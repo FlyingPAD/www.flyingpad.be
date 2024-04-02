@@ -18,6 +18,7 @@ import { PanelCrudMobileComponent } from './components/panel-crud-mobile/panel-c
 import { MenuTriggerLeftInfoComponent } from './components/menu-trigger-left-info/menu-trigger-left-info.component';
 import { MenuTriggerRightSearchComponent } from './components/menu-trigger-right-search/menu-trigger-right-search.component';
 import { MenuTriggerRightFilterComponent } from './components/menu-trigger-right-filter/menu-trigger-right-filter.component';
+import { ButtonTopComponent } from './components/button-top/button-top.component';
 
 @NgModule({
   declarations: 
@@ -26,6 +27,7 @@ import { MenuTriggerRightFilterComponent } from './components/menu-trigger-right
 
     CurrentTimeComponent,
     ButtonBackComponent,
+    ButtonTopComponent,
 
     MenuLeftDesktopComponent,
     MenuRightDesktopComponent,
@@ -58,6 +60,7 @@ import { MenuTriggerRightFilterComponent } from './components/menu-trigger-right
   [
     CurrentTimeComponent,    
     ButtonBackComponent,
+    ButtonTopComponent,
 
     MenuLeftDesktopComponent,
     MenuRightDesktopComponent,

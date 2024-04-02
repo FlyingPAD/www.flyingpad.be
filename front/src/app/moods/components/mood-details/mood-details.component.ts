@@ -72,13 +72,14 @@ export class MoodDetailsComponent  implements OnInit, OnDestroy
 
   moodIndexPosition : number = 0
   
-  intervalId :        any | undefined = undefined    // Set Interval ID for Diaporama
-  diaporamaSwitch :   boolean         = false        // Switch to activate / deactive second diaporama when one is running
-  isFocused :         boolean         = false;       // Toggle Content Focus ( full size )
-  MOODHEIGHTMIN :     number          = 835          // Minimum Mood Height ( if any ) for size Toggle
-  MOODHEIGHTMAX :     number          = 2000         // Maximum Mood Height ( if any ) for size Toggle
-  moodHeight :        number          = 835          // Original Mood Height ( if any ) for Size Toggle
-  diaporamaDelay :    number          = 3000         // Diaporama Delay
+  windowHeight:       number          = window.innerHeight
+  intervalId :        any | undefined = undefined              // Set Interval ID for Diaporama
+  diaporamaSwitch :   boolean         = false                  // Switch to activate / deactive second diaporama when one is running
+  isFocused :         boolean         = false;                 // Toggle Content Focus ( full size )
+  MOODHEIGHTMIN :     number          = this.windowHeight -64  // Minimum Mood Height ( if any ) for size Toggle
+  MOODHEIGHTMAX :     number          = 2000                   // Maximum Mood Height ( if any ) for size Toggle
+  moodHeight :        number          = this.windowHeight - 64 // Original Mood Height ( if any ) for Size Toggle
+  diaporamaDelay :    number          = 3000                   // Diaporama Delay
 
   currentMood$ = this.#stateMoodsService.currentMood$
   currentImage$ = this.#stateMoodsService.currentImage$

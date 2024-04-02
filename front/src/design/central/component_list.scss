@@ -111,6 +111,9 @@
             {
                 width: 225px;
                 font-size: 13px;
+                white-space: nowrap;        /* Empêche le texte de passer à la ligne */
+                overflow: hidden;           /* Coupe le texte qui déborde */
+                text-overflow: ellipsis;    /* Ajoute les points de suspension à la fin du texte */
             }
             .link:hover
             {

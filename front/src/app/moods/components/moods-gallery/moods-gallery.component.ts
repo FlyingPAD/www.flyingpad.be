@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Tag } from '../../../core/models/tag';
 import { MenuMobileService } from '../../../core/services/system/menu-mobile.service';
+import { MoodLight } from '../../../core/models/mood';
 
 @Component({
   selector: 'app-moods-gallery',
@@ -45,6 +46,8 @@ export class MoodsGalleryComponent implements OnInit, OnDestroy
   moodsSubscription = new Subscription()
   tagSubscription = new Subscription()
 
+  moods : MoodLight[] = []
+
   // Pagination :
 
   moodsPerPage :  number = 36    // Items per Page
@@ -79,6 +82,7 @@ export class MoodsGalleryComponent implements OnInit, OnDestroy
       {
         this.#stateMoodsService.updateCurrentMoodsByTag(data.moods)
         this.currentMoods$ = this.#stateMoodsService.currentMoodsByTag$
+        this.moods = data.moods
 
         this.tagSubscription = this.#tagsService.GetOneDetails( tagId ).subscribe({
           next : (data) => {

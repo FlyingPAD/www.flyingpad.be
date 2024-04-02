@@ -2,7 +2,11 @@
     <div class="left-side" [ngClass]="menuStandard.menuOutFull == true ? 'left-out-full' : 'left-out'">
         <!-- Menu Trigger -->
         <div class="section-top">
-            <img src="../../../../assets/app_icons/icon_hamburger_001.png" (click)="menuStandard.triggerMenu()"/>
+            <img
+                [ngClass]="menuStandard.menuOutFull ? 'img-active' : '' " 
+                src="../../../../assets/app_icons/icon_hamburger_001.png" 
+                (click)="menuStandard.triggerMenu()" 
+            />
         </div>
         <div class="section-elements">
             <!-- User ( Not Connected ) -->

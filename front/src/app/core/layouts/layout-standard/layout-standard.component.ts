@@ -2,7 +2,8 @@ import { Component, inject } from '@angular/core';
 import { UserService } from '../../services/client/client-user.service';
 import { AuthService } from '../../services/client/client-auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuStandardService } from '../../services/menu-standard.service';
+import { MenuStandardService } from '../../services/system/menu-standard.service';
+
 
 @Component({
   selector: 'app-layout-standard',
