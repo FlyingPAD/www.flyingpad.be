@@ -8,10 +8,15 @@
         top: 0;
         width: 70px;
         height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+
         background-color: rgba(255, 255, 255, 0.8);
         box-shadow: 0 3px 6px 0px rgba(80, 42, 14, 0.3);
         transition-duration: 200ms;
         border-right: 1px solid #6b5240;
+
         z-index: 10;
 
         .section-top
@@ -59,6 +64,8 @@
         }
         .section-elements
         {
+            height: 100%;
+
             .element-group
             {
                 display: flex;
@@ -115,6 +122,62 @@
             .section-elements
             {
                 padding-top: 10px;
+            }
+        }
+        .section-end
+        {
+            flex-grow: 1;
+            margin-bottom: 15px;
+
+            .element-group
+            {
+                display: flex;
+                align-items: center;
+
+                img
+                {
+                    width: 25px;
+                    height: 25px;
+                    background-color: rgba(255, 255, 255, 0.7);
+                    border-radius: 5px;
+                    border: 1px solid rgba(0, 0, 0, 0.15);
+                    padding: 5px;
+                    margin: 15px; margin-bottom: 5px; margin-top: 5px;
+                }
+                img:hover
+                {
+                    cursor: pointer;
+                    border: 1px solid #6b5240;
+                    transition-duration: 500ms;
+                }
+                .img-active
+                {
+                    border: 1px solid #6b5240;
+                }
+                a
+                {
+                    display: block;
+                    width: 150px;
+                    color: #6b5240;
+                    text-decoration: none;
+                    display: block;
+                    margin: 10px;
+                    transition-duration: 200ms;
+                }
+                a:hover
+                {
+                    text-decoration: underline;
+                    margin: 10px;
+                    transition-duration: 200ms;
+                }
+                .display-none
+                {
+                    display: none;
+                }
+                .active
+                {
+                    text-decoration: underline;
+                }
             }
         }
     }

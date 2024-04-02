@@ -11,6 +11,7 @@ const routes: Routes =
   
   { path : 'mood-details', component : MoodDetailsComponent, title : 'Flying PAD | Mood Details' },
   { path : 'mood-details/:id', component : MoodDetailsComponent, title : 'Flying PAD | Mood Details' },
+  { path : 'mood-details/:galleryMode', component : MoodDetailsComponent, title : 'Flying PAD | Mood Details' },
   { path : 'mood-details/:galleryMode/:id', component : MoodDetailsComponent, title : 'Flying PAD | Mood Details' },
 ];
 

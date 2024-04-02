@@ -49,7 +49,7 @@ export class ArtistsListComponent implements OnInit, OnDestroy
     this.subscription.unsubscribe()
   }
 
-  pagination(newStartId: number | null) : void 
+  pagination(newStartId : number | null) : void 
   {
     this.#artistsState.updateCurrentStartId(newStartId)
   }

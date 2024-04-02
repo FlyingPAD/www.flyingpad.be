@@ -1,23 +1,35 @@
-<app-menu-right-desktop>
+<app-menu-right-desktop *ngIf="combinedState() as combinedState">
     <div class="content_right_desktop">
         <!-- Random Button -->
         <div class="item-top box_buttons">
             <a routerLink="/moods/mood-details/">Random Mood</a>
         </div>
+
+        <!-- Link Categories -->
+        <div id="categories_list_admin">
+            <div class="link_flex">
+                <a [ngClass]="combinedState[2] === null ? 'active' : 'category' " (click)="resetCategory()">Display all Links</a>
+            </div>
+            <div class="link_flex" *ngFor="let category of combinedState[1]">
+                <a [ngClass]="combinedState[2] === category.businessId ? 'active' : 'category' "
+                id="{{category.businessId}}" (click)="updateCategory(category.businessId)"> ▸ {{category.name}}</a>
+            </div>
+        </div>
     </div>
 </app-menu-right-desktop>
 
-<div id="layout-central" *ngIf="links() as links">
+<div id="layout-central" *ngIf="combinedState() as combinedState">
     <!-- Pagination controls -->
-    <div class="row-sticky" *ngIf="links.length > itemsPerPage">
+    <div class="row-sticky" *ngIf="combinedState[3].linksListByCategory.length > itemsPerPage">
         <div id="pagination">
             <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
         </div>  
     </div>       
+
     <!-- Links List -->  
-    <div *ngIf="links.length; else loading">
+    <div *ngIf="combinedState[3].linksListByCategory.length ; else loading">
         <div id="list">
-            <div *ngFor="let link of links | paginate : { itemsPerPage : itemsPerPage, currentPage: currentPage }">
+            <div *ngFor="let link of combinedState[3].linksListByCategory | paginate : { itemsPerPage : itemsPerPage, currentPage: currentPage }">
                 <div class="list-flex">
                     <img id="favicon" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + link.url + '&sz=96'" />
                     <a class="list-item link" target="_blank" href="{{ link.url }}"> ▸ {{ link.name }}</a>   
@@ -25,6 +37,7 @@
             </div>
         </div>   
     </div>
+    
     <!-- Loading -->
     <ng-template #loading>
         <div class="loading">
