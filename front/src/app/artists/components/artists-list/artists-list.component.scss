@@ -3,6 +3,8 @@
     display: flex;
     justify-content: center; 
 
+    margin-top: 5px;
+
     input
     {
         margin: 8px;
@@ -23,8 +25,10 @@
 
     button
     {
-        width: 35px;
+        padding: 5px;
         margin: 15px;
+        height: 35px;
+        width: 50px;
 
         text-align: center;
         text-decoration: none;
@@ -34,8 +38,6 @@
         background-color: #ffffff;
         border: 1px solid #6b5240;  
         border-radius: 5px;
-
-        padding: 7px;
     }
     button:hover
     {
@@ -59,7 +61,7 @@
 
         input[type="range"]
         {
-            width: 125px;
+            width: 90px;
             margin: 15px;
             outline: none;
             background: #6b524000;

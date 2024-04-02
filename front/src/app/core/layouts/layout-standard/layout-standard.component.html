@@ -47,7 +47,7 @@
                     [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Links</a> 
                 </div>
             </div>
-            <!-- User ( Connnected ) -->
+            <!-- User ( Connected ) -->
             <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
                 <div class="element-group" (click)="goTo('home')">
                     <img src="../../../../assets/app_icons/icon_home_001.png" />
@@ -139,19 +139,37 @@
                 </div>
             </div>   
         </div>
+        <div class="section-end">
+            <!-- User ( Not Connected ) -->
+            <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
+                <div class="element-group" (click)="goTo('authentication/register')">
+                    <img src="../../../../assets/app_icons/icon_artists_001.png" />
+                    <a routerLink="/authentication/register" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">{{userService.appUser.firstName}}</a>
+                </div>
+            </div>
+            <!-- User ( Connected ) -->
+            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
+                <div class="element-group" (click)="goTo('users/user-details')">
+                    <img src="../../../../assets/app_icons/mood.png" />
+                    <a routerLink="/users/user-details" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">{{userService.appUser.firstName}}</a>
+                </div>         
+            </div>
+            <!-- Administrator -->
+            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
+                <div class="element-group" (click)="goTo('/users/user-details')">
+                    <img src="../../../../assets/app_icons/mood.png" />
+                    <a routerLink="/users/user-details" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">{{userService.appUser.firstName}}</a>
+                </div>         
+            </div>
+        </div>
     </div>
     <div class="right-side" [ngClass]="menuStandard.menuOutFull == true ? 'right-out' : 'right-out-full'">
         <div class="section-top">
-            <div *ngIf="!(authService.isConnectedSub | async)">
-                <!-- <a routerLink="/authentication/register" class="disabled">Register</a> -->
-                <span>Register</span>
-              </div>
               <div *ngIf="!(authService.isConnectedSub | async)">
                 <a routerLink="/authentication/login">Login</a>
-              </div>
-
-              <div *ngIf="authService.isConnectedSub | async">
-                <a routerLink="/users/user-details">User Details</a>
               </div>
               <div *ngIf="authService.isConnectedSub | async">
                 <a routerLink="/home" (click)="logout()">Logout</a>

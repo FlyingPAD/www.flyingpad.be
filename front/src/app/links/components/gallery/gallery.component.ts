@@ -1,17 +1,33 @@
 import { Component, inject } from '@angular/core';
-import { LinksStateService } from '../../../core/services/links-state.service';
+import { LinksService } from '../../../core/services/links.service';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrl: './gallery.component.scss'
+  styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent 
 {
-  linksState = inject(LinksStateService)
+  linksState = inject(LinksService)
 
   itemsPerPage : number = 20   // Pagination
   currentPage : number = 1     // Pagination
 
-  links = this.linksState.links
+  combinedState = this.linksState.combinedState
+
+  updateCategory( categoryId : number)
+  {
+    this.linksState.updateSelectedCategory(categoryId)
+    this.resetPage()
+  }
+  resetCategory()
+  {
+    this.linksState.updateSelectedCategory(null)
+    this.resetPage()
+  }
+
+  resetPage()
+  {
+    this.currentPage = 1
+  }
 }

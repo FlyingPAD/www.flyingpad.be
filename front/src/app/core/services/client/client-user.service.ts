@@ -26,7 +26,7 @@ export class UserService
       businessId : 0,
       created : new Date(),
       modified : new Date(),
-      firstName : 'Unregistered User',
+      firstName : 'User',
       lastName : '',
       birthdate : new Date(),
       email : 'app@user.com',

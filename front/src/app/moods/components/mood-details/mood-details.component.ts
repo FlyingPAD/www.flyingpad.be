@@ -54,7 +54,6 @@ export class MoodDetailsComponent  implements OnInit, OnDestroy
   #sanitizer = inject(DomSanitizer)
   userService = inject(UserService)
 
-
   // Properties :
 
   environment :       string = environment.apiBaseUrl
@@ -73,6 +72,8 @@ export class MoodDetailsComponent  implements OnInit, OnDestroy
   moodIndexPosition : number = 0
   
   windowHeight:       number          = window.innerHeight
+  windowWidth:        number          = window.innerWidth
+  
   intervalId :        any | undefined = undefined              // Set Interval ID for Diaporama
   diaporamaSwitch :   boolean         = false                  // Switch to activate / deactive second diaporama when one is running
   isFocused :         boolean         = false;                 // Toggle Content Focus ( full size )
