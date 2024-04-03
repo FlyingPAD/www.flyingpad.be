@@ -6,7 +6,7 @@ import { PaginationResponse } from "./pagination-response";
 export class Style
 {
     businessId : number = 0
-    name: string = ''
+    name: string = 'new style'
 }
 
 export class StyleDetails
@@ -21,16 +21,16 @@ export class StyleDetails
 
 export interface StyleCheck
 {
-    businessId : number;
-    name : string;
-    isChecked : boolean;    
+    businessId : number
+    name : string
+    isChecked : boolean
 }
 
 // API Calls
 
 export interface StyleCreateForm
 {
-    name : string;
+    name : string
 }
 
 export interface StyleUpdateForm extends Style {}
@@ -39,10 +39,13 @@ export interface StyleUpdateForm extends Style {}
 
 export interface StylesCountResponse extends BaseResponse
 {
-    stylesCount : number;
+    stylesCount : number
 }
 
-export interface StylesCreateResponse extends BaseResponse {}
+export interface StylesCreateResponse extends BaseResponse 
+{
+    style : StyleCheck
+}
 
 export interface StylesGetAllResponse extends BaseResponse 
 {
@@ -68,7 +71,7 @@ export interface StylesGetStylesResponse extends BaseResponse {}
 
 export interface StylesGetPageResponse extends BaseResponse, PaginationResponse
 {
-    stylesPage : Style[];
+    stylesPage : Style[]
 }
 
 export interface StylesUpdateResponse extends BaseResponse {}

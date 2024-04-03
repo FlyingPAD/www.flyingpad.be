@@ -6,7 +6,7 @@ import { PaginationResponse } from "./pagination-response";
 export class ArtistLight
 {
     businessId : number = 0
-    name : string = ''
+    name : string = 'new artist'
 }
 
 export class ArtistDetails
