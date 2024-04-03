@@ -1,15 +1,5 @@
 <div id="layout-central">
-
-  <h2>Artists API</h2>
-
-  <div class="row-white">
-    <div class="menu-flex">
-      <app-button-back></app-button-back>
-    </div>
-  </div>
-
-  <h2>Create Artist</h2>
-  
+  <h2>Create Artist</h2> 
   <div class="artist-form">  
     <form [formGroup]="form" (ngSubmit)="onSubmit()">  
       <input #artistNameInput class="form-item" type="text" formControlName="name" placeholder="New Artist Name">
@@ -22,5 +12,4 @@
       </div>
     </form>
   </div>
-  
 </div>

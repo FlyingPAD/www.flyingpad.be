@@ -1,0 +1,78 @@
+<app-menu-right-desktop *ngIf="artistsFlow() as Flow">
+    <div class="content_right_desktop">
+        <!-- Logo -->
+        <div class="box-pic"><img src="../../../../assets/app_logos/fp_logo_02.png" /></div>
+        <!-- Random Button -->
+        <div class="item-top box_buttons">
+            <a routerLink="/moods/mood-details/">Random Mood</a>
+        </div>
+        <!-- Styles -->
+        <div id="categories_list_admin">
+            <div class="link_flex">
+                <a [ngClass]="Flow.selectedStyleId === null ? 'active' : 'category' " (click)="resetStyles()"> ▸ All Styles</a>
+            </div>
+            <div class="link_flex" *ngFor="let style of Flow.styles">
+                <a [ngClass]="Flow.selectedStyleId === style.businessId ? 'active' : 'category' "
+                id="{{style.businessId}}" (click)="updateCurrentStyleId(style.businessId)"> ▸ {{style.name}}</a>
+                <a class="update" routerLink="/artists/update-style/{{style.businessId}}" routerLinkActive="update-active" (click)="updateCurrentStyleId(style.businessId)">U</a>
+                <a class="delete" routerLink="/artists/delete-style/{{style.businessId}}" routerLinkActive="delete-active" (click)="updateCurrentStyleId(style.businessId)">D</a>
+            </div>
+        </div>
+        <!-- Artists Menu -->
+        <div class="item-top flex">
+            <p><b>Total Artists</b></p>
+            <p>{{ Flow.totalItems | number : '3.0'}}</p>
+        </div> 
+        <div class="item-top list_categories">
+            <a routerLink="/artists/create-artist"> ▸ Create Artist</a>
+        </div>
+        <!-- Styles Menu  -->
+        <div class="item-top flex">
+            <p><b>Total Styles</b></p>
+            <p>{{ Flow.styles.length | number : '3.0'}}</p>
+        </div> 
+        <div class="item-top list_categories">
+            <a routerLink="/artists/create-style"> ▸ Create Style</a>
+        </div>
+    </div>
+</app-menu-right-desktop>
+
+<div id="layout-central" *ngIf="artistsFlow() as Flow">
+    <!-- User Input -->
+    <div class="user-input">
+        <input #searchInput type="text" placeholder="Search" [formControl]="nameSearchField">
+    </div>
+    <ng-container *ngIf="Flow.artistsPage">
+      <!-- Pagination -->
+      <div class="user-pagination">
+        <!-- Previous Page -->
+        <button (click)="pagination(Flow.previousId)" [disabled]="Flow.itemPosition === 0"> prev </button>
+        <!-- Slider -->
+        <div id="slider">
+          <p>{{ Flow.itemPosition | number : '3.0'}}</p>
+          <input 
+            type="range" 
+            name="slider" 
+            min="0" 
+            max="{{ Flow.totalItems }}"
+            step="1" 
+            [(ngModel)]="Flow.itemPosition"
+            disabled
+          >        
+          <p>{{ Flow.totalItems | number : '3.0'}}</p>
+        </div>
+        <!-- Next Page -->
+        <button (click)="pagination(Flow.nextId)" [disabled]="Flow.itemPosition > Flow.totalItems - 20"> next </button>
+      </div>    
+      <!-- List -->
+      <div id="list">
+        <div *ngFor="let artist of Flow.artistsPage">
+          <div class="list-flex"> 
+            <a class="list-item link" routerLink="/artists/artist-gallery/{{artist.businessId}}"> ▸ {{artist.name}}</a>   
+            <a class="list-item update" routerLink="/artists/update-artist/{{artist.businessId}}">U</a>      
+            <a class="list-item delete" routerLink="/artists/delete-artist/{{artist.businessId}}">D</a>     
+          </div>  
+        </div>
+      </div>
+    </ng-container>  
+</div>

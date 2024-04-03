@@ -4,7 +4,6 @@
         <div class="item-top box_buttons">
             <a routerLink="/moods/mood-details/">Random Mood</a>
         </div>
-
         <!-- Link Categories -->
         <div id="categories_list_admin">
             <div class="link_flex">
@@ -25,7 +24,6 @@
             <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
         </div>  
     </div>       
-
     <!-- Links List -->  
     <div *ngIf="combinedState[3].linksListByCategory.length ; else loading">
         <div id="list">
@@ -36,8 +34,7 @@
                 </div>  
             </div>
         </div>   
-    </div>
-    
+    </div>    
     <!-- Loading -->
     <ng-template #loading>
         <div class="loading">
