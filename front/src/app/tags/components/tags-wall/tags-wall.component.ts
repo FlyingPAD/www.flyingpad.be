@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { StateTagsService } from '../../../core/services/state/state-tags.service';
+import { MoodStateService } from '../../../core/services/mood-state.service';
+import { TagStateService } from '../../../core/services/tag-state.service';
 
 @Component({
   selector: 'app-tags-wall',
@@ -9,18 +9,14 @@ import { StateTagsService } from '../../../core/services/state/state-tags.servic
 })
 export class TagsWallComponent 
 {
-  #stateTagsService = inject(StateTagsService)
-  #router = inject(Router)
+  #tagsService = inject(TagStateService)
+  #moodsService = inject(MoodStateService)
 
-  currentTagList$ = this.#stateTagsService.currentTagList$
+  tagsList = this.#tagsService.tagsList
+  moods = this.#moodsService.moodsFlow
 
-  ngOnInit()
+  updateTagId( tagId : number | null)
   {
-    window.scrollTo(0, 0)
-  }
-
-  selectMoods( tagId : number)
-  {
-    this.#router.navigateByUrl('moods/gallery/' + tagId)
+    this.#moodsService.updateSelectedTagId( tagId )
   }
 }

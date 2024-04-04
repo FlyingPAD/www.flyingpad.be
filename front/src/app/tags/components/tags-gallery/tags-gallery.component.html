@@ -1,9 +1,5 @@
 <app-button-top />
-
 <div id="layout-central">
-    <!-- Title  -->
-    <h2>Tags Gallery</h2>
-
     <!-- Navigation Menu -->
     <div class="row-white desktop">
         <div class="menu-flex">
@@ -14,23 +10,21 @@
         <div class="menu-flex">
             <app-button-back />
         </div>
-    </div>
-    
+    </div>    
     <!-- If tags, show them -->
-    <div id="tag-gallery" *ngIf="(currentTagList$ | async); else loading">
-        <div *ngFor="let category of (currentTagList$ | async)">
+    <div id="tag-gallery" *ngIf="tagsList().length; else loading">
+        <div *ngFor="let category of tagsList()">
             <!-- Category Name -->
             <p class="name-cat left">{{ category.category.name }}</p>
 
             <!-- Tag List -->
             <div *ngFor="let tag of category.tags">
-                <a id="{{tag.businessId}}" [ngClass]="tag.businessId === currentTag.businessId ? 'active' : '' " 
-                    routerLink="/moods/gallery/{{tag.businessId}}">▸ {{ tag.name }}
+                <a id="{{tag.businessId}}" [ngClass]="tag.businessId === moods().tagDetails?.businessId ? 'active' : '' " 
+                   routerLink="/moods/gallery" (click)="updateTagId(tag.businessId)">▸ {{ tag.name }}
                 </a>
             </div>
         </div>
-    </div>
-    
+    </div>    
     <!-- or loading if not -->
     <ng-template #loading>
         <div id="tag-gallery">

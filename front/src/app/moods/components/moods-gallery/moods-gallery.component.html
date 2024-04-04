@@ -1,26 +1,19 @@
 <app-menu-right-desktop>
     <div class="content_right_desktop">
-        <!-- Random Button -->
+        <!-- Random Mood Button -->
         <div id="random" class="item-top box_buttons">
-            <a routerLink="/moods/mood-details">Random Mood</a>
+            <a routerLink="/moods/new-mood" (click)="getMoodRandom()">Random Mood</a>
         </div>
         <!-- Tags List -->
         <div id="tag_list_main">
-            <div *ngFor="let tagList of currentTagList$ | async">
+            <div *ngFor="let tagList of tagsList()">
                 <div id="tags_container">
                     <p class="category_name">{{tagList.category.name}}</p>
                     <div *ngFor="let tag of tagList.tags">
                         <div id="tag_box">
-                            <a id="{{tag.businessId}}" class="name-tag active"
-                                (click)="getMoodsByTag(tag.businessId)"
-                                *ngIf="tag.name === (currentTag$ | async)?.name">
-                                ▸ {{tag.name}}
-                            </a>
-                                <a id="{{tag.businessId}}" class="name-tag"
-                                (click)="getMoodsByTag(tag.businessId)"
-                                *ngIf="tag.name !== (currentTag$ | async)?.name">
-                                ▸ {{tag.name}}
-                            </a>
+                            <a id="{{tag.businessId}}" class="name-tag" [ngClass]="{'active': tag.name === moods().tagDetails?.name}"
+                                (click)="updateTagId(tag.businessId)"> ▸ {{tag.name}}
+                            </a>                         
                         </div>
                     </div>
                 </div>
@@ -30,36 +23,32 @@
 </app-menu-right-desktop>
 
 <div id="layout-central">
-    <div *ngIf="(currentMoods$ | async); else loading">
+    <div *ngIf="moods().moodsList.length; else loading">
         <!-- Pagination -->
-        <div class="row-sticky" *ngIf="moods.length > moodsPerPage">
+        <div class="row-sticky" *ngIf="moods().moodsList.length > moodsPerPage">
             <div id="pagination">
                 <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
             </div>  
-        </div>        
-        <!-- Gallery -->        
+        </div> 
+        <!-- Gallery -->
         <div id="sub_gallery">
-            <div *ngFor="let mood of (currentMoods$ | async) || [] | paginate : { itemsPerPage : moodsPerPage, currentPage : currentPage }">
+            <div *ngFor="let mood of moods().moodsList | paginate : { itemsPerPage : moodsPerPage, currentPage : currentPage }">
                 <section>
                     <div *ngIf="mood.type == 1">           
-                        <a routerLink="/moods/mood-details/tag/{{mood.businessId}}">
-                            <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" />
-                        </a>
+                        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" 
+                        (click)="updateMoodId(mood.businessId)" />
                     </div>
                     <div *ngIf="mood.type == 2">
-                        <a routerLink="/moods/mood-details/tag/{{mood.businessId}}">
-                            <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"/>
-                        </a>         
+                        <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
+                        (click)="updateMoodId(mood.businessId)" />        
                     </div>
                     <div *ngIf="mood.type == 3">
-                        <a routerLink="/moods/mood-details/tag/{{mood.businessId}}">
-                            <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"/>
-                        </a>         
+                        <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
+                        (click)="updateMoodId(mood.businessId)" />       
                     </div>
                     <div *ngIf="mood.type == 4">
-                        <a routerLink="/moods/mood-details/tag/{{mood.businessId}}">
-                            <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"/>
-                        </a>   
+                        <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
+                        (click)="updateMoodId(mood.businessId)" />
                     </div>
                 </section>
             </div>

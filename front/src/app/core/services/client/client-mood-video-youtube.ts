@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GetOneVideoYouTubeDetails } from '../../models/mood-video-youtube';
+import { GetOneVideoYoutubeDetailsResponse } from '../../models/mood-video-youtube';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
@@ -14,8 +14,8 @@ export class VideoYouTubeService
 
   // - Get One Details
 
-  public GetOneDetails( businessId : number ) : Observable<GetOneVideoYouTubeDetails>
+  public GetOneDetails( businessId : number ) : Observable<GetOneVideoYoutubeDetailsResponse>
   {
-    return this.#http.get<GetOneVideoYouTubeDetails>(this.#url + 'GetOneDetails/' + businessId)
+    return this.#http.get<GetOneVideoYoutubeDetailsResponse>(this.#url + 'GetOneDetails/' + businessId)
   }
 }

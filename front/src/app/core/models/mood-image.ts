@@ -19,7 +19,7 @@ export class Image
 
 // Responses :
 
-export interface GetOneImageDetails extends BaseResponse
+export interface GetOneImageDetailsResponse extends BaseResponse
 {
     image : Image
 }

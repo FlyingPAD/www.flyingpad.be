@@ -19,7 +19,7 @@ export class VideoYouTube
 
 // Responses :
 
-export interface GetOneVideoYouTubeDetails extends BaseResponse
+export interface GetOneVideoYoutubeDetailsResponse extends BaseResponse
 {
     videoYouTube : VideoYouTube
 }

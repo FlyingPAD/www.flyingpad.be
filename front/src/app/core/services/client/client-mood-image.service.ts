@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GetOneImageDetails } from '../../models/mood-image';
+import { GetOneImageDetailsResponse } from '../../models/mood-image';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
@@ -14,8 +14,8 @@ export class ImageService
 
   // - Get One Details
 
-  public GetOneDetails( businessId : number ) : Observable<GetOneImageDetails>
+  public GetOneDetails( businessId : number ) : Observable<GetOneImageDetailsResponse>
   {
-    return this.#http.get<GetOneImageDetails>(this.#url + 'GetOneDetails/' + businessId)
+    return this.#http.get<GetOneImageDetailsResponse>(this.#url + 'GetOneDetails/' + businessId)
   }
 }

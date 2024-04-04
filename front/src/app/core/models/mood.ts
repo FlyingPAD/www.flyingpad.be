@@ -19,7 +19,7 @@ export class MoodFull
     modified : Date = new Date()
     modifiedBy : string = ''
     type: number = 0
-    name : string = ''
+    name : string = 'Empty Mood'
     description : string = ''
     score : number = 0
     extension: string = ''
