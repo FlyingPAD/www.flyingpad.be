@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TagsGetFullListResponse, GetOneTagDetails, TagsGetByMoodResponse } from '../../models/tag';
+import { TagsGetFullListResponse, GetOneTagDetailsResponse, GetTagsByMoodResponse } from '../../models/tag';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
@@ -14,9 +14,9 @@ export class TagService
 
   // - Get One Details
 
-  public GetOneDetails( businesId : number ) : Observable<GetOneTagDetails> 
+  public GetOneDetails( businesId : number ) : Observable<GetOneTagDetailsResponse> 
   {
-    return this.#http.get<GetOneTagDetails>(this.#url + 'GetOneDetails/' + businesId)
+    return this.#http.get<GetOneTagDetailsResponse>(this.#url + 'GetOneDetails/' + businesId)
   }
 
   //  - Get Full List of Tags with Categories
@@ -28,8 +28,8 @@ export class TagService
 
   //  - Get Mood Associated Tags
 
-  public GetByMood( businessId : number ) : Observable<TagsGetByMoodResponse>
+  public GetByMood( businessId : number ) : Observable<GetTagsByMoodResponse>
   {
-    return this.#http.get<TagsGetByMoodResponse>(this.#url + 'GetByMood/' + businessId)
+    return this.#http.get<GetTagsByMoodResponse>(this.#url + 'GetByMood/' + businessId)
   }
 }

@@ -5,7 +5,7 @@ import { BehaviorSubject, catchError, combineLatest, debounceTime, map, of, shar
 import { FormControl } from '@angular/forms';
 import { ArtistsGetPageResponse } from '../models/artist';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { StyleCheck, StylesGetAllResponse } from '../models/style';
+import { StylesGetAllResponse } from '../models/style';
 
 @Injectable({
   providedIn: 'root'

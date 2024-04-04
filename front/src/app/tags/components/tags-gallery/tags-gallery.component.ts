@@ -1,39 +1,30 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { StateTagsService } from '../../../core/services/state/state-tags.service';
-import { Tag } from '../../../core/models/tag';
-import { Subscription, debounceTime } from 'rxjs';
+import { Component, OnInit, inject } from '@angular/core';
+import { TagStateService } from '../../../core/services/tag-state.service';
+import { MoodStateService } from '../../../core/services/mood-state.service';
 
 @Component({
   selector: 'app-tags-gallery',
   templateUrl: './tags-gallery.component.html',
   styleUrl: './tags-gallery.component.scss'
 })
-export class TagsGalleryComponent implements OnInit, OnDestroy
+export class TagsGalleryComponent implements OnInit
 {
-  #stateTagsService = inject(StateTagsService)
+  #tagsService = inject(TagStateService)
+  #moodsService = inject(MoodStateService)
 
-  currentTagList$ = this.#stateTagsService.currentTagList$
+  tagsList = this.#tagsService.tagsList
+  moods = this.#moodsService.moodsFlow
 
-  currentTag = new Tag()
-  tagSubscription = new Subscription()
-
-  ngOnInit() {
-    this.tagSubscription = this.#stateTagsService.currentTag$
-      .pipe(
-        debounceTime(300) // Attend 300ms après le dernier signal avant d'exécuter le next
-      )
-      .subscribe({
-        next: (data) => {
-          this.currentTag = data;
-          // Assurez-vous que l'élément est dans le DOM
-          this.scrollToStart(this.currentTag.businessId.toString());
-        }
-      });
+  ngOnInit() : void
+  {
+    window.scrollTo(0, 0)
+    const businessIdString = `${this.moods().tagDetails?.businessId ?? 'fallbackValue'}`
+    this.scrollToStart(businessIdString)
   }
 
-  ngOnDestroy(): void 
+  updateTagId( tagId : number | null)
   {
-    this.tagSubscription.unsubscribe()
+    this.#moodsService.updateSelectedTagId( tagId )
   }
 
   scrollToStart( elementId : string ) : void 

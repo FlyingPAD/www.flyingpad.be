@@ -42,7 +42,7 @@ export class TagCategory
 
 // Response :
 
-export interface GetOneTagDetails extends BaseResponse
+export interface GetOneTagDetailsResponse extends BaseResponse
 {
     tag : Tag
 }
@@ -52,7 +52,7 @@ export interface TagsGetFullListResponse extends BaseResponse
     categoriesWithTags : TagList[]
 }
 
-export interface TagsGetByMoodResponse extends BaseResponse
+export interface GetTagsByMoodResponse extends BaseResponse
 {
     tagsByMood : MiniTag[]
 }
