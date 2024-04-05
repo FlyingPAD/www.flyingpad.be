@@ -1,10 +1,7 @@
-﻿using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Contracts.Persistence;
-using MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByArtist;
-using MB.Application.Responses;
+﻿using MB.Application.Contracts.Persistence;
+using MB.Application.Contracts.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
-using FluentValidation;
 
 namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByStyle
 {

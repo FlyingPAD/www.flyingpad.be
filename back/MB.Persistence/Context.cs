@@ -205,7 +205,6 @@ namespace MB.Persistence
                 .WithMany(tag => tag.MoodTags)
                 .HasForeignKey(relation => relation.TagId);
 
-
             // Post Deployment Script
 
             PostDeployment.AddData(modelBuilder);
@@ -232,6 +231,5 @@ namespace MB.Persistence
             }
             return base.SaveChangesAsync(cancellationToken);
         }
-
     }
 }
