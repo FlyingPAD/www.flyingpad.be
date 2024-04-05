@@ -37,7 +37,6 @@ console.log(' ---------------------------------- ')
     // --- NATIVE :
 
     HttpClientModule,                       // Manual Import
-
     BrowserAnimationsModule,                // Enables Animations ( Required for Toastr )
 
     // Toastr Configuration :
@@ -58,11 +57,9 @@ console.log(' ---------------------------------- ')
   providers: 
   [
     // Additional providers :
-
     [CookieService],                        // Provider for the cookies service
 
     // Provider for HTTP Interceptor to handle tokens :
-
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
