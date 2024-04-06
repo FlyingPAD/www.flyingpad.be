@@ -5,16 +5,10 @@ using MediatR;
 
 namespace MB.Application.Features.Tags.Queries.GetTagsList
 {
-    public class GetTagsListQueryHandler : IRequestHandler<GetTagsListQuery, GetTagsListQueryResponse>
+    public class GetTagsListQueryHandler(IBaseRepository<Tag> tagRepository, IMapper mapper) : IRequestHandler<GetTagsListQuery, GetTagsListQueryResponse>
     {
-        private readonly IBaseRepository<Tag> _tagRepository;
-        private readonly IMapper _mapper;
-
-        public GetTagsListQueryHandler(IBaseRepository<Tag> tagRepository, IMapper mapper)
-        {
-            _tagRepository = tagRepository;
-            _mapper = mapper;
-        }
+        private readonly IBaseRepository<Tag> _tagRepository = tagRepository;
+        private readonly IMapper _mapper = mapper;
 
         public async Task<GetTagsListQueryResponse> Handle(GetTagsListQuery request, CancellationToken cancellationToken)
         {
@@ -36,7 +30,7 @@ namespace MB.Application.Features.Tags.Queries.GetTagsList
                 var response = new GetTagsListQueryResponse
                 {
                     Success = false,
-                    ValidationErrors = new List<string> { $"Une erreur s'est produite ( {ex} )." }
+                    ValidationErrors = [$"Une erreur s'est produite ( {ex} )."]
                 };
 
                 return response;

@@ -52,9 +52,9 @@ namespace MB.API.Controllers
         /// Get All
         /// </summary>
         [HttpGet("GetAll")]
-        public async Task<ActionResult<GetFranchisesListQueryResponse>> GetAll()
+        public async Task<ActionResult<GetAllFranchisesQueryResponse>> GetAll()
         {
-            var response = await _mediator.Send(new GetFranchisesListQuery());
+            var response = await _mediator.Send(new GetAllFranchisesQuery());
             return Ok(response);
         }
 
@@ -89,6 +89,16 @@ namespace MB.API.Controllers
         public async Task<ActionResult<GetFranchisesByModelQueryResponse>> GetByModel(Guid modelId)
         {
             var response = await _mediator.Send(new GetFranchisesByModelQuery { ModelId = modelId });
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Get Franchises With Categories & Models ( Full List )
+        /// </summary>
+        [HttpGet("GetFranchisesList")]
+        public async Task<ActionResult<GetFranchisesListQueryResponse>> GetFranchisesList()
+        {
+            var response = await _mediator.Send(new GetFranchisesListQuery());
             return Ok(response);
         }
 

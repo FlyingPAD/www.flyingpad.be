@@ -1,8 +1,8 @@
 ﻿namespace MB.Application.Features.Franchises.Queries.GetFranchisesList
 {
-    public class FranchiseListVm
+    public class GFLQModelDto
     {
         public Guid BusinessId { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public string Pseudonym { get; set; } = string.Empty;
     }
 }

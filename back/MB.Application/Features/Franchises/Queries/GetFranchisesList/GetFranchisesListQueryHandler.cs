@@ -5,42 +5,34 @@ using MediatR;
 
 namespace MB.Application.Features.Franchises.Queries.GetFranchisesList
 {
-    public class GetFranchisesListQueryHandler : IRequestHandler<GetFranchisesListQuery, GetFranchisesListQueryResponse>
+    public class GetFranchisesListQueryHandler(IBaseRepository<Franchise> franchiseRepository, IBaseRepository<Media> mediaRepository, IBaseRepository<Model> modelRepository, IMapper mapper) : IRequestHandler<GetFranchisesListQuery, GetFranchisesListQueryResponse>
     {
-        private readonly IBaseRepository<Franchise> _franchiseRepository;
-        private readonly IMapper _mapper;
-
-        public GetFranchisesListQueryHandler(IBaseRepository<Franchise> franchiseRepository, IMapper mapper)
-        {
-            _franchiseRepository = franchiseRepository;
-            _mapper = mapper;
-        }
+        private readonly IBaseRepository<Media> _mediaRepository = mediaRepository;
+        private readonly IBaseRepository<Franchise> _franchiseRepository = franchiseRepository;
+        private readonly IBaseRepository<Model> _modelRepository = modelRepository;
+        private readonly IMapper _mapper = mapper;
 
         public async Task<GetFranchisesListQueryResponse> Handle(GetFranchisesListQuery request, CancellationToken cancellationToken)
         {
-            try
+            var medias = await _mediaRepository.GetAllAsync();
+
+            foreach (var media in medias) 
             {
                 var franchises = await _franchiseRepository.GetAllAsync();
-                var response = new GetFranchisesListQueryResponse
-                {
-                    Success = true,
-                    Message = "Here are the Franchises !",
-                    FranchisesList = _mapper.Map<List<FranchiseListVm>>(franchises)
-                };
 
-                return response;
+                media.
             }
-            catch (Exception ex)
+
+            
+
+            var response = new GetFranchisesListQueryResponse
             {
-                // Gérez l'exception et renvoyez une réponse d'erreur
-                var response = new GetFranchisesListQueryResponse
-                {
-                    Success = false,
-                    ValidationErrors = new List<string> { $"Une erreur s'est produite ( {ex} )." }
-                };
+                Success = true,
+                Message = "Here are the Franchises !",
+                Medias = _mapper.Map<List<GFLQMediaDto>>(medias)
+            };
 
-                return response;
-            }
+            return response;
         }
     }
 }
