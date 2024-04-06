@@ -4,16 +4,10 @@ using MediatR;
 
 namespace MB.Application.Features.Tags.Queries.GetTagsFullListQuery
 {
-    public class GetTagsFullListQueryHandler : IRequestHandler<GetTagsFullListQuery, GetTagsFullListQueryResponse>
+    public class GetTagsFullListQueryHandler(IMapper mapper, ITagRepository tagRepository) : IRequestHandler<GetTagsFullListQuery, GetTagsFullListQueryResponse>
     {
-        private readonly IMapper _mapper;
-        private readonly ITagRepository _tagRepository;
-
-        public GetTagsFullListQueryHandler(IMapper mapper, ITagRepository tagRepository)
-        {
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _tagRepository = tagRepository ?? throw new ArgumentNullException(nameof(tagRepository));
-        }
+        private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        private readonly ITagRepository _tagRepository = tagRepository ?? throw new ArgumentNullException(nameof(tagRepository));
 
         public async Task<GetTagsFullListQueryResponse> Handle(GetTagsFullListQuery request, CancellationToken cancellationToken)
         {

@@ -115,7 +115,8 @@ namespace MB.Application.Profiles
             CreateMap<Franchise, DeleteFranchiseCommand>().ReverseMap();
 
             CreateMap<Franchise, GetFranchiseByIdVm>().ReverseMap();
-            CreateMap<Franchise, FranchiseListVm>().ReverseMap();
+            CreateMap<Franchise, GetFranchisesListQueryVm>().ReverseMap();
+            CreateMap<Franchise, GetAllFranchisesQueryVm>().ReverseMap();
             CreateMap<Franchise, GetFranchisesByMoodQueryVm>().ReverseMap();
             CreateMap<Franchise, GetFranchisesByModelQueryVm>().ReverseMap();
             

@@ -7,13 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories
 {
-    public class TagRepository : BaseRepository<Tag>, ITagRepository
+    public class TagRepository(Context context) : BaseRepository<Tag>(context), ITagRepository
     {
-        public TagRepository(Context context) : base(context)
-        {
-
-        }
-
         public async Task<IEnumerable<GetTagsByMoodQueryVm>> GetTagsByMood(int? moodId)
         {
             var tagsVm = await _context.RMoodTag

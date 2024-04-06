@@ -6,12 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories
 {
-    public class ArtistRepository : BaseRepository<Artist>, IArtistRepository
+    public class ArtistRepository(Context context) : BaseRepository<Artist>(context), IArtistRepository
     {
-        public ArtistRepository(Context context) : base(context)
-        {
-        }
-
         public async Task<List<Artist>> GetArtistsByMood(int? moodId)
         {
             return await _context.Artists

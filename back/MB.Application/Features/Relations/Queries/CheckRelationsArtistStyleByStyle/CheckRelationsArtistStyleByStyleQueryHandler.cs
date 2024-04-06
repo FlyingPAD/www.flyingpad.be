@@ -5,24 +5,17 @@ using MediatR;
 
 namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByStyle
 {
-    public class CheckRelationsArtistStyleByStyleQueryHandler : IRequestHandler<CheckRelationsArtistStyleByStyleQuery, CheckRelationsArtistStyleByStyleQueryResponse>
+    public class CheckRelationsArtistStyleByStyleQueryHandler(IRelationRepository relationRepository, IBaseRepository<Style> styleRepository, CheckRelationsArtistStyleByStyleQueryValidator validator) : IRequestHandler<CheckRelationsArtistStyleByStyleQuery, CheckRelationsArtistStyleByStyleQueryResponse>
     {
-        private readonly IRelationRepository _relationRepository;
-        private readonly IBaseRepository<Style> _styleRepository;
-        private readonly CheckRelationsArtistStyleByStyleQueryValidator _validator;
-
-        public CheckRelationsArtistStyleByStyleQueryHandler(IRelationRepository relationRepository, IBaseRepository<Style> styleRepository, CheckRelationsArtistStyleByStyleQueryValidator validator)
-        {
-            _relationRepository = relationRepository;
-            _styleRepository = styleRepository;
-            _validator = validator;
-        }
+        private readonly IRelationRepository _relationRepository = relationRepository;
+        private readonly IBaseRepository<Style> _styleRepository = styleRepository;
+        private readonly CheckRelationsArtistStyleByStyleQueryValidator _validator = validator;
 
         public async Task<CheckRelationsArtistStyleByStyleQueryResponse> Handle(CheckRelationsArtistStyleByStyleQuery request, CancellationToken cancellationToken)
         {
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
-            if (validationResult.Errors.Any())
+            if (validationResult.Errors.Count != 0)
             {
                 return new CheckRelationsArtistStyleByStyleQueryResponse
                 {
