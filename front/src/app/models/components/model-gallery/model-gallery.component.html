@@ -1,34 +1,34 @@
-<app-menu-right-desktop>
+<app-menu-right-desktop *ngIf="model() as model">
     <div class="content_right_desktop">  
         <!-- Random Mood Button -->
         <div class="item-top box_buttons">
             <a routerLink="/moods/mood-details">Random Mood</a>
         </div>
         <!-- Logo -->
-        <div class="box-pic" *ngIf="(model$ | async)?.pseudonym === '# Unknown Model'"><img src="../../../../assets/app_logos/fp_logo_02.png" /></div>
+        <div class="box-pic" *ngIf="model.model.pseudonym === '# Unknown Model'"><img src="../../../../assets/app_logos/fp_logo_02.png" /></div>
         <!-- or Gender -->
-        <div *ngIf="(model$ | async)?.pseudonym !== '# Unknown Model'">
-            <div class="item-top picture" *ngIf="(model$ | async)?.gender === 'F'">
+        <div *ngIf="model.model.pseudonym !== '# Unknown Model'">
+            <div class="item-top picture" *ngIf="model.model.gender === 'F'">
                 <img src="../../../../assets/app_icons/gender/female.png">
             </div>  
-            <div class="item-top picture" *ngIf="(model$ | async)?.gender === 'M'">
+            <div class="item-top picture" *ngIf="model.model.gender === 'M'">
                 <img src="../../../../assets/app_icons/gender/male.png">
             </div>  
         </div>
         <!-- Model Details -->
-        <h1 class="item-top">{{ (model$ | async)?.pseudonym}}</h1>
+        <h1 class="item-top">{{ model.model.pseudonym }}</h1>
         <div class="item-top flex">
             <p><b>Moods</b></p>
-            <p>{{(moods$ | async)?.length | number : '3.0'}}</p>
+            <p>{{ model.moods.length | number : '3.0'}}</p>
         </div>
-        <div *ngIf="(model$ | async)?.pseudonym !== '# Unknown Model'">
-            <div class="item-middle flex" *ngIf="(model$ | async)?.firstName !== '...' ">
+        <div *ngIf="model.model.pseudonym !== '# Unknown Model'">
+            <div class="item-middle flex" *ngIf="model.model.firstName !== '...' ">
                 <p><b>First Name</b></p>
-                <p>{{(model$ | async)?.firstName}}</p>
+                <p>{{model.model.firstName}}</p>
             </div>
-            <div class="item-middle flex" *ngIf="(model$ | async)?.lastName !== '...' ">
+            <div class="item-middle flex" *ngIf="model.model.lastName !== '...' ">
                 <p><b>Last Name</b></p>
-                <p>{{(model$ | async)?.lastName}}</p>
+                <p>{{model.model.lastName}}</p>
             </div>
         </div>        
         <div>
@@ -36,19 +36,19 @@
             <div class="item-top flex_created">
                 <div class="box_created">
                     <p>Created :</p>
-                    <p>{{(model$ | async)?.created | date : 'MMMM d, y | HH:mm'}}</p>
+                    <p>{{model.model.created | date : 'MMMM d, y | HH:mm'}}</p>
                 </div>
                 <div class="box_created">
                     <p>Modified :</p>
-                    <p>{{(model$ | async)?.modified | date : 'MMMM d, y | HH:mm'}}</p>
+                    <p>{{model.model.modified | date : 'MMMM d, y | HH:mm'}}</p>
                 </div>
             </div> 
         </div>
-        <div *ngIf="(model$ | async)?.pseudonym != '# Unknown Model'">
+        <div *ngIf="model.model.pseudonym != '# Unknown Model'">
             <!-- Search -->            
             <div class="item-top box_buttons">
-                <a target="_blank" href="https://www.google.com/search?q={{(model$ | async)?.pseudonym}}">Search Google</a>
-                <a target="_blank" href="https://images.google.com/images?q={{(model$ | async)?.pseudonym}}">Google Images</a>
+                <a target="_blank" href="https://www.google.com/search?q={{model.model.pseudonym}}">Search Google</a>
+                <a target="_blank" href="https://images.google.com/images?q={{model.model.pseudonym}}">Google Images</a>
             </div>   
             <!-- Related Links -->
             <!-- <div *ngIf="links.length != 0">
@@ -61,10 +61,10 @@
             </div> -->
         </div> 
         <!-- Related Franchises -->
-        <div *ngIf="(franchises$ | async )?.length">
+        <div *ngIf="model.franchises.length">
             <h1 class="item-top">From</h1>
             <div class="item-bottom box_buttons">
-                <div *ngFor="let franchise of (franchises$ | async )">
+                <div *ngFor="let franchise of model.franchises">
                     <a routerLink="/franchises/franchise-gallery/{{franchise.businessId}}">{{franchise.name}}</a>             
                 </div>
             </div>
@@ -72,16 +72,16 @@
     </div>
 </app-menu-right-desktop>
 
-<div id="layout-central">
+<div id="layout-central" *ngIf="model() as model">
     <!-- Pagination -->
-    <div class="row-sticky" *ngIf="moods.length > mpp">
+    <div class="row-sticky" *ngIf="model.moods.length > mpp">
         <div id="pagination">
             <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="p = $event"></pagination-controls>
         </div>
     </div>    
     <!-- Gallery -->
     <div id="sub_gallery">
-        <div *ngFor="let mood of (moods$ | async) || [] | paginate : { itemsPerPage: mpp, currentPage: p }">
+        <div *ngFor="let mood of model.moods | paginate : { itemsPerPage: mpp, currentPage: p }">
             <section>
                 <div *ngIf="mood.type == 1">           
                     <a routerLink="/moods/mood-details/model/{{mood.businessId}}"><img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"/></a>

@@ -115,7 +115,7 @@ namespace MB.Application.Profiles
             CreateMap<Franchise, DeleteFranchiseCommand>().ReverseMap();
 
             CreateMap<Franchise, GetFranchiseByIdVm>().ReverseMap();
-            CreateMap<Franchise, GetFranchisesListQueryVm>().ReverseMap();
+            CreateMap<Franchise, GFLQFranchiseDto>().ReverseMap();
             CreateMap<Franchise, GetAllFranchisesQueryVm>().ReverseMap();
             CreateMap<Franchise, GetFranchisesByMoodQueryVm>().ReverseMap();
             CreateMap<Franchise, GetFranchisesByModelQueryVm>().ReverseMap();
@@ -128,6 +128,7 @@ namespace MB.Application.Profiles
             CreateMap<Media, UpdateMediaCommand>().ReverseMap();
             CreateMap<Media, UpdateMediaDto>().ReverseMap();
             CreateMap<Media, DeleteMediaCommand>().ReverseMap();
+            CreateMap<Media, GFLQMediaDto>().ReverseMap();
 
             // Links :
 
@@ -161,6 +162,7 @@ namespace MB.Application.Profiles
             CreateMap<Model, GetModelByIdVm>().ReverseMap();
             CreateMap<Model, GetModelsByMoodQueryVm>().ReverseMap();
             CreateMap<Model, GetModelsByFranchiseQueryVm>().ReverseMap();
+            CreateMap<Model, GFLQModelDto>().ReverseMap();
 
             // Moods :
 

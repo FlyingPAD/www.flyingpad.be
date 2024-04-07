@@ -1,4 +1,5 @@
 import { BaseResponse } from "./base-response";
+import { ModelLight } from "./model";
 
 // Models :
 
@@ -19,6 +20,20 @@ export class MediaDetails
     description : string = ''
 }
 
+export class MediaFullList
+{
+    businessId : number = 0
+    name : string = ''
+    franchises : FranchiseList[] = []
+}
+
+export class FranchiseList
+{
+    businesId : number = 0
+    name : string = ''
+    models : ModelLight[] = []
+}
+
 // Responses :
 
 export interface GetMediasByMoodResponse extends BaseResponse
@@ -34,4 +49,9 @@ export interface GetOneMediaDetailsResponse extends BaseResponse
 export interface GetMediaByModelResponse extends BaseResponse
 {
     media : MediaDetails
+}
+
+export interface GetMediasFullListResponse extends BaseResponse
+{
+    medias : MediaFullList[]
 }
