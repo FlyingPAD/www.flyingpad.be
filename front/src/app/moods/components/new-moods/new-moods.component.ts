@@ -4,6 +4,7 @@ import { environment } from '../../../../environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Video } from '../../../core/models/mood-video';
 import { Image } from '../../../core/models/mood-image';
+import { ModelStateService } from '../../../core/services/model-state.service';
 
 @Component({
   selector: 'app-new-moods',
@@ -15,6 +16,12 @@ export class NewMoodsComponent
   // Dependency Injections
   moodsService = inject(MoodStateService)
   #sanitizer = inject(DomSanitizer)
+  newModelsService = inject(ModelStateService)
+
+  updateModelId(modelId : number)
+  {
+    this.newModelsService.updateSelectedModelId(modelId)
+  }
 
   // Properties
   environment :       string          = environment.apiBaseUrl

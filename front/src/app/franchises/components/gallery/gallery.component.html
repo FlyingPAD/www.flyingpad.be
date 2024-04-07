@@ -1,0 +1,13 @@
+<div class="medias-container">
+    <div *ngFor="let media of medias()" class="media">
+        <a class="h1">{{media.name}}</a>
+        <div *ngFor="let franchise of media.franchises" class="franchise">
+            <a class="h2"> ▸ {{franchise.name}}</a>
+            <div *ngFor="let model of franchise.models">
+                <a class="h3" [ngClass]="model.gender === 'F' ? 'female' : 'male' " 
+                routerLink="/models/model-gallery"
+                (click)="updateModelId(model.businessId)">{{model.pseudonym}}</a>
+            </div>
+        </div>
+    </div>
+</div>

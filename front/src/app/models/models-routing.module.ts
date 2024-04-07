@@ -4,7 +4,7 @@ import { ModelGalleryComponent } from './components/model-gallery/model-gallery.
 
 const routes: Routes = 
 [
-  { path : '', pathMatch : 'full', redirectTo : 'gallery'},
+  { path : '', pathMatch : 'full', redirectTo : 'model-gallery'},
   { path : 'model-gallery', component : ModelGalleryComponent, title : 'Flying PAD | Model Gallery' },
   { path : 'model-gallery/:id', component : ModelGalleryComponent, title : 'Flying PAD | Model Gallery' },
 ];

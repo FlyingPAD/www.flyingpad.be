@@ -140,11 +140,16 @@
                 <div class="element-group" (click)="goTo('models')">
                     <img src="../../../../assets/app_icons/icon_models_001.png" />
                     <a routerLink="/models" routerLinkActive="active"
-                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Models</a> 
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Model</a> 
                 </div>
-                <div class="element-group" (click)="goTo('franchises')">
-                    <img src="../../../../assets/app_icons/icon_franchises_001.png" />
-                    <a routerLink="/franchises" routerLinkActive="active"
+                <div class="element-group" (click)="goTo('franchises/franchise-gallery')">
+                    <img src="../../../../assets/app_icons/icon_dollar_001.png" />
+                    <a routerLink="/franchises/franchise-gallery" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Franchise</a> 
+                </div>
+                <div class="element-group" (click)="goTo('franchises/gallery')">
+                    <img src="../../../../assets/app_icons/icon_hamburger_left_001.png" />
+                    <a routerLink="/franchises/gallery" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
                     [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Franchises</a> 
                 </div>
                 <div class="element-group" (click)="goTo('links')">

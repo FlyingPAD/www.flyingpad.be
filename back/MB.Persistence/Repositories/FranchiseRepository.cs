@@ -7,6 +7,14 @@ namespace MB.Persistence.Repositories
 {
     public class FranchiseRepository(Context context) : BaseRepository<Franchise>(context), IFranchiseRepository
     {
+        public async Task<List<Franchise>> GetFranchisesByMedia(int? mediaId)
+        {
+            return await _context.Franchises
+                .Where(franchise => franchise.FranchiseMedias != null && franchise.FranchiseMedias.Any(relation => relation.MediaId == mediaId))
+                .OrderBy(franchise => franchise.Name)
+                .ToListAsync();
+        }
+
         public async Task<List<Franchise>> GetFranchisesByModels(List<int> modelIds)
         {
             var franchises = await _context.Franchises

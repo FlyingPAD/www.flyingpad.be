@@ -15,7 +15,7 @@
             <h1 class="item-top">Starring</h1>
             <div class="item-top box_buttons">
                 <div *ngFor="let model of modelsByMood">
-                    <a routerLink="/models/model-gallery/{{model.businessId}}" (click)="menuService.allMenuTriggerOff()">{{model.pseudonym}}</a>
+                    <a routerLink="/models/model-gallery" (click)="updateModelId(model.businessId)">{{model.pseudonym}}</a>
                 </div>
             </div>
             <!-- Related Franchises -->

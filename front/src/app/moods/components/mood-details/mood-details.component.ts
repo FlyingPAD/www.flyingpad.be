@@ -24,6 +24,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { StateFranchisesService } from '../../../core/services/state/state-franchises.service';
 import { StateArtistService } from '../../../core/services/state/state-artists.service';
 import { StateModelsService } from '../../../core/services/state/state-models.service';
+import { ModelStateService } from '../../../core/services/model-state.service';
 
 @Component({
   selector: 'app-mood-details',
@@ -33,6 +34,13 @@ import { StateModelsService } from '../../../core/services/state/state-models.se
 export class MoodDetailsComponent  implements OnInit, OnDestroy
 {
   // Injections :
+
+  newModelsService = inject(ModelStateService)
+
+  updateModelId(modelId : number)
+  {
+    this.newModelsService.updateSelectedModelId(modelId)
+  }
 
   #artistsState = inject(StateArtistService)
   #modelsState = inject(StateModelsService)

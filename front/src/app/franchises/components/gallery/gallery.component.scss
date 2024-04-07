@@ -1,0 +1,67 @@
+.medias-container 
+{
+    .media 
+    {
+        columns: 10;
+        border: 1px solid #ccc;
+        padding: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+        .franchise
+        {
+            border: 1px solid #ccc;
+            padding: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            break-inside: avoid;
+        }
+
+        .h1, .h2, .h3 
+        {
+            display: block;
+            margin: 5px 0;
+            white-space: nowrap;        /* Empêche le texte de passer à la ligne */
+            overflow: hidden;           /* Coupe le texte qui déborde */
+            text-overflow: ellipsis;    /* Ajoute les points de suspension à la fin du texte */
+        }
+
+        .h1 
+        {
+            font-size: 14px;
+            border: 1px solid var(--colorMain);
+            border-radius: 5px;
+            background-color: rgb(255, 255, 255, 0.5);
+            text-align: center;
+            padding: 5px;
+            color: var(--colorMain);
+        }
+
+        .h2 
+        {
+            font-size: 11px;
+        }
+
+        .h3 
+        {
+            font-size: 11px;
+            text-indent: 22px;
+            color: var(--colorMain);
+        }
+        .female
+        {
+            color : rgb(190, 0, 32);
+        }
+        .male
+        {
+            color: rgb(0, 115, 115);
+        }
+
+        a
+        {
+            text-decoration: none;
+        }
+        a:hover
+        {
+            text-decoration: underline;
+        }
+    }
+}
