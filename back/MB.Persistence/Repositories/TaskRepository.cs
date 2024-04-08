@@ -3,13 +3,8 @@ using MB.Persistence.Repositories.Common;
 
 namespace MB.Persistence.Repositories
 {
-    public class TaskRepository : BaseRepository<MB.Domain.Entities.Task>, ITaskRepository
+    public class TaskRepository(Context context) : BaseRepository<MB.Domain.Entities.Task>(context), ITaskRepository
     {
-        public TaskRepository(Context context) : base(context)
-        {
-             
-        }
-
         public Task<bool> IsTaskNameAndDateUnique(string name, DateTime taskDateStart)
         {
             var matches = _context.Tasks.Any(e => e.Name.Equals(name) && e.DateStart.Date.Equals(taskDateStart.Date));

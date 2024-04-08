@@ -6,9 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories
 {
-    public class StyleRepository : BaseRepository<Style>, IStyleRepository
+    public class StyleRepository(Context context) : BaseRepository<Style>(context), IStyleRepository
     {
-        public StyleRepository(Context context) : base(context) { }
 
         // Retrieves primary entity ID based on business ID.
 

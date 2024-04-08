@@ -5,12 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories
 {
-    public class LinkCategoryRepository : BaseRepository<LinkCategory>, ILinkCategoryRepository
+    public class LinkCategoryRepository(Context context) : BaseRepository<LinkCategory>(context), ILinkCategoryRepository
     {
-        public LinkCategoryRepository(Context context) : base(context)
-        {
-             
-        }
-
     }
 }

@@ -1,13 +1,13 @@
 ﻿using MB.API.Models;
 using MB.Application.Exceptions;
+using Serilog;
 using System.Text.Json;
 
 namespace MB.API.Handlers
 {
-    public class ExceptionHandler(RequestDelegate next, ILogger<ExceptionHandler> logger)
+    public class ExceptionHandler(RequestDelegate next)
     {
         private readonly RequestDelegate _next = next;
-        private readonly ILogger _logger = logger;
 
         public async Task Invoke(HttpContext httpContext)
         {
@@ -17,13 +17,13 @@ namespace MB.API.Handlers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
-                _logger.LogError(ex.StackTrace);
+                Log.Error(ex.Message);
+                Log.Error(ex.StackTrace);
 
                 if (ex.InnerException != null)
                 {
-                    _logger.LogError(ex.InnerException.Message);
-                    _logger.LogError(ex.InnerException.StackTrace);
+                    Log.Error(ex.InnerException.Message);
+                    Log.Error(ex.InnerException.StackTrace);
                 }
 
                 await HandleExceptionAsync(ex, httpContext);
