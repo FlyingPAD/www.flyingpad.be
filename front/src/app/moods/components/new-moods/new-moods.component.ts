@@ -5,6 +5,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Video } from '../../../core/models/mood-video';
 import { Image } from '../../../core/models/mood-image';
 import { ModelStateService } from '../../../core/services/model-state.service';
+import { FranchiseStateService } from '../../../core/services/franchise-state.service';
 
 @Component({
   selector: 'app-new-moods',
@@ -17,6 +18,12 @@ export class NewMoodsComponent
   moodsService = inject(MoodStateService)
   #sanitizer = inject(DomSanitizer)
   newModelsService = inject(ModelStateService)
+  newFranchiseService = inject(FranchiseStateService)
+
+  updateFranchiseId(franchiseId : number | null)
+  {
+    this.newFranchiseService.updateSelectedFranchiseId(franchiseId)
+  }
 
   updateModelId(modelId : number)
   {

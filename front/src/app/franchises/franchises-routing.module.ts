@@ -7,7 +7,6 @@ const routes: Routes =
 [
   { path : '', pathMatch : 'full', redirectTo : 'franchise-gallery'},
   { path : 'franchise-gallery', component : FranchiseGalleryComponent, title : 'Flying PAD | Franchise Gallery' },
-  { path : 'franchise-gallery/:id', component : FranchiseGalleryComponent, title : 'Flying PAD | Franchise Gallery' },
   { path : 'gallery', component : GalleryComponent, title : 'Flying PAD | Franchises Gallery' },
 ];
 

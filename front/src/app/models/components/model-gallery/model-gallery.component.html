@@ -65,7 +65,7 @@
             <h1 class="item-top">From</h1>
             <div class="item-bottom box_buttons">
                 <div *ngFor="let franchise of model.franchises">
-                    <a routerLink="/franchises/franchise-gallery/{{franchise.businessId}}">{{franchise.name}}</a>             
+                    <a routerLink="/franchises/franchise-gallery" (click)="updateFranchiseId(franchise.businessId)">{{franchise.name}}</a>             
                 </div>
             </div>
         </div>
