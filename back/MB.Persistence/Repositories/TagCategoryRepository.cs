@@ -4,11 +4,7 @@ using MB.Persistence.Repositories.Common;
 
 namespace MB.Persistence.Repositories
 {
-    public class TagCategoryRepository : BaseRepository<TagCategory>, ITagCategoryRepository
+    public class TagCategoryRepository(Context context) : BaseRepository<TagCategory>(context), ITagCategoryRepository
     {
-        public TagCategoryRepository(Context context) : base(context)
-        {
-             
-        }
     }
 }

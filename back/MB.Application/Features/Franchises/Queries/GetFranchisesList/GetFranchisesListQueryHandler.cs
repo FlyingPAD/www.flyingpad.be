@@ -1,55 +1,57 @@
 ﻿using AutoMapper;
 using MB.Application.Contracts.Persistence;
 using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Features.Franchises.Queries.GetFranchisesList;
 using MB.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-public class GetFranchisesListQueryHandler(IBaseRepository<Media> mediaRepository, IFranchiseRepository franchiseRepository, IModelRepository modelRepository, IMapper mapper) : IRequestHandler<GetFranchisesListQuery, GetFranchisesListQueryResponse>
+namespace MB.Application.Features.Franchises.Queries.GetFranchisesList
 {
-    private readonly IBaseRepository<Media> _mediaRepository = mediaRepository;
-    private readonly IFranchiseRepository _franchiseRepository = franchiseRepository;
-    private readonly IModelRepository _modelRepository = modelRepository;
-    private readonly IMapper _mapper = mapper;
-
-    public async Task<GetFranchisesListQueryResponse> Handle(GetFranchisesListQuery request, CancellationToken cancellationToken)
+    public class GetFranchisesListQueryHandler(IBaseRepository<Media> mediaRepository, IFranchiseRepository franchiseRepository, IModelRepository modelRepository, IMapper mapper) : IRequestHandler<GetFranchisesListQuery, GetFranchisesListQueryResponse>
     {
-        // Récupérer tous les médias triés par nom
-        var mediasQuery = await _mediaRepository.GetAllAsync(media => media.Name);
-        var medias = await mediasQuery.ToListAsync();
+        private readonly IBaseRepository<Media> _mediaRepository = mediaRepository;
+        private readonly IFranchiseRepository _franchiseRepository = franchiseRepository;
+        private readonly IModelRepository _modelRepository = modelRepository;
+        private readonly IMapper _mapper = mapper;
 
-        var mediasListDto = new List<GFLQMediaDto>();
-
-        foreach (var media in medias)
+        public async Task<GetFranchisesListQueryResponse> Handle(GetFranchisesListQuery request, CancellationToken cancellationToken)
         {
-            var franchises = await _franchiseRepository.GetFranchisesByMedia(media.EntityId);
+            // Récupérer tous les médias triés par nom
+            var mediasQuery = await _mediaRepository.GetAllAsync(media => media.Name);
+            var medias = await mediasQuery.ToListAsync(cancellationToken);
 
-            var franchisesListDto = new List<GFLQFranchiseDto>();
+            var mediasListDto = new List<GFLQMediaDto>();
 
-            foreach (var franchise in franchises)
+            foreach (var media in medias)
             {
-                var models = await _modelRepository.GetModelsByFranchise(franchise.EntityId);
+                var franchises = await _franchiseRepository.GetFranchisesByMedia(media.EntityId);
 
-                var franchiseDto = _mapper.Map<GFLQFranchiseDto>(franchise);
-                franchiseDto.Models = _mapper.Map<List<GFLQModelDto>>(models);
+                var franchisesListDto = new List<GFLQFranchiseDto>();
 
-                franchisesListDto.Add(franchiseDto);
+                foreach (var franchise in franchises)
+                {
+                    var models = await _modelRepository.GetModelsByFranchise(franchise.EntityId);
+
+                    var franchiseDto = _mapper.Map<GFLQFranchiseDto>(franchise);
+                    franchiseDto.Models = _mapper.Map<List<GFLQModelDto>>(models);
+
+                    franchisesListDto.Add(franchiseDto);
+                }
+
+                var mediaDto = _mapper.Map<GFLQMediaDto>(media);
+                mediaDto.Franchises = franchisesListDto;
+
+                mediasListDto.Add(mediaDto);
             }
 
-            var mediaDto = _mapper.Map<GFLQMediaDto>(media);
-            mediaDto.Franchises = franchisesListDto;
+            var response = new GetFranchisesListQueryResponse
+            {
+                Success = true,
+                Message = "Here are the Franchises !",
+                Medias = mediasListDto
+            };
 
-            mediasListDto.Add(mediaDto);
+            return response;
         }
-
-        var response = new GetFranchisesListQueryResponse
-        {
-            Success = true,
-            Message = "Here are the Franchises !",
-            Medias = mediasListDto
-        };
-
-        return response;
     }
 }

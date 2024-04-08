@@ -5,13 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories
 {
-    public class TaskCategoryRepository : BaseRepository<TaskCategory>, ITaskCategoryRepository
+    public class TaskCategoryRepository(Context context) : BaseRepository<TaskCategory>(context), ITaskCategoryRepository
     {
-        public TaskCategoryRepository(Context context) : base(context)
-        {
-            
-        }
-
         public async Task<List<TaskCategory>> GetTaskCategoriesWithTasks(bool includePastEvents)
         {
             var allTaskCategories = await _context.TaskCategories.Include(x => x.Tasks).ToListAsync();
