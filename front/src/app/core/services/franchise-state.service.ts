@@ -2,26 +2,86 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { GetMediasFullListResponse } from '../models/media';
-import { map } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map, of, switchMap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { FranchiseDetails, GetOneFranchiseDetailsResponse } from '../models/franchise';
+import { GetModelsByFranchiseResponse, ModelLight } from '../models/model';
+import { GetMoodsByFranchiseResponse, MoodLight } from '../models/mood';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FranchiseStateService 
 {
-    // Injections :
-
-    #http = inject(HttpClient)
-
-    // Properties :
-  
+    #http = inject(HttpClient) 
     #url : string = environment.apiBaseUrl + '/api/V1/'
 
+    // Single Franchise Page :
+
+    #selectedFranchiseId = new BehaviorSubject<number | null>(null)
+    selectedFranchiseId$ = this.#selectedFranchiseId.asObservable()
+    updateSelectedFranchiseId(franchiseId : number | null){ this.#selectedFranchiseId.next(franchiseId)}
+
+    franchise$ = this.selectedFranchiseId$.pipe(
+      switchMap(franchiseId => {
+        if (franchiseId === null) 
+          {
+          return of(null)
+        } 
+        else 
+        {
+          return combineLatest([
+            this.GetOneFranchiseDetails(franchiseId),
+            this.GetModelsByFranchise(franchiseId),
+            this.GetMoodsByFranchise(franchiseId)
+          ]).pipe(
+            map(([franchise, models, moods]) => ({
+              franchise: franchise,
+              models: models,
+              modelsM : models.filter(model => model.gender === 'M'),
+              modelsF : models.filter(model => model.gender === 'F'),
+              moods : moods,
+              totalMoods : moods.length
+            }))
+          )
+        }
+      })
+    )
+    franchise = toSignal(this.franchise$, { initialValue : 
+      { 
+        franchise : new FranchiseDetails(), 
+        models : [], 
+        modelsM : [],
+        modelsF : [],
+        moods : [], 
+        totalMoods : 0 
+      } })
+
+    public GetOneFranchiseDetails( franchiseId : number) : Observable<FranchiseDetails>
+    {
+      return this.#http.get<GetOneFranchiseDetailsResponse>(this.#url + 'Franchises/GetOneDetails/' +  franchiseId).pipe(
+        map(response => response.franchise)
+      )
+    }
+
+    public GetModelsByFranchise( franchiseId : number ) : Observable<ModelLight[]>
+    {
+      return this.#http.get<GetModelsByFranchiseResponse>(this.#url + 'Models/GetByFranchise/' + franchiseId).pipe(
+        map(response => response.modelsByFranchise)
+      )
+    }
+
+    public GetMoodsByFranchise( franchiseId : number ) : Observable<MoodLight[]>
+    {
+      return this.#http.get<GetMoodsByFranchiseResponse>(this.#url + 'Moods/GetByFranchise/' + franchiseId).pipe(
+        map(response => response.moods)
+      )
+    }
+
+    // Franchises Page :
 
     medias$ = this.#http.get<GetMediasFullListResponse>(this.#url + 'Franchises/GetFranchisesList/').pipe(
       map(response => response.medias)
     )
     medias = toSignal(this.medias$, {initialValue : []})
-
 }

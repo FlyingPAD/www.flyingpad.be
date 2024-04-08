@@ -25,6 +25,7 @@ import { StateFranchisesService } from '../../../core/services/state/state-franc
 import { StateArtistService } from '../../../core/services/state/state-artists.service';
 import { StateModelsService } from '../../../core/services/state/state-models.service';
 import { ModelStateService } from '../../../core/services/model-state.service';
+import { FranchiseStateService } from '../../../core/services/franchise-state.service';
 
 @Component({
   selector: 'app-mood-details',
@@ -36,6 +37,12 @@ export class MoodDetailsComponent  implements OnInit, OnDestroy
   // Injections :
 
   newModelsService = inject(ModelStateService)
+  newFranchiseService = inject(FranchiseStateService)
+
+  updateFranchiseId(franchiseId : number | null)
+  {
+    this.newFranchiseService.updateSelectedFranchiseId(franchiseId)
+  }
 
   updateModelId(modelId : number)
   {
