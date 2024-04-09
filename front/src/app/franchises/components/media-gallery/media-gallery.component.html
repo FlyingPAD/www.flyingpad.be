@@ -1,0 +1,21 @@
+<app-menu-right-desktop *ngIf="singleMediaFlow() as flow">
+    <div class="content_right_desktop">  
+        <!-- Random Mood Button -->
+        <div class="item-top box_buttons">
+            <a routerLink="/moods/mood-details">Random Mood</a>
+        </div>
+        <!-- Title -->
+        <h1 class="item-top">{{ flow.media.name}}</h1>  
+        <div class="item-top flex" >
+            <p><b>Franchises</b></p>
+            <p>{{ flow.franchises.length | number : '3.0'}}</p>
+        </div>
+    </div>
+</app-menu-right-desktop>
+
+<div id="layout-central" *ngIf="singleMediaFlow() as flow">
+    <h1>Franchises</h1>
+    <div *ngFor="let franchise of flow.franchises">
+        <p>{{ franchise.name }}</p>
+    </div>
+</div>

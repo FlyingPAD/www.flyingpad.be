@@ -16,7 +16,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 
 //  - WELCOME to the Flying PAD Front DEV !
-
 console.log(' ---------------------------------- ')
 console.log('  Flying PAD | Version 1.0')
 console.log(' ---------------------------------- ')

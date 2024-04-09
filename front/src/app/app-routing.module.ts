@@ -5,6 +5,7 @@ import { HomeComponent } from './core/components/home/home.component';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { GalleryComponent } from './links/components/gallery/gallery.component';
 import { LayoutStandardComponent } from './core/layouts/layout-standard/layout-standard.component';
+import { MediaGalleryComponent } from './franchises/components/media-gallery/media-gallery.component';
 
 const routes: Routes = 
 [
@@ -42,6 +43,14 @@ const routes: Routes =
     loadChildren:() => import('./franchises/franchises.module').then(m => m.FranchisesModule)
   },
     
+  // Media
+
+  // { path : 'medias', component : LayoutStandardComponent, children : 
+  //   [
+  //     { path : 'media-gallery', component : MediaGalleryComponent, title : 'Flying PAD | Media Gallery' },
+  //   ] 
+  // },
+
   // Models
   {
     path : 'models', component : LayoutStandardComponent,

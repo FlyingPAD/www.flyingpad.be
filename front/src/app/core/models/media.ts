@@ -29,7 +29,7 @@ export class MediaFullList
 
 export class FranchiseList
 {
-    businesId : number = 0
+    businessId : number = 0
     name : string = ''
     models : ModelLight[] = []
 }

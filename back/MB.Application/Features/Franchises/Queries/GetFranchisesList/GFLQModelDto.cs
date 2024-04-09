@@ -2,8 +2,8 @@
 {
     public class GFLQModelDto
     {
-        public Guid BusinessId { get; set; }
+        public Guid BusinessId { get; set; } = Guid.Empty;
         public string Pseudonym { get; set; } = string.Empty;
-        public string gender { get; set; } = string.Empty;
+        public string Gender { get; set; } = string.Empty;
     }
 }

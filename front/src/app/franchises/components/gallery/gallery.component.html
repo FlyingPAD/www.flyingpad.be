@@ -1,12 +1,23 @@
 <div class="medias-container">
     <div *ngFor="let media of medias()" class="media">
-        <a class="h1">{{media.name}}</a>
+        <a class="h1"
+            (click)="updateMediaId(media.businessId)"
+            routerLink="/franchises/media-gallery">
+            {{media.name}}
+        </a>
         <div *ngFor="let franchise of media.franchises" class="franchise">
-            <a class="h2"> ▸ {{franchise.name}}</a>
+            <a class="h2" 
+                (click)="updateFranchiseId(franchise.businessId)"
+                routerLink="/franchises/franchise-gallery"> ▸ 
+                {{franchise.name}}
+            </a>
             <div *ngFor="let model of franchise.models">
-                <a class="h3" [ngClass]="model.gender === 'F' ? 'female' : 'male' " 
-                routerLink="/models/model-gallery"
-                (click)="updateModelId(model.businessId)">{{model.pseudonym}}</a>
+                <a class="h3" 
+                    [ngClass]="model.gender === 'F' ? 'female' : 'male' " 
+                    routerLink="/models/model-gallery" 
+                    (click)="updateModelId(model.businessId)">
+                    {{model.pseudonym}}
+                </a>
             </div>
         </div>
     </div>

@@ -18,4 +18,14 @@ export class GalleryComponent
   {
     this.#modelsService.updateSelectedModelId(modelId)
   }
+
+  updateFranchiseId(franchiseId : number | null)
+  {
+    this.#franchisesService.updateSelectedFranchiseId(franchiseId)
+  }
+
+  updateMediaId(mediaId : number | null)
+  {
+    this.#franchisesService.updateSelectedMediaId(mediaId)
+  }
 }

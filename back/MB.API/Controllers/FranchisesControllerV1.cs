@@ -3,6 +3,7 @@ using MB.Application.Features.Franchises.Commands.DeleteFranchise;
 using MB.Application.Features.Franchises.Commands.UpdateFranchise;
 using MB.Application.Features.Franchises.Queries.CountFranchises;
 using MB.Application.Features.Franchises.Queries.GetFranchiseById;
+using MB.Application.Features.Franchises.Queries.GetFranchisesByMedia;
 using MB.Application.Features.Franchises.Queries.GetFranchisesByModel;
 using MB.Application.Features.Franchises.Queries.GetFranchisesByMood;
 using MB.Application.Features.Franchises.Queries.GetFranchisesList;
@@ -89,6 +90,18 @@ namespace MB.API.Controllers
         public async Task<ActionResult<GetFranchisesByModelQueryResponse>> GetByModel(Guid modelId)
         {
             var response = await _mediator.Send(new GetFranchisesByModelQuery { ModelId = modelId });
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Get By Media
+        /// </summary>
+        /// <param name="mediaId"></param>
+        /// <returns></returns>
+        [HttpGet("GetByMedia/{mediaId}")]
+        public async Task<ActionResult<GetFranchisesByMediaQueryResponse>> GetByMedia(Guid mediaId)
+        {
+            var response = await _mediator.Send(new GetFranchisesByMediaQuery { MediaId = mediaId } );
             return Ok(response);
         }
 

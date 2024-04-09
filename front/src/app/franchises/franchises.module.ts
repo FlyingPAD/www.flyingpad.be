@@ -4,12 +4,14 @@ import { SharedModule } from '../shared/shared.module';
 import { FranchiseGalleryComponent } from './components/franchise-gallery/franchise-gallery.component';
 import { FranchisesRoutingModule } from './franchises-routing.module';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { MediaGalleryComponent } from './components/media-gallery/media-gallery.component';
 
 @NgModule({
   declarations: 
   [
     FranchiseGalleryComponent,
-    GalleryComponent
+    GalleryComponent,
+    MediaGalleryComponent
   ],
   imports: 
   [

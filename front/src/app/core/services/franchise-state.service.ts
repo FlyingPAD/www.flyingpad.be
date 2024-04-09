@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { GetMediasFullListResponse } from '../models/media';
+import { GetMediasFullListResponse, GetOneMediaDetailsResponse, MediaDetails } from '../models/media';
 import { BehaviorSubject, Observable, combineLatest, map, of, switchMap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FranchiseDetails, GetOneFranchiseDetailsResponse } from '../models/franchise';
+import { FranchiseDetails, FranchiseLight, GetFranchisesByMediaResponse, GetOneFranchiseDetailsResponse } from '../models/franchise';
 import { GetModelsByFranchiseResponse, ModelLight } from '../models/model';
 import { GetMoodsByFranchiseResponse, MoodLight } from '../models/mood';
 
@@ -78,10 +78,52 @@ export class FranchiseStateService
       )
     }
 
-    // Franchises Page :
+    // Single Media Page
 
-    medias$ = this.#http.get<GetMediasFullListResponse>(this.#url + 'Franchises/GetFranchisesList/').pipe(
+    #selectedMediaId = new BehaviorSubject<number | null>(null)
+    selectedMediaId$ = this.#selectedMediaId.asObservable()
+    updateSelectedMediaId(mediaId : number | null){ this.#selectedMediaId.next(mediaId)}
+
+    singleMediaFlow$ = this.selectedMediaId$.pipe(
+      switchMap(mediaId => {
+        if(mediaId === null)
+          {
+            return of(null)
+          }
+        else
+        {
+          return combineLatest([
+            this.GetOneMediaDetails(mediaId),
+            this.GetFranchisesByMedia(mediaId)
+          ]).pipe(
+            map(([media, franchises]) => ({
+              media : media,
+              franchises : franchises
+            }))
+          )
+        }
+      })
+    )
+    singleMediaFlow = toSignal(this.singleMediaFlow$, { initialValue : { media : new MediaDetails(), franchises : [] } })
+
+    public GetOneMediaDetails( mediaId : number) : Observable<MediaDetails>
+    {
+      return this.#http.get<GetOneMediaDetailsResponse>(this.#url + 'Medias/GetOneDetails/' +  mediaId).pipe(
+        map(response => response.media)
+      )
+    }
+
+    public GetFranchisesByMedia( mediaId : number) : Observable<FranchiseLight[]>
+    {
+      return this.#http.get<GetFranchisesByMediaResponse>(this.#url + 'Franchises/GetByMedia/' +  mediaId).pipe(
+        map(response => response.franchises)
+      )
+    }
+
+    // Medias + Franchises + Models Page :
+
+    medias$ = this.#http.get<GetMediasFullListResponse>(this.#url + 'Franchises/GetFranchisesList').pipe(
       map(response => response.medias)
     )
-    medias = toSignal(this.medias$, {initialValue : []})
+    medias = toSignal( this.medias$, { initialValue : [] } )
 }
