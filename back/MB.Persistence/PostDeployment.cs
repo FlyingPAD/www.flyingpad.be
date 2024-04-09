@@ -93,12 +93,15 @@ namespace MB.Persistence
 
             var mediasList = new List<Media>
             {
-                new() { EntityId = 1, BusinessId = Guid.NewGuid(), Name = "# Super Franchise" },
-                new() { EntityId = 2, BusinessId = Guid.NewGuid(), Name = "TV" },
-                new() { EntityId = 3, BusinessId = Guid.NewGuid(), Name = "Radio" },
-                new() { EntityId = 4, BusinessId = Guid.NewGuid(), Name = "YouTube" },
-                new() { EntityId = 5, BusinessId = Guid.NewGuid(), Name = "Capcom" },
-                new() { EntityId = 6, BusinessId = Guid.NewGuid(), Name = "Square-Enix" },
+                new() { EntityId = 1, BusinessId = Guid.NewGuid(), Name = "# Unrelated" },
+                new() { EntityId = 2, BusinessId = Guid.NewGuid(), Name = "# Unknown" },
+                new() { EntityId = 3, BusinessId = Guid.NewGuid(), Name = "# Super Franchise" },
+                new() { EntityId = 4, BusinessId = Guid.NewGuid(), Name = "TV" },
+                new() { EntityId = 5, BusinessId = Guid.NewGuid(), Name = "Radio" },
+                new() { EntityId = 6, BusinessId = Guid.NewGuid(), Name = "YouTube" },
+                new() { EntityId = 7, BusinessId = Guid.NewGuid(), Name = "Capcom" },
+                new() { EntityId = 8, BusinessId = Guid.NewGuid(), Name = "Square-Enix" },
+                new() { EntityId = 9, BusinessId = Guid.NewGuid(), Name = "Flying PAD" },
             };
             modelBuilder.Entity<Media>().HasData(mediasList);
 
@@ -107,8 +110,8 @@ namespace MB.Persistence
 
             var relationsFM = new List<RelationFranchiseMedia>
             {
-                new() { FranchiseId = 1, MediaId = 1 },
-                new() { FranchiseId = 2, MediaId = 1 },
+                new() { FranchiseId = 1, MediaId = 9 },
+                new() { FranchiseId = 2, MediaId = 7 },
             };
             modelBuilder.Entity<RelationFranchiseMedia>().HasData(relationsFM);
 

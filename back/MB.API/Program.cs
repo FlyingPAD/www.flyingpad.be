@@ -17,19 +17,18 @@ namespace MB.API
     {
         public static void Main(string[] args)
         {
-            // - Builder Creation
+            // Builder Creation
             var builder = WebApplication.CreateBuilder(args);
 
-            // ------------------------------------------------------------------------------------
-            // Initialisation de Serilog avec la configuration de appsettings.json
+            // Serilog Initialization
             builder.Host.UseSerilog((context, services, configuration) =>
             {
                 var currentDateTime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
                 configuration
                     .ReadFrom.Configuration(context.Configuration)
                     .ReadFrom.Services(services)
-                    .Enrich.FromLogContext()
-                    .WriteTo.File($"Logs/FlyingPAD_{currentDateTime}.txt", outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}");
+                    .WriteTo.Async(a => a.File($"Logs/FlyingPAD_{currentDateTime}.txt",
+                                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}"));
             });
 
             try
@@ -98,7 +97,7 @@ namespace MB.API
                 Log.Information(" ------------------------");
                 Log.Information("                         ");
 
-                // Use Swagger ( See 'Configuration/Swagger' )
+                // Use Swagger ( check 'Configuration/Swagger' )
                 Swagger.Use(app);
 
                 // Configure common middleware components.
@@ -114,7 +113,7 @@ namespace MB.API
                 // Custom Middlewares.
                 app.UseMiddleware<ExceptionHandler>();
 
-                //app.ResetDatabaseAsync(); // ( see 'Options/ResetDatabase' )
+                // app.ResetDatabaseAsync(); // ( check 'Options/ResetDatabase' )
                 app.UseStaticFiles(new StaticFileOptions
                 {
                     FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Content")),

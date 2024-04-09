@@ -16,10 +16,8 @@ namespace MB.Application.Features.Franchises.Queries.GetFranchisesList
 
         public async Task<GetFranchisesListQueryResponse> Handle(GetFranchisesListQuery request, CancellationToken cancellationToken)
         {
-            // Récupérer tous les médias triés par nom
             var mediasQuery = await _mediaRepository.GetAllAsync(media => media.Name);
             var medias = await mediasQuery.ToListAsync(cancellationToken);
-
             var mediasListDto = new List<GFLQMediaDto>();
 
             foreach (var media in medias)

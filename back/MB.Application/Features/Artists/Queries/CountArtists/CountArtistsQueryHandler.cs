@@ -4,14 +4,9 @@ using MediatR;
 
 namespace MB.Application.Features.Artists.Queries.CountArtists
 {
-    public class CountArtistsQueryHandler : IRequestHandler<CountArtistsQuery, CountArtistsQueryResponse>
+    public class CountArtistsQueryHandler(IBaseRepository<Artist> artistRepository) : IRequestHandler<CountArtistsQuery, CountArtistsQueryResponse>
     {
-        private readonly IBaseRepository<Artist> _artistRepository;
-
-        public CountArtistsQueryHandler(IBaseRepository<Artist> artistRepository)
-        {
-            _artistRepository = artistRepository;
-        }
+        private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
 
         public async Task<CountArtistsQueryResponse> Handle(CountArtistsQuery request, CancellationToken cancellationToken)
         {

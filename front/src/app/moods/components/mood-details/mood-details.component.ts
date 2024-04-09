@@ -487,4 +487,13 @@ export class MoodDetailsComponent  implements OnInit, OnDestroy
       }
     }, 200);
   }
+
+  // ratioFormat : string = ''
+  // checkFormatRatio()
+  // {
+  //   if(this.moodHeight > this.moodWidth)
+  //     {
+    
+  //     }
+  // }
 }

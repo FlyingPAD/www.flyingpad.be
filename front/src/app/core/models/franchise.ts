@@ -35,3 +35,8 @@ export interface GetFranchisesByModelResponse extends BaseResponse
 {
     franchisesByModel : FranchiseLight[]
 }
+
+export interface GetFranchisesByMediaResponse extends BaseResponse
+{
+    franchises : FranchiseLight[]
+}

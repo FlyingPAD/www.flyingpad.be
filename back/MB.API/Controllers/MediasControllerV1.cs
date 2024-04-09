@@ -59,7 +59,7 @@ namespace MB.API.Controllers
         /// <summary>
         /// Get One
         /// </summary>
-        [HttpGet("GetOne/{mediaId}")]
+        [HttpGet("GetOneDetails/{mediaId}")]
         public async Task<ActionResult<GetMediaByIdQuery>> GetOne(Guid mediaId)
         {
             var response = await _mediator.Send(new GetMediaByIdQuery { MediaId = mediaId });

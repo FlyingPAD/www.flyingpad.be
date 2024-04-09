@@ -1,5 +1,4 @@
-﻿using MB.API.Models;
-using MB.Application.Exceptions;
+﻿using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using System.Text.Json;
 
@@ -8,84 +7,47 @@ namespace MB.API.Handlers
     public class ExceptionHandler(RequestDelegate next)
     {
         private readonly RequestDelegate _next = next;
+        private static readonly JsonSerializerOptions _jsonSerializerOptions = new()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
 
         public async Task Invoke(HttpContext httpContext)
         {
             try
             {
-                await _next.Invoke(httpContext);
+                await _next(httpContext);
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
-                Log.Error(ex.StackTrace);
-
-                if (ex.InnerException != null)
-                {
-                    Log.Error(ex.InnerException.Message);
-                    Log.Error(ex.InnerException.StackTrace);
-                }
-
-                await HandleExceptionAsync(ex, httpContext);
+                Log.Error(ex, "An unhandled exception has been captured");
+                await HandleExceptionAsync(httpContext);
             }
         }
 
-        private static async Task HandleExceptionAsync(Exception exception, HttpContext httpContext)
+        private static async Task HandleExceptionAsync(HttpContext context)
         {
-            var statusCode = GetStatusCode(exception);
-            var errorResponse = new ApiErrorResponse
+            context.Response.ContentType = "application/json";
+            var problemDetails = new ProblemDetails
             {
-                Message = exception.Message
+                Status = StatusCodes.Status500InternalServerError,
+                Title = "An error occurred",
+                Detail = "An unexpected error occurred. Please try again later.",
+                Instance = context.Request.Path
             };
 
-            if (exception is ModelValidationException modelValidationException)
+            context.Response.StatusCode = problemDetails.Status.Value;
+
+            try
             {
-                errorResponse.ValidationErrors = GetModelValidationErrorsFromContext(httpContext);
-                errorResponse.Message = "Validation failed"; // Ou un message plus spécifique ou dynamique
+                var responseString = JsonSerializer.Serialize(problemDetails, _jsonSerializerOptions);
+                await context.Response.WriteAsync(responseString);
             }
-
-            httpContext.Response.ContentType = "application/json";
-            httpContext.Response.StatusCode = statusCode;
-
-            var responseString = JsonSerializer.Serialize(errorResponse);
-
-            await httpContext.Response.WriteAsync(responseString);
-        }
-
-        private static int GetStatusCode(Exception ex) => ex switch
-        {
-            ModelValidationException => StatusCodes.Status400BadRequest,
-            NotFoundException => StatusCodes.Status404NotFound,
-            _ => StatusCodes.Status500InternalServerError
-        };
-
-        private static List<ModelValidationError> GetModelValidationErrorsFromContext(HttpContext httpContext)
-        {
-            var modelValidationErrors = new List<ModelValidationError>();
-
-            var modelState = httpContext.Features.Get<ModelStateFeature>()?.ModelState;
-
-            if (modelState != null)
+            catch (Exception ex)
             {
-                foreach (var modelStateEntry in modelState)
-                {
-                    if (modelStateEntry.Value?.Errors.Count > 0)
-                    {
-                        foreach (var modelError in modelStateEntry.Value.Errors)
-                        {
-                            var error = new ModelValidationError
-                            {
-                                Name = modelStateEntry.Key,
-                                Description = modelError.ErrorMessage
-                            };
-                            modelValidationErrors.Add(error);
-                        }
-                    }
-                }
+                Log.Error(ex, "An error occurred while serializing the error response");
+                await context.Response.WriteAsync("An error occurred");
             }
-
-            return modelValidationErrors;
         }
-
     }
 }

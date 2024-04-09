@@ -10,6 +10,7 @@ using MB.Application.Features.Franchises.Commands.CreateFranchise;
 using MB.Application.Features.Franchises.Commands.DeleteFranchise;
 using MB.Application.Features.Franchises.Commands.UpdateFranchise;
 using MB.Application.Features.Franchises.Queries.GetFranchiseById;
+using MB.Application.Features.Franchises.Queries.GetFranchisesByMedia;
 using MB.Application.Features.Franchises.Queries.GetFranchisesByModel;
 using MB.Application.Features.Franchises.Queries.GetFranchisesByMood;
 using MB.Application.Features.Franchises.Queries.GetFranchisesList;
@@ -119,6 +120,7 @@ namespace MB.Application.Profiles
             CreateMap<Franchise, GetAllFranchisesQueryVm>().ReverseMap();
             CreateMap<Franchise, GetFranchisesByMoodQueryVm>().ReverseMap();
             CreateMap<Franchise, GetFranchisesByModelQueryVm>().ReverseMap();
+            CreateMap<Franchise, GetFranchisesByMediaQueryVm>().ReverseMap();
             
             // Medias :
 
