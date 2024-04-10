@@ -21,6 +21,8 @@
     width: 225px;
     padding-left: 1%; padding-right: 1%;
 
+    overflow-y: scroll;
+
     background-color: rgba(255, 253, 251, 0.9);
     backdrop-filter: blur(3px);
     border-bottom: 1px solid #6b5240;
@@ -113,12 +115,12 @@
         }
         .user
         {
-            margin-top: 50px;
+            margin-top: 25px;
         }
     }
     .menu-footer
     {
-        padding-top: 50px;
+        padding-top: 25px;
 
         p
         {
