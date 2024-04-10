@@ -1,6 +1,6 @@
 # Flying PAD Website
 
-**Website CI-CD:** [www.flyingpad.be](http://www.flyingpad.be) (Satellit Case Study)
+[www.flyingpad.be](http://www.flyingpad.be) (Satellit Case Study)
 
 ## Back ( .NET )
 
@@ -13,19 +13,20 @@
 - **GIT Strategy**
 - **CI-CD:** `*.yml` files
 - **Docker Containers & Kubernetes Orchestration**
-- **Micro-Services / BFF:** Maybe Later XD
+- **Micro-Services / BFF:** Exloring Potential
 
 ## Front (Angular)
 
 ### Objectives:
-- **Structure:** Using Modules
-- **API Calls:** Exploring RxJS & Signal
+- **Design:** Complete Custom Design using SCSS
+- **Modular Structure:** Using Angular Modules
+- **API Communication:** Exploring RxJS & Signal
 
 ### DESIGN (SCSS):
 Files located in `./src/design/`.  
 Read `design-README.txt` for Design Documentation.
 
-### MODULES:
+### Modules:
 Located in `./src/app`:
 
 - `app`: The Main Module & Entry Point (Main Routing, Router Outlet, Initialization (Token, GetData) & Refresh (F5))
@@ -33,7 +34,7 @@ Located in `./src/app`:
 - `shared`: The Shared Module (Components, Pipes, Forms, ...)
 - `**`: Feature Module (Artists & Styles, Franchises & Medias, Links, Models, ...)
 
-### SERVICES:
+### Services:
 
 - `MenuService`: which handles Menu (Desktop & Mobile Behavior)
 - WIP (Work In Progress...)
