@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TagsWallComponent } from './tags-wall.component';
+import { LayoutDefaultComponent } from './layout-default.component';
 
-describe('TagsWallComponent', () => {
-  let component: TagsWallComponent;
-  let fixture: ComponentFixture<TagsWallComponent>;
+describe('LayoutDefaultComponent', () => {
+  let component: LayoutDefaultComponent;
+  let fixture: ComponentFixture<LayoutDefaultComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TagsWallComponent]
+      declarations: [LayoutDefaultComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TagsWallComponent);
+    fixture = TestBed.createComponent(LayoutDefaultComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

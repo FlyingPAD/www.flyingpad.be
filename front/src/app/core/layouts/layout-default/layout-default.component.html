@@ -1,0 +1,202 @@
+<div class="section-top">
+    <!-- Menu Trigger -->
+    <div class="trigger">
+        <img [ngClass]="menuStandard.menuDesktopOn ? 'img-active' : '' " 
+        src="../../../../assets/app_icons/icon_hamburger_001.png" 
+        (click)="menuStandard.triggerDesktopMenu()" />
+    </div>
+    <!-- Login -->
+    <div class="auth" *ngIf="!(authService.isConnectedSub | async)">
+        <a routerLink="/authentication/login">Login</a>
+    </div>
+    <!-- Logout -->
+    <div class="auth" *ngIf="authService.isConnectedSub | async">
+        <a routerLink="/home" (click)="logout()">Logout</a>
+    </div>
+</div>
+
+<div class="left-menu-desktop" [ngClass]="menuStandard.menuDesktopOn ? 'desktop-on' : 'desktop-off' ">
+    <div class="top">
+            <!-- User ( Not Connected ) -->
+            <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
+                <div class="element-group" (click)="goTo('home')">
+                    <a routerLink="/home" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Home</a>
+                    <img src="../../../../assets/app_icons/icon_home_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('about')">
+                    <a routerLink="/about" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">About</a>
+                    <img src="../../../../assets/app_icons/icon_info_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('tags')">
+                    <a routerLink="/tags" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Tags</a>
+                    <img src="../../../../assets/app_icons/icon_tags_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('moods/gallery')">
+                    <a routerLink="/moods/gallery" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Moods</a>
+                    <img src="../../../../assets/app_icons/icon_moods_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('moods/new-mood')">
+                    <a routerLink="/moods/new-mood" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Mood</a>
+                    <img src="../../../../assets/app_icons/icon_mood_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('scripts')">
+                    <a routerLink="/scripts" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Scripts</a> 
+                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('tools')">
+                    <a routerLink="/tools" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Tools</a> 
+                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('links')">
+                    <a routerLink="/links" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Links</a> 
+                    <img src="../../../../assets/app_icons/icon_links_001.png" />
+                </div>
+            </div>
+            <!-- User ( Connected ) -->
+            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
+                <div class="element-group" (click)="goTo('home')">
+                    <a routerLink="/home" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Home</a>
+                    <img src="../../../../assets/app_icons/icon_home_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('about')">
+                    <a routerLink="/about" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">About</a>
+                    <img src="../../../../assets/app_icons/icon_info_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('tags')">
+                    <a routerLink="/tags" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Tags</a>
+                    <img src="../../../../assets/app_icons/icon_tags_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('moods/gallery')">
+                    <a routerLink="/moods/gallery" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Moods</a>
+                    <img src="../../../../assets/app_icons/icon_moods_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('moods/new-mood')">
+                    <a routerLink="/moods/new-mood" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Mood</a>
+                    <img src="../../../../assets/app_icons/icon_mood_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('scripts')">
+                    <a routerLink="/scripts" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Scripts</a> 
+                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('tools')">
+                    <a routerLink="/tools" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Tools</a> 
+                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('links')">
+                    <a routerLink="/links" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Links</a> 
+                    <img src="../../../../assets/app_icons/icon_links_001.png" />
+                </div>
+            </div>
+            <!-- Administrator -->
+            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
+                <div class="element-group" (click)="goTo('home')">
+                    <a routerLink="/dashboard" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Admin</a>
+                    <img src="../../../../assets/app_icons/icon_home_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('about')">
+                    <a routerLink="/about" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">About</a>
+                    <img src="../../../../assets/app_icons/icon_info_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('tags')">
+                    <a routerLink="/tags" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Tags</a>
+                    <img src="../../../../assets/app_icons/icon_tags_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('moods/gallery')">
+                    <a routerLink="/moods/gallery" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Moods</a>
+                    <img src="../../../../assets/app_icons/icon_moods_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('moods/new-mood')">
+                    <a routerLink="/moods/new-mood" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Mood</a>
+                    <img src="../../../../assets/app_icons/icon_mood_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('models')">
+                    <a routerLink="/models" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Model</a> 
+                    <img src="../../../../assets/app_icons/icon_models_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('franchises/franchise-gallery')">
+                    <a routerLink="/franchises/franchise-gallery" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Franchise</a> 
+                    <img src="../../../../assets/app_icons/icon_dollar_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('franchises/gallery')">
+                    <a routerLink="/franchises/gallery" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Franchises</a> 
+                    <img src="../../../../assets/app_icons/icon_hamburger_left_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('artists')">
+                    <a routerLink="/artists" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Artists</a> 
+                    <img src="../../../../assets/app_icons/icon_artists_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('scripts')">
+                    <a routerLink="/scripts" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Scripts</a> 
+                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('tools')">
+                    <a routerLink="/tools" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Tools</a> 
+                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
+                </div>
+                <div class="element-group" (click)="goTo('links')">
+                    <a routerLink="/links" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">Links</a>
+                    <img src="../../../../assets/app_icons/icon_links_001.png" />
+                </div>
+            </div> 
+    </div>
+    <div class="bottom">
+           <!-- User ( Not Connected ) -->
+           <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
+            <div class="element-group" (click)="goTo('authentication/register')">
+                <a routerLink="/authentication/register" routerLinkActive="active"
+                [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">{{userService.appUser.firstName}}</a>
+                <img src="../../../../assets/app_icons/icon_artists_001.png" />
+            </div>
+        </div>
+        <!-- User ( Connected ) -->
+        <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
+            <div class="element-group" (click)="goTo('users/user-details')">
+                <a routerLink="/users/user-details" routerLinkActive="active"
+                [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">{{userService.appUser.firstName}}</a>
+                <img src="../../../../assets/app_icons/mood.png" />
+            </div>         
+        </div>
+        <!-- Administrator -->
+        <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
+            <div class="element-group" (click)="goTo('/users/user-details')">
+                <a routerLink="/users/user-details" routerLinkActive="active"
+                [ngClass]="menuStandard.menuDesktopOn == true ? '' : 'display-none'">{{userService.appUser.firstName}}</a>
+                <img src="../../../../assets/app_icons/mood.png" />
+            </div>         
+        </div>
+    </div>
+</div>
+
+<div class="left-menu-mobile">
+
+</div>
+
+<router-outlet />

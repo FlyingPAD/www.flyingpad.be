@@ -122,21 +122,7 @@
                     <a routerLink="/moods/new-mood" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
                     [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Mood</a>
                 </div>
-                <div class="element-group" (click)="goTo('scripts')">
-                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
-                    <a routerLink="/scripts" routerLinkActive="active"
-                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Scripts</a> 
-                </div>
-                <div class="element-group" (click)="goTo('tools')">
-                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
-                    <a routerLink="/tools" routerLinkActive="active"
-                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Tools</a> 
-                </div>
-                <div class="element-group" (click)="goTo('artists')">
-                    <img src="../../../../assets/app_icons/icon_artists_001.png" />
-                    <a routerLink="/artists" routerLinkActive="active"
-                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Artists</a> 
-                </div>
+
                 <div class="element-group" (click)="goTo('models')">
                     <img src="../../../../assets/app_icons/icon_models_001.png" />
                     <a routerLink="/models" routerLinkActive="active"
@@ -151,6 +137,21 @@
                     <img src="../../../../assets/app_icons/icon_hamburger_left_001.png" />
                     <a routerLink="/franchises/gallery" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
                     [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Franchises</a> 
+                </div>
+                <div class="element-group" (click)="goTo('artists')">
+                    <img src="../../../../assets/app_icons/icon_artists_001.png" />
+                    <a routerLink="/artists" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Artists</a> 
+                </div>
+                <div class="element-group" (click)="goTo('scripts')">
+                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
+                    <a routerLink="/scripts" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Scripts</a> 
+                </div>
+                <div class="element-group" (click)="goTo('tools')">
+                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
+                    <a routerLink="/tools" routerLinkActive="active"
+                    [ngClass]="menuStandard.menuOutFull == true ? '' : 'display-none'">Tools</a> 
                 </div>
                 <div class="element-group" (click)="goTo('links')">
                     <img src="../../../../assets/app_icons/icon_links_001.png" />
