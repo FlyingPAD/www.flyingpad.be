@@ -12,7 +12,6 @@ import { UpdateArtistComponent } from './components/update-artist/update-artist.
 import { UpdateStyleComponent } from './components/update-style/update-style.component';
 import { DeleteArtistComponent } from './components/delete-artist/delete-artist.component';
 import { DeleteStyleComponent } from './components/delete-style/delete-style.component';
-import { NewListComponent } from './components/new-list/new-list.component';
 
 
 const routes: Routes = 
@@ -34,8 +33,7 @@ const routes: Routes =
     ] 
   },
   { path : 'artist-gallery', component : ArtistGalleryComponent, title : 'Flying PAD | Artist Gallery' },
-  { path : 'artist-gallery/:id', component : ArtistGalleryComponent, title : 'Flying PAD | Artist Gallery' },
-  { path : 'new-list', component : NewListComponent, title : 'Flying PAD | Artists Gallery' }
+  { path : 'artist-gallery/:id', component : ArtistGalleryComponent, title : 'Flying PAD | Artist Gallery' }
 ];
 
 @NgModule({

@@ -3,23 +3,27 @@
 
 <div id="layout-central" *ngIf="tagsList() as tags">
     <div class="mobile"> 
-        <div id="tag-gallery" *ngIf="tags.length; else loading">
+        <div class="tags-gallery" *ngIf="tags.length; else loading">
             <div *ngFor="let list of tags">
-                <!-- Category Name -->
-                <p>{{ list.category.name }}</p>
-                <!-- Tag List -->
-                <div class="container" *ngFor="let tag of list.tags">
-                    <a id="{{tag.businessId}}" 
-                        [ngClass]="tag.businessId === moods().tagDetails?.businessId ? 'active' : '' " 
-                        routerLink="/moods/gallery" 
-                        (click)="updateTagId(tag.businessId)">▸ {{ tag.name }}
-                    </a>
+                <div class="box">
+                    <!-- Category Name -->
+                    <p>{{ list.category.name }}</p>
+                    <!-- Tag List -->
+                    <div class="flex">
+                        <div *ngFor="let tag of list.tags">
+                            <a id="{{tag.businessId}}" 
+                                [ngClass]="tag.businessId === moods().tagDetails?.businessId ? 'active' : '' " 
+                                routerLink="/moods/gallery" 
+                                (click)="updateTagId(tag.businessId)">▸ {{ tag.name }}
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>    
         <!-- Loading -->
         <ng-template #loading>
-            <div id="tag-gallery">
+            <div class="tags-gallery">
                 <br/>
                 <p>Loading ...</p>
                 <img src="../../../../assets/app_icons/spinner.gif" />

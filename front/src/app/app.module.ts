@@ -7,7 +7,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { LayoutCoreComponent } from './core/layouts/layout-core/layout-core.component';
 import { CoreModule } from './core/core.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +23,6 @@ console.log(' ---------------------------------- ')
   declarations: 
   [
     AppComponent,
-    LayoutCoreComponent,
   ],
   imports: 
   [

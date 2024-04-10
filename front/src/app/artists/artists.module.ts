@@ -13,7 +13,6 @@ import { UpdateStyleComponent } from './components/update-style/update-style.com
 import { DeleteArtistComponent } from './components/delete-artist/delete-artist.component';
 import { DeleteStyleComponent } from './components/delete-style/delete-style.component';
 import { ArtistGalleryComponent } from './components/artist-gallery/artist-gallery.component';
-import { NewListComponent } from './components/new-list/new-list.component';
 
 @NgModule({
   declarations: 
@@ -27,7 +26,6 @@ import { NewListComponent } from './components/new-list/new-list.component';
     DeleteArtistComponent,
     DeleteStyleComponent,
     ArtistGalleryComponent,
-    NewListComponent,
   ],
   imports: 
   [

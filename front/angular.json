@@ -41,9 +41,6 @@
               "src/design/02_global_variables.scss",
               "src/design/03_global_settings.scss",
 
-              "src/design/central/layout-top.scss",
-              "src/design/central/layout-bottom.scss",
-
               "src/design/central/elements_boxes.scss",
               "src/design/central/elements_text.scss",
 
@@ -72,12 +69,7 @@
               "src/design/menu/component_list_categories.scss",
               "src/design/menu/component_model_flex.scss",
               
-              "src/design/menu/menu-left-desktop.scss",
-              "src/design/menu/menu-left-mobile.scss",
-              "src/design/menu/menu-left-trigger.scss",
               "src/design/menu/menu-right-desktop.scss",
-              "src/design/menu/menu-right-mobile.scss",
-              "src/design/menu/menu-right-trigger.scss",
 
               "./node_modules/ngx-toastr/toastr.css"
             ],
