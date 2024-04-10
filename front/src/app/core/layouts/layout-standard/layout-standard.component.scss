@@ -194,6 +194,14 @@
         transition-duration: 200ms;
     }
 
+    @media screen and (max-width: 800px) 
+    {
+        .left-side 
+        {
+            display: none;
+        }
+    }
+
     .right-side
     {
         width: 100%;

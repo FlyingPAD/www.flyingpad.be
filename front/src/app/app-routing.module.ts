@@ -4,13 +4,12 @@ import { AboutComponent } from './core/components/about/about.component';
 import { HomeComponent } from './core/components/home/home.component';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { GalleryComponent } from './links/components/gallery/gallery.component';
-import { LayoutStandardComponent } from './core/layouts/layout-standard/layout-standard.component';
-import { MediaGalleryComponent } from './franchises/components/media-gallery/media-gallery.component';
+import { LayoutCustomComponent } from './core/layouts/layout-custom/layout-custom.component';
 
 const routes: Routes = 
 [
   // Core
-    { path : '', component : LayoutStandardComponent, children :
+    { path : '', component : LayoutCustomComponent, children :
     [
       { path : '', pathMatch : 'full', redirectTo : 'home'},
       { path : 'home', component : HomeComponent, title : 'Flying PAD | Home' },
@@ -21,31 +20,31 @@ const routes: Routes =
 
   // Authentication
   {
-    path : 'authentication', component : LayoutStandardComponent,
+    path : 'authentication', component : LayoutCustomComponent,
     loadChildren:() => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
   },
 
   // Dashboard
   {
-    path : 'dashboard', component : LayoutStandardComponent,
+    path : 'dashboard', component : LayoutCustomComponent,
     loadChildren:() => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
 
   // Artists
   {
-    path : 'artists', component : LayoutStandardComponent,
+    path : 'artists', component : LayoutCustomComponent,
     loadChildren:() => import('./artists/artists.module').then(m => m.ArtistsModule)
   },
 
   // Franchises
   {
-    path : 'franchises', component : LayoutStandardComponent,
+    path : 'franchises', component : LayoutCustomComponent,
     loadChildren:() => import('./franchises/franchises.module').then(m => m.FranchisesModule)
   },
     
   // Media
 
-  // { path : 'medias', component : LayoutStandardComponent, children : 
+  // { path : 'medias', component : LayoutCustomComponent, children : 
   //   [
   //     { path : 'media-gallery', component : MediaGalleryComponent, title : 'Flying PAD | Media Gallery' },
   //   ] 
@@ -53,23 +52,23 @@ const routes: Routes =
 
   // Models
   {
-    path : 'models', component : LayoutStandardComponent,
+    path : 'models', component : LayoutCustomComponent,
     loadChildren:() => import('./models/models.module').then(m => m.ModelsModule)
   },
 
   // Moods
   {
-    path : 'moods', component : LayoutStandardComponent,
+    path : 'moods', component : LayoutCustomComponent,
     loadChildren:() => import('./moods/moods.module').then(m => m.MoodsModule)
   },
 
   // Links
   {
-    path : 'links', component : LayoutStandardComponent,
+    path : 'links', component : LayoutCustomComponent,
     loadChildren:() => import('./links/links.module').then(m => m.LinksModule)
   },
 
-  { path : 'links/gallery', component : LayoutStandardComponent, children : 
+  { path : 'links/gallery', component : LayoutCustomComponent, children : 
     [
       { path : '', component : GalleryComponent, title : 'Flying PAD | Links Gallery'}
     ]
@@ -77,25 +76,25 @@ const routes: Routes =
 
   // Scripts
   {
-    path : 'scripts', component : LayoutStandardComponent,
+    path : 'scripts', component : LayoutCustomComponent,
     loadChildren:() => import('./scripts/scripts.module').then(m => m.ScriptsModule)
   },
 
   // Tags
   {
-    path : 'tags', component : LayoutStandardComponent,
+    path : 'tags', component : LayoutCustomComponent,
     loadChildren:() => import('./tags/tags.module').then(m => m.TagsModule)
   },
 
   // Tools
   {
-    path : 'tools', component : LayoutStandardComponent,
+    path : 'tools', component : LayoutCustomComponent,
     loadChildren:() => import('./tools/tools.module').then(m => m.ToolsModule)
   },
 
   // Users
   {
-    path : 'users', component : LayoutStandardComponent,
+    path : 'users', component : LayoutCustomComponent,
     loadChildren:() => import('./users/users.module').then(m => m.UsersModule)
   },
 

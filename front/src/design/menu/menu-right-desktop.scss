@@ -9,22 +9,24 @@
     display: none;
 
     width: 330px;
-    height: 94%;
+    height: 100%;
 
     overflow-y: scroll;
 
     border-left: 1px solid #6b5240;
-    background-color: rgba(255, 253, 251, 0.8);
+    background-color: rgba(255, 253, 251);
     backdrop-filter: blur(3px);
 
-    z-index: 10;
+    z-index: 17;
     transition-duration: 500ms;
+
+    margin-top: 2px;
 }
 
 .menu_out_right_desktop
 {
     position: fixed;
-    top: 1;
+    top: 0;
     right: 0;
     opacity: 1;
     transition-duration: 500ms;

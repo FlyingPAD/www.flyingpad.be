@@ -31,6 +31,10 @@
             font-size: 14px;
             text-decoration: none;
             color: white;
+
+            white-space: nowrap;        /* Empêche le texte de passer à la ligne */
+            overflow: hidden;           /* Coupe le texte qui déborde */
+            text-overflow: ellipsis;    /* Ajoute les points de suspension à la fin du texte */
         }
         a:hover
         {
@@ -93,6 +97,10 @@
             font-size: 14px;
             text-decoration: none;
             color: white;
+
+            white-space: nowrap;        /* Empêche le texte de passer à la ligne */
+            overflow: hidden;           /* Coupe le texte qui déborde */
+            text-overflow: ellipsis;    /* Ajoute les points de suspension à la fin du texte */
         }
         a:hover
         {
