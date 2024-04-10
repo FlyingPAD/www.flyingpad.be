@@ -17,6 +17,10 @@
 
 ## Front (Angular)
 
+### Objectives:
+- **Structure:** Using Modules
+- **API Calls:** Exploring RxJS & Signal
+
 ### DESIGN (SCSS):
 Files located in `./src/design/`.  
 Read `design-README.txt` for Design Documentation.
