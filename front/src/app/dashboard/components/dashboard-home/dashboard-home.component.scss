@@ -1,0 +1,48 @@
+.panel-crud
+{
+    display: flex;
+    justify-content: center;
+
+    a
+    {
+        display: block;
+        width: 150px;
+        height: 20px;
+
+        padding: 5px; padding-top: 7px;
+        margin-bottom: 5px;
+
+        background-color: rgba(255, 255, 255, 0.79);
+        border: 1px solid #6b5240;
+        border-radius: 5px;
+
+        font-size: 14px;
+        color: #6b5240;       
+        text-decoration: none;
+    }
+    a:hover
+    {
+        cursor: pointer;
+        background-color: #92715a;
+        color: rgba(255, 255, 255, 0.79);      
+        transition-duration: 500ms;  
+    }
+    span
+    {
+        display: block;
+        width: 150px;
+        height: 20px;
+
+        padding: 5px; padding-top: 7px;
+        margin-bottom: 5px;
+
+        background-color: rgb(192, 192, 192); 
+        border: 1px solid #6b5240;
+        border-radius: 5px;
+
+        font-size: 13px;
+        color: #666;
+
+        cursor: not-allowed;
+    }
+}
