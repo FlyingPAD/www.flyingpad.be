@@ -14,8 +14,10 @@
 </app-menu-right-desktop>
 
 <div id="layout-central" *ngIf="singleMediaFlow() as flow">
-    <h1>Franchises</h1>
-    <div *ngFor="let franchise of flow.franchises">
-        <p>{{ franchise.name }}</p>
+    <h1>{{ flow.media.name }}</h1>
+    <div class="franchises">
+        <div *ngFor="let franchise of flow.franchises">
+            <p><a routerLink="/franchises/franchise-gallery" (click)="updateFranchiseId(franchise.businessId)">{{ franchise.name }}</a></p>
+        </div>
     </div>
 </div>

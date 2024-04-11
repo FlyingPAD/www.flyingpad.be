@@ -12,8 +12,8 @@ export class MediaGalleryComponent
 
   singleMediaFlow = this.#franchisesService.singleMediaFlow
 
-ngOnInit()
-{
-  console.log('Flow:', this.singleMediaFlow);
-}
+  updateFranchiseId( franchiseId : number | null)
+  {
+    this.#franchisesService.updateSelectedFranchiseId(franchiseId)
+  }
 }

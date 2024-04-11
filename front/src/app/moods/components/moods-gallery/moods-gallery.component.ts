@@ -40,6 +40,11 @@ export class MoodsGalleryComponent
     this.scrollToStart(businessIdString)
   }
 
+  pageReset()
+  {
+    this.currentPage = 1
+  }
+
   getMoodRandom() : void
   {
     this.moodsService.updateSelectedMoodId(null)

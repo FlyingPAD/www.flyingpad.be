@@ -18,6 +18,7 @@ namespace MB.Persistence.Repositories
                     BusinessId = mt.Tag!.BusinessId,
                     Name = mt.Tag!.Name
                 })
+                .OrderBy(t => t.Name)
                 .ToListAsync();
 
             return tagsVm;

@@ -4,11 +4,12 @@ import { BaseResponse } from "./base-response";
 
 export interface MoodLight
 {
-    businessId : number;
-    name : string;
-    type : number;
-    description : string;
-    extension : string;
+    businessId : number
+    name : string
+    type : number
+    description : string
+    extension : string
+    score : number
 }
 
 export class MoodFull
