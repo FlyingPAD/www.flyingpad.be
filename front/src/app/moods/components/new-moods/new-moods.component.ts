@@ -14,21 +14,10 @@ import { FranchiseStateService } from '../../../core/services/franchise-state.se
 })
 export class NewMoodsComponent 
 {
-  // Dependency Injections
   moodsService = inject(MoodStateService)
   #sanitizer = inject(DomSanitizer)
   newModelsService = inject(ModelStateService)
   newFranchiseService = inject(FranchiseStateService)
-
-  updateFranchiseId(franchiseId : number | null)
-  {
-    this.newFranchiseService.updateSelectedFranchiseId(franchiseId)
-  }
-
-  updateModelId(modelId : number)
-  {
-    this.newModelsService.updateSelectedModelId(modelId)
-  }
 
   // Properties
   environment :       string          = environment.apiBaseUrl
@@ -42,18 +31,32 @@ export class NewMoodsComponent
   MOODHEIGHTMAX :     number          = 2000                   // Maximum Mood Height ( if any ) for size Toggle
   moodHeight :        number          = this.windowHeight - 64 // Original Mood Height ( if any ) for Size Toggle
   diaporamaDelay :    number          = 3000                   // Diaporama Delay
+  moodIndexPosition : number          = 0                      // Mood Index Position ( pagination )
 
-  // Signal
-  mood = this.moodsService.getMoodFlow
+  mood = this.moodsService.getMoodFlow                         // Signal
+  moods = this.moodsService.newMoodsFlow                       // Signal
 
   // Methods
-  getMoodRandom()
-  {
-    this.moodsService.updateSelectedMoodId( null )
-  }
-  getMood( moodId : number)
+
+  getMood( moodId : number | null )
   {
     this.moodsService.updateSelectedMoodId( moodId )
+    console.log(this.moods(), this.mood())
+  }
+
+  updateFranchiseId( franchiseId : number | null )
+  {
+    this.newFranchiseService.updateSelectedFranchiseId(franchiseId)
+  }
+
+  updateModelId( modelId : number | null )
+  {
+    this.newModelsService.updateSelectedModelId(modelId)
+  }
+
+  updateTagId( tagId : number | null )
+  {
+    this.moodsService.updateSelectedTagId(tagId)
   }
 
   // -----------------------------------------------------------------
@@ -80,7 +83,7 @@ export class NewMoodsComponent
         this.openDownload()
         break
       case '0':
-        this.getMoodRandom()
+        this.getMood(null)
         break
       case '+':
         this.toggleFocus()

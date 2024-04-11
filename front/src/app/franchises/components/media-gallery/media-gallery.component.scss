@@ -1,0 +1,23 @@
+.franchises
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    width: 1150px;
+    margin: auto;
+
+    p
+    {
+        display: block;
+        width: 150px;
+
+        padding: 5px;
+        margin: 15px;
+
+        color: var(--colorMain);
+        background-color: #fff;
+        border: 1px solid var(--colorMain);
+        border-radius: 5px;
+    }
+}

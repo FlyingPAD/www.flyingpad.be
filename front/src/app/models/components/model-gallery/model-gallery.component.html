@@ -1,34 +1,34 @@
-<app-menu-right-desktop *ngIf="model() as model">
+<app-menu-right-desktop *ngIf="model() as flow">
     <div class="content_right_desktop">  
         <!-- Random Mood Button -->
         <div class="item-top box_buttons">
             <a routerLink="/moods/mood-details">Random Mood</a>
         </div>
         <!-- Logo -->
-        <div class="box-pic" *ngIf="model.model.pseudonym === '# Unknown Model'"><img src="../../../../assets/app_logos/fp_logo_02.png" /></div>
+        <div class="box-pic" *ngIf="flow.model.pseudonym === '# Unknown Model'"><img src="../../../../assets/app_logos/fp_logo_02.png" /></div>
         <!-- or Gender -->
-        <div *ngIf="model.model.pseudonym !== '# Unknown Model'">
-            <div class="item-top picture" *ngIf="model.model.gender === 'F'">
+        <div *ngIf="flow.model.pseudonym !== '# Unknown Model'">
+            <div class="item-top picture" *ngIf="flow.model.gender === 'F'">
                 <img src="../../../../assets/app_icons/gender/female.png">
             </div>  
-            <div class="item-top picture" *ngIf="model.model.gender === 'M'">
+            <div class="item-top picture" *ngIf="flow.model.gender === 'M'">
                 <img src="../../../../assets/app_icons/gender/male.png">
             </div>  
         </div>
         <!-- Model Details -->
-        <h1 class="item-top">{{ model.model.pseudonym }}</h1>
+        <h1 class="item-top">{{ flow.model.pseudonym }}</h1>
         <div class="item-top flex">
             <p><b>Moods</b></p>
-            <p>{{ model.moods.length | number : '3.0'}}</p>
+            <p>{{ flow.moods.length | number : '3.0'}}</p>
         </div>
-        <div *ngIf="model.model.pseudonym !== '# Unknown Model'">
-            <div class="item-middle flex" *ngIf="model.model.firstName !== '...' ">
+        <div *ngIf="flow.model.pseudonym !== '# Unknown Model'">
+            <div class="item-middle flex" *ngIf="flow.model.firstName !== '...' ">
                 <p><b>First Name</b></p>
-                <p>{{model.model.firstName}}</p>
+                <p>{{flow.model.firstName}}</p>
             </div>
-            <div class="item-middle flex" *ngIf="model.model.lastName !== '...' ">
+            <div class="item-middle flex" *ngIf="flow.model.lastName !== '...' ">
                 <p><b>Last Name</b></p>
-                <p>{{model.model.lastName}}</p>
+                <p>{{flow.model.lastName}}</p>
             </div>
         </div>        
         <div>
@@ -36,19 +36,19 @@
             <div class="item-top flex_created">
                 <div class="box_created">
                     <p>Created :</p>
-                    <p>{{model.model.created | date : 'MMMM d, y | HH:mm'}}</p>
+                    <p>{{flow.model.created | date : 'MMMM d, y | HH:mm'}}</p>
                 </div>
                 <div class="box_created">
                     <p>Modified :</p>
-                    <p>{{model.model.modified | date : 'MMMM d, y | HH:mm'}}</p>
+                    <p>{{flow.model.modified | date : 'MMMM d, y | HH:mm'}}</p>
                 </div>
             </div> 
         </div>
-        <div *ngIf="model.model.pseudonym != '# Unknown Model'">
+        <div *ngIf="flow.model.pseudonym != '# Unknown Model'">
             <!-- Search -->            
             <div class="item-top box_buttons">
-                <a target="_blank" href="https://www.google.com/search?q={{model.model.pseudonym}}">Search Google</a>
-                <a target="_blank" href="https://images.google.com/images?q={{model.model.pseudonym}}">Google Images</a>
+                <a target="_blank" href="https://www.google.com/search?q={{flow.model.pseudonym}}">Search Google</a>
+                <a target="_blank" href="https://images.google.com/images?q={{flow.model.pseudonym}}">Google Images</a>
             </div>   
             <!-- Related Links -->
             <!-- <div *ngIf="links.length != 0">
@@ -61,10 +61,10 @@
             </div> -->
         </div> 
         <!-- Related Franchises -->
-        <div *ngIf="model.franchises.length">
+        <div *ngIf="flow.franchises.length">
             <h1 class="item-top">From</h1>
             <div class="item-bottom box_buttons">
-                <div *ngFor="let franchise of model.franchises">
+                <div *ngFor="let franchise of flow.franchises">
                     <a routerLink="/franchises/franchise-gallery" (click)="updateFranchiseId(franchise.businessId)">{{franchise.name}}</a>             
                 </div>
             </div>
@@ -72,16 +72,16 @@
     </div>
 </app-menu-right-desktop>
 
-<div id="layout-central" *ngIf="model() as model">
+<div id="layout-central" *ngIf="model() as flow">
     <!-- Pagination -->
-    <div class="row-sticky" *ngIf="model.moods.length > mpp">
+    <div class="row-sticky" *ngIf="flow.moods.length > mpp">
         <div id="pagination">
             <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="p = $event"></pagination-controls>
         </div>
     </div>    
     <!-- Gallery -->
     <div id="sub_gallery">
-        <div *ngFor="let mood of model.moods | paginate : { itemsPerPage: mpp, currentPage: p }">
+        <div *ngFor="let mood of flow.moods | paginate : { itemsPerPage: mpp, currentPage: p }">
             <section>
                 <div *ngIf="mood.type == 1">           
                     <a routerLink="/moods/mood-details/model/{{mood.businessId}}"><img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"/></a>

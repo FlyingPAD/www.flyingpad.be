@@ -12,7 +12,7 @@
                     <div *ngFor="let tag of tagList.tags">
                         <div id="tag_box">
                             <a id="{{tag.businessId}}" class="name-tag" [ngClass]="{'active': tag.name === moods().tagDetails?.name}"
-                                (click)="updateTagId(tag.businessId)"> ▸ {{tag.name}}
+                                (click)="updateTagId(tag.businessId);pageReset()"> ▸ {{tag.name}}
                             </a>                         
                         </div>
                     </div>

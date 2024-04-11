@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { BehaviorSubject, switchMap, map, combineLatest, of } from "rxjs";
+import { BehaviorSubject, switchMap, map, combineLatest, of, tap } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { GetModelsByMoodResponse } from "../models/model";
 import { GetMoodsByTagResponse, MoodFull, MoodsGetAllResponse, MoodsGetOneDetailsResponse } from "../models/mood";
@@ -44,26 +44,31 @@ export class MoodStateService
       if (TagId === null) 
         {
         return this.#http.get<MoodsGetAllResponse>(`${this.#url}Moods/GetAll`).pipe(
-          map(response => ({ moodsList: response.moodsList, tagDetails: null }))
+          map(response => (
+            { 
+              moodsList: response.moodsList.sort((a, b) => b.score - a.score),
+              tagDetails: null 
+            }))
         )
       } 
       else 
       {
         return combineLatest([
           this.getMoodsByTag(TagId).pipe(
-            map(response => response)
+            map(response => ({
+              moods: response.sort((a, b) => b.score - a.score),
+            }))
           ),
           this.getOneTagDetails(TagId).pipe(
             map(response => response)
           )
         ]).pipe(
-          map(([moods, tagDetails]) => ({ moodsList: moods, tagDetails }))
+          map(([moods, tagDetails]) => ({ moodsList: moods.moods, tagDetails }))
         )
       }
     })
   )
   moodsFlow = toSignal(this.moodsFlow$, { initialValue: { moodsList: [], tagDetails: null } })
-
 
   moodFlow$ = this.#selectedMoodId.pipe(
     switchMap(moodId => this.getMood(moodId)),
@@ -102,11 +107,45 @@ export class MoodStateService
       }),
     )      
   getMoodFlow = toSignal(this.moodFlow$, { initialValue: { mood: new MoodFull(), models: [], franchises : [], artists : [],tags : [], media : null } })
-      
-  getMood(moodId : number | null)
+
+  newMoodsFlow$ = combineLatest([
+    this.moodFlow$,
+    this.moodsFlow$
+  ]).pipe(
+    map(([moodFlow, moodsFlow]) => 
+      {
+      let moodsList = moodsFlow.moodsList
+      let selectedMoodId = moodFlow.mood.businessId
+      let currentIndex = moodsList.findIndex(mood => mood.businessId === selectedMoodId)
+  
+      let previousMoodId: number | null = currentIndex > 0 ? moodsList[currentIndex - 1].businessId : moodsList.length ? moodsList[moodsList.length - 1]?.businessId : null
+      let nextMoodId: number | null = currentIndex < moodsList.length - 1 ? moodsList[currentIndex + 1].businessId : moodsList.length ? moodsList[0]?.businessId : null
+  
+      return { ...moodsFlow, currentIndex, previousMoodId, nextMoodId }
+    })
+  )
+  newMoodsFlow = toSignal(this.newMoodsFlow$, { initialValue: 
+    {
+      moodsList: [],
+      tagDetails: null,
+      currentIndex: -1,
+      previousMoodId: null,
+      nextMoodId: null,
+    } 
+  })  
+
+  getMood(moodId: number | null) 
   {
-    const url = moodId === null ? `${this.#url}Moods/GetOneDetailsRandom` : `${this.#url}Moods/GetOneDetails/${moodId}`
-    return this.#http.get<MoodsGetOneDetailsResponse>(url).pipe( map(response => response.mood) )
+    const url = moodId === null ? `${this.#url}Moods/GetOneDetailsRandom` : `${this.#url}Moods/GetOneDetails/${moodId}`;
+    return this.#http.get<MoodsGetOneDetailsResponse>(url).pipe(
+      tap(response => {
+        if (moodId === null && response.mood && response.mood.businessId) 
+        {
+          this.updateSelectedMoodId(response.mood.businessId);
+        }
+      }),
+      map(response => response.mood)
+    )
   }
 
   getMoodsByTag(TagId : number | null)
@@ -163,5 +202,4 @@ export class MoodStateService
     return this.#http.get<GetTagsByMoodResponse>(`${this.#url}Tags/GetByMood/${businessId}`).pipe( 
       map(response => response.tagsByMood) )
   }
-
 }
