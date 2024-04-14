@@ -197,7 +197,7 @@ export class MoodDetailsComponent
   {
     const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1` 
     const iframeHtml = `
-      <iframe width="560" height="315" src="${embedUrl}" 
+      <iframe src="${embedUrl}" 
               frameborder="0" 
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
               allowfullscreen>

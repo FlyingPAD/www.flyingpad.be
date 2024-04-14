@@ -177,7 +177,7 @@
                 <a (click)="getPage('next')"><img src="../../../../assets/app_icons/arrow_right.png" /></a>
             </div>
             <div class="video-container">
-                <div *ngIf="flow.media" [innerHTML]="getSafeContent(typeCheck(flow.media).url)"></div>
+                <div class="youtube" *ngIf="flow.media" [innerHTML]="getSafeContent(typeCheck(flow.media).url)"></div>
             </div>
         </div>
     </div>
