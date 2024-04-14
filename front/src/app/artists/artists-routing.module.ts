@@ -20,20 +20,17 @@ const routes: Routes =
     [
       { path : '', pathMatch : 'full', redirectTo : 'list'},
       { path : 'list', component : ArtistsListComponent, title : 'Flying PAD | Artists' },
-      { path : 'list/:id', component : ArtistsListComponent, title : 'Flying PAD | Artists' },
     
+      { path : 'update-artist', component : UpdateArtistComponent, title : 'Flying PAD | Update Artist' },
+      { path : 'update-style', component : UpdateStyleComponent, title : 'Flying PAD | Update Style' },
+
       { path : 'create-artist', component : CreateArtistComponent, title : 'Flying PAD | Create Artist' },
       { path : 'create-style', component : CreateStyleComponent, title : 'Flying PAD | Create Style' },
-    
-      { path : 'update-artist/:id', component : UpdateArtistComponent, title : 'Flying PAD | Update Artist' },
-      { path : 'update-style/:id', component : UpdateStyleComponent, title : 'Flying PAD | Update Style' },
-    
-      { path : 'delete-artist/:id', component : DeleteArtistComponent, title : 'Flying PAD | Delete Artist' },
-      { path : 'delete-style/:id', component : DeleteStyleComponent, title : 'Flying PAD | Delete Style' },
+      { path : 'delete-artist', component : DeleteArtistComponent, title : 'Flying PAD | Delete Artist' },
+      { path : 'delete-style', component : DeleteStyleComponent, title : 'Flying PAD | Delete Style' },
     ] 
   },
   { path : 'artist-gallery', component : ArtistGalleryComponent, title : 'Flying PAD | Artist Gallery' },
-  { path : 'artist-gallery/:id', component : ArtistGalleryComponent, title : 'Flying PAD | Artist Gallery' }
 ];
 
 @NgModule({

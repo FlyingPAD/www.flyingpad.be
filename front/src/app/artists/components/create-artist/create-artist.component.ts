@@ -1,12 +1,12 @@
-import { Component, ElementRef, ViewChild, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { StylesGetAllResponse } from '../../../core/models/style';
-import { ArtistService } from '../../../core/services/client/client-artist.service';
 import { RelationService } from '../../../core/services/client/client-relation.service';
 import { StyleService } from '../../../core/services/client/client-style.service';
 import { StateArtistService } from '../../../core/services/state/state-artists.service';
+import { ArtistsStateService } from '../../../core/services/artists-state.service';
 
 @Component({
   selector: 'app-create-artist',
@@ -18,7 +18,7 @@ export class CreateArtistComponent
   // Properties :
   
   #stateArtistService = inject(StateArtistService)
-  #artistService = inject(ArtistService)
+  #artistsService = inject(ArtistsStateService)
   #styleService = inject(StyleService)
   #relationService = inject(RelationService)
   #builder = inject(FormBuilder)
@@ -56,7 +56,7 @@ export class CreateArtistComponent
   {
     if (this.form.valid && this.stylesGetAllResponse && this.stylesGetAllResponse.stylesList) 
     {
-      this.#artistService.Create(this.form.value).subscribe({
+      this.#artistsService.CreateArtist(this.form.value).subscribe({
         next : (response) => 
         {
           // Récupérer l'ID de l'artiste nouvellement créé

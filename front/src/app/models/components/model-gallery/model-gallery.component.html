@@ -2,7 +2,7 @@
     <div class="content_right_desktop">  
         <!-- Random Mood Button -->
         <div class="item-top box_buttons">
-            <a routerLink="/moods/mood-details">Random Mood</a>
+            <a routerLink="/moods/mood-details" (click)="getRandomMood()">Random Mood</a>
         </div>
         <!-- Logo -->
         <div class="box-pic" *ngIf="flow.model.pseudonym === '# Unknown Model'"><img src="../../../../assets/app_logos/fp_logo_02.png" /></div>
@@ -84,10 +84,12 @@
         <div *ngFor="let mood of flow.moods | paginate : { itemsPerPage: mpp, currentPage: p }">
             <section>
                 <div *ngIf="mood.type == 1">           
-                    <a routerLink="/moods/mood-details/model/{{mood.businessId}}"><img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"/></a>
+                    <a routerLink="/moods/mood-details" (click)="updateMoodId(mood.businessId)">
+                        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"/></a>
                 </div>
                 <div *ngIf="mood.type == 2">
-                    <a routerLink="/moods/mood-details/model/{{mood.businessId}}"><img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"/></a>         
+                    <a routerLink="/moods/mood-details" (click)="updateMoodId(mood.businessId)">
+                        <img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"/></a>         
                 </div>
             </section>
         </div>

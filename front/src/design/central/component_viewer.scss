@@ -1,49 +1,133 @@
-// ==============================================
-// - MoodBoard | Central Pages | Central Layout
-// ==============================================
+// ======================================================
+// - MoodBoard | Central Pages Viewer ( Mood Details ) :
+// ======================================================
 
 #layout-central
 {
-    // Viewer ( Mood Details ) :
-
-    // - Desktop Version
-
     #viewer 
     {
         position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         height: 100%;
     
-        #mood_content 
-        {           
-            img, video
+        .mood-image
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            #mood_content 
+            {           
+                img
+                {
+                    box-shadow: 0 6px 12px 0px #502a0e;
+                    transition: height 500ms ease-out, box-shadow 500ms ease-out;
+                }
+            }
+    
+            #page_previous 
             {
-                box-shadow: 0 6px 12px 0px #502a0e;
-                transition: height 500ms ease-out, box-shadow 500ms ease-out;
+                left: 0;
+            }
+            #page_previous:hover
+            {
+                background-color: rgba(80, 42, 14, 0.1);
+                animation: fadeInBackground 2s forwards;
+
+            }            
+            #page_next 
+            {
+                right: 0;
+            }
+            #page_next:hover
+            {
+                background-color: rgba(80, 42, 14, 0.1);
+                animation: fadeInBackground 2s forwards;
+            }
+            @keyframes fadeInBackground 
+            {
+                from { background-color: rgba(80, 42, 14, 0.1); }
+                to { background-color: rgba(80, 42, 14, 0); }
+            }
+    
+            #page_previous, #page_next
+            {
+                position: absolute;
+                width: 50%;
+                height: 100%;
             }
         }
 
-        #page_previous 
+        .mood-video
         {
-            position: absolute;
-            left: 0;
-            width: 50%;
-            height: 100%;
-        }
-    
-        #page_next 
-        {
-            position: absolute;
-            right: 0;
-            width: 50%;
-            height: 100%;
+            .navigation
+            {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                h1
+                {
+                    display: block;
+                    line-height: 35px;
+                    border: 3px solid var(--colorMain);
+                    border-radius: 10px;
+                    color: var(--colorMain);
+                    padding: 5px; padding-left: 10px; padding-right: 10px;
+                    margin-left: 10px; margin-right: 10px;
+                    text-shadow: none;
+                    background-color: rgba(255, 255, 255, 0.5);
+                }
+
+                a
+                {
+                    img
+                    {
+                        display: block;
+                        border: 3px solid var(--colorMain);
+                        border-radius: 10px;
+                        color: var(--colorMain);
+                        padding: 5px;
+                        text-shadow: none;
+                        background-color: rgba(255, 255, 255, 0.5);
+                        height: 35px;
+                        width: 35px;
+                        opacity: 0.7;
+                    }
+                    img:hover
+                    {
+                        opacity: 1;
+                        transition-duration: 500ms;
+                    }
+                }
+                a:hover
+                {
+                    cursor: pointer;
+                    transition-duration: 200ms;
+                }
+            }
+
+            .video-container
+            {
+                display: flex;
+                justify-content: center;
+
+                video
+                {
+                    max-width: 60%;
+                }
+                @media (max-width: 1150px) 
+                {
+                    video
+                    {
+                        max-width: 100%;
+                    }
+                }
+            }
         }
     }
     #viewer:hover #mood_content 
     {
-        img, video
+        img
         {
             box-shadow: 0 6px 12px 0px #502a0e00;
             transition: height 500ms ease-out, box-shadow 500ms ease-out;
@@ -60,7 +144,7 @@
         {
             #mood_content 
             {
-                img, video 
+                img
                 {
                     width: 100%;
                     height: auto !important;

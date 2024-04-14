@@ -1,20 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { switchMap } from 'rxjs';
-import { StyleService } from '../../../core/services/client/client-style.service';
+import { ArtistsStateService } from '../../../core/services/artists-state.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-style',
   templateUrl: './create-style.component.html',
   styleUrls: ['./create-style.component.scss']
 })
-export class CreateStyleComponent
-{
-  // Properties :
-  
-  #styleService = inject(StyleService)
+export class CreateStyleComponent implements OnDestroy
+{ 
+  #artistsService = inject(ArtistsStateService)
   #builder = inject(FormBuilder)
   #router = inject(Router)
   #toastr = inject(ToastrService)
@@ -24,24 +22,28 @@ export class CreateStyleComponent
     name : ["", [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
 
-  // Methods :
+  subscription = new Subscription()
 
   onSubmit() : void
   {
     if (this.form.valid) 
     {
-      this.#styleService.Create(this.form.value).pipe(
-        switchMap(() => this.#styleService.GetAll()),
-        switchMap(() => this.#styleService.Count())
-      ).subscribe({
-        next: () => {
+      this.subscription = this.#artistsService.CreateStyle(this.form.value).subscribe({
+        next : () => 
+        {
           this.#toastr.success('Style was successfully created.')
           this.#router.navigateByUrl('artists')
         },
-        error: () => {
+        error : () => 
+        {
           this.#toastr.error('Error')
         }
       })
     }
+  }
+
+  ngOnDestroy() : void
+  {
+    this.subscription.unsubscribe()
   }
 }

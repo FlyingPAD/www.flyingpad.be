@@ -60,8 +60,8 @@ namespace MB.API.Controllers
         /// <summary>
         /// Get One
         /// </summary>
-        [HttpGet("GetOne/{styleId}")]
-        public async Task<ActionResult<GetStyleByIdQuery>> GetOne(Guid styleId)
+        [HttpGet("GetOneDetails/{styleId}")]
+        public async Task<ActionResult<GetStyleByIdQuery>> GetOneDetails(Guid styleId)
         {
             var response = await _mediator.Send(new GetStyleByIdQuery { Id = styleId });
             return Ok(response);

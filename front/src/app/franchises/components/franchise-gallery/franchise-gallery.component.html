@@ -2,7 +2,7 @@
     <div class="content_right_desktop">  
         <!-- Random Mood Button -->
         <div class="item-top box_buttons">
-            <a routerLink="/moods/mood-details">Random Mood</a>
+            <a routerLink="/moods/mood-details" (click)="getRandomMood()">Random Mood</a>
         </div>
         <!-- Franchise Details -->
         <h1 class="item-top">{{ franchise.franchise.name}}</h1>
@@ -157,12 +157,12 @@
         <div *ngFor="let m of franchise.moods | paginate : { itemsPerPage: mpp, currentPage: p }">
             <section>
                 <div *ngIf="m.type == 1">           
-                    <a routerLink="/moods/mood-details/franchise/{{m.businessId}}">
+                    <a routerLink="/moods/mood-details" (click)="updateMoodId(m.businessId)">
                         <img src="{{environment}}/Content/img_thumbs/{{m.businessId}}.{{m.extension}}"/>
                     </a>
                 </div>
                 <div *ngIf="m.type == 2">
-                    <a routerLink="/moods/mood-details/franchise/{{m.businessId}}">
+                    <a routerLink="/moods/mood-details" (click)="updateMoodId(m.businessId)">
                         <img src="{{environment}}/Content/video_thumbs/{{m.businessId}}.jpg"/>
                     </a>         
                 </div>

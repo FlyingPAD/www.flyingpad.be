@@ -52,7 +52,7 @@ export interface StylesGetAllResponse extends BaseResponse
     stylesList : StyleCheck[]
 }
 
-export interface StylesGetOneResponse extends BaseResponse
+export interface GetOneStyleDetailsResponse extends BaseResponse
 {
     style : Style
 }

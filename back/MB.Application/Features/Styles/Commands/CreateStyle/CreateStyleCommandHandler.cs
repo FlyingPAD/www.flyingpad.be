@@ -5,18 +5,11 @@ using MediatR;
 
 namespace MB.Application.Features.Styles.Commands.CreateStyle
 {
-    public class CreateStyleCommandHandler : IRequestHandler<CreateStyleCommand, CreateStyleCommandResponse>
+    public class CreateStyleCommandHandler(IMapper mapper, IBaseRepository<Style> styleRepository, CreateStyleCommandValidator validator) : IRequestHandler<CreateStyleCommand, CreateStyleCommandResponse>
     {
-        private readonly IMapper _mapper;
-        private readonly IBaseRepository<Style> _styleRepository;
-        private readonly CreateStyleCommandValidator _validator;
-
-        public CreateStyleCommandHandler(IMapper mapper, IBaseRepository<Style> styleRepository, CreateStyleCommandValidator validator)
-        {
-            _mapper = mapper;
-            _styleRepository = styleRepository;
-            _validator = validator;
-        }
+        private readonly IMapper _mapper = mapper;
+        private readonly IBaseRepository<Style> _styleRepository = styleRepository;
+        private readonly CreateStyleCommandValidator _validator = validator;
 
         public async Task<CreateStyleCommandResponse> Handle(CreateStyleCommand request, CancellationToken cancellationToken)
         {

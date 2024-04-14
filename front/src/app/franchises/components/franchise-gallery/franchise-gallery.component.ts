@@ -6,6 +6,7 @@ import { ModelService } from '../../../core/services/client/client-model.service
 import { StateModelsService } from '../../../core/services/state/state-models.service';
 import { FranchiseStateService } from '../../../core/services/franchise-state.service';
 import { ModelStateService } from '../../../core/services/model-state.service';
+import { MoodStateService } from '../../../core/services/mood-state.service';
 
 @Component({
   selector: 'app-franchise-gallery',
@@ -14,6 +15,7 @@ import { ModelStateService } from '../../../core/services/model-state.service';
 })
 export class FranchiseGalleryComponent 
 {
+  #moodsService = inject(MoodStateService)
   #franchisesService = inject(FranchiseStateService)  
   #newModelsService = inject(ModelStateService)
   #modelsService = inject(ModelService)
@@ -45,5 +47,18 @@ export class FranchiseGalleryComponent
   updateModelId(modelId : number | null)
   {
     this.#newModelsService.updateSelectedModelId(modelId)
+    this.#moodsService.updateSelectedModelId(modelId)
+  }
+
+  updateMoodId(moodId : number)
+  {
+    this.#moodsService.updateSelectedGalleryType('franchise')
+    this.#moodsService.updateSelectedMoodId(moodId)
+  }
+
+  getRandomMood()
+  {
+    this.#moodsService.updateSelectedGalleryType('')
+    this.#moodsService.updateSelectedMoodId(null)
   }
 }

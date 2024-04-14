@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { MenuMobileService } from '../../../core/services/system/menu-mobile.service';
 import { ModelStateService } from '../../../core/services/model-state.service';
 import { FranchiseStateService } from '../../../core/services/franchise-state.service';
+import { MoodStateService } from '../../../core/services/mood-state.service';
 
 @Component({
   selector: 'app-model-gallery',
@@ -11,18 +12,30 @@ import { FranchiseStateService } from '../../../core/services/franchise-state.se
 })
 export class ModelGalleryComponent 
 {
-  #ModelsService = inject(ModelStateService)
+  #modelsService = inject(ModelStateService)
+  #moodsService = inject(MoodStateService)
   #franchisesService = inject(FranchiseStateService)
   menuService = inject(MenuMobileService)
 
-  mpp : number = 36
-  p : number = 1
-
-  environment = environment.apiBaseUrl
-  model = this.#ModelsService.model
+  mpp : number = 36                       // Pagination
+  p : number = 1                          // Pagination
+  environment = environment.apiBaseUrl    // API URL
+  model = this.#modelsService.model       // Signal
 
   updateFranchiseId(franchiseId : number | null)
   {
     this.#franchisesService.updateSelectedFranchiseId(franchiseId)
+  }
+
+  updateMoodId( moodId : number)
+  {
+    this.#moodsService.updateSelectedMoodId(moodId)
+    this.#moodsService.updateSelectedGalleryType('model')
+  }
+
+  getRandomMood()
+  {
+    this.#moodsService.updateSelectedGalleryType('')
+    this.#moodsService.updateSelectedMoodId(null)
   }
 }
