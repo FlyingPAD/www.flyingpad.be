@@ -1,73 +1,49 @@
-import { Component, inject } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { switchMap } from 'rxjs';
-import { ArtistService } from '../../../core/services/client/client-artist.service';
-import { RelationService } from '../../../core/services/client/client-relation.service';
-import { StyleService } from '../../../core/services/client/client-style.service';
+import { Subscription } from 'rxjs';
+import { ArtistsStateService } from '../../../core/services/artists-state.service';
 
 @Component({
   selector: 'app-delete-style',
   templateUrl: './delete-style.component.html',
   styleUrls: ['./delete-style.component.scss']
 })
-export class DeleteStyleComponent
+export class DeleteStyleComponent implements OnDestroy
 {
-  #artistService = inject(ArtistService)
-  #styleService = inject(StyleService)
-  #relationService = inject(RelationService)
+  #artistsService = inject(ArtistsStateService)
 
   #router = inject(Router)
-  #route = inject(ActivatedRoute)
   #toastr = inject(ToastrService)
 
-  styleId : number = this.#route.snapshot.params['id']
-  styleGetOneResponse$ = this.#styleService.GetOne( this.styleId )
-  checkRelationsArtistStyleByStyleResponse$ = this.#relationService.CheckRelationsArtistStyleByStyle( this.styleId )
+  styleFlow = this.#artistsService.styleFlow  // Signal
+  subscription = new Subscription()           // Subscription
 
-  ngOnInit() 
+  ngOnDestroy() : void 
   {
-    this.#route.params.subscribe(params => 
+    this.subscription.unsubscribe()
+  }
+
+  onDelete() : void 
+  {
+    const style = this.styleFlow().style;
+    if (style?.businessId !== undefined) 
     {
-      this.styleId = params['id']
-
-      if (this.styleId) 
-      {
-        this.loadStyle()
-      }
-      else 
-      {
-        this.#toastr.error('Invalid style ID.')
-        this.#router.navigateByUrl('artists')
-      }
-    })
-  }
-
-  loadStyle() 
-  {
-    this.#styleService.GetOne(this.styleId).subscribe({
-      error: () => {
-        this.#toastr.error('Style was not found.')
-        this.#router.navigateByUrl('artists')
-      }
-    })
-  }
-
-  onDelete() 
-  {
-    this.#styleService.Delete(this.styleId).pipe(
-      switchMap(() => this.#styleService.GetAll()),
-      switchMap(() => this.#styleService.Count()),
-      switchMap(() => this.#artistService.GetPage(null, null, '', 20))
-    ).subscribe({
-      next: () => {
-        this.#styleService.updateStyleID(null)
-        this.#toastr.success('Style was successfully deleted.')
-        this.#router.navigateByUrl('artists')
-      },
-      error: (err) => {
-        this.#toastr.error('Error: ' + err.message)
-      }
-    })
+      this.#artistsService.DeleteStyle(style.businessId).subscribe({
+        next : () => 
+        {
+          this.#toastr.success('Style was successfully deleted.')
+          this.#router.navigateByUrl('/artists')
+        },
+        error : (error) => 
+        {
+          this.#toastr.error('Error : ' + error.message)
+        }
+      })
+    } 
+    else 
+    {
+      this.#toastr.error('Error: No business ID found for style.')
+    }
   }
 }

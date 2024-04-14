@@ -5,14 +5,12 @@ import { MoodsRoutingModule } from './moods-routing.module';
 import { MoodsGalleryComponent } from './components/moods-gallery/moods-gallery.component';
 import { SharedModule } from '../shared/shared.module';
 import { MoodDetailsComponent } from './components/mood-details/mood-details.component';
-import { NewMoodsComponent } from './components/new-moods/new-moods.component';
 
 @NgModule({
   declarations: 
   [
     MoodsGalleryComponent,
-    MoodDetailsComponent,
-    NewMoodsComponent,
+    MoodDetailsComponent
   ],
   imports: 
   [

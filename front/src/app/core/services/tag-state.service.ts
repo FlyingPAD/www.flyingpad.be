@@ -10,12 +10,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class TagStateService 
 {
-  // Properties :
-
   #http = inject(HttpClient)
-  #url: string = environment.apiBaseUrl + '/api/V1/'
-  
-  environment = environment.apiBaseUrl        // Environment
+  #url: string = environment.apiBaseUrl + '/api/V1/'    
 
   tagsList$ = this.#http.get<TagsGetFullListResponse>(this.#url + 'Tags/GetTagsList').pipe(
     map(x => x.categoriesWithTags)

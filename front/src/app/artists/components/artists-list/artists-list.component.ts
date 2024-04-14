@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ArtistsStateService } from '../../../core/services/artists-state.service';
+import { MoodStateService } from '../../../core/services/mood-state.service';
 
 @Component({
   selector: 'app-artists-list',
@@ -10,6 +11,7 @@ import { ArtistsStateService } from '../../../core/services/artists-state.servic
 export class ArtistsListComponent
 {
   #artistsService = inject(ArtistsStateService)
+  #moodsService = inject(MoodStateService)
 
   nameSearchField : FormControl = this.#artistsService.nameSearchField
 
@@ -28,5 +30,17 @@ export class ArtistsListComponent
   updateCurrentStyleId( styleId : number)
   {
     this.#artistsService.updateCurrentStyleId( styleId )
+  }
+
+  updateArtistId( artistId : number)
+  {
+    this.#artistsService.updateSelectedArtistId(artistId)
+    this.#moodsService.updateSelectedArtistId(artistId)
+  }
+
+  getRandomMood()
+  {
+    this.#moodsService.updateSelectedGalleryType('')
+    this.#moodsService.updateSelectedMoodId(null)
   }
 }

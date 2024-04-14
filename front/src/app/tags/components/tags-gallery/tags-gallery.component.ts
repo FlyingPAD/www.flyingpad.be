@@ -25,6 +25,7 @@ export class TagsGalleryComponent implements OnInit
   updateTagId( tagId : number | null)
   {
     this.#moodsService.updateSelectedTagId( tagId )
+    this.#moodsService.updateSelectedGalleryType('tag')
   }
 
   scrollToStart( elementId : string ) : void 

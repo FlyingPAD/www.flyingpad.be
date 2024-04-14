@@ -1,67 +1,87 @@
-.medias-container 
+.page
 {
-    .media 
+    margin-top: 25px; margin-bottom: 150px;
+
+    h2
     {
-        columns: 10;
-        border: 1px solid #ccc;
-        padding: 5px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        text-align: center;
+        font-size: 20px;
+        color: var(--colorMain);
+    }
+    h2:hover
+    {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .media
+    {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 25px; 
+        border-bottom: 3px solid var(--colorMain);
+        margin-bottom: 25px;
 
         .franchise
         {
-            border: 1px solid #ccc;
-            padding: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            break-inside: avoid;
-        }
-
-        .h1, .h2, .h3 
-        {
-            display: block;
-            margin: 5px 0;
-            white-space: nowrap;        /* Empêche le texte de passer à la ligne */
-            overflow: hidden;           /* Coupe le texte qui déborde */
-            text-overflow: ellipsis;    /* Ajoute les points de suspension à la fin du texte */
-        }
-
-        .h1 
-        {
-            font-size: 14px;
+            width: 155px;
+            height: 215px;
+            overflow: scroll;
+            overflow-x: hidden;
             border: 1px solid var(--colorMain);
-            border-radius: 5px;
-            background-color: rgb(255, 255, 255, 0.5);
-            text-align: center;
-            padding: 5px;
-            color: var(--colorMain);
-        }
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            margin-left: 15px;
+            padding: 25px; padding-top: 5px;
+            margin-bottom: 25px;
 
-        .h2 
-        {
-            font-size: 11px;
+            h3
+            {
+                color: var(--colorMain);
+                font-size: 15px;
+                margin-bottom: 15px;
+                white-space: nowrap;        /* Empêche le texte de passer à la ligne */
+                overflow: hidden;           /* Coupe le texte qui déborde */
+                text-overflow: ellipsis;    /* Ajoute les points de suspension à la fin du texte */
+            }
+            h3:hover
+            {
+                text-decoration: underline; 
+                cursor: pointer;
+            }
+            p
+            {
+                color: var(--colorMain);
+                font-size: 14px;
+                margin: 0;
+                white-space: nowrap;        /* Empêche le texte de passer à la ligne */
+                overflow: hidden;           /* Coupe le texte qui déborde */
+                text-overflow: ellipsis;    /* Ajoute les points de suspension à la fin du texte */
+            }
+            p:hover
+            {
+                text-decoration: underline; 
+                cursor: pointer;
+            }
+            .female
+            {
+                font-size: 20px;
+                line-height: 14px;
+                color:rgb(160, 0, 80);
+            }
+            .male
+            {
+                font-size: 20px;
+                line-height: 14px;
+                color: rgb(0, 76, 138);
+            }
         }
-
-        .h3 
+        .franchise:hover
         {
-            font-size: 11px;
-            text-indent: 22px;
-            color: var(--colorMain);
-        }
-        .female
-        {
-            color : rgb(190, 0, 32);
-        }
-        .male
-        {
-            color: rgb(0, 115, 115);
-        }
-
-        a
-        {
-            text-decoration: none;
-        }
-        a:hover
-        {
-            text-decoration: underline;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--colorMain);
+            transition-duration: 500ms;
         }
     }
 }

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { LinksService } from '../../../core/services/links.service';
+import { MoodStateService } from '../../../core/services/mood-state.service';
 
 @Component({
   selector: 'app-gallery',
@@ -8,26 +9,32 @@ import { LinksService } from '../../../core/services/links.service';
 })
 export class GalleryComponent 
 {
+  #moodsService = inject(MoodStateService)
   linksState = inject(LinksService)
 
-  itemsPerPage : number = 20   // Pagination
-  currentPage : number = 1     // Pagination
+  itemsPerPage : number = 20                        // Pagination
+  currentPage : number = 1                          // Pagination
+  combinedState = this.linksState.combinedState     // Signal
 
-  combinedState = this.linksState.combinedState
-
-  updateCategory( categoryId : number)
+  updateCategory( categoryId : number) : void
   {
     this.linksState.updateSelectedCategory(categoryId)
     this.resetPage()
   }
-  resetCategory()
+  resetCategory() : void
   {
     this.linksState.updateSelectedCategory(null)
     this.resetPage()
   }
 
-  resetPage()
+  resetPage() : void
   {
     this.currentPage = 1
+  }
+
+  getRandomMood() : void
+  {
+    this.#moodsService.updateSelectedGalleryType('')
+    this.#moodsService.updateSelectedMoodId(null)
   }
 }

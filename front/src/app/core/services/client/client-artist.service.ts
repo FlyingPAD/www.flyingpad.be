@@ -19,13 +19,6 @@ export class ArtistService
     return this.#http.get<ArtistsCountResponse>(`${this.#url}Count`)
   }
 
-  // Create
-
-  public Create( form : ArtistCreateForm ) : Observable<ArtistsCreateResponse> 
-  {
-    return this.#http.post<ArtistsCreateResponse>(`${this.#url}Create`, form)
-  }
-
   // Get One
 
   public GetOne( artistId : number ) : Observable<GetOneArtistResponse> 

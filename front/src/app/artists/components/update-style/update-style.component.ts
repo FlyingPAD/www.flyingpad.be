@@ -1,86 +1,66 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { switchMap } from 'rxjs';
-import { StylesGetOneResponse, StyleUpdateForm } from '../../../core/models/style';
-import { StyleService } from '../../../core/services/client/client-style.service';
+import { Subscription } from 'rxjs';
+import { StyleUpdateForm } from '../../../core/models/style';
+import { ArtistsStateService } from '../../../core/services/artists-state.service';
 
 @Component({
   selector: 'app-update-style',
   templateUrl: './update-style.component.html',
   styleUrls: ['./update-style.component.scss']
 })
-export class UpdateStyleComponent implements OnInit
+export class UpdateStyleComponent
 {
-  // Properties :
-
-  #styleService = inject(StyleService)
-  #builder = inject(FormBuilder)
+  #artistsService = inject(ArtistsStateService)
   #router = inject(Router)
-  #route = inject(ActivatedRoute)
   #toastr = inject(ToastrService)
+  #builder = inject(FormBuilder)
 
-  styleId : number = this.#route.snapshot.params['id']
-  styleGetOneResponse : StylesGetOneResponse | null = null
+  styleFlow = this.#artistsService.styleFlow  // Signal
+  subscription = new Subscription()           // Subscription
 
   form : FormGroup = this.#builder.group
   ({
-    name : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
+    name : [this.styleFlow().style?.name, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
 
-  // Methods :
-
-  ngOnInit() 
+  ngOnDestroy() : void 
   {
-    window.scrollTo(0, 0)
-
-    this.#route.params.subscribe(params => 
+    this.subscription.unsubscribe()
+  }
+  
+  onSubmit(): void {
+    if (this.form.valid) 
     {
-      this.styleId = params['id'];
-      this.loadStyle();
-    })
-  }
+      let businessId = this.styleFlow().style?.businessId
 
-  loadStyle() 
-  {
-    this.#styleService.GetOne(this.styleId).subscribe({
-      next: (response) => 
+      if (businessId !== undefined) 
       {
-        this.styleGetOneResponse = response;
-        if (response.success && response.style) 
+        let form : StyleUpdateForm = 
         {
-          this.form.patchValue({ name: response.style.name });
+          businessId : businessId,
+          name : this.form.value.name
         }
-      },
-    })
-  }
-
-  onSubmit()
-  {
-    if( this.form.valid )
-    {      
-      let style : StyleUpdateForm = 
+  
+        this.#artistsService.UpdateStyle( form ).subscribe({
+          next: () => 
+          {
+            this.#router.navigateByUrl('/artists')
+            this.#toastr.success('Style was successfully updated.')
+          },
+          error: () => 
+          {
+            this.#router.navigateByUrl('/artists')
+            this.#toastr.error('Error: Style update failed!')
+          }
+        })
+      } 
+      else 
       {
-        businessId : this.styleId,
-        name : this.form.value.name
+        this.#toastr.error('Error: No valid business ID found for style.')
       }
-
-      this.#styleService.Update(style).pipe(
-        switchMap( () => this.#styleService.GetAll() ),
-        switchMap( () => this.#styleService.GetOne(this.styleId) )
-        ).subscribe({
-        next : () => 
-        {
-          this.#router.navigateByUrl('artists/list')
-          this.#toastr.success('Style was successfully updated.')
-        },
-        error : () => 
-        {
-          this.#router.navigateByUrl('artists/list')
-          this.#toastr.error('Error : Style update failed !')
-        }
-      })
     }
   }
 }

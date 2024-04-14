@@ -2,19 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MoodsGalleryComponent } from './components/moods-gallery/moods-gallery.component';
 import { MoodDetailsComponent } from './components/mood-details/mood-details.component';
-import { NewMoodsComponent } from './components/new-moods/new-moods.component';
 
 const routes: Routes = 
 [
   { path : '', pathMatch : 'full', redirectTo : 'gallery'},
-  { path : 'gallery', component : MoodsGalleryComponent, title : 'Flying PAD | Moods Gallery' },
-  { path : 'gallery/:id', component : MoodsGalleryComponent, title : 'Flying PAD | Moods Gallery' },
-  
+  { path : 'gallery', component : MoodsGalleryComponent, title : 'Flying PAD | Moods Gallery' },  
   { path : 'mood-details', component : MoodDetailsComponent, title : 'Flying PAD | Mood Details' },
-  { path : 'mood-details/:id', component : MoodDetailsComponent, title : 'Flying PAD | Mood Details' },
-  { path : 'mood-details/:galleryMode', component : MoodDetailsComponent, title : 'Flying PAD | Mood Details' },
-  { path : 'mood-details/:galleryMode/:id', component : MoodDetailsComponent, title : 'Flying PAD | Mood Details' },
-  { path : 'new-mood', component : NewMoodsComponent, title : 'Flying PAD | Mood Details' },
 ];
 
 @NgModule({

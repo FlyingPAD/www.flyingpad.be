@@ -1,34 +1,34 @@
-<app-menu-right-desktop>
+<app-menu-right-desktop *ngIf="artistFlow() as flow">
     <div class="content_right_desktop">  
         <!-- Random Mood Button -->
         <div class="item-top box_buttons">
-            <a routerLink="/moods/mood-details">Random Mood</a>
+            <a routerLink="/moods/new-mood" (click)="getRandomMood()">Random Mood</a>
         </div>                
         <!-- Artist Name -->
-        <h1 class="item-top">{{artist.name}}</h1>
+        <h1 class="item-top">{{flow.artist.name}}</h1>
         <!-- Number of Moods -->
         <div class="item-top flex">
             <p><b>Moods</b></p>
-            <p>{{ moods.length | number : '3.0'}}</p>
+            <p>{{ flow.moods.length | number : '3.0'}}</p>
         </div>   
         <div>
             <!-- Creation / Modification Data -->
             <div class="item-top flex_created">
                 <div class="box_created">
                     <p>Created :</p>
-                    <p>{{artist.created | date : 'MMMM d, y | HH:mm'}}</p>
+                    <p>{{flow.artist.created | date : 'MMMM d, y | HH:mm'}}</p>
                 </div>
                 <div class="box_created">
                     <p>Modified :</p>
-                    <p>{{artist.modified | date : 'MMMM d, y | HH:mm'}}</p>
+                    <p>{{flow.artist.modified | date : 'MMMM d, y | HH:mm'}}</p>
                 </div>
             </div> 
         </div>
-        <div *ngIf="artist.name != '# Unknown Artist'">
+        <div *ngIf="flow.artist.name != '# Unknown Artist'">
             <!-- Search -->            
             <div class="item-top box_buttons">
-                <a target="_blank" href="https://www.google.com/search?q={{artist.name}}">Search Google</a>
-                <a target="_blank" href="https://images.google.com/images?q={{artist.name}}">Google Images</a>
+                <a target="_blank" href="https://www.google.com/search?q={{flow.artist.name}}">Search Google</a>
+                <a target="_blank" href="https://images.google.com/images?q={{flow.artist.name}}">Google Images</a>
             </div>   
             <!-- Related Links -->
             <!-- <div *ngIf="links.length != 0">
@@ -43,22 +43,24 @@
     </div>
 </app-menu-right-desktop>
 
-<div id="layout-central">   
+<div id="layout-central" *ngIf="artistFlow() as flow">   
     <!-- Pagination -->
-    <div class="row-sticky" *ngIf="moods.length > mpp">
+    <div class="row-sticky" *ngIf="flow.moods.length > mpp">
         <div id="pagination">
             <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="p = $event"></pagination-controls>
         </div>
     </div>   
     <!-- Gallery -->
     <div id="sub_gallery">
-        <div *ngFor="let mood of moods | paginate : { itemsPerPage: mpp, currentPage: p }">
+        <div *ngFor="let mood of flow.moods | paginate : { itemsPerPage: mpp, currentPage: p }">
             <section>
                 <div *ngIf="mood.type == 1">           
-                    <a routerLink="/moods/mood-details/artist/{{mood.businessId}}"><img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"/></a>
+                    <a routerLink="/moods/mood-details" (click)="updateMoodId(mood.businessId)">
+                        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"/></a>
                 </div>
                 <div *ngIf="mood.type == 2">
-                    <a routerLink="/moods/mood-details/artist/{{mood.businessId}}"><img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"/></a>         
+                    <a routerLink="/moods/mood-details" (click)="updateMoodId(mood.businessId)">
+                        <img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"/></a>         
                 </div>
             </section>
         </div>

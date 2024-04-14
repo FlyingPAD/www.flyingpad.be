@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { MoodsGetAllResponse, MoodsGetOneDetailsResponse, GetMoodsByTagResponse, UpdateMoodScoreResponse, UpdateMoodScoreCall, GetMoodsByArtistResponse, GetMoodsByModelResponse, GetMoodsByFranchiseResponse } from '../../models/mood';
 import { environment } from '../../../../environments/environment';
 
@@ -63,7 +63,7 @@ export class MoodService
 
   // Update Score
 
-  public UpdateScore( form : UpdateMoodScoreCall ) : Observable<UpdateMoodScoreResponse>
+  public UpdateScore( form : UpdateMoodScoreCall )
   {
     return this.#http.put<UpdateMoodScoreResponse>(this.#url + 'UpdateScore', form)
   }

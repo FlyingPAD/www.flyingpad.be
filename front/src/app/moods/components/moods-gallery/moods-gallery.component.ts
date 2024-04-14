@@ -47,17 +47,19 @@ export class MoodsGalleryComponent
 
   getMoodRandom() : void
   {
+    this.moodsService.updateSelectedGalleryType('')
     this.moodsService.updateSelectedMoodId(null)
   }
 
   updateMoodId( moodId : number | null ) : void
   {
     this.moodsService.updateSelectedMoodId(moodId)
-    this.router.navigateByUrl('moods/new-mood')
+    this.router.navigateByUrl('moods/mood-details')
   }
 
   updateTagId( tagId : number | null ) : void
   {
+    this.moodsService.updateSelectedGalleryType('tag')
     this.moodsService.updateSelectedTagId( tagId )
   }
 

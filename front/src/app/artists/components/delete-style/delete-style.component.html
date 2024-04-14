@@ -1,21 +1,13 @@
-<div id="layout-central">
-    <h2>Artists API</h2>
-
-    <div class="row-white">
-        <div class="menu-flex">
-          <app-button-back></app-button-back>
-        </div>
-    </div>
-    
+<div id="layout-central" *ngIf="styleFlow() as flow">
     <h2>Delete Style</h2>
     
     <div class="row-white">
-        <p>You are about to permanently delete " <strong>{{ (styleGetOneResponse$ | async )?.style?.name }}</strong> " !</p>
+        <p>You are about to permanently delete " <strong>{{ flow.style?.name }}</strong> " !</p>
         <p>This action <u>cannot</u> be undone !!</p>
-        <p *ngIf="(checkRelationsArtistStyleByStyleResponse$ | async )?.numberOfRelations !== 0">
+        <p *ngIf="flow.relations?.numberOfRelations !== 0">
             <strong>Attention :</strong> 
-            This will also remove <b>{{ (checkRelationsArtistStyleByStyleResponse$ | async )?.numberOfRelations }} </b>
-            relation{{ (checkRelationsArtistStyleByStyleResponse$ | async )?.numberOfRelations === 1 ? '' : 's'}} of this style.
+            This will also remove <b>{{ flow.relations?.numberOfRelations }} </b>
+            relation{{ flow.relations?.numberOfRelations === 1 ? '' : 's'}} of this style.
         </p>
     </div>
 

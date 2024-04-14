@@ -1,54 +1,46 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { Style } from '../../../core/models/style';
-import { StateArtistService } from '../../../core/services/state/state-artists.service';
-import { MenuMobileService } from '../../../core/services/system/menu-mobile.service';
-import { StyleService } from '../../../core/services/client/client-style.service';
-import { Subscription } from 'rxjs';
+import { Component, inject } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { ArtistsStateService } from '../../../core/services/artists-state.service';
+import { MoodStateService } from '../../../core/services/mood-state.service';
 
 @Component({
   selector: 'app-layout-artists',
   templateUrl: './layout-artists.component.html',
   styleUrls: ['./layout-artists.component.scss']
 })
-export class LayoutArtistsComponent implements OnInit, OnDestroy
+export class LayoutArtistsComponent
 {
-  #stateArtistService = inject(StateArtistService)
-  #styleService = inject(StyleService)
-  menuMobileService = inject(MenuMobileService)
+  #artistsService = inject(ArtistsStateService)
+  #moodsService = inject(MoodStateService)
 
-  // - Properties :
+  nameSearchField : FormControl = this.#artistsService.nameSearchField
 
-  artists$ = this.#stateArtistService.currentArtists$
-  style$ = this.#stateArtistService.currentStyle$
-  styles$ = this.#stateArtistService.totalStyles$
+  artistsFlow = this.#artistsService.artistsFlow
 
-  subscription = new Subscription()
-
-  ngOnInit() : void
+  pagination(newStartId : number | null) : void 
   {
-    this.subscription = this.#styleService.GetAll().subscribe({
-      next : (data) => {
-        this.#stateArtistService.updateTotalStyles(data.stylesList)
-      }
-    })
+    this.#artistsService.updateStartId(newStartId)
   }
 
-  ngOnDestroy() : void
+  resetStyles()
   {
-    this.subscription.unsubscribe()
+    this.#artistsService.updateCurrentStyleId(null)
   }
 
-  // - Methods :
-
-  setStyle( style : Style ) : void
+  updateCurrentStyleId( styleId : number)
   {
-    this.#stateArtistService.updateCurrentStyleId( style.businessId );
-    this.#stateArtistService.updateCurrentStyle( style )
+    this.#artistsService.updateCurrentStyleId( styleId )
   }
 
-  setAllStyles() : void
+  updateArtistId( artistId : number)
   {
-    this.#stateArtistService.updateCurrentStyleId( null )
-    this.#stateArtistService.updateCurrentStyle( new Style() )
+    this.#artistsService.updateSelectedArtistId(artistId)
+    this.#moodsService.updateSelectedArtistId(artistId)
+  }
+
+  getRandomMood()
+  {
+    this.#moodsService.updateSelectedGalleryType('')
+    this.#moodsService.updateSelectedMoodId(null)
   }
 }
