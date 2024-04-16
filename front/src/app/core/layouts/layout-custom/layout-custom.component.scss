@@ -233,6 +233,31 @@ header
         .grid-section-right
         {
             justify-self: end;
+
+            .login
+            {
+                img
+                {
+                    width: 31px;
+                    height: 31px;
+                    background-color: rgba(255, 255, 255, 0.7);
+                    border-radius: 5px;
+                    border: 1px solid rgba(0, 0, 0, 0.15);
+                    padding: 2px;
+                    margin: 10px;
+                }
+                img:hover
+                {
+                    border: 1px solid #6b5240;
+                    background-color: rgba(255, 255, 255);
+                    transition-duration: 500ms;
+                    cursor: pointer;
+                }
+                .img-active
+                {
+                    border: 1px solid #6b5240;
+                }
+            }
     
             .auth
             {

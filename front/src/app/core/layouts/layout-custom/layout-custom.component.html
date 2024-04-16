@@ -173,18 +173,22 @@
         <!-- Section Right -->
         <div class="grid-section-right">
             <!-- Login -->
-            <div class="auth" *ngIf="!(authService.isConnectedSub | async)">
-                <a routerLink="/authentication/login">Login</a>
+            <div class="login" *ngIf="!(authService.isConnectedSub | async)">
+                <a routerLink="/authentication/login">
+                    <img [ngClass]="menuCustom.menuCustomOn ? 'img-active' : '' " 
+                    src="../../../../assets/app_icons/login.png" />
+                </a>
             </div>
             <!-- Logout -->
-            <div class="auth" *ngIf="authService.isConnectedSub | async">
-                <a routerLink="/home" (click)="logout()">Logout</a>
+            <div class="login" *ngIf="authService.isConnectedSub | async">
+                <a routerLink="/home" (click)="logout()">
+                    <img [ngClass]="menuCustom.menuCustomOn ? 'img-active' : '' " 
+                    src="../../../../assets/app_icons/logout.png" />
+                </a>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Page Content -->
-<div class="content">
-    <router-outlet />
-</div>
+<!-- Page Content ( Router Outlet )-->
+<div class="content"><router-outlet /></div>

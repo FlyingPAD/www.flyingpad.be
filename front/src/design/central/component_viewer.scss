@@ -115,14 +115,7 @@
 
                 video, .youtube
                 {
-                    max-width: 60%;
-                }
-                @media (max-width: 1150px) 
-                {
-                    video, .youtube
-                    {
-                        max-width: 100%;
-                    }
+                    height: 87vh;
                 }
             }
         }

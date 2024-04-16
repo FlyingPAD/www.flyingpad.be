@@ -1,25 +1,13 @@
 <div id="layout-central">
-  <h2>Chord Wheel</h2>
-
-  <div class="row-white">
-    <div class="menu-flex">
-        <a (click)="randomPosition()">Random Key</a>
-    </div>
-  </div>
-
+<div class="row-white">
   <div id="wheel-screen">
     <a (click)="rotateToLeft()"><img src="../../../../assets/app_icons/arrow_left.png" /></a>
-
-    <div id="screen">
-      <h1>
-        <span *ngIf="En">{{ getCurrentKey().name }} 
-          <span *ngIf="getCurrentKey().enharmony !== '' "> | {{ getCurrentKey().enharmony }}</span>
-        </span> 
-      </h1>  
-    </div>
-
+      <div class="menu-flex">
+        <a (click)="randomPosition()">Random Key</a>
+      </div>
     <a (click)="rotateToRight()"><img src="../../../../assets/app_icons/arrow_right.png" /></a>
   </div>
+</div>
   
   <div id="composition">
     <div id="container">
