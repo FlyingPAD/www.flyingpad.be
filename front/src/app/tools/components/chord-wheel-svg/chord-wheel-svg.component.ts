@@ -16,119 +16,145 @@ export class WheelKey
 })
 export class ChordWheelSvgComponent
 {
-  // Properties
+  // -----------------------------------------------------------------
+  // - Properties
 
   @ViewChild('wheel', {static: false}) wheel! : ElementRef;
 
-  currentAngle :    number = 0
+  currentAngle : number
+  random : number
+  currentPosition: number
 
-  keys : WheelKey[] = 
-  [
-    { name : 'C',   enharmony : '',    enharmonyFr : '',      nameFr : 'Do',    position : 0 },
-    { name : 'G',   enharmony : '',    enharmonyFr : '',      nameFr : 'Sol',   position : 30 },
-    { name : 'D',   enharmony : '',    enharmonyFr : '',      nameFr : 'Ré',    position : 60 },
-    { name : 'A',   enharmony : '',    enharmonyFr : '',      nameFr : 'La',    position : 90 },
-    { name : 'E',   enharmony : '',    enharmonyFr : '',      nameFr : 'Mi',    position : 120 },
-    { name : 'B',   enharmony : '',    enharmonyFr : '',      nameFr : 'Si',    position : 150 },
-    { name : 'F #', enharmony : 'G b', enharmonyFr : 'Sol b', nameFr : 'Fa #',  position : 180 },
-    { name : 'C #', enharmony : 'D b', enharmonyFr : 'Ré b',  nameFr : 'Do #',  position : 210 },
-    { name : 'G #', enharmony : 'A b', enharmonyFr : 'La b',  nameFr : 'Sol #', position : 240 },
-    { name : 'D #', enharmony : 'E b', enharmonyFr : 'Mi b',  nameFr : 'Ré #',  position : 270 },
-    { name : 'A #', enharmony : 'B b', enharmonyFr : 'Si b',  nameFr : 'La #',  position : 300 },
-    { name : 'F',   enharmony : '',    enharmonyFr : '',      nameFr : 'Fa',    position : 330 }
-  ]
+  keyFR : string
+  keyFRAlt : string
+  keyEN : string
+  keyENAlt : string
 
-  En : boolean = true
-  Fr : boolean = false
-  enharmony : boolean = false
+  // -----------------------------------------------------------------
+  // - Constructor
 
-  // Get Current Key :
-
-  getCurrentKey() : WheelKey 
+  constructor() 
   {
-    // Normalise l'angle pour qu'il soit toujours positif
-    const normalizedAngle = (this.currentAngle % 360 + 360) % 360;
-    
-    // Calcule l'index en fonction de la direction de la rotation
-    const currentIndex = (12 - Math.round(normalizedAngle / 30)) % 12;
-    
-    return this.keys[currentIndex];
+    this.currentAngle = 0
+    this.random = 1
+    this.currentPosition = 1
+
+    this.keyFR = "Do"
+    this.keyFRAlt = ""
+    this.keyEN = "C"
+    this.keyENAlt = ""
   }
 
-  // Switch Traduction :
+  // -----------------------------------------------------------------
+  // - Method : Rotate
 
-  switchTrad()
+  rotateImage(degrees: number) 
   {
-    this.En = !this.En
-    this.Fr = !this.Fr
+    this.currentAngle += degrees
+    this.wheel.nativeElement.style.transform = `rotate(${this.currentAngle}deg)`;
+    this.checkPosition(this.currentAngle)
+    this.switchKey(this.currentPosition)
   }
 
-  // Trigger enharmony :
+  // -----------------------------------------------------------------
+  // - Method : Random Position
 
-  triggerEnharmony()
+  randomPosition()
   {
-    this.enharmony = !this.enharmony
+    this.random = Math.floor(Math.random() * 11) + 1
+
+    this.currentAngle = this.random * 30
+    this.wheel.nativeElement.style.transform = `rotate(${this.currentAngle}deg)`;
+    this.checkPosition(this.currentAngle)
+    this.switchKey(this.currentPosition)
   }
 
-  // Select Key :
+    // -----------------------------------------------------------------
+  // - Method : Random Position
 
-  selectKey(key: WheelKey) 
+  checkPosition(currentAngle : number)
   {
-    const targetAngle = key.position
-    this.rotateWheelTo(targetAngle)
+    this.currentPosition = ((currentAngle % 360) + 360) % 360 / 30 + 1
   }
 
-  // Rotate Wheel To :
+  // -----------------------------------------------------------------
+  // - Method : Switch Key
 
-  rotateWheelTo(targetAngle : number) 
+  switchKey(position : number)
   {
-    const angleDiff = (targetAngle - this.currentAngle % 360 + 360) % 360
-    this.currentAngle += (angleDiff > 180) ? angleDiff - 360 : angleDiff
-    this.wheel.nativeElement.style.transform = `rotate(${this.currentAngle}deg)`
-  
-  }
-
-  // Rotate to Right :
-
-  rotateToRight()
-  {
-    this.currentAngle -= 30
-    this.wheel.nativeElement.style.transform = `rotate(${this.currentAngle}deg)`
-  }
-
-  // Rotate to Left :
-
-  rotateToLeft() 
-  {
-    this.currentAngle += 30
-    this.wheel.nativeElement.style.transform = `rotate(${this.currentAngle}deg)`
-  }
-
-  // Random Position :
-
-  randomPosition() 
-  {
-    const randomKeyIndex = Math.floor(Math.random() * this.keys.length)
-    const targetAngle = this.keys[randomKeyIndex].position
-    this.rotateWheelTo(targetAngle)
-  }
-
-  // Keyboard Shortcuts :
-
-  @HostListener('window:keydown', ['$event'])
-  onKeyPress(event: KeyboardEvent) 
-  {
-    switch (event.key) 
-    {
-      case '0':
-        this.randomPosition()
-        break
-      case 'ArrowLeft':
-        this.rotateToLeft() 
-        break
-      case 'ArrowRight':
-        this.rotateToRight() 
-        break
+    switch (position) {
+      case 1:
+        this.keyEN = "C"
+        this.keyENAlt = ""
+        this.keyFR = "Do"
+        this.keyFRAlt = ""
+        break;
+      case 12:
+        this.keyEN = "G"
+        this.keyENAlt = ""
+        this.keyFR = "Sol"
+        this.keyFRAlt = ""
+        break;
+      case 11:
+        this.keyEN = "D"
+        this.keyENAlt = ""
+        this.keyFR = "Ré"
+        this.keyFRAlt = ""
+        break;
+      case 10:
+        this.keyEN = "A"
+        this.keyENAlt = ""
+        this.keyFR = "La"
+        this.keyFRAlt = ""
+        break;
+      case 9:
+        this.keyEN = "E"
+        this.keyENAlt = ""
+        this.keyFR = "Mi"
+        this.keyFRAlt = ""
+        break;
+      case 8:
+        this.keyEN = "B"
+        this.keyENAlt = ""
+        this.keyFR = "Si"
+        this.keyFRAlt = ""
+        break;
+      case 7:
+        this.keyEN = "F#"
+        this.keyENAlt = "Gb"
+        this.keyFR = "Fa dièse"
+        this.keyFRAlt = "Sol bémol"
+        break;
+      case 6:
+        this.keyEN = "C#"
+        this.keyENAlt = "Db"
+        this.keyFR = "Do dièse"
+        this.keyFRAlt = "Ré bémol"
+        break;
+      case 5:
+        this.keyEN = "G#"
+        this.keyENAlt = "Ab"
+        this.keyFR = "Sol dièse"
+        this.keyFRAlt = "La bémol"
+        break;
+      case 4:
+        this.keyEN = "Eb"
+        this.keyENAlt = ""
+        this.keyFR = "Mi bémol"
+        this.keyFRAlt = ""
+        break;
+      case 3:
+        this.keyEN = "Bb"
+        this.keyENAlt = ""
+        this.keyFR = "Si bémol"
+        this.keyFRAlt = ""
+        break;
+      case 2:
+        this.keyEN = "F"
+        this.keyENAlt = ""
+        this.keyFR = "Fa"
+        this.keyFRAlt = ""
+        break;   
     }
   }
 }

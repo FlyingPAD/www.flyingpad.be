@@ -22,6 +22,17 @@
         text-shadow: none;    // Why ? //TODO: Why (there should be no need to override ... ) ???? 
         letter-spacing: 0;    // Why ?
     }
+
+    h2
+    {
+        margin: 0px;
+        font-size: 13px;
+        text-align: center;
+        color: var(--colorMain);
+        font-weight: normal;
+        text-shadow: none;    // Why ? //TODO: Why (there should be no need to override ... ) ???? 
+        letter-spacing: 0;    // Why ?
+    }
     
     #picture
     {
