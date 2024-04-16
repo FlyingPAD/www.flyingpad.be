@@ -1,4 +1,4 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, HostListener, OnDestroy, inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { Image } from "../../../core/models/mood-image"
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -17,7 +17,7 @@ import { MoodStateService } from '../../../core/services/mood-state.service';
   templateUrl: './mood-details-edit.component.html',
   styleUrl: './mood-details-edit.component.scss'
 })
-export class MoodDetailsEditComponent 
+export class MoodDetailsEditComponent implements OnDestroy
 {
   #artistsService = inject(ArtistsStateService)
   #moodsService = inject(MoodStateService)
@@ -41,6 +41,11 @@ export class MoodDetailsEditComponent
   mood = this.#moodsService.getMoodFlow                         // Signal
   moods = this.#moodsService.newMoodsFlow                       // Signal
   model = this.#modelsService.model                             // Signal
+  
+  ngOnDestroy() : void
+  {
+    this.diaporamaStop()
+  }
 
   getMood( moodId : number | null )
   {
@@ -96,6 +101,11 @@ export class MoodDetailsEditComponent
     this.#moodsService.updateScoreTrigger(form)
   }
 
+  goBack() : void
+  {
+    this.#location.back()
+  }
+
   // KEYBOARD CONFIGURATION
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) 
@@ -112,7 +122,7 @@ export class MoodDetailsEditComponent
         this.intervalId === undefined ? this.diaporamaStart(false) : this.diaporamaStop()
         break
       case 'Backspace':
-        this.#location.back()
+        this.goBack()
         break
       case 'Enter':
         this.openDownload()

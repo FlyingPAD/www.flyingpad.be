@@ -1,4 +1,4 @@
-import { Component, inject, HostListener } from "@angular/core"
+import { Component, inject, HostListener, OnDestroy } from "@angular/core"
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser"
 import { environment } from "../../../../environments/environment"
 import { UpdateMoodScoreCall } from "../../../core/models/mood"
@@ -11,14 +11,14 @@ import { FranchiseStateService } from "../../../core/services/franchise-state.se
 import { ModelStateService } from "../../../core/services/model-state.service"
 import { MoodStateService } from "../../../core/services/mood-state.service"
 import { Location } from '@angular/common';
-
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-mood-details',
   templateUrl: './mood-details.component.html',
   styleUrl: './mood-details.component.scss'
 })
-export class MoodDetailsComponent
+export class MoodDetailsComponent implements OnDestroy
 {
   #artistsService = inject(ArtistsStateService)
   #moodsService = inject(MoodStateService)
@@ -27,6 +27,7 @@ export class MoodDetailsComponent
   #franchiseService = inject(FranchiseStateService)
   #location = inject(Location)
   userService = inject(UserService)
+  #router = inject(Router)
 
   environment :       string          = environment.apiBaseUrl  // API URL
   windowHeight :      number          = window.innerHeight      // Window Height
@@ -43,19 +44,24 @@ export class MoodDetailsComponent
   moods = this.#moodsService.newMoodsFlow                       // Signal
   model = this.#modelsService.model                             // Signal
 
-  getMood( moodId : number | null )
+  ngOnDestroy() : void
+  {
+    this.diaporamaStop()
+  }
+
+  getMood( moodId : number | null ) : void
   {
     this.#moodsService.updateSelectedMoodId( moodId )
   }
 
-  getRandomMood()
+  getRandomMood() : void
   {
     this.#moodsService.updateSelectedMoodId( null )
     this.#moodsService.updateSelectedGalleryType('')
     this.adaptSize()
   }
 
-  getPage( direction : string )
+  getPage( direction : string ) : void
   {
     if(direction === 'previous')
     {
@@ -68,33 +74,38 @@ export class MoodDetailsComponent
     this.adaptSize()
   }
 
-  updateFranchiseId( franchiseId : number | null )
+  updateFranchiseId( franchiseId : number | null ) : void
   {
     this.#franchiseService.updateSelectedFranchiseId(franchiseId)
   }
 
-  updateModelId( modelId : number | null )
+  updateModelId( modelId : number | null ) : void
   {
     this.#modelsService.updateSelectedModelId(modelId)
     this.#moodsService.updateSelectedModelId(modelId)
   }
 
-  updateArtistId( artistId : number | null )
+  updateArtistId( artistId : number | null ) : void
   {
     this.#artistsService.updateSelectedArtistId(artistId)
     this.#moodsService.updateSelectedArtistId(artistId)
   }
 
-  updateTagId( tagId : number | null )
+  updateTagId( tagId : number | null ) : void
   {
     this.#moodsService.updateSelectedGalleryType('tag')
     this.#moodsService.updateSelectedTagId(tagId)
   }
 
-  updateMoodScore( moodBusinessId : number, scoreValue : number)
+  updateMoodScore( moodBusinessId : number, scoreValue : number) : void
   {
     let form : UpdateMoodScoreCall = { businessId : moodBusinessId, value : scoreValue }
     this.#moodsService.updateScoreTrigger(form)
+  }
+
+  goBack() : void
+  {
+    this.#location.back()
   }
 
   // KEYBOARD CONFIGURATION
@@ -113,7 +124,7 @@ export class MoodDetailsComponent
         this.intervalId === undefined ? this.diaporamaStart(false) : this.diaporamaStop()
         break
       case 'Backspace':
-        this.#location.back()
+        this.goBack()
         break
       case 'Enter':
         this.openDownload()
@@ -128,7 +139,7 @@ export class MoodDetailsComponent
   }
 
   // OPEN FILE IN NEW WINDOW ( DOWNLOAD )
-  openDownload()
+  openDownload() : void
   {
     let downloadLink = ''
 
@@ -147,17 +158,17 @@ export class MoodDetailsComponent
   }
 
   // TOGGLE IMAGE SIZE
-  toggleFocus() 
+  toggleFocus() : void
   {
     this.isFocused = !this.isFocused
     this.isFocused ? this.adaptSize() : this.moodHeight = this.MOODHEIGHTMIN
   }
-  sizeReset()
+  sizeReset() : void
   {
     this.isFocused = false
     this.moodHeight = this.MOODHEIGHTMIN
   }
-  adaptSize() 
+  adaptSize() : void
   {
     setTimeout(() => 
     {
@@ -194,7 +205,7 @@ export class MoodDetailsComponent
   }
 
   // VIDEO TEST
-  getSafeContent(videoId: string): SafeHtml 
+  getSafeContent(videoId: string) : SafeHtml 
   {
     const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1` 
     const iframeHtml = `
@@ -208,7 +219,7 @@ export class MoodDetailsComponent
 
 
   // DIAPORAMA
-  diaporamaStart( isRandom : boolean )
+  diaporamaStart( isRandom : boolean ) : void
   {
     isRandom ? this.getRandomMood() : this.getPage('next')
     this.intervalId = setInterval(() => 
@@ -217,7 +228,7 @@ export class MoodDetailsComponent
     }, 
     this.diaporamaDelay)
   }  
-  diaporamaStop()
+  diaporamaStop() : void
   {
     if (this.intervalId !== undefined) 
     {

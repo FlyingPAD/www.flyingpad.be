@@ -11,6 +11,7 @@ import { FormatSizePipe } from './pipes/format-size.pipe';
 import { PanelCrudDesktopComponent } from './components/panel-crud-desktop/panel-crud-desktop.component';
 import { PanelCrudMobileComponent } from './components/panel-crud-mobile/panel-crud-mobile.component';
 import { ButtonTopComponent } from './components/button-top/button-top.component';
+import { AnimRandomDirective } from './directives/anim-random.directive';
 
 @NgModule({
   declarations: 
@@ -30,6 +31,10 @@ import { ButtonTopComponent } from './components/button-top/button-top.component
 
     FormatDurationPipe,
     FormatSizePipe,
+
+    // Directives :
+
+    AnimRandomDirective,
   ],
   imports: 
   [
@@ -58,7 +63,11 @@ import { ButtonTopComponent } from './components/button-top/button-top.component
     // Pipes :
 
     FormatDurationPipe,
-    FormatSizePipe
+    FormatSizePipe,
+
+    // Directives :
+    
+    AnimRandomDirective,
   ]
 })
 export class SharedModule { }

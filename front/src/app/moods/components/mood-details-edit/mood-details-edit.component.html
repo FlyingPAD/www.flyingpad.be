@@ -1,8 +1,30 @@
 <app-menu-right-desktop *ngIf="mood() as flow">
     <div class="content_right_desktop">
-        <!-- Score Settings -->
         <div *ngIf="userService.appUser.role === 2">
-            <div class="item-top box-score">
+            <!-- Related Models -->
+            <h1 class="item-top">Starring</h1>
+            <div class="item-top box_buttons">
+                <div *ngFor="let model of flow.models">
+                    <a routerLink="/models/model-gallery" (click)="updateModelId(model.businessId)">{{model.pseudonym}}</a>
+                </div>
+            </div>
+            <!-- Related Franchises -->
+            <h1 class="item-top">From</h1>
+            <div class="item-top box_buttons">
+                <div *ngFor="let franchise of flow.franchises">
+                    <a routerLink="/franchises/franchise-gallery" (click)="updateFranchiseId(franchise.businessId)">{{franchise.name}}</a>
+                </div>
+            </div>
+            <!-- Related Artists -->
+            <h1 class="item-top">Art By</h1>
+            <div class="item-top box_buttons">
+                <div *ngFor="let artist of flow.artists">
+                    <a routerLink="/artists/artist-gallery" (click)="updateArtistId(artist.businessId)">{{artist.name}}</a>
+                </div>
+            </div>
+            <!-- Score Settings -->
+            <h1 class="item-top">Score</h1>
+            <div class="item-top box-score" >
                 <button (click)="updateMoodScore(flow.mood.businessId, -10)">-10</button>
                 <button (click)="updateMoodScore(flow.mood.businessId, -1)">-1</button>
                 <p><b>{{ flow.mood.score | number : '3.0'}}</b></p>
@@ -10,16 +32,9 @@
                 <button (click)="updateMoodScore(flow.mood.businessId, 10)">+10</button>
             </div>
         </div>
-        <!-- Mood Settings -->
-        <div *ngIf="userService.appUser.role === 2">
-            <div class="item-top list_categories">
-                <span>▸ Mood | Title & Description</span>
-                <span>▸ Mood | Tags</span>
-                <span>▸ Mood | Artists</span>
-                <span>▸ Mood | Models</span>
-                <span>▸ Mood | Delete</span>
-            </div>
-        </div>
+
+        <h1 class="item-top">{{ flow.mood.name }}</h1>
+        <h2 class="item-top" *ngIf="flow.mood.description !== '...' ">{{ flow.mood.description }}</h2>
         <!-- Mood Type : IMAGE -->
         <div *ngIf="flow.mood.type === 1 ">
             <div class="item-middle flex">
@@ -73,25 +88,14 @@
                 <p>{{ flow.mood.modified | date : 'MMMM d, y | HH:mm' }}</p>
             </div>
         </div>
-        <!-- Related Models -->
-        <h1 class="item-top">Starring</h1>
-        <div class="item-top box_buttons">
-            <div *ngFor="let model of flow.models">
-                <a routerLink="/models/model-gallery" (click)="updateModelId(model.businessId)">{{model.pseudonym}}</a>
-            </div>
-        </div>
-        <!-- Related Franchises -->
-        <h1 class="item-top">From</h1>
-        <div class="item-top box_buttons">
-            <div *ngFor="let franchise of flow.franchises">
-                <a routerLink="/franchises/franchise-gallery" (click)="updateFranchiseId(franchise.businessId)">{{franchise.name}}</a>
-            </div>
-        </div>
-        <!-- Related Artists -->
-        <h1 class="item-top">Art By</h1>
-        <div class="item-top box_buttons">
-            <div *ngFor="let artist of flow.artists">
-                <a routerLink="/artists/artist-gallery" (click)="updateArtistId(artist.businessId)">{{artist.name}}</a>
+        <!-- Mood Settings -->
+        <div *ngIf="userService.appUser.role === 2">
+            <div class="item-top list_categories">
+                <span>▸ Mood | Title & Description</span>
+                <span>▸ Mood | Tags</span>
+                <span>▸ Mood | Artists</span>
+                <span>▸ Mood | Models</span>
+                <span>▸ Mood | Delete</span>
             </div>
         </div>
     </div>
@@ -132,7 +136,6 @@
 </div>
 
 <div class="bar" *ngIf="moods() as moods">
-
     <!-- Previous Page -->
     <a (click)="getPage('previous')">
         <img src="../../../../assets/app_icons/arrow_left.png" />
@@ -143,17 +146,13 @@
     <a (click)="getPage('next')">
         <img src="../../../../assets/app_icons/arrow_right.png" />
     </a>
+    <!-- Go Back -->
+    <a routerLink="/moods/gallery">
+        <img src="../../../../assets/app_icons/icon_moods_001.png" />
+    </a>
     <!-- Toggle Size -->
-    <a (click)="toggleFocus()" class="toggle" *ngIf="mood().mood.type !== 2 && mood().mood.type !== 4 ">
-        <img src="../../../../assets/app_icons/toggle.png" />
-    </a>
-    <!-- Open File / Download -->
-    <a (click)="openDownload()">
-        <img src="../../../../assets/app_icons/download.png" />
-    </a>
-    <!-- Random Button -->
-    <a (click)="getRandomMood()">
-        <img src="../../../../assets/app_icons/random.png" />
+    <a (click)="toggleFocus()" class="toggle" *ngIf="mood().mood.type === 1">
+        <img [ngClass]="{'rotate': isFocused, 'rotate-back': !isFocused}" src="../../../../assets/app_icons/toggle.png" />
     </a>
     <!-- Diaporama -->
     <a *ngIf="intervalId === undefined" (click)="diaporamaStart(false)">
@@ -179,5 +178,13 @@
     <!-- Show Tags -->
     <a class="toggle" routerLink="/moods/mood-details-tags">
         <img src="../../../../assets/app_icons/icon_hamburger_right_001.png" />
+    </a>
+    <!-- Random Button -->
+    <a (click)="getRandomMood()">
+        <img appAnimRandom src="../../../../assets/app_icons/random.png" />
+    </a>
+    <!-- Open File / Download -->
+    <a (click)="openDownload()">
+        <img src="../../../../assets/app_icons/download.png" />
     </a>
 </div>

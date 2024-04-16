@@ -43,17 +43,13 @@
     <a (click)="getPage('next')">
         <img src="../../../../assets/app_icons/arrow_right.png" />
     </a>
+    <!-- Go Back -->
+    <a routerLink="/moods/gallery">
+        <img src="../../../../assets/app_icons/icon_moods_001.png" />
+    </a>
     <!-- Toggle Size -->
-    <a (click)="toggleFocus()" class="toggle" *ngIf="mood().mood.type !== 2 && mood().mood.type !== 4 ">
-        <img src="../../../../assets/app_icons/toggle.png" />
-    </a>
-    <!-- Open File / Download -->
-    <a (click)="openDownload()">
-        <img src="../../../../assets/app_icons/download.png" />
-    </a>
-    <!-- Random Button -->
-    <a (click)="getRandomMood()">
-        <img src="../../../../assets/app_icons/random.png" />
+    <a (click)="toggleFocus()" class="toggle" *ngIf="mood().mood.type === 1">
+        <img [ngClass]="{'rotate': isFocused, 'rotate-back': !isFocused}" src="../../../../assets/app_icons/toggle.png" />
     </a>
     <!-- Diaporama -->
     <a *ngIf="intervalId === undefined" (click)="diaporamaStart(false)">
@@ -78,6 +74,14 @@
     </a>
     <!-- Show Tags -->
     <a class="toggle" routerLink="/moods/mood-details-tags">
-        <img src="../../../../assets/app_icons/icon_hamburger_left_001.png" />
+        <img src="../../../../assets/app_icons/icon_hamburger_right_001.png" />
+    </a>
+    <!-- Random Button -->
+    <a (click)="getRandomMood()">
+        <img appAnimRandom src="../../../../assets/app_icons/random.png" tabindex="0" />
+    </a>
+    <!-- Open File / Download -->
+    <a (click)="openDownload()">
+        <img src="../../../../assets/app_icons/download.png" />
     </a>
 </div>

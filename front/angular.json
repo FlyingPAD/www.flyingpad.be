@@ -50,6 +50,8 @@
               "src/design/central/component_gallery.scss",
               "src/design/central/component_gallery_wall.scss",
 
+              "src/design/central/component_bar_bottom.scss",
+
               "src/design/central/component_menu_flex.scss",
               "src/design/central/component_list.scss",
               "src/design/central/component_form_cat_flex.scss",

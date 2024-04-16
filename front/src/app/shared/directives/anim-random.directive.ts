@@ -1,0 +1,23 @@
+import { Directive, ElementRef, HostListener, Renderer2, inject } from '@angular/core';
+
+@Directive({
+  selector: '[appAnimRandom]'
+})
+export class AnimRandomDirective 
+{
+  #el = inject(ElementRef)
+  #renderer = inject(Renderer2)
+
+  @HostListener('click')
+  onClick() 
+  {
+    const element = this.#el.nativeElement
+
+    this.#renderer.addClass(element, 'animate')
+
+    element.addEventListener('animationend', () => 
+    {
+      this.#renderer.removeClass(element, 'animate')
+    }, { once: true })
+  }
+}
