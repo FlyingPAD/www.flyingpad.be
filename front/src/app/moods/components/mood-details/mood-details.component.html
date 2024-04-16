@@ -60,7 +60,7 @@
             <img src="../../../../assets/app_icons/stop.png" />
         </a>
     </div>
-    <a *ngIf="intervalId === undefined" (click)="diaporamaStart(true)">
+    <a class="toggle" *ngIf="intervalId === undefined" (click)="diaporamaStart(true)">
         <img src="../../../../assets/app_icons/play-random.png" />
     </a>
     <div *ngIf="!diaporamaSwitch">

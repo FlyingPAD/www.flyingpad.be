@@ -157,4 +157,24 @@ export class ChordWheelSvgComponent
         break;   
     }
   }
+
+
+  // Keyboard Shortcuts :
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) 
+  {
+    switch (event.key) 
+    {
+      case '0':
+        this.randomPosition()
+        break
+      case 'ArrowLeft':
+        this.rotateImage(-30) 
+        break
+      case 'ArrowRight':
+        this.rotateImage(30) 
+        break
+    }
+  }
 }
