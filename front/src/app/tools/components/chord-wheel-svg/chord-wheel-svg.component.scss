@@ -1,66 +1,10 @@
-#wheel-screen
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    #screen
-    {
-        width: 135px;
-
-        text-align: center;
-        font-size: 14px;
-        color : #6b5240;
-
-        background-color: #ffffff;
-        border: 1px solid #6b5240;  
-        border-radius: 5px;
-        box-shadow: 0px 5px 5px rgba(0,0,0, 0.3);
-    }
-
-    a
-    {
-        margin-top: 15px; margin-bottom: 15px;
-        background-color: #ffffff;
-        border: 1px solid #6b5240;  
-        border-radius: 5px;
-        box-shadow: 0px 5px 5px rgba(0,0,0, 0.3);
-        height: 55px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 16px;
-        color: var(--colorMain);
-        padding-left: 10px; padding-right: 10px;
-        margin-left: 15px; margin-right: 15px;
-
-        img
-        {
-            height: 80%;
-
-            opacity: 0.7;
-        }
-        img:hover
-        {
-            opacity: 1;
-            transition-duration: 500ms;
-        }
-    }
-    a:hover
-    {
-        cursor: pointer;
-        transition-duration: 200ms;
-    }
-}
-
 #container_wheel
 {
     position: relative;
     height: 500px;
     width: 500px;
     margin: auto;
-    margin-bottom: 50px;
-    margin-top: 35px;
+    margin-top: 15px;
 
     img
     {
