@@ -11,11 +11,10 @@ import { MenuCustomService } from '../../services/system/menu-custom.service';
 })
 export class LayoutCustomComponent 
 {
-  userService = inject(UserService)
+  #route = inject(ActivatedRoute)
+  #router = inject(Router)
   authService = inject(AuthService)
-  route = inject(ActivatedRoute)
-  router = inject(Router)
-
+  userService = inject(UserService)
   menuCustom = inject(MenuCustomService)
 
   currentYear = new Date().getFullYear()
