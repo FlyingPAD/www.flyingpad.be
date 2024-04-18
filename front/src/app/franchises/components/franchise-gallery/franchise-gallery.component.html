@@ -3,10 +3,6 @@
 
 <app-menu-right-desktop *ngIf="franchise() as franchise">
     <div class="content_right_desktop">  
-        <!-- Random Mood Button -->
-        <div class="item-top box_buttons">
-            <a routerLink="/moods/mood-details" (click)="getRandomMood()">Random Mood</a>
-        </div>
         <!-- Franchise Details -->
         <h1 class="item-top">{{ franchise.franchise.name}}</h1>
         <div class="item-top flex">

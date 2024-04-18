@@ -3,10 +3,6 @@
 
 <app-menu-right-desktop>
     <div class="content_right_desktop">
-        <!-- Random Mood Button -->
-        <div id="random" class="item-top box_buttons">
-            <a routerLink="/moods/mood-details" (click)="getMoodRandom()">Random Mood</a>
-        </div>
         <!-- Tags List -->
         <div id="tag_list_main">
             <div *ngFor="let tagList of tagsList()">

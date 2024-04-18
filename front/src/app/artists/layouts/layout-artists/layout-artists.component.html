@@ -1,9 +1,5 @@
 <app-menu-right-desktop *ngIf="artistsFlow() as Flow">
     <div class="content_right_desktop">
-        <!-- Random Button -->
-        <div class="item-top box_buttons">
-          <a routerLink="/moods/mood-details" (click)="getRandomMood()">Random Mood</a>
-        </div>
         <!-- Artists Menu -->
         <div class="item-top flex">
             <p><b>Total Artists</b></p>
@@ -30,10 +26,8 @@
                 [ngClass]="Flow.selectedStyleId === style.businessId ? 'active' : 'category' "
                 id="{{style.businessId}}" (click)="updateCurrentStyleId(style.businessId)"> ▸ {{style.name}}</a>
                 <a class="update" 
-                [ngClass]="style.businessId === artistsFlow().selectedStyleId ? 'update-active' : '' "
                 routerLink="/artists/update-style" (click)="updateCurrentStyleId(style.businessId)">U</a>
                 <a class="delete" 
-                [ngClass]="style.businessId === artistsFlow().selectedStyleId ? 'delete-active' : '' "
                 routerLink="/artists/delete-style" (click)="updateCurrentStyleId(style.businessId)">D</a>
             </div>
         </div>
