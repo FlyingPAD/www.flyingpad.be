@@ -1,9 +1,9 @@
 import { Directive, ElementRef, HostListener, Renderer2, inject } from '@angular/core';
 
 @Directive({
-  selector: '[appAnimRandom]'
+  selector: '[appAnimGrow]'
 })
-export class AnimRandomDirective 
+export class AnimGrowDirective 
 {
   #elementRef = inject(ElementRef)
   #renderer = inject(Renderer2)
@@ -13,11 +13,11 @@ export class AnimRandomDirective
   {
     const element = this.#elementRef.nativeElement
 
-    this.#renderer.addClass(element, 'animate')
+    this.#renderer.addClass(element, 'animate-grow')
 
     element.addEventListener('animationend', () => 
     {
-      this.#renderer.removeClass(element, 'animate')
+      this.#renderer.removeClass(element, 'animate-grow')
     }, { once: true } )
   }
 }

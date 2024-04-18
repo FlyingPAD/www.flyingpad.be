@@ -3,10 +3,6 @@
 
 <app-menu-right-desktop *ngIf="model() as flow">
     <div class="content_right_desktop">  
-        <!-- Random Mood Button -->
-        <div class="item-top box_buttons">
-            <a routerLink="/moods/mood-details" (click)="getRandomMood()">Random Mood</a>
-        </div>
         <!-- Logo -->
         <div class="box-pic" *ngIf="flow.model.pseudonym === '# Unknown Model'"><img src="../../../../assets/app_logos/fp_logo_02.png" /></div>
         <!-- or Gender -->

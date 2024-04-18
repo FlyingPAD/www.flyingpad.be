@@ -2,11 +2,7 @@
 <app-button-top />
 
 <app-menu-right-desktop *ngIf="artistFlow() as flow">
-    <div class="content_right_desktop">  
-        <!-- Random Mood Button -->
-        <div class="item-top box_buttons">
-            <a routerLink="/moods/mood-details" (click)="getRandomMood()">Random Mood</a>
-        </div>                
+    <div class="content_right_desktop">                
         <!-- Artist Name -->
         <h1 class="item-top">{{flow.artist.name}}</h1>
         <!-- Number of Moods -->

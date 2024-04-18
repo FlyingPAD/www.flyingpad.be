@@ -35,13 +35,13 @@
 <div class="bar" *ngIf="moods() as moods">
     <!-- Previous Page -->
     <a (click)="getPage('previous')">
-        <img src="../../../../assets/app_icons/arrow_left.png" />
+        <img appAnimGrow src="../../../../assets/app_icons/arrow_left.png" />
     </a>
     <!-- Mood Position -->
-    <a><div class="position">{{ moods.currentIndex + 1 | number : '4.0'}} / {{moods.moodsList.length | number : '4.0'}}</div></a>
+    <a class="tweak"><div class="position">{{ moods.currentIndex + 1 | number : '4.0'}} / {{moods.moodsList.length | number : '4.0'}}</div></a>
     <!-- Next Page -->
     <a (click)="getPage('next')">
-        <img src="../../../../assets/app_icons/arrow_right.png" />
+        <img appAnimGrow src="../../../../assets/app_icons/arrow_right.png" />
     </a>
     <!-- Go Back -->
     <a routerLink="/moods/gallery">
@@ -70,15 +70,15 @@
     </div>
     <!-- Edit Mood -->
     <a class="toggle" routerLink="/moods/mood-details-edit">
-        <img src="../../../../assets/app_icons/edit.png" />
+        <img appAnimGrow src="../../../../assets/app_icons/edit.png" />
     </a>
     <!-- Show Tags -->
     <a class="toggle" routerLink="/moods/mood-details-tags">
-        <img src="../../../../assets/app_icons/icon_hamburger_right_001.png" />
+        <img src="../../../../assets/app_icons/icon_tags_001.png" />
     </a>
     <!-- Random Button -->
     <a (click)="getRandomMood()">
-        <img appAnimRandom src="../../../../assets/app_icons/random.png" tabindex="0" />
+        <img appAnimRandom src="../../../../assets/app_icons/random.png" />
     </a>
     <!-- Open File / Download -->
     <a (click)="openDownload()">

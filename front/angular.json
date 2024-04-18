@@ -41,6 +41,8 @@
               "src/design/02_global_variables.scss",
               "src/design/03_global_settings.scss",
 
+              "src/design/central/animations.scss",
+
               "src/design/central/elements_boxes.scss",
               "src/design/central/elements_text.scss",
 
