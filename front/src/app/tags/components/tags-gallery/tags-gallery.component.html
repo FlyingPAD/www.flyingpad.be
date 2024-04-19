@@ -38,7 +38,7 @@
                 </div>
                 <div class="overflow">
                     <div *ngFor="let tag of category.tags">
-                        <p> ▸ <a routerLink="/moods/gallery" class="name-tag" (click)="updateTagId(tag.businessId)">{{ tag.name }}</a></p>
+                        <p><span> ▸ </span><a routerLink="/moods/gallery" class="name-tag" (click)="updateTagId(tag.businessId)">{{ tag.name }}</a></p>
                     </div>
                 </div>
             </div>   

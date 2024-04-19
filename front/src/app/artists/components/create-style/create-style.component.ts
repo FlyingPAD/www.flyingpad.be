@@ -17,7 +17,7 @@ export class CreateStyleComponent implements OnDestroy
   #router = inject(Router)
   #toastr = inject(ToastrService)
 
-  form : FormGroup = this.#builder.group
+  formGroup : FormGroup = this.#builder.group
   ({
     name : ["", [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
@@ -26,9 +26,9 @@ export class CreateStyleComponent implements OnDestroy
 
   onSubmit() : void
   {
-    if (this.form.valid) 
+    if (this.formGroup.valid) 
     {
-      this.subscription = this.#artistsService.CreateStyle(this.form.value).subscribe({
+      this.subscription = this.#artistsService.CreateStyle(this.formGroup.value).subscribe({
         next : () => 
         {
           this.#toastr.success('Style was successfully created.')
