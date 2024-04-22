@@ -17,14 +17,14 @@ export class ArtistsListComponent
 
   artistsFlow = this.#artistsService.artistsFlow
 
-  pagination(newStartId : number | null) : void 
+  pagination( newStartId : number | null ) : void 
   {
     this.#artistsService.updateStartId(newStartId)
   }
 
   resetStyles()
   {
-    this.#artistsService.updateCurrentStyleId(null)
+    this.#artistsService.updateCurrentStyleId( null )
   }
 
   updateCurrentStyleId( styleId : number)
@@ -41,6 +41,6 @@ export class ArtistsListComponent
   getRandomMood()
   {
     this.#moodsService.updateSelectedGalleryType('')
-    this.#moodsService.updateSelectedMoodId(null)
+    this.#moodsService.updateSelectedMoodId( null )
   }
 }
