@@ -29,13 +29,16 @@ namespace MB.API.Controllers
         /// <summary>
         /// Create
         /// </summary>
+        /// <param name="createArtistCommand"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpPost("Create")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [ProducesResponseType(typeof(CreateArtistCommandResponse), 201)]
         [ProducesResponseType(typeof(BaseResponse), 400)]
-        public async Task<ActionResult<CreateArtistCommandResponse>> Create([FromBody] CreateArtistCommand createArtistCommand)
+        public async Task<ActionResult<CreateArtistCommandResponse>> Create([FromBody] CreateArtistCommand createArtistCommand, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(createArtistCommand);
+            var response = await _mediator.Send(createArtistCommand, cancellationToken);
             return Ok(response);
         }
 
@@ -46,11 +49,13 @@ namespace MB.API.Controllers
         /// <summary>
         /// Count
         /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpGet("Count")]
         [ProducesResponseType(typeof(CountArtistsQueryResponse), 200)]
-        public async Task<ActionResult<CountArtistsQueryResponse>> Count()
+        public async Task<ActionResult<CountArtistsQueryResponse>> Count(CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(new CountArtistsQuery());
+            var response = await _mediator.Send(new CountArtistsQuery(), cancellationToken);
 
             if (response.Success)
             {
@@ -61,7 +66,7 @@ namespace MB.API.Controllers
                 return BadRequest(new BaseResponse
                 {
                     Success = false,
-                    Message = "Une erreur est survenue lors du comptage des artistes."
+                    Message = "Count Error ..."
                 });
             }
         }
@@ -71,9 +76,9 @@ namespace MB.API.Controllers
         /// </summary>
         [HttpGet("GetAll")]
         [ProducesResponseType(typeof(GetArtistsQueryResponse), 200)]
-        public async Task<ActionResult<GetArtistsQueryResponse>> GetAll()
+        public async Task<ActionResult<GetArtistsQueryResponse>> GetAll(CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send( new GetArtistsQuery() );
+            var response = await _mediator.Send(new GetArtistsQuery(), cancellationToken);
             return Ok(response);
         }
 
@@ -83,9 +88,9 @@ namespace MB.API.Controllers
         [HttpGet("GetOne/{artistId}")]
         [ProducesResponseType(typeof(GetArtistQuery), 200)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<GetArtistQuery>> GetOne(Guid artistId)
+        public async Task<ActionResult<GetArtistQuery>> GetOne(Guid artistId, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(new GetArtistQuery { ArtistId = artistId });
+            var response = await _mediator.Send(new GetArtistQuery{ArtistId = artistId}, cancellationToken);
 
             if (response == null)
             {
@@ -100,9 +105,9 @@ namespace MB.API.Controllers
         [HttpGet("GetOneDetails/{artistId}")]
         [ProducesResponseType(typeof(GetArtistDetailsQuery), 200)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<GetArtistDetailsQuery>> GetOneDetails(Guid artistId)
+        public async Task<ActionResult<GetArtistDetailsQuery>> GetOneDetails(Guid artistId, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(new GetArtistDetailsQuery { ArtistId = artistId });
+            var response = await _mediator.Send(new GetArtistDetailsQuery{ArtistId = artistId}, cancellationToken);
 
             if (response == null)
             {
@@ -117,9 +122,9 @@ namespace MB.API.Controllers
         [HttpGet("GetByMood/{businessId}")]
         [ProducesResponseType(typeof(GetArtistsByMoodQuery), 200)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<GetArtistsByMoodQueryResponse>> GetByMood(Guid businessId)
+        public async Task<ActionResult<GetArtistsByMoodQueryResponse>> GetByMood(Guid businessId, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(new GetArtistsByMoodQuery { BusinessId = businessId });
+            var response = await _mediator.Send(new GetArtistsByMoodQuery{BusinessId = businessId}, cancellationToken);
 
             if (response == null)
             {
@@ -134,9 +139,9 @@ namespace MB.API.Controllers
         [HttpGet("GetByStyle/{businessId}")]
         [ProducesResponseType(typeof(GetArtistsByStyleQuery), 200)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<GetArtistsByStyleQueryResponse>> GetByStyle(Guid businessId)
+        public async Task<ActionResult<GetArtistsByStyleQueryResponse>> GetByStyle(Guid businessId, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send( new GetArtistsByStyleQuery { BusinessId = businessId } );
+            var response = await _mediator.Send( new GetArtistsByStyleQuery{BusinessId = businessId}, cancellationToken);
 
             if (response == null)
             {
@@ -155,9 +160,9 @@ namespace MB.API.Controllers
         /// <returns>Query Response with a paginated list of artists.</returns>
         [HttpGet("GetPage")]
         [ProducesResponseType(typeof(GetArtistsPageQueryResponse), 200)]
-        public async Task<ActionResult<GetArtistsPageQueryResponse>> GetPage(Guid? styleId = null, Guid? startId = null, string abc = "", int pageSize = 10)
+        public async Task<ActionResult<GetArtistsPageQueryResponse>> GetPage(CancellationToken cancellationToken, Guid? styleId = null, Guid? startId = null, string abc = "", int pageSize = 10)
         {
-            var response = await _mediator.Send(new GetArtistsPageQuery { StyleId = styleId, StartId = startId, Abc = abc, PageSize = pageSize });
+            var response = await _mediator.Send(new GetArtistsPageQuery{StyleId = styleId, StartId = startId, Abc = abc, PageSize = pageSize}, cancellationToken);
             return Ok(response);
         }
 
@@ -173,9 +178,9 @@ namespace MB.API.Controllers
         [ProducesResponseType(typeof(BaseResponse), 200)]
         [ProducesResponseType(typeof(BaseResponse), 400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<BaseResponse>> Update([FromBody] UpdateArtistCommand updateArtistCommand)
+        public async Task<ActionResult<BaseResponse>> Update([FromBody] UpdateArtistCommand updateArtistCommand, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(updateArtistCommand);
+            var response = await _mediator.Send(updateArtistCommand, cancellationToken);
 
             if (response.Success)
             {
@@ -191,14 +196,17 @@ namespace MB.API.Controllers
         /// <summary>
         /// Delete
         /// </summary>
+        /// <param name="businessId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpDelete("Delete/{businessId}")]
         [Authorize]
         [ProducesResponseType(typeof(BaseResponse), 200)]
         [ProducesResponseType(typeof(BaseResponse), 400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<BaseResponse>> Delete(Guid businessId)
+        public async Task<ActionResult<BaseResponse>> Delete(Guid businessId, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(new DeleteArtistCommand { BusinessId = businessId });
+            var response = await _mediator.Send(new DeleteArtistCommand{BusinessId = businessId}, cancellationToken);
 
             if (response.Success)
             {
