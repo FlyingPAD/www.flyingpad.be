@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ArtistCreateForm, ArtistUpdateForm, ArtistsCountResponse, ArtistsCreateResponse, GetOneArtistResponse, ArtistsGetPageResponse, ArtistsUpdateResponse, ArtistsDeleteResponse, GetOneArtistDetailsResponse, GetArtistsByStyleResponse, GetArtistsByMoodResponse } from '../../models/artist';
+import { ArtistCreateForm, ArtistUpdateForm, ArtistsCountResponse, GetOneArtistResponse, ArtistsGetPageResponse, ArtistsUpdateResponse, ArtistDeleteResponse, GetOneArtistDetailsResponse, GetArtistsByStyleResponse, GetArtistsByMoodResponse } from '../../models/artist';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
@@ -82,8 +82,8 @@ export class ArtistService
   
   // Delete
   
-  public Delete( artistId : number ) : Observable<ArtistsDeleteResponse>
+  public Delete( artistId : number ) : Observable<ArtistDeleteResponse>
   {
-    return this.#http.delete<ArtistsDeleteResponse>(`${this.#url}Delete/${artistId}`)
+    return this.#http.delete<ArtistDeleteResponse>(`${this.#url}Delete/${artistId}`)
   }
 }

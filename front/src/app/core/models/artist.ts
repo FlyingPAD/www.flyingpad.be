@@ -1,5 +1,6 @@
 import { BaseResponse } from "./base-response";
 import { PaginationResponse } from "./pagination-response";
+import { StyleCheck } from "./style";
 
 // Models
 
@@ -21,6 +22,11 @@ export class ArtistDetails
 
 // API Calls
 
+export interface ArtistCreateFormGroup
+{
+    name : string
+    styles : StyleCheck[]
+}
 export interface ArtistCreateForm
 {
     name : string
@@ -40,7 +46,7 @@ export interface ArtistsCreateResponse extends BaseResponse
     artist : ArtistLight
 }
 
-export interface ArtistsGetAllResponse extends BaseResponse {}
+export interface GetAllArtistsResponse extends BaseResponse {}
 
 export interface GetOneArtistResponse extends BaseResponse
 {
@@ -76,4 +82,4 @@ export class ArtistsGetPageResponse implements BaseResponse, PaginationResponse
 
 export interface ArtistsUpdateResponse extends BaseResponse {}
 
-export interface ArtistsDeleteResponse extends BaseResponse {}
+export interface ArtistDeleteResponse extends BaseResponse {}

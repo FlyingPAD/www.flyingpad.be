@@ -1,12 +1,18 @@
 <div id="layout-central">
+  <!-- Title -->
   <h2>Create Style</h2> 
+  <!-- Form -->
   <div class="style-form">  
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
       <input #styleNameInput class="form-item" type="text" formControlName="name" placeholder="New Style Name">
+
       <button class="form-item" type="submit" [disabled]="formGroup.invalid">Submit</button>
+
       <div *ngIf="formGroup.get('name')?.touched && formGroup.get('name')?.errors">
         <p class="error" *ngIf="formGroup.get('name')?.errors?.['required']">Name is required.</p>
       </div>
+      
     </form>
   </div>
 </div>

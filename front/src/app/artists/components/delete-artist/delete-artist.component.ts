@@ -1,10 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { switchMap } from 'rxjs';
-import { ArtistService } from '../../../core/services/client/client-artist.service';
-import { StyleService } from '../../../core/services/client/client-style.service';
-import { StateArtistService } from '../../../core/services/state/state-artists.service';
+import { ArtistsStateService } from '../../../core/services/artists-state.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-delete-artist',
@@ -13,53 +11,39 @@ import { StateArtistService } from '../../../core/services/state/state-artists.s
 })
 export class DeleteArtistComponent
 {
-  #stateArtistService = inject(StateArtistService)
-  #artistService = inject(ArtistService)
-  #styleService = inject(StyleService)
+  #artistsService = inject(ArtistsStateService)
+
   #router = inject(Router)
-  #route = inject(ActivatedRoute)
   #toastr = inject(ToastrService)
 
-  styleId : number | null = null
-  nameSearchField : string = ''
+  artistFlow = this.#artistsService.artistFlow  // Signal
+  subscription = new Subscription()             // Subscription
 
-  artistId : number = this.#route.snapshot.params['id']
-  artist = this.#stateArtistService.currentArtist$
-
-  // - Methods :
-
-  ngOnInit()
+  ngOnDestroy() : void 
   {
-    if(this.artistId) 
+    this.subscription.unsubscribe()
+  }
+
+  onDelete() : void 
+  {
+    const artist = this.artistFlow()?.artist
+    if (artist?.businessId !== undefined) 
     {
-      this.#artistService.GetOne(this.artistId).subscribe({
-        error: () => this.#toastr.error('Artist was not found.')
+      this.#artistsService.DeleteArtist(artist.businessId).subscribe({
+        next : () => 
+        {
+          this.#toastr.success('Artist was successfully deleted.')
+          this.#router.navigateByUrl('/artists')
+        },
+        error : (error) => 
+        {
+          this.#toastr.error('Error : ' + error.message)
+        }
       })
     } 
     else 
     {
-      this.#toastr.error('Invalid style ID.')
-      this.#router.navigateByUrl('artists')
+      this.#toastr.error('Error: No business ID found for artist.')
     }
-    this.#stateArtistService.nameSearchField$.subscribe((nameSearchField) => { this.nameSearchField = nameSearchField })
-    this.#styleService.styleId$.subscribe((input) => { this.styleId = input })
-  }
-
-  onDelete() 
-  {
-    this.#artistService.Delete(this.artistId).pipe(
-      switchMap(() => this.#artistService.Count()),
-      switchMap(() => this.#artistService.GetPage(this.styleId, null, this.nameSearchField, 20))
-    ).subscribe({
-      next: () => 
-      {
-        this.#toastr.success('Artist was successfully deleted.');
-        this.#router.navigateByUrl('artists');
-      },
-      error: () => 
-      {
-        this.#toastr.error('Error')
-      }
-    })
   }
 }

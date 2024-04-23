@@ -3,7 +3,7 @@
         <!-- Artists Menu -->
         <div class="item-top flex">
             <p><b>Total Artists</b></p>
-            <p>{{ Flow.totalItems | number : '3.0'}}</p>
+            <p>{{ Flow.totalItems | number : '3.0'}} / {{ Flow.totalArtists }}</p>
         </div> 
         <div class="item-top list_categories">
             <a routerLink="/artists/create-artist"> ▸ Create Artist</a>
@@ -19,7 +19,9 @@
         <!-- Styles -->
         <div id="categories_list_admin">
             <div class="link_flex">
-                <a [ngClass]="Flow.selectedStyleId === null ? 'active' : 'category' " (click)="resetStyles()"> ▸ All Styles</a>
+                <a routerLink="/artists" 
+                    [ngClass]="Flow.selectedStyleId === null ? 'active' : 'category' " 
+                    (click)="resetStyles()"> ▸ All Styles</a>
             </div>
             <div class="link_flex" *ngFor="let style of Flow.styles">
                 <a routerLink="/artists" 

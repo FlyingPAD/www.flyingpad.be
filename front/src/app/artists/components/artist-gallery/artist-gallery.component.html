@@ -1,47 +1,6 @@
 <!-- To Top Button -->
 <app-button-top />
 
-<app-menu-right-desktop *ngIf="artistFlow() as flow">
-    <div class="content_right_desktop">                
-        <!-- Artist Name -->
-        <h1 class="item-top">{{flow.artist.name}}</h1>
-        <!-- Number of Moods -->
-        <div class="item-top flex">
-            <p><b>Moods</b></p>
-            <p>{{ flow.moods.length | number : '3.0'}}</p>
-        </div>   
-        <div>
-            <!-- Creation / Modification Data -->
-            <div class="item-top flex_created">
-                <div class="box_created">
-                    <p>Created :</p>
-                    <p>{{flow.artist.created | date : 'MMMM d, y | HH:mm'}}</p>
-                </div>
-                <div class="box_created">
-                    <p>Modified :</p>
-                    <p>{{flow.artist.modified | date : 'MMMM d, y | HH:mm'}}</p>
-                </div>
-            </div> 
-        </div>
-        <div *ngIf="flow.artist.name != '# Unknown Artist'">
-            <!-- Search -->            
-            <div class="item-top box_buttons">
-                <a target="_blank" href="https://www.google.com/search?q={{flow.artist.name}}">Search Google</a>
-                <a target="_blank" href="https://images.google.com/images?q={{flow.artist.name}}">Google Images</a>
-            </div>   
-            <!-- Related Links -->
-            <!-- <div *ngIf="links.length != 0">
-                <h1>Dedicated Links</h1>
-                <div class="list_categories" >            
-                    <div *ngFor="let l of links">
-                        <a target="_blank" href="{{l.url}}">{{l.name}}</a>      
-                    </div>
-                </div>   
-            </div> -->
-        </div>
-    </div>
-</app-menu-right-desktop>
-
 <div id="layout-central" *ngIf="artistFlow() as flow">   
     <!-- Pagination -->
     <div class="row-sticky" *ngIf="flow.moods.length > mpp">
@@ -50,7 +9,7 @@
         </div>
     </div>   
     <!-- Gallery -->
-    <div id="sub_gallery">
+    <div id="sub_gallery_full">
         <div *ngFor="let mood of flow.moods | paginate : { itemsPerPage: mpp, currentPage: p }">
             <section>
                 <div *ngIf="mood.type == 1">           
@@ -64,4 +23,17 @@
             </section>
         </div>
     </div>
+</div>
+
+<div class="bar" *ngIf="artistFlow() as flow">
+    <a class="tweak"><div class="position"><b>{{ flow.artist.name }}</b></div></a>
+    <a class="tweak"><div class="position">{{ flow.moods.length | number : '4.0'}}</div></a>
+    <a target="_blank" href="https://www.google.com/search?q={{flow.artist.name}}">
+        <img src="../../../../assets/app_icons/google.png" />
+    </a>
+    <a target="_blank" href="https://images.google.com/images?q={{flow.artist.name}}">
+        <img src="../../../../assets/app_icons/google_images.png" />
+    </a>
+    <a class="tweak"><div class="position">{{flow.artist.created | date : 'd / M / y | HH:mm'}}</div></a>
+    <a class="tweak"><div class="position">{{flow.artist.modified | date : 'd / M / y | HH:mm'}}</div></a>
 </div>

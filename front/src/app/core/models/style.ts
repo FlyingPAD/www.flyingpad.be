@@ -19,11 +19,11 @@ export class StyleDetails
     modifiedBy : string = ''
 }
 
-export interface StyleCheck
+export class StyleCheck
 {
-    businessId : number
-    name : string
-    isChecked : boolean
+    businessId : number = 0
+    name : string = ''
+    isChecked : boolean = false
 }
 
 // API Calls
@@ -47,7 +47,7 @@ export interface StylesCreateResponse extends BaseResponse
     style : StyleCheck
 }
 
-export interface StylesGetAllResponse extends BaseResponse 
+export interface GetAllStylesResponse extends BaseResponse 
 {
     stylesList : StyleCheck[]
 }
