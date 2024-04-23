@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { GetOneStyleDetailsResponse, StyleUpdateForm, StylesCheckResponse, StylesCountResponse, StylesCreateResponse, StylesDeleteResponse, StylesGetAllResponse, StylesUpdateResponse } from '../../models/style';
+import { GetOneStyleDetailsResponse, StylesCheckResponse, StylesCountResponse, StylesCreateResponse, StylesDeleteResponse, GetAllStylesResponse, StylesUpdateResponse } from '../../models/style';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class StyleService
   #stylesCreateResponse = new BehaviorSubject<StylesCreateResponse | null>(null)
   stylesCreateResponse$ = this.#stylesCreateResponse.asObservable()
 
-  #stylesGetAllResponse = new BehaviorSubject<StylesGetAllResponse | null>(null)
+  #stylesGetAllResponse = new BehaviorSubject<GetAllStylesResponse | null>(null)
   stylesGetAllResponse$ = this.#stylesGetAllResponse.asObservable()
 
   #stylesGetOneResponse = new BehaviorSubject<GetOneStyleDetailsResponse | null>(null)
@@ -45,9 +45,9 @@ export class StyleService
 
   // Get All
 
-  public GetAll() : Observable<StylesGetAllResponse> 
+  public GetAll() : Observable<GetAllStylesResponse> 
   {
-    return this.#http.get<StylesGetAllResponse>(`${this.url}Styles/GetAll`).pipe( tap(response => { this.#stylesGetAllResponse.next(response) } ))
+    return this.#http.get<GetAllStylesResponse>(`${this.url}Styles/GetAll`).pipe( tap(response => { this.#stylesGetAllResponse.next(response) } ))
   }
 
   // Get One

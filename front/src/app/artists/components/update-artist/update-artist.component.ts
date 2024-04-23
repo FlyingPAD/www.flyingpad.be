@@ -1,15 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { switchMap } from 'rxjs';
-import { GetOneArtistResponse, ArtistUpdateForm } from '../../../core/models/artist';
-import { RelationsArtistStyleForm } from '../../../core/models/relations';
-import { StylesCheckResponse } from '../../../core/models/style';
-import { ArtistService } from '../../../core/services/client/client-artist.service';
-import { RelationService } from '../../../core/services/client/client-relation.service';
-import { StyleService } from '../../../core/services/client/client-style.service';
-import { StateArtistService } from '../../../core/services/state/state-artists.service';
+import { Subscription } from 'rxjs';
+import { ArtistsStateService } from '../../../core/services/artists-state.service';
 
 @Component({
   selector: 'app-update-artist',
@@ -18,97 +12,50 @@ import { StateArtistService } from '../../../core/services/state/state-artists.s
 })
 export class UpdateArtistComponent
 {
-  // Properties :
-
-  #stateArtistService = inject(StateArtistService)
-  #artistService = inject(ArtistService)
-  #styleService = inject(StyleService)
-  #relationService = inject(RelationService)
+  #artistsService = inject(ArtistsStateService)
   #builder = inject(FormBuilder)
   #router = inject(Router)
-  #route = inject(ActivatedRoute)
   #toastr = inject(ToastrService)
 
-  styleId : number | null = null  
-  nameSearchField : string = ''
+  artistFlow = this.#artistsService.artistFlow
+  flow = this.#artistsService.getAllStyles
 
-  artistId : number = this.#route.snapshot.params['id']
-  artistGetOneResponse : GetOneArtistResponse | null = null
-  stylesCheckResponse : StylesCheckResponse | null = null
+  subscription = new Subscription()
 
-  form : FormGroup = this.#builder.group
-  ({
-    name : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
+  formGroup: FormGroup = this.#builder.group({
+    name: [this.artistFlow()?.artist.name, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    styles: this.#builder.array(this.flow().map(style => this.#builder.group({
+      businessId: [style.businessId],
+      name: [style.name],
+      isChecked: [style.isChecked]
+    })))
   })
-  
-  // Methods :
 
-  ngOnInit()
+  get getStyles()
   {
-    this.#artistService.GetOne(this.artistId).subscribe({
-      next: (response) => 
-      {
-        if (response.success && response.artist) 
-        {
-          this.form.patchValue({ name: response.artist.name })
-        }
-      },
-    })
-    this.#styleService.GetStylesCheck(this.artistId).subscribe({
-      next : (response) => {
-        this.stylesCheckResponse = response
-      }
-    })
-    this.#stateArtistService.nameSearchField$.subscribe((nameSearchField) => { this.nameSearchField = nameSearchField })
-    this.#styleService.styleId$.subscribe((input) => { this.styleId = input })
+    return this.formGroup.get('styles') as FormArray
   }
 
-  onSubmit() 
+  onSubmit() : void
   {
-    if (this.form.valid) 
+    if (this.formGroup.valid) 
     {
-      let artistUpdateForm: ArtistUpdateForm = 
-      {
-        businessId: this.artistId,
-        name: this.form.value.name
-      }
-  
-      this.#artistService.Update(artistUpdateForm).pipe(
-        switchMap(() => 
+      this.subscription = this.#artistsService.UpdateArtist(this.formGroup.value).subscribe({
+        next : () => 
         {
-          // Construire la liste des IDs des styles sélectionnés
-
-          let selectedStyleIds = this.stylesCheckResponse?.stylesCheck
-            ? this.stylesCheckResponse.stylesCheck
-                .filter(style => style.isChecked)
-                .map(style => style.businessId)
-            : [] // Fournir une valeur par défaut (tableau vide) si stylesCheck est indéfini
-  
-          // Créer l'objet RASForm pour la mise à jour des relations artiste-style
-
-          let rasForm: RelationsArtistStyleForm = 
-          {
-            artistId: this.artistId,
-            styleIds: selectedStyleIds
-          }
-  
-          // Appel API pour mettre à jour les relations artiste-style
-
-          return this.#relationService.InsertRAS(rasForm)
-        }),
-        switchMap(() => this.#artistService.GetPage(this.styleId, this.artistId, this.nameSearchField, 20))
-      ).subscribe({
-        next: () => 
-        {
-          this.#router.navigateByUrl('artists')
           this.#toastr.success('Artist was successfully updated.')
+          this.#router.navigateByUrl('/artists')
         },
-        error: () => 
+        error : () => 
         {
-          this.#router.navigateByUrl('artists')
-          this.#toastr.error('Error: Artist update failed!')
+          this.#toastr.error('Error ...')
         }
       })
     }
-  } 
+  }
+
+  ngOnDestroy() : void
+  {
+    this.subscription.unsubscribe()
+  }
 }

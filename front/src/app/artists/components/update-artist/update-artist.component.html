@@ -1,25 +1,22 @@
-<div id="layout-central">
-
-  <h2>Artists API</h2>
-
-  <div class="row-white">
-    <div class="menu-flex">
-      <app-button-back></app-button-back>
-    </div>
-  </div>
-  
+<div id="layout-central" *ngIf="artistFlow() as flow">  
+  <!-- Title   -->
   <h2>Update Artist</h2>
-
+  
+  <!-- Form -->
   <div class="artist-form">  
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">  
-      <input class="form-item" type="text" formControlName="name" placeholder="New Artist Name">
-      <button class="form-item" type="submit" [disabled]="form.invalid">Submit</button>
-      <div class="form-item checkbox">
-          <div class="combo" *ngFor="let style of stylesCheckResponse?.stylesCheck">
-              <input type="checkbox" id="{{style.name}}" value="{{style.name}}" [checked]="style.isChecked" (change)="style.isChecked = !style.isChecked">
-              <label for="{{style.name}}">{{style.name}}</label>
-          </div>   
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">  
+
+      <input class="form-item" type="text" formControlName="name">
+
+      <button class="form-item" type="submit" [disabled]="formGroup.invalid">Submit</button>
+
+      <div class="form-item checkbox" formArrayName="styles">
+        <div class="combo" *ngFor="let styleControl of getStyles.controls; let i = index" [formGroupName]="i">
+          <input type="checkbox" [id]="styleControl.value.name" formControlName="isChecked">
+          <label [for]="styleControl.value.name">{{ styleControl.value.name }}</label>
+        </div>
       </div>
+
     </form>
   </div>
 </div>

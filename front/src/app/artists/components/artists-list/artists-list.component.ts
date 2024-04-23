@@ -34,6 +34,7 @@ export class ArtistsListComponent
 
   updateArtistId( artistId : number)
   {
+    this.#artistsService.artistUpdateTrigger()
     this.#artistsService.updateSelectedArtistId(artistId)
     this.#moodsService.updateSelectedArtistId(artistId)
   }

@@ -32,7 +32,7 @@ export class CreateStyleComponent implements OnDestroy
         next : () => 
         {
           this.#toastr.success('Style was successfully created.')
-          this.#router.navigateByUrl('artists')
+          this.#router.navigateByUrl('/artists')
         },
         error : () => 
         {
