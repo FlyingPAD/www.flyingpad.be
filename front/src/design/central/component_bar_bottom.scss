@@ -95,23 +95,26 @@
 
     a
     {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 75px;
+        height: 55px;
+        padding-left: 10px; padding-right: 10px;
+        margin: 15px;
+
         background-color: #ffffff;
         border: 1px solid #6b5240;  
         border-radius: 5px;
         box-shadow: 0px 5px 5px rgba(0,0,0, 0.3);
-        height: 55px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        
         font-size: 16px;
         color: var(--colorMain);
-        padding-left: 10px; padding-right: 10px;
-        margin: 15px;
 
         img
         {
             height: 80%;
-
             opacity: 0.7;
         }
         img:hover
