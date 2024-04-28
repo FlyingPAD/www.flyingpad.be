@@ -8,6 +8,11 @@ export interface MiniTag
     name :       string
 }
 
+export interface TagsCheckBoxes extends MiniTag
+{
+    isChecked : boolean
+}
+
 export class Tag
 {
     businessId : number = 0
@@ -23,6 +28,12 @@ export class TagList
 {
     category : MiniTagCategory = new MiniTagCategory()
     tags :     MiniTag[] = []
+}
+
+export class TagsCheckBoxesList
+{
+    category : MiniTagCategory = new MiniTagCategory()
+    tagsCheckBoxes : TagsCheckBoxes[] = []
 }
 
 export class MiniTagCategory
@@ -55,4 +66,9 @@ export interface TagsGetFullListResponse extends BaseResponse
 export interface GetTagsByMoodResponse extends BaseResponse
 {
     tagsByMood : MiniTag[]
+}
+
+export interface GetTagsCheckBoxesByMoodResponse extends BaseResponse
+{
+   tagsCheckBoxesList : TagsCheckBoxesList[]
 }

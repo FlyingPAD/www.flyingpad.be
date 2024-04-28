@@ -6,7 +6,7 @@ import { GetModelsByMoodResponse } from "../models/model";
 import { GetMoodsByArtistResponse, GetMoodsByModelResponse, GetMoodsByTagResponse, MoodFull, MoodsGetAllResponse, MoodsGetOneDetailsResponse, UpdateMoodScoreCall, UpdateMoodScoreResponse } from "../models/mood";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { GetFranchisesByMoodResponse } from "../models/franchise";
-import { GetOneTagDetailsResponse, GetTagsByMoodResponse } from "../models/tag";
+import { GetOneTagDetailsResponse, GetTagsByMoodResponse, GetTagsCheckBoxesByMoodResponse } from "../models/tag";
 import { GetOneImageDetailsResponse } from "../models/mood-image";
 import { GetOneVideoDetailsResponse, Video } from "../models/mood-video";
 import { Image } from "../models/mood-image";
@@ -279,4 +279,34 @@ export class MoodStateService
       })
     ).subscribe()
   }
+
+  getTagsCheckBoxesByMood( moodId : number | null ) 
+  {
+    return this.#http.get<GetTagsCheckBoxesByMoodResponse>(`${this.#url}Tags/GetCheckBoxesByMood/${moodId}`).pipe( 
+      map(response => response.tagsCheckBoxesList) )
+  }
+
+  moodEditionFlow$ = this.selectedMoodId$.pipe(
+    switchMap(moodId => {
+      if (moodId === null) {
+        return of({ mood: new MoodFull(), tagsCheckBoxes: [] });
+      } else {
+        return combineLatest([
+          this.getMood(moodId),
+          this.getTagsCheckBoxesByMood(moodId)
+        ]).pipe(
+          map(([mood, tagsCheckBoxes]) => ({
+            mood,
+            tagsCheckBoxes
+          })),
+          catchError(error => {
+            console.error('Erreur lors de la récupération des données du mood ou des tags:', error);
+            return of({ mood: new MoodFull(), tagsCheckBoxes: [] }); // Retourner des valeurs par défaut en cas d'erreur
+          })
+        );
+      }
+    })
+  );
+  
+  moodEditionFlow = toSignal(this.moodEditionFlow$, { initialValue: { mood: new MoodFull(), tagsCheckBoxes: [] } });
 }

@@ -146,6 +146,53 @@
                         line-height: 14px;
                     }
                 }
+
+                // Custom Checkbox
+
+                label
+                {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 3px;
+
+                    span
+                    {
+                        margin-left: 5px;
+                        font-size: 14px;
+                        color: var(--colorMain);
+                    }
+
+                    input[type="checkbox"] 
+                    {
+                        display: none;
+                    }     
+
+                    .custom-checkbox 
+                    {
+                        display: inline-block;
+                        width: 14px;
+                        height: 14px;
+                        margin-right: 5px;
+                        background-color: #fff;
+                        border: 1px solid #9d9188a8;
+                        border-radius: 3px;
+                    }  
+
+                    input[type="checkbox"]:checked + .custom-checkbox 
+                    {
+                        background-color: var(--colorMain);
+                    }      
+                }
+                label:hover 
+                {
+                    cursor: pointer;
+
+                    .custom-checkbox 
+                    {
+                        border-color: var(--colorMain);
+                    }
+                }
             }
         }
         .tags-box:hover

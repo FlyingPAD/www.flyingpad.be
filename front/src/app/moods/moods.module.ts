@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MoodDetailsComponent } from './components/mood-details/mood-details.component';
 import { MoodDetailsEditComponent } from './components/mood-details-edit/mood-details-edit.component';
 import { MoodDetailsTagsComponent } from './components/mood-details-tags/mood-details-tags.component';
+import { MoodEditionComponent } from './components/mood-edition/mood-edition.component';
 
 @NgModule({
   declarations: 
@@ -14,7 +15,8 @@ import { MoodDetailsTagsComponent } from './components/mood-details-tags/mood-de
     MoodsGalleryComponent,
     MoodDetailsComponent,
     MoodDetailsEditComponent,
-    MoodDetailsTagsComponent
+    MoodDetailsTagsComponent,
+    MoodEditionComponent
   ],
   imports: 
   [

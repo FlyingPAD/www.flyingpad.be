@@ -1,4 +1,5 @@
-﻿using MB.Application.Features.Relations.Commands.RAS;
+﻿using MB.Application.Features.Relations.Commands.CreateRelationsMoodTags;
+using MB.Application.Features.Relations.Commands.RAS;
 using MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByArtist;
 using MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByStyle;
 using MB.Application.Responses;
@@ -20,13 +21,24 @@ namespace MB.API.Controllers
         // =================================================================================================================
 
         /// <summary>
-        /// Create
+        /// Create RAS
         /// </summary>
         [HttpPost("ArtistStyle/Create")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<ActionResult<BaseResponse>> InsertRelationsArtistStyle([FromBody] CreateRelationsArtistStyleCommand rasCommand)
         {
             var response = await _mediator.Send(rasCommand);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Create RMT
+        /// </summary>
+        [HttpPost("MoodTag/Create")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public async Task<ActionResult<BaseResponse>> InsertRelationsMoodTag([FromBody] CreateRelationsMoodTagsCommand rmtCommand)
+        {
+            var response = await _mediator.Send(rmtCommand);
             return Ok(response);
         }
 

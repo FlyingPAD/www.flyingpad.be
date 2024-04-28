@@ -8,9 +8,17 @@ export interface RelationsArtistStyleForm
     styleIds : number[]
 }
 
+export interface RelationsMoodTagForm
+{
+    moodId : number
+    tagIds : number[]
+}
+
 // API Responses
 
 export interface CreateRelationsArtistStyleResponse extends BaseResponse {}
+
+export interface CreateRelationsMoodTagResponse extends BaseResponse {}
 
 export interface CheckRelationsArtistStyleByStyleResponse extends BaseResponse
 {

@@ -1,0 +1,47 @@
+<div id="layout-central" *ngIf="moodEditionFlow() as flow">
+    <!-- Title -->
+    <h2>Mood Edition</h2>    
+    <!-- Sticky Picture -->
+    <div id="sticky-pic">
+        <div *ngIf="flow.mood.type == 1">
+            <img src="{{environment}}/Content/img_thumbs/{{flow.mood.businessId}}.{{flow.mood.extension}}" />
+        </div>
+        <div *ngIf="flow.mood.type == 2">
+            <img src="{{environment}}/Content/video_thumbs/{{flow.mood.businessId}}.jpg" />
+        </div>
+    </div>
+    
+    <!-- Tags List Form -->    
+    <form (ngSubmit)="onSubmit()">
+        <div id="tags-wall">
+            <div *ngFor="let category of flow.tagsCheckBoxes">
+                <!-- Box -->
+                <div class="tags-box">
+                    <!-- Category Name -->
+                    <div class="box-category">
+                        <p>{{category.category.name}}</p> 
+                    </div>
+                    <!-- Tags in Category -->                    
+                    <div class="overflow">
+                        <div *ngFor="let tag of category.tagsCheckBoxes">
+                            <div>                                
+                                <label for="{{tag.name}}">
+                                    <span>{{tag.name}}</span>
+                                    <input type="checkbox" id="{{tag.name}}" value="{{tag.name}}" [checked]="tag.isChecked" (change)="tag.isChecked = !tag.isChecked">
+                                    <div class="custom-checkbox"></div>
+                                </label> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Submit button -->    
+        <div class="row-white">
+            <div class="form_buttons">
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
