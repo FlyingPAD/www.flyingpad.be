@@ -6,6 +6,7 @@ namespace MB.Application.Contracts.Persistence
     public interface IRelationRepository : IBaseRepository<RelationArtistStyle>
     {
         System.Threading.Tasks.Task RASInsertAsync(int artistId, List<int> styleIds);
+        System.Threading.Tasks.Task RMTInsertAsync(int moodId, List<int> tagIds);
         System.Threading.Tasks.Task DeleteRelationsByStyleIdAsync(int styleId);
         System.Threading.Tasks.Task DeleteRelationsByArtistIdAsync(int artistId);
         System.Threading.Tasks.Task<int> CheckRelationsArtistStyleByStyle(int styleId);

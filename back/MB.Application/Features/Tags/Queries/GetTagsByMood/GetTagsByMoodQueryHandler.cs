@@ -4,18 +4,11 @@ using MediatR;
 
 namespace MB.Application.Features.Tags.Queries.GetTagsByMood
 {
-    public class GetTagsByMoodQueryHandler : IRequestHandler<GetTagsByMoodQuery, GetTagsByMoodQueryResponse>
+    public class GetTagsByMoodQueryHandler(IMapper mapper, IMoodRepository moodRepository, ITagRepository tagRepository) : IRequestHandler<GetTagsByMoodQuery, GetTagsByMoodQueryResponse>
     {
-        private readonly IMapper _mapper;
-        private readonly IMoodRepository _moodRepository;
-        private readonly ITagRepository _tagRepository;
-
-        public GetTagsByMoodQueryHandler(IMapper mapper, IMoodRepository moodRepository, ITagRepository tagRepository)
-        {
-            _mapper = mapper;
-            _moodRepository = moodRepository;
-            _tagRepository = tagRepository;
-        }
+        private readonly IMapper _mapper = mapper;
+        private readonly IMoodRepository _moodRepository = moodRepository;
+        private readonly ITagRepository _tagRepository = tagRepository;
 
         public async Task<GetTagsByMoodQueryResponse> Handle(GetTagsByMoodQuery request, CancellationToken cancellationToken)
         {

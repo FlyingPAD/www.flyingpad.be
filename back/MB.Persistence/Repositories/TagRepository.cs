@@ -1,5 +1,6 @@
 ﻿using MB.Application.Contracts.Persistence;
 using MB.Application.Features.Tags.Queries.GetTagsByMood;
+using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
@@ -9,6 +10,16 @@ namespace MB.Persistence.Repositories
 {
     public class TagRepository(Context context) : BaseRepository<Tag>(context), ITagRepository
     {
+        public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
+        {
+            // Use LINQ to query styles by business ID and select their entity ID.
+
+            return await _context.Tags
+                                 .Where(tag => businessIds.Contains(tag.BusinessId))
+                                 .Select(tag => tag.EntityId)
+                                 .ToListAsync();
+        }
+
         public async Task<IEnumerable<GetTagsByMoodQueryVm>> GetTagsByMood(int? moodId)
         {
             var tagsVm = await _context.RMoodTag
@@ -22,6 +33,33 @@ namespace MB.Persistence.Repositories
                 .ToListAsync();
 
             return tagsVm;
+        }
+
+        public async Task<IEnumerable<GetTagsCheckBoxesListDto>> GetTagsCheckBoxesByMood(int? moodId)
+        {
+            var categoriesWithTags = await _context.TagCategories
+            .Include(tc => tc.Tags)
+            .ThenInclude(tag => tag.MoodTags)
+            .Select(tc => new GetTagsCheckBoxesListDto
+            {
+                Category = new TagCategoryDto
+                {
+                    BusinessId = tc.BusinessId,
+                    Name = tc.Name
+                },
+                TagsCheckBoxes = tc.Tags
+            .Select(tag => new GetTagsCheckBoxesDto
+            {
+                BusinessId = tag.BusinessId,
+                Name = tag.Name,
+                IsChecked = tag.MoodTags.Any(mt => mt.MoodId == moodId)
+            })
+            .OrderBy(tag => tag.Name)
+            .ToList()
+            })
+            .ToListAsync();
+
+            return categoriesWithTags;
         }
 
         public async Task<IEnumerable<GetTagsFullListQueryVm>> GetTagsFullListAsync()

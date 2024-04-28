@@ -26,7 +26,6 @@ namespace MB.Application.Features.Tags.Queries.GetTagsList
             }
             catch (Exception ex)
             {
-                // Gérez l'exception et renvoyez une réponse d'erreur
                 var response = new GetTagsListQueryResponse
                 {
                     Success = false,

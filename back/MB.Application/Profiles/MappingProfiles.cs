@@ -65,6 +65,7 @@ using MB.Application.Features.Tags.Commands.DeleteTag;
 using MB.Application.Features.Tags.Commands.UpdateTag;
 using MB.Application.Features.Tags.Queries.GetTagById;
 using MB.Application.Features.Tags.Queries.GetTagsByMood;
+using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
 using MB.Application.Features.Tags.Queries.GetTagsList;
 using MB.Application.Features.TaskCategories.Queries.GetTaskCategoriesList;
@@ -204,6 +205,7 @@ namespace MB.Application.Profiles
             CreateMap<Tag, TagListVm>().ReverseMap();
             CreateMap<Tag, GetTagByIdVm>().ReverseMap();
             CreateMap<Tag, GetTagsByMoodQueryVm>().ReverseMap();
+            CreateMap<Tag, GetTagsCheckBoxesDto>().ReverseMap();
 
             // Tag Categories :
 

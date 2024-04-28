@@ -4,6 +4,7 @@ using MB.Application.Features.Tags.Commands.UpdateTag;
 using MB.Application.Features.Tags.Queries.CountTags;
 using MB.Application.Features.Tags.Queries.GetTagById;
 using MB.Application.Features.Tags.Queries.GetTagsByMood;
+using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
 using MB.Application.Features.Tags.Queries.GetTagsList;
 using MediatR;
@@ -85,6 +86,16 @@ namespace MB.API.Controllers
         public async Task<ActionResult<GetTagsByMoodQueryResponse>> GetByMood( Guid moodId )
         {
             var response = await _mediator.Send( new GetTagsByMoodQuery { MoodId = moodId } );
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Get By Mood ( Checkboxes )
+        /// </summary>
+        [HttpGet("GetCheckBoxesByMood/{moodId}")]
+        public async Task<ActionResult<GetTagsCheckBoxesByMoodQueryResponse>> GetCheckBoxesByMood(Guid moodId)
+        {
+            var response = await _mediator.Send(new GetTagsCheckBoxesByMoodQuery { MoodId = moodId });
             return Ok(response);
         }
 

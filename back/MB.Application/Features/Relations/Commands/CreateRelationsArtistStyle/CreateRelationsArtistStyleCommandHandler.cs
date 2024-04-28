@@ -4,20 +4,12 @@ using MediatR;
 
 namespace MB.Application.Features.Relations.Commands.RAS
 {
-    public class CreateRelationsArtistStyleCommandHandler : IRequestHandler<CreateRelationsArtistStyleCommand, BaseResponse>
+    public class CreateRelationsArtistStyleCommandHandler(CreateRelationsArtistStyleCommandValidator validator, IArtistRepository artistRepository, IStyleRepository styleRepository, IRelationRepository relationRepository) : IRequestHandler<CreateRelationsArtistStyleCommand, BaseResponse>
     {
-        private readonly CreateRelationsArtistStyleCommandValidator _validator;
-        private readonly IArtistRepository _artistRepository;
-        private readonly IStyleRepository _styleRepository;
-        private readonly IRelationRepository _relationRepository;
-
-        public CreateRelationsArtistStyleCommandHandler(CreateRelationsArtistStyleCommandValidator validator, IArtistRepository artistRepository, IStyleRepository styleRepository, IRelationRepository relationRepository)
-        {
-            _validator = validator;
-            _artistRepository = artistRepository;
-            _styleRepository = styleRepository;
-            _relationRepository = relationRepository;
-        }
+        private readonly CreateRelationsArtistStyleCommandValidator _validator = validator;
+        private readonly IArtistRepository _artistRepository = artistRepository;
+        private readonly IStyleRepository _styleRepository = styleRepository;
+        private readonly IRelationRepository _relationRepository = relationRepository;
 
         public async Task<BaseResponse> Handle(CreateRelationsArtistStyleCommand request, CancellationToken cancellationToken)
         {
@@ -39,7 +31,7 @@ namespace MB.Application.Features.Relations.Commands.RAS
                 return new BaseResponse
                 {
                     Success = false,
-                    Message = "Artist not found."
+                    Message = "Artist was not found."
                 };
             }
 
@@ -49,7 +41,7 @@ namespace MB.Application.Features.Relations.Commands.RAS
                 return new BaseResponse
                 {
                     Success = false,
-                    Message = "One or more styles not found."
+                    Message = "One or more styles were not found."
                 };
             }
 

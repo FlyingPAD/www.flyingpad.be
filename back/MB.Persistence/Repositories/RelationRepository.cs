@@ -5,19 +5,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories
 {
-    public class RelationRepository : BaseRepository<RelationArtistStyle>, IRelationRepository
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="context"></param>
+    public class RelationRepository(Context context) : BaseRepository<RelationArtistStyle>(context), IRelationRepository
     {
         /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="context"></param>
-        public RelationRepository(Context context) : base(context)
-        {
-
-        }
-
-        /// <summary>
-        /// Insert Relations ' Artist / Style ' ( Async )
+        /// Insert Relations ' Artist / Style '
         /// </summary>
         /// <param name="artistId"></param>
         /// <param name="styleIds"></param>
@@ -25,7 +20,6 @@ namespace MB.Persistence.Repositories
         public async System.Threading.Tasks.Task RASInsertAsync(int artistId, List<int> styleIds)
         {
             // Delete existing relations
-
             var existingRelations = await _context.RArtistStyle
                 .Where(relation => relation.ArtistId == artistId)
                 .ToListAsync();
@@ -33,7 +27,6 @@ namespace MB.Persistence.Repositories
             _context.RArtistStyle.RemoveRange(existingRelations);
 
             // Add new relations
-
             foreach (var styleId in styleIds)
             {
                 var relation = new RelationArtistStyle
@@ -42,6 +35,35 @@ namespace MB.Persistence.Repositories
                     StyleId = styleId
                 };
                 await _context.RArtistStyle.AddAsync(relation);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// Insert Relations Mood / Tags
+        /// </summary>
+        /// <param name="moodId"></param>
+        /// <param name="tagIds"></param>
+        /// <returns></returns>
+        public async System.Threading.Tasks.Task RMTInsertAsync(int moodId, List<int> tagIds)
+        {
+            // Delete existing relations
+            var existingRelations = await _context.RMoodTag
+                .Where(relation => relation.MoodId == moodId)
+                .ToListAsync();
+
+            _context.RMoodTag.RemoveRange(existingRelations);
+
+            // Add new relations
+            foreach (var tagId in tagIds)
+            {
+                var relation = new RelationMoodTag
+                {
+                    MoodId = moodId,
+                    TagId = tagId
+                };
+                await _context.RMoodTag.AddAsync(relation);
             }
 
             await _context.SaveChangesAsync();
