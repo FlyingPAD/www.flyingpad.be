@@ -38,26 +38,27 @@ namespace MB.Persistence.Repositories
         public async Task<IEnumerable<GetTagsCheckBoxesListDto>> GetTagsCheckBoxesByMood(int? moodId)
         {
             var categoriesWithTags = await _context.TagCategories
-            .Include(tc => tc.Tags)
-            .ThenInclude(tag => tag.MoodTags)
-            .Select(tc => new GetTagsCheckBoxesListDto
-            {
-                Category = new TagCategoryDto
+                .Include(tc => tc.Tags)
+                    .ThenInclude(tag => tag.MoodTags)
+                .OrderBy(tc => tc.Name) // Ajoutez cette ligne pour trier les catégories par nom
+                .Select(tc => new GetTagsCheckBoxesListDto
                 {
-                    BusinessId = tc.BusinessId,
-                    Name = tc.Name
-                },
-                TagsCheckBoxes = tc.Tags
-            .Select(tag => new GetTagsCheckBoxesDto
-            {
-                BusinessId = tag.BusinessId,
-                Name = tag.Name,
-                IsChecked = tag.MoodTags.Any(mt => mt.MoodId == moodId)
-            })
-            .OrderBy(tag => tag.Name)
-            .ToList()
-            })
-            .ToListAsync();
+                    Category = new TagCategoryDto
+                    {
+                        BusinessId = tc.BusinessId,
+                        Name = tc.Name
+                    },
+                    TagsCheckBoxes = tc.Tags
+                        .Select(tag => new GetTagsCheckBoxesDto
+                        {
+                            BusinessId = tag.BusinessId,
+                            Name = tag.Name,
+                            IsChecked = tag.MoodTags.Any(mt => mt.MoodId == moodId)
+                        })
+                        .OrderBy(tag => tag.Name)
+                        .ToList()
+                })
+                .ToListAsync();
 
             return categoriesWithTags;
         }

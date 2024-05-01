@@ -24,7 +24,8 @@ namespace MB.Persistence
         public DbSet<Domain.Entities.Task> Tasks { get; set; }
         public DbSet<TaskCategory> TaskCategories { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Board> Board { get; set; }
+        public DbSet<Board> Boards { get; set; }
+        public DbSet<Book> Books { get; set; }
 
         // Extension Tables
         public DbSet<Document> ExtDocument { get; set; }
@@ -43,6 +44,8 @@ namespace MB.Persistence
         public DbSet<RelationMoodFranchise> RMoodFranchise { get; set; }
         public DbSet<RelationMoodModel> RMoodModel { get; set; }
         public DbSet<RelationMoodTag> RMoodTag { get; set; }
+        public DbSet<RelationBookFranchise> RBookFranchise { get; set; }
+        public DbSet<RelationBookModel> RBookModel { get; set; }
 
 
         /// <summary>
@@ -204,6 +207,36 @@ namespace MB.Persistence
                 .HasOne(relation => relation.Tag)
                 .WithMany(tag => tag.MoodTags)
                 .HasForeignKey(relation => relation.TagId);
+
+            // - Book / Franchise
+
+            modelBuilder.Entity<RelationBookFranchise>()
+                .HasKey(relation => new { relation.BookId, relation.FranchiseId });
+
+            modelBuilder.Entity<RelationBookFranchise>()
+                .HasOne(relation => relation.Book)
+                .WithMany(mood => mood.BookFranchise)
+                .HasForeignKey(relation => relation.BookId);
+
+            modelBuilder.Entity<RelationBookFranchise>()
+                .HasOne(relation => relation.Franchise)
+                .WithMany(tag => tag.BookFranchise)
+                .HasForeignKey(relation => relation.FranchiseId);
+
+            // - Book / Model
+
+            modelBuilder.Entity<RelationBookModel>()
+                .HasKey(relation => new { relation.BookId, relation.ModelId });
+
+            modelBuilder.Entity<RelationBookModel>()
+                .HasOne(relation => relation.Book)
+                .WithMany(mood => mood.BookModel)
+                .HasForeignKey(relation => relation.BookId);
+
+            modelBuilder.Entity<RelationBookModel>()
+                .HasOne(relation => relation.Model)
+                .WithMany(tag => tag.BookModel)
+                .HasForeignKey(relation => relation.ModelId);
 
             // Post Deployment Script
 

@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { MenuMobileService } from '../../../core/services/system/menu-mobile.service';
 import { MoodStateService } from '../../../core/services/mood-state.service';
 import { ArtistsStateService } from '../../../core/services/artists-state.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-artist-gallery',
@@ -14,8 +15,11 @@ export class ArtistGalleryComponent
   #moodsService = inject(MoodStateService)
   #artistsService = inject(ArtistsStateService)
   menuService = inject(MenuMobileService)
+  location = inject(Location)
 
   environment = environment.apiBaseUrl
+  topButtonIsActive = false
+  infoIsActive = false
 
   artistFlow = this.#artistsService.artistFlow
   
@@ -34,4 +38,40 @@ export class ArtistGalleryComponent
     this.#moodsService.updateSelectedMoodId(moodId)
   }
 
+  infoTrigger()
+  {
+    this.infoIsActive = !this.infoIsActive
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() 
+  {
+    const threshold = 100
+    const currentScrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
+    this.topButtonIsActive = currentScrollPosition > threshold
+  }
+
+  toTop() : void 
+  {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
+  // KEYBOARD CONFIGURATION
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) 
+  {
+    console.log(event.key)
+    switch (event.key) 
+    {
+      case 'Backspace':
+        this.location.back()
+        break
+      case 'Control':
+        this.infoTrigger()
+        break
+    }
+  }
 }

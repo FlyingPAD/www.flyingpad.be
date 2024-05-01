@@ -11,7 +11,7 @@ import { FranchiseStateService } from "../../../core/services/franchise-state.se
 import { ModelStateService } from "../../../core/services/model-state.service"
 import { MoodStateService } from "../../../core/services/mood-state.service"
 import { Location } from '@angular/common';
-import { Router } from "@angular/router"
+import { MenuDesktopService } from "../../../core/services/system/menu-desktop.service"
 
 @Component({
   selector: 'app-mood-details',
@@ -26,8 +26,8 @@ export class MoodDetailsComponent implements OnDestroy
   #modelsService = inject(ModelStateService)
   #franchiseService = inject(FranchiseStateService)
   #location = inject(Location)
+  menuService = inject(MenuDesktopService)
   userService = inject(UserService)
-  #router = inject(Router)
 
   environment :       string          = environment.apiBaseUrl  // API URL
   windowHeight :      number          = window.innerHeight      // Window Height
@@ -43,6 +43,8 @@ export class MoodDetailsComponent implements OnDestroy
   mood = this.#moodsService.getMoodFlow                         // Signal
   moods = this.#moodsService.newMoodsFlow                       // Signal
   model = this.#modelsService.model                             // Signal
+  topButtonIsActive = false                                     // To Top Button Trigger
+  infoIsActive = false                                          // Info Box Trigger
 
   ngOnDestroy() : void
   {
@@ -112,6 +114,7 @@ export class MoodDetailsComponent implements OnDestroy
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) 
   {
+    console.log(event.key)
     switch (event.key) 
     {
       case 'ArrowLeft':
@@ -134,7 +137,13 @@ export class MoodDetailsComponent implements OnDestroy
         break
       case '+':
         this.toggleFocus()
-        break;
+        break
+      case 'Control':
+        this.infoTrigger()
+        break
+      case '.':
+        this.menuTrigger()
+        break
     }
   }
 
@@ -256,5 +265,31 @@ export class MoodDetailsComponent implements OnDestroy
     {
       return media
     }
+  }
+
+  infoTrigger()
+  {
+    this.infoIsActive = !this.infoIsActive
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() 
+  {
+    const threshold = 100
+    const currentScrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
+    this.topButtonIsActive = currentScrollPosition > threshold
+  }
+
+  toTop() : void 
+  {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
+  menuTrigger()
+  {
+    this.menuService.menuRTrigger()
   }
 }

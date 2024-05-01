@@ -1,6 +1,3 @@
-<!-- To Top Button -->
-<app-button-top />
-
 <div id="layout-central" *ngIf="artistFlow() as flow">   
     <!-- Pagination -->
     <div class="row-sticky" *ngIf="flow.moods.length > mpp">
@@ -14,11 +11,13 @@
             <section>
                 <div *ngIf="mood.type == 1">           
                     <a routerLink="/moods/mood-details" (click)="updateMoodId(mood.businessId)">
-                        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"/></a>
+                        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"/>
+                    </a>
                 </div>
                 <div *ngIf="mood.type == 2">
                     <a routerLink="/moods/mood-details" (click)="updateMoodId(mood.businessId)">
-                        <img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"/></a>         
+                        <img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"/>
+                    </a>         
                 </div>
             </section>
         </div>
@@ -26,14 +25,51 @@
 </div>
 
 <div class="bar" *ngIf="artistFlow() as flow">
-    <a class="tweak"><div class="position"><b>{{ flow.artist.name }}</b></div></a>
-    <a class="tweak"><div class="position">{{ flow.moods.length | number : '4.0'}}</div></a>
+    <!-- Artist Name -->
+    <a class="tweak">
+        <div class="position"><b>{{ flow.artist.name }}</b></div>
+    </a>
+    <!-- Moods Count -->
+    <a class="tweak">
+        <div class="position">{{ flow.moods.length | number : '4.0'}}</div>
+    </a>
+    <!-- Google Search Buttons -->
     <a target="_blank" href="https://www.google.com/search?q={{flow.artist.name}}">
         <img src="../../../../assets/app_icons/google.png" />
     </a>
     <a target="_blank" href="https://images.google.com/images?q={{flow.artist.name}}">
         <img src="../../../../assets/app_icons/google_images.png" />
     </a>
-    <a class="tweak"><div class="position">{{flow.artist.created | date : 'd / M / y | HH:mm'}}</div></a>
-    <a class="tweak"><div class="position">{{flow.artist.modified | date : 'd / M / y | HH:mm'}}</div></a>
+    <!-- Info Button Trigger -->
+    <a (click)="infoTrigger()" [ngClass]="infoIsActive === true ? 'active' : '' ">
+        <img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" />
+    </a>
+    <!-- To Top Button -->
+    <a (click)="toTop()" *ngIf="topButtonIsActive === true">
+        <img src="../../../../assets/app_icons/arrow_up.png" />
+    </a>
+    <span *ngIf="topButtonIsActive === false">
+        <img src="../../../../assets/app_icons/arrow_up_no.png" />
+    </span>
+</div>
+
+<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="artistFlow() as flow">
+    <!-- Artist Name -->
+    <h1>{{ flow.artist.name }}</h1>
+    <!-- Related Info -->
+    <div class="flex">
+        <p><b>Moods</b></p>
+        <p>{{flow.moods.length}}</p>
+    </div>
+    <!-- Auditable Info -->
+    <div class="flex_created">
+        <div class="box_created">
+            <p>Created</p>
+            <p>{{ flow.artist.created | date : 'MMMM d, y | HH:mm' }}</p>
+        </div>
+        <div class="box_created">
+            <p>Modified</p>
+            <p>{{ flow.artist.modified | date : 'MMMM d, y | HH:mm' }}</p>
+        </div>
+    </div>
 </div>
