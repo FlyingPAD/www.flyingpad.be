@@ -10,3 +10,56 @@
         border-radius: 5px;
     }
 }
+
+.models
+{   
+    background-color: rgba(107, 82, 64, 0.1);
+    border-radius: 5px;
+    padding: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    a
+    {
+        display: flex;
+        align-items: center;
+        width: 135px;
+        padding: 5px;
+        margin: 5px;
+
+        background-color: rgba(255, 255, 255, 0.7);
+        border: 1px solid #6b5240;
+        border-radius: 5px;
+        color: #6b5240;   
+
+        text-decoration: none;
+        font-size: 13px;
+
+        white-space: nowrap;        /* Empêche le texte de passer à la ligne */
+        overflow: hidden;           /* Coupe le texte qui déborde */
+        text-overflow: ellipsis;    /* Ajoute les points de suspension à la fin du texte */
+
+        span
+        {
+            font-size: 25px;
+        }
+        .female
+        {
+            color: rgb(215, 0, 136);
+        }
+        .male
+        {
+            color: rgb(0, 149, 255);
+        }
+    }        
+    a:hover
+    {
+        background-color: #92715a;
+        color: rgba(255, 255, 255, 0.79);      
+        cursor: pointer;
+        transition-duration: 500ms;  
+    }
+}

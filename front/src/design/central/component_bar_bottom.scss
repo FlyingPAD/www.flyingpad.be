@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
 
-    a 
+    a, span 
     {
         margin: 0 3px;
         background-color: rgba(255, 255, 255, 0.7);
@@ -58,6 +58,20 @@
     {
         border: 1px solid var(--colorMain);
         cursor: pointer;
+    }
+    .active
+    {
+        border: 1px solid var(--colorMain);
+    }
+    span
+    {
+        border: 1px solid grey;
+        background-color: rgb(189, 189, 189, 0.8);
+        cursor: not-allowed;
+    }
+    .tweak
+    {
+        padding-left: 5px; padding-right: 5px;
     }
     .tweak:hover
     {

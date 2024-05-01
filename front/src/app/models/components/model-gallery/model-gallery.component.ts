@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { MenuMobileService } from '../../../core/services/system/menu-mobile.service';
 import { ModelStateService } from '../../../core/services/model-state.service';
 import { FranchiseStateService } from '../../../core/services/franchise-state.service';
 import { MoodStateService } from '../../../core/services/mood-state.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-model-gallery',
@@ -16,11 +17,14 @@ export class ModelGalleryComponent
   #moodsService = inject(MoodStateService)
   #franchisesService = inject(FranchiseStateService)
   menuService = inject(MenuMobileService)
+  location = inject(Location)
 
   mpp : number = 36                       // Pagination
   p : number = 1                          // Pagination
   environment = environment.apiBaseUrl    // API URL
-  model = this.#modelsService.model       // Signal
+  topButtonIsActive = false               // To Top Button Trigger
+  infoIsActive = false                    // Info Box Trigger
+  model = this.#modelsService.model       // Signal Flow
 
   updateFranchiseId(franchiseId : number | null)
   {
@@ -37,5 +41,42 @@ export class ModelGalleryComponent
   {
     this.#moodsService.updateSelectedGalleryType('')
     this.#moodsService.updateSelectedMoodId(null)
+  }
+
+  infoTrigger()
+  {
+    this.infoIsActive = !this.infoIsActive
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() 
+  {
+    const threshold = 100
+    const currentScrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
+    this.topButtonIsActive = currentScrollPosition > threshold
+  }
+
+  toTop() : void 
+  {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
+  // KEYBOARD CONFIGURATION
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) 
+  {
+    console.log(event.key)
+    switch (event.key) 
+    {
+      case 'Backspace':
+        this.location.back()
+        break
+      case 'Control':
+        this.infoTrigger()
+        break
+    }
   }
 }

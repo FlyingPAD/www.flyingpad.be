@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { MoodStateService } from '../../../core/services/mood-state.service';
 import { environment } from '../../../../environments/environment';
 import { RelationService } from '../../../core/services/client/client-relation.service';
@@ -40,9 +40,21 @@ export class MoodEditionComponent
 
     this.#relationService.InsertRMT(rmtForm).subscribe({
       next : () => {
-        this.#router.navigateByUrl('/moods/mood-details-tags')
+        this.#router.navigateByUrl('/moods/mood-details')
         this.#moodService.updateSelectedMoodId(rmtForm.moodId)
       }
     })
+  }
+
+  // KEYBOARD CONFIGURATION
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) 
+  {
+    switch (event.key) 
+    {
+      case 'Enter':
+        this.onSubmit()
+        break
+    }
   }
 }

@@ -1,6 +1,4 @@
-﻿using MB.Domain.Common;
-
-namespace MB.Domain.Entities
+﻿namespace MB.Domain.Entities
 {
     public class RelationMoodTag
     {
