@@ -4,14 +4,16 @@
 
 #layout-central
 {
-    #sub_gallery 
+    .gallery
     {
         padding: 20px;
         padding-top: 20px;
         padding-bottom: 20px;
         columns: 6;
-        margin-left: 25px; margin-right: 350px;
         margin-bottom: 150px;
+
+        transition-duration: 500ms;
+        transition-timing-function: ease-out;
 
         section 
         {
@@ -51,107 +53,42 @@
             }
         }
     }
-
-    #sub_gallery_full
+    .menu-open
     {
-        padding: 20px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        columns: 6;
-        margin-left: 25px; margin-right: 25px;
-        margin-bottom: 150px;
-
-        section 
-        {
-            margin-left: 0px;
-            margin-right: 25px;
-            margin-top: 0px;
-            margin-bottom: 20px;
-
-            img, video
-            {
-                width: 100%;
-                border: 10px solid rgba(255, 255, 255, 0);
-                border-radius: 30px;
-            }
-            img:hover 
-            {
-                border: 10px solid rgb(255, 255, 255);
-                border-radius: 10px;
-                box-shadow: 0 6px 12px 0px #502a0e;
-                cursor: pointer;
-                transition-duration: 500ms;
-            }
-            .vid 
-            {
-                box-shadow: 0 0 0 1px var(--colorMain);
-            }
-            .vid-youtube 
-            {
-                box-shadow: 0 0 0 1px red;
-            } 
-            .active
-            {
-                border: 10px solid rgb(255, 255, 255);
-                border-radius: 10px;
-                box-shadow: 0 6px 12px 0px #502a0e;
-                transition-duration: 500ms;
-            }
-        }
+        margin-right: 305px;
     }
-
 
     @media screen and (max-width: 550px) 
     {
-        #sub_gallery 
-        {
-            columns: 2;
-        }
-        #sub_gallery_full
+        .gallery 
         {
             columns: 2;
         }
     }
     @media screen and (min-width: 550px) and (max-width: 850px) 
     {
-        #sub_gallery 
-        {
-            columns: 3;
-        }
-        #sub_gallery_full
+        .gallery 
         {
             columns: 3;
         }
     }
     @media screen and (min-width: 850px) and (max-width: 1150px) 
     {
-        #sub_gallery 
-        {
-            columns: 4;
-        }
-        #sub_gallery_full
+        .gallery 
         {
             columns: 4;
         }
     }
     @media screen and (min-width: 1150px) and (max-width: 1500px) 
     {
-        #sub_gallery 
-        {
-            columns: 2;
-        }
-        #sub_gallery_full
+        .gallery 
         {
             columns: 2;
         }
     }
     @media screen and (max-width: 1150px) 
     {
-        #sub_gallery 
-        {
-            margin: 0;
-        }
-        #sub_gallery_full
+        .gallery 
         {
             margin: 0;
         }

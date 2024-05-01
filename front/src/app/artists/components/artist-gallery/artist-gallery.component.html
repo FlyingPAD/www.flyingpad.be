@@ -6,7 +6,7 @@
         </div>
     </div>   
     <!-- Gallery -->
-    <div id="sub_gallery_full">
+    <div class="gallery">
         <div *ngFor="let mood of flow.moods | paginate : { itemsPerPage: mpp, currentPage: p }">
             <section>
                 <div *ngIf="mood.type == 1">           
