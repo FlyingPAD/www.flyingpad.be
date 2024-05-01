@@ -14,7 +14,7 @@
         </div>
     </div>
     <!-- Moods Gallery -->
-    <div id="sub_gallery_full">
+    <div class="gallery">
         <div *ngFor="let m of franchise.moods | paginate : { itemsPerPage: mpp, currentPage: p }">
             <section>
                 <div *ngIf="m.type == 1">           

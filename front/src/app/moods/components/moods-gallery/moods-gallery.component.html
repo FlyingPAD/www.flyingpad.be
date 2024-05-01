@@ -27,7 +27,7 @@
             </div>  
         </div> 
         <!-- Gallery -->
-        <div id="sub_gallery_full">
+        <div [ngClass]="menuService.menuRActive === true ? 'gallery menu-open' : 'gallery' ">
             <div *ngFor="let mood of moods().moodsList | paginate : { itemsPerPage : moodsPerPage, currentPage : currentPage }">
                 <section>
                     <div *ngIf="mood.type == 1">           
@@ -61,19 +61,12 @@
 
 <div class="bar" *ngIf="moods() as flow">
     <!-- Tag Name -->
-    <a class="tweak" *ngIf="flow.tagDetails?.businessId !== 0">
+    <a class="tweak" *ngIf="flow.tagDetails?.name">
         <div class="position"><b>{{ flow.tagDetails?.name }}</b></div>
     </a>
     <!-- Moods Count -->
     <a class="tweak">
         <div class="position">{{ flow.moodsList.length | number : '4.0'}}</div>
-    </a>
-    <!-- Google Search Buttons -->
-    <a target="_blank" href="https://www.google.com/search?q={{flow.tagDetails?.name}}" *ngIf="flow.tagDetails?.name != '...'">
-        <img src="../../../../assets/app_icons/google.png" />
-    </a>
-    <a target="_blank" href="https://images.google.com/images?q={{flow.tagDetails?.name}}" *ngIf="flow.tagDetails?.name != '...'">
-        <img src="../../../../assets/app_icons/google_images.png" />
     </a>
     <!-- Info Button -->
     <a (click)="infoTrigger()" [ngClass]="infoIsActive === true ? 'active' : '' ">
@@ -103,7 +96,7 @@
         <p>{{flow.moodsList.length | number : '4.0'}}</p>
     </div>
     <!-- Auditable Info -->
-    <div class="flex_created">
+    <div class="flex_created" *ngIf="flow.tagDetails?.name">
         <div class="box_created">
             <p>Created :</p>
             <p>{{ flow.tagDetails?.created | date : 'MMMM d, y | HH:mm' }}</p>
