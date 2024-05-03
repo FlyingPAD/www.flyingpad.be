@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { BehaviorSubject, switchMap, map, combineLatest, of, tap, catchError, take } from "rxjs";
+import { BehaviorSubject, switchMap, map, combineLatest, of, tap, catchError, take, Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { GetModelsByMoodResponse } from "../models/model";
-import { GetMoodsByArtistResponse, GetMoodsByModelResponse, GetMoodsByTagResponse, MoodFull, MoodsGetAllResponse, MoodsGetOneDetailsResponse, UpdateMoodScoreCall, UpdateMoodScoreResponse } from "../models/mood";
+import { GetMoodsByArtistResponse, GetMoodsByModelResponse, GetMoodsByTagResponse, MoodFull, MoodUpdateForm, MoodUpdateResponse, MoodsGetAllResponse, MoodsGetOneDetailsResponse, UpdateMoodScoreCall, UpdateMoodScoreResponse } from "../models/mood";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { GetFranchisesByMoodResponse } from "../models/franchise";
 import { GetOneTagDetailsResponse, GetTagsByMoodResponse, GetTagsCheckBoxesByMoodResponse } from "../models/tag";
@@ -300,13 +300,20 @@ export class MoodStateService
             tagsCheckBoxes
           })),
           catchError(error => {
-            console.error('Erreur lors de la récupération des données du mood ou des tags:', error);
-            return of({ mood: new MoodFull(), tagsCheckBoxes: [] }); // Retourner des valeurs par défaut en cas d'erreur
+            console.error('Erreur lors de la récupération des données du mood ou des tags:', error)
+            return of({ mood: new MoodFull(), tagsCheckBoxes: [] })
           })
-        );
+        )
       }
     })
-  );
-  
-  moodEditionFlow = toSignal(this.moodEditionFlow$, { initialValue: { mood: new MoodFull(), tagsCheckBoxes: [] } });
+  )
+  moodEditionFlow = toSignal(this.moodEditionFlow$, { initialValue: { mood: new MoodFull(), tagsCheckBoxes: [] } })
+
+  // Update Mood
+  public UpdateMood( form : MoodUpdateForm ) : Observable<number> 
+  { 
+    return this.#http.put<MoodUpdateResponse>(`${this.#url}Moods/Update`, form).pipe(
+      map(response => response.businessId)
+    )
+  }
 }

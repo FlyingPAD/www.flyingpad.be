@@ -1,0 +1,46 @@
+.mood-update-form
+{
+    margin-top: 10px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    form
+    {
+        .form-item
+        {
+            padding: 8px;
+            margin: 8px;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+        input:focus
+        {
+            outline: none;
+            border: 2px solid #413429;
+        }
+        button
+        {
+            width: 100px;
+            border: 2px solid #413429;
+            background-color: #6b5240;          
+            text-align: center;
+            letter-spacing: 1px;
+            color:#ffffff;
+        }
+        button:hover
+        {
+            background-color: rgb(255, 255, 255);
+            color:#6b5240;
+            cursor: pointer;
+            transition-duration: 500ms;
+        }
+        button:disabled 
+        {
+            background-color: rgba(192, 192, 192, 0.8);
+            color: rgba(102, 102, 102);
+            cursor: not-allowed;
+        }
+    }
+}

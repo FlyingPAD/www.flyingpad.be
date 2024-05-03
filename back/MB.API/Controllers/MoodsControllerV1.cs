@@ -133,13 +133,8 @@ namespace MB.API.Controllers
         /// </summary>
         [HttpPut("Update")]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public async Task<ActionResult<UpdateMoodCommandResponse>> Update(Guid moodId, [FromBody] UpdateMoodCommand updateMoodCommand)
+        public async Task<ActionResult<UpdateMoodCommandResponse>> Update([FromBody] UpdateMoodCommand updateMoodCommand)
         {
-            if (moodId != updateMoodCommand.Id)
-            {
-                return BadRequest("ID in the URL does not match ID in the request body.");
-            }
-
             var response = await _mediator.Send(updateMoodCommand);
             return Ok(response);
         }

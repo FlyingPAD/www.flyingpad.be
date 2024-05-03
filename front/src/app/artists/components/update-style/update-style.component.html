@@ -1,12 +1,12 @@
 <div id="layout-central" *ngIf="styleFlow() as flow">
-    <h2>Update Style</h2>
-    
-    <div class="style-update-form">  
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    
-        <input #styleNameInput class="form-item" type="text" formControlName="name" value="{{flow.style?.name}}">
-        <button class="form-item" type="submit" [disabled]="form.invalid">Submit</button>
-    
-      </form>
-    </div>
+  <h2>Update Style</h2>
+  
+  <div class="style-update-form">  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  
+      <input #styleNameInput class="form-item" type="text" formControlName="name" value="{{flow.style?.name}}">
+      <button class="form-item" type="submit" [disabled]="form.invalid">Submit</button>
+  
+    </form>
+  </div>
 </div>
