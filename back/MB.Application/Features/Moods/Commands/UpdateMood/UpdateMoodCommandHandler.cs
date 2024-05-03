@@ -18,11 +18,11 @@ namespace MB.Application.Features.Moods.Commands.UpdateMood
 
         public async Task<UpdateMoodCommandResponse> Handle(UpdateMoodCommand request, CancellationToken cancellationToken)
         {
-            var mood = await _moodRepository.GetByBusinessIdAsync(request.Id);
+            var mood = await _moodRepository.GetByBusinessIdAsync(request.MoodId);
 
             if (mood == null)
             {
-                return new UpdateMoodCommandResponse { Success = false, Message = "Mood wasn't found :(" };
+                return new UpdateMoodCommandResponse { Success = false, Message = "Mood was not found." };
             }
 
             _mapper.Map(request, mood);
@@ -34,10 +34,9 @@ namespace MB.Application.Features.Moods.Commands.UpdateMood
             return new UpdateMoodCommandResponse
             {
                 Success = true,
-                Message = "Mood was Updated :)",
+                Message = "Mood was successfully updated.",
                 UpdatedMood = updatedMoodDto
             };
         }
-
     }
 }

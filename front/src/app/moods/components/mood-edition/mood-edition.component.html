@@ -1,6 +1,11 @@
 <div id="layout-central" *ngIf="moodEditionFlow() as flow">
-    <!-- Title -->
-    <h2>Mood Edition</h2>    
+    <div class="mood-update-form">  
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+          <input #MoodNameInput class="form-item" type="text" formControlName="name" value="{{flow.mood.name}}">
+          <input #MoodDescriptionInput class="form-item" type="text" formControlName="description" value="{{flow.mood.description}}">    
+        </form>
+    </div>
+
     <!-- Sticky Picture -->
     <div id="sticky-pic">
         <div *ngIf="flow.mood.type == 1">

@@ -207,27 +207,29 @@ export class ArtistsStateService
     );
   }
 
-    // Update Artist
-    public UpdateArtist(formGroup: ArtistCreateFormGroup): Observable<ArtistsCreateResponse> {
-      let styleIds: number[] = formGroup.styles.filter(style => style.isChecked).map(style => style.businessId);
-      let createForm: ArtistCreateForm = { name: formGroup.name };
-    
-      return this.#http.post<ArtistsCreateResponse>(`${this.#url}Artists/Update`, createForm).pipe(
-        switchMap(response => {
-          this.updateSelectedArtistId(response.artist.businessId);
-          this.#artistsUpdated.next(true);  // Déplacer ici pour garantir l'exécution
-    
-          if (styleIds.length > 0) {
-            let rasForm: RelationsArtistStyleForm = { artistId: response.artist.businessId, styleIds: styleIds };
-            return this.InsertRAS(rasForm).pipe(
-              map(() => response)
-            );
-          }
-    
-          return of(response);
-        })
-      );
-    }
+  // Update Artist
+  public UpdateArtist( formGroup : ArtistCreateFormGroup ) : Observable<ArtistsCreateResponse> 
+  {
+    let styleIds: number[] = formGroup.styles.filter(style => style.isChecked).map(style => style.businessId);
+    let createForm: ArtistCreateForm = { name: formGroup.name };
+  
+    return this.#http.post<ArtistsCreateResponse>(`${this.#url}Artists/Update`, createForm).pipe(
+      switchMap(response => 
+        {
+        this.updateSelectedArtistId(response.artist.businessId);
+        this.#artistsUpdated.next(true)
+  
+        if (styleIds.length > 0) 
+        {
+          let rasForm: RelationsArtistStyleForm = { artistId: response.artist.businessId, styleIds: styleIds }
+          return this.InsertRAS(rasForm).pipe(
+            map(() => response)
+          )
+        }
+        return of(response)
+      })
+    )
+  }
 
   // Insert Relation ( Artist / Style )
   public InsertRAS( rasForm : RelationsArtistStyleForm ) : Observable<CreateRelationsArtistStyleResponse>
