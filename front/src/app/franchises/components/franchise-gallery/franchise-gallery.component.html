@@ -61,7 +61,7 @@
     </span>
 </div>
 
-<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="franchise() as flow">
+<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="franchise() as flow" (click)="infoTrigger()">
     <!-- Franchise Name -->
     <h1>{{ flow.franchise.name }}</h1>
     <!-- Related Info -->

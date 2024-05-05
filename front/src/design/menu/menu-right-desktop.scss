@@ -6,8 +6,6 @@
 
 #menu_right_desktop
 {
-    display: none;
-
     width: 310px;
     height: 100%;
 
@@ -18,7 +16,6 @@
     backdrop-filter: blur(3px);
 
     z-index: 17;
-    transition-duration: 500ms;
 
     margin-top: 2px;
 }
@@ -35,18 +32,7 @@
 {
     position: fixed;
     top: 0;
-    right: -1150px;
+    right: -310px;
     opacity: 0;
     transition-duration: 500ms;
-}
-
-// -----------------------
-// - MEDIA QUERIES :
-
-@media (min-width: 1150px) 
-{
-    #menu_right_desktop
-    {
-        display: block;
-    }
 }

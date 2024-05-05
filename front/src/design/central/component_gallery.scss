@@ -11,9 +11,9 @@
         padding-bottom: 20px;
         columns: 6;
         margin-bottom: 150px;
+        margin-right: 45px;
 
         transition-duration: 500ms;
-        transition-timing-function: ease-out;
 
         section 
         {
@@ -55,7 +55,7 @@
     }
     .menu-open
     {
-        margin-right: 305px;
+        margin-right: 355px;
     }
 
     @media screen and (max-width: 550px) 

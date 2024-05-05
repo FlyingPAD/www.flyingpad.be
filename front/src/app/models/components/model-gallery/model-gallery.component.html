@@ -51,7 +51,7 @@
     </span>
 </div>
 
-<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="model() as flow">
+<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="model() as flow" (click)="infoTrigger()">
     <!-- Model Pseudonym -->
     <h1>{{ flow.model.pseudonym }}</h1>
     <!-- Model Name -->

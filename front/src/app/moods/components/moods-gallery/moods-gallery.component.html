@@ -59,6 +59,10 @@
     </ng-template>
 </div>
 
+<div class="tags-trigger" [ngClass]="menuService.menuRActive === true ? 'tags-trigger-on' : '' " (click)="menuTrigger()">
+    <div class="tags-trigger-arrow"></div>
+</div>
+
 <div class="bar" *ngIf="moods() as flow">
     <!-- Tag Name -->
     <a class="tweak" *ngIf="flow.tagDetails?.name">
@@ -72,10 +76,6 @@
     <a (click)="infoTrigger()" [ngClass]="infoIsActive === true ? 'active' : '' ">
         <img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" />
     </a>
-    <!-- Show Tags -->
-    <a class="toggle" (click)="menuTrigger()" [ngClass]="menuService.menuRActive === true ? 'active' : '' ">
-        <img appAnimGrow src="../../../../assets/app_icons/icon_tags_001.png" />
-    </a>
     <!-- To Top Button -->
     <a (click)="toTop()" *ngIf="topButtonIsActive === true">
         <img src="../../../../assets/app_icons/arrow_up.png" />
@@ -85,7 +85,7 @@
     </span>
 </div>
 
-<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="moods() as flow">
+<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="moods() as flow" (click)="infoTrigger()">
     <!-- Tag Name -->
     <h1>{{ flow.tagDetails?.name }}</h1>
     <!-- Tag Description -->
