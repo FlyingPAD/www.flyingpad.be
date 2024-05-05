@@ -50,6 +50,10 @@
     </div>
 </div>
 
+<div class="tags-trigger" [ngClass]="menuService.menuRActive === true ? 'tags-trigger-on' : '' " (click)="menuTrigger()">
+    <div class="tags-trigger-arrow"></div>
+</div>
+
 <div class="bar" *ngIf="moods() as moods">
     <!-- Previous Page -->
     <a (click)="getPage('previous')">
@@ -97,10 +101,6 @@
     <a (click)="infoTrigger()" [ngClass]="infoIsActive == true ? 'active' : '' ">
         <img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" />
     </a>
-    <!-- Show Tags -->
-    <a class="toggle" (click)="menuTrigger()" [ngClass]="menuService.menuRActive === true ? 'active' : '' ">
-        <img src="../../../../assets/app_icons/icon_tags_001.png" />
-    </a>
     <!-- Random Button -->
     <a (click)="getRandomMood()">
         <img appAnimRandom src="../../../../assets/app_icons/random.png" />
@@ -111,7 +111,7 @@
     </a>
 </div>
 
-<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="mood() as flow">
+<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="mood() as flow" (click)="infoTrigger()">
     <h1 *ngIf="flow.mood.name !== '...' ">{{ flow.mood.name }}</h1>
     <p *ngIf="flow.mood.name !== '...' ">{{flow.mood.description}}</p>
     <div *ngIf="userService.appUser.role === 2 && flow.franchises.length">
