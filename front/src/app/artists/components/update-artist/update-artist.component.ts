@@ -1,16 +1,16 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { ArtistsStateService } from '../../../core/services/artists-state.service';
+import { ArtistsStateService } from '../../../core/services/artists.service';
 
 @Component({
   selector: 'app-update-artist',
   templateUrl: './update-artist.component.html',
   styleUrls: ['./update-artist.component.scss']
 })
-export class UpdateArtistComponent
+export class UpdateArtistComponent implements OnDestroy
 {
   #artistsService = inject(ArtistsStateService)
   #builder = inject(FormBuilder)

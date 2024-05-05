@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { FranchiseStateService } from '../../../core/services/franchise-state.service';
-import { ModelStateService } from '../../../core/services/model-state.service';
+import { FranchiseStateService } from '../../../core/services/franchise.service';
+import { ModelStateService } from '../../../core/services/model.service';
 import { Router } from '@angular/router';
-import { MoodStateService } from '../../../core/services/mood-state.service';
+import { MoodStateService } from '../../../core/services/mood.service';
 
 @Component({
   selector: 'app-gallery',

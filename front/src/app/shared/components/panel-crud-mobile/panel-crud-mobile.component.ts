@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { MenuMobileService } from '../../../core/services/system/menu-mobile.service';
+import { MenuMobileService } from '../../../core/services/menu-mobile.service';
 
 @Component({
   selector: 'app-panel-crud-mobile',

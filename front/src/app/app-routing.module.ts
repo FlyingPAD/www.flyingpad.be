@@ -5,6 +5,7 @@ import { HomeComponent } from './core/components/home/home.component';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { GalleryComponent } from './links/components/gallery/gallery.component';
 import { LayoutCustomComponent } from './core/layouts/layout-custom/layout-custom.component';
+import { VideoTestComponent } from './core/components/video-test/video-test.component';
 
 const routes: Routes = 
 [
@@ -15,6 +16,7 @@ const routes: Routes =
       { path : 'home', component : HomeComponent, title : 'Flying PAD | Home' },
       { path : 'about', component : AboutComponent, title : 'Flying PAD | About' },
       { path : 'not-found', component : NotFoundComponent, title : 'Flying PAD | Not Found' },
+      { path : 'video-test', component : VideoTestComponent, title : 'Flying PAD | Video Test' },
     ]
   },
 

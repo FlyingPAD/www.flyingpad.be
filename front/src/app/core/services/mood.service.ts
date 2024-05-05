@@ -53,44 +53,42 @@ export class MoodStateService
         case 'tag':
           return this.selectedTagId$.pipe(
             switchMap(tagId => {
-              if (tagId === null) {
-                return of({ moodsList: [], tagDetails: null })
-              } else {
+              if (tagId === null) return of({ moodsList: [], tagDetails: null })
+              else 
+              {
                 return combineLatest([
                   this.getMoodsByTag(tagId),
                   this.getOneTagDetails(tagId)
                 ]).pipe(
                   map(([moods, tagDetails]) => ({
-                    moodsList: moods.sort((a, b) => b.score - a.score),
-                    tagDetails: tagDetails // Ajout des détails du tag
-                  }))
-                );
-              }
-            })
-          );
-  
-        case 'artist':
-          return this.selectedArtistId$.pipe(
-            switchMap(artistId => {
-              if (artistId === null) {
-                return of({ moodsList: [], tagDetails: null })
-              } else {
-                return this.getMoodsByArtist(artistId).pipe(
-                  map(moods => ({
-                    moodsList: moods.sort((a, b) => b.score - a.score),
-                    tagDetails: null
+                    moodsList : moods.sort((a, b) => b.score - a.score),
+                    tagDetails : tagDetails
                   }))
                 )
               }
             })
-          )
-  
+          )  
+        case 'artist':
+          return this.selectedArtistId$.pipe(
+            switchMap(artistId => {
+              if (artistId === null) return of({ moodsList: [], tagDetails: null })
+              else 
+              {
+                return this.getMoodsByArtist(artistId).pipe(
+                  map(moods => ({
+                    moodsList : moods.sort((a, b) => b.score - a.score),
+                    tagDetails : null
+                  }))
+                )
+              }
+            })
+          )  
         case 'model':
           return this.selectedModelId$.pipe(
             switchMap(modelId => {
-              if (modelId === null) {
-                return of({ moodsList: [], tagDetails: null })
-              } else {
+              if (modelId === null) return of({ moodsList: [], tagDetails: null })
+              else 
+              {
                 return this.getMoodsByModel(modelId).pipe(
                   map(moods => ({
                     moodsList: moods.sort((a, b) => b.score - a.score),
@@ -99,8 +97,7 @@ export class MoodStateService
                 )
               }
             })
-          )
-  
+          )  
         default:
           return this.#http.get<MoodsGetAllResponse>(`${this.#url}Moods/GetAll`).pipe(
             map(response => ({
@@ -111,14 +108,12 @@ export class MoodStateService
       }
     })
   )
-  moodsFlow = toSignal(this.moodsFlow$, { initialValue: { moodsList: [], tagDetails: null } });
+  moodsFlow = toSignal(this.moodsFlow$, { initialValue: { moodsList: [], tagDetails: null } })
 
   moodFlow$ = this.#selectedMoodId.pipe(
     switchMap(moodId => this.getMood(moodId)),
     switchMap(mood => {
-      if (!mood || mood.businessId == null) {
-        return of({ mood: new MoodFull(), models: [], franchises: [], artists : [], tags: [], media: null })
-      }
+      if (!mood || mood.businessId == null) return of({ mood: new MoodFull(), models: [], franchises: [], artists : [], tags: [], media: null })
       let mediaObservable$
       switch (mood.type) 
       {
@@ -179,13 +174,11 @@ export class MoodStateService
 
   getMood(moodId: number | null) 
   {
-    const url = moodId === null ? `${this.#url}Moods/GetOneDetailsRandom` : `${this.#url}Moods/GetOneDetails/${moodId}`;
+    const url = moodId === null ? `${this.#url}Moods/GetOneDetailsRandom` : `${this.#url}Moods/GetOneDetails/${moodId}`
     return this.#http.get<MoodsGetOneDetailsResponse>(url).pipe(
-      tap(response => {
-        if (moodId === null && response.mood && response.mood.businessId) 
-        {
-          this.updateSelectedMoodId(response.mood.businessId);
-        }
+      tap(response => 
+      {
+        if (moodId === null && response.mood && response.mood.businessId) this.updateSelectedMoodId(response.mood.businessId)
       }),
       map(response => response.mood)
     )
@@ -267,9 +260,7 @@ export class MoodStateService
       switchMap(form => {
         return this.#http.put<UpdateMoodScoreResponse>(`${this.#url}Moods/UpdateScore`, form).pipe(
           tap(response => {
-            if (response.success) {
-              this.updateSelectedMoodId(form.businessId)
-            }
+            if (response.success) this.updateSelectedMoodId(form.businessId)
           }),
           catchError(error => {
             console.error('Erreur lors de la mise à jour du score:', error)
@@ -288,9 +279,9 @@ export class MoodStateService
 
   moodEditionFlow$ = this.selectedMoodId$.pipe(
     switchMap(moodId => {
-      if (moodId === null) {
-        return of({ mood: new MoodFull(), tagsCheckBoxes: [] });
-      } else {
+      if (moodId === null) return of({ mood: new MoodFull(), tagsCheckBoxes: [] })
+      else 
+      {
         return combineLatest([
           this.getMood(moodId),
           this.getTagsCheckBoxesByMood(moodId)

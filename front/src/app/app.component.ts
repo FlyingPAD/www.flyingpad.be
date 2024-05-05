@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { UserService } from './core/services/client/client-user.service';
-import { CustomCookieService } from './core/services/system/cookie.service';
-import { AuthService } from './core/services/client/client-auth.service';
+import { UserService } from './core/services/user.service';
+import { CustomCookieService } from './core/services/cookie.service';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',

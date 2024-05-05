@@ -1,7 +1,7 @@
 import { Component, HostListener, OnDestroy, inject } from '@angular/core';
-import { MoodStateService } from '../../../core/services/mood-state.service';
+import { MoodStateService } from '../../../core/services/mood.service';
 import { environment } from '../../../../environments/environment';
-import { RelationService } from '../../../core/services/client/client-relation.service';
+import { RelationService } from '../../../core/services/relation.service';
 import { RelationsMoodTagForm } from '../../../core/models/relations';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

@@ -68,4 +68,11 @@ export class ModelStateService
       map(response => response.franchisesByModel)
     )
   }
+
+  #currentmodelSubject =  new BehaviorSubject<ModelDetails>(new ModelDetails())
+  get currentModel$()         { return this.#currentmodelSubject.asObservable() }
+  updateCurrentModel( model : ModelDetails ) 
+  {
+    this.#currentmodelSubject.next( model )
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { MenuDesktopService } from '../../../core/services/system/menu-desktop.service';
+import { MenuDesktopService } from '../../../core/services/menu-desktop.service';
 
 @Component({
   selector: 'app-menu-right-desktop',

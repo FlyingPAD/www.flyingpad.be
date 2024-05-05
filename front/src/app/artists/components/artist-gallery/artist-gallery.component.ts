@@ -1,8 +1,8 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { MenuMobileService } from '../../../core/services/system/menu-mobile.service';
-import { MoodStateService } from '../../../core/services/mood-state.service';
-import { ArtistsStateService } from '../../../core/services/artists-state.service';
+import { MenuMobileService } from '../../../core/services/menu-mobile.service';
+import { MoodStateService } from '../../../core/services/mood.service';
+import { ArtistsStateService } from '../../../core/services/artists.service';
 import { Location } from '@angular/common';
 
 @Component({
