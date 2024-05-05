@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FranchiseStateService } from '../../../core/services/franchise-state.service';
+import { FranchiseStateService } from '../../../core/services/franchise.service';
 
 @Component({
   selector: 'app-media-gallery',

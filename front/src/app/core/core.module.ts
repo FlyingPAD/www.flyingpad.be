@@ -7,6 +7,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutCustomComponent } from './layouts/layout-custom/layout-custom.component';
+import { VideoTestComponent } from './components/video-test/video-test.component';
 
 @NgModule({
   declarations: 
@@ -16,6 +17,7 @@ import { LayoutCustomComponent } from './layouts/layout-custom/layout-custom.com
     NotFoundComponent,
     LayoutEmptyComponent,
     LayoutCustomComponent,
+    VideoTestComponent,
   ],
   imports: 
   [

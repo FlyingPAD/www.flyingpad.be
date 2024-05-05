@@ -1,9 +1,9 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { MoodStateService } from '../../../core/services/mood-state.service';
+import { MoodStateService } from '../../../core/services/mood.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { TagStateService } from '../../../core/services/tag-state.service';
-import { MenuDesktopService } from '../../../core/services/system/menu-desktop.service';
+import { MenuDesktopService } from '../../../core/services/menu-desktop.service';
 import { Location } from '@angular/common';
 
 @Component({

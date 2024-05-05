@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../services/client/client-auth.service';
-import { UserService } from '../../services/client/client-user.service';
-import { MenuCustomService } from '../../services/system/menu-custom.service';
+import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
+import { MenuCustomService } from '../../services/menu-custom.service';
 
 @Component({
   selector: 'app-layout-custom',
@@ -11,12 +10,9 @@ import { MenuCustomService } from '../../services/system/menu-custom.service';
 })
 export class LayoutCustomComponent 
 {
-  #route = inject(ActivatedRoute)
-  #router = inject(Router)
   authService = inject(AuthService)
   userService = inject(UserService)
   menuCustom = inject(MenuCustomService)
-
   currentYear = new Date().getFullYear()
   
   logout() : void 
@@ -25,7 +21,7 @@ export class LayoutCustomComponent
     this.userService.setDefaultUser()
   }
 
-  menuTrigger()
+  menuTrigger() : void
   {
     this.menuCustom.MenuCustomOff()
   }

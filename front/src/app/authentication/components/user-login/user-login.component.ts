@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../core/services/client/client-auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { User } from '../../../core/models/user';
-import { UserService } from '../../../core/services/client/client-user.service';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-user-login',

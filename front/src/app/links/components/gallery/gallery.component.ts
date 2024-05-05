@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { LinksService } from '../../../core/services/links.service';
-import { MoodStateService } from '../../../core/services/mood-state.service';
+import { MoodStateService } from '../../../core/services/mood.service';
 
 @Component({
   selector: 'app-gallery',

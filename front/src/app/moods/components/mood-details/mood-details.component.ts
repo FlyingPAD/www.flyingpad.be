@@ -5,13 +5,13 @@ import { UpdateMoodScoreCall } from "../../../core/models/mood"
 import { Video } from "../../../core/models/mood-video"
 import { Image } from "../../../core/models/mood-image"
 import { VideoYouTube } from "../../../core/models/mood-video-youtube"
-import { ArtistsStateService } from "../../../core/services/artists-state.service"
-import { UserService } from "../../../core/services/client/client-user.service"
-import { FranchiseStateService } from "../../../core/services/franchise-state.service"
-import { ModelStateService } from "../../../core/services/model-state.service"
-import { MoodStateService } from "../../../core/services/mood-state.service"
+import { ArtistsStateService } from "../../../core/services/artists.service"
+import { UserService } from "../../../core/services/user.service"
+import { FranchiseStateService } from "../../../core/services/franchise.service"
+import { ModelStateService } from "../../../core/services/model.service"
+import { MoodStateService } from "../../../core/services/mood.service"
 import { Location } from '@angular/common';
-import { MenuDesktopService } from "../../../core/services/system/menu-desktop.service"
+import { MenuDesktopService } from "../../../core/services/menu-desktop.service"
 
 @Component({
   selector: 'app-mood-details',

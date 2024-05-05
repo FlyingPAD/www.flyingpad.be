@@ -1,9 +1,9 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { MenuMobileService } from '../../../core/services/system/menu-mobile.service';
-import { ModelStateService } from '../../../core/services/model-state.service';
-import { FranchiseStateService } from '../../../core/services/franchise-state.service';
-import { MoodStateService } from '../../../core/services/mood-state.service';
+import { MenuMobileService } from '../../../core/services/menu-mobile.service';
+import { ModelStateService } from '../../../core/services/model.service';
+import { FranchiseStateService } from '../../../core/services/franchise.service';
+import { MoodStateService } from '../../../core/services/mood.service';
 import { Location } from '@angular/common';
 
 @Component({

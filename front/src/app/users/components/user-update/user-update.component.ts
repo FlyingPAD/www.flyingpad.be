@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../../../core/services/client/client-user.service';
+import { UserService } from '../../../core/services/user.service';
 import { formatDate } from '@angular/common';
 import { Subscription } from 'rxjs';
 

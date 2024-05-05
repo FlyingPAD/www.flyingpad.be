@@ -1,12 +1,10 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { MenuMobileService } from '../../../core/services/system/menu-mobile.service';
-import { ModelService } from '../../../core/services/client/client-model.service';
-import { StateModelsService } from '../../../core/services/state/state-models.service';
-import { FranchiseStateService } from '../../../core/services/franchise-state.service';
-import { ModelStateService } from '../../../core/services/model-state.service';
-import { MoodStateService } from '../../../core/services/mood-state.service';
+import { MenuMobileService } from '../../../core/services/menu-mobile.service';
+import { FranchiseStateService } from '../../../core/services/franchise.service';
+import { ModelStateService } from '../../../core/services/model.service';
+import { MoodStateService } from '../../../core/services/mood.service';
 import { Location } from '@angular/common';
 
 @Component({
@@ -18,15 +16,13 @@ export class FranchiseGalleryComponent
 {
   #moodsService = inject(MoodStateService)
   #franchisesService = inject(FranchiseStateService)  
-  #newModelsService = inject(ModelStateService)
-  #modelsService = inject(ModelService)
-  #modelsState = inject(StateModelsService)
+  #modelsService = inject(ModelStateService)
   menuService = inject(MenuMobileService)
   location = inject(Location)
   
   environment = environment.apiBaseUrl
   franchise = this.#franchisesService.franchise
-  model$ = this.#modelsState.currentModel$
+  model$ = this.#modelsService.currentModel$
   modelSubscription = new Subscription()
   topButtonIsActive = false
   infoIsActive = false
@@ -43,14 +39,14 @@ export class FranchiseGalleryComponent
   {
     this.modelSubscription = this.#modelsService.GetOneDetails(modelId).subscribe({
       next : (data) => {
-        this.#modelsState.updateCurrentModel(data.model)
+        this.#modelsService.updateCurrentModel(data)
       }
     })
   }
 
   updateModelId(modelId : number | null)
   {
-    this.#newModelsService.updateSelectedModelId(modelId)
+    this.#modelsService.updateSelectedModelId(modelId)
     this.#moodsService.updateSelectedModelId(modelId)
   }
 
