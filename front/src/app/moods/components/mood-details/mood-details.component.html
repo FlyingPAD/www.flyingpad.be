@@ -1,4 +1,4 @@
-<app-menu-right-desktop *ngIf="mood() as flow">
+<app-menu-right-desktop *ngIf="mood() as flow" (click)="menuTrigger()">
     <div class="content_right_desktop">
         <!-- Related Tags -->
         <h1 class="item-top">Related Tags ( {{ flow.tags.length }} )</h1>
