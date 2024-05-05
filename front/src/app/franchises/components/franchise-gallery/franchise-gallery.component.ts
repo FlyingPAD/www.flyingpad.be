@@ -1,7 +1,6 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { MenuMobileService } from '../../../core/services/menu-mobile.service';
 import { FranchiseStateService } from '../../../core/services/franchise.service';
 import { ModelStateService } from '../../../core/services/model.service';
 import { MoodStateService } from '../../../core/services/mood.service';
@@ -17,7 +16,6 @@ export class FranchiseGalleryComponent
   #moodsService = inject(MoodStateService)
   #franchisesService = inject(FranchiseStateService)  
   #modelsService = inject(ModelStateService)
-  menuService = inject(MenuMobileService)
   location = inject(Location)
   
   environment = environment.apiBaseUrl

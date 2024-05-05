@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { LinksService } from '../../../core/services/links.service';
 import { MoodStateService } from '../../../core/services/mood.service';
+import { MenuDesktopService } from '../../../core/services/menu-desktop.service';
 
 @Component({
   selector: 'app-gallery',
@@ -11,6 +12,7 @@ export class GalleryComponent
 {
   #moodsService = inject(MoodStateService)
   linksState = inject(LinksService)
+  menuService = inject(MenuDesktopService)
 
   itemsPerPage : number = 20                        // Pagination
   currentPage : number = 1                          // Pagination
@@ -36,5 +38,10 @@ export class GalleryComponent
   {
     this.#moodsService.updateSelectedGalleryType('')
     this.#moodsService.updateSelectedMoodId(null)
+  }
+
+  menuTrigger()
+  {
+    this.menuService.menuRActive = !this.menuService.menuRActive
   }
 }

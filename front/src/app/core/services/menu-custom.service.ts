@@ -1,11 +1,11 @@
-import { Injectable, RendererFactory2, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuCustomService 
 {
-  menuCustomOn: boolean = false
+  menuCustomOn : boolean = false
   
   triggerMenuCustom() : void
   {
