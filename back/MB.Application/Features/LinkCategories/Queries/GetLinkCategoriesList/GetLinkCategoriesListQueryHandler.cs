@@ -20,7 +20,7 @@ namespace MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesList
         {
             try
             {
-                var linkCategories = await _linkCategoryRepository.GetAllAsync();
+                var linkCategories = await _linkCategoryRepository.GetAllAsync(category => category.Name, true);
 
                 var response = new GetLinkCategoriesListQueryResponse
                 {
