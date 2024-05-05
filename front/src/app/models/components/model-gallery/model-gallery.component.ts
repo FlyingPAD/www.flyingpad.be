@@ -1,6 +1,5 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { MenuMobileService } from '../../../core/services/menu-mobile.service';
 import { ModelStateService } from '../../../core/services/model.service';
 import { FranchiseStateService } from '../../../core/services/franchise.service';
 import { MoodStateService } from '../../../core/services/mood.service';
@@ -16,7 +15,6 @@ export class ModelGalleryComponent
   #modelsService = inject(ModelStateService)
   #moodsService = inject(MoodStateService)
   #franchisesService = inject(FranchiseStateService)
-  menuService = inject(MenuMobileService)
   location = inject(Location)
 
   mpp : number = 36                       // Pagination

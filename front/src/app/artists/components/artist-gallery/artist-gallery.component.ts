@@ -1,6 +1,5 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { MenuMobileService } from '../../../core/services/menu-mobile.service';
 import { MoodStateService } from '../../../core/services/mood.service';
 import { ArtistsStateService } from '../../../core/services/artists.service';
 import { Location } from '@angular/common';
@@ -14,7 +13,6 @@ export class ArtistGalleryComponent
 {
   #moodsService = inject(MoodStateService)
   #artistsService = inject(ArtistsStateService)
-  menuService = inject(MenuMobileService)
   location = inject(Location)
 
   environment = environment.apiBaseUrl

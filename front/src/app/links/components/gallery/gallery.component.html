@@ -39,3 +39,7 @@
         </div>
     </ng-template>
 </div>
+
+<div class="tags-trigger" [ngClass]="menuService.menuRActive === true ? 'tags-trigger-on' : '' " (click)="menuTrigger()">
+    <div class="tags-trigger-arrow"></div>
+</div>

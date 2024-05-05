@@ -7,9 +7,9 @@ export class MenuDesktopService
 {
   // Properties :
 
-  menuTrigger : boolean = true      // Menu Trigger ON / OFF
-  menuLActive : boolean = true      // Panel ON / OFF - Left
-  menuRActive : boolean = true      // Panel ON / OFF - Right
+  menuTrigger : boolean = false      // Menu Trigger ON / OFF
+  menuLActive : boolean = false      // Panel ON / OFF - Left
+  menuRActive : boolean = false      // Panel ON / OFF - Right
   
   // Methods :
 

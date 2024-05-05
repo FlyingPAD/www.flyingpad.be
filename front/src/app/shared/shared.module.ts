@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { FormatDurationPipe } from './pipes/format-duration.pipe';
 import { FormatSizePipe } from './pipes/format-size.pipe';
 import { PanelCrudDesktopComponent } from './components/panel-crud-desktop/panel-crud-desktop.component';
-import { PanelCrudMobileComponent } from './components/panel-crud-mobile/panel-crud-mobile.component';
 import { ButtonTopComponent } from './components/button-top/button-top.component';
 import { AnimRandomDirective } from './directives/anim-random.directive';
 import { AnimGrowDirective } from './directives/anim-grow.directive';
@@ -27,7 +26,6 @@ import { AnimSpinDirective } from './directives/anim-spin.directive';
     MenuRightDesktopComponent,
 
     PanelCrudDesktopComponent,
-    PanelCrudMobileComponent,
 
     // Pipes :
 
@@ -57,7 +55,6 @@ import { AnimSpinDirective } from './directives/anim-spin.directive';
     MenuRightDesktopComponent,
 
     PanelCrudDesktopComponent,
-    PanelCrudMobileComponent,
 
     RouterModule,                // RouterLink
     ReactiveFormsModule,         // Form Use ( ngModel, ... )
