@@ -17,7 +17,4 @@ export class TagStateService
     map(x => x.categoriesWithTags)
   )
   tagsList = toSignal(this.tagsList$, {initialValue : [] })
-
-
-  
 }
