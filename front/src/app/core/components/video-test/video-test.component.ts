@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { TagStateService } from '../../services/tag-state.service';
+import { VideoYouTubeDetails } from '../../models/youtube-test';
+import { VideoTestService } from '../../services/video-test.service';
 
 @Component({
   selector: 'app-video-test',
@@ -8,7 +10,20 @@ import { TagStateService } from '../../services/tag-state.service';
 })
 export class VideoTestComponent 
 {
-  tagService = inject(TagStateService)
+  videoDetails = new VideoYouTubeDetails()
 
-  tagsList = this.tagService.tagsList
+  constructor(private videoService: VideoTestService) { }
+
+  fetchVideoDetails() {
+    this.videoService.getVideoDetails('aln3Gws5nPc').subscribe(
+      (data: VideoYouTubeDetails) => {
+        this.videoDetails = data;
+        // Maintenant, vous pouvez accéder aux propriétés de videoDetails, par exemple :
+        console.log(this.videoDetails.title);
+      },
+      error => {
+        console.error('Error fetching video details:', error);
+      }
+    );
+  }
 }
