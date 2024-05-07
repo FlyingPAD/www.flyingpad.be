@@ -1,4 +1,6 @@
-﻿using MB.Application.Features.Relations.Commands.CreateRelationsMoodTags;
+﻿using MB.Application.Features.Relations.Commands.CreateRelationsMoodArtist;
+using MB.Application.Features.Relations.Commands.CreateRelationsMoodModel;
+using MB.Application.Features.Relations.Commands.CreateRelationsMoodTags;
 using MB.Application.Features.Relations.Commands.RAS;
 using MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByArtist;
 using MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByStyle;
@@ -39,6 +41,28 @@ namespace MB.API.Controllers
         public async Task<ActionResult<BaseResponse>> InsertRelationsMoodTag([FromBody] CreateRelationsMoodTagsCommand rmtCommand)
         {
             var response = await _mediator.Send(rmtCommand);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Create RMA
+        /// </summary>
+        [HttpPost("MoodArtist/Create")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public async Task<ActionResult<BaseResponse>> InsertRelationsMoodArtist([FromBody] CreateRelationsMoodArtistCommand rmaCommand)
+        {
+            var response = await _mediator.Send(rmaCommand);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Create RMM
+        /// </summary>
+        [HttpPost("MoodModel/Create")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public async Task<ActionResult<BaseResponse>> InsertRelationsMoodModel([FromBody] CreateRelationsMoodModelCommand rmmCommand)
+        {
+            var response = await _mediator.Send(rmmCommand);
             return Ok(response);
         }
 

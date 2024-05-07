@@ -8,6 +8,14 @@ namespace MB.Persistence.Repositories
 {
     public class ArtistRepository(Context context) : BaseRepository<Artist>(context), IArtistRepository
     {
+        public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
+        {
+            return await _context.Artists
+                                 .Where(artist => businessIds.Contains(artist.BusinessId))
+                                 .Select(artist => artist.EntityId)
+                                 .ToListAsync();
+        }
+
         public async Task<List<Artist>> GetArtistsByMood(int? moodId)
         {
             return await _context.Artists

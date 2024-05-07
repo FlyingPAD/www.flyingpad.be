@@ -7,5 +7,6 @@ namespace MB.Application.Contracts.Persistence
     {
         Task<List<Model>> GetModelsByMood(int? moodId);
         Task<List<Model>> GetModelsByFranchise(int? franchiseId);
+        Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> modelIds);
     }
 }

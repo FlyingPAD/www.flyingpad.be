@@ -1,14 +1,21 @@
 ﻿using MB.Application.Contracts.Persistence;
+using MB.Application.Features.Tags.Queries.GetTagsByMood;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories
 {
-    public class ModelRepository : BaseRepository<Model>, IModelRepository
+    public class ModelRepository(Context context) : BaseRepository<Model>(context), IModelRepository
     {
-        public ModelRepository(Context context) : base(context)
+        public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
         {
+            // Use LINQ to query styles by business ID and select their entity ID.
+
+            return await _context.Models
+                                 .Where(model => businessIds.Contains(model.BusinessId))
+                                 .Select(model => model.EntityId)
+                                 .ToListAsync();
         }
 
         public async Task<List<Model>> GetModelsByMood(int? moodId)
