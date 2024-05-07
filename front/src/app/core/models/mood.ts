@@ -79,7 +79,7 @@ export interface GetMoodsByFranchiseResponse extends BaseResponse
 
 export interface MoodUpdateResponse extends BaseResponse 
 {
-    businessId : number
+    updatedMood : MoodLight
 }
 
 export interface MoodsUpdateOneScoreResponse extends BaseResponse {}

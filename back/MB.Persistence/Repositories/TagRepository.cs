@@ -2,6 +2,7 @@
 using MB.Application.Features.Tags.Queries.GetTagsByMood;
 using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
+using MB.Domain.Common;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
@@ -76,6 +77,17 @@ namespace MB.Persistence.Repositories
                 .ToListAsync();
 
             return categoriesWithTags;
+        }
+
+        /// <summary>
+        /// Get Tag by Name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>The Tag object with the specified name.</returns>
+        public async Task<Tag?> GetByName(string name)
+        {
+            return await _context.Set<Tag>()
+                                 .SingleOrDefaultAsync(x => x.Name == name);
         }
     }
 }

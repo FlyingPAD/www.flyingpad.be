@@ -1,0 +1,105 @@
+<div id="layout-central">
+    <h2>Add Image</h2>
+
+    <div class="row-white">
+        <div class="menu-flex">
+          <app-button-back></app-button-back>
+        </div>
+    </div>
+    
+    <div id="supported_types">
+        <div class="flex_temp">
+            <p><b>Supported Types</b> : </p>
+            <p class="more_space">GIF, JPG, JPEG, PNG, WEBP</p>
+        </div>
+    </div>
+    
+    <div id="display-model">
+        <div class="model-flex">
+          <p><b>maximum</b> file size : </p>
+          <p>50 Mo</p>
+        </div>
+    </div>
+    
+    <div id="create-multiple-images">
+    
+        <div id="file_menu">
+            <p>
+                <input #originalInput type="file" multiple (change)="onFileSelect($event)">
+                <button id="hack" (click)="onClickHack()">Select</button>            
+            </p>
+            <p *ngIf="images.length != 0">Selected Files : {{images.length}}</p>
+        </div>
+    
+        <div class="row-white" *ngIf="images.length != 0">
+            <div class="menu-flex">
+                <a (click)="onSubmit()">Upload</a>
+                <div>
+                    <a class="break-point" *ngIf="menuService.menuLActive && menuService.menuRActive" (click)="menuService.allMenuTriggerOff()">MENU ( ON )</a>
+                    <a class="break-point" *ngIf="!menuService.menuLActive && !menuService.menuRActive" (click)="menuService.allMenuTriggerOn()">MENU ( OFF )</a>
+                </div>
+            </div>
+        </div>
+    
+        <div *ngIf="invalidCount > 0">
+            <div id="supported_types">
+                <div class="flex_temp more_space">
+                    <p><b>Ignored Files</b> : </p>
+                    <p>{{invalidCount}}</p>
+                </div>
+            </div>
+            <div *ngFor="let name of invalidNames">
+                <p>{{name}}</p>
+            </div>
+        </div>
+      
+        <div id="multiple">
+            <div *ngFor="let image of images; let i = index">
+                <form [formGroup]="forms[i]" (ngSubmit)="onSubmit()">
+                    <div class="file">
+                        <div class="file-picture">
+                            <img src="{{image.url}}" />
+                        </div>
+    
+                        <div class="info_flex">
+                            <p><label for="title"><b>Title</b></label> :</p>
+                            <input type="text" id="title" value="{{image.sourceFile}}" formControlName="title">   
+                        </div>
+                        <div class="info_flex">
+                            <p><label for="title"><b>Description</b></label> :</p>
+                            <input type="text" id="title" value="{{image.description}}" formControlName="description">  
+                        </div>
+                        <div class="info_flex">
+                            <p><b>Extension</b> :</p>
+                            <p>*.{{image.extension}}</p>
+                        </div>
+                        <div class="info_flex">
+                            <p><b>Size</b> :</p>
+                            <p>{{image.size | formatSize : 2}}</p>   
+                        </div>
+                        <div class="info_flex">
+                            <p><b>Height</b> :</p>
+                            <p>{{image.height}} pixels</p>   
+                        </div>
+                        <div class="info_flex">
+                            <p><b>Width</b> :</p>
+                            <p>{{image.width}} pixels</p>    
+                        </div> 
+                        
+                        <button (click)="dropFile(image.sourceFile)">Drop File</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
+        <div class="row-white" *ngIf="images.length != 0">
+            <div class="menu-flex">
+                <a (click)="onSubmit()">Upload</a>
+                <div>
+                    <a class="break-point" *ngIf="menuService.menuLActive && menuService.menuRActive" (click)="menuService.allMenuTriggerOff()">MENU ( ON )</a>
+                    <a class="break-point" *ngIf="!menuService.menuLActive && !menuService.menuRActive" (click)="menuService.allMenuTriggerOn()">MENU ( OFF )</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

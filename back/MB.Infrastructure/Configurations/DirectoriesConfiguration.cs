@@ -4,15 +4,16 @@
     {
         public static void CheckDirectories()
         {
-            List<string> paths = new();
-
-            paths.Add(@"Content");
-            paths.Add(@"Content/img");
-            paths.Add(@"Content/img_thumbs");
-            paths.Add(@"Content/video");
-            paths.Add(@"Content/video_thumbs");
-            paths.Add(@"Content/txt");
-            paths.Add(@"Content/txt_thumbs");
+            var paths = new List<string>
+            {
+                @"Content",
+                @"Content/img",
+                @"Content/img_thumbs",
+                @"Content/video",
+                @"Content/video_thumbs",
+                @"Content/txt",
+                @"Content/txt_thumbs",
+            };
 
             foreach (var path in paths)
             {
@@ -25,7 +26,7 @@
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.ToString());
+                    Console.WriteLine($"Error creating directory {path}: {e}");
                 }
             }
         }

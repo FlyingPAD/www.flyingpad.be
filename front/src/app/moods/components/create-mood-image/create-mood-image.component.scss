@@ -1,0 +1,114 @@
+#create-multiple-images
+{
+    font-size : 15px;
+
+    p
+    {
+        margin: 0;
+    }
+
+    #file_menu
+    {
+        p
+        {
+            color: #6b5240;  
+            margin: 5px;
+            text-align: center;
+
+            input
+            {
+                padding: 5px;
+                font-size: 14px;
+            }
+
+            input[type="file"]
+            {
+                   display: none;
+            }
+        }
+    }
+
+    #multiple
+    {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        margin-bottom: 50px;
+
+        .file
+        {
+            width: 310px;
+
+            margin: 15px;
+            padding: 15px;
+
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 1px solid #6b5240;
+            border-radius: 5px;
+
+            .file-picture
+            {
+                height: 175px;
+                overflow-y: scroll;
+
+                border: 1px solid #6b5240;
+                border-radius: 5px;
+
+                margin: 10px;
+
+                img
+                {
+                    width: 100%;                       
+                }
+            }
+
+            .info_flex
+            {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                margin: 10px;
+                padding: 10px;
+
+                background-color: rgba(107, 82, 64, 0.2);
+                border-radius: 5px;
+
+                input
+                {
+                    width: 150px;
+                    padding: 5px;
+                    color:#6b5240;
+                }
+            }
+        }
+    }
+
+    button
+    {
+        display: block;
+        width: 125px;
+
+        margin: auto;
+        margin-top: 35px; margin-bottom: 35px;
+        padding: 9px;
+
+        border: 1px solid #6b5240;  
+        border-radius: 5px;
+        background-color: #6b5240;          
+
+        font-size: 14px;
+        text-align: center;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color:#ffffff;
+    }
+    button:hover
+    {
+        background-color: rgb(255, 255, 255);
+        color:#6b5240;
+        transition-duration: 500ms;
+        cursor: pointer;
+    }
+}

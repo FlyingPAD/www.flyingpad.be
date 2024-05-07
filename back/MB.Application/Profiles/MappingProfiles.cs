@@ -41,6 +41,7 @@ using MB.Application.Features.Models.Queries.GetModelsByFranchise;
 using MB.Application.Features.Models.Queries.GetModelsByMood;
 using MB.Application.Features.Models.Queries.GetModelsList;
 using MB.Application.Features.Moods.Commands.CreateMood;
+using MB.Application.Features.Moods.Commands.CreateMoodImage;
 using MB.Application.Features.Moods.Commands.DeleteMood;
 using MB.Application.Features.Moods.Commands.UpdateMood;
 using MB.Application.Features.Moods.Queries.GetMoodById;
@@ -170,6 +171,7 @@ namespace MB.Application.Profiles
             // Moods :
 
             CreateMap<Mood, CreateMoodDto>().ReverseMap();
+            CreateMap<Mood, CreateMoodImageCommandDto>().ReverseMap();
             CreateMap<Mood, UpdateMoodCommand>().ReverseMap();
             CreateMap<Mood, UpdateMoodDto>().ReverseMap();
             CreateMap<Mood, DeleteMoodCommand>().ReverseMap();

@@ -1,4 +1,5 @@
 ﻿using MB.Application.Features.Moods.Commands.CreateMood;
+using MB.Application.Features.Moods.Commands.CreateMoodImage;
 using MB.Application.Features.Moods.Commands.DeleteMood;
 using MB.Application.Features.Moods.Commands.UpdateMood;
 using MB.Application.Features.Moods.Commands.UpdateMoodScore;
@@ -36,6 +37,17 @@ namespace MB.API.Controllers
         public async Task<ActionResult<CreateMoodCommandResponse>> Create([FromBody] CreateMoodCommand createMoodCommand)
         {
             var response = await _mediator.Send( createMoodCommand );
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Creates a new mood ( Image )
+        /// </summary>
+        [HttpPost("CreateMoodImage")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public async Task<ActionResult<CreateMoodImageCommandResponse>> CreateMoodImage([FromBody] CreateMoodImageCommand createMoodImageCommand)
+        {
+            var response = await _mediator.Send(createMoodImageCommand);
             return Ok(response);
         }
 

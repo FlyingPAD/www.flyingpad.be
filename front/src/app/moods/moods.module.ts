@@ -6,13 +6,15 @@ import { MoodsGalleryComponent } from './components/moods-gallery/moods-gallery.
 import { SharedModule } from '../shared/shared.module';
 import { MoodDetailsComponent } from './components/mood-details/mood-details.component';
 import { MoodEditionComponent } from './components/mood-edition/mood-edition.component';
+import { CreateMoodImageComponent } from './components/create-mood-image/create-mood-image.component';
 
 @NgModule({
   declarations: 
   [
     MoodsGalleryComponent,
     MoodDetailsComponent,
-    MoodEditionComponent
+    MoodEditionComponent,
+    CreateMoodImageComponent
   ],
   imports: 
   [
