@@ -7,7 +7,7 @@ import { GetMoodsByArtistResponse, GetMoodsByModelResponse, GetMoodsByTagRespons
 import { toSignal } from "@angular/core/rxjs-interop";
 import { GetFranchisesByMoodResponse } from "../models/franchise";
 import { GetOneTagDetailsResponse, GetTagsByMoodResponse, GetTagsCheckBoxesByMoodResponse } from "../models/tag";
-import { GetOneImageDetailsResponse } from "../models/mood-image";
+import { CreateMoodImageResponse, GetOneImageDetailsResponse, ImageForm } from "../models/mood-image";
 import { GetOneVideoDetailsResponse, Video } from "../models/mood-video";
 import { Image } from "../models/mood-image";
 import { GetOneVideoYoutubeDetailsResponse, VideoYouTube } from "../models/mood-video-youtube";
@@ -304,7 +304,18 @@ export class MoodStateService
   public UpdateMood( form : MoodUpdateForm ) : Observable<number> 
   { 
     return this.#http.put<MoodUpdateResponse>(`${this.#url}Moods/Update`, form).pipe(
-      map(response => response.businessId)
+      map(response => response.updatedMood.businessId),
+      tap(businessId => this.updateSelectedMoodId(businessId))
     )
   }
+
+  // Insert new Image
+  public Insert(form : ImageForm) : Observable<number> 
+  {
+    return this.#http.post<CreateMoodImageResponse>(`${this.#url}Moods/CreateMoodImage`, form).pipe(
+      map(response => response.mood.businessId),
+      tap(businessId => this.updateSelectedMoodId(businessId))
+    )
+  }
+
 }

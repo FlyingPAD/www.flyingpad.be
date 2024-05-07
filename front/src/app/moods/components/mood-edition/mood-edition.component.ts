@@ -55,9 +55,8 @@ export class MoodEditionComponent implements OnDestroy
       }
 
       this.subscription = this.#moodService.UpdateMood( form ).subscribe({
-        next : (data) => 
+        next : () => 
           {
-            this.#moodService.updateSelectedMoodId(data)
             this.#router.navigateByUrl('/moods/mood-details')
             this.#toastr.success('Mood was successfully updated.')
           },

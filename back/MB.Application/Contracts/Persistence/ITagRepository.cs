@@ -12,5 +12,6 @@ namespace MB.Application.Contracts.Persistence
         Task<IEnumerable<GetTagsByMoodQueryVm>> GetTagsByMood( int? moodId );
         Task<IEnumerable<GetTagsCheckBoxesListDto>> GetTagsCheckBoxesByMood( int? moodId );
         Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> tagIds);
+        Task<Tag?> GetByName(string name);
     }
 }
