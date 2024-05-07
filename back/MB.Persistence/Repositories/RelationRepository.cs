@@ -69,6 +69,52 @@ namespace MB.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async System.Threading.Tasks.Task RMAInsertAsync(int moodId, List<int> artistIds)
+        {
+            // Delete existing relations
+            var existingRelations = await _context.RMoodArtist
+                .Where(relation => relation.MoodId == moodId)
+                .ToListAsync();
+
+            _context.RMoodArtist.RemoveRange(existingRelations);
+
+            // Add new relations
+            foreach (var tagId in artistIds)
+            {
+                var relation = new RelationMoodArtist
+                {
+                    MoodId = moodId,
+                    ArtistId = tagId
+                };
+                await _context.RMoodArtist.AddAsync(relation);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async System.Threading.Tasks.Task RMMInsertAsync(int moodId, List<int> modelIds)
+        {
+            // Delete existing relations
+            var existingRelations = await _context.RMoodModel
+                .Where(relation => relation.MoodId == moodId)
+                .ToListAsync();
+
+            _context.RMoodModel.RemoveRange(existingRelations);
+
+            // Add new relations
+            foreach (var modelId in modelIds)
+            {
+                var relation = new RelationMoodModel
+                {
+                    MoodId = moodId,
+                    ModelId = modelId
+                };
+                await _context.RMoodModel.AddAsync(relation);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
         /// <summary>
         /// Delete Relations By Style ID ( Async )
         /// </summary>
@@ -80,7 +126,7 @@ namespace MB.Persistence.Repositories
                 .Where(relation => relation.StyleId == styleId)
                 .ToListAsync();
 
-            if (relationsToDelete.Any())
+            if (relationsToDelete.Count != 0)
             {
                 _context.RArtistStyle.RemoveRange(relationsToDelete);
                 await _context.SaveChangesAsync();
@@ -98,7 +144,7 @@ namespace MB.Persistence.Repositories
                 .Where(relation => relation.ArtistId == artistId)
                 .ToListAsync();
 
-            if (relationsToDelete.Any())
+            if (relationsToDelete.Count != 0)
             {
                 _context.RArtistStyle.RemoveRange(relationsToDelete);
                 await _context.SaveChangesAsync();
