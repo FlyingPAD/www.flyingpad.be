@@ -39,7 +39,7 @@ console.log(' ---------------------------------- ')
     // Toastr Configuration :
     
     ToastrModule.forRoot({
-      positionClass: 'toast-center-center', // Position of the toastr notifications on the screen
+      positionClass: 'toast-bottom-right',  // Position of the toastr notifications on the screen
       timeOut: 3000,                        // Duration in milliseconds for which toastr will be displayed (3 seconds)
       progressBar: true,                    // Whether to show a progress bar indicating time remaining
       closeButton: true,                    // Whether to display a close button on the toastr

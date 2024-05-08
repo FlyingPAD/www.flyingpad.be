@@ -312,12 +312,10 @@
 {
     position: fixed;
     left: 50%;
-    top: 20%;
+    top: 10%;
     transform: translate(-50%);
 
     width: 310px;
-    max-height: 535px;
-    overflow-y: scroll;
 
     background-color: rgb(255, 255, 255, 0.9);
     border: 1px solid var(--colorMain);
@@ -521,6 +519,15 @@
 {
     opacity: 0;
     pointer-events: none;
+}
+@media (max-height : 800px) 
+{
+    .info
+    {
+        top: 75px;
+        max-height: 450px;
+        overflow-y: scroll;
+    }
 }
 
 .tags-trigger
