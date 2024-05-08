@@ -22,15 +22,55 @@ export class MoodEditionComponent implements OnDestroy
   #formBuilder = inject(FormBuilder)
   #router = inject(Router)
   #toastr = inject(ToastrService)
-
+  
   // API URL
   environment : string = environment.apiBaseUrl
   
   // Signal :
   moodEditionFlow = this.#moodService.moodEditionFlow
 
-  // Subscription :
-  subscription = new Subscription()
+  // To Top Button Trigger
+  topButtonIsActive = false                   
+
+  // Subscriptions :
+  EditionSubscription = new Subscription()
+  EditionTagsSubscription = new Subscription()
+  EditionModelsSubscription = new Subscription()
+  EditionArtistsSubscription = new Subscription()
+
+  triggerMoodEdition : boolean = true
+  triggerMoodTagsEdition : boolean = false
+  triggerMoodModelsEdition : boolean = false
+  triggerMoodArtistsEdition : boolean = false
+
+  triggerMoodEditionButton()
+  {
+    this.triggerMoodEdition = true
+    this.triggerMoodTagsEdition = false
+    this.triggerMoodModelsEdition = false
+    this.triggerMoodArtistsEdition = false
+  }
+  triggerMoodTagsEditionButton()
+  {
+    this.triggerMoodEdition = false
+    this.triggerMoodTagsEdition = true
+    this.triggerMoodModelsEdition = false
+    this.triggerMoodArtistsEdition = false
+  }
+  triggerMoodArtistsEditionButton()
+  {
+    this.triggerMoodEdition = false
+    this.triggerMoodTagsEdition = false
+    this.triggerMoodModelsEdition = false
+    this.triggerMoodArtistsEdition = true
+  }
+  triggerMoodModelsEditionButton()
+  {
+    this.triggerMoodEdition = false
+    this.triggerMoodTagsEdition = false
+    this.triggerMoodModelsEdition = true
+    this.triggerMoodArtistsEdition = false
+  }
 
   formGroup : FormGroup = this.#formBuilder.group
   ({
@@ -40,81 +80,108 @@ export class MoodEditionComponent implements OnDestroy
 
   ngOnDestroy() : void 
   {
-    this.subscription.unsubscribe()
+    this.EditionSubscription.unsubscribe()
+    this.EditionTagsSubscription.unsubscribe()
+    this.EditionModelsSubscription.unsubscribe()
+    this.EditionArtistsSubscription.unsubscribe()
   }
 
-  onSubmit(): void {
-    if (this.formGroup.valid) {
-      let form: MoodUpdateForm = {
-        moodId: this.moodEditionFlow().mood.businessId,
-        name: this.formGroup.value.name,
-        description: this.formGroup.value.description
-      };
-  
-      this.subscription = this.#moodService.UpdateMood(form).subscribe({
-        next: () => {
-          this.#toastr.success('Mood was successfully updated.');
-          this.updateRelations(form.moodId);
-        },
-        error: (error) => {
-          this.handleFinalActions(false, 'Error: Mood update failed!');
-        }
-      });
-    }
+  success()
+  {
+    this.#toastr.success('Mood was successfully updated !')
+    this.#moodService.updateSelectedMoodId(this.moodEditionFlow().mood.businessId)
   }
-  
-  updateRelations(moodId: number): void {
-    let rmtForm = new RelationsMoodTagForm();
-    let rmaForm = new RelationsMoodArtistForm();
-    let rmmForm = new RelationsMoodModelForm();
-  
-    rmtForm.moodId = moodId;
-    rmtForm.tagIds = this.collectTagIds();
-  
-    rmaForm.moodId = moodId;
-    rmaForm.artistIds = this.collectArtistIds();
-  
-    rmmForm.moodId = moodId;
-    rmmForm.modelIds = this.collectModelIds();
-  
-    forkJoin({
-      rmt: this.#relationService.InsertRMT(rmtForm),
-      rma: this.#relationService.InsertRMA(rmaForm),
-      rmm: this.#relationService.InsertRMM(rmmForm)
-    }).subscribe({
-      next: () => {
-        this.handleFinalActions(true, 'All relationships successfully updated.');
-      },
-      error: (error) => {
-        this.handleFinalActions(false, 'Error: Failed to update relationships.');
+  exit()
+  {
+    this.#router.navigateByUrl('/moods/mood-details')
+  }
+
+  SaveEdition( exit : boolean )
+  {
+    if (this.formGroup.valid) 
+    {
+      let form : MoodUpdateForm = 
+      {
+        moodId : this.moodEditionFlow().mood.businessId,
+        name : this.formGroup.value.name,
+        description : this.formGroup.value.description
       }
-    });
-  }
   
-  handleFinalActions(success: boolean, message: string): void {
-    if (success) {
-      this.#toastr.success(message);
-    } else {
-      this.#toastr.error(message);
+      this.EditionSubscription = this.#moodService.UpdateMood(form).subscribe({
+        next : () => 
+        {
+          this.success()
+
+          if(exit)
+          {
+            this.exit()
+          }  
+        },
+        error : (error) => {
+          this.#toastr.error('Mood update failed ...')
+        }
+      })
     }
-    this.#router.navigateByUrl('/moods/mood-details');
-    if (success) {
-      this.#moodService.updateSelectedMoodId(this.moodEditionFlow().mood.businessId);
-    }
+  }
+
+  SaveTagsEdition( exit : boolean )
+  {
+    let rmtForm = new RelationsMoodTagForm()
+
+    rmtForm.moodId = this.moodEditionFlow().mood.businessId
+    rmtForm.tagIds = this.moodEditionFlow().tagsCheckBoxes.flatMap(list => 
+          list.tagsCheckBoxes.filter(tag => tag.isChecked).map(tag => tag.businessId))
+
+    this.EditionTagsSubscription = this.#relationService.InsertRMT( rmtForm ).subscribe({
+      next : () => 
+      {
+        this.success()
+
+        if(exit)
+        {
+          this.exit()
+        }  
+      }
+    })
+  }
+
+  SaveModelsEdition( exit : boolean )
+  {
+    let rmmForm = new RelationsMoodModelForm()
+    rmmForm.moodId = this.moodEditionFlow().mood.businessId
+    rmmForm.modelIds = this.moodEditionFlow().models.filter(m => m.isChecked).map(m => m.businessId);
+
+    this.EditionModelsSubscription = this.#relationService.InsertRMM( rmmForm ).subscribe({
+      next : () => 
+      {
+        this.success()
+
+        if(exit)
+        {
+          this.exit()
+        }  
+      }
+    })
   }
   
-  collectTagIds(): number[] {
-    return this.moodEditionFlow().tagsCheckBoxes.flatMap(list => 
-      list.tagsCheckBoxes.filter(tag => tag.isChecked).map(tag => tag.businessId));
+  SaveArtistsEdition( exit : boolean )
+  {
+    let rmaForm = new RelationsMoodArtistForm()
+    rmaForm.moodId = this.moodEditionFlow().mood.businessId
+    rmaForm.artistIds = this.moodEditionFlow().artists.filter(a => a.isChecked).map(a => a.businessId);
+
+    this.EditionArtistsSubscription = this.#relationService.InsertRMA( rmaForm ).subscribe({
+      next : () => 
+      {
+        this.success()
+
+        if(exit)
+        {
+          this.exit()
+        }  
+      }
+    })
   }
-  
-  collectArtistIds(): number[] {
-    return this.moodEditionFlow().artists.filter(a => a.isChecked).map(a => a.businessId);
-  }
-  
-  collectModelIds(): number[] {
-    return this.moodEditionFlow().models.filter(m => m.isChecked).map(m => m.businessId);
-  }  
 
   updateMoodScore( moodBusinessId : number, scoreValue : number) : void
   {
@@ -130,8 +197,24 @@ export class MoodEditionComponent implements OnDestroy
     switch (event.key) 
     {
       case 'Enter':
-        this.onSubmit()
+        // this.onSubmit()
         break
     }
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() 
+  {
+    const threshold = 100
+    const currentScrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
+    this.topButtonIsActive = currentScrollPosition > threshold
+  }
+
+  toTop() : void 
+  {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
   }
 }

@@ -1,3 +1,41 @@
+.edition-menu
+{
+    margin-top: 10px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+
+    a
+    {
+        margin: 15px;
+        padding: 15px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;  
+
+        font-size: 17px;
+        color : var(--colorMain);
+
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 15px;
+
+        img
+        {
+            height: 40px;
+        }
+    }
+    a:hover
+    {
+        background-color: rgba(255, 255, 255, 0.9);
+        transition-duration: 500ms;
+        cursor: pointer;
+    }
+}
+
+
+
 .mood-update-form
 {
     margin-top: 10px;
