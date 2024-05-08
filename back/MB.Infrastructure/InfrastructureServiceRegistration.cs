@@ -10,6 +10,7 @@ namespace MB.Infrastructure
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IFileService, FileService>();
+            services.AddScoped<IEMailService, EMailService>();
 
             return services;
         }
