@@ -23,6 +23,14 @@ export class ModelDetails
     description : string = ''
 }
 
+export class ModelCheckBox
+{
+    businessId : number = 0
+    pseudonym : string = ''
+    isChecked : boolean = false
+}
+
+
 // Calls :
 
 export interface ModelForm
@@ -57,4 +65,9 @@ export interface GetModelsByMoodResponse extends BaseResponse
 export interface GetModelsByFranchiseResponse extends BaseResponse
 {
     modelsByFranchise : ModelLight[]
+}
+
+export interface GetModelsCheckBoxesByMoodResponse extends BaseResponse
+{
+   models : ModelCheckBox[]
 }

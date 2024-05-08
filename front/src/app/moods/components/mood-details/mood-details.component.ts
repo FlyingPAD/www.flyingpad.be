@@ -1,7 +1,6 @@
 import { Component, inject, HostListener, OnDestroy } from "@angular/core"
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser"
 import { environment } from "../../../../environments/environment"
-import { UpdateMoodScoreCall } from "../../../core/models/mood"
 import { Video } from "../../../core/models/mood-video"
 import { Image } from "../../../core/models/mood-image"
 import { VideoYouTube } from "../../../core/models/mood-video-youtube"
@@ -97,12 +96,6 @@ export class MoodDetailsComponent implements OnDestroy
   {
     this.#moodsService.updateSelectedGalleryType('tag')
     this.#moodsService.updateSelectedTagId(tagId)
-  }
-
-  updateMoodScore( moodBusinessId : number, scoreValue : number) : void
-  {
-    let form : UpdateMoodScoreCall = { businessId : moodBusinessId, value : scoreValue }
-    this.#moodsService.updateScoreTrigger(form)
   }
 
   goBack() : void

@@ -20,6 +20,13 @@ export class ArtistDetails
     modifiedBy : string = ''
 }
 
+export class ArtistCheckBox
+{
+    businessId : number = 0
+    name : string = 'new artist'
+    isChecked : boolean = false
+}
+
 // API Calls
 
 export interface ArtistCreateFormGroup
@@ -83,3 +90,8 @@ export class ArtistsGetPageResponse implements BaseResponse, PaginationResponse
 export interface ArtistsUpdateResponse extends BaseResponse {}
 
 export interface ArtistDeleteResponse extends BaseResponse {}
+
+export interface GetArtistsCheckBoxesByMoodResponse extends BaseResponse
+{
+   artists : ArtistCheckBox[]
+}

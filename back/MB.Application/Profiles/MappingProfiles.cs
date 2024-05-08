@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MB.Application.Features.Artists.Commands.CreateArtist;
 using MB.Application.Features.Artists.Queries.GetArtist;
+using MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 using MB.Application.Features.Artists.Queries.GetArtistDetails;
 using MB.Application.Features.Artists.Queries.GetArtists;
 using MB.Application.Features.Artists.Queries.GetArtistsByMood;
@@ -37,6 +38,7 @@ using MB.Application.Features.Models.Commands.CreateModel;
 using MB.Application.Features.Models.Commands.DeleteModel;
 using MB.Application.Features.Models.Commands.UpdateModel;
 using MB.Application.Features.Models.Queries.GetModelById;
+using MB.Application.Features.Models.Queries.GetModelCheckBoxesByMood;
 using MB.Application.Features.Models.Queries.GetModelsByFranchise;
 using MB.Application.Features.Models.Queries.GetModelsByMood;
 using MB.Application.Features.Models.Queries.GetModelsList;
@@ -101,6 +103,7 @@ namespace MB.Application.Profiles
             CreateMap<Artist, GetArtistsPageVm>().ReverseMap();
             CreateMap<Artist, GetArtistsByStyleVm>().ReverseMap();
             CreateMap<Artist, GetArtistsByMoodQueryVm>().ReverseMap();
+            CreateMap<Artist, GetArtistCheckBoxesByMoodQueryDto>().ReverseMap();
 
             // Styles : 
 
@@ -167,6 +170,7 @@ namespace MB.Application.Profiles
             CreateMap<Model, GetModelsByMoodQueryVm>().ReverseMap();
             CreateMap<Model, GetModelsByFranchiseQueryVm>().ReverseMap();
             CreateMap<Model, GFLQModelDto>().ReverseMap();
+            CreateMap<Model, GetModelCheckBoxesByMoodQueryDto>().ReverseMap();
 
             // Moods :
 

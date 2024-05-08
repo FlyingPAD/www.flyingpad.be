@@ -1,9 +1,44 @@
 <div id="layout-central" *ngIf="moodEditionFlow() as flow">
+    <!-- Name & Description Edition -->
     <div class="mood-update-form">  
         <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
           <input #MoodNameInput class="form-item" type="text" formControlName="name" value="{{flow.mood.name}}">
           <input #MoodDescriptionInput class="form-item" type="text" formControlName="description" value="{{flow.mood.description}}">    
         </form>
+    </div>
+
+    <div class="form-container">
+        <div class="form-flex">
+            <div class="form_cat_box">
+                <div *ngFor="let a of flow.artists">
+                    <div class="duo">
+                        <input type="checkbox" id="{{a.name}}" value="{{a.name}}" [checked]="a.isChecked" (change)="a.isChecked = !a.isChecked">
+                        <label for="{{a.name}}">{{a.name}}</label>
+                    </div>     
+                </div>   
+            </div>
+        </div> 
+
+        <div class="form-flex">
+            <div class="form_cat_box">
+                <div *ngFor="let m of flow.models">
+                    <div class="duo">
+                        <input type="checkbox" id="{{m.pseudonym}}" value="{{m.pseudonym}}" [checked]="m.isChecked" (change)="m.isChecked = !m.isChecked">
+                        <label for="{{m.pseudonym}}">{{m.pseudonym}}</label>
+                    </div>     
+                </div>   
+            </div>
+        </div> 
+    </div>
+
+    <!-- Score Settings -->
+    <p>Score</p>
+    <div class="box-score" >
+        <button (click)="updateMoodScore(flow.mood.businessId, -10)">-10</button>
+        <button (click)="updateMoodScore(flow.mood.businessId, -1)">-1</button>
+        <p><b>{{ flow.mood.score | number : '3.0'}}</b></p>
+        <button (click)="updateMoodScore(flow.mood.businessId, 1)">+1</button>
+        <button (click)="updateMoodScore(flow.mood.businessId, 10)">+10</button>
     </div>
 
     <!-- Sticky Picture -->

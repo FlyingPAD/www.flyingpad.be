@@ -4,9 +4,11 @@ using MB.Application.Features.Models.Commands.DeleteModel;
 using MB.Application.Features.Models.Commands.UpdateModel;
 using MB.Application.Features.Models.Queries.CountModels;
 using MB.Application.Features.Models.Queries.GetModelById;
+using MB.Application.Features.Models.Queries.GetModelCheckBoxesByMood;
 using MB.Application.Features.Models.Queries.GetModelsByFranchise;
 using MB.Application.Features.Models.Queries.GetModelsByMood;
 using MB.Application.Features.Models.Queries.GetModelsList;
+using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -100,6 +102,16 @@ namespace MB.API.Controllers
             {
                 return NotFound();
             }
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Get By Mood ( Checkboxes )
+        /// </summary>
+        [HttpGet("GetCheckBoxesByMood/{moodId}")]
+        public async Task<ActionResult<GetModelCheckBoxesByMoodQueryResponse>> GetCheckBoxesByMood(Guid moodId)
+        {
+            var response = await _mediator.Send(new GetModelCheckBoxesByMoodQuery { MoodId = moodId });
             return Ok(response);
         }
 

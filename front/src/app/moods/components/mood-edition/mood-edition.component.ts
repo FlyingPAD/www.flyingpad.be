@@ -2,11 +2,11 @@ import { Component, HostListener, OnDestroy, inject } from '@angular/core';
 import { MoodStateService } from '../../../core/services/mood.service';
 import { environment } from '../../../../environments/environment';
 import { RelationService } from '../../../core/services/relation.service';
-import { RelationsMoodTagForm } from '../../../core/models/relations';
+import { RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm } from '../../../core/models/relations';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MoodUpdateForm } from '../../../core/models/mood';
-import { Subscription } from 'rxjs';
+import { MoodUpdateForm, UpdateMoodScoreCall } from '../../../core/models/mood';
+import { Subscription, forkJoin } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -43,51 +43,85 @@ export class MoodEditionComponent implements OnDestroy
     this.subscription.unsubscribe()
   }
 
-  onSubmit() : void 
-  {
-    if(this.formGroup.valid)
-    {
-      let form : MoodUpdateForm = 
-      {
-        moodId : this.moodEditionFlow().mood.businessId,
-        name : this.formGroup.value.name,
-        description : this.formGroup.value.description
-      }
-
-      this.subscription = this.#moodService.UpdateMood( form ).subscribe({
-        next : () => 
-          {
-            this.#router.navigateByUrl('/moods/mood-details')
-            this.#toastr.success('Mood was successfully updated.')
-          },
-          error: () => 
-          {
-            this.#router.navigateByUrl('/moods/mood-details')
-            this.#toastr.error('Error : Mood update failed !')
-          }
-      })
-    }
-
-    let rmtForm : RelationsMoodTagForm = { moodId : 0, tagIds : [] }
-
-    rmtForm.moodId = this.moodEditionFlow().mood.businessId
-
-    this.moodEditionFlow().tagsCheckBoxes.forEach(list => {
-      list.tagsCheckBoxes.forEach(tag => {
-        if(tag.isChecked)
-        {
-          rmtForm.tagIds.push(tag.businessId)
+  onSubmit(): void {
+    if (this.formGroup.valid) {
+      let form: MoodUpdateForm = {
+        moodId: this.moodEditionFlow().mood.businessId,
+        name: this.formGroup.value.name,
+        description: this.formGroup.value.description
+      };
+  
+      this.subscription = this.#moodService.UpdateMood(form).subscribe({
+        next: () => {
+          this.#toastr.success('Mood was successfully updated.');
+          this.updateRelations(form.moodId);
+        },
+        error: (error) => {
+          this.handleFinalActions(false, 'Error: Mood update failed!');
         }
-      })
-    })
-
-    this.#relationService.InsertRMT(rmtForm).subscribe({
-      next : () => {
-        this.#router.navigateByUrl('/moods/mood-details')
-        this.#moodService.updateSelectedMoodId(rmtForm.moodId)
-      }
-    })
+      });
+    }
   }
+  
+  updateRelations(moodId: number): void {
+    let rmtForm = new RelationsMoodTagForm();
+    let rmaForm = new RelationsMoodArtistForm();
+    let rmmForm = new RelationsMoodModelForm();
+  
+    rmtForm.moodId = moodId;
+    rmtForm.tagIds = this.collectTagIds();
+  
+    rmaForm.moodId = moodId;
+    rmaForm.artistIds = this.collectArtistIds();
+  
+    rmmForm.moodId = moodId;
+    rmmForm.modelIds = this.collectModelIds();
+  
+    forkJoin({
+      rmt: this.#relationService.InsertRMT(rmtForm),
+      rma: this.#relationService.InsertRMA(rmaForm),
+      rmm: this.#relationService.InsertRMM(rmmForm)
+    }).subscribe({
+      next: () => {
+        this.handleFinalActions(true, 'All relationships successfully updated.');
+      },
+      error: (error) => {
+        this.handleFinalActions(false, 'Error: Failed to update relationships.');
+      }
+    });
+  }
+  
+  handleFinalActions(success: boolean, message: string): void {
+    if (success) {
+      this.#toastr.success(message);
+    } else {
+      this.#toastr.error(message);
+    }
+    this.#router.navigateByUrl('/moods/mood-details');
+    if (success) {
+      this.#moodService.updateSelectedMoodId(this.moodEditionFlow().mood.businessId);
+    }
+  }
+  
+  collectTagIds(): number[] {
+    return this.moodEditionFlow().tagsCheckBoxes.flatMap(list => 
+      list.tagsCheckBoxes.filter(tag => tag.isChecked).map(tag => tag.businessId));
+  }
+  
+  collectArtistIds(): number[] {
+    return this.moodEditionFlow().artists.filter(a => a.isChecked).map(a => a.businessId);
+  }
+  
+  collectModelIds(): number[] {
+    return this.moodEditionFlow().models.filter(m => m.isChecked).map(m => m.businessId);
+  }  
+
+  updateMoodScore( moodBusinessId : number, scoreValue : number) : void
+  {
+    let form : UpdateMoodScoreCall = { businessId : moodBusinessId, value : scoreValue }
+    this.#moodService.updateScoreTrigger(form)
+  }
+
 
   // KEYBOARD CONFIGURATION
   @HostListener('window:keydown', ['$event'])

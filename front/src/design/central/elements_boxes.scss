@@ -192,6 +192,59 @@
         }
     }
 
+    // Box | Score Update ( Mood-Details ) :
+
+    .box-score
+    {
+        display: flex;
+        justify-content: center;
+
+        margin: 15px;
+
+        padding: 25px;
+        padding-top : 10px; padding-bottom: 10px;
+
+        background-color: rgba(107, 82, 64, 0.2);
+        border-radius: 5px;
+
+        p
+        {
+            display: block;
+            width: 65px;
+            margin: auto;
+
+            line-height: 30px;
+            text-align: center;
+            margin-left: 5px; margin-right: 5px;
+
+            color:var(--colorMain);
+        }
+
+        button
+        {
+            width: 65px;
+            height: 30px;
+
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 1px solid var(--colorMain);
+            border-radius: 5px;
+            color:var(--colorMain);
+            font-weight: normal;
+            font-size: 13px;
+
+            margin-left: 5px; margin-right: 5px;
+
+        }
+        button:hover
+        {
+            background-color: var(--colorMain);
+            color:rgba(255, 255, 255, 0.5);
+
+            transition-duration: 300ms;
+            cursor: pointer;
+        }
+    }
+
     // LOADING
 
     .loading
