@@ -1,4 +1,5 @@
 ﻿using MB.Application.Contracts.Persistence;
+using MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 using MB.Domain.Common;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
@@ -16,14 +17,14 @@ namespace MB.Persistence.Repositories
                                  .ToListAsync();
         }
 
-        public async Task<List<Artist>> GetArtistsByMood(int? moodId)
+        public async Task<IEnumerable<Artist>> GetArtistsByMood(int? moodId)
         {
             return await _context.Artists
                 .Where(artist => artist.MoodArtists != null && artist.MoodArtists.Any(relation => relation.MoodId == moodId))
                 .ToListAsync();
         }
 
-        public async Task<List<Artist>> GetArtistsByStyle(int? styleId)
+        public async Task<IEnumerable<Artist>> GetArtistsByStyle(int? styleId)
         {
             return await _context.Artists
                 .Where(artist => artist.ArtistStyles != null && artist.ArtistStyles.Any(relation => relation.StyleId == styleId))
@@ -75,5 +76,18 @@ namespace MB.Persistence.Repositories
             return response;
         }
 
+        public async Task<IEnumerable<GetArtistCheckBoxesByMoodQueryDto>> GetArtistsCheckBoxesByMood(int moodId)
+        {
+            var artists = await _context.Artists
+                                       .Select(artist => new GetArtistCheckBoxesByMoodQueryDto
+                                       {
+                                           BusinessId = artist.BusinessId,
+                                           Name = artist.Name,
+                                           IsChecked = artist.MoodArtists.Any(ma => ma.MoodId == moodId)
+                                       })
+                                       .ToListAsync();
+
+            return artists;
+        }
     }
 }

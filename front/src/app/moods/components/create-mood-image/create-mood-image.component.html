@@ -21,8 +21,7 @@
         </div>
     </div>
     
-    <div id="create-multiple-images">
-    
+    <div id="create-multiple-images">    
         <div id="file_menu">
             <p>
                 <input #originalInput type="file" multiple (change)="onFileSelect($event)">
@@ -34,10 +33,6 @@
         <div class="row-white" *ngIf="images.length != 0">
             <div class="menu-flex">
                 <a (click)="onSubmit()">Upload</a>
-                <div>
-                    <a class="break-point" *ngIf="menuService.menuLActive && menuService.menuRActive" (click)="menuService.allMenuTriggerOff()">MENU ( ON )</a>
-                    <a class="break-point" *ngIf="!menuService.menuLActive && !menuService.menuRActive" (click)="menuService.allMenuTriggerOn()">MENU ( OFF )</a>
-                </div>
             </div>
         </div>
     
@@ -95,10 +90,6 @@
         <div class="row-white" *ngIf="images.length != 0">
             <div class="menu-flex">
                 <a (click)="onSubmit()">Upload</a>
-                <div>
-                    <a class="break-point" *ngIf="menuService.menuLActive && menuService.menuRActive" (click)="menuService.allMenuTriggerOff()">MENU ( ON )</a>
-                    <a class="break-point" *ngIf="!menuService.menuLActive && !menuService.menuRActive" (click)="menuService.allMenuTriggerOn()">MENU ( OFF )</a>
-                </div>
             </div>
         </div>
     </div>

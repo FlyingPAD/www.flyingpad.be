@@ -136,15 +136,6 @@
                 <a routerLink="/artists/artist-gallery" (click)="updateArtistId(artist.businessId)"> ▸ {{artist.name}}</a>
             </div>
         </div>
-        <!-- Score Settings -->
-        <p>Score</p>
-        <div class="item-top box-score" >
-            <button (click)="updateMoodScore(flow.mood.businessId, -10)">-10</button>
-            <button (click)="updateMoodScore(flow.mood.businessId, -1)">-1</button>
-            <p><b>{{ flow.mood.score | number : '3.0'}}</b></p>
-            <button (click)="updateMoodScore(flow.mood.businessId, 1)">+1</button>
-            <button (click)="updateMoodScore(flow.mood.businessId, 10)">+10</button>
-        </div>
     </div>
     <!-- Mood Type : IMAGE -->
     <div *ngIf="flow.mood.type === 1 ">

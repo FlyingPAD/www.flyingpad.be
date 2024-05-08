@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { BehaviorSubject, switchMap, map, combineLatest, of, tap, catchError, take, Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
-import { GetModelsByMoodResponse } from "../models/model";
+import { GetModelsByMoodResponse, GetModelsCheckBoxesByMoodResponse } from "../models/model";
 import { GetMoodsByArtistResponse, GetMoodsByModelResponse, GetMoodsByTagResponse, MoodFull, MoodUpdateForm, MoodUpdateResponse, MoodsGetAllResponse, MoodsGetOneDetailsResponse, UpdateMoodScoreCall, UpdateMoodScoreResponse } from "../models/mood";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { GetFranchisesByMoodResponse } from "../models/franchise";
@@ -11,7 +11,7 @@ import { CreateMoodImageResponse, GetOneImageDetailsResponse, ImageForm } from "
 import { GetOneVideoDetailsResponse, Video } from "../models/mood-video";
 import { Image } from "../models/mood-image";
 import { GetOneVideoYoutubeDetailsResponse, VideoYouTube } from "../models/mood-video-youtube";
-import { GetArtistsByMoodResponse } from "../models/artist";
+import { GetArtistsByMoodResponse, GetArtistsCheckBoxesByMoodResponse } from "../models/artist";
 
 type Media = Image | Video | VideoYouTube | null
 
@@ -277,28 +277,44 @@ export class MoodStateService
       map(response => response.tagsCheckBoxesList) )
   }
 
+  getModelsCheckBoxesByMood( moodId : number | null ) 
+  {
+    return this.#http.get<GetModelsCheckBoxesByMoodResponse>(`${this.#url}Models/GetCheckBoxesByMood/${moodId}`).pipe( 
+      map(response => response.models) )
+  }
+
+  getArtistsCheckBoxesByMood( moodId : number | null ) 
+  {
+    return this.#http.get<GetArtistsCheckBoxesByMoodResponse>(`${this.#url}Artists/GetCheckBoxesByMood/${moodId}`).pipe( 
+      map(response => response.artists) )
+  }
+
   moodEditionFlow$ = this.selectedMoodId$.pipe(
     switchMap(moodId => {
-      if (moodId === null) return of({ mood: new MoodFull(), tagsCheckBoxes: [] })
+      if (moodId === null) return of({ mood: new MoodFull(), tagsCheckBoxes: [], artists : [], models : [] })
       else 
       {
         return combineLatest([
           this.getMood(moodId),
-          this.getTagsCheckBoxesByMood(moodId)
+          this.getTagsCheckBoxesByMood(moodId),
+          this.getArtistsCheckBoxesByMood(moodId),
+          this.getModelsCheckBoxesByMood(moodId)
         ]).pipe(
-          map(([mood, tagsCheckBoxes]) => ({
+          map(([mood, tagsCheckBoxes, artists, models]) => ({
             mood,
-            tagsCheckBoxes
+            tagsCheckBoxes,
+            artists,
+            models
           })),
           catchError(error => {
             console.error('Erreur lors de la récupération des données du mood ou des tags:', error)
-            return of({ mood: new MoodFull(), tagsCheckBoxes: [] })
+            return of({ mood : new MoodFull(), tagsCheckBoxes : [], artists : [], models : [] })
           })
         )
       }
     })
   )
-  moodEditionFlow = toSignal(this.moodEditionFlow$, { initialValue: { mood: new MoodFull(), tagsCheckBoxes: [] } })
+  moodEditionFlow = toSignal(this.moodEditionFlow$, { initialValue: { mood: new MoodFull(), tagsCheckBoxes: [], artists : [], models : [] } })
 
   // Update Mood
   public UpdateMood( form : MoodUpdateForm ) : Observable<number> 

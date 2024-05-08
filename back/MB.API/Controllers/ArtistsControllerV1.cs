@@ -3,6 +3,7 @@ using MB.Application.Features.Artists.Commands.DeleteArtist;
 using MB.Application.Features.Artists.Commands.UpdateArtist;
 using MB.Application.Features.Artists.Queries.CountArtists;
 using MB.Application.Features.Artists.Queries.GetArtist;
+using MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 using MB.Application.Features.Artists.Queries.GetArtistDetails;
 using MB.Application.Features.Artists.Queries.GetArtists;
 using MB.Application.Features.Artists.Queries.GetArtistsByMood;
@@ -130,6 +131,16 @@ namespace MB.API.Controllers
             {
                 return NotFound();
             }
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Get By Mood ( Checkboxes )
+        /// </summary>
+        [HttpGet("GetCheckBoxesByMood/{moodId}")]
+        public async Task<ActionResult<GetArtistCheckBoxesByMoodQueryResponse>> GetCheckBoxesByMood(Guid moodId)
+        {
+            var response = await _mediator.Send(new GetArtistCheckBoxesByMoodQuery { MoodId = moodId });
             return Ok(response);
         }
 
