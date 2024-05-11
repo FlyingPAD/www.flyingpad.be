@@ -197,7 +197,22 @@ export class MoodEditionComponent implements OnDestroy
     switch (event.key) 
     {
       case 'Enter':
-        // this.onSubmit()
+        if(this.triggerMoodEdition)
+          {
+            this.SaveEdition(true)
+          }
+        if(this.triggerMoodTagsEdition)
+          {
+            this.SaveTagsEdition(true)
+          }
+        if(this.triggerMoodModelsEdition)
+          {
+            this.SaveModelsEdition(true)
+          }
+        if(this.triggerMoodArtistsEdition)
+          {
+            this.SaveArtistsEdition(true)
+          }
         break
     }
   }

@@ -41,6 +41,7 @@ namespace MB.Persistence.Repositories
                                            Pseudonym = model.Pseudonym,
                                            IsChecked = model.MoodModels.Any(mm => mm.MoodId == moodId)
                                        })
+                                       .OrderBy(model => model.Pseudonym)
                                        .ToListAsync();
 
             return models;

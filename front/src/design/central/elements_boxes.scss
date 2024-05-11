@@ -120,35 +120,35 @@
         margin-top: 15px;
         margin-bottom: 15px;
 
-        transform: translateX(-50%);
-
         position: sticky;
-        
-        top: 64px;
-        left: 50%;
+        top: 75px;
 
-        width: 200px;
-
-        background-color: white;
-        border: 1px solid #6b5240;
-        border-radius: 5px;
-
-        padding: 15px;
-        padding-bottom: 12px;
+        display: flex;
+        justify-content: center;
 
         opacity: 0.5;
-        z-index: 50;
+        z-index: 30;
 
-        img
+        div
         {
-            width: 100%;
-        }
+            height: 160px;
+            background-color: white;
+            border: 1px solid #6b5240;
+            border-radius: 5px;
+    
+            padding: 15px;
+            padding-bottom: 12px;
 
+            img
+            {
+                height: 100%;
+            }
+        }
     }
     #sticky-pic:hover
     {
         opacity: 1;
-        transition-duration: 300ms;
+        transition-duration: 500ms;
     }
 
     #form-tag-flex
@@ -272,7 +272,7 @@
     {
         max-width: 800px;
         margin: auto;
-        margin-top: 15px;
+        margin-top: 40px;
     
         display: flex;
         flex-wrap: wrap;
@@ -312,8 +312,11 @@
 {
     position: fixed;
     left: 50%;
-    top: 10%;
+    top: 14%;
     transform: translate(-50%);
+
+    max-height: 670px;
+    overflow-y: scroll;
 
     width: 310px;
 
