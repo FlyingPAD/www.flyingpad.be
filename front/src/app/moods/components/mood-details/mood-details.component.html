@@ -94,7 +94,7 @@
         </a>
     </div>
     <!-- Edit Mood -->
-    <a class="toggle" routerLink="/moods/mood-edition" *ngIf="userService.appUser.role === 2">
+    <a routerLink="/moods/mood-edition" *ngIf="userService.appUser.role === 2">
         <img appAnimGrow src="../../../../assets/app_icons/edit.png" />
     </a>
     <!-- Mood Info -->

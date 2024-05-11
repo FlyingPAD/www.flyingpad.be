@@ -85,6 +85,7 @@ namespace MB.Persistence.Repositories
                                            Name = artist.Name,
                                            IsChecked = artist.MoodArtists.Any(ma => ma.MoodId == moodId)
                                        })
+                                       .OrderBy(artist => artist.Name)
                                        .ToListAsync();
 
             return artists;
