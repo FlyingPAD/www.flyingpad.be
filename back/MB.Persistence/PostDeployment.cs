@@ -113,6 +113,7 @@ namespace MB.Persistence
             {
                 new() { FranchiseId = 1, MediaId = 9 },
                 new() { FranchiseId = 2, MediaId = 7 },
+                new() { FranchiseId = 3, MediaId = 1 },
             };
             modelBuilder.Entity<RelationFranchiseMedia>().HasData(relationsFM);
 
