@@ -114,7 +114,7 @@
 <div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="mood() as flow" (click)="infoTrigger()">
     <h1 *ngIf="flow.mood.name !== '...' ">{{ flow.mood.name }}</h1>
     <p *ngIf="flow.mood.name !== '...' ">{{flow.mood.description}}</p>
-    <div *ngIf="userService.appUser.role === 2 && flow.franchises.length">
+    <div *ngIf="userService.appUser.role === 2">
         <!-- Related Models -->
         <p>Starring</p>
         <div class="list_categories">
