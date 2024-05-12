@@ -85,6 +85,7 @@ namespace MB.Persistence
             {
                 new() { EntityId = 1, BusinessId = Guid.NewGuid(), Name = "Flying PAD" },
                 new() { EntityId = 2, BusinessId = Guid.NewGuid(), Name = "Street Fighter" },
+                new() { EntityId = 3, BusinessId = Guid.NewGuid(), Name = "# Unrelated Franchise" },
             };
             modelBuilder.Entity<Franchise>().HasData(franchiseList);
 
@@ -121,6 +122,7 @@ namespace MB.Persistence
             var relationsFModels = new List<RelationFranchiseModel>
             {
                 new() { FranchiseId = 1, ModelId = 3 },
+                new() { FranchiseId = 3, ModelId = 2 },
             };
             modelBuilder.Entity<RelationFranchiseModel>().HasData(relationsFModels);
 
@@ -242,7 +244,7 @@ namespace MB.Persistence
             var modelList = new List<Model>
             {
                 new() { EntityId = 1, BusinessId = Guid.NewGuid(), FirstName = "", LastName = "", Pseudonym = "# Unknown Model" },
-                new() { EntityId = 2, BusinessId = Guid.NewGuid(), FirstName = "", LastName = "", Pseudonym = "/ Unrelated Model" },
+                new() { EntityId = 2, BusinessId = Guid.NewGuid(), FirstName = "", LastName = "", Pseudonym = "# Unrelated Model" },
                 new() { EntityId = 3, BusinessId = Guid.NewGuid(), FirstName = "Tony", LastName = "Van Langenhove", Pseudonym = "Flying PAD", Gender = "M" },
             };
             modelBuilder.Entity<Model>().HasData(modelList);
