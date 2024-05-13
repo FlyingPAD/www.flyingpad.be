@@ -114,10 +114,7 @@ namespace MB.API
 
                 // Custom Middlewares.
                 app.UseMiddleware<ExceptionHandler>();
-                app.UseHangfireDashboard("/hangfire", new DashboardOptions
-                {
-                    Authorization = new[] { new HangfireAuthorizationFilter() }
-                });
+                app.UseHangfireDashboard("/hangfire");
 
                 // app.ResetDatabaseAsync(); // ( check 'Options/ResetDatabase' )
                 app.UseStaticFiles(new StaticFileOptions
