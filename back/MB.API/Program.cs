@@ -6,7 +6,6 @@ using MB.Application.Security;
 using MB.Infrastructure;
 using MB.Infrastructure.Configurations;
 using MB.Persistence;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
@@ -122,6 +121,10 @@ namespace MB.API
                     FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Content")),
                     RequestPath = "/Content"
                 });
+
+                // HangFire Jobs Launch
+                var recurringJobManager = app.Services.GetRequiredService<IRecurringJobManager>();
+                HangFireJobsConfiguration.ConfigureRecurringJobs(recurringJobManager, app.Services);
 
                 // - Run ------------------------------------------------------------------
                 app.Run();
