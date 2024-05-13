@@ -15,7 +15,7 @@ namespace MB.Infrastructure
 
             // Hangfire Configuration
             services.AddHangfire(config => config
-                .UseSqlServerStorage(configuration.GetConnectionString("DBHangfire")));
+                .UseSqlServerStorage(configuration.GetConnectionString("DBHangFire")));
             services.AddHangfireServer();
 
             return services;
