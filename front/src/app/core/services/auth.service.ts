@@ -91,9 +91,4 @@ export class AuthService
     // Return an observable with a user-facing error message
     return throwError(() => new Error(errorMessage))
   }
-
-  public HangFireDashBoard()
-  {
-    return this.#http.get(environment.apiBaseUrl + '/hangfire')
-  }
 }

@@ -6,6 +6,7 @@ using MB.Application.Security;
 using MB.Infrastructure;
 using MB.Infrastructure.Configurations;
 using MB.Persistence;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
