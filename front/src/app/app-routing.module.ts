@@ -6,11 +6,13 @@ import { NotFoundComponent } from './core/components/not-found/not-found.compone
 import { GalleryComponent } from './links/components/gallery/gallery.component';
 import { LayoutCustomComponent } from './core/layouts/layout-custom/layout-custom.component';
 import { VideoTestComponent } from './core/components/video-test/video-test.component';
+import { DemoComponent } from './core/components/demo/demo.component';
+import { LayoutEmptyComponent } from './core/layouts/layout-empty/layout-empty.component';
 
 const routes: Routes = 
 [
   // Core
-    { path : '', component : LayoutCustomComponent, children :
+  { path : '', component : LayoutCustomComponent, children :
     [
       { path : '', pathMatch : 'full', redirectTo : 'home'},
       { path : 'home', component : HomeComponent, title : 'Flying PAD | Home' },
@@ -19,6 +21,11 @@ const routes: Routes =
       { path : 'video-test', component : VideoTestComponent, title : 'Flying PAD | Video Test' },
     ]
   },
+  { path : '', component : LayoutEmptyComponent, children :
+  [
+    { path : 'demo', component : DemoComponent, title : 'Flying PAD | Demo' },
+  ]
+},
 
   // Authentication
   {

@@ -123,8 +123,8 @@ namespace MB.API
                 });
 
                 // HangFire Jobs Launch
-                var recurringJobManager = app.Services.GetRequiredService<IRecurringJobManager>();
-                HangFireJobsConfiguration.ConfigureRecurringJobs(recurringJobManager, app.Services);
+                //var recurringJobManager = app.Services.GetRequiredService<IRecurringJobManager>();
+                //HangFireJobsConfiguration.ConfigureRecurringJobs(recurringJobManager, app.Services);
 
                 // - Run ------------------------------------------------------------------
                 app.Run();

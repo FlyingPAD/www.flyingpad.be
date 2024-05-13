@@ -8,6 +8,7 @@ import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.compon
 import { SharedModule } from '../shared/shared.module';
 import { LayoutCustomComponent } from './layouts/layout-custom/layout-custom.component';
 import { VideoTestComponent } from './components/video-test/video-test.component';
+import { DemoComponent } from './components/demo/demo.component';
 
 @NgModule({
   declarations: 
@@ -18,6 +19,7 @@ import { VideoTestComponent } from './components/video-test/video-test.component
     LayoutEmptyComponent,
     LayoutCustomComponent,
     VideoTestComponent,
+    DemoComponent,
   ],
   imports: 
   [
