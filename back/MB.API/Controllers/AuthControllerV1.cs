@@ -9,16 +9,10 @@ namespace MB.API.Controllers
     [Route("api/V1/Auth")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "system")]
-    public class AuthControllerV1 : ControllerBase
+    public class AuthControllerV1(IMediator mediator, IEMailService eMailService) : ControllerBase
     {
-        private readonly IMediator _mediator;
-        private readonly IEMailService _eMailService;  // Utilisez l'interface ici
-
-        public AuthControllerV1(IMediator mediator, IEMailService eMailService)
-        {
-            _mediator = mediator;
-            _eMailService = eMailService;
-        }
+        private readonly IMediator _mediator = mediator;
+        private readonly IEMailService _eMailService = eMailService;  // Utilisez l'interface ici
 
         [HttpPost("Login")]
         public async Task<ActionResult<LoginQueryResponse>> Login([FromBody] LoginQuery loginQuery)

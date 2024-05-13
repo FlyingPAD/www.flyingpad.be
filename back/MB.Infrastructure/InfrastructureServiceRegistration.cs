@@ -1,4 +1,5 @@
-﻿using MB.Application.Contracts;
+﻿using Hangfire;
+using MB.Application.Contracts;
 using MB.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,11 @@ namespace MB.Infrastructure
         {
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IEMailService, EMailService>();
+
+            // Hangfire Configuration
+            services.AddHangfire(config => config
+                .UseSqlServerStorage(configuration.GetConnectionString("DBHangfire")));
+            services.AddHangfireServer();
 
             return services;
         }
