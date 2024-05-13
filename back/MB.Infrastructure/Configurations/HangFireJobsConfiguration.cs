@@ -9,9 +9,9 @@ namespace MB.Infrastructure.Configurations
         public static void ConfigureRecurringJobs(IRecurringJobManager recurringJobManager, IServiceProvider serviceProvider)
         {
             recurringJobManager.AddOrUpdate(
-                "send-daily-email",
-                () => serviceProvider.GetRequiredService<IEMailService>().SendEmailAsync("recipient@example.com", "Coucou!", "C'est votre email quotidien."),
-                "0 20 * * *");
+                "send-email-every-2-minutes",
+                () => serviceProvider.GetRequiredService<IEMailService>().SendEmailAsync("recipient@example.com", "Coucou!", "Ceci est un message envoyé toutes les deux minutes."),
+                "*/2 * * * *");  // Cron expression pour toutes les 2 minutes
         }
     }
 }
