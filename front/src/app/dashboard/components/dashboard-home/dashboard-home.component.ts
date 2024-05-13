@@ -11,10 +11,4 @@ export class DashboardHomeComponent
 {
   userService = inject(UserService)
   authService = inject(AuthService)
-
-  call()
-  {
-    this.authService.HangFireDashBoard().subscribe()
-    window.open('https://back.flyingpad.be/hangfire', '_blank')
-  }
 }
