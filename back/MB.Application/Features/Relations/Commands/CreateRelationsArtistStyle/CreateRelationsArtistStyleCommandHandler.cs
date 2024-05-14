@@ -1,21 +1,27 @@
 ﻿using MB.Application.Contracts.Persistence;
+using MB.Application.Contracts.Persistence.Common;
 using MB.Application.Responses;
+using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Commands.RAS
 {
-    public class CreateRelationsArtistStyleCommandHandler(CreateRelationsArtistStyleCommandValidator validator, IArtistRepository artistRepository, IStyleRepository styleRepository, IRelationRepository relationRepository) : IRequestHandler<CreateRelationsArtistStyleCommand, BaseResponse>
+    public class CreateRelationsArtistStyleCommandHandler(
+        CreateRelationsArtistStyleCommandValidator validator,
+        IBaseRepository<Artist> artistRepository,
+        IStyleRepository styleRepository,
+        IBaseRelationRepository<RelationArtistStyle> relationRepository) : IRequestHandler<CreateRelationsArtistStyleCommand, BaseResponse>
     {
         private readonly CreateRelationsArtistStyleCommandValidator _validator = validator;
-        private readonly IArtistRepository _artistRepository = artistRepository;
+        private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
         private readonly IStyleRepository _styleRepository = styleRepository;
-        private readonly IRelationRepository _relationRepository = relationRepository;
+        private readonly IBaseRelationRepository<RelationArtistStyle> _relationRepository = relationRepository;
 
         public async Task<BaseResponse> Handle(CreateRelationsArtistStyleCommand request, CancellationToken cancellationToken)
         {
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
-            if (validationResult.Errors.Count > 0)
+            if (validationResult.Errors.Count != 0)
             {
                 return new BaseResponse
                 {
@@ -45,7 +51,7 @@ namespace MB.Application.Features.Relations.Commands.RAS
                 };
             }
 
-            await _relationRepository.RASInsertAsync(artistPrimaryId.Value, stylePrimaryIds);
+            await _relationRepository.InsertRelationsAsync(artistPrimaryId.Value, stylePrimaryIds, "ArtistId", "StyleId");
 
             return new BaseResponse
             {

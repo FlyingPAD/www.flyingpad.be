@@ -1,34 +1,28 @@
-﻿using MB.Application.Contracts.Persistence;
-using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Features.Styles.Commands.DeleteStyle;
+﻿using MB.Application.Contracts.Persistence.Common;
 using MB.Application.Responses;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Task.Commands.DeleteTask
+namespace MB.Application.Features.Styles.Commands.DeleteStyle
 {
-    public class DeleteStyleCommandHandler : IRequestHandler<DeleteStyleCommand, BaseResponse>
+    public class DeleteStyleCommandHandler(
+        IBaseRepository<Style> styleRepository,
+        IBaseRelationRepository<RelationArtistStyle> relationRepository,
+        DeleteStyleCommandValidator validator) : IRequestHandler<DeleteStyleCommand, BaseResponse>
     {
-        private readonly IBaseRepository<Style> _styleRepository;
-        private readonly IRelationRepository _relationRepository;
-        private readonly DeleteStyleCommandValidator _validator;
-
-        public DeleteStyleCommandHandler(IBaseRepository<Style> styleRepository, IRelationRepository relationRepository, DeleteStyleCommandValidator validator)
-        {
-            _styleRepository = styleRepository;
-            _relationRepository = relationRepository;
-            _validator = validator;
-        }
+        private readonly IBaseRepository<Style> _styleRepository = styleRepository;
+        private readonly IBaseRelationRepository<RelationArtistStyle> _relationRepository = relationRepository;
+        private readonly DeleteStyleCommandValidator _validator = validator;
 
         public async Task<BaseResponse> Handle(DeleteStyleCommand request, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request);
+            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
             if (validationResult.Errors.Count > 0)
             {
                 return new BaseResponse
                 {
-                    Message = "Error(s)...",
+                    Message = "Validation Error(s)",
                     ValidationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList()
                 };
             }
@@ -39,17 +33,15 @@ namespace MB.Application.Features.Task.Commands.DeleteTask
             {
                 return new BaseResponse
                 {
-                    Message = "Error(s)...",
+                    Message = "Style was not found.",
                     ValidationErrors = { $"Style with ID {request.StyleId} was not found." }
                 };
             }
 
             // Delete associated relations
-
-            await _relationRepository.DeleteRelationsByStyleIdAsync(style.EntityId);
+            await _relationRepository.DeleteRelationsByMainEntityIdAsync(style.EntityId, "StyleId");
 
             // Delete Style
-
             await _styleRepository.DeleteAsync(style);
 
             return new BaseResponse

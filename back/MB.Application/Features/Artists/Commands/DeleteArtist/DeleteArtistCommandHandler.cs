@@ -1,16 +1,17 @@
-﻿using MB.Application.Contracts.Persistence;
-using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Features.Artists.Commands.DeleteArtist;
+﻿using MB.Application.Contracts.Persistence.Common;
 using MB.Application.Responses;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Task.Commands.DeleteTask
+namespace MB.Application.Features.Artists.Commands.DeleteArtist
 {
-    public class DeleteArtistCommandHandler(IBaseRepository<Artist> artistRepository, IRelationRepository relationRepository, DeleteArtistCommandValidator validator) : IRequestHandler<DeleteArtistCommand, BaseResponse>
+    public class DeleteArtistCommandHandler(
+        IBaseRepository<Artist> artistRepository,
+        IBaseRelationRepository<RelationArtistStyle> relationRepository,
+        DeleteArtistCommandValidator validator) : IRequestHandler<DeleteArtistCommand, BaseResponse>
     {
         private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
-        private readonly IRelationRepository _relationRepository = relationRepository;
+        private readonly IBaseRelationRepository<RelationArtistStyle> _relationRepository = relationRepository;
         private readonly DeleteArtistCommandValidator _validator = validator;
 
         public async Task<BaseResponse> Handle(DeleteArtistCommand request, CancellationToken cancellationToken)
@@ -21,7 +22,7 @@ namespace MB.Application.Features.Task.Commands.DeleteTask
             {
                 return new BaseResponse
                 {
-                    Message = "Error(s)...",
+                    Message = "Validation Error(s)",
                     ValidationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList()
                 };
             }
@@ -32,21 +33,18 @@ namespace MB.Application.Features.Task.Commands.DeleteTask
             {
                 return new BaseResponse
                 {
-                    Message = "Error(s)...",
+                    Message = "Artist was not found.",
                     ValidationErrors = { $"Artist with ID {request.BusinessId} was not found." }
                 };
             }
 
             // Delete Existing Relations
-
-            await _relationRepository.DeleteRelationsByArtistIdAsync(artist.EntityId);
+            await _relationRepository.DeleteRelationsByMainEntityIdAsync(artist.EntityId, "ArtistId");
 
             // Delete Artist
-
             await _artistRepository.DeleteAsync(artist);
 
             // Return Success Response
-
             return new BaseResponse
             {
                 Success = true,

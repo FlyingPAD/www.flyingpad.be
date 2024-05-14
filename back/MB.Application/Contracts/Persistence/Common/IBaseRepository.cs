@@ -21,5 +21,3 @@ namespace MB.Application.Contracts.Persistence.Common
         Task DeleteMultipleAsync(IEnumerable<Guid> entityGuids);
     }
 }
-
-// TODO : Document this class

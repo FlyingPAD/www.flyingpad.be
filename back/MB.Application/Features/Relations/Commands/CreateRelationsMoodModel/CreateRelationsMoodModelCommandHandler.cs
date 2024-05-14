@@ -1,21 +1,27 @@
 ﻿using MB.Application.Contracts.Persistence;
+using MB.Application.Contracts.Persistence.Common;
 using MB.Application.Responses;
+using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodModel
 {
-    public class CreateRelationsMoodModelCommandHandler(CreateRelationsMoodModelCommandValidator validator, IMoodRepository moodRepo, IModelRepository modelRepo, IRelationRepository relationRepo) : IRequestHandler<CreateRelationsMoodModelCommand, BaseResponse>
+    public class CreateRelationsMoodModelCommandHandler(
+        CreateRelationsMoodModelCommandValidator validator,
+        IBaseRepository<Mood> moodRepository,
+        IModelRepository modelRepository,
+        IBaseRelationRepository<RelationMoodModel> relationRepository) : IRequestHandler<CreateRelationsMoodModelCommand, BaseResponse>
     {
         private readonly CreateRelationsMoodModelCommandValidator _validator = validator;
-        private readonly IMoodRepository _moodRepository = moodRepo;
-        private readonly IModelRepository _modelRepository = modelRepo;
-        private readonly IRelationRepository _relationRepository = relationRepo;
+        private readonly IBaseRepository<Mood> _moodRepository = moodRepository;
+        private readonly IModelRepository _modelRepository = modelRepository;
+        private readonly IBaseRelationRepository<RelationMoodModel> _relationRepository = relationRepository;
 
         public async Task<BaseResponse> Handle(CreateRelationsMoodModelCommand request, CancellationToken cancellationToken)
         {
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
-            if (validationResult.Errors.Count > 0)
+            if (validationResult.Errors.Count != 0)
             {
                 return new BaseResponse
                 {
@@ -45,7 +51,7 @@ namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodModel
                 };
             }
 
-            await _relationRepository.RMMInsertAsync(moodPrimaryId.Value, modelsPrimaryIds);
+            await _relationRepository.InsertRelationsAsync(moodPrimaryId.Value, modelsPrimaryIds, "MoodId", "ModelId");
 
             return new BaseResponse
             {

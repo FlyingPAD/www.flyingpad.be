@@ -1,57 +1,73 @@
-﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Features.Moods.Commands.DeleteMood;
+﻿using MB.Application.Contracts.Persistence.Common;
+using MB.Application.Contracts;
+using MB.Application.Responses;
 using MB.Domain.Entities;
 using MediatR;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace MB.Application.Features.Task.Commands.DeleteTask
+namespace MB.Application.Features.Moods.Commands.DeleteMood
 {
-    public class DeleteMoodCommandHandler : IRequestHandler<DeleteMoodCommand, DeleteMoodCommandResponse>
+    public class DeleteMoodCommandHandler : IRequestHandler<DeleteMoodCommand, BaseResponse>
     {
-        private readonly IMapper _mapper;
-        private readonly IBaseRepository<Mood> _moodRepository;
+        private readonly IBaseRepository<Mood> _moodRepo;
+        private readonly IBaseRelationRepository<RelationMoodTag> _relationMoodTagRepo;
+        private readonly IBaseRelationRepository<RelationMoodArtist> _relationMoodArtistRepo;
+        private readonly IBaseRelationRepository<RelationMoodModel> _relationMoodModelRepo;
+        private readonly IFileService _fileService;
 
-        public DeleteMoodCommandHandler(IMapper mapper, IBaseRepository<Mood> moodRepository)
+        public DeleteMoodCommandHandler(
+            IBaseRepository<Mood> moodRepo,
+            IBaseRelationRepository<RelationMoodTag> relationMoodTagRepo,
+            IBaseRelationRepository<RelationMoodArtist> relationMoodArtistRepo,
+            IBaseRelationRepository<RelationMoodModel> relationMoodModelRepo,
+            IFileService fileService)
         {
-            _mapper = mapper;
-            _moodRepository = moodRepository;
+            _moodRepo = moodRepo;
+            _relationMoodTagRepo = relationMoodTagRepo;
+            _relationMoodArtistRepo = relationMoodArtistRepo;
+            _relationMoodModelRepo = relationMoodModelRepo;
+            _fileService = fileService;
         }
 
-        public async Task<DeleteMoodCommandResponse> Handle(DeleteMoodCommand request, CancellationToken cancellationToken)
+        public async Task<BaseResponse> Handle(DeleteMoodCommand request, CancellationToken cancellationToken)
         {
-            var deleteMoodCommandResponse = new DeleteMoodCommandResponse();
-
+            var response = new BaseResponse();
             var validator = new DeleteMoodCommandValidator();
-            var validationResult = await validator.ValidateAsync(request);
+            var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
             if (validationResult.Errors.Count > 0)
             {
-                deleteMoodCommandResponse.Success = false;
-                deleteMoodCommandResponse.ValidationErrors = new List<string>();
-                foreach (var error in validationResult.Errors)
-                {
-                    deleteMoodCommandResponse.ValidationErrors.Add(error.ErrorMessage);
-                }
-            }
-            if (deleteMoodCommandResponse.Success)
-            {
-                var mood = await _moodRepository.GetByBusinessIdAsync(request.MoodId);
-                if (mood != null)
-                {
-                    await _moodRepository.DeleteAsync(mood);
-                    deleteMoodCommandResponse.Success = true;
-                }
-                else
-                {
-                    deleteMoodCommandResponse.Success = false;
-                    deleteMoodCommandResponse.ValidationErrors = new List<string>
-                    {
-                        "Selected mood doesn't exist."
-                    };
-                }
+                response.ValidationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList();
+                return response;
             }
 
-            return deleteMoodCommandResponse;
+            var mood = await _moodRepo.GetByBusinessIdAsync(request.MoodId);
+
+            if (mood != null)
+            {
+                response.Success = true;
+
+                // Delete Existing Relations
+                await _relationMoodTagRepo.DeleteRelationsByMainEntityIdAsync(mood.EntityId, "MoodId");
+                await _relationMoodArtistRepo.DeleteRelationsByMainEntityIdAsync(mood.EntityId, "MoodId");
+                await _relationMoodModelRepo.DeleteRelationsByMainEntityIdAsync(mood.EntityId, "MoodId");
+
+                // Delete Files
+                await _fileService.DeleteMoodAsync("Content", mood.BusinessId, mood.Extension);
+
+                // Delete Mood
+                await _moodRepo.DeleteAsync(mood);
+
+                response.Message = "Mood deleted successfully.";
+            }
+            else
+            {
+                response.ValidationErrors.Add("Mood was not found.");
+            }
+
+            return response;
         }
     }
 }

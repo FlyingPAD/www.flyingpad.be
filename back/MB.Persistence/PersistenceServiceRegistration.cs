@@ -21,15 +21,18 @@ namespace MB.Persistence
         /// <param name="configuration"></param>
         /// <returns></returns>
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
-        {      
+        {
             services.AddDbContext<Context>(
                 options => options.UseSqlServer(configuration.GetConnectionString("DB"))
                 .EnableSensitiveDataLogging()
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                 .LogTo(Console.WriteLine, LogLevel.Information)
-                );
+            );
+
+            // Common Repositories :
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped(typeof(IBaseRelationRepository<>), typeof(BaseRelationRepository<>));
 
             // Repositories :
 
@@ -47,10 +50,7 @@ namespace MB.Persistence
             services.AddScoped<ITaskCategoryRepository, TaskCategoryRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
-            services.AddScoped<IRelationRepository, RelationRepository>();
-
             services.AddScoped<ITokenManager, TokenManager>();
-
 
             return services;
         }

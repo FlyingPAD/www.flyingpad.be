@@ -1,30 +1,20 @@
-﻿using FluentValidation;
-using MB.Application.Contracts.Persistence;
-using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Responses;
+﻿using MB.Application.Contracts.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByArtist
 {
-    public class CheckRelationsArtistStyleByArtistQueryHandler : IRequestHandler<CheckRelationsArtistStyleByArtistQuery, CheckRelationsArtistStyleByArtistQueryResponse>
+    public class CheckRelationsArtistStyleByArtistQueryHandler(IBaseRelationRepository<RelationArtistStyle> relationRepository, IBaseRepository<Artist> artistRepository, CheckRelationsArtistStyleByArtistQueryValidator validator) : IRequestHandler<CheckRelationsArtistStyleByArtistQuery, CheckRelationsArtistStyleByArtistQueryResponse>
     {
-        private readonly IRelationRepository _relationRepository;
-        private readonly IBaseRepository<Artist> _artistRepository;
-        private readonly CheckRelationsArtistStyleByArtistQueryValidator _validator;
-
-        public CheckRelationsArtistStyleByArtistQueryHandler(IRelationRepository relationRepository, IBaseRepository<Artist> artistRepository, CheckRelationsArtistStyleByArtistQueryValidator validator)
-        {
-            _relationRepository = relationRepository;
-            _artistRepository = artistRepository;
-            _validator = validator;
-        }
+        private readonly IBaseRelationRepository<RelationArtistStyle> _relationRepository = relationRepository;
+        private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
+        private readonly CheckRelationsArtistStyleByArtistQueryValidator _validator = validator;
 
         public async Task<CheckRelationsArtistStyleByArtistQueryResponse> Handle(CheckRelationsArtistStyleByArtistQuery request, CancellationToken cancellationToken)
         {
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
-            if (validationResult.Errors.Any())
+            if (validationResult.Errors.Count != 0)
             {
                 return new CheckRelationsArtistStyleByArtistQueryResponse
                 {
@@ -44,7 +34,7 @@ namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByA
                 };
             }
 
-            int numberOfRelations = await _relationRepository.CheckRelationsArtistStyleByArtist(artistPrimaryId.Value);
+            int numberOfRelations = await _relationRepository.CountRelationsByMainEntityIdAsync(artistPrimaryId.Value, "ArtistId");
 
             return new CheckRelationsArtistStyleByArtistQueryResponse
             {

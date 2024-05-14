@@ -1,21 +1,27 @@
 ﻿using MB.Application.Contracts.Persistence;
+using MB.Application.Contracts.Persistence.Common;
 using MB.Application.Responses;
+using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodTags
 {
-    public class CreateRelationsMoodTagsCommandHandler(CreateRelationsMoodTagsCommandValidator validator, IMoodRepository moodRepo, ITagRepository tagRepo, IRelationRepository relationRepo) : IRequestHandler<CreateRelationsMoodTagsCommand, BaseResponse>
+    public class CreateRelationsMoodTagsCommandHandler(
+        CreateRelationsMoodTagsCommandValidator validator,
+        IBaseRepository<Mood> moodRepository,
+        ITagRepository tagRepository,
+        IBaseRelationRepository<RelationMoodTag> relationRepository) : IRequestHandler<CreateRelationsMoodTagsCommand, BaseResponse>
     {
         private readonly CreateRelationsMoodTagsCommandValidator _validator = validator;
-        private readonly IMoodRepository _moodRepository = moodRepo;
-        private readonly ITagRepository _tagRepository = tagRepo;
-        private readonly IRelationRepository _relationRepository = relationRepo;
+        private readonly IBaseRepository<Mood> _moodRepository = moodRepository;
+        private readonly ITagRepository _tagRepository = tagRepository;
+        private readonly IBaseRelationRepository<RelationMoodTag> _relationRepository = relationRepository;
 
         public async Task<BaseResponse> Handle(CreateRelationsMoodTagsCommand request, CancellationToken cancellationToken)
         {
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
-            if (validationResult.Errors.Count > 0)
+            if (validationResult.Errors.Count != 0)
             {
                 return new BaseResponse
                 {
@@ -41,11 +47,11 @@ namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodTags
                 return new BaseResponse
                 {
                     Success = false,
-                    Message = "One or more styles were not found."
+                    Message = "One or more tags were not found."
                 };
             }
 
-            await _relationRepository.RMTInsertAsync(moodPrimaryId.Value, tagsPrimaryIds);
+            await _relationRepository.InsertRelationsAsync(moodPrimaryId.Value, tagsPrimaryIds, "MoodId", "TagId");
 
             return new BaseResponse
             {

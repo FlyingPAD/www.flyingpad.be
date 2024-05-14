@@ -84,6 +84,4 @@ export interface MoodUpdateResponse extends BaseResponse
 
 export interface MoodsUpdateOneScoreResponse extends BaseResponse {}
 
-export interface MoodsDeleteOneResponse extends BaseResponse {}
-
 export interface UpdateMoodScoreResponse extends BaseResponse {}

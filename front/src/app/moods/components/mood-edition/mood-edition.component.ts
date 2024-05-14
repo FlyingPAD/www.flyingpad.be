@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MoodUpdateForm, UpdateMoodScoreCall } from '../../../core/models/mood';
 import { Subscription, forkJoin } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-mood-edition',
@@ -37,11 +38,14 @@ export class MoodEditionComponent implements OnDestroy
   EditionTagsSubscription = new Subscription()
   EditionModelsSubscription = new Subscription()
   EditionArtistsSubscription = new Subscription()
+  DeleteMoodSubscription = new Subscription()
 
+  // Triggers
   triggerMoodEdition : boolean = true
   triggerMoodTagsEdition : boolean = false
   triggerMoodModelsEdition : boolean = false
   triggerMoodArtistsEdition : boolean = false
+  triggerDelete : boolean = false
 
   triggerMoodEditionButton()
   {
@@ -72,6 +76,11 @@ export class MoodEditionComponent implements OnDestroy
     this.triggerMoodArtistsEdition = false
   }
 
+  triggerDeleteMood()
+  {
+    this.triggerDelete = !this.triggerDelete
+  }
+
   formGroup : FormGroup = this.#formBuilder.group
   ({
     name : [this.moodEditionFlow().mood.name, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
@@ -84,6 +93,7 @@ export class MoodEditionComponent implements OnDestroy
     this.EditionTagsSubscription.unsubscribe()
     this.EditionModelsSubscription.unsubscribe()
     this.EditionArtistsSubscription.unsubscribe()
+    this.DeleteMoodSubscription.unsubscribe()
   }
 
   success()
@@ -189,6 +199,14 @@ export class MoodEditionComponent implements OnDestroy
     this.#moodService.updateScoreTrigger(form)
   }
 
+  deleteMood()
+  {
+    this.DeleteMoodSubscription = this.#moodService.Delete(this.moodEditionFlow().mood.businessId).subscribe({
+      next : () => {
+        this.#router.navigateByUrl('/moods/gallery')
+      }
+    })
+  }
 
   // KEYBOARD CONFIGURATION
   @HostListener('window:keydown', ['$event'])

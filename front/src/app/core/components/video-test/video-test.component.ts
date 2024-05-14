@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { TagStateService } from '../../services/tag-state.service';
+import { Component } from '@angular/core';
 import { VideoYouTubeDetails } from '../../models/youtube-test';
 import { VideoTestService } from '../../services/video-test.service';
 

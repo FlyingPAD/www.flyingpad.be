@@ -42,6 +42,17 @@
             <input class="form-item" type="text" formControlName="description" value="{{flow.mood.description}}">    
             </form>
         </div>
+        <!-- Delete Mood -->
+        <p (click)="triggerDeleteMood()">Delete Mood</p>
+        <div class="box-delete" *ngIf="triggerDelete === true" (click)="triggerDeleteMood()">
+            <h1>Warning !!</h1>
+            <br>
+            <p>This will delete mood & all associations permanently</p>
+            <br>
+            <p>Are u sure ?</p>
+            <br>
+            <span (click)="deleteMood()">Delete</span>
+        </div>
     </div>
     <!-- Tags Edition -->    
     <div *ngIf="triggerMoodTagsEdition">
@@ -109,29 +120,29 @@
         <img src="../../../../assets/app_icons/icon_moods_001.png" />
     </a>
     <!-- Save -->
-    <a (click)="SaveEdition(false)" *ngIf="triggerMoodEdition">
-        <img src="../../../../assets/app_icons/save.png"/>
-    </a>
     <a (click)="SaveEdition(true)" *ngIf="triggerMoodEdition">
         <img src="../../../../assets/app_icons/icon_mood_001.png"/>
     </a>
-    <a (click)="SaveTagsEdition(false)" *ngIf="triggerMoodTagsEdition">
+    <a (click)="SaveEdition(false)" *ngIf="triggerMoodEdition">
         <img src="../../../../assets/app_icons/save.png"/>
     </a>
     <a (click)="SaveTagsEdition(true)" *ngIf="triggerMoodTagsEdition">
         <img src="../../../../assets/app_icons/icon_mood_001.png"/>
     </a>
-    <a (click)="SaveModelsEdition(false)" *ngIf="triggerMoodModelsEdition">
+    <a (click)="SaveTagsEdition(false)" *ngIf="triggerMoodTagsEdition">
         <img src="../../../../assets/app_icons/save.png"/>
     </a>
     <a (click)="SaveModelsEdition(true)" *ngIf="triggerMoodModelsEdition">
         <img src="../../../../assets/app_icons/icon_mood_001.png"/>
     </a>
-    <a (click)="SaveArtistsEdition(false)" *ngIf="triggerMoodArtistsEdition">
+    <a (click)="SaveModelsEdition(false)" *ngIf="triggerMoodModelsEdition">
         <img src="../../../../assets/app_icons/save.png"/>
     </a>
     <a (click)="SaveArtistsEdition(true)" *ngIf="triggerMoodArtistsEdition">
         <img src="../../../../assets/app_icons/icon_mood_001.png"/>
+    </a>
+    <a (click)="SaveArtistsEdition(false)" *ngIf="triggerMoodArtistsEdition">
+        <img src="../../../../assets/app_icons/save.png"/>
     </a>
     <!-- To Top Button -->
     <a (click)="toTop()" *ngIf="topButtonIsActive === true">
