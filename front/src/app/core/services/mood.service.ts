@@ -12,6 +12,7 @@ import { GetOneVideoDetailsResponse, Video } from "../models/mood-video";
 import { Image } from "../models/mood-image";
 import { GetOneVideoYoutubeDetailsResponse, VideoYouTube } from "../models/mood-video-youtube";
 import { GetArtistsByMoodResponse, GetArtistsCheckBoxesByMoodResponse } from "../models/artist";
+import { BaseResponse } from "../models/base-response";
 
 type Media = Image | Video | VideoYouTube | null
 
@@ -331,6 +332,14 @@ export class MoodStateService
     return this.#http.post<CreateMoodImageResponse>(`${this.#url}Moods/CreateMoodImage`, form).pipe(
       map(response => response.mood.businessId),
       tap(businessId => this.updateSelectedMoodId(businessId))
+    )
+  }
+
+  // Delete Mood
+  public Delete( moodId : number )
+  {
+    return this.#http.delete<BaseResponse>(`${this.#url}Moods/Delete/${moodId}`).pipe(
+      tap( () => this.updateSelectedMoodId(null))
     )
   }
 

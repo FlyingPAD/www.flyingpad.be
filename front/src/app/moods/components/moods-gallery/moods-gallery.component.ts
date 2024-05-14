@@ -51,10 +51,11 @@ export class MoodsGalleryComponent
     this.currentPage = 1
   }
 
-  getMoodRandom() : void
+  getRandomMood() : void
   {
-    this.moodsService.updateSelectedGalleryType('')
     this.moodsService.updateSelectedMoodId(null)
+    this.moodsService.updateSelectedGalleryType('')
+    this.router.navigateByUrl('/moods/mood-details')
   }
 
   updateMoodId( moodId : number | null ) : void

@@ -3,14 +3,9 @@ using MediatR;
 
 namespace MB.Application.Features.Moods.Commands.UpdateMoodScore
 {
-    public class UpdateMoodScoreCommandHandler : IRequestHandler<UpdateMoodScoreCommand, UpdateMoodScoreCommandResponse>
+    public class UpdateMoodScoreCommandHandler(IMoodRepository repository) : IRequestHandler<UpdateMoodScoreCommand, UpdateMoodScoreCommandResponse>
     {
-        private readonly IMoodRepository _repository;
-
-        public UpdateMoodScoreCommandHandler(IMoodRepository repository)
-        {
-            _repository = repository;
-        }
+        private readonly IMoodRepository _repository = repository;
 
         public async Task<UpdateMoodScoreCommandResponse> Handle(UpdateMoodScoreCommand request, CancellationToken cancellationToken)
         {

@@ -1,13 +1,12 @@
-﻿using MB.Application.Contracts.Persistence;
-using MB.Application.Contracts.Persistence.Common;
+﻿using MB.Application.Contracts.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByStyle
 {
-    public class CheckRelationsArtistStyleByStyleQueryHandler(IRelationRepository relationRepository, IBaseRepository<Style> styleRepository, CheckRelationsArtistStyleByStyleQueryValidator validator) : IRequestHandler<CheckRelationsArtistStyleByStyleQuery, CheckRelationsArtistStyleByStyleQueryResponse>
+    public class CheckRelationsArtistStyleByStyleQueryHandler(IBaseRelationRepository<RelationArtistStyle> relationRepository, IBaseRepository<Style> styleRepository, CheckRelationsArtistStyleByStyleQueryValidator validator) : IRequestHandler<CheckRelationsArtistStyleByStyleQuery, CheckRelationsArtistStyleByStyleQueryResponse>
     {
-        private readonly IRelationRepository _relationRepository = relationRepository;
+        private readonly IBaseRelationRepository<RelationArtistStyle> _relationRepository = relationRepository;
         private readonly IBaseRepository<Style> _styleRepository = styleRepository;
         private readonly CheckRelationsArtistStyleByStyleQueryValidator _validator = validator;
 
@@ -35,7 +34,7 @@ namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByS
                 };
             }
 
-            int numberOfRelations = await _relationRepository.CheckRelationsArtistStyleByStyle(stylePrimaryId.Value);
+            int numberOfRelations = await _relationRepository.CountRelationsByMainEntityIdAsync(stylePrimaryId.Value, "ArtistId");
 
             return new CheckRelationsArtistStyleByStyleQueryResponse
             {

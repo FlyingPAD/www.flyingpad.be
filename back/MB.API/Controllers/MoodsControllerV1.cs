@@ -12,6 +12,7 @@ using MB.Application.Features.Moods.Queries.GetMoodsByModel;
 using MB.Application.Features.Moods.Queries.GetMoodsByTag;
 using MB.Application.Features.Moods.Queries.GetMoodsList;
 using MB.Application.Features.Moods.Queries.GetRandomMoodQuery;
+using MB.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -168,7 +169,7 @@ namespace MB.API.Controllers
         /// </summary>
         [HttpDelete("Delete/{moodId}")]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public async Task<ActionResult<DeleteMoodCommandResponse>> Delete( Guid moodId)
+        public async Task<ActionResult<BaseResponse>> Delete( Guid moodId )
         {
             var response = await _mediator.Send(new DeleteMoodCommand { MoodId = moodId });
             return Ok(response);

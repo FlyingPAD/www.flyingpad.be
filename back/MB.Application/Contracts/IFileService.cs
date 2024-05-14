@@ -13,5 +13,6 @@
         /// <param name="extension">The file extension for the image file (e.g., "jpg", "png").</param>
         /// <returns>A task that represents the asynchronous save operation.</returns>
         Task SaveImageAsync(Guid moodId, string imageData, string extension);
+        Task DeleteMoodAsync(string path, Guid moodId, string extension);
     }
 }

@@ -7,11 +7,16 @@ using MediatR;
 
 namespace MB.Application.Features.Moods.Commands.CreateMoodImage
 {
-    public class CreateMoodImageCommandHandler(IFileService fileService, ITagRepository tagRepository, IBaseRepository<Image> imageRepository, IRelationRepository relationRepository, IMapper mapper) : IRequestHandler<CreateMoodImageCommand, CreateMoodImageCommandResponse>
+    public class CreateMoodImageCommandHandler(
+        IFileService fileService,
+        IBaseRepository<Image> imageRepository,
+        IBaseRelationRepository<RelationMoodTag> relationRepository,
+        ITagRepository tagRepository,
+        IMapper mapper) : IRequestHandler<CreateMoodImageCommand, CreateMoodImageCommandResponse>
     {
         private readonly IFileService _fileService = fileService;
         private readonly IBaseRepository<Image> _imageRepository = imageRepository;
-        private readonly IRelationRepository _relationRepository = relationRepository;
+        private readonly IBaseRelationRepository<RelationMoodTag> _relationRepository = relationRepository;
         private readonly ITagRepository _tagRepository = tagRepository;
         private readonly IMapper _mapper = mapper;
 
@@ -107,7 +112,7 @@ namespace MB.Application.Features.Moods.Commands.CreateMoodImage
                 }
 
                 // Insert Tags
-                await _relationRepository.RMTInsertAsync(createdImage.EntityId, tags);
+                await _relationRepository.InsertRelationsAsync(createdImage.EntityId, tags, "MoodId", "TagId");
             }
 
             var response = new CreateMoodImageCommandResponse
