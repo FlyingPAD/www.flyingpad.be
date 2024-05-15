@@ -1,17 +1,14 @@
-﻿using MB.Application.Contracts.Persistence.Common;
+﻿using MB.Application.Contracts.Persistence;
 using MB.Application.Responses;
-using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Artists.Commands.DeleteArtist
 {
     public class DeleteArtistCommandHandler(
-        IBaseRepository<Artist> artistRepository,
-        IBaseRelationRepository<RelationArtistStyle> relationRepository,
+        IArtistRepository artistRepository,
         DeleteArtistCommandValidator validator) : IRequestHandler<DeleteArtistCommand, BaseResponse>
     {
-        private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
-        private readonly IBaseRelationRepository<RelationArtistStyle> _relationRepository = relationRepository;
+        private readonly IArtistRepository _artistRepository = artistRepository;
         private readonly DeleteArtistCommandValidator _validator = validator;
 
         public async Task<BaseResponse> Handle(DeleteArtistCommand request, CancellationToken cancellationToken)
@@ -39,7 +36,7 @@ namespace MB.Application.Features.Artists.Commands.DeleteArtist
             }
 
             // Delete Existing Relations
-            await _relationRepository.DeleteRelationsByMainEntityIdAsync(artist.EntityId, "ArtistId");
+            await _artistRepository.DeleteStyles(artist.EntityId);
 
             // Delete Artist
             await _artistRepository.DeleteAsync(artist);

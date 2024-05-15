@@ -1,21 +1,14 @@
 ﻿using MB.Application.Contracts.Persistence;
-using MB.Application.Contracts.Persistence.Common;
 using MB.Application.Responses;
-using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodTags
 {
-    public class CreateRelationsMoodTagsCommandHandler(
-        CreateRelationsMoodTagsCommandValidator validator,
-        IBaseRepository<Mood> moodRepository,
-        ITagRepository tagRepository,
-        IBaseRepository<RelationMoodTag> relationRepository) : IRequestHandler<CreateRelationsMoodTagsCommand, BaseResponse>
+    public class CreateRelationsMoodTagsCommandHandler(CreateRelationsMoodTagsCommandValidator validator, IMoodRepository moodRepository, ITagRepository tagRepository) : IRequestHandler<CreateRelationsMoodTagsCommand, BaseResponse>
     {
         private readonly CreateRelationsMoodTagsCommandValidator _validator = validator;
-        private readonly IBaseRepository<Mood> _moodRepository = moodRepository;
+        private readonly IMoodRepository _moodRepository = moodRepository;
         private readonly ITagRepository _tagRepository = tagRepository;
-        private readonly IBaseRepository<RelationMoodTag> _relationRepository = relationRepository;
 
         public async Task<BaseResponse> Handle(CreateRelationsMoodTagsCommand request, CancellationToken cancellationToken)
         {
@@ -53,24 +46,8 @@ namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodTags
                 };
             }
 
-            // Récupération et suppression des Relations existantes pour le MoodId spécifié
-            var existingRelations = await _relationRepository.GetAllAsync();
-            var relationsToDelete = existingRelations.Where(r => r.MoodId == moodPrimaryId).ToList();
-            foreach (var relation in relationsToDelete)
-            {
-                await _relationRepository.DeleteAsync(relation);
-            }
-
-            // Création des nouvelles Relations
-            foreach (var tagId in tagsPrimaryIds)
-            {
-                var newRelation = new RelationMoodTag
-                {
-                    MoodId = (int)moodPrimaryId,
-                    TagId = tagId
-                };
-                await _relationRepository.CreateAsync(newRelation);
-            }
+            // Mise à jour des Tags
+            await _moodRepository.UpdateTags((int)moodPrimaryId, tagsPrimaryIds);
 
             return new BaseResponse
             {

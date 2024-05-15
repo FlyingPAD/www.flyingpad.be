@@ -2,11 +2,10 @@
 {
     public class RelationFranchiseMedia
     {
-        public int FranchiseId { get; set; } = 0;
-        public int MediaId { get; set; } = 0;
+        public int FranchiseId { get; set; }
+        public int MediaId { get; set; }
 
-        // Navigation Properties :
-
+        // Navigation Properties
         public Franchise? Franchise { get; set; }
         public Media? Media { get; set; }
     }

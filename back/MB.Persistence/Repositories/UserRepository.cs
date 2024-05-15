@@ -4,11 +4,8 @@ using MB.Persistence.Repositories.Common;
 
 namespace MB.Persistence.Repositories
 {
-    public class UserRepository : BaseRepository<User>, IUserRepository
+    public class UserRepository(Context context) : BaseRepository<User>(context), IUserRepository
     {
-        public UserRepository(Context context) : base(context)
-        {
-             
-        }
+
     }
 }

@@ -6,6 +6,7 @@ namespace MB.Application.Contracts.Persistence
 {
     public interface IStyleRepository : IBaseRepository<Style>
     {
+        System.Threading.Tasks.Task DeleteArtists(int styleId);
         Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds);
         Task<List<GetStylesCheckQueryDto>> GetStylesWithCheck(Guid artistId);
     }

@@ -3,11 +3,8 @@ using MB.Persistence.Repositories.Common;
 
 namespace MB.Persistence.Repositories
 {
-    public class VideoRepository : BaseRepository<Video>
+    public class VideoRepository(Context context) : BaseRepository<Video>(context)
     {
-        public VideoRepository(Context context) : base(context)
-        {
 
-        }
     }
 }

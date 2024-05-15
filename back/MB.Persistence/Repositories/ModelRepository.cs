@@ -39,12 +39,13 @@ namespace MB.Persistence.Repositories
                                        {
                                            BusinessId = model.BusinessId,
                                            Pseudonym = model.Pseudonym,
-                                           IsChecked = model.MoodModels.Any(mm => mm.MoodId == moodId)
+                                           IsChecked = model.MoodModels != null && model.MoodModels.Any(mm => mm.MoodId == moodId)
                                        })
                                        .OrderBy(model => model.Pseudonym)
                                        .ToListAsync();
 
             return models;
         }
+
     }
 }

@@ -1,21 +1,14 @@
 ﻿using MB.Application.Contracts.Persistence;
-using MB.Application.Contracts.Persistence.Common;
 using MB.Application.Responses;
-using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodArtist
 {
-    public class CreateRelationsMoodArtistCommandHandler(
-        CreateRelationsMoodArtistCommandValidator validator,
-        IBaseRepository<Mood> moodRepository,
-        IArtistRepository artistRepository,
-        IBaseRelationRepository<RelationMoodArtist> relationRepository) : IRequestHandler<CreateRelationsMoodArtistCommand, BaseResponse>
+    public class CreateRelationsMoodArtistCommandHandler(CreateRelationsMoodArtistCommandValidator validator, IMoodRepository moodRepository, IArtistRepository artistRepository) : IRequestHandler<CreateRelationsMoodArtistCommand, BaseResponse>
     {
         private readonly CreateRelationsMoodArtistCommandValidator _validator = validator;
-        private readonly IBaseRepository<Mood> _moodRepository = moodRepository;
+        private readonly IMoodRepository _moodRepository = moodRepository;
         private readonly IArtistRepository _artistRepository = artistRepository;
-        private readonly IBaseRelationRepository<RelationMoodArtist> _relationRepository = relationRepository;
 
         public async Task<BaseResponse> Handle(CreateRelationsMoodArtistCommand request, CancellationToken cancellationToken)
         {
@@ -51,7 +44,7 @@ namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodArtist
                 };
             }
 
-            await _relationRepository.InsertRelationsAsync(moodPrimaryId.Value, artistsPrimaryIds, "MoodId", "ArtistId");
+            await _moodRepository.UpdateArtists((int)moodPrimaryId, artistsPrimaryIds);
 
             return new BaseResponse
             {

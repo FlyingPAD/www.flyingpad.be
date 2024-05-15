@@ -12,141 +12,143 @@
             <img class="logo" src="../../../../assets/app_logos/fp_logo_03.png">
         </div>
     </div>
-    <div class="menu-elements">
-        <!-- User ( Not Connected ) -->
-        <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
-            <a routerLink="/home" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_home_001.png" />
-                <p>Home</p>
-            </a>
-            <a routerLink="/about" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_about_001.png" />
-                <p>About</p>
-            </a>
-            <a routerLink="/moods" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_moods_001.png" />
-                <p>Moods</p>
-            </a>
-            <a routerLink="/scripts" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_scripts_001.png" />
-                <p>Scripts</p>
-            </a>
-            <a routerLink="/tools" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_tools_001.png" />
-                <p>Tools</p>
-            </a>
-            <a routerLink="/links" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_links_001.png" />
-                <p>Links</p>
-            </a>
+    <div class="scroll">
+        <div class="menu-elements">
+            <!-- User ( Not Connected ) -->
+            <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
+                <a routerLink="/home" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_home_001.png" />
+                    <p>Home</p>
+                </a>
+                <a routerLink="/about" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_about_001.png" />
+                    <p>About</p>
+                </a>
+                <a routerLink="/moods" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_moods_001.png" />
+                    <p>Moods</p>
+                </a>
+                <a routerLink="/scripts" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
+                    <p>Scripts</p>
+                </a>
+                <a routerLink="/tools" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
+                    <p>Tools</p>
+                </a>
+                <a routerLink="/links" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_links_001.png" />
+                    <p>Links</p>
+                </a>
+            </div>
+            <!-- User ( Connected ) -->
+            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
+                <a routerLink="/home" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_home_001.png" />
+                    <p>Home</p>
+                </a>
+                <a routerLink="/about" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_about_001.png" />
+                    <p>About</p>
+                </a>
+                <a routerLink="/moods" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_moods_001.png" />
+                    <p>Moods</p>
+                </a>
+                <a routerLink="/tags" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_tags_001.png" />
+                    <p>Tags</p>
+                </a>
+                <a routerLink="/scripts" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
+                    <p>Scripts</p>
+                </a>
+                <a routerLink="/tools" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
+                    <p>Tools</p>
+                </a>
+                <a routerLink="/links" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_links_001.png" />
+                    <p>Links</p>
+                </a>
+            </div>
+            <!-- Administrator -->
+            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
+                <a routerLink="/dashboard/home" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_home_001.png" />
+                    <p>Dashboard</p>
+                </a>
+                <a routerLink="/moods/gallery" routerLinkActive="active" routerLinkActive="active" 
+                    [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_moods_001.png" />
+                    <p>Moods</p>
+                </a>
+                <a routerLink="/moods/mood-details" routerLinkActive="active" routerLinkActive="active" 
+                    [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_mood_001.png" />
+                    <p>Mood</p>
+                </a>
+                <a routerLink="/tags/gallery" routerLinkActive="active" (click)="menuTrigger()"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <img src="../../../../assets/app_icons/icon_tags_001.png" />
+                    <p>Tags</p>
+                </a>
+                <a routerLink="/models/model-gallery" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_model_001.png" />
+                    <p>Model</p>
+                </a>
+                <a routerLink="/franchises/franchise-gallery" routerLinkActive="active" 
+                    [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_franchise_001.png" />
+                    <p>Franchise</p>
+                </a>
+                <a routerLink="/franchises/gallery" routerLinkActive="active" 
+                    [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_franchises_001.png" />
+                    <p>Medias</p>
+                </a>
+                <a routerLink="/artists/artist-gallery" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/artist.png" />
+                    <p>Artist</p>
+                </a>
+                <a routerLink="/scripts" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
+                    <p>Scripts</p>
+                </a>
+                <a routerLink="/tools" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
+                    <p>Tools</p>
+                </a>
+                <a routerLink="/links" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_links_001.png" />
+                    <p>Links</p>
+                </a> 
+            </div>
+            <!-- User ( Not Connected ) -->
+            <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
+                <a class="user" routerLink="/authentication/register" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_artists_001.png" />
+                    <p>{{userService.appUser.firstName}}</p>
+                </a>
+            </div>
+            <!-- User ( Connected ) -->
+            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
+                <a class="user" routerLink="/users/user-details" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/mood.png" />
+                    <p>{{userService.appUser.firstName}}</p>
+                </a>          
+            </div>
+            <!-- Administrator -->
+            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
+                <a class="user" routerLink="/users/user-details" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/mood.png" />
+                    <p>{{userService.appUser.firstName}}</p>
+                </a>        
+            </div>
         </div>
-        <!-- User ( Connected ) -->
-        <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
-            <a routerLink="/home" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_home_001.png" />
-                <p>Home</p>
-            </a>
-            <a routerLink="/about" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_about_001.png" />
-                <p>About</p>
-            </a>
-            <a routerLink="/moods" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_moods_001.png" />
-                <p>Moods</p>
-            </a>
-            <a routerLink="/tags" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_tags_001.png" />
-                <p>Tags</p>
-            </a>
-            <a routerLink="/scripts" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_scripts_001.png" />
-                <p>Scripts</p>
-            </a>
-            <a routerLink="/tools" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_tools_001.png" />
-                <p>Tools</p>
-            </a>
-            <a routerLink="/links" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_links_001.png" />
-                <p>Links</p>
-            </a>
+        <div class="menu-footer">
+            <p>© {{currentYear}} <a routerLink="/about" (click)="menuTrigger()">Flying PAD</a>
         </div>
-        <!-- Administrator -->
-        <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
-            <a routerLink="/dashboard/home" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_home_001.png" />
-                <p>Dashboard</p>
-            </a>
-            <a routerLink="/moods/gallery" routerLinkActive="active" routerLinkActive="active" 
-                [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_moods_001.png" />
-                <p>Moods</p>
-            </a>
-            <a routerLink="/moods/mood-details" routerLinkActive="active" routerLinkActive="active" 
-                [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_mood_001.png" />
-                <p>Mood</p>
-            </a>
-            <a routerLink="/tags/gallery" routerLinkActive="active" (click)="menuTrigger()"
-                [routerLinkActiveOptions]="{exact: true}">
-                <img src="../../../../assets/app_icons/icon_tags_001.png" />
-                <p>Tags</p>
-            </a>
-            <a routerLink="/models/model-gallery" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_model_001.png" />
-                <p>Model</p>
-            </a>
-            <a routerLink="/franchises/franchise-gallery" routerLinkActive="active" 
-                [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_franchise_001.png" />
-                <p>Franchise</p>
-            </a>
-            <a routerLink="/franchises/gallery" routerLinkActive="active" 
-                [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_franchises_001.png" />
-                <p>Medias</p>
-            </a>
-            <a routerLink="/artists/artist-gallery" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/artist.png" />
-                <p>Artist</p>
-            </a>
-            <a routerLink="/scripts" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_scripts_001.png" />
-                <p>Scripts</p>
-            </a>
-            <a routerLink="/tools" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_tools_001.png" />
-                <p>Tools</p>
-            </a>
-            <a routerLink="/links" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_links_001.png" />
-                <p>Links</p>
-            </a> 
-        </div>
-        <!-- User ( Not Connected ) -->
-        <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
-            <a class="user" routerLink="/authentication/register" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/icon_artists_001.png" />
-                <p>{{userService.appUser.firstName}}</p>
-            </a>
-        </div>
-        <!-- User ( Connected ) -->
-        <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
-            <a class="user" routerLink="/users/user-details" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/mood.png" />
-                <p>{{userService.appUser.firstName}}</p>
-            </a>          
-        </div>
-        <!-- Administrator -->
-        <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
-            <a class="user" routerLink="/users/user-details" routerLinkActive="active" (click)="menuTrigger()">
-                <img src="../../../../assets/app_icons/mood.png" />
-                <p>{{userService.appUser.firstName}}</p>
-            </a>        
-        </div>
-    </div>
-    <div class="menu-footer">
-        <p>© {{currentYear}} <a routerLink="/about" (click)="menuTrigger()">Flying PAD</a>
     </div>
 </div>
 

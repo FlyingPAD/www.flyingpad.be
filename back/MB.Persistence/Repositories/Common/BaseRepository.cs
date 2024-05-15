@@ -9,57 +9,40 @@ namespace MB.Persistence.Repositories.Common
     {
         protected readonly Context _context = context;
 
-        // -------------------------------------------------------------------------------------
-        // (C) CREATE :
-        // -------------------------------------------------------------------------------------
-
         /// <summary>
-        /// Create
+        /// Adds and saves an entity.
         /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
         public async Task<T> CreateAsync(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
             await _context.SaveChangesAsync();
-
             return entity;
         }
 
-        // -------------------------------------------------------------------------------------
-        // (R) RETRIEVE / GET :
-        // -------------------------------------------------------------------------------------
-
         /// <summary>
-        /// Count Entities
+        /// Counts entities of type T.
         /// </summary>
-        /// <returns>int</returns>
         public async Task<int> CountAsync()
         {
             return await _context.Set<T>().CountAsync();
         }
 
         /// <summary>
-        /// Get All
+        /// Returns all entities of type T, optionally ordered.
         /// </summary>
-        /// <returns></returns>
         public async Task<IQueryable<T>> GetAllAsync(Expression<Func<T, object>>? orderBy = null, bool ascending = true)
         {
             IQueryable<T> query = _context.Set<T>();
-
             if (orderBy != null)
             {
                 query = ascending ? query.OrderBy(orderBy) : query.OrderByDescending(orderBy);
             }
-
             return await Task.FromResult(query);
         }
 
         /// <summary>
-        /// Get Entity By Business ID ( Guid )
+        /// Retrieves an entity by business ID.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public async Task<T?> GetByBusinessIdAsync(Guid id)
         {
             return await _context.Set<T>().OfType<AuditableEntity>()
@@ -67,38 +50,27 @@ namespace MB.Persistence.Repositories.Common
         }
 
         /// <summary>
-        /// Get Primary ID ( int ) by Business ID ( Guid )
+        /// Gets the primary key by business ID.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public async Task<int?> GetPrimaryIdByBusinessIdAsync(Guid? id)
         {
             var entity = await _context.Set<T>().OfType<AuditableEntity>()
                                             .SingleOrDefaultAsync(x => x.BusinessId == id);
-
             return entity?.EntityId ?? null;
         }
-        // -------------------------------------------------------------------------------------
-        // (U) UPDATE :
-        // -------------------------------------------------------------------------------------
+
         /// <summary>
-        /// Update Entity
+        /// Updates and saves an entity.
         /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
         public async Task UpdateAsync(T entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
-        // -------------------------------------------------------------------------------------
-        // (D) DELETE :
-        // -------------------------------------------------------------------------------------
+
         /// <summary>
-        /// Delete Entity
+        /// Deletes an entity.
         /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
         public async Task DeleteAsync(T entity)
         {
             _context.Set<T>().Remove(entity);
@@ -106,10 +78,8 @@ namespace MB.Persistence.Repositories.Common
         }
 
         /// <summary>
-        /// Delete Multiple Entities
+        /// Deletes multiple entities by business IDs.
         /// </summary>
-        /// <param name="entityGuids"></param>
-        /// <returns></returns>
         public async Task DeleteMultipleAsync(IEnumerable<Guid> entityGuids)
         {
             var entitiesToDelete = await _context.Set<AuditableEntity>()

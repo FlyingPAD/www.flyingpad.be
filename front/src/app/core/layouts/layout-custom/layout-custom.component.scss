@@ -21,7 +21,6 @@
     width: 225px;
     padding-left: 1%; padding-right: 1%;
 
-    overflow-y: scroll;
     pointer-events: auto;
 
     background-color: rgba(255, 253, 251, 0.9);
@@ -77,68 +76,75 @@
             }
         }
     }
-    .menu-elements
+    .scroll
     {
-        padding-top: 25px;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: rgb(107, 82, 64, 0.7) #f1f1f1;
 
-        a
+        .menu-elements
         {
-            display: flex;
-            align-items: center;
-
-            text-decoration: none;
-            color: var(--colorMain);
-
-            margin-bottom: 5px;
-
-            img
+            padding-top: 25px;
+    
+            a
             {
-                margin-left: 10px;
-                height: 30px;
-                width: 30px;
+                display: flex;
+                align-items: center;
+    
+                text-decoration: none;
+                color: var(--colorMain);
+    
+                margin-bottom: 5px;
+    
+                img
+                {
+                    margin-left: 10px;
+                    height: 30px;
+                    width: 30px;
+                }
+    
+                p
+                {
+                    margin-left: 25px;
+                    font-size: 14px;
+                }
             }
-
+            a:hover
+            {
+                background-color: white;
+                border-radius: 10px;
+            }
+            .active
+            {
+                background-color: rgb(255, 255, 255, 0.7);
+                border-radius: 10px;
+            }
+            .user
+            {
+                margin-top: 25px;
+            }
+        }
+        .menu-footer
+        {
+            padding-top: 25px;
+            margin-bottom: 75px;
+    
             p
             {
-                margin-left: 25px;
-                font-size: 14px;
+                margin-left: 10px;
+                font-size: 13px;
+                color: #6b5240; 
             }
-        }
-        a:hover
-        {
-            background-color: white;
-            border-radius: 10px;
-        }
-        .active
-        {
-            background-color: rgb(255, 255, 255, 0.7);
-            border-radius: 10px;
-        }
-        .user
-        {
-            margin-top: 25px;
-        }
-    }
-    .menu-footer
-    {
-        padding-top: 25px;
-        margin-bottom: 75px;
-
-        p
-        {
-            margin-left: 10px;
-            font-size: 13px;
-            color: #6b5240; 
-        }
-        
-        a
-        {
-            color: #49382c; 
-            text-decoration: none;
-        }
-        a:hover
-        {
-            text-decoration: underline;
+            
+            a
+            {
+                color: #49382c; 
+                text-decoration: none;
+            }
+            a:hover
+            {
+                text-decoration: underline;
+            }
         }
     }
 }

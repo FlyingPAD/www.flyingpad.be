@@ -2,11 +2,10 @@
 {
     public class RelationLinkCategory
     {
-        public int LinkId { get; set; } = 0;
-        public int LinkCategoryId { get; set; } = 0;
+        public int LinkId { get; set; }
+        public int LinkCategoryId { get; set; }
 
-        // Navigation Properties :
-
+        // Navigation Properties
         public Link? Link { get; set; }
         public LinkCategory? LinkCategory { get; set; }
     }

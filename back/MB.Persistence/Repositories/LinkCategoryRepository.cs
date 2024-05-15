@@ -7,5 +7,6 @@ namespace MB.Persistence.Repositories
 {
     public class LinkCategoryRepository(Context context) : BaseRepository<LinkCategory>(context), ILinkCategoryRepository
     {
+
     }
 }
