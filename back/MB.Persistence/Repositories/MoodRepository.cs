@@ -1,7 +1,9 @@
 ﻿using MB.Application.Contracts.Persistence;
+using MB.Application.Features.Moods.Queries.GetMoodById;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace MB.Persistence.Repositories
 {
@@ -85,6 +87,28 @@ namespace MB.Persistence.Repositories
             {
                 throw new KeyNotFoundException("Mood not found with the specified ID.");
             }
+        }
+
+        public async System.Threading.Tasks.Task UpdateTags( int moodId, ICollection<Tag> tags )
+        {
+            var mood = await _context.Moods
+                .Include(x => x.MoodTags)
+                .FirstOrDefaultAsync(x => x.EntityId == moodId);
+
+            if(mood != null) return; // Générer 
+
+            if (!mood.MoodTags.IsNullOrEmpty())
+            {
+                var existingTagIds = mood.MoodTags.Select(x => x.TagId).ToList();
+                tags = tags.ExceptBy(existingTagIds, x => x.EntityId).ToList();
+            }
+
+            if (tags.Count > 0)
+            {
+                await _context.AddRangeAsync(tags);
+                await _context.SaveChangesAsync();
+            }
+
         }
     }
 }

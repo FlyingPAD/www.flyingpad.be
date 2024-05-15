@@ -2,8 +2,8 @@
 {
     public class RelationMoodTag
     {
-        public int MoodId { get; set; } = 0;
-        public int TagId { get; set; } = 0;
+        public int MoodId { get; set; }
+        public int TagId { get; set; }
 
         // Navigation Properties :
 

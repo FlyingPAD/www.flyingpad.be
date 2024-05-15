@@ -7,7 +7,7 @@ namespace MB.Application.Exceptions
         public List<string> ValidationErrors { get; set; }
         public ValidationException(ValidationResult validationResult)
         {
-            ValidationErrors = new List<string>();
+            ValidationErrors = [];
 
             foreach (var error in validationResult.Errors)
             {

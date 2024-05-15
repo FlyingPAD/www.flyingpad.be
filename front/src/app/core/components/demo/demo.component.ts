@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class DemoComponent {
 
+
+  menuTrigger : boolean = true
+
+  trigger()
+  {
+    this.menuTrigger = !this.menuTrigger
+  }
 }

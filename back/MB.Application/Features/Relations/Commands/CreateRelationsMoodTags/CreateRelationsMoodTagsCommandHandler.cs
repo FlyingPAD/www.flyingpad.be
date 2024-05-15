@@ -10,18 +10,18 @@ namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodTags
         CreateRelationsMoodTagsCommandValidator validator,
         IBaseRepository<Mood> moodRepository,
         ITagRepository tagRepository,
-        IBaseRelationRepository<RelationMoodTag> relationRepository) : IRequestHandler<CreateRelationsMoodTagsCommand, BaseResponse>
+        IBaseRepository<RelationMoodTag> relationRepository) : IRequestHandler<CreateRelationsMoodTagsCommand, BaseResponse>
     {
         private readonly CreateRelationsMoodTagsCommandValidator _validator = validator;
         private readonly IBaseRepository<Mood> _moodRepository = moodRepository;
         private readonly ITagRepository _tagRepository = tagRepository;
-        private readonly IBaseRelationRepository<RelationMoodTag> _relationRepository = relationRepository;
+        private readonly IBaseRepository<RelationMoodTag> _relationRepository = relationRepository;
 
         public async Task<BaseResponse> Handle(CreateRelationsMoodTagsCommand request, CancellationToken cancellationToken)
         {
+            // Validation de la requête
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-
-            if (validationResult.Errors.Count != 0)
+            if (validationResult.Errors.Count > 0)
             {
                 return new BaseResponse
                 {
@@ -31,6 +31,7 @@ namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodTags
                 };
             }
 
+            // Recherche de l'ID primaire du Mood
             var moodPrimaryId = await _moodRepository.GetPrimaryIdByBusinessIdAsync(request.MoodId);
             if (moodPrimaryId == null)
             {
@@ -41,6 +42,7 @@ namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodTags
                 };
             }
 
+            // Récupération des IDs primaires des Tags
             var tagsPrimaryIds = await _tagRepository.GetPrimaryIdsByBusinessIdsAsync(request.TagIds);
             if (tagsPrimaryIds.Count != request.TagIds.Count)
             {
@@ -51,7 +53,24 @@ namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodTags
                 };
             }
 
-            await _relationRepository.InsertRelationsAsync(moodPrimaryId.Value, tagsPrimaryIds, "MoodId", "TagId");
+            // Récupération et suppression des Relations existantes pour le MoodId spécifié
+            var existingRelations = await _relationRepository.GetAllAsync();
+            var relationsToDelete = existingRelations.Where(r => r.MoodId == moodPrimaryId).ToList();
+            foreach (var relation in relationsToDelete)
+            {
+                await _relationRepository.DeleteAsync(relation);
+            }
+
+            // Création des nouvelles Relations
+            foreach (var tagId in tagsPrimaryIds)
+            {
+                var newRelation = new RelationMoodTag
+                {
+                    MoodId = (int)moodPrimaryId,
+                    TagId = tagId
+                };
+                await _relationRepository.CreateAsync(newRelation);
+            }
 
             return new BaseResponse
             {

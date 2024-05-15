@@ -38,7 +38,7 @@ namespace MB.Persistence.Repositories
             // Application des filtres...
             if (styleId.HasValue)
             {
-                query = query.Where(artist => artist.ArtistStyles.Any(style => style.StyleId == styleId));
+                query = query.Where(artist => artist.ArtistStyles != null && artist.ArtistStyles.Any(style => style.StyleId == styleId));
             }
 
             if (!string.IsNullOrEmpty(abc))
@@ -83,7 +83,7 @@ namespace MB.Persistence.Repositories
                                        {
                                            BusinessId = artist.BusinessId,
                                            Name = artist.Name,
-                                           IsChecked = artist.MoodArtists.Any(ma => ma.MoodId == moodId)
+                                           IsChecked = artist.MoodArtists != null && artist.MoodArtists.Any(ma => ma.MoodId == moodId)
                                        })
                                        .OrderBy(artist => artist.Name)
                                        .ToListAsync();

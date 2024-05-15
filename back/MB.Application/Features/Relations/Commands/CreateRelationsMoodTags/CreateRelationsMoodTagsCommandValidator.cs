@@ -10,9 +10,9 @@ namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodTags
                 .NotEmpty().WithMessage("Mood ID must not be empty.");
 
             RuleFor(command => command.TagIds)
-                .NotEmpty().WithMessage("Tag list musn't be empty")
+                .NotEmpty().WithMessage("Tag list musn't be empty.")
                 .Must(styleIds => styleIds.All(styleId => styleId != Guid.Empty))
-                .WithMessage("One or more Tag ID's are invalid.");
+                .WithMessage("One or more tag ID's are invalid.");
         }
     }
 }
