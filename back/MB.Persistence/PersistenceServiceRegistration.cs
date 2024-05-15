@@ -32,7 +32,6 @@ namespace MB.Persistence
             // Common Repositories :
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            services.AddScoped(typeof(IBaseRelationRepository<>), typeof(BaseRelationRepository<>));
 
             // Repositories :
 

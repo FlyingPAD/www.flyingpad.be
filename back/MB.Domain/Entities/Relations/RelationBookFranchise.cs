@@ -2,11 +2,10 @@
 {
     public class RelationBookFranchise
     {
-        public int BookId { get; set; } = 0;
-        public int FranchiseId { get; set; } = 0;
+        public int BookId { get; set; }
+        public int FranchiseId { get; set; }
 
-        // Navigation Properties :
-
+        // Navigation Properties
         public Book? Book { get; set; }
         public Franchise? Franchise { get; set; }
     }

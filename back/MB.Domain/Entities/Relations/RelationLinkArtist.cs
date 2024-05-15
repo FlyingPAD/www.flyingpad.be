@@ -2,11 +2,10 @@
 {
     public class RelationLinkArtist
     {
-        public int LinkId { get; set; } = 0;
-        public int ArtistId { get; set; } = 0;
+        public int LinkId { get; set; }
+        public int ArtistId { get; set; }
 
-        // Navigation Properties :
-
+        // Navigation Properties
         public Link? Link { get; set; }
         public Artist? Artist { get; set; }
     }

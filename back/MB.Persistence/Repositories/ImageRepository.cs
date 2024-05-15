@@ -3,11 +3,8 @@ using MB.Persistence.Repositories.Common;
 
 namespace MB.Persistence.Repositories
 {
-    public class ImageRepository : BaseRepository<Image>
+    public class ImageRepository(Context context) : BaseRepository<Image>(context)
     {
-        public ImageRepository(Context context) : base(context)
-        {
 
-        }
     }
 }

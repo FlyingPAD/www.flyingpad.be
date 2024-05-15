@@ -90,5 +90,16 @@ namespace MB.Persistence.Repositories
 
             return artists;
         }
+
+        public async System.Threading.Tasks.Task DeleteStyles(int artistId)
+        {
+            var artistStyles = await _context.RArtistStyle
+                                             .Where(relation => relation.ArtistId == artistId)
+                                             .ToListAsync();
+
+            _context.RArtistStyle.RemoveRange(artistStyles);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

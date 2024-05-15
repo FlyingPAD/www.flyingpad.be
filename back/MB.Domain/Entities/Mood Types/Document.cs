@@ -2,6 +2,6 @@
 {
     public class Document : Mood
     {
-        public int Size { get; set; } = 0;
+        public int Size { get; set; }
     }
 }

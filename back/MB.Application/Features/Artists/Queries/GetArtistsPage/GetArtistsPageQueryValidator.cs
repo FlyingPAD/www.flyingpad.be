@@ -16,17 +16,13 @@ namespace MB.Application.Features.Artists.Queries.GetArtistsPage
                 .MaximumLength(50).WithMessage("La chaîne de recherche 'Abc' doit contenir au maximum 50 caractères.");
 
             // Valide que StyleId et StartId, s'ils sont fournis, ne sont pas des GUID vides.
-            When(q => q.StyleId.HasValue, () =>
-            {
-                RuleFor(q => q.StyleId.Value)
-                    .NotEqual(Guid.Empty).WithMessage("L'identifiant de style doit être un GUID non vide.");
-            });
+            RuleFor(q => q.StyleId)
+                .NotEmpty().When(q => q.StyleId.HasValue)
+                .WithMessage("L'identifiant de style doit être un GUID non vide.");
 
-            When(q => q.StartId.HasValue, () =>
-            {
-                RuleFor(q => q.StartId.Value)
-                    .NotEqual(Guid.Empty).WithMessage("L'identifiant de départ doit être un GUID non vide.");
-            });
+            RuleFor(q => q.StartId)
+                .NotEmpty().When(q => q.StartId.HasValue)
+                .WithMessage("L'identifiant de départ doit être un GUID non vide.");
         }
     }
 }

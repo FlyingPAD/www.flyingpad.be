@@ -2,11 +2,10 @@
 {
     public class RelationBookModel
     {
-        public int BookId { get; set; } = 0;
-        public int ModelId { get; set; } = 0;
+        public int BookId { get; set; }
+        public int ModelId { get; set; }
 
-        // Navigation Properties :
-
+        // Navigation Properties
         public Book? Book { get; set; }
         public Model? Model { get; set; }
     }

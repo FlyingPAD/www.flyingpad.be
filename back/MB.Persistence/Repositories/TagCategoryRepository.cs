@@ -6,5 +6,6 @@ namespace MB.Persistence.Repositories
 {
     public class TagCategoryRepository(Context context) : BaseRepository<TagCategory>(context), ITagCategoryRepository
     {
+
     }
 }

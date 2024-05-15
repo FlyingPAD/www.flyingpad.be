@@ -2,11 +2,10 @@
 {
     public class RelationMoodModel
     {
-        public int MoodId { get; set; } = 0;
-        public int ModelId { get; set; } = 0;
+        public int MoodId { get; set; }
+        public int ModelId { get; set; }
 
-        // Navigation Properties :
-
+        // Navigation Properties
         public Mood? Mood { get; set; }
         public Model? Model { get; set; }
     }

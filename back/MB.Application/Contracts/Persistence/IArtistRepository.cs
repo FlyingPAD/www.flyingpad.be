@@ -12,5 +12,6 @@ namespace MB.Application.Contracts.Persistence
         Task<PaginationCursor<Artist>> GetArtistsPage(int? styleId, int? startId, string abc, int pageSize);
         Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> artistIds);
         Task<IEnumerable<GetArtistCheckBoxesByMoodQueryDto>> GetArtistsCheckBoxesByMood(int moodId);
+        System.Threading.Tasks.Task DeleteStyles(int artistId);
     }
 }

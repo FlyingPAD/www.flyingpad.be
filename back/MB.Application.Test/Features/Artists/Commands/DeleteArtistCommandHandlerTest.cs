@@ -1,7 +1,5 @@
 ﻿using MB.Application.Contracts.Persistence;
-using MB.Application.Contracts.Persistence.Common;
 using MB.Application.Features.Artists.Commands.DeleteArtist;
-using MB.Application.Features.Task.Commands.DeleteTask;
 using MB.Domain.Entities;
 using Moq;
 using Xunit;
@@ -10,17 +8,15 @@ namespace MB.Application.Test.Features.Artists.Commands
 {
     public class DeleteArtistCommandHandlerTest
     {
-        private readonly Mock<IBaseRepository<Artist>> _artistRepoMock;
-        private readonly Mock<IRelationRepository> _relationRepoMock;
+        private readonly Mock<IArtistRepository> _artistRepoMock;
         private readonly DeleteArtistCommandHandler _handler;
 
         public DeleteArtistCommandHandlerTest()
         {
-            _artistRepoMock = new Mock<IBaseRepository<Artist>>();
-            _relationRepoMock = new Mock<IRelationRepository>();
-            var validator = new DeleteArtistCommandValidator(); // Assuming the validator is correctly initialized
+            _artistRepoMock = new Mock<IArtistRepository>();
+            var validator = new DeleteArtistCommandValidator();
 
-            _handler = new DeleteArtistCommandHandler(_artistRepoMock.Object, _relationRepoMock.Object, validator);
+            _handler = new DeleteArtistCommandHandler(_artistRepoMock.Object, validator);
         }
 
         [Fact]
@@ -30,18 +26,18 @@ namespace MB.Application.Test.Features.Artists.Commands
             var request = new DeleteArtistCommand { BusinessId = artistId };
 
             _artistRepoMock.Setup(repo => repo.GetByBusinessIdAsync(artistId))
-                .ReturnsAsync((Artist)null);
+                .ReturnsAsync((Artist?)null);
 
             var response = await _handler.Handle(request, new System.Threading.CancellationToken());
 
             Assert.False(response.Success);
             Assert.Contains($"Artist with ID {artistId} was not found.", response.ValidationErrors);
             _artistRepoMock.Verify(repo => repo.DeleteAsync(It.IsAny<Artist>()), Times.Never);
-            _relationRepoMock.Verify(repo => repo.DeleteRelationsByArtistIdAsync(It.IsAny<int>()), Times.Never);
+            _artistRepoMock.Verify(repo => repo.DeleteStyles(It.IsAny<int>()), Times.Never);
         }
 
         [Fact]
-        public async System.Threading.Tasks.Task Handle_Should_Call_DeleteRelations_And_DeleteAsync_When_Artist_Is_Found()
+        public async System.Threading.Tasks.Task Handle_Should_Call_DeleteStyles_And_DeleteAsync_When_Artist_Is_Found()
         {
             var artistId = Guid.NewGuid();
             var request = new DeleteArtistCommand { BusinessId = artistId };
@@ -51,7 +47,7 @@ namespace MB.Application.Test.Features.Artists.Commands
 
             await _handler.Handle(request, new System.Threading.CancellationToken());
 
-            _relationRepoMock.Verify(repo => repo.DeleteRelationsByArtistIdAsync(artist.EntityId), Times.Once);
+            _artistRepoMock.Verify(repo => repo.DeleteStyles(artist.EntityId), Times.Once);
             _artistRepoMock.Verify(repo => repo.DeleteAsync(artist), Times.Once);
         }
     }

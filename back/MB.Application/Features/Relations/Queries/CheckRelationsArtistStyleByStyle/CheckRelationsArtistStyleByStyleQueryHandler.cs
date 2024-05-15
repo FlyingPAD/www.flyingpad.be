@@ -4,9 +4,9 @@ using MediatR;
 
 namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByStyle
 {
-    public class CheckRelationsArtistStyleByStyleQueryHandler(IBaseRelationRepository<RelationArtistStyle> relationRepository, IBaseRepository<Style> styleRepository, CheckRelationsArtistStyleByStyleQueryValidator validator) : IRequestHandler<CheckRelationsArtistStyleByStyleQuery, CheckRelationsArtistStyleByStyleQueryResponse>
+    public class CheckRelationsArtistStyleByStyleQueryHandler(IBaseRepository<RelationArtistStyle> relationRepository, IBaseRepository<Style> styleRepository, CheckRelationsArtistStyleByStyleQueryValidator validator) : IRequestHandler<CheckRelationsArtistStyleByStyleQuery, CheckRelationsArtistStyleByStyleQueryResponse>
     {
-        private readonly IBaseRelationRepository<RelationArtistStyle> _relationRepository = relationRepository;
+        private readonly IBaseRepository<RelationArtistStyle> _relationRepository = relationRepository;
         private readonly IBaseRepository<Style> _styleRepository = styleRepository;
         private readonly CheckRelationsArtistStyleByStyleQueryValidator _validator = validator;
 
@@ -34,7 +34,7 @@ namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByS
                 };
             }
 
-            int numberOfRelations = await _relationRepository.CountRelationsByMainEntityIdAsync(stylePrimaryId.Value, "ArtistId");
+            int numberOfRelations = await _relationRepository.CountAsync();
 
             return new CheckRelationsArtistStyleByStyleQueryResponse
             {

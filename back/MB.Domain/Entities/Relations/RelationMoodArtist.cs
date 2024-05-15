@@ -2,11 +2,10 @@
 {
     public class RelationMoodArtist
     {
-        public int MoodId { get; set; } = 0;
-        public int ArtistId { get; set; } = 0;
+        public int MoodId { get; set; }
+        public int ArtistId { get; set; }
 
-        // Navigation Properties :
-
+        // Navigation Properties
         public Mood? Mood { get; set; }
         public Artist? Artist { get; set; }
 

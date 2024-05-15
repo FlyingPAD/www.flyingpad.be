@@ -10,12 +10,12 @@ namespace MB.Application.Features.Relations.Commands.RAS
         CreateRelationsArtistStyleCommandValidator validator,
         IBaseRepository<Artist> artistRepository,
         IStyleRepository styleRepository,
-        IBaseRelationRepository<RelationArtistStyle> relationRepository) : IRequestHandler<CreateRelationsArtistStyleCommand, BaseResponse>
+        IBaseRepository<RelationArtistStyle> relationRepository) : IRequestHandler<CreateRelationsArtistStyleCommand, BaseResponse>
     {
         private readonly CreateRelationsArtistStyleCommandValidator _validator = validator;
         private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
         private readonly IStyleRepository _styleRepository = styleRepository;
-        private readonly IBaseRelationRepository<RelationArtistStyle> _relationRepository = relationRepository;
+        private readonly IBaseRepository<RelationArtistStyle> _relationRepository = relationRepository;
 
         public async Task<BaseResponse> Handle(CreateRelationsArtistStyleCommand request, CancellationToken cancellationToken)
         {
@@ -51,7 +51,15 @@ namespace MB.Application.Features.Relations.Commands.RAS
                 };
             }
 
-            await _relationRepository.InsertRelationsAsync(artistPrimaryId.Value, stylePrimaryIds, "ArtistId", "StyleId");
+            foreach (var styleId in stylePrimaryIds) 
+            {
+                var relation = new RelationArtistStyle
+                {
+                    ArtistId = artistPrimaryId.Value,
+                    StyleId = styleId
+                };
+                await _relationRepository.CreateAsync(relation);
+            }
 
             return new BaseResponse
             {

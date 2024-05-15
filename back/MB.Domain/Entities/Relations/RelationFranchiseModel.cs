@@ -5,8 +5,7 @@
         public int FranchiseId { get; set; } = 0;
         public int ModelId { get; set; } = 0;
 
-        // Navigation Properties :
-
+        // Navigation Properties
         public Franchise? Franchise { get; set; }
         public Model? Model { get; set; }
     }
