@@ -9,85 +9,75 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MB.API.Controllers
+namespace MB.API.Controllers;
+
+[Route("api/V1/Relations")]
+[ApiController]
+[ApiExplorerSettings(GroupName = "relations")]
+public class RelationsControllerV1(IMediator mediator) : ControllerBase
 {
-    [Route("api/V1/Relations")]
-    [ApiController]
-    [ApiExplorerSettings(GroupName = "relations")]
-    public class RelationsControllerV1(IMediator mediator) : ControllerBase
+    private readonly IMediator _mediator = mediator;
+
+    // =================================================================================================================
+    // (C) Create
+    // =================================================================================================================
+
+    /// <summary>
+    /// Create RAS
+    /// </summary>
+    [HttpPost("ArtistStyle/Create")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    public async Task<ActionResult<BaseResponse>> InsertRelationsArtistStyle([FromBody] CreateRelationsArtistStyleCommand rasCommand)
     {
-        private readonly IMediator _mediator = mediator;
+        var response = await _mediator.Send(rasCommand);
+        return Ok(response);
+    }
 
-        // =================================================================================================================
-        // (C) Create
-        // =================================================================================================================
+    /// <summary>
+    /// Create RMT
+    /// </summary>
+    [HttpPost("MoodTag/Create")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    public async Task<ActionResult<BaseResponse>> InsertRelationsMoodTag([FromBody] CreateRelationsMoodTagsCommand rmtCommand)
+        => Ok(await _mediator.Send(rmtCommand));
 
-        /// <summary>
-        /// Create RAS
-        /// </summary>
-        [HttpPost("ArtistStyle/Create")]
-        [Authorize(AuthenticationSchemes = "Bearer")]
-        public async Task<ActionResult<BaseResponse>> InsertRelationsArtistStyle([FromBody] CreateRelationsArtistStyleCommand rasCommand)
-        {
-            var response = await _mediator.Send(rasCommand);
-            return Ok(response);
-        }
+    /// <summary>
+    /// Create RMA
+    /// </summary>
+    [HttpPost("MoodArtist/Create")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    public async Task<ActionResult<BaseResponse>> InsertRelationsMoodArtist([FromBody] CreateRelationsMoodArtistCommand rmaCommand)
+        => Ok(await _mediator.Send(rmaCommand));
 
-        /// <summary>
-        /// Create RMT
-        /// </summary>
-        [HttpPost("MoodTag/Create")]
-        [Authorize(AuthenticationSchemes = "Bearer")]
-        public async Task<ActionResult<BaseResponse>> InsertRelationsMoodTag([FromBody] CreateRelationsMoodTagsCommand rmtCommand)
-        {
-            var response = await _mediator.Send(rmtCommand);
-            return Ok(response);
-        }
+    /// <summary>
+    /// Create RMM
+    /// </summary>
+    [HttpPost("MoodModel/Create")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    public async Task<ActionResult<BaseResponse>> InsertRelationsMoodModel([FromBody] CreateRelationsMoodModelCommand rmmCommand)
+        =>Ok(await _mediator.Send(rmmCommand));
 
-        /// <summary>
-        /// Create RMA
-        /// </summary>
-        [HttpPost("MoodArtist/Create")]
-        [Authorize(AuthenticationSchemes = "Bearer")]
-        public async Task<ActionResult<BaseResponse>> InsertRelationsMoodArtist([FromBody] CreateRelationsMoodArtistCommand rmaCommand)
-        {
-            var response = await _mediator.Send(rmaCommand);
-            return Ok(response);
-        }
+    // =================================================================================================================
+    // (R) Retrieve
+    // =================================================================================================================
 
-        /// <summary>
-        /// Create RMM
-        /// </summary>
-        [HttpPost("MoodModel/Create")]
-        [Authorize(AuthenticationSchemes = "Bearer")]
-        public async Task<ActionResult<BaseResponse>> InsertRelationsMoodModel([FromBody] CreateRelationsMoodModelCommand rmmCommand)
-        {
-            var response = await _mediator.Send(rmmCommand);
-            return Ok(response);
-        }
+    /// <summary>
+    /// Check if Relations
+    /// </summary>
+    [HttpGet("ArtistStyle/CheckRelationsByArtist")]
+    public async Task<ActionResult<CheckRelationsArtistStyleByArtistQueryResponse>> CheckRelationsArtistStyleByArtist( Guid artistId )
+    {
+        var response = await _mediator.Send(new CheckRelationsArtistStyleByArtistQuery { ArtistId = artistId });
+        return Ok(response);
+    }
 
-        // =================================================================================================================
-        // (R) Retrieve
-        // =================================================================================================================
-
-        /// <summary>
-        /// Check if Relations
-        /// </summary>
-        [HttpGet("ArtistStyle/CheckRelationsByArtist")]
-        public async Task<ActionResult<CheckRelationsArtistStyleByArtistQueryResponse>> CheckRelationsArtistStyleByArtist( Guid artistId )
-        {
-            var response = await _mediator.Send(new CheckRelationsArtistStyleByArtistQuery { ArtistId = artistId });
-            return Ok(response);
-        }
-
-        /// <summary>
-        /// Check if Relations
-        /// </summary>
-        [HttpGet("ArtistStyle/CheckRelationsByStyle")]
-        public async Task<ActionResult<CheckRelationsArtistStyleByStyleQueryResponse>> CheckRelationsArtistStyleByStyle( Guid styleId )
-        {
-            var response = await _mediator.Send(new CheckRelationsArtistStyleByStyleQuery { StyleId = styleId });
-            return Ok(response);
-        }
+    /// <summary>
+    /// Check if Relations
+    /// </summary>
+    [HttpGet("ArtistStyle/CheckRelationsByStyle")]
+    public async Task<ActionResult<CheckRelationsArtistStyleByStyleQueryResponse>> CheckRelationsArtistStyleByStyle( Guid styleId )
+    {
+        var response = await _mediator.Send(new CheckRelationsArtistStyleByStyleQuery { StyleId = styleId });
+        return Ok(response);
     }
 }

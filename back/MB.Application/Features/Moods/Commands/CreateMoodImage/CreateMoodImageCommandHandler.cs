@@ -10,13 +10,13 @@ namespace MB.Application.Features.Moods.Commands.CreateMoodImage
     public class CreateMoodImageCommandHandler(
         IFileService fileService,
         IBaseRepository<Image> imageRepository,
-        IBaseRelationRepository<RelationMoodTag> relationRepository,
         ITagRepository tagRepository,
-        IMapper mapper) : IRequestHandler<CreateMoodImageCommand, CreateMoodImageCommandResponse>
+        IMapper mapper,
+        IBaseRepository<RelationMoodTag> relationRepository) : IRequestHandler<CreateMoodImageCommand, CreateMoodImageCommandResponse>
     {
         private readonly IFileService _fileService = fileService;
         private readonly IBaseRepository<Image> _imageRepository = imageRepository;
-        private readonly IBaseRelationRepository<RelationMoodTag> _relationRepository = relationRepository;
+        private readonly IBaseRepository<RelationMoodTag> _relationRepository = relationRepository;
         private readonly ITagRepository _tagRepository = tagRepository;
         private readonly IMapper _mapper = mapper;
 
@@ -112,7 +112,15 @@ namespace MB.Application.Features.Moods.Commands.CreateMoodImage
                 }
 
                 // Insert Tags
-                await _relationRepository.InsertRelationsAsync(createdImage.EntityId, tags, "MoodId", "TagId");
+                foreach (var tag in tags)
+                {
+                    var moodTag = new RelationMoodTag
+                    {
+                        MoodId = createdImage.EntityId,
+                        TagId = tag
+                    };
+                    await _relationRepository.CreateAsync(moodTag);
+                }
             }
 
             var response = new CreateMoodImageCommandResponse

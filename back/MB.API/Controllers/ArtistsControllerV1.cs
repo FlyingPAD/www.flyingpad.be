@@ -38,10 +38,7 @@ namespace MB.API.Controllers
         [ProducesResponseType(typeof(CreateArtistCommandResponse), 201)]
         [ProducesResponseType(typeof(BaseResponse), 400)]
         public async Task<ActionResult<CreateArtistCommandResponse>> Create([FromBody] CreateArtistCommand createArtistCommand, CancellationToken cancellationToken)
-        {
-            var response = await _mediator.Send(createArtistCommand, cancellationToken);
-            return Ok(response);
-        }
+         => Ok(await _mediator.Send(createArtistCommand, cancellationToken));
 
         // =================================================================================================================
         // (R) Retrieve

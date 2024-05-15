@@ -23,7 +23,7 @@ namespace MB.Persistence.Repositories
                 .Where(f => f.FranchiseModels != null && f.FranchiseModels.Any(fm => modelIds.Contains(fm.ModelId)))
                 .ToListAsync();
 
-            return franchises ?? new List<Franchise>();
+            return franchises ?? [];
         }
     }
 }

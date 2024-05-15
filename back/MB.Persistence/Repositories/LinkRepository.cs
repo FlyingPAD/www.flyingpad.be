@@ -6,16 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories
 {
-    public class LinkRepository : BaseRepository<Link>, ILinkRepository
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="context"></param>
+    public class LinkRepository(Context context) : BaseRepository<Link>(context), ILinkRepository
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="context"></param>
-        public LinkRepository(Context context) : base(context)
-        {
-
-        }
 
         /// <summary>
         /// Get Links by Category
@@ -48,9 +44,8 @@ namespace MB.Persistence.Repositories
             }
             else
             {
-                // Gérer le cas où 'abc' est null
-                // Peut-être retourner une liste vide ou une autre logique appropriée
-                linksContainingAbc = new List<Link>(); // Exemple : retourner une liste vide
+                // if 'abc' is null
+                linksContainingAbc = [];
             }
 
             return linksContainingAbc;
