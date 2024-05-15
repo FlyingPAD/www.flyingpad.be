@@ -5,16 +5,10 @@ using MediatR;
 
 namespace MB.Application.Features.Moods.Commands.UpdateMood
 {
-    public class UpdateMoodCommandHandler : IRequestHandler<UpdateMoodCommand, UpdateMoodCommandResponse>
+    public class UpdateMoodCommandHandler(IMapper mapper, IBaseRepository<Mood> moodRepository) : IRequestHandler<UpdateMoodCommand, UpdateMoodCommandResponse>
     {
-        private readonly IMapper _mapper;
-        private readonly IBaseRepository<Mood> _moodRepository;
-
-        public UpdateMoodCommandHandler(IMapper mapper, IBaseRepository<Mood> moodRepository)
-        {
-            _mapper = mapper;
-            _moodRepository = moodRepository;
-        }
+        private readonly IMapper _mapper = mapper;
+        private readonly IBaseRepository<Mood> _moodRepository = moodRepository;
 
         public async Task<UpdateMoodCommandResponse> Handle(UpdateMoodCommand request, CancellationToken cancellationToken)
         {
