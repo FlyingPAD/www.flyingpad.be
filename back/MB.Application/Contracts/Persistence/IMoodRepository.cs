@@ -11,6 +11,6 @@ namespace MB.Application.Contracts.Persistence
         Task<List<Mood>> GetMoodsByModel(int? modelId);
         Task<List<Mood>> GetMoodsByModels(List<int> modelIds);
         System.Threading.Tasks.Task UpdateScore(int? entityId, int value);
-        System.Threading.Tasks.Task UpdateTags(int moodId, ICollection<Tag> tags);
+        System.Threading.Tasks.Task UpdateTags(int moodId, ICollection<int> tags);
     }
 }
