@@ -9,9 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MB.API.Controllers
 {
-    /// <summary>
-    /// V1 API Controller for managing Tasks.
-    /// </summary>
     [Route("api/V1/Tasks")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "features")]

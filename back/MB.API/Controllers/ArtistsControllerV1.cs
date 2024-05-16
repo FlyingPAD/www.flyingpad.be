@@ -23,10 +23,6 @@ namespace MB.API.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        // =================================================================================================================
-        // (C) Create
-        // =================================================================================================================
-
         /// <summary>
         /// Create
         /// </summary>
@@ -39,10 +35,6 @@ namespace MB.API.Controllers
         [ProducesResponseType(typeof(BaseResponse), 400)]
         public async Task<ActionResult<CreateArtistCommandResponse>> Create([FromBody] CreateArtistCommand createArtistCommand, CancellationToken cancellationToken)
          => Ok(await _mediator.Send(createArtistCommand, cancellationToken));
-
-        // =================================================================================================================
-        // (R) Retrieve
-        // =================================================================================================================
 
         /// <summary>
         /// Count
@@ -174,10 +166,6 @@ namespace MB.API.Controllers
             return Ok(response);
         }
 
-        // =================================================================================================================
-        // (U) Update
-        // =================================================================================================================
-
         /// <summary>
         /// Update
         /// </summary>
@@ -196,10 +184,6 @@ namespace MB.API.Controllers
             }
             return BadRequest(response);
         }
-
-        // =================================================================================================================
-        // (D) Delete
-        // =================================================================================================================
 
         /// <summary>
         /// Delete

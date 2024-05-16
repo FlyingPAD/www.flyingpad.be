@@ -1,10 +1,14 @@
-/*  MoodBoard / Global
+/*  Flying PAD | SCSS Global Settings
    ========================================================================== */
-
 html 
 {
-    overflow-y: scroll;             /* Main Y scrollbar always visible to prevent page 'shaking' */
-    overflow-x: hidden;             /* Main X scrollbar always hidden to prevent page losing focus */
+    /* Main Y scrollbar always visible to prevent page 'shaking' */
+    overflow-y: scroll;             
+    scrollbar-width: thin;
+    scrollbar-color: rgb(107, 82, 64, 0.7) #f1f1f1;
+    
+    /* Main X scrollbar always hidden to prevent page losing focus */
+    overflow-x: hidden;             
 
     // Disable User Selection :
 

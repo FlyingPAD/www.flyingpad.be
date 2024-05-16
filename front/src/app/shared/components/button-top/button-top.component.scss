@@ -1,5 +1,5 @@
 
-// TOP BUTTON
+// TO TOP BUTTON
 
 .button-top
 {
@@ -21,14 +21,14 @@
 
     background-color: rgb(255, 255, 255);
 
-    transition-duration: 500ms;
+    transition-duration: 300ms;
 
-    z-index: 99;
+    z-index: 19;
 
     img
     {
-        height: 35px;
-        width: 35px;
+        height: 30px;
+        width: 30px;
     }
 }
 .button-top:hover
@@ -44,5 +44,5 @@
 }
 .button-none
 {
-    display: none;
+    bottom: -150px;
 }

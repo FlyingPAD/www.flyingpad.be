@@ -20,10 +20,6 @@ namespace MB.API.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        // =================================================================================================================
-        // (C) Create
-        // =================================================================================================================
-
         /// <summary>
         /// Create
         /// </summary>
@@ -34,10 +30,6 @@ namespace MB.API.Controllers
             var response = await _mediator.Send(createFranchiseCommand);
             return Ok(response);
         }
-
-        // =================================================================================================================
-        // (R) Retrieve
-        // =================================================================================================================
 
         /// <summary>
         /// Count
@@ -115,10 +107,6 @@ namespace MB.API.Controllers
             return Ok(response);
         }
 
-        // =================================================================================================================
-        // (U) Update
-        // =================================================================================================================
-
         /// <summary>
         /// Update
         /// </summary>
@@ -135,19 +123,12 @@ namespace MB.API.Controllers
             return Ok(response);
         }
 
-        // =================================================================================================================
-        // (D) Delete
-        // =================================================================================================================
-
         /// <summary>
         /// Delete
         /// </summary>
         [HttpDelete("Delete/{franchiseId}")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<ActionResult<DeleteFranchiseCommandResponse>> Delete(Guid franchiseId)
-        {
-            var response = await _mediator.Send(new DeleteFranchiseCommand { FranchiseId = franchiseId });
-            return Ok(response);
-        }
+            => Ok(await _mediator.Send(new DeleteFranchiseCommand { FranchiseId = franchiseId }));
     }
 }

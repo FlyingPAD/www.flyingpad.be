@@ -17,58 +17,34 @@ namespace MB.API.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        // =================================================================================================================
-        // (C) Create
-        // =================================================================================================================
-
         /// <summary>
         /// Create
         /// </summary>
         [HttpPost("Create")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<ActionResult<CreateTagCategoryCommandResponse>> Create([FromBody] CreateTagCategoryCommand createTagCategoryCommand)
-        {
-            var response = await _mediator.Send(createTagCategoryCommand);
-            return Ok(response);
-        }
-
-        // =================================================================================================================
-        // (R) Retrieve
-        // =================================================================================================================
+            => Ok(await _mediator.Send(createTagCategoryCommand));
 
         /// <summary>
         /// Count
         /// </summary>
         [HttpGet("Count")]
         public async Task<ActionResult<CountTagCategoriesQueryResponse>> Count()
-        {
-            var response = await _mediator.Send(new CountTagCategoriesQuery());
-            return Ok(response);
-        }
+            => Ok(await _mediator.Send(new CountTagCategoriesQuery()));
 
         /// <summary>
         /// Get All
         /// </summary>
         [HttpGet("GetAll")]
         public async Task<ActionResult<GetTagCategoriesListQueryResponse>> GetAll()
-        {
-            var response = await _mediator.Send(new GetTagCategoriesListQuery());
-            return Ok(response);
-        }
+            => Ok(await _mediator.Send(new GetTagCategoriesListQuery()));
 
         /// <summary>
         /// Get One
         /// </summary>
         [HttpGet("GetOne/{tagCategoryId}")]
         public async Task<ActionResult<GetTagCategoryByIdQuery>> GetOne(Guid tagCategoryId)
-        {
-            var response = await _mediator.Send(new GetTagCategoryByIdQuery { Id = tagCategoryId });
-            return Ok(response);
-        }
-
-        // =================================================================================================================
-        // (U) Update
-        // =================================================================================================================
+            => Ok(await _mediator.Send(new GetTagCategoryByIdQuery { Id = tagCategoryId }));
 
         /// <summary>
         /// Update
@@ -86,19 +62,12 @@ namespace MB.API.Controllers
             return Ok(response);
         }
 
-        // =================================================================================================================
-        // (D) Delete
-        // =================================================================================================================
-
         /// <summary>
         /// Delete
         /// </summary>
         [HttpDelete("Delete/{tagCategoryId}")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<ActionResult<DeleteTagCategoryCommandResponse>> Delete(Guid tagCategoryId)
-        {
-            var response = await _mediator.Send(new DeleteTagCategoryCommand { Id = tagCategoryId });
-            return Ok(response);
-        }
+            => Ok(await _mediator.Send(new DeleteTagCategoryCommand { Id = tagCategoryId }));
     }
 }

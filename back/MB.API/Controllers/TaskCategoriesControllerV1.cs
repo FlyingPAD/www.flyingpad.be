@@ -7,20 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MB.API.Controllers
 {
-    /// <summary>
-    /// V1 API Controller for managing Task Categories.
-    /// </summary>
     [Route("api/V1/TaskCategories")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "features")]
-    public class TaskCategoriesControllerV1 : ControllerBase
+    public class TaskCategoriesControllerV1(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
-
-        public TaskCategoriesControllerV1(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        private readonly IMediator _mediator = mediator;
 
         [HttpGet("all", Name = "GetAllTaskCategories")]
         [ProducesResponseType(StatusCodes.Status200OK)]
