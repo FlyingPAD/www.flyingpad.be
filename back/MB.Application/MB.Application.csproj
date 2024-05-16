@@ -17,4 +17,9 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.4.1" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\Relations\Commands\CreateRelationsLinkCategory\" />
+    <Folder Include="Features\Relations\Commands\CreateRelationsFranchiseMedia\" />
+    <Folder Include="Features\Relations\Commands\CreateRelationsModelFranchise\" />
+  </ItemGroup>
 </Project>
