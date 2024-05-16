@@ -10,6 +10,8 @@
     height: 100%;
 
     overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(107, 82, 64, 0.7) #f1f1f1;
 
     border-left: 1px solid #6b5240;
     background-color: rgba(255, 253, 251, 0.95);

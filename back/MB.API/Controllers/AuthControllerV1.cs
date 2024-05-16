@@ -12,7 +12,7 @@ namespace MB.API.Controllers
     public class AuthControllerV1(IMediator mediator, IEMailService eMailService) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
-        private readonly IEMailService _eMailService = eMailService;  // Utilisez l'interface ici
+        private readonly IEMailService _eMailService = eMailService;
 
         [HttpPost("Login")]
         public async Task<ActionResult<LoginQueryResponse>> Login([FromBody] LoginQuery loginQuery)

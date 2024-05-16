@@ -1,5 +1,4 @@
-﻿using MB.Application.Features.Artists.Queries.GetArtistsByMood;
-using MB.Application.Features.Models.Commands.CreateModel;
+﻿using MB.Application.Features.Models.Commands.CreateModel;
 using MB.Application.Features.Models.Commands.DeleteModel;
 using MB.Application.Features.Models.Commands.UpdateModel;
 using MB.Application.Features.Models.Queries.CountModels;
@@ -8,7 +7,6 @@ using MB.Application.Features.Models.Queries.GetModelCheckBoxesByMood;
 using MB.Application.Features.Models.Queries.GetModelsByFranchise;
 using MB.Application.Features.Models.Queries.GetModelsByMood;
 using MB.Application.Features.Models.Queries.GetModelsList;
-using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,54 +20,34 @@ namespace MB.API.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        // =================================================================================================================
-        // (C) Create
-        // =================================================================================================================
-
         /// <summary>
         /// Create
         /// </summary>
         [HttpPost("Create")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<ActionResult<CreateModelCommandResponse>> Create([FromBody] CreateModelCommand createModelCommand)
-        {
-            var response = await _mediator.Send(createModelCommand);
-            return Ok(response);
-        }
-
-        // =================================================================================================================
-        // (R) Retrieve
-        // =================================================================================================================
+        => Ok(await _mediator.Send(createModelCommand));
 
         /// <summary>
         /// Count
         /// </summary>
         [HttpGet("Count")]
         public async Task<ActionResult<CountModelsQueryResponse>> Count()
-        {
-            var response = await _mediator.Send(new CountModelsQuery());
-            return Ok(response);
-        }
+            => Ok(await _mediator.Send(new CountModelsQuery()));
 
         /// <summary>
         /// Get All
         /// </summary>
         [HttpGet("GetAll")]
         public async Task<ActionResult<GetModelsListQueryResponse>> GetAll()
-        {
-            var response = await _mediator.Send(new GetModelsListQuery());
-            return Ok(response);
-        }
+            => Ok(await _mediator.Send(new GetModelsListQuery()));
 
         /// <summary>
         /// Get One Details
         /// </summary>
         [HttpGet("GetOneDetails/{modelId}")]
         public async Task<ActionResult<GetModelByIdQueryResponse>> GetOneDetails(Guid modelId)
-        {
-            var response = await _mediator.Send(new GetModelByIdQuery { ModelId = modelId });
-            return Ok(response);
-        }
+            => Ok(await _mediator.Send(new GetModelByIdQuery { ModelId = modelId }));
 
         /// <summary>
         /// Get by Mood
@@ -110,14 +88,7 @@ namespace MB.API.Controllers
         /// </summary>
         [HttpGet("GetCheckBoxesByMood/{moodId}")]
         public async Task<ActionResult<GetModelCheckBoxesByMoodQueryResponse>> GetCheckBoxesByMood(Guid moodId)
-        {
-            var response = await _mediator.Send(new GetModelCheckBoxesByMoodQuery { MoodId = moodId });
-            return Ok(response);
-        }
-
-        // =================================================================================================================
-        // (U) Update
-        // =================================================================================================================
+            => Ok(await _mediator.Send(new GetModelCheckBoxesByMoodQuery { MoodId = moodId }));
 
         /// <summary>
         /// Update
@@ -135,19 +106,12 @@ namespace MB.API.Controllers
             return Ok(response);
         }
 
-        // =================================================================================================================
-        // (D) Delete
-        // =================================================================================================================
-
         /// <summary>
         /// Delete
         /// </summary>
         [HttpDelete("Delete/{modelId}")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<ActionResult<DeleteModelCommandResponse>> Delete(Guid modelId)
-        {
-            var response = await _mediator.Send(new DeleteModelCommand { ModelId = modelId });
-            return Ok(response);
-        }
+            => Ok(await _mediator.Send(new DeleteModelCommand { ModelId = modelId }));
     }
 }

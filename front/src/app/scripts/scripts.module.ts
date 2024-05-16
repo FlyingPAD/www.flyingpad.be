@@ -10,6 +10,12 @@ import { MetricsAComponent } from './components/metrics-a/metrics-a.component';
 import { NotesTradComponent } from './components/notes-trad/notes-trad.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { PulsationComponent } from './components/pulsation/pulsation.component';
+import { IntervalsComponent } from './components/intervals/intervals.component';
+import { ChordsComponent } from './components/chords/chords.component';
+import { ScalesComponent } from './components/scales/scales.component';
+import { NotationComponent } from './components/notation/notation.component';
+import { MelodyComponent } from './components/melody/melody.component';
+import { MetricsBComponent } from './components/metrics-b/metrics-b.component';
 
 
 @NgModule({
@@ -22,6 +28,12 @@ import { PulsationComponent } from './components/pulsation/pulsation.component';
     MetricsAComponent,
     IntroComponent,
     KeyRefComponent,
+    IntervalsComponent,
+    ChordsComponent,
+    ScalesComponent,
+    NotationComponent,
+    MelodyComponent,
+    MetricsBComponent,
   ],
   imports: [
     CommonModule,

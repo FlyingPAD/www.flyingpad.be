@@ -17,10 +17,6 @@ namespace MB.API.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        // =================================================================================================================
-        // (C) Create
-        // =================================================================================================================
-
         /// <summary>
         /// Create
         /// </summary>
@@ -31,10 +27,6 @@ namespace MB.API.Controllers
             var response = await _mediator.Send(createUserCommand);
             return Ok(response);
         }
-
-        // =================================================================================================================
-        // (R) Retrieve
-        // =================================================================================================================
 
         /// <summary>
         /// Count
@@ -66,10 +58,6 @@ namespace MB.API.Controllers
             return Ok(response);
         }
 
-        // =================================================================================================================
-        // (U) Update
-        // =================================================================================================================
-
         /// <summary>
         /// Update
         /// </summary>
@@ -81,19 +69,12 @@ namespace MB.API.Controllers
             return Ok(response);
         }
 
-        // =================================================================================================================
-        // (D) Delete
-        // =================================================================================================================
-
         /// <summary>
         /// Delete
         /// </summary>
         [HttpDelete("Delete/{userId}")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<ActionResult<DeleteUserCommandResponse>> Delete(Guid userId)
-        {
-            var response = await _mediator.Send(new DeleteUserCommand { Id = userId });
-            return Ok(response);
-        }
+            => Ok(await _mediator.Send(new DeleteUserCommand { Id = userId }));
     }
 }

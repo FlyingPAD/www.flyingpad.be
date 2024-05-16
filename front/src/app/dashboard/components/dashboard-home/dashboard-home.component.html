@@ -48,9 +48,19 @@
         <img src="../../../../assets/app_icons/icon_links_001.png" />
         <p>Links</p>
     </a> 
-    <a href="https://back.flyingpad.be/hangfire">
-        <img src="../../../../assets/app_icons/download.png" />
-        <p>Hangfire</p>
-    </a>
+  </div>
+
+  <div class="row-white">
+    <h2>Display Info</h2>
+    <div id="display-model">
+        <div class="model-flex">
+          <p><b>Mode</b> : </p>
+          <p>{{appSettings.appDisplayMode}}</p>
+        </div>
+        <div class="model-flex">
+          <p><b>Window Size</b> :</p>
+          <p>{{appSettings.appScreenWidth}} x {{appSettings.appScreenHeight}} pixels</p>
+        </div>
+    </div>
   </div>
 </div>
