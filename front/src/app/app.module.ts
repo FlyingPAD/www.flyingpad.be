@@ -54,8 +54,9 @@ console.log(' ---------------------------------- ')
   providers: 
   [
     // Additional providers :
-    [CookieService],                        // Provider for the cookies service
-
+    // Provider for the cookies service
+    [CookieService],              
+              
     // Provider for HTTP Interceptor to handle tokens :
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
