@@ -1,23 +1,22 @@
 ﻿using MB.Application.Contracts.Persistence;
 using MediatR;
 
-namespace MB.Application.Features.Moods.Commands.UpdateMoodScore
+namespace MB.Application.Features.Moods.Commands.UpdateMoodScore;
+
+public class UpdateMoodScoreCommandHandler(IMoodRepository repository) : IRequestHandler<UpdateMoodScoreCommand, UpdateMoodScoreCommandResponse>
 {
-    public class UpdateMoodScoreCommandHandler(IMoodRepository repository) : IRequestHandler<UpdateMoodScoreCommand, UpdateMoodScoreCommandResponse>
+    private readonly IMoodRepository _repository = repository;
+
+    public async Task<UpdateMoodScoreCommandResponse> Handle(UpdateMoodScoreCommand request, CancellationToken cancellationToken)
     {
-        private readonly IMoodRepository _repository = repository;
+        int? entityId = await _repository.GetPrimaryIdByBusinessIdAsync(request.BusinessId);
 
-        public async Task<UpdateMoodScoreCommandResponse> Handle(UpdateMoodScoreCommand request, CancellationToken cancellationToken)
+        await _repository.UpdateScore(entityId, request.Value);
+
+        return new UpdateMoodScoreCommandResponse
         {
-            int? entityId = await _repository.GetPrimaryIdByBusinessIdAsync(request.BusinessId);
-
-            await _repository.UpdateScore(entityId, request.Value);
-
-            return new UpdateMoodScoreCommandResponse
-            {
-                Success = true,
-                Message = "Mood Score updated !"
-            };
-        }
+            Success = true,
+            Message = "Mood Score updated !"
+        };
     }
 }

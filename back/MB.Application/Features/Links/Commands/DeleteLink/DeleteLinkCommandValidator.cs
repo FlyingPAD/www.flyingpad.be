@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Links.Commands.DeleteLink
+namespace MB.Application.Features.Links.Commands.DeleteLink;
+
+public class DeleteLinkCommandValidator : AbstractValidator<DeleteLinkCommand>
 {
-    public class DeleteLinkCommandValidator : AbstractValidator<DeleteLinkCommand>
+    public DeleteLinkCommandValidator()
     {
-        public DeleteLinkCommandValidator()
-        {
-            RuleFor(x => x.LinkId)
-                .NotEmpty().WithMessage("ID is required.")
-                .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
-        }
+        RuleFor(x => x.LinkId)
+            .NotEmpty().WithMessage("ID is required.")
+            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
     }
 }

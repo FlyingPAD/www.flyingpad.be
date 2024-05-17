@@ -1,20 +1,19 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Models.Commands.UpdateModel
+namespace MB.Application.Features.Models.Commands.UpdateModel;
+
+public class UpdateModelCommandResponse : BaseResponse
 {
-    public class UpdateModelCommandResponse : BaseResponse
+    /// <summary>
+    /// Properties
+    /// </summary>
+    public UpdateModelDto UpdatedModel { get; set; } = default!;
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    public UpdateModelCommandResponse() : base()
     {
-        /// <summary>
-        /// Properties
-        /// </summary>
-        public UpdateModelDto UpdatedModel { get; set; } = default!;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public UpdateModelCommandResponse() : base()
-        {
-
-        }
     }
 }

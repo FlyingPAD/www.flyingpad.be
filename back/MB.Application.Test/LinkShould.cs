@@ -1,43 +1,42 @@
 ﻿using MB.Domain.Entities;
 using Xunit;
 
-namespace MB.Application.Test
+namespace MB.Application.Test;
+
+[Trait("Category", "Link")]
+public class LinkShould
 {
-    [Trait("Category", "Link")]
-    public class LinkShould
+    [Fact]
+    public void Test()
     {
-        [Fact]
-        public void Test()
-        {
-            // Arrange
+        // Arrange
 
-            Link sut = new Link();
+        Link sut = new Link();
 
-            // Act
+        // Act
 
-            sut.Name = "# New Link";
+        sut.Name = "# New Link";
 
-            // Assert
+        // Assert
 
-            Assert.NotNull(sut);
+        Assert.NotNull(sut);
 
-        }
+    }
 
-        [Fact]
-        public void Test2()
-        {
-            // Arrange
+    [Fact]
+    public void Test2()
+    {
+        // Arrange
 
-            Link sut = new Link();
+        Link sut = new Link();
 
-            // Act
+        // Act
 
-            sut.Name = "# New Link";
+        sut.Name = "# New Link";
 
-            // Assert
+        // Assert
 
-            Assert.NotNull(sut);
+        Assert.NotNull(sut);
 
-        }
     }
 }

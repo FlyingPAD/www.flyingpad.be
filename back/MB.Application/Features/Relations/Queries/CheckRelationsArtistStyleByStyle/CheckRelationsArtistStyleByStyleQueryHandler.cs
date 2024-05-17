@@ -2,46 +2,45 @@
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByStyle
+namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByStyle;
+
+public class CheckRelationsArtistStyleByStyleQueryHandler(IBaseRepository<RelationArtistStyle> relationRepository, IBaseRepository<Style> styleRepository, CheckRelationsArtistStyleByStyleQueryValidator validator) : IRequestHandler<CheckRelationsArtistStyleByStyleQuery, CheckRelationsArtistStyleByStyleQueryResponse>
 {
-    public class CheckRelationsArtistStyleByStyleQueryHandler(IBaseRepository<RelationArtistStyle> relationRepository, IBaseRepository<Style> styleRepository, CheckRelationsArtistStyleByStyleQueryValidator validator) : IRequestHandler<CheckRelationsArtistStyleByStyleQuery, CheckRelationsArtistStyleByStyleQueryResponse>
+    private readonly IBaseRepository<RelationArtistStyle> _relationRepository = relationRepository;
+    private readonly IBaseRepository<Style> _styleRepository = styleRepository;
+    private readonly CheckRelationsArtistStyleByStyleQueryValidator _validator = validator;
+
+    public async Task<CheckRelationsArtistStyleByStyleQueryResponse> Handle(CheckRelationsArtistStyleByStyleQuery request, CancellationToken cancellationToken)
     {
-        private readonly IBaseRepository<RelationArtistStyle> _relationRepository = relationRepository;
-        private readonly IBaseRepository<Style> _styleRepository = styleRepository;
-        private readonly CheckRelationsArtistStyleByStyleQueryValidator _validator = validator;
+        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
-        public async Task<CheckRelationsArtistStyleByStyleQueryResponse> Handle(CheckRelationsArtistStyleByStyleQuery request, CancellationToken cancellationToken)
+        if (validationResult.Errors.Count != 0)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-
-            if (validationResult.Errors.Count != 0)
-            {
-                return new CheckRelationsArtistStyleByStyleQueryResponse
-                {
-                    Success = false,
-                    Message = "Validation Error(s)",
-                    ValidationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList()
-                };
-            }
-
-            int? stylePrimaryId = await _styleRepository.GetPrimaryIdByBusinessIdAsync(request.StyleId);
-            if (!stylePrimaryId.HasValue)
-            {
-                return new CheckRelationsArtistStyleByStyleQueryResponse
-                {
-                    Success = false,
-                    Message = "Style was not found."
-                };
-            }
-
-            int numberOfRelations = await _relationRepository.CountAsync();
-
             return new CheckRelationsArtistStyleByStyleQueryResponse
             {
-                Success = true,
-                Message = $"Number of artist-style relations for the style: {numberOfRelations}",
-                NumberOfRelations = numberOfRelations
+                Success = false,
+                Message = "Validation Error(s)",
+                ValidationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList()
             };
         }
+
+        int? stylePrimaryId = await _styleRepository.GetPrimaryIdByBusinessIdAsync(request.StyleId);
+        if (!stylePrimaryId.HasValue)
+        {
+            return new CheckRelationsArtistStyleByStyleQueryResponse
+            {
+                Success = false,
+                Message = "Style was not found."
+            };
+        }
+
+        int numberOfRelations = await _relationRepository.CountAsync();
+
+        return new CheckRelationsArtistStyleByStyleQueryResponse
+        {
+            Success = true,
+            Message = $"Number of artist-style relations for the style: {numberOfRelations}",
+            NumberOfRelations = numberOfRelations
+        };
     }
 }

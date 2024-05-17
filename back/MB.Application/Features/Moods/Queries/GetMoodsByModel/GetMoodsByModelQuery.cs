@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Moods.Queries.GetMoodsByModel
+namespace MB.Application.Features.Moods.Queries.GetMoodsByModel;
+
+public class GetMoodsByModelQuery : IRequest<GetMoodsByModelQueryResponse>
 {
-    public class GetMoodsByModelQuery : IRequest<GetMoodsByModelQueryResponse>
-    {
-        public Guid ModelId { get; set; }
-    }
+    public Guid ModelId { get; set; }
 }

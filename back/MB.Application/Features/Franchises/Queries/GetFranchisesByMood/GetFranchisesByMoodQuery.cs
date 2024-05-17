@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Franchises.Queries.GetFranchisesByMood
+namespace MB.Application.Features.Franchises.Queries.GetFranchisesByMood;
+
+public class GetFranchisesByMoodQuery : IRequest<GetFranchisesByMoodQueryResponse>
 {
-    public class GetFranchisesByMoodQuery : IRequest<GetFranchisesByMoodQueryResponse>
-    {
-        public Guid BusinessId { get; set; } = Guid.Empty;
-    }
+    public Guid BusinessId { get; set; } = Guid.Empty;
 }

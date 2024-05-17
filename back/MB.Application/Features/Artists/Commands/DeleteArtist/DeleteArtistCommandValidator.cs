@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Artists.Commands.DeleteArtist
+namespace MB.Application.Features.Artists.Commands.DeleteArtist;
+
+public class DeleteArtistCommandValidator : AbstractValidator<DeleteArtistCommand>
 {
-    public class DeleteArtistCommandValidator : AbstractValidator<DeleteArtistCommand>
+    public DeleteArtistCommandValidator()
     {
-        public DeleteArtistCommandValidator()
-        {
-            RuleFor(x => x.BusinessId)
-                .NotEmpty().WithMessage("ID is required.")
-                .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
-        }
+        RuleFor(x => x.BusinessId)
+            .NotEmpty().WithMessage("ID is required.")
+            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
     }
 }

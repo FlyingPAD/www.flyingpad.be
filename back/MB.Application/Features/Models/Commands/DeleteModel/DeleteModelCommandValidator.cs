@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Models.Commands.DeleteModel
+namespace MB.Application.Features.Models.Commands.DeleteModel;
+
+public class DeleteModelCommandValidator : AbstractValidator<DeleteModelCommand>
 {
-    public class DeleteModelCommandValidator : AbstractValidator<DeleteModelCommand>
+    public DeleteModelCommandValidator()
     {
-        public DeleteModelCommandValidator()
-        {
-            RuleFor(x => x.ModelId)
-                .NotEmpty().WithMessage("ID is required.")
-                .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
-        }
+        RuleFor(x => x.ModelId)
+            .NotEmpty().WithMessage("ID is required.")
+            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
     }
 }

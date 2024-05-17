@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Images.Queries
+namespace MB.Application.Features.Images.Queries;
+
+public class GetOneImageDetailsQuery : IRequest<GetOneImageDetailsQueryResponse>
 {
-    public class GetOneImageDetailsQuery : IRequest<GetOneImageDetailsQueryResponse>
-    {
-        public Guid ImageId { get; set; }
-    }
+    public Guid ImageId { get; set; }
 }

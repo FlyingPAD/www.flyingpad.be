@@ -4,28 +4,27 @@ using MB.Application.Contracts.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Models.Queries.GetModelsByFranchise
+namespace MB.Application.Features.Models.Queries.GetModelsByFranchise;
+
+public class GetModelsByFranchiseQueryHandler(IMapper mapper, IBaseRepository<Franchise> franchiseRepo, IModelRepository modelRepo ) : IRequestHandler<GetModelsByFranchiseQuery, GetModelsByFranchiseQueryResponse>
 {
-    public class GetModelsByFranchiseQueryHandler(IMapper mapper, IBaseRepository<Franchise> franchiseRepo, IModelRepository modelRepo ) : IRequestHandler<GetModelsByFranchiseQuery, GetModelsByFranchiseQueryResponse>
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<Franchise> _franchiseRepo = franchiseRepo;
+    private readonly IModelRepository _modelRepo = modelRepo;
+
+    public async Task<GetModelsByFranchiseQueryResponse> Handle(GetModelsByFranchiseQuery request, CancellationToken cancellationToken)
     {
-        private readonly IMapper _mapper = mapper;
-        private readonly IBaseRepository<Franchise> _franchiseRepo = franchiseRepo;
-        private readonly IModelRepository _modelRepo = modelRepo;
+        int? franchiseId = await _franchiseRepo.GetPrimaryIdByBusinessIdAsync(request.FranchiseId);
 
-        public async Task<GetModelsByFranchiseQueryResponse> Handle(GetModelsByFranchiseQuery request, CancellationToken cancellationToken)
+        var models = await _modelRepo.GetModelsByFranchise(franchiseId);
+
+        var response = new GetModelsByFranchiseQueryResponse
         {
-            int? franchiseId = await _franchiseRepo.GetPrimaryIdByBusinessIdAsync(request.FranchiseId);
+            Success = true,
+            Message = "Models By Franchise",
+            ModelsByFranchise = _mapper.Map<List<GetModelsByFranchiseQueryVm>>(models)
+        };
 
-            var models = await _modelRepo.GetModelsByFranchise(franchiseId);
-
-            var response = new GetModelsByFranchiseQueryResponse
-            {
-                Success = true,
-                Message = "Models By Franchise",
-                ModelsByFranchise = _mapper.Map<List<GetModelsByFranchiseQueryVm>>(models)
-            };
-
-            return response;
-        }
+        return response;
     }
 }

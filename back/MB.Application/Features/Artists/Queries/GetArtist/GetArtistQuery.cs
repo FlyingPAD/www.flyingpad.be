@@ -1,10 +1,9 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Artists.Queries.GetArtist
+namespace MB.Application.Features.Artists.Queries.GetArtist;
+
+public class GetArtistQuery : IRequest<GetArtistQueryResponse>
 {
-    public class GetArtistQuery : IRequest<GetArtistQueryResponse>
-    {
-        public Guid ArtistId { get; set; }
-    }
+    public Guid ArtistId { get; set; }
 }
 

@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Moods.Queries.GetMoodsByArtist
+namespace MB.Application.Features.Moods.Queries.GetMoodsByArtist;
+
+public class GetMoodsByArtistQuery : IRequest<GetMoodsByArtistQueryResponse>
 {
-    public class GetMoodsByArtistQuery : IRequest<GetMoodsByArtistQueryResponse>
-    {
-        public Guid ArtistId { get; set; }
-    }
+    public Guid ArtistId { get; set; }
 }

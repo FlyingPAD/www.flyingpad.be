@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Styles.Queries.GetStylesCheck
+namespace MB.Application.Features.Styles.Queries.GetStylesCheck;
+
+public class GetStylesCheckQuery : IRequest<GetStylesCheckQueryResponse>
 {
-    public class GetStylesCheckQuery : IRequest<GetStylesCheckQueryResponse>
-    {
-        public Guid ArtistId { get; set; }
-    }
+    public Guid ArtistId { get; set; }
 }

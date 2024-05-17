@@ -1,11 +1,10 @@
 ﻿using MB.Application.Responses;
 using MediatR;
 
-namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodArtist
+namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodArtist;
+
+public class CreateRelationsMoodArtistCommand : IRequest<BaseResponse>
 {
-    public class CreateRelationsMoodArtistCommand : IRequest<BaseResponse>
-    {
-        public Guid MoodId { get; set; }
-        public List<Guid> ArtistIds { get; set; } = [];
-    }
+    public Guid MoodId { get; set; }
+    public List<Guid> ArtistIds { get; set; } = [];
 }

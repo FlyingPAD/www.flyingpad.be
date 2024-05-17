@@ -1,8 +1,7 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Franchises.Queries.GetFranchisesByModel
+namespace MB.Application.Features.Franchises.Queries.GetFranchisesByModel;
+
+public class GetFranchisesByModelQueryValidator : AbstractValidator<GetFranchisesByModelQuery>
 {
-    public class GetFranchisesByModelQueryValidator : AbstractValidator<GetFranchisesByModelQuery>
-    {
-    }
 }

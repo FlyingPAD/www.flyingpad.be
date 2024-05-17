@@ -1,12 +1,11 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.LinkCategories.Commands.UpdateLinkCategory
+namespace MB.Application.Features.LinkCategories.Commands.UpdateLinkCategory;
+
+public class UpdateLinkCategoryCommandValidator : AbstractValidator<UpdateLinkCategoryCommand>
 {
-    public class UpdateLinkCategoryCommandValidator : AbstractValidator<UpdateLinkCategoryCommand>
+    public UpdateLinkCategoryCommandValidator()
     {
-        public UpdateLinkCategoryCommandValidator()
-        {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required.");
-        }
+        RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required.");
     }
 }

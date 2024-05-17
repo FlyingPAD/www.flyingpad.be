@@ -1,15 +1,14 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.LinkCategories.Commands.CreateLinkCategory
+namespace MB.Application.Features.LinkCategories.Commands.CreateLinkCategory;
+
+public class CreateLinkCategoryCommandValidator : AbstractValidator<CreateLinkCategoryCommand>
 {
-    public class CreateLinkCategoryCommandValidator : AbstractValidator<CreateLinkCategoryCommand>
+    public CreateLinkCategoryCommandValidator()
     {
-        public CreateLinkCategoryCommandValidator()
-        {
-            RuleFor(p => p.Name)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
-        }
+        RuleFor(p => p.Name)
+            .NotEmpty().WithMessage("{PropertyName} is required.")
+            .NotNull()
+            .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
     }
 }

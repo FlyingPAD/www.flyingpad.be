@@ -1,20 +1,19 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Tags.Commands.CreateTag
+namespace MB.Application.Features.Tags.Commands.CreateTag;
+
+public class CreateTagCommandResponse : BaseResponse
 {
-    public class CreateTagCommandResponse : BaseResponse
+    /// <summary>
+    /// Properties
+    /// </summary>
+    public CreateTagDto Tag { get; set; } = default!;
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    public CreateTagCommandResponse() : base()
     {
-        /// <summary>
-        /// Properties
-        /// </summary>
-        public CreateTagDto Tag { get; set; } = default!;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public CreateTagCommandResponse() : base()
-        {
-
-        }
     }
 }

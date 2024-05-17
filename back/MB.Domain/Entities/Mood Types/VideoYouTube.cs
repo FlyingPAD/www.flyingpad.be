@@ -1,7 +1,6 @@
-﻿namespace MB.Domain.Entities
+﻿namespace MB.Domain.Entities;
+
+public class VideoYouTube : Mood
 {
-    public class VideoYouTube : Mood
-    {
-        public string Url { get; set; } = string.Empty;
-    }
+    public string Url { get; set; } = string.Empty;
 }

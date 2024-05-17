@@ -1,17 +1,16 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.LinkCategories.Queries.CountLinkCategories
+namespace MB.Application.Features.LinkCategories.Queries.CountLinkCategories;
+
+public class CountLinkCategoriesQueryResponse : BaseResponse
 {
-    public class CountLinkCategoriesQueryResponse : BaseResponse
+    /// <summary>
+    /// Properties
+    /// </summary>
+    public int LinkCategoriesCount { get; set; }
+
+    public CountLinkCategoriesQueryResponse() : base ()
     {
-        /// <summary>
-        /// Properties
-        /// </summary>
-        public int LinkCategoriesCount { get; set; }
 
-        public CountLinkCategoriesQueryResponse() : base ()
-        {
-
-        }
     }
 }

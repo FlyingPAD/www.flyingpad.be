@@ -2,27 +2,26 @@
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Models.Queries.CountModels
+namespace MB.Application.Features.Models.Queries.CountModels;
+
+public class CountModelsQueryHandler : IRequestHandler<CountModelsQuery, CountModelsQueryResponse>
 {
-    public class CountModelsQueryHandler : IRequestHandler<CountModelsQuery, CountModelsQueryResponse>
+    private readonly IBaseRepository<Model> _modelRepository;
+
+    public CountModelsQueryHandler(IBaseRepository<Model> modelRepository)
     {
-        private readonly IBaseRepository<Model> _modelRepository;
+        _modelRepository = modelRepository;
+    }
 
-        public CountModelsQueryHandler(IBaseRepository<Model> modelRepository)
+    public async Task<CountModelsQueryResponse> Handle(CountModelsQuery request, CancellationToken cancellationToken)
+    {
+        var modelsCount = await _modelRepository.CountAsync();
+
+        return new CountModelsQueryResponse
         {
-            _modelRepository = modelRepository;
-        }
-
-        public async Task<CountModelsQueryResponse> Handle(CountModelsQuery request, CancellationToken cancellationToken)
-        {
-            var modelsCount = await _modelRepository.CountAsync();
-
-            return new CountModelsQueryResponse
-            {
-                Success = true,
-                Message = $"Total Models : {modelsCount}",
-                ModelsCount = modelsCount
-            };
-        }
+            Success = true,
+            Message = $"Total Models : {modelsCount}",
+            ModelsCount = modelsCount
+        };
     }
 }

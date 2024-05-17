@@ -1,15 +1,14 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.TagCategories.Commands.CreateTagCategory
+namespace MB.Application.Features.TagCategories.Commands.CreateTagCategory;
+
+public class CreateTagCategoryCommandValidator : AbstractValidator<CreateTagCategoryCommand>
 {
-    public class CreateTagCategoryCommandValidator : AbstractValidator<CreateTagCategoryCommand>
+    public CreateTagCategoryCommandValidator()
     {
-        public CreateTagCategoryCommandValidator()
-        {
-            RuleFor(p => p.Name)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
-        }
+        RuleFor(p => p.Name)
+            .NotEmpty().WithMessage("{PropertyName} is required.")
+            .NotNull()
+            .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
     }
 }

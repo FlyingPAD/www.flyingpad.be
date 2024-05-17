@@ -47,6 +47,21 @@ export class MoodEditionComponent implements OnDestroy
   triggerMoodArtistsEdition : boolean = false
   triggerDelete : boolean = false
 
+  // Search
+  searchModel : string = ''
+  searchArtist : string = ''
+
+  // Filter models based on search input
+  filterModels() 
+  {
+    return this.moodEditionFlow().models.filter(m => m.pseudonym.toLowerCase().includes(this.searchModel.toLowerCase()))
+  }
+  // Filter artists based on search input
+  filterArtists() 
+  {
+    return this.moodEditionFlow().artists.filter(m => m.name.toLowerCase().includes(this.searchArtist.toLowerCase()))
+  }
+
   triggerMoodEditionButton()
   {
     this.triggerMoodEdition = true

@@ -2,22 +2,21 @@
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Artists.Queries.CountArtists
+namespace MB.Application.Features.Artists.Queries.CountArtists;
+
+public class CountArtistsQueryHandler(IBaseRepository<Artist> artistRepository) : IRequestHandler<CountArtistsQuery, CountArtistsQueryResponse>
 {
-    public class CountArtistsQueryHandler(IBaseRepository<Artist> artistRepository) : IRequestHandler<CountArtistsQuery, CountArtistsQueryResponse>
+    private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
+
+    public async Task<CountArtistsQueryResponse> Handle(CountArtistsQuery request, CancellationToken cancellationToken)
     {
-        private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
+        var artistsCount = await _artistRepository.CountAsync();
 
-        public async Task<CountArtistsQueryResponse> Handle(CountArtistsQuery request, CancellationToken cancellationToken)
+        return new CountArtistsQueryResponse
         {
-            var artistsCount = await _artistRepository.CountAsync();
-
-            return new CountArtistsQueryResponse
-            {
-                Success = true,
-                Message = $"Total Artists : {artistsCount}",
-                ArtistsCount = artistsCount
-            };
-        }
+            Success = true,
+            Message = $"Total Artists : {artistsCount}",
+            ArtistsCount = artistsCount
+        };
     }
 }

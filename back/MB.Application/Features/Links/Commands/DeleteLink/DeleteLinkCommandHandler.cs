@@ -4,54 +4,53 @@ using MB.Application.Features.Links.Commands.DeleteLink;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Task.Commands.DeleteTask
+namespace MB.Application.Features.Task.Commands.DeleteTask;
+
+public class DeleteLinkCommandHandler : IRequestHandler<DeleteLinkCommand, DeleteLinkCommandResponse>
 {
-    public class DeleteLinkCommandHandler : IRequestHandler<DeleteLinkCommand, DeleteLinkCommandResponse>
+    private readonly IMapper _mapper;
+    private readonly IBaseRepository<Link> _linkRepository;
+
+    public DeleteLinkCommandHandler(IMapper mapper, IBaseRepository<Link> linkRepository)
     {
-        private readonly IMapper _mapper;
-        private readonly IBaseRepository<Link> _linkRepository;
+        _mapper = mapper;
+        _linkRepository = linkRepository;
+    }
 
-        public DeleteLinkCommandHandler(IMapper mapper, IBaseRepository<Link> linkRepository)
+    public async Task<DeleteLinkCommandResponse> Handle(DeleteLinkCommand request, CancellationToken cancellationToken)
+    {
+        var deleteLinkCommandResponse = new DeleteLinkCommandResponse();
+
+        var validator = new DeleteLinkCommandValidator();
+        var validationResult = await validator.ValidateAsync(request);
+
+        if (validationResult.Errors.Count > 0)
         {
-            _mapper = mapper;
-            _linkRepository = linkRepository;
+            deleteLinkCommandResponse.Success = false;
+            deleteLinkCommandResponse.ValidationErrors = new List<string>();
+            foreach (var error in validationResult.Errors)
+            {
+                deleteLinkCommandResponse.ValidationErrors.Add(error.ErrorMessage);
+            }
         }
-
-        public async Task<DeleteLinkCommandResponse> Handle(DeleteLinkCommand request, CancellationToken cancellationToken)
+        if (deleteLinkCommandResponse.Success)
         {
-            var deleteLinkCommandResponse = new DeleteLinkCommandResponse();
-
-            var validator = new DeleteLinkCommandValidator();
-            var validationResult = await validator.ValidateAsync(request);
-
-            if (validationResult.Errors.Count > 0)
+            var link = await _linkRepository.GetByBusinessIdAsync(request.LinkId);
+            if (link != null)
+            {
+                await _linkRepository.DeleteAsync(link);
+                deleteLinkCommandResponse.Success = true;
+            }
+            else
             {
                 deleteLinkCommandResponse.Success = false;
-                deleteLinkCommandResponse.ValidationErrors = new List<string>();
-                foreach (var error in validationResult.Errors)
+                deleteLinkCommandResponse.ValidationErrors = new List<string>
                 {
-                    deleteLinkCommandResponse.ValidationErrors.Add(error.ErrorMessage);
-                }
+                    "Selected link doesn't exist."
+                };
             }
-            if (deleteLinkCommandResponse.Success)
-            {
-                var link = await _linkRepository.GetByBusinessIdAsync(request.LinkId);
-                if (link != null)
-                {
-                    await _linkRepository.DeleteAsync(link);
-                    deleteLinkCommandResponse.Success = true;
-                }
-                else
-                {
-                    deleteLinkCommandResponse.Success = false;
-                    deleteLinkCommandResponse.ValidationErrors = new List<string>
-                    {
-                        "Selected link doesn't exist."
-                    };
-                }
-            }
-
-            return deleteLinkCommandResponse;
         }
+
+        return deleteLinkCommandResponse;
     }
 }

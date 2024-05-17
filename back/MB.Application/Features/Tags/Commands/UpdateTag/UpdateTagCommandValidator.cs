@@ -1,12 +1,11 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Tags.Commands.UpdateTag
+namespace MB.Application.Features.Tags.Commands.UpdateTag;
+
+public class UpdateTagCommandValidator : AbstractValidator<UpdateTagCommand>
 {
-    public class UpdateTagCommandValidator : AbstractValidator<UpdateTagCommand>
+    public UpdateTagCommandValidator()
     {
-        public UpdateTagCommandValidator()
-        {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required.");
-        }
+        RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required.");
     }
 }

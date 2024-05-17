@@ -2,27 +2,26 @@
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Links.Queries.CountLinks
+namespace MB.Application.Features.Links.Queries.CountLinks;
+
+public class CountLinksQueryHandler : IRequestHandler<CountLinksQuery, CountLinksQueryResponse>
 {
-    public class CountLinksQueryHandler : IRequestHandler<CountLinksQuery, CountLinksQueryResponse>
+    private readonly IBaseRepository<Link> _linkRepository;
+
+    public CountLinksQueryHandler(IBaseRepository<Link> linkRepository)
     {
-        private readonly IBaseRepository<Link> _linkRepository;
+        _linkRepository = linkRepository;
+    }
 
-        public CountLinksQueryHandler(IBaseRepository<Link> linkRepository)
+    public async Task<CountLinksQueryResponse> Handle(CountLinksQuery request, CancellationToken cancellationToken)
+    {
+        var linksCount = await _linkRepository.CountAsync();
+
+        return new CountLinksQueryResponse
         {
-            _linkRepository = linkRepository;
-        }
-
-        public async Task<CountLinksQueryResponse> Handle(CountLinksQuery request, CancellationToken cancellationToken)
-        {
-            var linksCount = await _linkRepository.CountAsync();
-
-            return new CountLinksQueryResponse
-            {
-                Success = true,
-                Message = $"Total Links : {linksCount}",
-                LinksCount = linksCount
-            };
-        }
+            Success = true,
+            Message = $"Total Links : {linksCount}",
+            LinksCount = linksCount
+        };
     }
 }

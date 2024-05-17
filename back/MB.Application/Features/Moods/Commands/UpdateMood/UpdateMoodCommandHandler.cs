@@ -3,34 +3,33 @@ using MB.Application.Contracts.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Moods.Commands.UpdateMood
+namespace MB.Application.Features.Moods.Commands.UpdateMood;
+
+public class UpdateMoodCommandHandler(IMapper mapper, IBaseRepository<Mood> moodRepository) : IRequestHandler<UpdateMoodCommand, UpdateMoodCommandResponse>
 {
-    public class UpdateMoodCommandHandler(IMapper mapper, IBaseRepository<Mood> moodRepository) : IRequestHandler<UpdateMoodCommand, UpdateMoodCommandResponse>
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<Mood> _moodRepository = moodRepository;
+
+    public async Task<UpdateMoodCommandResponse> Handle(UpdateMoodCommand request, CancellationToken cancellationToken)
     {
-        private readonly IMapper _mapper = mapper;
-        private readonly IBaseRepository<Mood> _moodRepository = moodRepository;
+        var mood = await _moodRepository.GetByBusinessIdAsync(request.MoodId);
 
-        public async Task<UpdateMoodCommandResponse> Handle(UpdateMoodCommand request, CancellationToken cancellationToken)
+        if (mood == null)
         {
-            var mood = await _moodRepository.GetByBusinessIdAsync(request.MoodId);
-
-            if (mood == null)
-            {
-                return new UpdateMoodCommandResponse { Success = false, Message = "Mood was not found." };
-            }
-
-            _mapper.Map(request, mood);
-
-            await _moodRepository.UpdateAsync(mood);
-
-            var updatedMoodDto = _mapper.Map<UpdateMoodDto>(mood);
-
-            return new UpdateMoodCommandResponse
-            {
-                Success = true,
-                Message = "Mood was successfully updated.",
-                UpdatedMood = updatedMoodDto
-            };
+            return new UpdateMoodCommandResponse { Success = false, Message = "Mood was not found." };
         }
+
+        _mapper.Map(request, mood);
+
+        await _moodRepository.UpdateAsync(mood);
+
+        var updatedMoodDto = _mapper.Map<UpdateMoodDto>(mood);
+
+        return new UpdateMoodCommandResponse
+        {
+            Success = true,
+            Message = "Mood was successfully updated.",
+            UpdatedMood = updatedMoodDto
+        };
     }
 }

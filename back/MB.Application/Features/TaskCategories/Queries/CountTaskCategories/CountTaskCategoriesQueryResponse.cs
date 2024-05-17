@@ -1,17 +1,16 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.TaskCategories.Queries.CountTaskCategories
+namespace MB.Application.Features.TaskCategories.Queries.CountTaskCategories;
+
+public class CountTaskCategoriesQueryResponse : BaseResponse
 {
-    public class CountTaskCategoriesQueryResponse : BaseResponse
+    /// <summary>
+    /// Properties
+    /// </summary>
+    public int TaskCategoriesCount { get; set; }
+
+    public CountTaskCategoriesQueryResponse() : base()
     {
-        /// <summary>
-        /// Properties
-        /// </summary>
-        public int TaskCategoriesCount { get; set; }
 
-        public CountTaskCategoriesQueryResponse() : base()
-        {
-
-        }
     }
 }

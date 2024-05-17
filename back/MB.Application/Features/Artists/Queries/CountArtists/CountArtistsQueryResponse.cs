@@ -1,17 +1,16 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Artists.Queries.CountArtists
+namespace MB.Application.Features.Artists.Queries.CountArtists;
+
+public class CountArtistsQueryResponse : BaseResponse
 {
-    public class CountArtistsQueryResponse : BaseResponse
+    /// <summary>
+    /// Properties
+    /// </summary>
+    public int ArtistsCount { get; set; }
+
+    public CountArtistsQueryResponse() : base ()
     {
-        /// <summary>
-        /// Properties
-        /// </summary>
-        public int ArtistsCount { get; set; }
 
-        public CountArtistsQueryResponse() : base ()
-        {
-
-        }
     }
 }

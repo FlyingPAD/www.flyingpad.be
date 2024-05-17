@@ -1,7 +1,6 @@
-﻿namespace MB.Application.Features.Franchises.Commands.DeleteFranchise
+﻿namespace MB.Application.Features.Franchises.Commands.DeleteFranchise;
+
+public class DeleteFranchiseDto
 {
-    public class DeleteFranchiseDto
-    {
-        public Guid BusinessId { get; set; }
-    }
+    public Guid BusinessId { get; set; }
 }

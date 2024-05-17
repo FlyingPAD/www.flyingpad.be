@@ -1,7 +1,6 @@
-﻿namespace MB.Application.Contracts
+﻿namespace MB.Application.Contracts;
+
+public interface IEMailService
 {
-    public interface IEMailService
-    {
-        Task SendEmailAsync(string toEmail, string subject, string body);
-    }
+    Task SendEmailAsync(string toEmail, string subject, string body);
 }

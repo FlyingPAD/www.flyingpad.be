@@ -2,20 +2,19 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MB.Domain.Entities;
 
-namespace MB.Persistence.Configuration
+namespace MB.Persistence.Configuration;
+
+public class ArtistConfiguration : IEntityTypeConfiguration<Artist>
 {
-    public class ArtistConfiguration : IEntityTypeConfiguration<Artist>
+    public void Configure(EntityTypeBuilder<Artist> builder)
     {
-        public void Configure(EntityTypeBuilder<Artist> builder)
-        {
-            builder.HasKey(entity => entity.EntityId);          // Primary Key
+        builder.HasKey(entity => entity.EntityId);          // Primary Key
 
-            builder.Property(entity => entity.EntityId)
-                .ValueGeneratedOnAdd();                         // Auto Increment
+        builder.Property(entity => entity.EntityId)
+            .ValueGeneratedOnAdd();                         // Auto Increment
 
-            builder.Property(entity => entity.Name)
-                .IsRequired()
-                .HasMaxLength(50);
-        }
+        builder.Property(entity => entity.Name)
+            .IsRequired()
+            .HasMaxLength(50);
     }
 }

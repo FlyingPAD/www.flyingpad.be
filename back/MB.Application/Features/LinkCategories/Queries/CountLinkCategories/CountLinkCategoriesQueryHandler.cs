@@ -2,27 +2,26 @@
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.LinkCategories.Queries.CountLinkCategories
+namespace MB.Application.Features.LinkCategories.Queries.CountLinkCategories;
+
+public class CountLinkCategoriesQueryHandler : IRequestHandler<CountLinkCategoriesQuery, CountLinkCategoriesQueryResponse>
 {
-    public class CountLinkCategoriesQueryHandler : IRequestHandler<CountLinkCategoriesQuery, CountLinkCategoriesQueryResponse>
+    private readonly IBaseRepository<LinkCategory> _linkCategoryRepository;
+
+    public CountLinkCategoriesQueryHandler(IBaseRepository<LinkCategory> linkCategoryRepository)
     {
-        private readonly IBaseRepository<LinkCategory> _linkCategoryRepository;
+        _linkCategoryRepository = linkCategoryRepository;
+    }
 
-        public CountLinkCategoriesQueryHandler(IBaseRepository<LinkCategory> linkCategoryRepository)
+    public async Task<CountLinkCategoriesQueryResponse> Handle(CountLinkCategoriesQuery request, CancellationToken cancellationToken)
+    {
+        var linkCategoriesCount = await _linkCategoryRepository.CountAsync();
+
+        return new CountLinkCategoriesQueryResponse
         {
-            _linkCategoryRepository = linkCategoryRepository;
-        }
-
-        public async Task<CountLinkCategoriesQueryResponse> Handle(CountLinkCategoriesQuery request, CancellationToken cancellationToken)
-        {
-            var linkCategoriesCount = await _linkCategoryRepository.CountAsync();
-
-            return new CountLinkCategoriesQueryResponse
-            {
-                Success = true,
-                Message = $"Total Link Categories : {linkCategoriesCount}",
-                LinkCategoriesCount = linkCategoriesCount
-            };
-        }
+            Success = true,
+            Message = $"Total Link Categories : {linkCategoriesCount}",
+            LinkCategoriesCount = linkCategoriesCount
+        };
     }
 }

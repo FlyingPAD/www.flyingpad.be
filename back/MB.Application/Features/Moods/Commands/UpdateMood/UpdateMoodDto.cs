@@ -1,7 +1,6 @@
-﻿namespace MB.Application.Features.Moods.Commands.UpdateMood
+﻿namespace MB.Application.Features.Moods.Commands.UpdateMood;
+
+public class UpdateMoodDto
 {
-    public class UpdateMoodDto
-    {
-        public Guid BusinessId { get; set; }
-    }
+    public Guid BusinessId { get; set; }
 }

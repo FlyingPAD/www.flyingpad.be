@@ -1,9 +1,8 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Tags.Queries.GetTagsByMood
-{
-    public class GetTagsByMoodQueryValidator : AbstractValidator<GetTagsByMoodQuery>
-    {
+namespace MB.Application.Features.Tags.Queries.GetTagsByMood;
 
-    }
+public class GetTagsByMoodQueryValidator : AbstractValidator<GetTagsByMoodQuery>
+{
+
 }

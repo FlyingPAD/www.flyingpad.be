@@ -1,21 +1,20 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Franchises.Queries.GetFranchisesList
+namespace MB.Application.Features.Franchises.Queries.GetFranchisesList;
+
+public class GetAllFranchisesQueryResponse : BaseResponse
 {
-    public class GetAllFranchisesQueryResponse : BaseResponse
+    /// <summary>
+    /// Properties
+    /// </summary>
+    /// 
+    public List<GetAllFranchisesQueryVm> FranchisesList { get; set; } = default!;
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    public GetAllFranchisesQueryResponse() : base()
     {
-        /// <summary>
-        /// Properties
-        /// </summary>
-        /// 
-        public List<GetAllFranchisesQueryVm> FranchisesList { get; set; } = default!;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public GetAllFranchisesQueryResponse() : base()
-        {
-
-        }
     }
 }

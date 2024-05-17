@@ -6,18 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MB.Application.Test
+namespace MB.Application.Test;
+
+public class TagShould
 {
-    public class TagShould
+    [Fact]
+    public void Test()
     {
-        [Fact]
-        public void Test()
-        {
-            Tag sut = new Tag();
+        Tag sut = new Tag();
 
-            sut.Name = "New Tag";
+        sut.Name = "New Tag";
 
-            Assert.NotNull(sut);
-        }
+        Assert.NotNull(sut);
     }
 }

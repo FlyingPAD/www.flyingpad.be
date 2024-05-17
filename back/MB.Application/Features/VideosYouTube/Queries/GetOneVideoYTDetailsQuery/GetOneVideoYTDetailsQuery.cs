@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetailsQuery
+namespace MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetailsQuery;
+
+public class GetOneVideoYTDetailsQuery : IRequest<GetOneVideoYTDetailsQueryResponse>
 {
-    public class GetOneVideoYTDetailsQuery : IRequest<GetOneVideoYTDetailsQueryResponse>
-    {
-        public Guid VideoYouTubeId { get; set; }
-    }
+    public Guid VideoYouTubeId { get; set; }
 }

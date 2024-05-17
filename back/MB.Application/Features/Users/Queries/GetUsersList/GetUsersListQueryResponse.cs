@@ -1,21 +1,20 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Users.Queries.GetUsersList
+namespace MB.Application.Features.Users.Queries.GetUsersList;
+
+public class GetUsersListQueryResponse : BaseResponse
 {
-    public class GetUsersListQueryResponse : BaseResponse
+    /// <summary>
+    /// Properties
+    /// </summary>
+    /// 
+    public List<UserListVm> UsersList { get; set; } = default!;
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    public GetUsersListQueryResponse() : base()
     {
-        /// <summary>
-        /// Properties
-        /// </summary>
-        /// 
-        public List<UserListVm> UsersList { get; set; } = default!;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public GetUsersListQueryResponse() : base()
-        {
-
-        }
     }
 }

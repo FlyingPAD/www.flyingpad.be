@@ -2,25 +2,24 @@
 using MB.Application.Contracts.Persistence;
 using MediatR;
 
-namespace MB.Application.Features.Tags.Queries.GetTagsFullListQuery
+namespace MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
+
+public class GetTagsFullListQueryHandler(IMapper mapper, ITagRepository tagRepository) : IRequestHandler<GetTagsFullListQuery, GetTagsFullListQueryResponse>
 {
-    public class GetTagsFullListQueryHandler(IMapper mapper, ITagRepository tagRepository) : IRequestHandler<GetTagsFullListQuery, GetTagsFullListQueryResponse>
+    private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+    private readonly ITagRepository _tagRepository = tagRepository ?? throw new ArgumentNullException(nameof(tagRepository));
+
+    public async Task<GetTagsFullListQueryResponse> Handle(GetTagsFullListQuery request, CancellationToken cancellationToken)
     {
-        private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        private readonly ITagRepository _tagRepository = tagRepository ?? throw new ArgumentNullException(nameof(tagRepository));
+        var categoriesWithTags = await _tagRepository.GetTagsFullListAsync();
 
-        public async Task<GetTagsFullListQueryResponse> Handle(GetTagsFullListQuery request, CancellationToken cancellationToken)
+        var categoriesWithTagsVm = _mapper.Map<List<GetTagsFullListQueryVm>>(categoriesWithTags);
+
+        return new GetTagsFullListQueryResponse
         {
-            var categoriesWithTags = await _tagRepository.GetTagsFullListAsync();
-
-            var categoriesWithTagsVm = _mapper.Map<List<GetTagsFullListQueryVm>>(categoriesWithTags);
-
-            return new GetTagsFullListQueryResponse
-            {
-                Success = true,
-                Message = "Tags and their categories retrieved successfully.",
-                CategoriesWithTags = categoriesWithTagsVm
-            };
-        }
+            Success = true,
+            Message = "Tags and their categories retrieved successfully.",
+            CategoriesWithTags = categoriesWithTagsVm
+        };
     }
 }

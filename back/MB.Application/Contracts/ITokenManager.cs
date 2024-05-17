@@ -1,9 +1,8 @@
 ﻿using MB.Domain.Entities;
 
-namespace MB.Application.Contracts
+namespace MB.Application.Contracts;
+
+public interface ITokenManager
 {
-    public interface ITokenManager
-    {
-        string GenerateToken(User user);
-    }
+    string GenerateToken(User user);
 }

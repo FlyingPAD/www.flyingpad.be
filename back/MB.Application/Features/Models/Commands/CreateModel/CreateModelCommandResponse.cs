@@ -1,20 +1,19 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Models.Commands.CreateModel
+namespace MB.Application.Features.Models.Commands.CreateModel;
+
+public class CreateModelCommandResponse : BaseResponse
 {
-    public class CreateModelCommandResponse : BaseResponse
+    /// <summary>
+    /// Properties
+    /// </summary>
+    public CreateModelDto Model { get; set; } = default!;
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    public CreateModelCommandResponse() : base()
     {
-        /// <summary>
-        /// Properties
-        /// </summary>
-        public CreateModelDto Model { get; set; } = default!;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public CreateModelCommandResponse() : base()
-        {
-
-        }
     }
 }

@@ -1,8 +1,7 @@
-﻿namespace MB.Application.Features.Links.Commands.CreateLink
+﻿namespace MB.Application.Features.Links.Commands.CreateLink;
+
+public class CreateLinkDto
 {
-    public class CreateLinkDto
-    {
-        public Guid BusinessId { get; set; }
-        public string Name { get; set; } = string.Empty;
-    }
+    public Guid BusinessId { get; set; }
+    public string Name { get; set; } = string.Empty;
 }

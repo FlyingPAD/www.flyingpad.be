@@ -1,27 +1,26 @@
 ﻿using MB.Domain.Entities;
 using Xunit;
 
-namespace MB.Application.Test
+namespace MB.Application.Test;
+
+public class ArtistShould
 {
-    public class ArtistShould
+    [Fact]
+    [Trait("Category", "Artist")]
+    public void Test()
     {
-        [Fact]
-        [Trait("Category", "Artist")]
-        public void Test()
+        // Arrange
+
+        Artist sut = new()
         {
-            // Arrange
+            // Act
 
-            Artist sut = new()
-            {
-                // Act
+            Name = "# New Artist"
+        };
 
-                Name = "# New Artist"
-            };
+        // Assert
 
-            // Assert
+        Assert.NotNull(sut);
 
-            Assert.NotNull(sut);
-
-        }
     }
 }

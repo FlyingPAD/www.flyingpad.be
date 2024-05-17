@@ -1,8 +1,7 @@
-﻿namespace MB.Application.Features.Franchises.Queries.GetFranchisesByModel
+﻿namespace MB.Application.Features.Franchises.Queries.GetFranchisesByModel;
+
+public class GetFranchisesByModelQueryVm
 {
-    public class GetFranchisesByModelQueryVm
-    {
-        public Guid BusinessId { get; set; } = Guid.Empty;
-        public string Name { get; set; } = string.Empty;
-    }
+    public Guid BusinessId { get; set; } = Guid.Empty;
+    public string Name { get; set; } = string.Empty;
 }

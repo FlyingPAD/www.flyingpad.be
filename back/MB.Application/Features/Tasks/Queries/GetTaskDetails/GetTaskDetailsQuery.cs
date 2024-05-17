@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Tasks.Queries.GetTaskDetails
+namespace MB.Application.Features.Tasks.Queries.GetTaskDetails;
+
+public class GetTaskDetailsQuery : IRequest<TaskDetailsVm>
 {
-    public class GetTaskDetailsQuery : IRequest<TaskDetailsVm>
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }
