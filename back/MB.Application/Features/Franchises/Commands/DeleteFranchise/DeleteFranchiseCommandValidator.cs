@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Franchises.Commands.DeleteFranchise
+namespace MB.Application.Features.Franchises.Commands.DeleteFranchise;
+
+public class DeleteFranchiseCommandValidator : AbstractValidator<DeleteFranchiseCommand>
 {
-    public class DeleteFranchiseCommandValidator : AbstractValidator<DeleteFranchiseCommand>
+    public DeleteFranchiseCommandValidator()
     {
-        public DeleteFranchiseCommandValidator()
-        {
-            RuleFor(x => x.FranchiseId)
-                .NotEmpty().WithMessage("ID is required.")
-                .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
-        }
+        RuleFor(x => x.FranchiseId)
+            .NotEmpty().WithMessage("ID is required.")
+            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
     }
 }

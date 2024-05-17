@@ -5,43 +5,42 @@ using MB.Domain.Entities;
 using Moq;
 using Xunit;
 
-namespace MB.Application.Test.Features.Artists.Commands
+namespace MB.Application.Test.Features.Artists.Commands;
+
+public class UpdateArtistCommandHandlerTest
 {
-    public class UpdateArtistCommandHandlerTest
+    private readonly Mock<IBaseRepository<Artist>> _artistRepoMock;
+    private readonly UpdateArtistCommandValidator _validator;
+    private readonly UpdateArtistCommandHandler _handler;
+
+    public UpdateArtistCommandHandlerTest()
     {
-        private readonly Mock<IBaseRepository<Artist>> _artistRepoMock;
-        private readonly UpdateArtistCommandValidator _validator;
-        private readonly UpdateArtistCommandHandler _handler;
+        _artistRepoMock = new Mock<IBaseRepository<Artist>>();
+        _validator = new UpdateArtistCommandValidator();
+        _handler = new UpdateArtistCommandHandler(_validator, _artistRepoMock.Object);
+    }
 
-        public UpdateArtistCommandHandlerTest()
+    [Fact(Skip = "Temp Skip")]
+    public async System.Threading.Tasks.Task Handle_Should_Call_UpdateAsync_Happy_Flow()
+    {
+        // Arrange
+
+        var request = new UpdateArtistCommand
         {
-            _artistRepoMock = new Mock<IBaseRepository<Artist>>();
-            _validator = new UpdateArtistCommandValidator();
-            _handler = new UpdateArtistCommandHandler(_validator, _artistRepoMock.Object);
-        }
+            BusinessId = Guid.NewGuid(),
+            Name = "Test Name"
+        };
 
-        [Fact(Skip = "Temp Skip")]
-        public async System.Threading.Tasks.Task Handle_Should_Call_UpdateAsync_Happy_Flow()
-        {
-            // Arrange
+        var validationResult = await _validator.ValidateAsync(request);
 
-            var request = new UpdateArtistCommand
-            {
-                BusinessId = Guid.NewGuid(),
-                Name = "Test Name"
-            };
+        // Act
 
-            var validationResult = await _validator.ValidateAsync(request);
+        await _handler.Handle(request, new CancellationToken());
 
-            // Act
+        // Assert / Verify
 
-            await _handler.Handle(request, new CancellationToken());
-
-            // Assert / Verify
-
-            _artistRepoMock.Verify(x => x.UpdateAsync(It.Is<Artist>(x => x.Name == request.Name)), Times.Once);
-
-        }
+        _artistRepoMock.Verify(x => x.UpdateAsync(It.Is<Artist>(x => x.Name == request.Name)), Times.Once);
 
     }
+
 }

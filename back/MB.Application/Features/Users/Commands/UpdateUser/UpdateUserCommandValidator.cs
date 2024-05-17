@@ -1,12 +1,11 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Users.Commands.UpdateUser
+namespace MB.Application.Features.Users.Commands.UpdateUser;
+
+public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
 {
-    public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
+    public UpdateUserCommandValidator()
     {
-        public UpdateUserCommandValidator()
-        {
-            RuleFor(x => x.FirstName).NotEmpty().WithMessage("First Name is required.");
-        }
+        RuleFor(x => x.FirstName).NotEmpty().WithMessage("First Name is required.");
     }
 }

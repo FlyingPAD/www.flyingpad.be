@@ -1,13 +1,12 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Moods.Commands.UpdateMood
+namespace MB.Application.Features.Moods.Commands.UpdateMood;
+
+public class UpdateMoodCommandValidator : AbstractValidator<UpdateMoodCommand>
 {
-    public class UpdateMoodCommandValidator : AbstractValidator<UpdateMoodCommand>
+    public UpdateMoodCommandValidator()
     {
-        public UpdateMoodCommandValidator()
-        {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required.");
-            RuleFor(x => x.Description).NotEmpty().WithMessage("Description is required.");
-        }
+        RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required.");
+        RuleFor(x => x.Description).NotEmpty().WithMessage("Description is required.");
     }
 }

@@ -1,9 +1,8 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Artists.Queries.GetArtistsByMood
+namespace MB.Application.Features.Artists.Queries.GetArtistsByMood;
+
+public class GetArtistsByMoodQueryResponse : BaseResponse
 {
-    public class GetArtistsByMoodQueryResponse : BaseResponse
-    {
-        public List<GetArtistsByMoodQueryVm> ArtistsByMood { get; set; } = [];
-    }
+    public List<GetArtistsByMoodQueryVm> ArtistsByMood { get; set; } = [];
 }

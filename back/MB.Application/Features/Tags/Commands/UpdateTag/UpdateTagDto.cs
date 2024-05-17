@@ -1,8 +1,7 @@
-﻿namespace MB.Application.Features.Tags.Commands.UpdateTag
+﻿namespace MB.Application.Features.Tags.Commands.UpdateTag;
+
+public class UpdateTagDto
 {
-    public class UpdateTagDto
-    {
-        public Guid BusinessId { get; set; }
-        public string Name { get; set; } = string.Empty;
-    }
+    public Guid BusinessId { get; set; }
+    public string Name { get; set; } = string.Empty;
 }

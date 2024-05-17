@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Franchises.Queries.GetFranchisesByMood
+namespace MB.Application.Features.Franchises.Queries.GetFranchisesByMood;
+
+public class GetFranchisesByMoodQueryValidator : AbstractValidator<GetFranchisesByMoodQuery>
 {
-    public class GetFranchisesByMoodQueryValidator : AbstractValidator<GetFranchisesByMoodQuery>
+    public GetFranchisesByMoodQueryValidator()
     {
-        public GetFranchisesByMoodQueryValidator()
-        {
-            RuleFor(x => x.BusinessId)
-                .NotEmpty().WithMessage("ID is required.")
-                .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
-        }
+        RuleFor(x => x.BusinessId)
+            .NotEmpty().WithMessage("ID is required.")
+            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
     }
 }

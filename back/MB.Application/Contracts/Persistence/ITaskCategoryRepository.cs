@@ -1,10 +1,9 @@
 ﻿using MB.Application.Contracts.Persistence.Common;
 using MB.Domain.Entities;
 
-namespace MB.Application.Contracts.Persistence
+namespace MB.Application.Contracts.Persistence;
+
+public interface ITaskCategoryRepository : IBaseRepository<TaskCategory>
 {
-    public interface ITaskCategoryRepository : IBaseRepository<TaskCategory>
-    {
-        Task<List<TaskCategory>> GetTaskCategoriesWithTasks(bool includePastTasks);
-    }
+    Task<List<TaskCategory>> GetTaskCategoriesWithTasks(bool includePastTasks);
 }

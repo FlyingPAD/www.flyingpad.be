@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Tags.Queries.GetTagById
+namespace MB.Application.Features.Tags.Queries.GetTagById;
+
+public class GetTagByIdQueryValidator : AbstractValidator<GetTagByIdQuery>
 {
-    public class GetTagByIdQueryValidator : AbstractValidator<GetTagByIdQuery>
+    public GetTagByIdQueryValidator()
     {
-        public GetTagByIdQueryValidator()
-        {
-            RuleFor(x => x.TagId)
-                .NotEmpty().WithMessage("ID is required.")
-                .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
-        }
+        RuleFor(x => x.TagId)
+            .NotEmpty().WithMessage("ID is required.")
+            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
     }
 }

@@ -1,8 +1,7 @@
-﻿namespace MB.Application.Features.LinkCategories.Commands.UpdateLinkCategory
+﻿namespace MB.Application.Features.LinkCategories.Commands.UpdateLinkCategory;
+
+public class UpdateLinkCategoryDto
 {
-    public class UpdateLinkCategoryDto
-    {
-        public Guid BusinessId { get; set; }
-        public string Name { get; set; } = string.Empty;
-    }
+    public Guid BusinessId { get; set; }
+    public string Name { get; set; } = string.Empty;
 }

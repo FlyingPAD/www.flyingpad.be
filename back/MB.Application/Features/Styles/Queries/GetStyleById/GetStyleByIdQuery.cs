@@ -1,10 +1,9 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Styles.Queries.GetStyleById
+namespace MB.Application.Features.Styles.Queries.GetStyleById;
+
+public class GetStyleByIdQuery : IRequest<GetStyleByIdQueryResponse>
 {
-    public class GetStyleByIdQuery : IRequest<GetStyleByIdQueryResponse>
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }
 

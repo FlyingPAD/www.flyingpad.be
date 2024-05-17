@@ -1,9 +1,8 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Moods.Queries.GetMoodsByFranchise
+namespace MB.Application.Features.Moods.Queries.GetMoodsByFranchise;
+
+public class GetMoodsByFranchiseQueryResponse : BaseResponse
 {
-    public class GetMoodsByFranchiseQueryResponse : BaseResponse
-    {
-        public List<GetMoodsByFranchiseQueryVm> Moods { get; set; } = [];
-    }
+    public List<GetMoodsByFranchiseQueryVm> Moods { get; set; } = [];
 }

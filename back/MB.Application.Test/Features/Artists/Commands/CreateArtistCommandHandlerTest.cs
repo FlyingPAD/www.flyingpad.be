@@ -5,68 +5,67 @@ using MB.Domain.Entities;
 using Moq;
 using Xunit;
 
-namespace MB.Application.Test.Features.Artists.Commands
+namespace MB.Application.Test.Features.Artists.Commands;
+
+public class CreateArtistCommandHandlerTest
 {
-    public class CreateArtistCommandHandlerTest
+    private readonly Mock<IMapper> mapperMock;
+    private readonly Mock<IBaseRepository<Artist>> repoMock;
+    private readonly CreateArtistCommandHandler handler;
+    private readonly CreateArtistCommandValidator validator;
+
+    public CreateArtistCommandHandlerTest()
     {
-        private readonly Mock<IMapper> mapperMock;
-        private readonly Mock<IBaseRepository<Artist>> repoMock;
-        private readonly CreateArtistCommandHandler handler;
-        private readonly CreateArtistCommandValidator validator;
+        mapperMock = new Mock<IMapper>();
+        repoMock = new Mock<IBaseRepository<Artist>>();
+        validator = new CreateArtistCommandValidator();
+        handler = new CreateArtistCommandHandler(mapperMock.Object, repoMock.Object, validator);
+    }
 
-        public CreateArtistCommandHandlerTest()
+    [Fact]
+    public async System.Threading.Tasks.Task Handle_Should_Call_CreateAsync_HappyFlow()
+    {
+        // Arrange
+
+        var artistName = "azertyuio";
+
+        repoMock.Setup(x => x.CreateAsync(It.Is<Artist>(x => x.Name == artistName))).ReturnsAsync(new Artist
         {
-            mapperMock = new Mock<IMapper>();
-            repoMock = new Mock<IBaseRepository<Artist>>();
-            validator = new CreateArtistCommandValidator();
-            handler = new CreateArtistCommandHandler(mapperMock.Object, repoMock.Object, validator);
-        }
+            BusinessId = Guid.NewGuid()
+        });
 
-        [Fact]
-        public async System.Threading.Tasks.Task Handle_Should_Call_CreateAsync_HappyFlow()
+        var request = new CreateArtistCommand
         {
-            // Arrange
+            Name = artistName
+        };
 
-            var artistName = "azertyuio";
+        var validationResult = await validator.ValidateAsync(request);
 
-            repoMock.Setup(x => x.CreateAsync(It.Is<Artist>(x => x.Name == artistName))).ReturnsAsync(new Artist
-            {
-                BusinessId = Guid.NewGuid()
-            });
+        //Act
 
-            var request = new CreateArtistCommand
-            {
-                Name = artistName
-            };
+        await handler.Handle(request, new CancellationToken());
 
-            var validationResult = await validator.ValidateAsync(request);
+        //Assert
 
-            //Act
+        repoMock.Verify(x => x.CreateAsync(It.Is<Artist>(x => x.Name == artistName)), Times.Once);
+    }
 
-            await handler.Handle(request, new CancellationToken());
+    [Fact]
+    public async System.Threading.Tasks.Task Handle_Should_Explode()
+    {
+        // Arrange
 
-            //Assert
+        var artistName = "azertyuio";
 
-            repoMock.Verify(x => x.CreateAsync(It.Is<Artist>(x => x.Name == artistName)), Times.Once);
-        }
+        repoMock.Setup(x => x.CreateAsync(It.Is<Artist>(x => x.Name == artistName))).ThrowsAsync(new ArgumentNullException());
 
-        [Fact]
-        public async System.Threading.Tasks.Task Handle_Should_Explode()
+        var request = new CreateArtistCommand
         {
-            // Arrange
+            Name = artistName
+        };
 
-            var artistName = "azertyuio";
+        // Act and Assert
 
-            repoMock.Setup(x => x.CreateAsync(It.Is<Artist>(x => x.Name == artistName))).ThrowsAsync(new ArgumentNullException());
-
-            var request = new CreateArtistCommand
-            {
-                Name = artistName
-            };
-
-            // Act and Assert
-
-            await Assert.ThrowsAsync<ArgumentNullException>(() => handler.Handle(request, new CancellationToken()));
-        }
+        await Assert.ThrowsAsync<ArgumentNullException>(() => handler.Handle(request, new CancellationToken()));
     }
 }

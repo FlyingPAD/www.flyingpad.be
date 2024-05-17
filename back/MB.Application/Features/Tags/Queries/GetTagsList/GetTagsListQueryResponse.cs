@@ -1,21 +1,20 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Tags.Queries.GetTagsList
+namespace MB.Application.Features.Tags.Queries.GetTagsList;
+
+public class GetTagsListQueryResponse : BaseResponse
 {
-    public class GetTagsListQueryResponse : BaseResponse
+    /// <summary>
+    /// Properties
+    /// </summary>
+    /// 
+    public List<TagListVm> TagsList { get; set; } = default!;
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    public GetTagsListQueryResponse() : base()
     {
-        /// <summary>
-        /// Properties
-        /// </summary>
-        /// 
-        public List<TagListVm> TagsList { get; set; } = default!;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public GetTagsListQueryResponse() : base()
-        {
-
-        }
     }
 }

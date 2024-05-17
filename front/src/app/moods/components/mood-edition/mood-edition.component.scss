@@ -37,7 +37,7 @@
 .mood-update-form
 {
     margin-top: 10px;
-    margin-bottom: 150px;
+    margin-bottom: 50px;
     
     display: flex;
     justify-content: center;
@@ -82,11 +82,30 @@
     }
 }
 
+.filter
+{
+    display: flex;
+    justify-content: center;
+
+    input
+    {
+        padding: 8px;
+        margin: 8px;
+        border-radius: 7px;
+        font-size: 14px;
+    }
+    input:focus
+    {
+        outline: none;
+        border: 2px solid #413429;
+    }
+}
+
 .form-container
 {
     display: flex;
     justify-content: center;
-    margin-bottom: 150px;
+    margin-bottom: 50px;
 
     .form-flex
     {
@@ -103,7 +122,7 @@
             overflow-y: scroll;
     
             width: 250px;
-            height: 300px;
+            height: 350px;
     
             margin: 15px;
             padding: 25px;
@@ -133,10 +152,30 @@
     }
 }
 
+.delete-button
+{
+    margin-bottom: 150px;
+
+    span
+    {
+        background-color: rgba(255, 255, 255, 0.5);
+        border: 1px solid black;
+        border-radius : 5px;
+        padding: 10px;
+    }
+    span:hover
+    {
+        background-color: rgba(107, 82, 64, 0.7);
+        color: white;
+        transition-duration: 500ms;
+        cursor: pointer;
+    }
+}
+
 .box-delete
 {
     position: absolute;
-    top: 150px;
+    top: 155px;
     left: 50%;
 
     transform:translateX(-50%);
@@ -147,6 +186,10 @@
 
     padding: 15px;
     z-index: 19;
+
+    opacity: 0;
+    pointer-events: none;
+    transition-duration: 500ms;
 
     h1
     {
@@ -165,8 +208,14 @@
     }
     span:hover
     {
-        background-color: var(--colorMain);
+        background-color: rgba(107, 82, 64, 0.7);
         color: #fff;
+        transition-duration: 500ms;
         cursor: pointer;
     }
+}
+.on-delete
+{
+    opacity: 1;
+    pointer-events: initial;
 }

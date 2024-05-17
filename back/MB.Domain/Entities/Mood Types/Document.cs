@@ -1,7 +1,6 @@
-﻿namespace MB.Domain.Entities
+﻿namespace MB.Domain.Entities;
+
+public class Document : Mood
 {
-    public class Document : Mood
-    {
-        public int Size { get; set; }
-    }
+    public int Size { get; set; }
 }

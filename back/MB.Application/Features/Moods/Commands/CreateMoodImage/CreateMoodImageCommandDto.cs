@@ -1,7 +1,6 @@
-﻿namespace MB.Application.Features.Moods.Commands.CreateMoodImage
+﻿namespace MB.Application.Features.Moods.Commands.CreateMoodImage;
+
+public class CreateMoodImageCommandDto
 {
-    public class CreateMoodImageCommandDto
-    {
-        public Guid BusinessId { get; set; } = Guid.Empty;
-    }
+    public Guid BusinessId { get; set; } = Guid.Empty;
 }

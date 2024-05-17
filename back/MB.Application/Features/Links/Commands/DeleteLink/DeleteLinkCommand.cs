@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Links.Commands.DeleteLink
+namespace MB.Application.Features.Links.Commands.DeleteLink;
+
+public class DeleteLinkCommand : IRequest<DeleteLinkCommandResponse>
 {
-    public class DeleteLinkCommand : IRequest<DeleteLinkCommandResponse>
-    {
-        public Guid LinkId { get; set; }
-    }
+    public Guid LinkId { get; set; }
 }

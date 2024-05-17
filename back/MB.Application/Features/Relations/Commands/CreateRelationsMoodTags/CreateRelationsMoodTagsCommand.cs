@@ -1,11 +1,10 @@
 ﻿using MB.Application.Responses;
 using MediatR;
 
-namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodTags
+namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodTags;
+
+public class CreateRelationsMoodTagsCommand : IRequest<BaseResponse>
 {
-    public class CreateRelationsMoodTagsCommand : IRequest<BaseResponse>
-    {
-        public Guid MoodId { get; set; }
-        public List<Guid> TagIds { get; set; } = [];
-    }
+    public Guid MoodId { get; set; }
+    public List<Guid> TagIds { get; set; } = [];
 }

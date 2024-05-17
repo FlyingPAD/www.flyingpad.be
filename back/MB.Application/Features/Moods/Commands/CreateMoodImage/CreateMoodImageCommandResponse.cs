@@ -1,9 +1,8 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Moods.Commands.CreateMoodImage
+namespace MB.Application.Features.Moods.Commands.CreateMoodImage;
+
+public class CreateMoodImageCommandResponse : BaseResponse
 {
-    public class CreateMoodImageCommandResponse : BaseResponse
-    {
-        public CreateMoodImageCommandDto Mood { get; set; } = new();
-    }
+    public CreateMoodImageCommandDto Mood { get; set; } = new();
 }

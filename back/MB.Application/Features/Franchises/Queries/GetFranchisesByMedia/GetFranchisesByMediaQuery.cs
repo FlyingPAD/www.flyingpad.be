@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Franchises.Queries.GetFranchisesByMedia
+namespace MB.Application.Features.Franchises.Queries.GetFranchisesByMedia;
+
+public class GetFranchisesByMediaQuery : IRequest<GetFranchisesByMediaQueryResponse>
 {
-    public class GetFranchisesByMediaQuery : IRequest<GetFranchisesByMediaQueryResponse>
-    {
-        public Guid MediaId { get; set; }
-    }
+    public Guid MediaId { get; set; }
 }

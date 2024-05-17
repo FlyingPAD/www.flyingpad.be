@@ -1,4 +1,7 @@
-﻿using MB.Application.Features.Relations.Commands.CreateRelationsMoodArtist;
+﻿using MB.Application.Features.Relations.Commands.CreateRelationsFranchiseMedia;
+using MB.Application.Features.Relations.Commands.CreateRelationsLinkCategory;
+using MB.Application.Features.Relations.Commands.CreateRelationsModelFranchise;
+using MB.Application.Features.Relations.Commands.CreateRelationsMoodArtist;
 using MB.Application.Features.Relations.Commands.CreateRelationsMoodModel;
 using MB.Application.Features.Relations.Commands.CreateRelationsMoodTags;
 using MB.Application.Features.Relations.Commands.RAS;
@@ -27,6 +30,30 @@ public class RelationsControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(rasCommand));
 
     /// <summary>
+    /// Create RFM
+    /// </summary>
+    [HttpPost("FranchiseMedia/Create")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    public async Task<ActionResult<BaseResponse>> InsertRFM([FromBody] CreateRelationsFranchiseMediaCommand rfmCommand)
+        => Ok(await _mediator.Send(rfmCommand));
+
+    /// <summary>
+    /// Create RLC
+    /// </summary>
+    [HttpPost("LinkCategory/Create")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    public async Task<ActionResult<BaseResponse>> InsertRLC([FromBody] CreateRelationsLinkCategoryCommand rlcCommand)
+        => Ok(await _mediator.Send(rlcCommand));
+
+    /// <summary>
+    /// Create RMF
+    /// </summary>
+    [HttpPost("ModelFranchise/Create")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    public async Task<ActionResult<BaseResponse>> InsertRMF([FromBody] CreateRelationsModelFranchiseCommand rmfCommand)
+        => Ok(await _mediator.Send(rmfCommand));
+
+    /// <summary>
     /// Create RMT
     /// </summary>
     [HttpPost("MoodTag/Create")]
@@ -51,16 +78,16 @@ public class RelationsControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(rmmCommand));
 
     /// <summary>
-    /// Check if Relations
+    /// Count RAS By Artist
     /// </summary>
     [HttpGet("ArtistStyle/CheckRelationsByArtist")]
-    public async Task<ActionResult<CheckRelationsArtistStyleByArtistQueryResponse>> CheckRelationsArtistStyleByArtist( Guid artistId )
+    public async Task<ActionResult<CheckRelationsArtistStyleByArtistQueryResponse>> CountRASByArtist( Guid artistId )
         => Ok(await _mediator.Send(new CheckRelationsArtistStyleByArtistQuery { ArtistId = artistId }));
 
     /// <summary>
-    /// Check if Relations
+    /// Count RAS By Style
     /// </summary>
     [HttpGet("ArtistStyle/CheckRelationsByStyle")]
-    public async Task<ActionResult<CheckRelationsArtistStyleByStyleQueryResponse>> CheckRelationsArtistStyleByStyle( Guid styleId )
+    public async Task<ActionResult<CheckRelationsArtistStyleByStyleQueryResponse>> CountRASByStyle( Guid styleId )
         => Ok(await _mediator.Send(new CheckRelationsArtistStyleByStyleQuery { StyleId = styleId }));
 }

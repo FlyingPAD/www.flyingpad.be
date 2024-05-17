@@ -43,13 +43,15 @@
             </form>
         </div>
         <!-- Delete Mood -->
-        <p (click)="triggerDeleteMood()">Delete Mood</p>
-        <div class="box-delete" *ngIf="triggerDelete === true" (click)="triggerDeleteMood()">
+        <p class="delete-button" (click)="triggerDeleteMood()">
+            <span>Delete Mood</span>
+        </p>
+        <div [ngClass]="triggerDelete === true ? 'box-delete on-delete' : 'box-delete' " (click)="triggerDeleteMood()">
             <h1>Warning !!</h1>
             <br>
             <p>This will delete mood & all associations permanently</p>
             <br>
-            <p>Are u sure ?</p>
+            <p>Are you sure ?</p>
             <br>
             <span (click)="deleteMood()">Delete</span>
         </div>
@@ -84,10 +86,13 @@
     </div>
 
     <div *ngIf="triggerMoodModelsEdition">
+        <div class="filter">
+            <input type="text" [(ngModel)]="searchModel" placeholder="Filter models...">
+        </div>
         <div class="form-container">
             <div class="form-flex">
                 <div class="form_cat_box">
-                    <div *ngFor="let m of flow.models">
+                    <div *ngFor="let m of filterModels()">
                         <div class="duo">
                             <input type="checkbox" id="{{m.pseudonym}}" value="{{m.pseudonym}}" [checked]="m.isChecked" (change)="m.isChecked = !m.isChecked">
                             <label for="{{m.pseudonym}}">{{m.pseudonym}}</label>
@@ -99,10 +104,13 @@
     </div>
 
     <div *ngIf="triggerMoodArtistsEdition">
+        <div class="filter">
+            <input type="text" [(ngModel)]="searchArtist" placeholder="Filter models...">
+        </div>
         <div class="form-container">
             <div class="form-flex">
                 <div class="form_cat_box">
-                    <div *ngFor="let a of flow.artists">
+                    <div *ngFor="let a of filterArtists()">
                         <div class="duo">
                             <input type="checkbox" id="{{a.name}}" value="{{a.name}}" [checked]="a.isChecked" (change)="a.isChecked = !a.isChecked">
                             <label for="{{a.name}}">{{a.name}}</label>

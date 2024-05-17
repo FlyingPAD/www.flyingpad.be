@@ -1,10 +1,9 @@
-﻿namespace MB.Application.Exceptions
-{
-    public class NotFoundException : Exception
-    {
-        public NotFoundException(string name, object key) : base($"{name} ({key}) was not found.")
-        {
+﻿namespace MB.Application.Exceptions;
 
-        }
+public class NotFoundException : Exception
+{
+    public NotFoundException(string name, object key) : base($"{name} ({key}) was not found.")
+    {
+
     }
 }

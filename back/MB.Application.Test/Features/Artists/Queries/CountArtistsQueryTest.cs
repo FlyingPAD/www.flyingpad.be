@@ -4,41 +4,40 @@ using MB.Domain.Entities;
 using Moq;
 using Xunit;
 
-namespace MB.Application.Test.Features.Artists.Queries
+namespace MB.Application.Test.Features.Artists.Queries;
+
+public class CountArtistsQueryTest
 {
-    public class CountArtistsQueryTest
+    private Mock<IBaseRepository<Artist>> _artistRepositoryMock;
+    private CountArtistsQueryHandler _handler;
+
+    public CountArtistsQueryTest()
     {
-        private Mock<IBaseRepository<Artist>> _artistRepositoryMock;
-        private CountArtistsQueryHandler _handler;
+        _artistRepositoryMock = new Mock<IBaseRepository<Artist>>();
+        _handler = new CountArtistsQueryHandler(_artistRepositoryMock.Object);
+    }
 
-        public CountArtistsQueryTest()
-        {
-            _artistRepositoryMock = new Mock<IBaseRepository<Artist>>();
-            _handler = new CountArtistsQueryHandler(_artistRepositoryMock.Object);
-        }
+    [Fact]
+    public async System.Threading.Tasks.Task Handle_Should_Return_Correct_Count() 
+    {
+        // Arrange
 
-        [Fact]
-        public async System.Threading.Tasks.Task Handle_Should_Return_Correct_Count() 
-        {
-            // Arrange
+        var expectedCount = 42;
 
-            var expectedCount = 42;
+        _artistRepositoryMock.Setup(repo => repo.CountAsync()).ReturnsAsync(expectedCount);
 
-            _artistRepositoryMock.Setup(repo => repo.CountAsync()).ReturnsAsync(expectedCount);
+        var request = new CountArtistsQuery();
 
-            var request = new CountArtistsQuery();
+        // Act
 
-            // Act
+        var result = await _handler.Handle(request, new CancellationToken());
 
-            var result = await _handler.Handle(request, new CancellationToken());
+        // Assert
 
-            // Assert
+        Assert.True(result.Success);
+        Assert.Equal($"Total Artists : {expectedCount}", result.Message);
+        Assert.Equal(expectedCount, result.ArtistsCount);
 
-            Assert.True(result.Success);
-            Assert.Equal($"Total Artists : {expectedCount}", result.Message);
-            Assert.Equal(expectedCount, result.ArtistsCount);
-
-            _artistRepositoryMock.Verify(repo => repo.CountAsync(), Times.Once);
-        }
+        _artistRepositoryMock.Verify(repo => repo.CountAsync(), Times.Once);
     }
 }

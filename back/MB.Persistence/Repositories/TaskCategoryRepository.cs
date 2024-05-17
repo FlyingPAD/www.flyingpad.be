@@ -7,6 +7,9 @@ namespace MB.Persistence.Repositories
 {
     public class TaskCategoryRepository(Context context) : BaseRepository<TaskCategory>(context), ITaskCategoryRepository
     {
+        /// <summary>
+        /// Gets task categories with their tasks, optionally excluding past events.
+        /// </summary>
         public async Task<List<TaskCategory>> GetTaskCategoriesWithTasks(bool includePastEvents)
         {
             var allTaskCategories = await _context.TaskCategories.Include(x => x.Tasks).ToListAsync();
@@ -24,7 +27,5 @@ namespace MB.Persistence.Repositories
 
             return allTaskCategories;
         }
-
-
     }
 }

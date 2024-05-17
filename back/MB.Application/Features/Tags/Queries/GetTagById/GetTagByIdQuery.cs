@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Tags.Queries.GetTagById
+namespace MB.Application.Features.Tags.Queries.GetTagById;
+
+public class GetTagByIdQuery : IRequest<GetTagByIdQueryResponse>
 {
-    public class GetTagByIdQuery : IRequest<GetTagByIdQueryResponse>
-    {
-        public Guid TagId { get; set; }
-    }
+    public Guid TagId { get; set; }
 }

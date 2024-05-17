@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Users.Commands.DeleteUser
+namespace MB.Application.Features.Users.Commands.DeleteUser;
+
+public class DeleteUserCommand : IRequest<DeleteUserCommandResponse>
 {
-    public class DeleteUserCommand : IRequest<DeleteUserCommandResponse>
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }

@@ -87,164 +87,163 @@ using MB.Application.Features.Videos.Queries.GetOneVideoDetailsQuery;
 using MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetailsQuery;
 using MB.Domain.Entities;
 
-namespace MB.Application.Profiles
+namespace MB.Application.Profiles;
+
+public class MappingProfiles : Profile
 {
-    public class MappingProfiles : Profile
-    {
-       public MappingProfiles()
-       {
-            // Artists :
+   public MappingProfiles()
+   {
+        // Artists :
 
-            CreateMap<Artist, CreateArtistDto>().ReverseMap();
+        CreateMap<Artist, CreateArtistDto>().ReverseMap();
 
-            CreateMap<Artist, GetArtistsVm>().ReverseMap();
-            CreateMap<Artist, GetArtistVm>().ReverseMap();
-            CreateMap<Artist, GetArtistDetailsVm>().ReverseMap();
-            CreateMap<Artist, GetArtistsPageVm>().ReverseMap();
-            CreateMap<Artist, GetArtistsByStyleVm>().ReverseMap();
-            CreateMap<Artist, GetArtistsByMoodQueryVm>().ReverseMap();
-            CreateMap<Artist, GetArtistCheckBoxesByMoodQueryDto>().ReverseMap();
+        CreateMap<Artist, GetArtistsVm>().ReverseMap();
+        CreateMap<Artist, GetArtistVm>().ReverseMap();
+        CreateMap<Artist, GetArtistDetailsVm>().ReverseMap();
+        CreateMap<Artist, GetArtistsPageVm>().ReverseMap();
+        CreateMap<Artist, GetArtistsByStyleVm>().ReverseMap();
+        CreateMap<Artist, GetArtistsByMoodQueryVm>().ReverseMap();
+        CreateMap<Artist, GetArtistCheckBoxesByMoodQueryDto>().ReverseMap();
 
-            // Styles : 
+        // Styles : 
 
-            CreateMap<Style, StyleListVm>().ReverseMap();
-            CreateMap<Style, GetStyleByIdVm>().ReverseMap();
-            CreateMap<Style, CreateStyleDto>().ReverseMap();
-            CreateMap<Style, UpdateStyleCommand>().ReverseMap();
-            CreateMap<Style, DeleteStyleCommand>().ReverseMap();
+        CreateMap<Style, StyleListVm>().ReverseMap();
+        CreateMap<Style, GetStyleByIdVm>().ReverseMap();
+        CreateMap<Style, CreateStyleDto>().ReverseMap();
+        CreateMap<Style, UpdateStyleCommand>().ReverseMap();
+        CreateMap<Style, DeleteStyleCommand>().ReverseMap();
 
-            // Franchises :
+        // Franchises :
 
-            CreateMap<Franchise, CreateFranchiseDto>().ReverseMap();
-            CreateMap<Franchise, UpdateFranchiseCommand>().ReverseMap();
-            CreateMap<Franchise, UpdateFranchiseDto>().ReverseMap();
-            CreateMap<Franchise, DeleteFranchiseCommand>().ReverseMap();
+        CreateMap<Franchise, CreateFranchiseDto>().ReverseMap();
+        CreateMap<Franchise, UpdateFranchiseCommand>().ReverseMap();
+        CreateMap<Franchise, UpdateFranchiseDto>().ReverseMap();
+        CreateMap<Franchise, DeleteFranchiseCommand>().ReverseMap();
 
-            CreateMap<Franchise, GetFranchiseByIdVm>().ReverseMap();
-            CreateMap<Franchise, GFLQFranchiseDto>().ReverseMap();
-            CreateMap<Franchise, GetAllFranchisesQueryVm>().ReverseMap();
-            CreateMap<Franchise, GetFranchisesByMoodQueryVm>().ReverseMap();
-            CreateMap<Franchise, GetFranchisesByModelQueryVm>().ReverseMap();
-            CreateMap<Franchise, GetFranchisesByMediaQueryVm>().ReverseMap();
-            
-            // Medias :
+        CreateMap<Franchise, GetFranchiseByIdVm>().ReverseMap();
+        CreateMap<Franchise, GFLQFranchiseDto>().ReverseMap();
+        CreateMap<Franchise, GetAllFranchisesQueryVm>().ReverseMap();
+        CreateMap<Franchise, GetFranchisesByMoodQueryVm>().ReverseMap();
+        CreateMap<Franchise, GetFranchisesByModelQueryVm>().ReverseMap();
+        CreateMap<Franchise, GetFranchisesByMediaQueryVm>().ReverseMap();
+        
+        // Medias :
 
-            CreateMap<Media, MediaListVm>().ReverseMap();
-            CreateMap<Media, GetMediaByIdVm>().ReverseMap();
-            CreateMap<Media, CreateMediaDto>().ReverseMap();
-            CreateMap<Media, UpdateMediaCommand>().ReverseMap();
-            CreateMap<Media, UpdateMediaDto>().ReverseMap();
-            CreateMap<Media, DeleteMediaCommand>().ReverseMap();
-            CreateMap<Media, GFLQMediaDto>().ReverseMap();
+        CreateMap<Media, MediaListVm>().ReverseMap();
+        CreateMap<Media, GetMediaByIdVm>().ReverseMap();
+        CreateMap<Media, CreateMediaDto>().ReverseMap();
+        CreateMap<Media, UpdateMediaCommand>().ReverseMap();
+        CreateMap<Media, UpdateMediaDto>().ReverseMap();
+        CreateMap<Media, DeleteMediaCommand>().ReverseMap();
+        CreateMap<Media, GFLQMediaDto>().ReverseMap();
 
-            // Links :
+        // Links :
 
-            CreateMap<Link, LinkListVm>().ReverseMap();
-            CreateMap<Link, GetLinkByIdVm>().ReverseMap();
-            CreateMap<Link, CreateLinkDto>().ReverseMap();
-            CreateMap<Link, UpdateLinkCommand>().ReverseMap();
-            CreateMap<Link, UpdateLinkDto>().ReverseMap();
-            CreateMap<Link, DeleteLinkCommand>().ReverseMap();
-            CreateMap<Link, LinksListByCategoryVm>().ReverseMap();
-            CreateMap<Link, LinksContainingAbcVm>().ReverseMap();
-            CreateMap<Link, PageLinksContainingAbcVm>().ReverseMap();
+        CreateMap<Link, LinkListVm>().ReverseMap();
+        CreateMap<Link, GetLinkByIdVm>().ReverseMap();
+        CreateMap<Link, CreateLinkDto>().ReverseMap();
+        CreateMap<Link, UpdateLinkCommand>().ReverseMap();
+        CreateMap<Link, UpdateLinkDto>().ReverseMap();
+        CreateMap<Link, DeleteLinkCommand>().ReverseMap();
+        CreateMap<Link, LinksListByCategoryVm>().ReverseMap();
+        CreateMap<Link, LinksContainingAbcVm>().ReverseMap();
+        CreateMap<Link, PageLinksContainingAbcVm>().ReverseMap();
 
-            // Link Categories :
+        // Link Categories :
 
-            CreateMap<LinkCategory, LinkCategoryListVm>().ReverseMap();
-            CreateMap<LinkCategory, GetLinkCategoryByIdVm>().ReverseMap();
-            CreateMap<LinkCategory, CreateLinkCategoryDto>().ReverseMap();
-            CreateMap<LinkCategory, UpdateLinkCategoryCommand>().ReverseMap();
-            CreateMap<LinkCategory, UpdateLinkCategoryDto>().ReverseMap();
-            CreateMap<LinkCategory, DeleteLinkCategoryCommand>().ReverseMap();
+        CreateMap<LinkCategory, LinkCategoryListVm>().ReverseMap();
+        CreateMap<LinkCategory, GetLinkCategoryByIdVm>().ReverseMap();
+        CreateMap<LinkCategory, CreateLinkCategoryDto>().ReverseMap();
+        CreateMap<LinkCategory, UpdateLinkCategoryCommand>().ReverseMap();
+        CreateMap<LinkCategory, UpdateLinkCategoryDto>().ReverseMap();
+        CreateMap<LinkCategory, DeleteLinkCategoryCommand>().ReverseMap();
 
-            // Models :
+        // Models :
 
-            CreateMap<Model, CreateModelDto>().ReverseMap();
-            CreateMap<Model, UpdateModelCommand>().ReverseMap();
-            CreateMap<Model, UpdateModelDto>().ReverseMap();
-            CreateMap<Model, DeleteModelCommand>().ReverseMap();
+        CreateMap<Model, CreateModelDto>().ReverseMap();
+        CreateMap<Model, UpdateModelCommand>().ReverseMap();
+        CreateMap<Model, UpdateModelDto>().ReverseMap();
+        CreateMap<Model, DeleteModelCommand>().ReverseMap();
 
-            CreateMap<Model, ModelListVm>().ReverseMap();
-            CreateMap<Model, GetModelByIdVm>().ReverseMap();
-            CreateMap<Model, GetModelsByMoodQueryVm>().ReverseMap();
-            CreateMap<Model, GetModelsByFranchiseQueryVm>().ReverseMap();
-            CreateMap<Model, GFLQModelDto>().ReverseMap();
-            CreateMap<Model, GetModelCheckBoxesByMoodQueryDto>().ReverseMap();
+        CreateMap<Model, ModelListVm>().ReverseMap();
+        CreateMap<Model, GetModelByIdVm>().ReverseMap();
+        CreateMap<Model, GetModelsByMoodQueryVm>().ReverseMap();
+        CreateMap<Model, GetModelsByFranchiseQueryVm>().ReverseMap();
+        CreateMap<Model, GFLQModelDto>().ReverseMap();
+        CreateMap<Model, GetModelCheckBoxesByMoodQueryDto>().ReverseMap();
 
-            // Moods :
+        // Moods :
 
-            CreateMap<Mood, CreateMoodDto>().ReverseMap();
-            CreateMap<Mood, CreateMoodImageCommandDto>().ReverseMap();
-            CreateMap<Mood, UpdateMoodCommand>().ReverseMap();
-            CreateMap<Mood, UpdateMoodDto>().ReverseMap();
-            CreateMap<Mood, DeleteMoodCommand>().ReverseMap();
+        CreateMap<Mood, CreateMoodDto>().ReverseMap();
+        CreateMap<Mood, CreateMoodImageCommandDto>().ReverseMap();
+        CreateMap<Mood, UpdateMoodCommand>().ReverseMap();
+        CreateMap<Mood, UpdateMoodDto>().ReverseMap();
+        CreateMap<Mood, DeleteMoodCommand>().ReverseMap();
 
-            CreateMap<Mood, MoodListVm>().ReverseMap();
-            CreateMap<Mood, GetMoodByIdVm>().ReverseMap();
-            CreateMap<Mood, GetRandomMoodQueryVm>().ReverseMap();
-            CreateMap<Mood, GetMoodsByTagQueryVm>().ReverseMap();
-            CreateMap<Mood, GetMoodsByArtistQueryVm>().ReverseMap();
-            CreateMap<Mood, GetMoodsByModelQueryVm>().ReverseMap();
-            CreateMap<Mood, GetMoodsByFranchiseQueryVm>().ReverseMap();
+        CreateMap<Mood, MoodListVm>().ReverseMap();
+        CreateMap<Mood, GetMoodByIdVm>().ReverseMap();
+        CreateMap<Mood, GetRandomMoodQueryVm>().ReverseMap();
+        CreateMap<Mood, GetMoodsByTagQueryVm>().ReverseMap();
+        CreateMap<Mood, GetMoodsByArtistQueryVm>().ReverseMap();
+        CreateMap<Mood, GetMoodsByModelQueryVm>().ReverseMap();
+        CreateMap<Mood, GetMoodsByFranchiseQueryVm>().ReverseMap();
 
-            // Images :
+        // Images :
 
-            CreateMap<Image, GetOneImageDetailsQueryVm>().ReverseMap();
+        CreateMap<Image, GetOneImageDetailsQueryVm>().ReverseMap();
 
-            // Videos :
+        // Videos :
 
-            CreateMap<Video, GetOneVideoDetailsQueryVm>().ReverseMap();
+        CreateMap<Video, GetOneVideoDetailsQueryVm>().ReverseMap();
 
-            // Videos YouTube:
+        // Videos YouTube:
 
-            CreateMap<VideoYouTube, GetOneVideoYTDetailsQueryVm>().ReverseMap();
+        CreateMap<VideoYouTube, GetOneVideoYTDetailsQueryVm>().ReverseMap();
 
-            // Tags :
+        // Tags :
 
-            CreateMap<Tag, CreateTagDto>().ReverseMap();
-            CreateMap<Tag, UpdateTagCommand>().ReverseMap();
-            CreateMap<Tag, UpdateTagDto>().ReverseMap();
-            CreateMap<Tag, DeleteTagCommand>().ReverseMap();
-            
-            CreateMap<Tag, TagDto>();
-            CreateMap<Tag, TagListVm>().ReverseMap();
-            CreateMap<Tag, GetTagByIdVm>().ReverseMap();
-            CreateMap<Tag, GetTagsByMoodQueryVm>().ReverseMap();
-            CreateMap<Tag, GetTagsCheckBoxesDto>().ReverseMap();
+        CreateMap<Tag, CreateTagDto>().ReverseMap();
+        CreateMap<Tag, UpdateTagCommand>().ReverseMap();
+        CreateMap<Tag, UpdateTagDto>().ReverseMap();
+        CreateMap<Tag, DeleteTagCommand>().ReverseMap();
+        
+        CreateMap<Tag, TagDto>();
+        CreateMap<Tag, TagListVm>().ReverseMap();
+        CreateMap<Tag, GetTagByIdVm>().ReverseMap();
+        CreateMap<Tag, GetTagsByMoodQueryVm>().ReverseMap();
+        CreateMap<Tag, GetTagsCheckBoxesDto>().ReverseMap();
 
-            // Tag Categories :
+        // Tag Categories :
 
-            CreateMap<TagCategory, DeleteTagCategoryCommand>().ReverseMap();
-            CreateMap<TagCategory, UpdateTagCategoryCommand>().ReverseMap();
-            CreateMap<TagCategory, CreateTagCategoryDto>().ReverseMap();
-            CreateMap<TagCategory, TagCategoryListVm>().ReverseMap();
-            CreateMap<TagCategory, GetTagCategoryByIdVm>().ReverseMap();
-            CreateMap<TagCategory, UpdateTagCategoryDto>().ReverseMap();
-            CreateMap<TagCategory, TagCategoryDto>();
+        CreateMap<TagCategory, DeleteTagCategoryCommand>().ReverseMap();
+        CreateMap<TagCategory, UpdateTagCategoryCommand>().ReverseMap();
+        CreateMap<TagCategory, CreateTagCategoryDto>().ReverseMap();
+        CreateMap<TagCategory, TagCategoryListVm>().ReverseMap();
+        CreateMap<TagCategory, GetTagCategoryByIdVm>().ReverseMap();
+        CreateMap<TagCategory, UpdateTagCategoryDto>().ReverseMap();
+        CreateMap<TagCategory, TagCategoryDto>();
 
-            // Tasks :
+        // Tasks :
 
-            CreateMap<Domain.Entities.Task, CreateTaskCommand>().ReverseMap(); 
-            CreateMap<Domain.Entities.Task, TasksListVm>().ReverseMap(); 
-            CreateMap<Domain.Entities.Task, TaskDetailsVm>().ReverseMap(); 
-            CreateMap<Domain.Entities.Task, UpdateTaskCommand>().ReverseMap(); 
-            CreateMap<Domain.Entities.Task, DeleteTaskCommand>().ReverseMap(); 
+        CreateMap<Domain.Entities.Task, CreateTaskCommand>().ReverseMap(); 
+        CreateMap<Domain.Entities.Task, TasksListVm>().ReverseMap(); 
+        CreateMap<Domain.Entities.Task, TaskDetailsVm>().ReverseMap(); 
+        CreateMap<Domain.Entities.Task, UpdateTaskCommand>().ReverseMap(); 
+        CreateMap<Domain.Entities.Task, DeleteTaskCommand>().ReverseMap(); 
 
-            // Task Categories :
+        // Task Categories :
 
-            CreateMap<TaskCategory, TaskCategoryDto>().ReverseMap(); 
-            CreateMap<TaskCategory, TaskCategoryListVm>().ReverseMap(); 
-            CreateMap<TaskCategory, TaskCategoryTaskListVm>().ReverseMap();
+        CreateMap<TaskCategory, TaskCategoryDto>().ReverseMap(); 
+        CreateMap<TaskCategory, TaskCategoryListVm>().ReverseMap(); 
+        CreateMap<TaskCategory, TaskCategoryTaskListVm>().ReverseMap();
 
-            // Users :
+        // Users :
 
-            CreateMap<User, UserListVm>().ReverseMap();
-            CreateMap<User, GetUserByIdVm>().ReverseMap();
-            CreateMap<User, CreateUserDto>().ReverseMap();
-            CreateMap<User, UpdateUserCommand>().ReverseMap();
-            CreateMap<User, UpdateUserDto>().ReverseMap();
-            CreateMap<User, DeleteUserCommand>().ReverseMap();
-        }
+        CreateMap<User, UserListVm>().ReverseMap();
+        CreateMap<User, GetUserByIdVm>().ReverseMap();
+        CreateMap<User, CreateUserDto>().ReverseMap();
+        CreateMap<User, UpdateUserCommand>().ReverseMap();
+        CreateMap<User, UpdateUserDto>().ReverseMap();
+        CreateMap<User, DeleteUserCommand>().ReverseMap();
     }
 }

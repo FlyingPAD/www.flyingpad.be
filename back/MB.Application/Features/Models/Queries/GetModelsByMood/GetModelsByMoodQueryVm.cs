@@ -1,8 +1,7 @@
-﻿namespace MB.Application.Features.Models.Queries.GetModelsByMood
+﻿namespace MB.Application.Features.Models.Queries.GetModelsByMood;
+
+public class GetModelsByMoodQueryVm
 {
-    public class GetModelsByMoodQueryVm
-    {
-        public Guid BusinessId { get; set; } = Guid.Empty;
-        public string Pseudonym { get; set; } = string.Empty;
-    }
+    public Guid BusinessId { get; set; } = Guid.Empty;
+    public string Pseudonym { get; set; } = string.Empty;
 }

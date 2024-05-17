@@ -3,49 +3,48 @@ using MB.Application.Contracts.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Artists.Queries.GetArtist
+namespace MB.Application.Features.Artists.Queries.GetArtist;
+
+public class GetArtistQueryHandler(IMapper mapper, IBaseRepository<Artist> artistRepository, GetArtistQueryValidator validator) : IRequestHandler<GetArtistQuery, GetArtistQueryResponse>
 {
-    public class GetArtistQueryHandler(IMapper mapper, IBaseRepository<Artist> artistRepository, GetArtistQueryValidator validator) : IRequestHandler<GetArtistQuery, GetArtistQueryResponse>
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
+    private readonly GetArtistQueryValidator _validator = validator;
+
+    public async Task<GetArtistQueryResponse> Handle(GetArtistQuery request, CancellationToken cancellationToken)
     {
-        private readonly IMapper _mapper = mapper;
-        private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
-        private readonly GetArtistQueryValidator _validator = validator;
+        //  => Validation
 
-        public async Task<GetArtistQueryResponse> Handle(GetArtistQuery request, CancellationToken cancellationToken)
+        // Errors :
+
+        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+
+        if (validationResult.Errors.Count > 0)
         {
-            //  => Validation
-
-            // Errors :
-
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-
-            if (validationResult.Errors.Count > 0)
+            return new GetArtistQueryResponse
             {
-                return new GetArtistQueryResponse
-                {
-                    Message = "Error(s)...",
-                    ValidationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList()
-                };
-            }
+                Message = "Error(s)...",
+                ValidationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList()
+            };
+        }
 
-            // Success :
+        // Success :
 
-            var getArtistQueryResponse = new GetArtistQueryResponse();
-            var artist = await _artistRepository.GetByBusinessIdAsync(request.ArtistId);
+        var getArtistQueryResponse = new GetArtistQueryResponse();
+        var artist = await _artistRepository.GetByBusinessIdAsync(request.ArtistId);
 
-            if (artist == null)
-            {
-                getArtistQueryResponse.Success = false;
-                getArtistQueryResponse.Message = "Artist wasn't found";
-
-                return getArtistQueryResponse;
-            }
-
-            getArtistQueryResponse.Success = true;
-            getArtistQueryResponse.Message = $"Artist : {artist.Name}";
-            getArtistQueryResponse.Artist = _mapper.Map<GetArtistVm>(artist);
+        if (artist == null)
+        {
+            getArtistQueryResponse.Success = false;
+            getArtistQueryResponse.Message = "Artist wasn't found";
 
             return getArtistQueryResponse;
         }
+
+        getArtistQueryResponse.Success = true;
+        getArtistQueryResponse.Message = $"Artist : {artist.Name}";
+        getArtistQueryResponse.Artist = _mapper.Map<GetArtistVm>(artist);
+
+        return getArtistQueryResponse;
     }
 }

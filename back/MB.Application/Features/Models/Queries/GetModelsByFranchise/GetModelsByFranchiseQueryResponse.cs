@@ -1,9 +1,8 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Models.Queries.GetModelsByFranchise
+namespace MB.Application.Features.Models.Queries.GetModelsByFranchise;
+
+public class GetModelsByFranchiseQueryResponse : BaseResponse
 {
-    public class GetModelsByFranchiseQueryResponse : BaseResponse
-    {
-        public List<GetModelsByFranchiseQueryVm> ModelsByFranchise { get; set; } = [];
-    }
+    public List<GetModelsByFranchiseQueryVm> ModelsByFranchise { get; set; } = [];
 }

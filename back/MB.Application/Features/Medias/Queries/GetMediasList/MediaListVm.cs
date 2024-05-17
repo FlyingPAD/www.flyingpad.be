@@ -1,8 +1,7 @@
-﻿namespace MB.Application.Features.Medias.Queries.GetMediasList
+﻿namespace MB.Application.Features.Medias.Queries.GetMediasList;
+
+public class MediaListVm
 {
-    public class MediaListVm
-    {
-        public Guid BusinessId { get; set; }
-        public string Name { get; set; } = string.Empty;
-    }
+    public Guid BusinessId { get; set; }
+    public string Name { get; set; } = string.Empty;
 }

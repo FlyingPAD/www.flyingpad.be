@@ -1,13 +1,12 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Tags.Queries.GetTagById
+namespace MB.Application.Features.Tags.Queries.GetTagById;
+
+public class GetTagByIdQueryResponse : BaseResponse
 {
-    public class GetTagByIdQueryResponse : BaseResponse
-    {
-        /// <summary>
-        /// Properties
-        /// </summary>
-        /// 
-        public GetTagByIdVm Tag { get; set; } = new GetTagByIdVm();
-    }
+    /// <summary>
+    /// Properties
+    /// </summary>
+    /// 
+    public GetTagByIdVm Tag { get; set; } = new GetTagByIdVm();
 }

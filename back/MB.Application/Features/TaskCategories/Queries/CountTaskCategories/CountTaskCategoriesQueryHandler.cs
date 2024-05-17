@@ -2,27 +2,26 @@
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.TaskCategories.Queries.CountTaskCategories
+namespace MB.Application.Features.TaskCategories.Queries.CountTaskCategories;
+
+public class CountTaskCategoriesQueryHandler : IRequestHandler<CountTaskCategoriesQuery, CountTaskCategoriesQueryResponse>
 {
-    public class CountTaskCategoriesQueryHandler : IRequestHandler<CountTaskCategoriesQuery, CountTaskCategoriesQueryResponse>
+    private readonly IBaseRepository<TaskCategory> _taskCategoryRepository;
+
+    public CountTaskCategoriesQueryHandler(IBaseRepository<TaskCategory> taskCategoryRepository)
     {
-        private readonly IBaseRepository<TaskCategory> _taskCategoryRepository;
+        _taskCategoryRepository = taskCategoryRepository;
+    }
 
-        public CountTaskCategoriesQueryHandler(IBaseRepository<TaskCategory> taskCategoryRepository)
+    public async Task<CountTaskCategoriesQueryResponse> Handle(CountTaskCategoriesQuery request, CancellationToken token)
+    {
+        var taskCategoriesCount = await _taskCategoryRepository.CountAsync();
+
+        return new CountTaskCategoriesQueryResponse
         {
-            _taskCategoryRepository = taskCategoryRepository;
-        }
-
-        public async Task<CountTaskCategoriesQueryResponse> Handle(CountTaskCategoriesQuery request, CancellationToken token)
-        {
-            var taskCategoriesCount = await _taskCategoryRepository.CountAsync();
-
-            return new CountTaskCategoriesQueryResponse
-            {
-                Success = true,
-                Message = $"Total Task Categories : {taskCategoriesCount}",
-                TaskCategoriesCount = taskCategoriesCount
-            };
-        }
+            Success = true,
+            Message = $"Total Task Categories : {taskCategoriesCount}",
+            TaskCategoriesCount = taskCategoriesCount
+        };
     }
 }

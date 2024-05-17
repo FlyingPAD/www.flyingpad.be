@@ -1,10 +1,9 @@
 ﻿using MB.Domain.Common;
 
-namespace MB.Domain.Entities
+namespace MB.Domain.Entities;
+
+public class TaskCategory : AuditableEntity
 {
-    public class TaskCategory : AuditableEntity
-    {
-        public string Name { get; set; } = string.Empty;
-        public ICollection<Task> Tasks { get; set; } = [];
-    }
+    public string Name { get; set; } = string.Empty;
+    public ICollection<Task> Tasks { get; set; } = [];
 }

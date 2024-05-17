@@ -3,36 +3,35 @@ using MB.Application.Contracts.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Styles.Queries.GetStyleById
+namespace MB.Application.Features.Styles.Queries.GetStyleById;
+
+public class GetStyleByIdQueryHandler : IRequestHandler<GetStyleByIdQuery, GetStyleByIdQueryResponse>
 {
-    public class GetStyleByIdQueryHandler : IRequestHandler<GetStyleByIdQuery, GetStyleByIdQueryResponse>
+    private readonly IMapper _mapper;
+    private IBaseRepository<Style> _styleRepository;
+
+    public GetStyleByIdQueryHandler(IMapper mapper, IBaseRepository<Style> styleRepository)
     {
-        private readonly IMapper _mapper;
-        private IBaseRepository<Style> _styleRepository;
+        _mapper = mapper;
+        _styleRepository = styleRepository;
+    }
 
-        public GetStyleByIdQueryHandler(IMapper mapper, IBaseRepository<Style> styleRepository)
+    public async Task<GetStyleByIdQueryResponse> Handle(GetStyleByIdQuery request, CancellationToken cancellationToken)
+    {
+        var style = await _styleRepository.GetByBusinessIdAsync(request.Id);
+
+        if (style == null)
         {
-            _mapper = mapper;
-            _styleRepository = styleRepository;
+            return new GetStyleByIdQueryResponse { Success = false, Message = "Style wasn't found :(" };
         }
 
-        public async Task<GetStyleByIdQueryResponse> Handle(GetStyleByIdQuery request, CancellationToken cancellationToken)
+        var styleDto = _mapper.Map<GetStyleByIdVm>(style);
+
+        return new GetStyleByIdQueryResponse
         {
-            var style = await _styleRepository.GetByBusinessIdAsync(request.Id);
-
-            if (style == null)
-            {
-                return new GetStyleByIdQueryResponse { Success = false, Message = "Style wasn't found :(" };
-            }
-
-            var styleDto = _mapper.Map<GetStyleByIdVm>(style);
-
-            return new GetStyleByIdQueryResponse
-            {
-                Success = true,
-                Message = "Style was found :)",
-                Style = styleDto
-            };
-        }
+            Success = true,
+            Message = "Style was found :)",
+            Style = styleDto
+        };
     }
 }

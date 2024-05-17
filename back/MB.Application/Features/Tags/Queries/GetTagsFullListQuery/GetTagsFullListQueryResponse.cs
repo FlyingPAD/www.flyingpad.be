@@ -1,9 +1,8 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Tags.Queries.GetTagsFullListQuery
+namespace MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
+
+public class GetTagsFullListQueryResponse : BaseResponse
 {
-    public class GetTagsFullListQueryResponse : BaseResponse
-    {
-        public List<GetTagsFullListQueryVm> CategoriesWithTags { get; set; } = [];
-    }
+    public List<GetTagsFullListQueryVm> CategoriesWithTags { get; set; } = [];
 }

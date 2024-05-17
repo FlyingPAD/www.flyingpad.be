@@ -4,54 +4,53 @@ using MB.Application.Features.Tags.Commands.DeleteTag;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Task.Commands.DeleteTask
+namespace MB.Application.Features.Task.Commands.DeleteTask;
+
+public class DeleteTagCommandHandler : IRequestHandler<DeleteTagCommand, DeleteTagCommandResponse>
 {
-    public class DeleteTagCommandHandler : IRequestHandler<DeleteTagCommand, DeleteTagCommandResponse>
+    private readonly IMapper _mapper;
+    private readonly IBaseRepository<Tag> _tagRepository;
+
+    public DeleteTagCommandHandler(IMapper mapper, IBaseRepository<Tag> tagRepository)
     {
-        private readonly IMapper _mapper;
-        private readonly IBaseRepository<Tag> _tagRepository;
+        _mapper = mapper;
+        _tagRepository = tagRepository;
+    }
 
-        public DeleteTagCommandHandler(IMapper mapper, IBaseRepository<Tag> tagRepository)
+    public async Task<DeleteTagCommandResponse> Handle(DeleteTagCommand request, CancellationToken cancellationToken)
+    {
+        var deleteTagCommandResponse = new DeleteTagCommandResponse();
+
+        var validator = new DeleteTagCommandValidator();
+        var validationResult = await validator.ValidateAsync(request);
+
+        if (validationResult.Errors.Count > 0)
         {
-            _mapper = mapper;
-            _tagRepository = tagRepository;
+            deleteTagCommandResponse.Success = false;
+            deleteTagCommandResponse.ValidationErrors = new List<string>();
+            foreach (var error in validationResult.Errors)
+            {
+                deleteTagCommandResponse.ValidationErrors.Add(error.ErrorMessage);
+            }
         }
-
-        public async Task<DeleteTagCommandResponse> Handle(DeleteTagCommand request, CancellationToken cancellationToken)
+        if (deleteTagCommandResponse.Success)
         {
-            var deleteTagCommandResponse = new DeleteTagCommandResponse();
-
-            var validator = new DeleteTagCommandValidator();
-            var validationResult = await validator.ValidateAsync(request);
-
-            if (validationResult.Errors.Count > 0)
+            var tag = await _tagRepository.GetByBusinessIdAsync(request.Id);
+            if (tag != null)
+            {
+                await _tagRepository.DeleteAsync(tag);
+                deleteTagCommandResponse.Success = true;
+            }
+            else
             {
                 deleteTagCommandResponse.Success = false;
-                deleteTagCommandResponse.ValidationErrors = new List<string>();
-                foreach (var error in validationResult.Errors)
+                deleteTagCommandResponse.ValidationErrors = new List<string>
                 {
-                    deleteTagCommandResponse.ValidationErrors.Add(error.ErrorMessage);
-                }
+                    "Selected tag doesn't exist."
+                };
             }
-            if (deleteTagCommandResponse.Success)
-            {
-                var tag = await _tagRepository.GetByBusinessIdAsync(request.Id);
-                if (tag != null)
-                {
-                    await _tagRepository.DeleteAsync(tag);
-                    deleteTagCommandResponse.Success = true;
-                }
-                else
-                {
-                    deleteTagCommandResponse.Success = false;
-                    deleteTagCommandResponse.ValidationErrors = new List<string>
-                    {
-                        "Selected tag doesn't exist."
-                    };
-                }
-            }
-
-            return deleteTagCommandResponse;
         }
+
+        return deleteTagCommandResponse;
     }
 }

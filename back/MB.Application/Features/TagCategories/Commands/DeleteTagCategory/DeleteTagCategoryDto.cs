@@ -1,7 +1,6 @@
-﻿namespace MB.Application.Features.TagCategories.Commands.DeleteTagCategory
+﻿namespace MB.Application.Features.TagCategories.Commands.DeleteTagCategory;
+
+public class DeleteTagCategoryDto
 {
-    public class DeleteTagCategoryDto
-    {
-        public Guid BusinessId { get; set; }
-    }
+    public Guid BusinessId { get; set; }
 }

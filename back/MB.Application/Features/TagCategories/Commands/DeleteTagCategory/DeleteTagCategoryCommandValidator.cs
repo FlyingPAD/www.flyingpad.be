@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.TagCategories.Commands.DeleteTagCategory
+namespace MB.Application.Features.TagCategories.Commands.DeleteTagCategory;
+
+public class DeleteTagCategoryCommandValidator : AbstractValidator<DeleteTagCategoryCommand>
 {
-    public class DeleteTagCategoryCommandValidator : AbstractValidator<DeleteTagCategoryCommand>
+    public DeleteTagCategoryCommandValidator()
     {
-        public DeleteTagCategoryCommandValidator()
-        {
-            RuleFor(x => x.Id)
-                .NotEmpty().WithMessage("ID is required.")
-                .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
-        }
+        RuleFor(x => x.Id)
+            .NotEmpty().WithMessage("ID is required.")
+            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
     }
 }

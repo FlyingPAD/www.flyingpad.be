@@ -2,24 +2,23 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MB.Domain.Entities;
 
-namespace MB.Persistence.Configuration
+namespace MB.Persistence.Configuration;
+
+public class UserConfiguration : IEntityTypeConfiguration<User>
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public void Configure(EntityTypeBuilder<User> builder)
     {
-        public void Configure(EntityTypeBuilder<User> builder)
-        {
-            builder.HasKey(entity => entity.EntityId); // Définir la clé primaire
+        builder.HasKey(entity => entity.EntityId); // Définir la clé primaire
 
-            builder.Property(entity => entity.EntityId)
-                .ValueGeneratedOnAdd(); // Indiquer que la valeur est générée lors de l'ajout (auto-increment)
+        builder.Property(entity => entity.EntityId)
+            .ValueGeneratedOnAdd(); // Indiquer que la valeur est générée lors de l'ajout (auto-increment)
 
-            builder.Property(entity => entity.FirstName)
-                .IsRequired()
-                .HasMaxLength(50);
+        builder.Property(entity => entity.FirstName)
+            .IsRequired()
+            .HasMaxLength(50);
 
-            builder.Property(entity => entity.LastName)
-                .IsRequired()
-                .HasMaxLength(50);
-        }
+        builder.Property(entity => entity.LastName)
+            .IsRequired()
+            .HasMaxLength(50);
     }
 }

@@ -4,54 +4,53 @@ using MB.Application.Features.Models.Commands.DeleteModel;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Task.Commands.DeleteTask
+namespace MB.Application.Features.Task.Commands.DeleteTask;
+
+public class DeleteModelCommandHandler : IRequestHandler<DeleteModelCommand, DeleteModelCommandResponse>
 {
-    public class DeleteModelCommandHandler : IRequestHandler<DeleteModelCommand, DeleteModelCommandResponse>
+    private readonly IMapper _mapper;
+    private readonly IBaseRepository<Model> _modelRepository;
+
+    public DeleteModelCommandHandler(IMapper mapper, IBaseRepository<Model> modelRepository)
     {
-        private readonly IMapper _mapper;
-        private readonly IBaseRepository<Model> _modelRepository;
+        _mapper = mapper;
+        _modelRepository = modelRepository;
+    }
 
-        public DeleteModelCommandHandler(IMapper mapper, IBaseRepository<Model> modelRepository)
+    public async Task<DeleteModelCommandResponse> Handle(DeleteModelCommand request, CancellationToken cancellationToken)
+    {
+        var deleteModelCommandResponse = new DeleteModelCommandResponse();
+
+        var validator = new DeleteModelCommandValidator();
+        var validationResult = await validator.ValidateAsync(request);
+
+        if (validationResult.Errors.Count > 0)
         {
-            _mapper = mapper;
-            _modelRepository = modelRepository;
+            deleteModelCommandResponse.Success = false;
+            deleteModelCommandResponse.ValidationErrors = new List<string>();
+            foreach (var error in validationResult.Errors)
+            {
+                deleteModelCommandResponse.ValidationErrors.Add(error.ErrorMessage);
+            }
         }
-
-        public async Task<DeleteModelCommandResponse> Handle(DeleteModelCommand request, CancellationToken cancellationToken)
+        if (deleteModelCommandResponse.Success)
         {
-            var deleteModelCommandResponse = new DeleteModelCommandResponse();
-
-            var validator = new DeleteModelCommandValidator();
-            var validationResult = await validator.ValidateAsync(request);
-
-            if (validationResult.Errors.Count > 0)
+            var model = await _modelRepository.GetByBusinessIdAsync(request.ModelId);
+            if (model != null)
+            {
+                await _modelRepository.DeleteAsync(model);
+                deleteModelCommandResponse.Success = true;
+            }
+            else
             {
                 deleteModelCommandResponse.Success = false;
-                deleteModelCommandResponse.ValidationErrors = new List<string>();
-                foreach (var error in validationResult.Errors)
+                deleteModelCommandResponse.ValidationErrors = new List<string>
                 {
-                    deleteModelCommandResponse.ValidationErrors.Add(error.ErrorMessage);
-                }
+                    "Selected model doesn't exist."
+                };
             }
-            if (deleteModelCommandResponse.Success)
-            {
-                var model = await _modelRepository.GetByBusinessIdAsync(request.ModelId);
-                if (model != null)
-                {
-                    await _modelRepository.DeleteAsync(model);
-                    deleteModelCommandResponse.Success = true;
-                }
-                else
-                {
-                    deleteModelCommandResponse.Success = false;
-                    deleteModelCommandResponse.ValidationErrors = new List<string>
-                    {
-                        "Selected model doesn't exist."
-                    };
-                }
-            }
-
-            return deleteModelCommandResponse;
         }
+
+        return deleteModelCommandResponse;
     }
 }

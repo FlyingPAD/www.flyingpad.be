@@ -4,42 +4,41 @@ using MB.Domain.Entities;
 using Moq;
 using Xunit;
 
-namespace MB.Application.Test.Features.LinkCategories.Queries
+namespace MB.Application.Test.Features.LinkCategories.Queries;
+
+public class CountLinkCategoriesQueryTest
 {
-    public class CountLinkCategoriesQueryTest
+    private Mock<IBaseRepository<LinkCategory>> _linkCategoryRepositoryMock;
+    private CountLinkCategoriesQueryHandler _handler;
+
+
+    public CountLinkCategoriesQueryTest()
     {
-        private Mock<IBaseRepository<LinkCategory>> _linkCategoryRepositoryMock;
-        private CountLinkCategoriesQueryHandler _handler;
+        _linkCategoryRepositoryMock = new Mock<IBaseRepository<LinkCategory>>();
+        _handler = new CountLinkCategoriesQueryHandler(_linkCategoryRepositoryMock.Object);
+    }
 
+    [Fact]
+    public async System.Threading.Tasks.Task Handle_Should_Return_Correct_Count() 
+    {
+        // Arrange
 
-        public CountLinkCategoriesQueryTest()
-        {
-            _linkCategoryRepositoryMock = new Mock<IBaseRepository<LinkCategory>>();
-            _handler = new CountLinkCategoriesQueryHandler(_linkCategoryRepositoryMock.Object);
-        }
+        var expectedCount = 42;
 
-        [Fact]
-        public async System.Threading.Tasks.Task Handle_Should_Return_Correct_Count() 
-        {
-            // Arrange
+        _linkCategoryRepositoryMock.Setup(repo => repo.CountAsync()).ReturnsAsync(expectedCount);
 
-            var expectedCount = 42;
+        var request = new CountLinkCategoriesQuery();
 
-            _linkCategoryRepositoryMock.Setup(repo => repo.CountAsync()).ReturnsAsync(expectedCount);
+        // Act
 
-            var request = new CountLinkCategoriesQuery();
+        var result = await _handler.Handle(request, new CancellationToken());
 
-            // Act
+        // Assert
 
-            var result = await _handler.Handle(request, new CancellationToken());
+        Assert.True(result.Success);
+        Assert.Equal($"Total Link Categories : {expectedCount}", result.Message);
+        Assert.Equal(expectedCount, result.LinkCategoriesCount);
 
-            // Assert
-
-            Assert.True(result.Success);
-            Assert.Equal($"Total Link Categories : {expectedCount}", result.Message);
-            Assert.Equal(expectedCount, result.LinkCategoriesCount);
-
-            _linkCategoryRepositoryMock.Verify(repo => repo.CountAsync(), Times.Once);
-        }
+        _linkCategoryRepositoryMock.Verify(repo => repo.CountAsync(), Times.Once);
     }
 }

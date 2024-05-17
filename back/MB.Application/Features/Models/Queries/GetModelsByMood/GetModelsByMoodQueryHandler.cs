@@ -4,28 +4,27 @@ using MB.Application.Contracts.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Models.Queries.GetModelsByMood
+namespace MB.Application.Features.Models.Queries.GetModelsByMood;
+
+public class GetModelsByMoodQueryHandler(IMapper mapper, IBaseRepository<Mood> moodRepo, IModelRepository modelRepo) : IRequestHandler<GetModelsByMoodQuery, GetModelsByMoodQueryResponse>
 {
-    public class GetModelsByMoodQueryHandler(IMapper mapper, IBaseRepository<Mood> moodRepo, IModelRepository modelRepo) : IRequestHandler<GetModelsByMoodQuery, GetModelsByMoodQueryResponse>
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<Mood> _moodRepo = moodRepo;
+    private readonly IModelRepository _modelRepo = modelRepo;
+
+    public async Task<GetModelsByMoodQueryResponse> Handle(GetModelsByMoodQuery request, CancellationToken cancellationToken)
     {
-        private readonly IMapper _mapper = mapper;
-        private readonly IBaseRepository<Mood> _moodRepo = moodRepo;
-        private readonly IModelRepository _modelRepo = modelRepo;
+        int? moodId = await _moodRepo.GetPrimaryIdByBusinessIdAsync(request.MoodId);
 
-        public async Task<GetModelsByMoodQueryResponse> Handle(GetModelsByMoodQuery request, CancellationToken cancellationToken)
+        var models = await _modelRepo.GetModelsByMood(moodId);
+
+        var response = new GetModelsByMoodQueryResponse
         {
-            int? moodId = await _moodRepo.GetPrimaryIdByBusinessIdAsync(request.MoodId);
+            Success = true,
+            Message = "Models By Mood",
+            ModelsByMood = _mapper.Map<List<GetModelsByMoodQueryVm>>(models)
+        };
 
-            var models = await _modelRepo.GetModelsByMood(moodId);
-
-            var response = new GetModelsByMoodQueryResponse
-            {
-                Success = true,
-                Message = "Models By Mood",
-                ModelsByMood = _mapper.Map<List<GetModelsByMoodQueryVm>>(models)
-            };
-
-            return response;
-        }
+        return response;
     }
 }

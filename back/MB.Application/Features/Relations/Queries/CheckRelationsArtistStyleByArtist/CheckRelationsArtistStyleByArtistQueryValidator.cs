@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByArtist
+namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByArtist;
+
+public class CheckRelationsArtistStyleByArtistQueryValidator : AbstractValidator<CheckRelationsArtistStyleByArtistQuery>
 {
-    public class CheckRelationsArtistStyleByArtistQueryValidator : AbstractValidator<CheckRelationsArtistStyleByArtistQuery>
+    public CheckRelationsArtistStyleByArtistQueryValidator()
     {
-        public CheckRelationsArtistStyleByArtistQueryValidator()
-        {
-            RuleFor(query => query.ArtistId)
-                .NotEmpty().WithMessage("Artist ID must not be empty.")
-                .NotNull().WithMessage("Artist ID is required.");
-        }
+        RuleFor(query => query.ArtistId)
+            .NotEmpty().WithMessage("Artist ID must not be empty.")
+            .NotNull().WithMessage("Artist ID is required.");
     }
 }

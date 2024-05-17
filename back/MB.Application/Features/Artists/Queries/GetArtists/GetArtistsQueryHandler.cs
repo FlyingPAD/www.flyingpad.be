@@ -3,38 +3,37 @@ using MB.Application.Contracts.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Artists.Queries.GetArtists
+namespace MB.Application.Features.Artists.Queries.GetArtists;
+
+public class GetArtistsQueryHandler(IBaseRepository<Artist> artistRepository, IMapper mapper) : IRequestHandler<GetArtistsQuery, GetArtistsQueryResponse>
 {
-    public class GetArtistsQueryHandler(IBaseRepository<Artist> artistRepository, IMapper mapper) : IRequestHandler<GetArtistsQuery, GetArtistsQueryResponse>
+    private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
+    private readonly IMapper _mapper = mapper;
+
+    public async Task<GetArtistsQueryResponse> Handle(GetArtistsQuery request, CancellationToken cancellationToken)
     {
-        private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
-        private readonly IMapper _mapper = mapper;
-
-        public async Task<GetArtistsQueryResponse> Handle(GetArtistsQuery request, CancellationToken cancellationToken)
+        try
         {
-            try
+            var artists = await _artistRepository.GetAllAsync();
+            var response = new GetArtistsQueryResponse
             {
-                var artists = await _artistRepository.GetAllAsync();
-                var response = new GetArtistsQueryResponse
-                {
-                    Success = true,
-                    Message = "Here are the Artists !",
-                    Artists = _mapper.Map<List<GetArtistsVm>>(artists)
-                };
+                Success = true,
+                Message = "Here are the Artists !",
+                Artists = _mapper.Map<List<GetArtistsVm>>(artists)
+            };
 
-                return response;
-            }
-            catch (Exception ex)
+            return response;
+        }
+        catch (Exception ex)
+        {
+            // Gérez l'exception et renvoyez une réponse d'erreur
+            var response = new GetArtistsQueryResponse
             {
-                // Gérez l'exception et renvoyez une réponse d'erreur
-                var response = new GetArtistsQueryResponse
-                {
-                    Success = false,
-                    ValidationErrors = [$"Une erreur s'est produite ( {ex} )."]
-                };
+                Success = false,
+                ValidationErrors = [$"Une erreur s'est produite ( {ex} )."]
+            };
 
-                return response;
-            }
+            return response;
         }
     }
 }

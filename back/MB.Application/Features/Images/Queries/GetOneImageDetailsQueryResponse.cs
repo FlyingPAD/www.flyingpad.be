@@ -1,9 +1,8 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Images.Queries
+namespace MB.Application.Features.Images.Queries;
+
+public class GetOneImageDetailsQueryResponse : BaseResponse
 {
-    public class GetOneImageDetailsQueryResponse : BaseResponse
-    {
-        public GetOneImageDetailsQueryVm Image { get; set; } = new GetOneImageDetailsQueryVm();
-    }
+    public GetOneImageDetailsQueryVm Image { get; set; } = new GetOneImageDetailsQueryVm();
 }

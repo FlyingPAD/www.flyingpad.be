@@ -1,8 +1,7 @@
-﻿namespace MB.Application.Features.Moods.Commands.CreateMood
+﻿namespace MB.Application.Features.Moods.Commands.CreateMood;
+
+public class CreateMoodDto
 {
-    public class CreateMoodDto
-    {
-        public Guid BusinessId { get; set; }
-        public string Name { get; set; } = string.Empty;
-    }
+    public Guid BusinessId { get; set; }
+    public string Name { get; set; } = string.Empty;
 }

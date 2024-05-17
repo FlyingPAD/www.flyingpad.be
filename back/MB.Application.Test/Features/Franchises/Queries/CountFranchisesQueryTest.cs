@@ -4,43 +4,42 @@ using MB.Domain.Entities;
 using Moq;
 using Xunit;
 
-namespace MB.Application.Test.Features.Franchises.Queries
+namespace MB.Application.Test.Features.Franchises.Queries;
+
+public class CountFranchisesQueryTest
 {
-    public class CountFranchisesQueryTest
+    private Mock<IBaseRepository<Franchise>> _franchiseRepositoryMock;
+    private CountFranchisesQueryHandler _handler;
+
+
+    public CountFranchisesQueryTest()
     {
-        private Mock<IBaseRepository<Franchise>> _franchiseRepositoryMock;
-        private CountFranchisesQueryHandler _handler;
+        _franchiseRepositoryMock = new Mock<IBaseRepository<Franchise>>();
+        _handler = new CountFranchisesQueryHandler(_franchiseRepositoryMock.Object);
+    }
 
+    [Fact]
+    public async System.Threading.Tasks.Task Handle_Should_Return_Correct_Count() 
+    {
+        // Arrange
 
-        public CountFranchisesQueryTest()
-        {
-            _franchiseRepositoryMock = new Mock<IBaseRepository<Franchise>>();
-            _handler = new CountFranchisesQueryHandler(_franchiseRepositoryMock.Object);
-        }
+        var expectedCount = 42;
 
-        [Fact]
-        public async System.Threading.Tasks.Task Handle_Should_Return_Correct_Count() 
-        {
-            // Arrange
+        _franchiseRepositoryMock.Setup(repo => repo.CountAsync()).ReturnsAsync(expectedCount);
 
-            var expectedCount = 42;
+        var request = new CountFranchisesQuery();
 
-            _franchiseRepositoryMock.Setup(repo => repo.CountAsync()).ReturnsAsync(expectedCount);
+        // Act
 
-            var request = new CountFranchisesQuery();
+        var result = await _handler.Handle(request, new CancellationToken());
 
-            // Act
+        // Assert
 
-            var result = await _handler.Handle(request, new CancellationToken());
+        Assert.True(result.Success);
+        Assert.Equal($"Total Franchises : {expectedCount}", result.Message);
+        Assert.Equal(expectedCount, result.FranchisesCount);
 
-            // Assert
+        _franchiseRepositoryMock.Verify(repo => repo.CountAsync(), Times.Once);
 
-            Assert.True(result.Success);
-            Assert.Equal($"Total Franchises : {expectedCount}", result.Message);
-            Assert.Equal(expectedCount, result.FranchisesCount);
-
-            _franchiseRepositoryMock.Verify(repo => repo.CountAsync(), Times.Once);
-
-        }
     }
 }

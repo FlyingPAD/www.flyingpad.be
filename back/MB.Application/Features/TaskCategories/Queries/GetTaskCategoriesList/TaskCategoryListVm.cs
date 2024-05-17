@@ -1,8 +1,7 @@
-﻿namespace MB.Application.Features.TaskCategories.Queries.GetTaskCategoriesList
+﻿namespace MB.Application.Features.TaskCategories.Queries.GetTaskCategoriesList;
+
+public class TaskCategoryListVm
 {
-    public class TaskCategoryListVm
-    {
-        public Guid BusinessId { get; set; }
-        public string Name { get; set; } = string.Empty;
-    }
+    public Guid BusinessId { get; set; }
+    public string Name { get; set; } = string.Empty;
 }

@@ -1,9 +1,8 @@
 ﻿using MB.Application.Responses;
 
-namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByArtist
+namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByArtist;
+
+public class CheckRelationsArtistStyleByArtistQueryResponse : BaseResponse
 {
-    public class CheckRelationsArtistStyleByArtistQueryResponse : BaseResponse
-    {
-        public int NumberOfRelations { get; set; }
-    }
+    public int NumberOfRelations { get; set; }
 }

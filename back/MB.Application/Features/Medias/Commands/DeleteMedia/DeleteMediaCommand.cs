@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Medias.Commands.DeleteMedia
+namespace MB.Application.Features.Medias.Commands.DeleteMedia;
+
+public class DeleteMediaCommand : IRequest<DeleteMediaCommandResponse>
 {
-    public class DeleteMediaCommand : IRequest<DeleteMediaCommandResponse>
-    {
-        public Guid MediaId { get; set; }
-    }
+    public Guid MediaId { get; set; }
 }

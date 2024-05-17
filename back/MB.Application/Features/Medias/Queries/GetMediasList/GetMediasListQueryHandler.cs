@@ -3,44 +3,43 @@ using MB.Application.Contracts.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Medias.Queries.GetMediasList
+namespace MB.Application.Features.Medias.Queries.GetMediasList;
+
+public class GetMediasListQueryHandler : IRequestHandler<GetMediasListQuery, GetMediasListQueryResponse>
 {
-    public class GetMediasListQueryHandler : IRequestHandler<GetMediasListQuery, GetMediasListQueryResponse>
+    private readonly IBaseRepository<Media> _mediaRepository;
+    private readonly IMapper _mapper;
+
+    public GetMediasListQueryHandler(IBaseRepository<Media> mediaRepository, IMapper mapper)
     {
-        private readonly IBaseRepository<Media> _mediaRepository;
-        private readonly IMapper _mapper;
+        _mediaRepository = mediaRepository;
+        _mapper = mapper;
+    }
 
-        public GetMediasListQueryHandler(IBaseRepository<Media> mediaRepository, IMapper mapper)
+    public async Task<GetMediasListQueryResponse> Handle(GetMediasListQuery request, CancellationToken cancellationToken)
+    {
+        try
         {
-            _mediaRepository = mediaRepository;
-            _mapper = mapper;
+            var medias = await _mediaRepository.GetAllAsync();
+            var response = new GetMediasListQueryResponse
+            {
+                Success = true,
+                Message = "Here are the Medias !",
+                MediasList = _mapper.Map<List<MediaListVm>>(medias)
+            };
+
+            return response;
         }
-
-        public async Task<GetMediasListQueryResponse> Handle(GetMediasListQuery request, CancellationToken cancellationToken)
+        catch (Exception ex)
         {
-            try
+            // Gérez l'exception et renvoyez une réponse d'erreur
+            var response = new GetMediasListQueryResponse
             {
-                var medias = await _mediaRepository.GetAllAsync();
-                var response = new GetMediasListQueryResponse
-                {
-                    Success = true,
-                    Message = "Here are the Medias !",
-                    MediasList = _mapper.Map<List<MediaListVm>>(medias)
-                };
+                Success = false,
+                ValidationErrors = new List<string> { $"Une erreur s'est produite ( {ex} )." }
+            };
 
-                return response;
-            }
-            catch (Exception ex)
-            {
-                // Gérez l'exception et renvoyez une réponse d'erreur
-                var response = new GetMediasListQueryResponse
-                {
-                    Success = false,
-                    ValidationErrors = new List<string> { $"Une erreur s'est produite ( {ex} )." }
-                };
-
-                return response;
-            }
+            return response;
         }
     }
 }

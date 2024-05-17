@@ -4,41 +4,40 @@ using MB.Domain.Entities;
 using Moq;
 using Xunit;
 
-namespace MB.Application.Test.Features.Styles.Queries
+namespace MB.Application.Test.Features.Styles.Queries;
+
+public class CountStylesQueryTest
 {
-    public class CountStylesQueryTest
+    private Mock<IBaseRepository<Style>> _styleRepositoryMock;
+    private CountStylesQueryHandler _handler;
+
+    public CountStylesQueryTest()
     {
-        private Mock<IBaseRepository<Style>> _styleRepositoryMock;
-        private CountStylesQueryHandler _handler;
+        _styleRepositoryMock = new Mock<IBaseRepository<Style>>();
+        _handler = new CountStylesQueryHandler(_styleRepositoryMock.Object);
+    }
 
-        public CountStylesQueryTest()
-        {
-            _styleRepositoryMock = new Mock<IBaseRepository<Style>>();
-            _handler = new CountStylesQueryHandler(_styleRepositoryMock.Object);
-        }
+    [Fact]
+    public async System.Threading.Tasks.Task Handle_Should_Return_Correct_Count() 
+    {
+        // Arrange
 
-        [Fact]
-        public async System.Threading.Tasks.Task Handle_Should_Return_Correct_Count() 
-        {
-            // Arrange
+        var expectedCount = 42;
 
-            var expectedCount = 42;
+        _styleRepositoryMock.Setup(repo => repo.CountAsync()).ReturnsAsync(expectedCount);
 
-            _styleRepositoryMock.Setup(repo => repo.CountAsync()).ReturnsAsync(expectedCount);
+        var request = new CountStylesQuery();
 
-            var request = new CountStylesQuery();
+        // Act
 
-            // Act
+        var result = await _handler.Handle(request, new CancellationToken());
 
-            var result = await _handler.Handle(request, new CancellationToken());
+        // Assert
 
-            // Assert
+        Assert.True(result.Success);
+        Assert.Equal($"Total Styles : {expectedCount}", result.Message);
+        Assert.Equal(expectedCount, result.StylesCount);
 
-            Assert.True(result.Success);
-            Assert.Equal($"Total Styles : {expectedCount}", result.Message);
-            Assert.Equal(expectedCount, result.StylesCount);
-
-            _styleRepositoryMock.Verify(repo => repo.CountAsync(), Times.Once);
-        }
+        _styleRepositoryMock.Verify(repo => repo.CountAsync(), Times.Once);
     }
 }

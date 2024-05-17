@@ -3,30 +3,29 @@ using MB.Application.Contracts.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetailsQuery
+namespace MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetailsQuery;
+
+public class GetOneVideoYTDetailsQueryHandler(IMapper mapper, IBaseRepository<VideoYouTube> videoYouTubeRepository) : IRequestHandler<GetOneVideoYTDetailsQuery, GetOneVideoYTDetailsQueryResponse>
 {
-    public class GetOneVideoYTDetailsQueryHandler(IMapper mapper, IBaseRepository<VideoYouTube> videoYouTubeRepository) : IRequestHandler<GetOneVideoYTDetailsQuery, GetOneVideoYTDetailsQueryResponse>
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<VideoYouTube> _videoYouTubeRepository = videoYouTubeRepository;
+
+    public async Task<GetOneVideoYTDetailsQueryResponse> Handle(GetOneVideoYTDetailsQuery request, CancellationToken cancellationToken)
     {
-        private readonly IMapper _mapper = mapper;
-        private readonly IBaseRepository<VideoYouTube> _videoYouTubeRepository = videoYouTubeRepository;
+        var video = await _videoYouTubeRepository.GetByBusinessIdAsync(request.VideoYouTubeId);
 
-        public async Task<GetOneVideoYTDetailsQueryResponse> Handle(GetOneVideoYTDetailsQuery request, CancellationToken cancellationToken)
+        if (video == null)
         {
-            var video = await _videoYouTubeRepository.GetByBusinessIdAsync(request.VideoYouTubeId);
-
-            if (video == null)
-            {
-                return new GetOneVideoYTDetailsQueryResponse { Success = false, Message = "Video wasn't found :(" };
-            }
-
-            var videoYouTubeVm = _mapper.Map<GetOneVideoYTDetailsQueryVm>(video);
-
-            return new GetOneVideoYTDetailsQueryResponse
-            {
-                Success = true,
-                Message = "Mood was found :)",
-                VideoYouTube = videoYouTubeVm
-            };
+            return new GetOneVideoYTDetailsQueryResponse { Success = false, Message = "Video wasn't found :(" };
         }
+
+        var videoYouTubeVm = _mapper.Map<GetOneVideoYTDetailsQueryVm>(video);
+
+        return new GetOneVideoYTDetailsQueryResponse
+        {
+            Success = true,
+            Message = "Mood was found :)",
+            VideoYouTube = videoYouTubeVm
+        };
     }
 }

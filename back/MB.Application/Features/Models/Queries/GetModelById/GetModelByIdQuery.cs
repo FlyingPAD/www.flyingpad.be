@@ -1,10 +1,9 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Models.Queries.GetModelById
+namespace MB.Application.Features.Models.Queries.GetModelById;
+
+public class GetModelByIdQuery : IRequest<GetModelByIdQueryResponse>
 {
-    public class GetModelByIdQuery : IRequest<GetModelByIdQueryResponse>
-    {
-        public Guid ModelId { get; set; }
-    }
+    public Guid ModelId { get; set; }
 }
 

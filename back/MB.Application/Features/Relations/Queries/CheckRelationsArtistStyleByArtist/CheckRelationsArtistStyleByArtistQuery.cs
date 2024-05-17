@@ -1,10 +1,9 @@
 ﻿using MB.Application.Responses;
 using MediatR;
 
-namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByArtist
+namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByArtist;
+
+public class CheckRelationsArtistStyleByArtistQuery : IRequest<CheckRelationsArtistStyleByArtistQueryResponse>
 {
-    public class CheckRelationsArtistStyleByArtistQuery : IRequest<CheckRelationsArtistStyleByArtistQueryResponse>
-    {
-        public Guid ArtistId { get; set; }
-    }
+    public Guid ArtistId { get; set; }
 }
