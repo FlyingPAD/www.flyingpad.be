@@ -1,0 +1,12 @@
+<div id="layout-central" *ngIf="franchisesFlow() as flow">
+    <!-- List -->
+    <div id="list">
+        <div *ngFor="let franchise of flow">
+          <div class="list-flex"> 
+            <a class="list-item link" routerLink="/franchises/franchises-gallery" (click)="updateFranchiseId(franchise.businessId)"> ▸ {{franchise.name}}</a>   
+            <a class="list-item update" routerLink="/franchises/update-franchise" (click)="updateFranchiseId(franchise.businessId)">U</a>      
+            <a class="list-item delete" routerLink="/franchises/delete-franchise" (click)="updateFranchiseId(franchise.businessId)">D</a>     
+          </div>  
+        </div>
+    </div>
+</div>

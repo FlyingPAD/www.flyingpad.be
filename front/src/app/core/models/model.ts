@@ -30,27 +30,31 @@ export class ModelCheckBox
     isChecked : boolean = false
 }
 
-
 // Calls :
 
 export interface ModelForm
 {
-    firstName : string;
-    lastName : string;
-    aka : string;
-    gender : string;
+    firstName : string
+    lastName : string
+    aka : string
+    gender : string
 }
 
 export interface ModelCheckForm
 {
-    firstName : string;
-    lastName : string;
-    aka : string;
-    gender : string;
-    isChecked : boolean;
+    firstName : string
+    lastName : string
+    aka : string
+    gender : string
+    isChecked : boolean
 }
 
 // Responses :
+
+export interface GetAllModelsResponse
+{
+    models : ModelLight[]
+}
 
 export interface GetOneModelDetailsResponse extends BaseResponse
 {

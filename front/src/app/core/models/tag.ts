@@ -72,3 +72,8 @@ export interface GetTagsCheckBoxesByMoodResponse extends BaseResponse
 {
    tagsCheckBoxesList : TagsCheckBoxesList[]
 }
+
+export interface GetAllTagsResponse extends BaseResponse
+{
+    tags : MiniTag[]
+}

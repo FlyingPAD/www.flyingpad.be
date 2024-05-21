@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { TagsGetFullListResponse } from '../models/tag';
+import { GetAllTagsResponse, TagsGetFullListResponse } from '../models/tag';
 import { map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -17,4 +17,9 @@ export class TagStateService
     map(x => x.categoriesWithTags)
   )
   tagsList = toSignal(this.tagsList$, {initialValue : [] })
+
+  tags$ = this.#http.get<GetAllTagsResponse>(this.#url + 'Tags/GetAll').pipe(
+    map(response => response.tags)
+  )
+  tags = toSignal(this.tags$, { initialValue: [] })
 }

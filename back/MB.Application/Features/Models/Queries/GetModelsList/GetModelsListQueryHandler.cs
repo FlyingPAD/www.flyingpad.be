@@ -5,16 +5,10 @@ using MediatR;
 
 namespace MB.Application.Features.Models.Queries.GetModelsList;
 
-public class GetModelsListQueryHandler : IRequestHandler<GetModelsListQuery, GetModelsListQueryResponse>
+public class GetModelsListQueryHandler(IBaseRepository<Model> modelRepository, IMapper mapper) : IRequestHandler<GetModelsListQuery, GetModelsListQueryResponse>
 {
-    private readonly IBaseRepository<Model> _modelRepository;
-    private readonly IMapper _mapper;
-
-    public GetModelsListQueryHandler(IBaseRepository<Model> modelRepository, IMapper mapper)
-    {
-        _modelRepository = modelRepository;
-        _mapper = mapper;
-    }
+    private readonly IBaseRepository<Model> _modelRepository = modelRepository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<GetModelsListQueryResponse> Handle(GetModelsListQuery request, CancellationToken cancellationToken)
     {
@@ -24,8 +18,8 @@ public class GetModelsListQueryHandler : IRequestHandler<GetModelsListQuery, Get
             var response = new GetModelsListQueryResponse
             {
                 Success = true,
-                Message = "Here are the Models !",
-                ModelsList = _mapper.Map<List<ModelListVm>>(models)
+                Message = "Models Retrieved Successfully",
+                Models = _mapper.Map<List<ModelListVm>>(models)
             };
 
             return response;
@@ -36,7 +30,7 @@ public class GetModelsListQueryHandler : IRequestHandler<GetModelsListQuery, Get
             var response = new GetModelsListQueryResponse
             {
                 Success = false,
-                ValidationErrors = new List<string> { $"Une erreur s'est produite ( {ex} )." }
+                ValidationErrors = [ "Une erreur s'est produite ( {ex} )."]
             };
 
             return response;

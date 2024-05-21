@@ -17,7 +17,7 @@ export interface LinksCountResponse extends BaseResponse
     linksCount : number
 }
 
-export interface LinksGetAllResponse extends BaseResponse 
+export interface GetAllLinksResponse extends BaseResponse 
 {
     linksList : Link[]
 }

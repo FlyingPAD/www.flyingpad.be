@@ -23,7 +23,6 @@
         </div>
     </div>
 </div>
-
 <div class="bar" *ngIf="artistFlow() as flow">
     <!-- Artist Name -->
     <a class="tweak">
@@ -52,7 +51,6 @@
         <img src="../../../../assets/app_icons/arrow_up_no.png" />
     </span>
 </div>
-
 <div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="artistFlow() as flow" (click)="infoTrigger()">
     <!-- Artist Name -->
     <h1>{{ flow.artist.name }}</h1>

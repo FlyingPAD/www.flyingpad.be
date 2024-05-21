@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { GetMediasFullListResponse, GetOneMediaDetailsResponse, MediaDetails } from '../models/media';
 import { BehaviorSubject, Observable, combineLatest, map, of, switchMap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FranchiseDetails, FranchiseLight, GetFranchisesByMediaResponse, GetOneFranchiseDetailsResponse } from '../models/franchise';
+import { FranchiseDetails, FranchiseLight, GetAllFranchisesResponse, GetFranchisesByMediaResponse, GetOneFranchiseDetailsResponse } from '../models/franchise';
 import { GetModelsByFranchiseResponse, ModelLight } from '../models/model';
 import { GetMoodsByFranchiseResponse, MoodLight } from '../models/mood';
 
@@ -126,4 +126,10 @@ export class FranchiseStateService
       map(response => response.medias)
     )
     medias = toSignal( this.medias$, { initialValue : [] } )
+
+    franchises$ = this.#http.get<GetAllFranchisesResponse>(this.#url + 'Franchises/GetAll').pipe(
+      map(response => response.franchises)
+    )
+    franchises = toSignal(this.franchises$, { initialValue: [] })
+
 }

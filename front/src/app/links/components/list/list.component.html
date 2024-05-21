@@ -1,0 +1,12 @@
+<div id="layout-central" *ngIf="linksFlow() as flow">
+    <!-- List -->
+    <div id="list">
+        <div *ngFor="let link of flow">
+          <div class="list-flex"> 
+            <a class="list-item link" href="{{ link.url }}" target="_blank" (click)="updateLinkId(link.businessId)"> ▸ {{link.name}}</a>   
+            <a class="list-item update" routerLink="/links/update-link" (click)="updateLinkId(link.businessId)">U</a>      
+            <a class="list-item delete" routerLink="/links/delete-link" (click)="updateLinkId(link.businessId)">D</a>     
+          </div>  
+        </div>
+    </div>
+</div>
