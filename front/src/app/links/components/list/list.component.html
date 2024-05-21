@@ -1,7 +1,14 @@
+<app-button-top />
 <div id="layout-central" *ngIf="linksFlow() as flow">
+    <!-- Pagination controls -->
+    <div class="row-sticky" *ngIf="flow.length > mpp">
+      <div id="pagination">
+          <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="p = $event"></pagination-controls>
+      </div>  
+    </div>     
     <!-- List -->
     <div id="list">
-        <div *ngFor="let link of flow">
+        <div *ngFor="let link of flow | paginate : { itemsPerPage : mpp, currentPage: p }">
           <div class="list-flex"> 
             <a class="list-item link" href="{{ link.url }}" target="_blank" (click)="updateLinkId(link.businessId)"> ▸ {{link.name}}</a>   
             <a class="list-item update" routerLink="/links/update-link" (click)="updateLinkId(link.businessId)">U</a>      
@@ -10,3 +17,4 @@
         </div>
     </div>
 </div>
+<div class="bottom-box"></div>

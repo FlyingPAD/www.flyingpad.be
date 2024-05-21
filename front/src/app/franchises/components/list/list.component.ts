@@ -12,6 +12,9 @@ export class ListComponent
 
   franchisesFlow = this.franchiseService.franchises
 
+  mpp : number = 36
+  p : number = 1
+
   updateFranchiseId( franchiseId : number )
   {
     

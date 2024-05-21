@@ -1,0 +1,12 @@
+#pagination
+{
+    pagination-controls
+    {
+        text-align: center;
+    }
+    .pagination ::ng-deep .ngx-pagination .current 
+    {
+        background: #6b5240;  
+        border-radius: 5px;
+    }
+}
