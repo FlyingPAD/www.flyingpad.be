@@ -19,7 +19,7 @@ public class GetTagsListQueryHandler(IBaseRepository<Tag> tagRepository, IMapper
             {
                 Success = true,
                 Message = "Here are the Tags !",
-                TagsList = _mapper.Map<List<TagListVm>>(tags)
+                Tags = _mapper.Map<List<TagListVm>>(tags)
             };
 
             return response;

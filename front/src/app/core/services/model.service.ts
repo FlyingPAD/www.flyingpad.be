@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, combineLatest, map, of, switchMap } from 'rxjs';
-import { GetOneModelDetailsResponse, ModelDetails } from '../models/model';
+import { GetAllModelsResponse, GetOneModelDetailsResponse, ModelDetails } from '../models/model';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { GetMoodsByModelResponse } from '../models/mood';
 import { GetFranchisesByModelResponse } from '../models/franchise';
@@ -12,11 +12,7 @@ import { GetFranchisesByModelResponse } from '../models/franchise';
 })
 export class ModelStateService 
 {
-  // Injections :
-
   #http = inject(HttpClient)
-
-  // Properties :
 
   #url : string = environment.apiBaseUrl + '/api/V1/'
 
@@ -75,4 +71,9 @@ export class ModelStateService
   {
     this.#currentmodelSubject.next( model )
   }
+
+  models$ = this.#http.get<GetAllModelsResponse>(this.#url + 'Models/GetAll').pipe(
+    map(response => response.models)
+  )
+  models = toSignal(this.models$, { initialValue: [] });
 }

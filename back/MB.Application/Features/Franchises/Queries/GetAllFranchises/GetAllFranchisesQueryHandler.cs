@@ -19,7 +19,7 @@ public class GetAllFranchisesQueryHandler(IBaseRepository<Franchise> franchiseRe
             {
                 Success = true,
                 Message = "Here are the Franchises !",
-                FranchisesList = _mapper.Map<List<GetAllFranchisesQueryVm>>(franchises)
+                Franchises = _mapper.Map<List<GetAllFranchisesQueryVm>>(franchises)
             };
 
             return response;

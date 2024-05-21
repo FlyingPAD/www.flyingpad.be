@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, catchError, combineLatest, map, of, shareReplay, startWith, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Link, LinksGetAllResponse, LinksGetByCategoryResponse } from '../models/link';
+import { GetAllLinksResponse, Link, LinksGetByCategoryResponse } from '../models/link';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { LinkCategoriesGetAllResponse, LinkCategoryFull, LinkCategoryLight } from '../models/link-category';
 
@@ -24,7 +24,7 @@ export class LinksService
 
   // Getters
 
-  links$ = this.#http.get<LinksGetAllResponse>(this.#url + 'Links/GetAll').pipe(
+  links$ = this.#http.get<GetAllLinksResponse>(this.#url + 'Links/GetAll').pipe(
     map(x => x.linksList),
     startWith([]),
     catchError(error => 
