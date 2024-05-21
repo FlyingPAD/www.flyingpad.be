@@ -339,8 +339,10 @@ export class MoodStateService
   public Delete( moodId : number )
   {
     return this.#http.delete<BaseResponse>(`${this.#url}Moods/Delete/${moodId}`).pipe(
-      tap( () => this.updateSelectedMoodId(null))
+      tap( () => {
+        this.updateSelectedMoodId(null)
+        this.updateSelectedGalleryType('')
+      })
     )
   }
-
 }
