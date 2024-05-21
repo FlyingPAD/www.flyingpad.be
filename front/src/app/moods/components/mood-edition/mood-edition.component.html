@@ -1,16 +1,16 @@
 <div id="layout-central" *ngIf="moodEditionFlow() as flow">
     <!-- Edition Menu -->
     <div class="edition-menu">
-        <a (click)="triggerMoodEditionButton()">
+        <a (click)="triggerMoodEditionButton()" [class.active]="triggerMoodEdition === true">
             <img src="../../../../assets/app_icons/icon_mood_001.png" />
         </a>
-        <a (click)="triggerMoodTagsEditionButton()">
+        <a (click)="triggerMoodTagsEditionButton()" [class.active]="triggerMoodTagsEdition === true">
             <img src="../../../../assets/app_icons/icon_tags_001.png" />
         </a>
-        <a (click)="triggerMoodModelsEditionButton()">
+        <a (click)="triggerMoodModelsEditionButton()" [class.active]="triggerMoodModelsEdition === true">
             <img src="../../../../assets/app_icons/icon_model_001.png" />
         </a>
-        <a (click)="triggerMoodArtistsEditionButton()">
+        <a (click)="triggerMoodArtistsEditionButton()" [class.active]="triggerMoodArtistsEdition === true">
             <img src="../../../../assets/app_icons/icon_artists_001.png" />
         </a>
     </div>
@@ -87,7 +87,7 @@
 
     <div *ngIf="triggerMoodModelsEdition">
         <div class="filter">
-            <input type="text" [(ngModel)]="searchModel" placeholder="Filter models...">
+            <input type="text" [(ngModel)]="searchModel" placeholder="Filter models ...">
         </div>
         <div class="form-container">
             <div class="form-flex">
@@ -105,7 +105,7 @@
 
     <div *ngIf="triggerMoodArtistsEdition">
         <div class="filter">
-            <input type="text" [(ngModel)]="searchArtist" placeholder="Filter models...">
+            <input type="text" [(ngModel)]="searchArtist" placeholder="Filter artists ...">
         </div>
         <div class="form-container">
             <div class="form-flex">
