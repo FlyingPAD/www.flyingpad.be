@@ -12,6 +12,9 @@ export class ListComponent
 
   linksFlow = this.linksService.links
 
+  mpp : number = 36
+  p : number = 1
+
   updateLinkId( linkId : number )
   {
 

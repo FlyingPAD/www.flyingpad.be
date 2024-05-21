@@ -12,6 +12,9 @@ export class ListComponent
 
   modelsFlow = this.modelService.models
 
+  mpp : number = 36
+  p : number = 1
+
   updateModelId( modelId : number )
   {
 

@@ -12,6 +12,9 @@ export class ListComponent
 
   tagsFlow = this.tagService.tags
 
+  mpp : number = 36
+  p : number = 1
+
   updateTagId( tagId : number )
   {
 
