@@ -254,24 +254,24 @@ export class MoodStateService
       map(response => response.tagsByMood) )
   }
 
-  updateScoreTrigger(form : UpdateMoodScoreCall) 
+  updateScoreTrigger(form: UpdateMoodScoreCall) 
   {
-    of(form).pipe(
+    this.#http.put<UpdateMoodScoreResponse>(`${this.#url}Moods/UpdateScore`, form).pipe(
       take(1),
-      switchMap(form => {
-        return this.#http.put<UpdateMoodScoreResponse>(`${this.#url}Moods/UpdateScore`, form).pipe(
-          tap(response => {
-            if (response.success) this.updateSelectedMoodId(form.businessId)
-          }),
-          catchError(error => {
-            console.error('Erreur lors de la mise à jour du score:', error)
-            return of(null)
-          })
-        )
+      tap(response => 
+        {
+        if (response.success) 
+          {
+          this.updateSelectedMoodId(form.businessId)
+        }
+      }),
+      catchError(error => 
+      {
+        console.error('Erreur lors de la mise à jour du score:', error)
+        return of(null);
       })
     ).subscribe()
   }
-
   getTagsCheckBoxesByMood( moodId : number | null ) 
   {
     return this.#http.get<GetTagsCheckBoxesByMoodResponse>(`${this.#url}Tags/GetCheckBoxesByMood/${moodId}`).pipe( 

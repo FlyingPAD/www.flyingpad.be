@@ -13,6 +13,7 @@ import { ChordsComponent } from './components/chords/chords.component';
 import { NotationComponent } from './components/notation/notation.component';
 import { MetricsBComponent } from './components/metrics-b/metrics-b.component';
 import { MelodyComponent } from './components/melody/melody.component';
+import { NotesExComponent } from './components/notes-ex/notes-ex.component';
 
 const routes: Routes = 
 [
@@ -25,6 +26,7 @@ const routes: Routes =
   
   { path : 'notes-fr', component : NotesComponent, title : 'Flying PAD | Les Notes' },
   { path : 'notes-en', component : NotesTradComponent, title : 'Flying PAD | Notes' },
+  { path : 'notes-ex', component : NotesExComponent, title : 'Flying PAD | Notes - Exercises' },
   { path : 'pulsation', component : PulsationComponent, title : 'Flying PAD | La Pulsation' },
   { path : 'metrics-a', component : MetricsAComponent, title : 'Flying PAD | Les Métriques ( 1 )' },
   { path : 'metrics-b', component : MetricsBComponent, title : 'Flying PAD | Les Métriques ( 2 )' },

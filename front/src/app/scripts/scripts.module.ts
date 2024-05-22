@@ -16,6 +16,7 @@ import { ScalesComponent } from './components/scales/scales.component';
 import { NotationComponent } from './components/notation/notation.component';
 import { MelodyComponent } from './components/melody/melody.component';
 import { MetricsBComponent } from './components/metrics-b/metrics-b.component';
+import { NotesExComponent } from './components/notes-ex/notes-ex.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { MetricsBComponent } from './components/metrics-b/metrics-b.component';
     NotationComponent,
     MelodyComponent,
     MetricsBComponent,
+    NotesExComponent,
   ],
   imports: [
     CommonModule,

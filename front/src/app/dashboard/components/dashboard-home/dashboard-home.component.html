@@ -12,10 +12,6 @@
       <img src="../../../../assets/app_icons/icon_tags_001.png" />
       <p>Tags</p>
     </a>
-    <a routerLink="/tags/list">
-      <img src="../../../../assets/app_icons/icon_tags_001.png" />
-      <p>C.R.U.D.</p>
-    </a>
     <a routerLink="/moods/mood-details">
       <img src="../../../../assets/app_icons/icon_mood_001.png" />
       <p>Mood</p>
@@ -32,25 +28,13 @@
       <img src="../../../../assets/app_icons/icon_franchise_001.png" />
       <p>Franchise</p>
     </a>
-    <a routerLink="/franchises/list">
-      <img src="../../../../assets/app_icons/icon_franchise_001.png" />
-      <p>C.R.U.D.</p>
-    </a>
     <a routerLink="/artists/artist-gallery">
       <img src="../../../../assets/app_icons/artist.png" />
       <p>Artist</p>
     </a>
-    <a routerLink="/artists">
-      <img src="../../../../assets/app_icons/artist.png" />
-      <p>C.R.U.D.</p>
-    </a>
     <a routerLink="/models/model-gallery">
       <img src="../../../../assets/app_icons/icon_model_001.png" />
       <p>Model</p>
-    </a>
-    <a routerLink="/models/list">
-      <img src="../../../../assets/app_icons/icon_model_001.png" />
-      <p>C.R.U.D.</p>
     </a>
     <a routerLink="/scripts">
       <img src="../../../../assets/app_icons/icon_scripts_001.png" />
@@ -64,22 +48,43 @@
       <img src="../../../../assets/app_icons/icon_links_001.png" />
       <p>Links</p>
     </a> 
+  </div>
+  <div class="row-white">
+    <h2>C.R.U.D.</h2>
+  </div>
+  <div class="dash">
+    <a routerLink="/tags/list">
+      <img src="../../../../assets/app_icons/icon_tags_001.png" />
+      <p>Tags</p>
+    </a>
+    <a routerLink="/franchises/list">
+      <img src="../../../../assets/app_icons/icon_franchise_001.png" />
+      <p>Franchises</p>
+    </a>
+    <a routerLink="/artists">
+      <img src="../../../../assets/app_icons/artist.png" />
+      <p>Artists</p>
+    </a>
+    <a routerLink="/models/list">
+      <img src="../../../../assets/app_icons/icon_model_001.png" />
+      <p>Models</p>
+    </a>
     <a routerLink="/links/list">
       <img src="../../../../assets/app_icons/icon_links_001.png" />
-      <p>C.R.U.D.</p>
+      <p>Links</p>
     </a> 
   </div>
   <div class="row-white">
     <h2>Display Info</h2>
-    <div id="display-model">
-        <div class="model-flex">
-          <p><b>Mode</b> : </p>
-          <p>{{appSettings.appDisplayMode}}</p>
-        </div>
-        <div class="model-flex">
-          <p><b>Window Size</b> :</p>
-          <p>{{appSettings.appScreenWidth}} x {{appSettings.appScreenHeight}} pixels</p>
-        </div>
+  </div>
+  <div id="display-model">
+    <div class="model-flex">
+      <p><b>Mode</b> : </p>
+      <p>{{appSettings.appDisplayMode}}</p>
+    </div>
+    <div class="model-flex">
+      <p><b>Window Size</b> :</p>
+      <p>{{appSettings.appScreenWidth}} x {{appSettings.appScreenHeight}} pixels</p>
     </div>
   </div>
 </div>

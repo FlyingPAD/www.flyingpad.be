@@ -19,7 +19,7 @@ export class MoodsGalleryComponent
   moodsService = inject(MoodStateService)
   tagsService = inject(TagStateService)
   router = inject(Router)
-  location = inject(Location)
+  location = inject(Location)                 // Navigation
 
   environment = environment.apiBaseUrl        // Environment
   moods = this.moodsService.moodsFlow         // Signal
@@ -110,17 +110,16 @@ export class MoodsGalleryComponent
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) 
   {
-    console.log(event.key)
     switch (event.key) 
     {
-      case 'Backspace':
-        this.location.back()
-        break
       case 'Control':
         this.infoTrigger()
         break
       case '.':
         this.menuTrigger()
+        break
+      case 'Backspace':
+        this.location.back()
         break
     }
   }

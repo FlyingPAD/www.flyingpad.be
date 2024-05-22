@@ -98,16 +98,10 @@ export class MoodDetailsComponent implements OnDestroy
     this.#moodsService.updateSelectedTagId(tagId)
   }
 
-  goBack() : void
-  {
-    this.#location.back()
-  }
-
   // KEYBOARD CONFIGURATION
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) 
   {
-    console.log(event.key)
     switch (event.key) 
     {
       case 'ArrowLeft':
@@ -118,9 +112,6 @@ export class MoodDetailsComponent implements OnDestroy
         break
       case ' ':
         this.intervalId === undefined ? this.diaporamaStart(false) : this.diaporamaStop()
-        break
-      case 'Backspace':
-        this.goBack()
         break
       case 'Enter':
         this.openDownload()
@@ -136,6 +127,9 @@ export class MoodDetailsComponent implements OnDestroy
         break
       case '.':
         this.menuTrigger()
+        break
+      case 'Backspace':
+        this.#location.back()
         break
     }
   }
