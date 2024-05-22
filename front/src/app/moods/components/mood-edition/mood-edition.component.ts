@@ -6,9 +6,8 @@ import { RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm }
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MoodUpdateForm, UpdateMoodScoreCall } from '../../../core/models/mood';
-import { Subscription, forkJoin } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-mood-edition',
@@ -230,22 +229,10 @@ export class MoodEditionComponent implements OnDestroy
     switch (event.key) 
     {
       case 'Enter':
-        if(this.triggerMoodEdition)
-          {
-            this.SaveEdition(true)
-          }
-        if(this.triggerMoodTagsEdition)
-          {
-            this.SaveTagsEdition(true)
-          }
-        if(this.triggerMoodModelsEdition)
-          {
-            this.SaveModelsEdition(true)
-          }
-        if(this.triggerMoodArtistsEdition)
-          {
-            this.SaveArtistsEdition(true)
-          }
+        this.SaveEdition(true)
+        this.SaveTagsEdition(true)
+        this.SaveModelsEdition(true)
+        this.SaveArtistsEdition(true)
         break
     }
   }
