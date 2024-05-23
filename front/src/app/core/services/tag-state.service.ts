@@ -17,9 +17,4 @@ export class TagStateService
     map(x => x.categoriesWithTags)
   )
   tagsList = toSignal(this.tagsList$, {initialValue : [] })
-
-  tags$ = this.#http.get<GetAllTagsResponse>(this.#url + 'Tags/GetAll').pipe(
-    map(response => response.tags)
-  )
-  tags = toSignal(this.tags$, { initialValue: [] })
 }

@@ -4,18 +4,11 @@ using MediatR;
 
 namespace MB.Application.Features.Links.Queries.GetLinksListByCategory;
 
-public class GetLinksListByCategoryQueryHandler : IRequestHandler<GetLinksListByCategoryQuery, GetLinksListByCategoryQueryResponse>
+public class GetLinksListByCategoryQueryHandler(ILinkRepository linkRepository, ILinkCategoryRepository linkCategoryRepository, IMapper mapper) : IRequestHandler<GetLinksListByCategoryQuery, GetLinksListByCategoryQueryResponse>
 {
-    private readonly ILinkRepository _linkRepository;
-    private readonly ILinkCategoryRepository _linkCategoryRepository;
-    private readonly IMapper _mapper;
-
-    public GetLinksListByCategoryQueryHandler(ILinkRepository linkRepository, ILinkCategoryRepository linkCategoryRepository,IMapper mapper)
-    {
-        _linkRepository = linkRepository;
-        _linkCategoryRepository = linkCategoryRepository;
-        _mapper = mapper;
-    }
+    private readonly ILinkRepository _linkRepository = linkRepository;
+    private readonly ILinkCategoryRepository _linkCategoryRepository = linkCategoryRepository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<GetLinksListByCategoryQueryResponse> Handle(GetLinksListByCategoryQuery request, CancellationToken cancellationToken)
     {

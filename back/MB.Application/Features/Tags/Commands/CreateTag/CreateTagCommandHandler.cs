@@ -5,39 +5,33 @@ using MediatR;
 
 namespace MB.Application.Features.Tags.Commands.CreateTag;
 
-public class CreateTagCommandHandler : IRequestHandler<CreateTagCommand, CreateTagCommandResponse>
+public class CreateTagCommandHandler(IMapper mapper, IBaseRepository<Tag> tagRepository) : IRequestHandler<CreateTagCommand, CreateTagCommandResponse>
 {
-    private readonly IBaseRepository<Tag> _tagRepository;
-    private readonly IMapper _mapper;
-
-    public CreateTagCommandHandler(IMapper mapper, IBaseRepository<Tag> tagRepository)
-    {
-        _mapper = mapper;
-        _tagRepository = tagRepository;
-    }
+    private readonly IBaseRepository<Tag> _tagRepository = tagRepository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<CreateTagCommandResponse> Handle(CreateTagCommand request, CancellationToken cancellationToken)
     {
         var createTagCommandResponse = new CreateTagCommandResponse();
 
         var validator = new CreateTagCommandValidator();
-        var validationResult = await validator.ValidateAsync(request);
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
         if (validationResult.Errors.Count > 0)
         {
             createTagCommandResponse.Success = false;
-            createTagCommandResponse.ValidationErrors = new List<string>();
+            createTagCommandResponse.ValidationErrors = [];
             foreach (var error in validationResult.Errors)
             {
                 createTagCommandResponse.ValidationErrors.Add(error.ErrorMessage);
             }
+            return createTagCommandResponse;
         }
-        if (createTagCommandResponse.Success)
-        {
-            var tag = new Tag() { Name = request.Name };
-            tag = await _tagRepository.CreateAsync(tag);
-            createTagCommandResponse.Tag = _mapper.Map<CreateTagDto>(tag);
-        }
+
+
+        var tag = new Tag() { Name = request.Name, Description = request.Description };
+        tag = await _tagRepository.CreateAsync(tag);
+        createTagCommandResponse.Tag = _mapper.Map<CreateTagDto>(tag);
 
         return createTagCommandResponse;
     }

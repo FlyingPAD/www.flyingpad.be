@@ -3,6 +3,7 @@ import { UserService } from './core/services/user.service';
 import { CustomCookieService } from './core/services/cookie.service';
 import { AuthService } from './core/services/auth.service';
 import { Router } from '@angular/router';
+import { MenuCustomService } from './core/services/menu-custom.service';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent
 { 
-  #authService = inject(AuthService)            // Authentication
-  #userService = inject(UserService)            // User
-  #cookieService = inject(CustomCookieService)  // Cookies
-  router = inject(Router)                       // Navigation
+  #authService = inject(AuthService)
+  #userService = inject(UserService)
+  #cookieService = inject(CustomCookieService)
+  #menuCustomService = inject(MenuCustomService)
+  router = inject(Router)
 
   ngOnInit() : void
   {
@@ -40,6 +42,36 @@ export class AppComponent
     {
       case 'Escape':
         this.router.navigateByUrl('/')
+        break
+      case 'F1':
+        this.#menuCustomService.triggerMenuCustom()
+        break
+      case '1':
+        this.router.navigateByUrl('/moods')
+        break
+      case '2':
+        this.router.navigateByUrl('/tags')
+        break
+      case '3':
+        this.router.navigateByUrl('/franchises/gallery')
+        break
+      case '4':
+        this.router.navigateByUrl('/moods')
+        break
+      case '5':
+        this.router.navigateByUrl('/moods/mood-details')
+        break
+      case '6':
+        this.router.navigateByUrl('/tags')
+        break
+      case '7':
+        this.router.navigateByUrl('/scripts')
+        break
+      case '8':
+        this.router.navigateByUrl('/tools')
+        break
+      case '9':
+        this.router.navigateByUrl('/links')
         break
     }
   }

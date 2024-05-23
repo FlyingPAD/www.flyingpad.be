@@ -3,6 +3,7 @@ using MB.Application.Features.Tags.Commands.DeleteTag;
 using MB.Application.Features.Tags.Commands.UpdateTag;
 using MB.Application.Features.Tags.Queries.CountTags;
 using MB.Application.Features.Tags.Queries.GetTagById;
+using MB.Application.Features.Tags.Queries.GetTagsByCategory;
 using MB.Application.Features.Tags.Queries.GetTagsByMood;
 using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
@@ -20,20 +21,14 @@ public class TagsControllerV1(IMediator mediator) : ControllerBase
 {
     private readonly IMediator _mediator = mediator;
 
-    /// <summary>
-    /// Create
-    /// </summary>
     [HttpPost("Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<CreateTagCommandResponse>> CreateTag([FromBody] CreateTagCommand createTagCommand)
+    public async Task<ActionResult<CreateTagCommandResponse>> Create([FromBody] CreateTagCommand createTagCommand)
     {
         var response = await _mediator.Send(createTagCommand);
         return Ok(response);
     }
 
-    /// <summary>
-    /// Count
-    /// </summary>
     [HttpGet("Count")]
     public async Task<ActionResult<CountTagsQueryResponse>> Count()
     {
@@ -41,9 +36,6 @@ public class TagsControllerV1(IMediator mediator) : ControllerBase
         return Ok(response);
     }
 
-    /// <summary>
-    /// Get All
-    /// </summary>
     [HttpGet("GetAll")]
     public async Task<ActionResult<GetTagsListQueryResponse>> GetAll()
     {
@@ -51,9 +43,6 @@ public class TagsControllerV1(IMediator mediator) : ControllerBase
         return Ok(response);
     }
 
-    /// <summary>
-    /// Get One Details
-    /// </summary>
     [HttpGet("GetOneDetails/{tagId}")]
     public async Task<ActionResult<GetTagByIdQueryResponse>> GetOneDetails( Guid tagId)
     {
@@ -61,19 +50,20 @@ public class TagsControllerV1(IMediator mediator) : ControllerBase
         return Ok(response);
     }
 
-    /// <summary>
-    /// Get Tags With Categories ( Full List )
-    /// </summary>
     [HttpGet("GetTagsList")]
-    public async Task<ActionResult<GetTagsFullListQueryResponse>> GetTagsFullList()
+    public async Task<ActionResult<GetTagsFullListQueryResponse>> GetFullList()
     {
         var response = await _mediator.Send( new GetTagsFullListQuery() );
         return Ok(response);
     }
 
-    /// <summary>
-    /// Get By Mood
-    /// </summary>
+    [HttpGet("GetByCategory/{categoryId}")]
+    public async Task<ActionResult<GetTagsByCategoryQueryResponse>> GetByCategory( Guid categoryId )
+    {
+        var response = await _mediator.Send( new GetTagsByCategoryQuery { CategoryId = categoryId } );
+        return Ok(response);
+    }
+
     [HttpGet("GetByMood/{moodId}")]
     public async Task<ActionResult<GetTagsByMoodQueryResponse>> GetByMood( Guid moodId )
     {
@@ -81,9 +71,6 @@ public class TagsControllerV1(IMediator mediator) : ControllerBase
         return Ok(response);
     }
 
-    /// <summary>
-    /// Get By Mood ( Checkboxes )
-    /// </summary>
     [HttpGet("GetCheckBoxesByMood/{moodId}")]
     public async Task<ActionResult<GetTagsCheckBoxesByMoodQueryResponse>> GetCheckBoxesByMood(Guid moodId)
     {
@@ -91,9 +78,6 @@ public class TagsControllerV1(IMediator mediator) : ControllerBase
         return Ok(response);
     }
 
-    /// <summary>
-    /// Update
-    /// </summary>
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<UpdateTagCommandResponse>> Update(Guid tagId, [FromBody] UpdateTagCommand updateTagCommand)
@@ -107,9 +91,6 @@ public class TagsControllerV1(IMediator mediator) : ControllerBase
         return Ok(response);
     }
 
-    /// <summary>
-    /// Delete
-    /// </summary>
     [HttpDelete("Delete/{tagId}")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<DeleteTagCommandResponse>> Delete(Guid tagId)

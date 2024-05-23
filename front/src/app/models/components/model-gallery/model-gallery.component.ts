@@ -72,7 +72,7 @@ export class ModelGalleryComponent
       case 'Backspace':
         this.location.back()
         break
-      case 'Control':
+      case 'Enter':
         this.infoTrigger()
         break
     }

@@ -67,6 +67,7 @@ using MB.Application.Features.Tags.Commands.CreateTag;
 using MB.Application.Features.Tags.Commands.DeleteTag;
 using MB.Application.Features.Tags.Commands.UpdateTag;
 using MB.Application.Features.Tags.Queries.GetTagById;
+using MB.Application.Features.Tags.Queries.GetTagsByCategory;
 using MB.Application.Features.Tags.Queries.GetTagsByMood;
 using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
@@ -212,6 +213,7 @@ public class MappingProfiles : Profile
         CreateMap<Tag, GetTagByIdVm>().ReverseMap();
         CreateMap<Tag, GetTagsByMoodQueryVm>().ReverseMap();
         CreateMap<Tag, GetTagsCheckBoxesDto>().ReverseMap();
+        CreateMap<Tag, GetTagsByCategoryQueryDto>().ReverseMap();
 
         // Tag Categories :
 
