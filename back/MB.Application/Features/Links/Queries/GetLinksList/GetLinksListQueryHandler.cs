@@ -6,16 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MB.Application.Features.Links.Queries.GetLinksList;
 
-public class GetLinksListQueryHandler : IRequestHandler<GetLinksListQuery, GetLinksListQueryResponse>
+public class GetLinksListQueryHandler(IBaseRepository<Link> linkRepository, IMapper mapper) : IRequestHandler<GetLinksListQuery, GetLinksListQueryResponse>
 {
-    private readonly IBaseRepository<Link> _linkRepository;
-    private readonly IMapper _mapper;
-
-    public GetLinksListQueryHandler(IBaseRepository<Link> linkRepository, IMapper mapper)
-    {
-        _linkRepository = linkRepository;
-        _mapper = mapper;
-    }
+    private readonly IBaseRepository<Link> _linkRepository = linkRepository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<GetLinksListQueryResponse> Handle(GetLinksListQuery request, CancellationToken cancellationToken)
     {

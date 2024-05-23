@@ -1,7 +1,7 @@
 <!-- Top Button -->
 <app-button-top />
-
 <div id="layout-central" *ngIf="tagsList() as tags">
+    <!-- Mobile Display -->
     <div class="mobile"> 
         <div class="tags-gallery" *ngIf="tags.length; else loading">
             <div *ngFor="let list of tags">
@@ -12,7 +12,7 @@
                     <div class="flex">
                         <div *ngFor="let tag of list.tags">
                             <a id="{{tag.businessId}}" 
-                                [ngClass]="tag.businessId === moods().tagDetails?.businessId ? 'active' : '' " 
+                                [class.active]="tag.businessId === moods().tagDetails?.businessId" 
                                 routerLink="/moods/gallery" 
                                 (click)="updateTagId(tag.businessId)">▸ {{ tag.name }}
                             </a>
@@ -29,16 +29,21 @@
             </div>
         </ng-template>
     </div>
-
+    <!-- Desktop Display -->
     <div class="desktop">
         <div id="tags-wall" *ngIf="tags.length; else loading">
             <div class="tags-box" *ngFor="let category of tags">
                 <div class="box-category">
+                    <!-- Category Name -->
                     <p class="name-cat left">{{ category.category.name }}</p>
                 </div>
                 <div class="overflow">
+                    <!-- Tag List -->
                     <div *ngFor="let tag of category.tags">
-                        <p><span> ▸ </span><a routerLink="/moods/gallery" class="name-tag" (click)="updateTagId(tag.businessId)">{{ tag.name }}</a></p>
+                        <p>
+                            <span> ▸ </span>
+                            <a routerLink="/moods/gallery" class="name-tag" (click)="updateTagId(tag.businessId)">{{ tag.name }}</a>
+                        </p>
                     </div>
                 </div>
             </div>   

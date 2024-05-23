@@ -26,11 +26,10 @@ public class GetModelsListQueryHandler(IBaseRepository<Model> modelRepository, I
         }
         catch (Exception ex)
         {
-            // Gérez l'exception et renvoyez une réponse d'erreur
             var response = new GetModelsListQueryResponse
             {
                 Success = false,
-                ValidationErrors = [ "Une erreur s'est produite ( {ex} )."]
+                ValidationErrors = [ "Une erreur s'est produite ( " + ex + " )."]
             };
 
             return response;

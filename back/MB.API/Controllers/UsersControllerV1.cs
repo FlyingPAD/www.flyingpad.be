@@ -22,41 +22,29 @@ public class UsersControllerV1(IMediator mediator) : ControllerBase
     /// </summary>
     [HttpPost]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<CreateUserCommandResponse>> CreateUser([FromBody] CreateUserCommand createUserCommand)
-    {
-        var response = await _mediator.Send(createUserCommand);
-        return Ok(response);
-    }
+    public async Task<ActionResult<CreateUserCommandResponse>> Create([FromBody] CreateUserCommand createUserCommand)
+        => Ok(await _mediator.Send(createUserCommand));
 
     /// <summary>
     /// Count
     /// </summary>
     [HttpGet("Count")]
     public async Task<ActionResult<CountUsersQueryResponse>> Count()
-    {
-        var response = await _mediator.Send(new CountUsersQuery());
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new CountUsersQuery()));
 
     /// <summary>
     /// Get All
     /// </summary>
     [HttpGet("GetAll")]
     public async Task<ActionResult<GetUsersListQueryResponse>> GetAll()
-    {
-        var response = await _mediator.Send(new GetUsersListQuery());
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new GetUsersListQuery()));
 
     /// <summary>
     /// Get One Details
     /// </summary>
     [HttpGet("GetOneDetails/{userId}")]
     public async Task<ActionResult<GetUserByIdQuery>> GetOneDetails( Guid userId )
-    {
-        var response = await _mediator.Send(new GetUserByIdQuery { Id = userId });
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new GetUserByIdQuery { Id = userId }));
 
     /// <summary>
     /// Update
@@ -64,10 +52,7 @@ public class UsersControllerV1(IMediator mediator) : ControllerBase
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<UpdateUserCommandResponse>> Update([FromBody] UpdateUserCommand updateUserCommand)
-    {
-        var response = await _mediator.Send(updateUserCommand);
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(updateUserCommand));
 
     /// <summary>
     /// Delete

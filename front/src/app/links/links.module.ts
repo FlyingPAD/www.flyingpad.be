@@ -4,14 +4,14 @@ import { CommonModule } from '@angular/common';
 import { LinksRoutingModule } from './links-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { GalleryComponent } from './components/gallery/gallery.component';
-import { ListComponent } from './components/list/list.component';
+import { EditionComponent } from './components/edition/edition.component';
 
 
 @NgModule({
   declarations: 
   [
     GalleryComponent,
-    ListComponent
+    EditionComponent
   ],
   imports: 
   [

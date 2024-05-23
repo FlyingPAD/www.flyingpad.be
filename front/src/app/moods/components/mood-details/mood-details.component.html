@@ -1,12 +1,16 @@
+<!-- Tags Column Trigger -->
+<div class="tags-trigger" [class.tags-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
+    <div class="tags-trigger-arrow"></div>
+</div>
+<!-- Tags Column -->
 <app-menu-right-desktop *ngIf="mood() as flow" (click)="menuTrigger()">
     <div class="content_right_desktop">
-        <!-- Related Tags -->
         <h1 class="item-top">Related Tags ( {{ flow.tags.length }} )</h1>
         <div class="item-bottom list_categories">
             <div *ngFor="let tag of flow.tags">
                 <div>
                     <a routerLink="/moods/gallery"
-                        [ngClass]="tag.businessId === moods().tagDetails?.businessId ? 'active' : '' "
+                        [class.active]="tag.businessId === moods().tagDetails?.businessId"
                         (click)="updateTagId(tag.businessId)">
                         {{tag.name}}
                     </a>
@@ -15,14 +19,13 @@
         </div>
     </div>
 </app-menu-right-desktop>
-
 <div id="layout-central" *ngIf="mood() as flow">
     <!-- // Viewer    -->
     <div id="viewer">
         <!-- Image -->
         <div class="mood-image" *ngIf="flow.mood.type === 1">
             <div id="mood_content" >
-                <img [ngStyle]="{'height.px' : moodHeight}"
+                <img [style.height.px]="moodHeight"
                 src="{{environment}}/Content/img_thumbs/{{flow.mood.businessId}}.{{flow.mood.extension}}" />
             </div>
             <div (click)="getPage('previous')" id="page_previous"></div>
@@ -36,7 +39,7 @@
                     autoplay
                     loop
                     [muted]="true"
-                    src="{{environment}}/Content/video/{{flow.mood.businessId}}.{{flow.mood.extension}}"
+                    [src]="environment + '/Content/video/' + flow.mood.businessId + '.' + flow.mood.extension"
                     type="video/mp4">
                 </video>
             </div>
@@ -49,11 +52,6 @@
         </div>
     </div>
 </div>
-
-<div class="tags-trigger" [ngClass]="menuService.menuRActive === true ? 'tags-trigger-on' : '' " (click)="menuTrigger()">
-    <div class="tags-trigger-arrow"></div>
-</div>
-
 <div class="bar" *ngIf="moods() as moods">
     <!-- Previous Page -->
     <a (click)="getPage('previous')">
@@ -110,10 +108,9 @@
         <img class="toggle" src="../../../../assets/app_icons/download.png" />
     </a>
 </div>
-
 <div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="mood() as flow" (click)="infoTrigger()">
     <h1 *ngIf="flow.mood.name !== '...' ">{{ flow.mood.name }}</h1>
-    <p *ngIf="flow.mood.name !== '...' ">{{flow.mood.description}}</p>
+    <p *ngIf="flow.mood.description !== '...' ">{{flow.mood.description}}</p>
     <div *ngIf="userService.appUser.role === 2">
         <!-- Related Models -->
         <p>Starring</p>
@@ -139,7 +136,7 @@
     </div>
     <!-- Mood Type : IMAGE -->
     <div *ngIf="flow.mood.type === 1 ">
-        <div class="item-middle flex">
+        <div class="item-top flex">
             <p><b>Size</b></p>
             <p>{{ typeCheck(flow.media).size | formatSize:2 }}</p>
         </div>
@@ -158,7 +155,7 @@
         </div>
     <!-- Mood Type : VIDEO -->
     <div *ngIf="flow.mood.type === 2 ">
-        <div class="item-middle flex">
+        <div class="item-top flex">
             <p><b>Size</b></p>
             <p>{{ typeCheck(flow.media).size | formatSize:2 }}</p>
         </div>

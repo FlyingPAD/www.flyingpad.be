@@ -112,10 +112,10 @@ export class MoodsGalleryComponent
   {
     switch (event.key) 
     {
-      case 'Control':
+      case 'Enter':
         this.infoTrigger()
         break
-      case '.':
+      case '+':
         this.menuTrigger()
         break
       case 'Backspace':

@@ -1,12 +1,53 @@
-#pagination
+.pagination-row
 {
-    pagination-controls
+    position: fixed;
+    bottom: 65px;
+    width: 100vw;
+    background-color: rgba(255, 253, 251, 0.8);
+    backdrop-filter: blur(3px);
+    border-top: 1px solid #6b5240;
+    font-size: 15px;
+
+    #pagination
     {
-        text-align: center;
+        pagination-controls
+        {
+            text-align: center;
+        }
+        .pagination ::ng-deep .ngx-pagination .current 
+        {
+            background: #6b5240;  
+            border-radius: 5px;
+        }
     }
-    .pagination ::ng-deep .ngx-pagination .current 
+}
+
+.top-options
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 10px;
+
+    .filter
     {
-        background: #6b5240;  
-        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+    
+        margin: 15px;
+    
+        input
+        {
+            padding: 8px;
+            margin: 8px;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+        input:focus
+        {
+            outline: none;
+            border: 2px solid #413429;
+        }
     }
 }
