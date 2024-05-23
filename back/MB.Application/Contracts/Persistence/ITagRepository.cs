@@ -13,4 +13,5 @@ public interface ITagRepository : IBaseRepository<Tag>
     Task<IEnumerable<GetTagsCheckBoxesListDto>> GetTagsCheckBoxesByMood( int? moodId );
     Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> tagIds);
     Task<Tag?> GetByName(string name);
+    Task<List<Tag>> GetByCategory(int categoryId);
 }

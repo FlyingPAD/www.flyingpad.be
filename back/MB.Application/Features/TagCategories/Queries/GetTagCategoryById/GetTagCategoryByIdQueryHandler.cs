@@ -5,16 +5,10 @@ using MediatR;
 
 namespace MB.Application.Features.TagCategories.Queries.GetTagCategoryById;
 
-public class GetTagCategoryByIdQueryHandler : IRequestHandler<GetTagCategoryByIdQuery, GetTagCategoryByIdQueryResponse>
+public class GetTagCategoryByIdQueryHandler(IMapper mapper, IBaseRepository<TagCategory> tagCategoryRepository) : IRequestHandler<GetTagCategoryByIdQuery, GetTagCategoryByIdQueryResponse>
 {
-    private readonly IMapper _mapper;
-    private IBaseRepository<TagCategory> _tagCategoryRepository;
-
-    public GetTagCategoryByIdQueryHandler(IMapper mapper, IBaseRepository<TagCategory> tagCategoryRepository)
-    {
-        _mapper = mapper;
-        _tagCategoryRepository = tagCategoryRepository;
-    }
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<TagCategory> _tagCategoryRepository = tagCategoryRepository;
 
     public async Task<GetTagCategoryByIdQueryResponse> Handle(GetTagCategoryByIdQuery request, CancellationToken cancellationToken)
     {

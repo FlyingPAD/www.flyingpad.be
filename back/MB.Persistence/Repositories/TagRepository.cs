@@ -90,4 +90,16 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
         return await _context.Set<Tag>()
                              .SingleOrDefaultAsync(x => x.Name == name);
     }
+
+
+    /// <summary>
+    /// Retrieves a list of tags by their category ID.
+    /// </summary>
+    public async Task<List<Tag>> GetByCategory(int categoryId)
+    {
+        return await _context.Tags
+                             .Where(tag => tag.TagCategoryId == categoryId)
+                             .OrderBy(tag => tag.Name)
+                             .ToListAsync();
+    }
 }

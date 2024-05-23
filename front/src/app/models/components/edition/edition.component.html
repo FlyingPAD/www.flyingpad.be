@@ -1,0 +1,44 @@
+<div *ngIf="modelsEditionFlow() as flow">
+  <div id="layout-central">   
+    <div class="top-options">
+      <!-- New Link Button -->
+      <div class="new-link" (click)="resetCreate()">
+        <img src="../../../../assets/app_icons/icon_model_001.png" />
+        <a>New Model</a>
+      </div>
+      <!-- Filter Links User Input -->
+      <div class="filter">
+          <input type="text" [(ngModel)]="searchModels" placeholder="Filter models ...">
+      </div>
+    </div>
+    <!-- List -->
+    <div id="list">
+        <div *ngFor="let model of filterModels() | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage }">
+          <div class="list-flex"> 
+            <a class="list-item link" routerLink="/models/model-gallery" (click)="updateModelId(model.businessId)"> ▸ {{model.pseudonym}}</a>   
+            <a class="list-item update" routerLink="/models/update-model">U</a>        
+          </div>  
+        </div>
+    </div>
+  </div>
+  <!-- Pagination controls -->
+  <div class="pagination-row" *ngIf="flow.length > elementsPerPage">
+    <div id="pagination">
+      <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
+    </div>   
+  </div>
+  <!-- Bottom Bar -->
+  <div class="bar">
+    <!-- Models Count -->
+    <a class="tweak">
+        <div class="position">{{ flow.length | number : '4.0'}}</div>
+    </a>
+    <!-- To Top Button -->
+    <a (click)="toTop()" *ngIf="topButtonIsActive === true">
+        <img src="../../../../assets/app_icons/arrow_up.png" />
+    </a>
+    <span *ngIf="topButtonIsActive === false">
+        <img src="../../../../assets/app_icons/arrow_up_no.png" />
+    </span>
+  </div>
+</div>

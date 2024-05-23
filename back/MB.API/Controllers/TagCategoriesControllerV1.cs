@@ -17,38 +17,23 @@ public class TagCategoriesControllerV1(IMediator mediator) : ControllerBase
 {
     private readonly IMediator _mediator = mediator;
 
-    /// <summary>
-    /// Create
-    /// </summary>
     [HttpPost("Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<CreateTagCategoryCommandResponse>> Create([FromBody] CreateTagCategoryCommand createTagCategoryCommand)
         => Ok(await _mediator.Send(createTagCategoryCommand));
 
-    /// <summary>
-    /// Count
-    /// </summary>
     [HttpGet("Count")]
     public async Task<ActionResult<CountTagCategoriesQueryResponse>> Count()
         => Ok(await _mediator.Send(new CountTagCategoriesQuery()));
 
-    /// <summary>
-    /// Get All
-    /// </summary>
     [HttpGet("GetAll")]
     public async Task<ActionResult<GetTagCategoriesListQueryResponse>> GetAll()
         => Ok(await _mediator.Send(new GetTagCategoriesListQuery()));
 
-    /// <summary>
-    /// Get One
-    /// </summary>
-    [HttpGet("GetOne/{tagCategoryId}")]
-    public async Task<ActionResult<GetTagCategoryByIdQuery>> GetOne(Guid tagCategoryId)
-        => Ok(await _mediator.Send(new GetTagCategoryByIdQuery { Id = tagCategoryId }));
+    [HttpGet("GetById/{categoryId}")]
+    public async Task<ActionResult<GetTagCategoryByIdQuery>> GetById(Guid categoryId)
+        => Ok(await _mediator.Send(new GetTagCategoryByIdQuery { Id = categoryId }));
 
-    /// <summary>
-    /// Update
-    /// </summary>
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<UpdateTagCategoryCommandResponse>> Update(Guid tagCategoryId, [FromBody] UpdateTagCategoryCommand updateTagCategoryCommand)

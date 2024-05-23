@@ -5,16 +5,10 @@ using MediatR;
 
 namespace MB.Application.Features.TagCategories.Queries.GetTagCategoriesList;
 
-public class GetTagCategoriesListQueryHandler : IRequestHandler<GetTagCategoriesListQuery, GetTagCategoriesListQueryResponse>
+public class GetTagCategoriesListQueryHandler(IBaseRepository<TagCategory> tagCategoryRepository, IMapper mapper) : IRequestHandler<GetTagCategoriesListQuery, GetTagCategoriesListQueryResponse>
 {
-    private readonly IBaseRepository<TagCategory> _tagCategoryRepository;
-    private readonly IMapper _mapper;
-
-    public GetTagCategoriesListQueryHandler(IBaseRepository<TagCategory> tagCategoryRepository, IMapper mapper)
-    {
-        _tagCategoryRepository = tagCategoryRepository;
-        _mapper = mapper;
-    }
+    private readonly IBaseRepository<TagCategory> _tagCategoryRepository = tagCategoryRepository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<GetTagCategoriesListQueryResponse> Handle(GetTagCategoriesListQuery request, CancellationToken cancellationToken)
     {
@@ -25,7 +19,7 @@ public class GetTagCategoriesListQueryHandler : IRequestHandler<GetTagCategories
             {
                 Success = true,
                 Message = "Here are the TagCategories !",
-                TagCategoriesList = _mapper.Map<List<TagCategoryListVm>>(tagCategories)
+                TagCategories = _mapper.Map<List<TagCategoryListVm>>(tagCategories)
             };
 
             return response;
@@ -36,7 +30,7 @@ public class GetTagCategoriesListQueryHandler : IRequestHandler<GetTagCategories
             var response = new GetTagCategoriesListQueryResponse
             {
                 Success = false,
-                ValidationErrors = new List<string> { $"Une erreur s'est produite ( {ex} )." }
+                ValidationErrors = ["Une erreur s'est produite ( " + ex + " )."]
             };
 
             return response;

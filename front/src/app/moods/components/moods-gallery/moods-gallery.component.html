@@ -1,3 +1,8 @@
+<!-- Right Column Trigger -->
+<div class="tags-trigger" [class.tags-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
+    <div class="tags-trigger-arrow"></div>
+</div>
+<!-- Right Colum -->
 <app-menu-right-desktop>
     <div class="content_right_desktop">
         <!-- Tags List -->
@@ -17,7 +22,7 @@
         </div>
     </div>
 </app-menu-right-desktop>
-
+<!-- Central Layout -->
 <div id="layout-central">
     <div *ngIf="moods().moodsList.length; else loading">
         <!-- Pagination -->
@@ -58,11 +63,7 @@
         </div>
     </ng-template>
 </div>
-
-<div class="tags-trigger" [ngClass]="menuService.menuRActive === true ? 'tags-trigger-on' : '' " (click)="menuTrigger()">
-    <div class="tags-trigger-arrow"></div>
-</div>
-
+<!-- Bottom Bar -->
 <div class="bar" *ngIf="moods() as flow">
     <!-- Tag Name -->
     <a class="tweak" *ngIf="flow.tagDetails?.name">
@@ -84,7 +85,7 @@
         <img src="../../../../assets/app_icons/arrow_up_no.png" />
     </span>
 </div>
-
+<!-- Info Box -->
 <div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="moods() as flow" (click)="infoTrigger()">
     <!-- Tag Name -->
     <h1>{{ flow.tagDetails?.name }}</h1>

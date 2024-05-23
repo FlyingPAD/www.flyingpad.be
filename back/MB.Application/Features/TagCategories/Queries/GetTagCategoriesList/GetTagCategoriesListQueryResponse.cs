@@ -8,7 +8,7 @@ public class GetTagCategoriesListQueryResponse : BaseResponse
     /// Properties
     /// </summary>
     /// 
-    public List<TagCategoryListVm> TagCategoriesList { get; set; } = default!;
+    public List<TagCategoryListVm> TagCategories { get; set; } = default!;
 
     /// <summary>
     /// Constructor

@@ -1,0 +1,135 @@
+<div *ngIf="tagsEditionFlow() as flow">
+    <!-- Right Column Trigger -->
+    <div class="tags-trigger" [class.tags-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
+      <div class="tags-trigger-arrow"></div>
+    </div>
+    <!-- Right Column -->
+    <app-menu-right-desktop>
+      <div class="content_right_desktop">
+          <!-- Tag Categories -->
+          <div id="categories_list_admin">
+              <div class="link_flex">
+                  <a class="category" (click)="updateCategory(null)">Display all Tags</a>
+              </div>
+              <div class="link_flex" *ngFor="let category of flow.tagCategories">
+                  <a class="category" id="{{category.businessId}}" (click)="updateCategory(category.businessId)"> ▸ {{category.name}}</a>
+              </div>
+          </div>
+      </div>
+    </app-menu-right-desktop>
+    <!-- Central Layout -->
+    <div id="layout-central">
+      <div class="top-options">
+        <!-- New Tag Button -->
+        <div class="new-tag" (click)="resetCreate()">
+          <img src="../../../../assets/app_icons/icon_tags_001.png" />
+          <a>New Tag</a>
+        </div>
+        <!-- Filter Tags User Input -->
+        <div class="filter">
+            <input type="text" [(ngModel)]="searchTags" placeholder="Filter tags ...">
+        </div>
+      </div>
+      <!-- List -->
+      <div id="list">
+          <div *ngFor="let tag of filterTags() | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage }">
+            <div class="list-flex"> 
+              <a class="list-item link" routerLink="/moods/" (click)="updateTagId(tag.businessId)"> ▸ {{tag.name}}</a>   
+              <a class="list-item update" (click)="updateTag(tag.businessId)">U</a>      
+            </div>  
+          </div>
+      </div>
+    </div>
+    <!-- Create Modal -->
+    <div class="modal" [class.on]="tagTriggerCreate === true">
+      <h1>Create Tag</h1>
+      <div class="form">  
+        <form [formGroup]="createFormGroup">
+          <input type="text" placeholder="Name" formControlName="name" value="{{flow.tag?.name}}">
+          <div *ngIf="createFormGroup.get('name')?.touched && createFormGroup.get('name')?.errors">
+            <p class="error" *ngIf="createFormGroup.get('name')?.errors?.['required']">
+              Name is required.
+            </p>
+            <p class="error" *ngIf="createFormGroup.get('name')?.errors?.['minLength']">
+              Name must be at least 1 character long.
+            </p>
+            <p class="error" *ngIf="createFormGroup.get('name')?.errors?.['maxLength']">
+              Name must not exceed 50 characters long.
+            </p>
+          </div>
+          <input type="text" placeholder="Description" formControlName="description" value="{{flow.tag?.description}}">    
+          <div *ngIf="createFormGroup.get('description')?.touched && createFormGroup.get('description')?.errors">
+            <p class="error" *ngIf="createFormGroup.get('description')?.errors?.['required']">
+              Description is required.
+            </p>
+            <p class="error" *ngIf="createFormGroup.get('description')?.errors?.['minLength']">
+              Description must be at least 1 character long.
+            </p>
+            <p class="error" *ngIf="createFormGroup.get('description')?.errors?.['maxLength']">
+              Description must not exceed 50 characters long.
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="modal-buttons">
+        <a (click)="onCreate()" *ngIf="createFormGroup.valid">Submit</a>
+        <span *ngIf="!createFormGroup.valid">Submit</span>
+        <a (click)="triggerCreate()">Cancel</a>
+      </div>
+    </div>
+    <!-- Update Modal -->
+    <div class="modal" [class.on]="tagTriggerUpdate === true">
+      <h1>Update Tag</h1>
+      <div class="form">  
+        <form [formGroup]="updateFormGroup">
+        <input type="text" formControlName="name" value="{{flow.tag?.name}}">
+        <input type="text" formControlName="description" value="{{flow.tag?.description}}">       
+        </form>
+      </div>
+      <div class="modal-buttons">
+        <a (click)="onUpdate()" *ngIf="updateFormGroup.valid">Submit</a>
+        <span *ngIf="!updateFormGroup.valid">Submit</span>
+        <a (click)="cancelUpdate()">Cancel</a>
+        <a (click)="triggerDelete(); triggerUpdate()">Delete</a>
+      </div>
+    </div>
+    <!-- Delete Modal -->
+    <div class="modal" [class.on]="tagTriggerDelete === true">
+      <h1 class="warning">Warning !!</h1>
+      <br>
+      <p>This will <u>permanently</u> delete</p>
+      <p><b>{{flow.tag?.name}}</b></p>
+      <br>
+      <p>Are you sure ?</p>
+      <div class="modal-buttons">
+        <a (click)="onDelete(flow.tag?.businessId)">Delete</a>
+        <a (click)="cancelDelete()">Cancel</a>
+      </div>
+    </div>
+    <!-- Overlay -->
+    <div class="overlay" [class.overlay-on]="tagTriggerCreate === true || tagTriggerUpdate === true || tagTriggerDelete === true"></div>
+    <!-- Pagination controls -->
+    <div class="pagination-row" *ngIf="flow.tags.length > elementsPerPage">
+      <div id="pagination">
+        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
+      </div>   
+    </div>
+    <!-- Bottom Bar -->
+    <div class="bar">
+      <!-- Tag Name -->
+      <a class="tweak" *ngIf="flow.categoryDetails?.name">
+          <div class="position"><b>{{ flow.categoryDetails?.name}}</b></div>
+      </a>
+      <!-- Tags Count -->
+      <a class="tweak">
+          <div class="position">{{ flow.tags.length | number : '4.0'}}</div>
+      </a>
+      <!-- To Top Button -->
+      <a (click)="toTop()" *ngIf="topButtonIsActive === true">
+          <img src="../../../../assets/app_icons/arrow_up.png" />
+      </a>
+      <span *ngIf="topButtonIsActive === false">
+          <img src="../../../../assets/app_icons/arrow_up_no.png" />
+      </span>
+    </div>
+  </div>
