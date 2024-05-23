@@ -3,5 +3,4 @@
 public class CreateLinkDto
 {
     public Guid BusinessId { get; set; }
-    public string Name { get; set; } = string.Empty;
 }

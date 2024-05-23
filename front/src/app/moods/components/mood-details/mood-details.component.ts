@@ -113,19 +113,19 @@ export class MoodDetailsComponent implements OnDestroy
       case ' ':
         this.intervalId === undefined ? this.diaporamaStart(false) : this.diaporamaStop()
         break
-      case 'Enter':
+      case 'Shift':
         this.openDownload()
         break
       case '0':
         this.getRandomMood()
         break
-      case '+':
+      case 'Control':
         this.toggleFocus()
         break
-      case 'Control':
+      case 'Enter':
         this.infoTrigger()
         break
-      case '.':
+      case '+':
         this.menuTrigger()
         break
       case 'Backspace':

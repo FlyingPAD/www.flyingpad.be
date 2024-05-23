@@ -2,28 +2,34 @@
    ========================================================================== */
 html 
 {
-    /* Main Y scrollbar always visible to prevent page 'shaking' */
+    // Main Y scrollbar always visible to prevent page 'shaking'
     overflow-y: scroll;             
     scrollbar-width: thin;
-    scrollbar-color: rgb(107, 82, 64, 0.7) #f1f1f1;
-    
-    /* Main X scrollbar always hidden to prevent page losing focus */
-    overflow-x: hidden;             
+    scrollbar-color: rgb(107, 82, 64, 0.7) #f1f1f1;    
 
-    // Disable User Selection :
+    // Main X scrollbar always hidden to prevent page losing focus
+    overflow-x: hidden;     
 
-    -moz-user-select: none;         /* Firefox */
-    -webkit-user-select: none;      /* Chrome, Safari, Opéra depuis la version 15 */
-    -ms-user-select: none;          /* Internet explorer depuis la version 10 et Edge */
-    user-select: none;              /* Propriété standard */
-}
-  
+    // Disable User Selection
+    /* Firefox */
+    -moz-user-select: none;     
+    /* Chrome, Safari, Opéra since version 15 */    
+    -webkit-user-select: none;     
+    /* Internet explorer since version 10 & Edge */ 
+    -ms-user-select: none;   
+    /* Standard Property */       
+    user-select: none;              
+}  
+
 body
 {
-    font-family: var(--fontFamily);                     // Main Font
-    background-image: var(--texture001);                // Custom Background
-    max-width: 100vw;                                   // Limit Width
+    // Main Font
+    font-family: var(--fontFamily);       
+    // Custom Background              
+    background-image: var(--texture001); 
+    // Limit Width               
+    max-width: 100vw;                                   
 }
 
+// TODO: refactoring : replace 'id' by 'class'
 // TODO: refactoring : replace ' _ ' by ' - ' for CSS class names
-// TODO: refactoring : replace id by class if tag isn't unique per page

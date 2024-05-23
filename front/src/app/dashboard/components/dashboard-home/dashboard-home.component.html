@@ -1,5 +1,20 @@
 <div id="layout-central">
-  <div class="dash">
+  <!-- Display Info -->
+  <div id="display-model">
+    <div class="model-flex">
+      <p><b>Display Mode</b> : </p>
+      <p>{{appSettings.appDisplayMode}}</p>
+    </div>
+    <div class="model-flex">
+      <p><b>Window Size</b> :</p>
+      <p>{{appSettings.appScreenWidth}} x {{appSettings.appScreenHeight}} pixels</p>
+    </div>
+  </div>
+  <!-- Navigation -->
+  <div class="row-white">
+    <h2>Navigation</h2>
+  </div>
+  <div class="dashboard">
     <a routerLink="/franchises/gallery">
       <img src="../../../../assets/app_icons/icon_franchises_001.png" />
       <p>Medias</p>
@@ -15,14 +30,6 @@
     <a routerLink="/moods/mood-details">
       <img src="../../../../assets/app_icons/icon_mood_001.png" />
       <p>Mood</p>
-    </a>
-    <a routerLink="/moods/create-mood-image">
-      <img src="../../../../assets/app_icons/icon_mood_001.png" />
-      <p>Image</p>
-    </a>
-    <a routerLink="/moods/create-mood-video">
-      <img src="../../../../assets/app_icons/icon_mood_001.png" />
-      <p>Video</p>
     </a>
     <a routerLink="/franchises/franchise-gallery">
       <img src="../../../../assets/app_icons/icon_franchise_001.png" />
@@ -49,10 +56,11 @@
       <p>Links</p>
     </a> 
   </div>
+  <!-- Edition -->
   <div class="row-white">
-    <h2>C.R.U.D.</h2>
+    <h2>Edition</h2>
   </div>
-  <div class="dash">
+  <div class="dashboard">
     <a routerLink="/tags/list">
       <img src="../../../../assets/app_icons/icon_tags_001.png" />
       <p>Tags</p>
@@ -65,26 +73,17 @@
       <img src="../../../../assets/app_icons/artist.png" />
       <p>Artists</p>
     </a>
+    <a routerLink="/moods/create-mood-image">
+      <img src="../../../../assets/app_icons/icon_mood_001.png" />
+      <p>Images</p>
+    </a>
     <a routerLink="/models/list">
       <img src="../../../../assets/app_icons/icon_model_001.png" />
       <p>Models</p>
     </a>
-    <a routerLink="/links/list">
+    <a routerLink="/links/edition">
       <img src="../../../../assets/app_icons/icon_links_001.png" />
       <p>Links</p>
     </a> 
-  </div>
-  <div class="row-white">
-    <h2>Display Info</h2>
-  </div>
-  <div id="display-model">
-    <div class="model-flex">
-      <p><b>Mode</b> : </p>
-      <p>{{appSettings.appDisplayMode}}</p>
-    </div>
-    <div class="model-flex">
-      <p><b>Window Size</b> :</p>
-      <p>{{appSettings.appScreenWidth}} x {{appSettings.appScreenHeight}} pixels</p>
-    </div>
   </div>
 </div>

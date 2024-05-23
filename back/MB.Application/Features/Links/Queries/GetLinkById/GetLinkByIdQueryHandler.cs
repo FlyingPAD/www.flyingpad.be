@@ -5,16 +5,10 @@ using MediatR;
 
 namespace MB.Application.Features.Links.Queries.GetLinkById;
 
-public class GetLinkByIdQueryHandler : IRequestHandler<GetLinkByIdQuery, GetLinkByIdQueryResponse>
+public class GetLinkByIdQueryHandler(IMapper mapper, IBaseRepository<Link> linkRepository) : IRequestHandler<GetLinkByIdQuery, GetLinkByIdQueryResponse>
 {
-    private readonly IMapper _mapper;
-    private IBaseRepository<Link> _linkRepository;
-
-    public GetLinkByIdQueryHandler(IMapper mapper, IBaseRepository<Link> linkRepository)
-    {
-        _mapper = mapper;
-        _linkRepository = linkRepository;
-    }
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<Link> _linkRepository = linkRepository;
 
     public async Task<GetLinkByIdQueryResponse> Handle(GetLinkByIdQuery request, CancellationToken cancellationToken)
     {
