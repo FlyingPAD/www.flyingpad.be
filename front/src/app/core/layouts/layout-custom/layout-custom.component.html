@@ -140,7 +140,7 @@
 </div>
 
 <!-- Overlay -->
-<div class="overlay" [ngClass]="menuCustom.menuCustomOn === true ? '' : 'overlay-hidden' " (click)="menuTrigger()"></div>
+<div class="overlay" [class.overlay-hidden]="menuCustom.menuCustomOn === false" (click)="menuTrigger()"></div>
 
 <!-- Header -->
 <header>
@@ -149,7 +149,7 @@
         <div class="grid-section-left">
             <!-- Menu Trigger -->
             <div class="trigger">
-                <img [ngClass]="menuCustom.menuCustomOn ? 'img-active' : '' " 
+                <img [class.img-active]="menuCustom.menuCustomOn === true" 
                 src="../../../../assets/app_icons/icon_hamburger_001.png" 
                 (click)="menuCustom.triggerMenuCustom()" />
             </div>
@@ -164,14 +164,14 @@
             <!-- Login -->
             <div class="login" *ngIf="!(authService.isConnectedSub | async)">
                 <a routerLink="/authentication/login">
-                    <img [ngClass]="menuCustom.menuCustomOn ? 'img-active' : '' " 
+                    <img [class.img-active]="menuCustom.menuCustomOn === true" 
                     src="../../../../assets/app_icons/login.png" />
                 </a>
             </div>
             <!-- Logout -->
             <div class="login" *ngIf="authService.isConnectedSub | async">
                 <a routerLink="/home" (click)="logout()">
-                    <img [ngClass]="menuCustom.menuCustomOn ? 'img-active' : '' " 
+                    <img [class.img-active]="menuCustom.menuCustomOn === true" 
                     src="../../../../assets/app_icons/logout.png" />
                 </a>
             </div>
