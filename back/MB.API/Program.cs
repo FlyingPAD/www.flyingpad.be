@@ -19,10 +19,10 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        // Builder Creation
+        // Builder Creation.
         var builder = WebApplication.CreateBuilder(args);
 
-        // Serilog Initialization
+        // Serilog Initialization.
         builder.Host.UseSerilog((context, services, configuration) =>
         {
             var currentDateTime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
