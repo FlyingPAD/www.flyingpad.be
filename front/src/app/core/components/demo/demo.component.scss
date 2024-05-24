@@ -1,20 +1,16 @@
-.menu
+.box
 {
-    position: fixed;
-    top: 0;
-    left: 0;
+    width: 150px;
+    height: 350px;
+    border: 1px solid black;
 
-    width : 300px;
-    max-height: 100vh;
-
-    header
+    h2
     {
-        height: 50px;
+        text-align: center;
     }
 
-    main
+    p
     {
-        height: calc( 100vh - 50px) ;
-        overflow-y: scroll;
+        margin-left: 50%;
     }
 }
