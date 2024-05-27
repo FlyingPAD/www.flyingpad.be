@@ -21,72 +21,45 @@ public class RelationsControllerV1(IMediator mediator) : ControllerBase
 {
     private readonly IMediator _mediator = mediator;
 
-    /// <summary>
-    /// Create RAS
-    /// </summary>
     [HttpPost("ArtistStyle/Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<BaseResponse>> InsertRAS([FromBody] CreateRelationsArtistStyleCommand rasCommand)
         => Ok(await _mediator.Send(rasCommand));
 
-    /// <summary>
-    /// Create RFM
-    /// </summary>
     [HttpPost("FranchiseMedia/Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<BaseResponse>> InsertRFM([FromBody] CreateRelationsFranchiseMediaCommand rfmCommand)
         => Ok(await _mediator.Send(rfmCommand));
 
-    /// <summary>
-    /// Create RLC
-    /// </summary>
     [HttpPost("LinkCategory/Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<BaseResponse>> InsertRLC([FromBody] CreateRelationsLinkCategoryCommand rlcCommand)
         => Ok(await _mediator.Send(rlcCommand));
 
-    /// <summary>
-    /// Create RMF
-    /// </summary>
     [HttpPost("ModelFranchise/Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<BaseResponse>> InsertRMF([FromBody] CreateRelationsModelFranchiseCommand rmfCommand)
         => Ok(await _mediator.Send(rmfCommand));
 
-    /// <summary>
-    /// Create RMT
-    /// </summary>
     [HttpPost("MoodTag/Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<BaseResponse>> InsertRMT([FromBody] CreateRelationsMoodTagsCommand rmtCommand)
         => Ok(await _mediator.Send(rmtCommand));
 
-    /// <summary>
-    /// Create RMA
-    /// </summary>
     [HttpPost("MoodArtist/Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<BaseResponse>> InsertRMA([FromBody] CreateRelationsMoodArtistCommand rmaCommand)
         => Ok(await _mediator.Send(rmaCommand));
 
-    /// <summary>
-    /// Create RMM
-    /// </summary>
     [HttpPost("MoodModel/Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<BaseResponse>> InsertRMM([FromBody] CreateRelationsMoodModelCommand rmmCommand)
         => Ok(await _mediator.Send(rmmCommand));
 
-    /// <summary>
-    /// Count RAS By Artist
-    /// </summary>
     [HttpGet("ArtistStyle/CheckRelationsByArtist")]
     public async Task<ActionResult<CheckRelationsArtistStyleByArtistQueryResponse>> CountRASByArtist( Guid artistId )
         => Ok(await _mediator.Send(new CheckRelationsArtistStyleByArtistQuery { ArtistId = artistId }));
 
-    /// <summary>
-    /// Count RAS By Style
-    /// </summary>
     [HttpGet("ArtistStyle/CheckRelationsByStyle")]
     public async Task<ActionResult<CheckRelationsArtistStyleByStyleQueryResponse>> CountRASByStyle( Guid styleId )
         => Ok(await _mediator.Send(new CheckRelationsArtistStyleByStyleQuery { StyleId = styleId }));

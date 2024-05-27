@@ -17,17 +17,12 @@ public class TaskCategoriesControllerV1(IMediator mediator) : ControllerBase
     [HttpGet("all", Name = "GetAllTaskCategories")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<List<TaskCategoryListVm>>> GetAllTaskCategories()
-    {
-        var dtos = await _mediator.Send(new GetTaskCategoriesListQuery());
-        return Ok(dtos);
-    }
+        => Ok(await _mediator.Send(new GetTaskCategoriesListQuery()));
 
     [HttpGet("allwithtasks", Name = "GetTaskCategoriesWithTasks")]
-    [ProducesDefaultResponseType]
-    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<List<TaskCategoryTaskListVm>>> GetTaskCategoriesWithTasks(bool includeHistory)
     {
-        GetTaskCategoriesListWithTasksQuery getTaskCategoriesListWithEventsQuery = new GetTaskCategoriesListWithTasksQuery() { IncludeHistory = includeHistory };
+        GetTaskCategoriesListWithTasksQuery getTaskCategoriesListWithEventsQuery = new() { IncludeHistory = includeHistory };
 
         var dtos = await _mediator.Send(getTaskCategoriesListWithEventsQuery);
         return Ok(dtos);
@@ -36,8 +31,5 @@ public class TaskCategoriesControllerV1(IMediator mediator) : ControllerBase
     [HttpPost(Name = "AddTaskCategory")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<CreateTaskCategoryCommandResponse>> Create([FromBody] CreateTaskCategoryCommand createTaskCategoryCommand)
-    {
-        var response = await _mediator.Send(createTaskCategoryCommand);
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(createTaskCategoryCommand));
 }

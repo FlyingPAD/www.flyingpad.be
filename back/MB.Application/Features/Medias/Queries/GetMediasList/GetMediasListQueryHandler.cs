@@ -18,7 +18,7 @@ public class GetMediasListQueryHandler(IBaseRepository<Media> mediaRepository, I
             var response = new GetMediasListQueryResponse
             {
                 Success = true,
-                Message = "Here are the Medias !",
+                Message = "Success",
                 Medias = _mapper.Map<List<MediaListVm>>(medias)
             };
 
@@ -26,11 +26,10 @@ public class GetMediasListQueryHandler(IBaseRepository<Media> mediaRepository, I
         }
         catch (Exception ex)
         {
-            // Gérez l'exception et renvoyez une réponse d'erreur
             var response = new GetMediasListQueryResponse
             {
                 Success = false,
-                ValidationErrors = ["Une erreur s'est produite ( " + ex + " )."]
+                ValidationErrors = ["Error ( " + ex + " )."]
             };
 
             return response;
