@@ -6,11 +6,13 @@ namespace MB.Infrastructure.Configurations;
 
 public static class HangFireJobsConfiguration
 {
-    public static void ConfigureRecurringJobs(IRecurringJobManager recurringJobManager, IServiceProvider serviceProvider)
+    public static void ConfigureRecurringJobs(IServiceProvider serviceProvider)
     {
-        recurringJobManager.AddOrUpdate(
+        var recurringJobManager = serviceProvider.GetRequiredService<IRecurringJobManager>();
+
+        recurringJobManager.AddOrUpdate<IEMailService>(
             "send-email-every-2-minutes",
-            () => serviceProvider.GetRequiredService<IEMailService>().SendEmailAsync("recipient@example.com", "Coucou!", "Ceci est un message envoyé toutes les deux minutes."),
+            x => x.SendEmailAsync("tonyvan@live.fr", "Coucou!", "Ceci est un message envoyé toutes les deux minutes."),
             "*/2 * * * *");  // Cron expression pour toutes les 2 minutes
     }
 }

@@ -1,10 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { GetMediasFullListResponse, GetOneMediaDetailsResponse, MediaDetails } from '../models/media';
 import { BehaviorSubject, Observable, combineLatest, map, of, switchMap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FranchiseDetails, FranchiseLight, GetAllFranchisesResponse, GetFranchisesByMediaResponse, GetOneFranchiseDetailsResponse } from '../models/franchise';
+import { FranchiseDetails, FranchiseLight, GetAllFranchisesResponse, GetFranchisesByMediaResponse, GetMediasFullListResponse, GetOneFranchiseDetailsResponse, GetOneMediaDetailsResponse, MediaDetails } from '../models/franchise';
 import { GetModelsByFranchiseResponse, ModelLight } from '../models/model';
 import { GetMoodsByFranchiseResponse, MoodLight } from '../models/mood';
 

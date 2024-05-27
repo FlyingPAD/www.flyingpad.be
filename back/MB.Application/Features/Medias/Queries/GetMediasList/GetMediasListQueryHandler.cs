@@ -5,16 +5,10 @@ using MediatR;
 
 namespace MB.Application.Features.Medias.Queries.GetMediasList;
 
-public class GetMediasListQueryHandler : IRequestHandler<GetMediasListQuery, GetMediasListQueryResponse>
+public class GetMediasListQueryHandler(IBaseRepository<Media> mediaRepository, IMapper mapper) : IRequestHandler<GetMediasListQuery, GetMediasListQueryResponse>
 {
-    private readonly IBaseRepository<Media> _mediaRepository;
-    private readonly IMapper _mapper;
-
-    public GetMediasListQueryHandler(IBaseRepository<Media> mediaRepository, IMapper mapper)
-    {
-        _mediaRepository = mediaRepository;
-        _mapper = mapper;
-    }
+    private readonly IBaseRepository<Media> _mediaRepository = mediaRepository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<GetMediasListQueryResponse> Handle(GetMediasListQuery request, CancellationToken cancellationToken)
     {
@@ -25,7 +19,7 @@ public class GetMediasListQueryHandler : IRequestHandler<GetMediasListQuery, Get
             {
                 Success = true,
                 Message = "Here are the Medias !",
-                MediasList = _mapper.Map<List<MediaListVm>>(medias)
+                Medias = _mapper.Map<List<MediaListVm>>(medias)
             };
 
             return response;
@@ -36,7 +30,7 @@ public class GetMediasListQueryHandler : IRequestHandler<GetMediasListQuery, Get
             var response = new GetMediasListQueryResponse
             {
                 Success = false,
-                ValidationErrors = new List<string> { $"Une erreur s'est produite ( {ex} )." }
+                ValidationErrors = ["Une erreur s'est produite ( " + ex + " )."]
             };
 
             return response;

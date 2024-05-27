@@ -1,190 +1,194 @@
-<!-- Tags Column Trigger -->
-<div class="tags-trigger" [class.tags-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
-    <div class="tags-trigger-arrow"></div>
-</div>
-<!-- Tags Column -->
-<app-menu-right-desktop *ngIf="mood() as flow" (click)="menuTrigger()">
-    <div class="content_right_desktop">
-        <h1 class="item-top">Related Tags ( {{ flow.tags.length }} )</h1>
-        <div class="item-bottom list_categories">
-            <div *ngFor="let tag of flow.tags">
-                <div>
-                    <a routerLink="/moods/gallery"
-                        [class.active]="tag.businessId === moods().tagDetails?.businessId"
-                        (click)="updateTagId(tag.businessId)">
-                        {{tag.name}}
-                    </a>
+<div *ngIf="mood() as flow">
+    <!-- Tags Column Trigger -->
+    <div class="tags-trigger" [class.tags-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
+        <div class="tags-trigger-arrow"></div>
+    </div>
+    <!-- Tags Column -->
+    <app-menu-right-desktop (click)="menuTrigger()">
+        <div class="content_right_desktop">
+            <h1 class="item-top">Related Tags ( {{ flow.tags.length }} )</h1>
+            <div class="item-bottom list_categories">
+                <div *ngFor="let tag of flow.tags">
+                    <div>
+                        <a routerLink="/moods/gallery"
+                            [class.active]="tag.businessId === moods().tagDetails?.businessId"
+                            (click)="updateTagId(tag.businessId)">
+                            {{tag.name}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </app-menu-right-desktop>
+    <!-- Central Layout -->
+    <div id="layout-central">
+        <!-- // Viewer    -->
+        <div id="viewer">
+            <!-- Type : Image -->
+            <div class="mood-image" *ngIf="flow.mood.type === 1">
+                <div id="mood_content" >
+                    <img [style.height.px]="moodHeight"
+                    src="{{environment}}/Content/img_thumbs/{{flow.mood.businessId}}.{{flow.mood.extension}}" />
+                </div>
+                <div (click)="getPage('previous')" id="page_previous"></div>
+                <div (click)="getPage('next')" id="page_next"></div>
+            </div>
+            <!-- Type : Video -->
+            <div class="mood-video" *ngIf="flow.mood.type === 2">
+                <div class="video-container">
+                    <video
+                        controls
+                        autoplay
+                        loop
+                        [muted]="true"
+                        [src]="environment + '/Content/video/' + flow.mood.businessId + '.' + flow.mood.extension"
+                        type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <!-- Type : Video YouTube -->
+            <div class="mood-video" *ngIf="flow.mood.type === 4">
+                <div class="video-container">
+                    <div class="youtube" *ngIf="flow.media" [innerHTML]="getSafeContent(typeCheck(flow.media).url)"></div>
                 </div>
             </div>
         </div>
     </div>
-</app-menu-right-desktop>
-<div id="layout-central" *ngIf="mood() as flow">
-    <!-- // Viewer    -->
-    <div id="viewer">
-        <!-- Image -->
-        <div class="mood-image" *ngIf="flow.mood.type === 1">
-            <div id="mood_content" >
-                <img [style.height.px]="moodHeight"
-                src="{{environment}}/Content/img_thumbs/{{flow.mood.businessId}}.{{flow.mood.extension}}" />
-            </div>
-            <div (click)="getPage('previous')" id="page_previous"></div>
-            <div (click)="getPage('next')" id="page_next"></div>
+    <!-- Bottom Bar -->
+    <div class="bar" *ngIf="moods() as moods">
+        <!-- Previous Page -->
+        <a (click)="getPage('previous')">
+            <img appAnimGrow src="../../../../assets/app_icons/arrow_left.png" />
+        </a>
+        <!-- Mood Position -->
+        <a class="tweak"><div class="position">{{ moods.currentIndex + 1 | number : '4.0'}} / {{moods.moodsList.length | number : '4.0'}}</div></a>
+        <!-- Next Page -->
+        <a (click)="getPage('next')">
+            <img appAnimGrow src="../../../../assets/app_icons/arrow_right.png" />
+        </a>
+        <!-- Go Back -->
+        <a routerLink="/moods/gallery">
+            <img src="../../../../assets/app_icons/icon_moods_001.png" />
+        </a>
+        <!-- Toggle Size -->
+        <a (click)="toggleFocus()" class="toggle" *ngIf="mood().mood.type === 1">
+            <img [ngClass]="{'rotate': isFocused, 'rotate-back': !isFocused}" src="../../../../assets/app_icons/toggle.png" />
+        </a>
+        <span class="toggle" *ngIf="mood().mood.type !== 1">
+            <img src="../../../../assets/app_icons/toggle_no.png" />
+        </span>
+        <!-- Diaporama -->
+        <a class="toggle" *ngIf="intervalId === undefined" (click)="diaporamaStart(false)">
+            <img src="../../../../assets/app_icons/play.png" />
+        </a>
+        <div *ngIf="diaporamaSwitch">
+            <a *ngIf="intervalId !== undefined" (click)="diaporamaStop()">
+                <img src="../../../../assets/app_icons/stop.png" />
+            </a>
         </div>
-        <!-- Video -->
-        <div class="mood-video" *ngIf="flow.mood.type === 2">
-            <div class="video-container">
-                <video
-                    controls
-                    autoplay
-                    loop
-                    [muted]="true"
-                    [src]="environment + '/Content/video/' + flow.mood.businessId + '.' + flow.mood.extension"
-                    type="video/mp4">
-                </video>
-            </div>
+        <a class="toggle" *ngIf="intervalId === undefined" (click)="diaporamaStart(true)">
+            <img src="../../../../assets/app_icons/play-random.png" />
+        </a>
+        <div *ngIf="!diaporamaSwitch">
+            <a *ngIf="intervalId !== undefined" (click)="diaporamaStop()">
+                <img src="../../../../assets/app_icons/stop.png" />
+            </a>
         </div>
-        <!-- Video YouTube -->
-        <div class="mood-video" *ngIf="flow.mood.type === 4">
-            <div class="video-container">
-                <div class="youtube" *ngIf="flow.media" [innerHTML]="getSafeContent(typeCheck(flow.media).url)"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="bar" *ngIf="moods() as moods">
-    <!-- Previous Page -->
-    <a (click)="getPage('previous')">
-        <img appAnimGrow src="../../../../assets/app_icons/arrow_left.png" />
-    </a>
-    <!-- Mood Position -->
-    <a class="tweak"><div class="position">{{ moods.currentIndex + 1 | number : '4.0'}} / {{moods.moodsList.length | number : '4.0'}}</div></a>
-    <!-- Next Page -->
-    <a (click)="getPage('next')">
-        <img appAnimGrow src="../../../../assets/app_icons/arrow_right.png" />
-    </a>
-    <!-- Go Back -->
-    <a routerLink="/moods/gallery">
-        <img src="../../../../assets/app_icons/icon_moods_001.png" />
-    </a>
-    <!-- Toggle Size -->
-    <a (click)="toggleFocus()" class="toggle" *ngIf="mood().mood.type === 1">
-        <img [ngClass]="{'rotate': isFocused, 'rotate-back': !isFocused}" src="../../../../assets/app_icons/toggle.png" />
-    </a>
-    <span class="toggle" *ngIf="mood().mood.type !== 1">
-        <img src="../../../../assets/app_icons/toggle_no.png" />
-    </span>
-    <!-- Diaporama -->
-    <a class="toggle" *ngIf="intervalId === undefined" (click)="diaporamaStart(false)">
-        <img src="../../../../assets/app_icons/play.png" />
-    </a>
-    <div *ngIf="diaporamaSwitch">
-        <a *ngIf="intervalId !== undefined" (click)="diaporamaStop()">
-            <img src="../../../../assets/app_icons/stop.png" />
+        <!-- Edit Mood -->
+        <a routerLink="/moods/mood-edition" *ngIf="userService.appUser.role === 2">
+            <img appAnimGrow src="../../../../assets/app_icons/edit.png" />
+        </a>
+        <!-- Mood Info -->
+        <a (click)="infoTrigger()" [class.active]="infoIsActive == true">
+            <img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" />
+        </a>
+        <!-- Random Button -->
+        <a (click)="getRandomMood()">
+            <img appAnimRandom src="../../../../assets/app_icons/random.png" />
+        </a>
+        <!-- Open File / Download -->
+        <a (click)="openDownload()">
+            <img class="toggle" src="../../../../assets/app_icons/download.png" />
         </a>
     </div>
-    <a class="toggle" *ngIf="intervalId === undefined" (click)="diaporamaStart(true)">
-        <img src="../../../../assets/app_icons/play-random.png" />
-    </a>
-    <div *ngIf="!diaporamaSwitch">
-        <a *ngIf="intervalId !== undefined" (click)="diaporamaStop()">
-            <img src="../../../../assets/app_icons/stop.png" />
-        </a>
-    </div>
-    <!-- Edit Mood -->
-    <a routerLink="/moods/mood-edition" *ngIf="userService.appUser.role === 2">
-        <img appAnimGrow src="../../../../assets/app_icons/edit.png" />
-    </a>
-    <!-- Mood Info -->
-    <a (click)="infoTrigger()" [ngClass]="infoIsActive == true ? 'active' : '' ">
-        <img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" />
-    </a>
-    <!-- Random Button -->
-    <a (click)="getRandomMood()">
-        <img appAnimRandom src="../../../../assets/app_icons/random.png" />
-    </a>
-    <!-- Open File / Download -->
-    <a (click)="openDownload()">
-        <img class="toggle" src="../../../../assets/app_icons/download.png" />
-    </a>
-</div>
-<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="mood() as flow" (click)="infoTrigger()">
-    <h1 *ngIf="flow.mood.name !== '...' ">{{ flow.mood.name }}</h1>
-    <p *ngIf="flow.mood.description !== '...' ">{{flow.mood.description}}</p>
-    <div *ngIf="userService.appUser.role === 2">
-        <!-- Related Models -->
-        <p>Starring</p>
-        <div class="list_categories">
-            <div *ngFor="let model of flow.models">
-                <a routerLink="/models/model-gallery" (click)="updateModelId(model.businessId)"> ▸ {{model.pseudonym}}</a>
+    <div [ngClass]="infoIsActive === true ? 'info' : 'info off' " (click)="infoTrigger()">
+        <h1 *ngIf="flow.mood.name !== '...' ">{{ flow.mood.name }}</h1>
+        <p *ngIf="flow.mood.description !== '...' ">{{flow.mood.description}}</p>
+        <div *ngIf="userService.appUser.role === 2">
+            <!-- Related Models -->
+            <p>Starring</p>
+            <div class="list_categories">
+                <div *ngFor="let model of flow.models">
+                    <a routerLink="/models/model-gallery" (click)="updateModelId(model.businessId)"> ▸ {{model.pseudonym}}</a>
+                </div>
+            </div>
+            <!-- Related Franchises -->
+            <p>From</p>
+            <div class="list_categories">
+                <div *ngFor="let franchise of flow.franchises">
+                    <a routerLink="/franchises/franchise-gallery" (click)="updateFranchiseId(franchise.businessId)"> ▸ {{franchise.name}}</a>
+                </div>
+            </div>
+            <!-- Related Artists -->
+            <p>Art By</p>
+            <div class="list_categories">
+                <div *ngFor="let artist of flow.artists">
+                    <a routerLink="/artists/artist-gallery" (click)="updateArtistId(artist.businessId)"> ▸ {{artist.name}}</a>
+                </div>
             </div>
         </div>
-        <!-- Related Franchises -->
-        <p>From</p>
-        <div class="list_categories">
-            <div *ngFor="let franchise of flow.franchises">
-                <a routerLink="/franchises/franchise-gallery" (click)="updateFranchiseId(franchise.businessId)"> ▸ {{franchise.name}}</a>
+        <!-- Mood Type : IMAGE -->
+        <div *ngIf="flow.mood.type === 1 ">
+            <div class="item-top flex">
+                <p><b>Size</b></p>
+                <p>{{ typeCheck(flow.media).size | formatSize:2 }}</p>
+            </div>
+            <div class="item-middle flex">
+                <p><b>Extension</b></p>
+                <p>*.{{ typeCheck(flow.media).extension }}</p>
+            </div>
+            <div class="item-middle flex">
+                <p><b>Height</b></p>
+                <p>{{ typeCheck(flow.media).height }} pixels</p>
+            </div>
+            <div class="item-middle flex">
+                <p><b>Width</b></p>
+                <p>{{ typeCheck(flow.media).width }} pixels</p>
+            </div>
+            </div>
+        <!-- Mood Type : VIDEO -->
+        <div *ngIf="flow.mood.type === 2 ">
+            <div class="item-top flex">
+                <p><b>Size</b></p>
+                <p>{{ typeCheck(flow.media).size | formatSize:2 }}</p>
+            </div>
+            <div class="item-middle flex">
+                <p><b>Extension</b></p>
+                <p>*.{{ typeCheck(flow.media).extension }}</p>
+            </div>
+            <div class="item-middle flex">
+                <p><b>Height</b></p>
+                <p>{{typeCheck(flow.media).height}} pixels</p>
+            </div>
+            <div class="item-middle flex">
+                <p><b>Width</b></p>
+                <p>{{typeCheck(flow.media).width}} pixels</p>
+            </div>
+            <div class="item-middle flex">
+                <p><b>Duration</b></p>
+                <p>{{typeCheck(flow.media).duration | formatDuration }}</p>
             </div>
         </div>
-        <!-- Related Artists -->
-        <p>Art By</p>
-        <div class="list_categories">
-            <div *ngFor="let artist of flow.artists">
-                <a routerLink="/artists/artist-gallery" (click)="updateArtistId(artist.businessId)"> ▸ {{artist.name}}</a>
+        <!-- Auditable Info -->
+        <div class="flex_created">
+            <div class="box_created">
+                <p>Created :</p>
+                <p>{{ flow.mood.created | date : 'MMMM d, y | HH:mm' }}</p>
             </div>
-        </div>
-    </div>
-    <!-- Mood Type : IMAGE -->
-    <div *ngIf="flow.mood.type === 1 ">
-        <div class="item-top flex">
-            <p><b>Size</b></p>
-            <p>{{ typeCheck(flow.media).size | formatSize:2 }}</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Extension</b></p>
-            <p>*.{{ typeCheck(flow.media).extension }}</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Height</b></p>
-            <p>{{ typeCheck(flow.media).height }} pixels</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Width</b></p>
-            <p>{{ typeCheck(flow.media).width }} pixels</p>
-        </div>
-        </div>
-    <!-- Mood Type : VIDEO -->
-    <div *ngIf="flow.mood.type === 2 ">
-        <div class="item-top flex">
-            <p><b>Size</b></p>
-            <p>{{ typeCheck(flow.media).size | formatSize:2 }}</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Extension</b></p>
-            <p>*.{{ typeCheck(flow.media).extension }}</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Height</b></p>
-            <p>{{typeCheck(flow.media).height}} pixels</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Width</b></p>
-            <p>{{typeCheck(flow.media).width}} pixels</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Duration</b></p>
-            <p>{{typeCheck(flow.media).duration | formatDuration }}</p>
-        </div>
-    </div>
-    <!-- Auditable Info -->
-    <div class="flex_created">
-        <div class="box_created">
-            <p>Created :</p>
-            <p>{{ flow.mood.created | date : 'MMMM d, y | HH:mm' }}</p>
-        </div>
-        <div class="box_created">
-            <p>Modified :</p>
-            <p>{{ flow.mood.modified | date : 'MMMM d, y | HH:mm' }}</p>
+            <div class="box_created">
+                <p>Modified :</p>
+                <p>{{ flow.mood.modified | date : 'MMMM d, y | HH:mm' }}</p>
+            </div>
         </div>
     </div>
 </div>

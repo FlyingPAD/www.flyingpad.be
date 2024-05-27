@@ -29,15 +29,8 @@ public class FileService : IFileService
         // Utilisation de Task.Run uniquement pour la suppression de fichiers car il n'y a pas de méthode asynchrone native pour cela
         await Task.Run(() =>
         {
-            if (File.Exists(pathOriginal))
-            {
-                File.Delete(pathOriginal);
-            }
-
-            if (File.Exists(pathThumb))
-            {
-                File.Delete(pathThumb);
-            }
+            if (File.Exists(pathOriginal)) File.Delete(pathOriginal);
+            if (File.Exists(pathThumb)) File.Delete(pathThumb);
         });
     }
 }

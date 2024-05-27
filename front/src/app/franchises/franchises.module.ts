@@ -5,7 +5,7 @@ import { FranchiseGalleryComponent } from './components/franchise-gallery/franch
 import { FranchisesRoutingModule } from './franchises-routing.module';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { MediaGalleryComponent } from './components/media-gallery/media-gallery.component';
-import { ListComponent } from './components/list/list.component';
+import { EditionComponent } from './components/edition/edition.component';
 
 @NgModule({
   declarations: 
@@ -13,7 +13,7 @@ import { ListComponent } from './components/list/list.component';
     FranchiseGalleryComponent,
     GalleryComponent,
     MediaGalleryComponent,
-    ListComponent
+    EditionComponent
   ],
   imports: 
   [
