@@ -12,18 +12,11 @@ namespace MB.API.Controllers;
 [Route("api/V1/Tasks")]
 [ApiController]
 [ApiExplorerSettings(GroupName = "features")]
-public class TasksControllerV1 : Controller
+public class TasksControllerV1(IMediator mediator) : Controller
 {
-    private readonly IMediator _mediator;
-
-    public TasksControllerV1(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
+    private readonly IMediator _mediator = mediator;
 
     [HttpGet(Name = "GetAllTasks")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesDefaultResponseType]
     public async Task<ActionResult<List<TasksListVm>>> GetAllTasks()
     {
         var dtos = await _mediator.Send(new GetTasksListQuery());
@@ -47,9 +40,6 @@ public class TasksControllerV1 : Controller
 
     [HttpPut(Name = "UpdateTask")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesDefaultResponseType]
     public async Task<ActionResult> Update([FromBody] UpdateTaskCommand updateTaskCommand)
     {
         await _mediator.Send(updateTaskCommand);
@@ -58,9 +48,6 @@ public class TasksControllerV1 : Controller
 
     [HttpDelete("{id}", Name = "DeleteTask")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesDefaultResponseType]
     public async Task<ActionResult> Delete(Guid id)
     {
         var deleteTaskCommand = new DeleteTaskCommand() { Id = id };

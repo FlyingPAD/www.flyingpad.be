@@ -1,4 +1,5 @@
-﻿using MB.Application.Features.Tags.Commands.CreateTag;
+﻿using Azure;
+using MB.Application.Features.Tags.Commands.CreateTag;
 using MB.Application.Features.Tags.Commands.DeleteTag;
 using MB.Application.Features.Tags.Commands.UpdateTag;
 using MB.Application.Features.Tags.Queries.CountTags;
@@ -24,78 +25,43 @@ public class TagsControllerV1(IMediator mediator) : ControllerBase
     [HttpPost("Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<CreateTagCommandResponse>> Create([FromBody] CreateTagCommand createTagCommand)
-    {
-        var response = await _mediator.Send(createTagCommand);
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(createTagCommand));
 
     [HttpGet("Count")]
     public async Task<ActionResult<CountTagsQueryResponse>> Count()
-    {
-        var response = await _mediator.Send( new CountTagsQuery() );
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new CountTagsQuery()));
 
     [HttpGet("GetAll")]
     public async Task<ActionResult<GetTagsListQueryResponse>> GetAll()
-    {
-        var response = await _mediator.Send( new GetTagsListQuery() );
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new GetTagsListQuery()));
 
     [HttpGet("GetOneDetails/{tagId}")]
     public async Task<ActionResult<GetTagByIdQueryResponse>> GetOneDetails( Guid tagId)
-    {
-        var response = await _mediator.Send( new GetTagByIdQuery { TagId = tagId } );
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new GetTagByIdQuery { TagId = tagId }));
 
     [HttpGet("GetTagsList")]
     public async Task<ActionResult<GetTagsFullListQueryResponse>> GetFullList()
-    {
-        var response = await _mediator.Send( new GetTagsFullListQuery() );
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new GetTagsFullListQuery()));
 
     [HttpGet("GetByCategory/{categoryId}")]
     public async Task<ActionResult<GetTagsByCategoryQueryResponse>> GetByCategory( Guid categoryId )
-    {
-        var response = await _mediator.Send( new GetTagsByCategoryQuery { CategoryId = categoryId } );
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new GetTagsByCategoryQuery { CategoryId = categoryId }));
 
     [HttpGet("GetByMood/{moodId}")]
     public async Task<ActionResult<GetTagsByMoodQueryResponse>> GetByMood( Guid moodId )
-    {
-        var response = await _mediator.Send( new GetTagsByMoodQuery { MoodId = moodId } );
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new GetTagsByMoodQuery { MoodId = moodId }));
 
     [HttpGet("GetCheckBoxesByMood/{moodId}")]
     public async Task<ActionResult<GetTagsCheckBoxesByMoodQueryResponse>> GetCheckBoxesByMood(Guid moodId)
-    {
-        var response = await _mediator.Send(new GetTagsCheckBoxesByMoodQuery { MoodId = moodId });
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new GetTagsCheckBoxesByMoodQuery { MoodId = moodId }));
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<UpdateTagCommandResponse>> Update(Guid tagId, [FromBody] UpdateTagCommand updateTagCommand)
-    {
-        if (tagId != updateTagCommand.Id)
-        {
-            return BadRequest("ID in the URL does not match ID in the request body.");
-        }
-
-        var response = await _mediator.Send(updateTagCommand);
-        return Ok(response);
-    }
+    public async Task<ActionResult<UpdateTagCommandResponse>> Update([FromBody] UpdateTagCommand updateTagCommand)
+        => Ok(await _mediator.Send(updateTagCommand));
 
     [HttpDelete("Delete/{tagId}")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<DeleteTagCommandResponse>> Delete(Guid tagId)
-    {
-        var response = await _mediator.Send(new DeleteTagCommand { Id = tagId });
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new DeleteTagCommand { Id = tagId }));
 }

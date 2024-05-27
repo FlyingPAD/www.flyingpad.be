@@ -5,16 +5,10 @@ using MediatR;
 
 namespace MB.Application.Features.Artists.Commands.UpdateArtist;
 
-public class UpdateArtistCommandHandler : IRequestHandler<UpdateArtistCommand, BaseResponse>
+public class UpdateArtistCommandHandler(UpdateArtistCommandValidator validator, IBaseRepository<Artist> artistRepository) : IRequestHandler<UpdateArtistCommand, BaseResponse>
 {
-    private readonly UpdateArtistCommandValidator _validator;
-    private readonly IBaseRepository<Artist> _artistRepository;
-
-    public UpdateArtistCommandHandler(UpdateArtistCommandValidator validator, IBaseRepository<Artist> artistRepository)
-    {
-        _artistRepository = artistRepository;
-        _validator = validator;
-    }
+    private readonly UpdateArtistCommandValidator _validator = validator;
+    private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
 
     public async Task<BaseResponse> Handle(UpdateArtistCommand request, CancellationToken cancellationToken)
     {

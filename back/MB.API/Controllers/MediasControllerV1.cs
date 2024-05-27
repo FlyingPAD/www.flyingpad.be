@@ -17,71 +17,30 @@ public class MediasControllerV1(IMediator mediator) : ControllerBase
 {
     private readonly IMediator _mediator = mediator;
 
-    /// <summary>
-    /// Create
-    /// </summary>
     [HttpPost("Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<CreateMediaCommandResponse>> Create([FromBody] CreateMediaCommand createMediaCommand)
-    {
-        var response = await _mediator.Send(createMediaCommand);
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(createMediaCommand));
 
-    /// <summary>
-    /// Count
-    /// </summary>
     [HttpGet("Count")]
     public async Task<ActionResult<CountMediasQueryResponse>> Count()
-    {
-        var response = await _mediator.Send(new CountMediasQuery());
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new CountMediasQuery()));
 
-    /// <summary>
-    /// Get All
-    /// </summary>
     [HttpGet("GetAll")]
     public async Task<ActionResult<GetMediasListQueryResponse>> GetAll()
-    {
-        var response = await _mediator.Send(new GetMediasListQuery());
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new GetMediasListQuery()));
 
-    /// <summary>
-    /// Get One
-    /// </summary>
     [HttpGet("GetOneDetails/{mediaId}")]
     public async Task<ActionResult<GetMediaByIdQuery>> GetOne(Guid mediaId)
-    {
-        var response = await _mediator.Send(new GetMediaByIdQuery { MediaId = mediaId });
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new GetMediaByIdQuery { MediaId = mediaId }));
 
-    /// <summary>
-    /// Update
-    /// </summary>
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<UpdateMediaCommandResponse>> Update(Guid mediaId, [FromBody] UpdateMediaCommand updateMediaCommand)
-    {
-        if (mediaId != updateMediaCommand.Id)
-        {
-            return BadRequest("ID in the URL does not match ID in the request body.");
-        }
+    public async Task<ActionResult<UpdateMediaCommandResponse>> Update([FromBody] UpdateMediaCommand updateMediaCommand)
+        => Ok(await _mediator.Send(updateMediaCommand));
 
-        var response = await _mediator.Send(updateMediaCommand);
-        return Ok(response);
-    }
-
-    /// <summary>
-    /// Delete
-    /// </summary>
     [HttpDelete("Delete/{mediaId}")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<DeleteMediaCommandResponse>> Delete(Guid mediaId)
-    {
-        var response = await _mediator.Send(new DeleteMediaCommand { MediaId = mediaId });
-        return Ok(response);
-    }
+        => Ok(await _mediator.Send(new DeleteMediaCommand { MediaId = mediaId }));
 }

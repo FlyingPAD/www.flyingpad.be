@@ -36,20 +36,9 @@ public class TagCategoriesControllerV1(IMediator mediator) : ControllerBase
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<UpdateTagCategoryCommandResponse>> Update(Guid tagCategoryId, [FromBody] UpdateTagCategoryCommand updateTagCategoryCommand)
-    {
-        if (tagCategoryId != updateTagCategoryCommand.Id)
-        {
-            return BadRequest("ID in the URL does not match ID in the request body.");
-        }
+    public async Task<ActionResult<UpdateTagCategoryCommandResponse>> Update([FromBody] UpdateTagCategoryCommand updateTagCategoryCommand)
+        => Ok(await _mediator.Send(updateTagCategoryCommand));
 
-        var response = await _mediator.Send(updateTagCategoryCommand);
-        return Ok(response);
-    }
-
-    /// <summary>
-    /// Delete
-    /// </summary>
     [HttpDelete("Delete/{tagCategoryId}")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<DeleteTagCategoryCommandResponse>> Delete(Guid tagCategoryId)
