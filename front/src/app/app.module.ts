@@ -54,7 +54,7 @@ console.log(' ---------------------------------- ')
   providers: 
   [
     // Additional providers :
-    // Provider for the cookies service
+    // Provider for the cookies service.
     [CookieService],              
               
     // Provider for HTTP Interceptor to handle tokens :
