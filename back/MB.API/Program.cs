@@ -124,8 +124,8 @@ public class Program
             });
 
             // HangFire Jobs Launch
-            //var recurringJobManager = app.Services.GetRequiredService<IRecurringJobManager>();
-            //HangFireJobsConfiguration.ConfigureRecurringJobs(recurringJobManager, app.Services);
+            //HangFireJobsConfiguration.ConfigureRecurringJobs(app.Services);
+            //app.MapHangfireDashboard();
 
             // - Run ------------------------------------------------------------------
             app.Run();

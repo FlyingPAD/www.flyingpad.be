@@ -8,7 +8,7 @@ public class GetMediasListQueryResponse : BaseResponse
     /// Properties
     /// </summary>
     /// 
-    public List<MediaListVm> MediasList { get; set; } = default!;
+    public List<MediaListVm> Medias { get; set; } = default!;
 
     /// <summary>
     /// Constructor
