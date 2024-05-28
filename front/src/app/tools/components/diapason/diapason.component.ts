@@ -14,8 +14,8 @@ export class DiapasonComponent {
   currentVolume: number = 0.5;
 
   constructor() {
-    // Add an event listener to the document to resume audio context on any interaction
-    document.addEventListener('click', this.resumeAudioContext.bind(this));
+    // Resume audio context on any interaction
+    document.addEventListener('click', () => this.resumeAudioContext());
   }
 
   resumeAudioContext() {
@@ -25,13 +25,8 @@ export class DiapasonComponent {
   }
 
   playNote() {
-    if (this.audioService.audioContext.state === 'suspended') {
-      this.audioService.audioContext.resume().then(() => {
-        this.audioService.playFrequencyWithEnvelope(440, 2, this.currentVolume);
-      });
-    } else {
-      this.audioService.playFrequencyWithEnvelope(440, 2, this.currentVolume);
-    }
+    this.resumeAudioContext();
+    this.audioService.playFrequencyWithEnvelope(440, 2, this.currentVolume);
   }
 
   volumeUp() {
