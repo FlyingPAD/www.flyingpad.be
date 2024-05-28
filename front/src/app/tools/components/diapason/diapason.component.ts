@@ -10,8 +10,18 @@ export class DiapasonComponent
 {
   audioService = inject(AudioService)
 
-  playNote()
+  playNote() 
   {
-    this.audioService.playFrequencyWithEnvelope(440, 2, 1)
+    if (this.audioService.audioContext.state === 'suspended') 
+    {
+      this.audioService.audioContext.resume().then(() => 
+      {
+        this.audioService.playFrequencyWithEnvelope(440, 2, 1)
+      })
+    } 
+    else 
+    {
+      this.audioService.playFrequencyWithEnvelope(440, 2, 1)
+    }
   }
 }
