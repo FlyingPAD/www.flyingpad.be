@@ -18,8 +18,48 @@
     }
 }
 
-    button
+button
+{
+    display: block;
+    margin: auto;
+}
+
+.volume
+{
+    width: 265px;
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 3px solid var(--colorMain); 
+    border-radius: 10px 10px 0 0;
+    border-bottom: none;
+    background-color: rgba(80, 80, 80, 0.2);
+    padding: 3px 10px 3px 10px;
+
+    .slider
     {
-        display: block;
-        margin: auto;
+        display: flex;
+        justify-content: center;
+        margin: 0 10px 0 10px;
+
+        input[type="range"]
+        {
+            width: 175px;
+            outline: none;
+            background: #6b524000;
+        }
+        input[type="range"]::-moz-range-track {
+            background: #6b5240;
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            background: #6b5240;
+            border: 1px solid #261a12;
+            border-radius: 3px;
+            width: 3px;
+        }
     }
+}
