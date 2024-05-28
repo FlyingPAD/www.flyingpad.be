@@ -1,9 +1,19 @@
+<div class="volume">
+    <p><b>Volume</b></p>  
+    <div class="slider">
+        <input 
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            [(ngModel)]="currentVolume"
+        />
+    </div>
+</div>
 <div class="diapason">
     <img src="../../../../assets/app_icons/diapason.svg" (click)="playNote()">
 </div>
-
 <button (click)="playNote()">Play</button>
-
 <div class="bottom-bar">
     <a routerLink="/tools"><img src="../../../../assets/app_icons/icon_tools_001.png" /></a>
 </div>
