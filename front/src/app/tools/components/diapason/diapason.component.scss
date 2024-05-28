@@ -4,18 +4,22 @@
     justify-content: center;
     align-content: center;
 
+    height: 265px;
+    width: 265px;
+    
+    margin: auto;
     margin-top: 25px;
 
-    img
-    {
-        height: 250px;
-        border: 1px solid var(--colorMain);
-        border-radius: 15%;
-    }
-    img:hover
-    {
-        cursor: pointer;
-    }
+    border: 3px solid var(--colorMain);
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255, 0.1);
+    padding: 10px;
+}
+.diapason:hover
+{
+    cursor: pointer;
+    background-color: rgb(255, 255, 255, 0.5);
+    transition-duration: 500ms;
 }
 
 button
@@ -28,14 +32,14 @@ button
 {
     width: 265px;
     margin: auto;
+    margin-top: 35px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     border: 3px solid var(--colorMain); 
-    border-radius: 10px 10px 0 0;
-    border-bottom: none;
+    border-radius: 15px;
     background-color: rgba(80, 80, 80, 0.2);
     padding: 3px 10px 3px 10px;
 
