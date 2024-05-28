@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class AudioService 
 {
-  private audioContext : AudioContext
-  private gainNode : GainNode
+  audioContext : AudioContext
+  gainNode : GainNode
 
   constructor() 
   {
