@@ -14,11 +14,11 @@ public class GetTagCategoriesListQueryHandler(IBaseRepository<TagCategory> tagCa
     {
         try
         {
-            var tagCategories = await _tagCategoryRepository.GetAllAsync();
+            var tagCategories = await _tagCategoryRepository.GetAllAsync(x => x.Name, true);
             var response = new GetTagCategoriesListQueryResponse
             {
                 Success = true,
-                Message = "Here are the TagCategories !",
+                Message = "Success !",
                 TagCategories = _mapper.Map<List<TagCategoryListVm>>(tagCategories)
             };
 
@@ -30,7 +30,7 @@ public class GetTagCategoriesListQueryHandler(IBaseRepository<TagCategory> tagCa
             var response = new GetTagCategoriesListQueryResponse
             {
                 Success = false,
-                ValidationErrors = ["Une erreur s'est produite ( " + ex + " )."]
+                ValidationErrors = ["Error ( " + ex + " )."]
             };
 
             return response;

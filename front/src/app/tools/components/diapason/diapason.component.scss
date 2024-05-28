@@ -1,0 +1,19 @@
+.diapason
+{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    margin-top: 25px;
+
+    img
+    {
+        height: 250px;
+        border: 1px solid var(--colorMain);
+        border-radius: 15%;
+    }
+    img:hover
+    {
+        cursor: pointer;
+    }
+}
