@@ -14,6 +14,8 @@ import { NotationComponent } from './components/notation/notation.component';
 import { MetricsBComponent } from './components/metrics-b/metrics-b.component';
 import { MelodyComponent } from './components/melody/melody.component';
 import { NotesExComponent } from './components/notes-ex/notes-ex.component';
+import { LearnMusicComponent } from './components/learn-music/learn-music.component';
+import { ViewpointComponent } from './components/viewpoint/viewpoint.component';
 
 const routes: Routes = 
 [
@@ -34,6 +36,8 @@ const routes: Routes =
   { path : 'chords', component : ChordsComponent, title : 'Flying PAD | Les Accords' },
   { path : 'scales', component : ScalesComponent, title : 'Flying PAD | Les Gammes' },
   { path : 'melody', component : MelodyComponent, title : 'Flying PAD | La Mélodie' },
+  { path : 'learn-music', component : LearnMusicComponent, title : 'Flying PAD | Apprendre la Musique' },
+  { path : 'viewpoint', component : ViewpointComponent, title : 'Flying PAD | Point de Vue' },
 ];
 
 @NgModule({

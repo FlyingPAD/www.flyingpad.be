@@ -17,6 +17,8 @@ import { NotationComponent } from './components/notation/notation.component';
 import { MelodyComponent } from './components/melody/melody.component';
 import { MetricsBComponent } from './components/metrics-b/metrics-b.component';
 import { NotesExComponent } from './components/notes-ex/notes-ex.component';
+import { LearnMusicComponent } from './components/learn-music/learn-music.component';
+import { ViewpointComponent } from './components/viewpoint/viewpoint.component';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { NotesExComponent } from './components/notes-ex/notes-ex.component';
     MelodyComponent,
     MetricsBComponent,
     NotesExComponent,
+    LearnMusicComponent,
+    ViewpointComponent,
   ],
   imports: [
     CommonModule,
