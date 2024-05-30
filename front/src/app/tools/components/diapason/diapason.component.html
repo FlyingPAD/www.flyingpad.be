@@ -26,9 +26,17 @@
     </div>
 </div>
 <div class="frequency">
-    <h1>{{ frequency | number : '3.2'}} Hertz</h1> 
+    <input 
+        type="number"
+        min="415.3"
+        max="466.16"
+        step="0.01"
+        [(ngModel)]="frequency"
+    >
+    <h1> Hertz</h1> 
     <div class="reset" (click)="resetTune()">RESET</div>
 </div>
 <div class="bottom-bar">
     <a routerLink="/tools"><img src="../../../../assets/app_icons/icon_tools_001.png" /></a>
 </div>
+<div class="bottom-box"></div>

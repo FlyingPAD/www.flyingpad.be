@@ -38,6 +38,7 @@ export class AppComponent
   @HostListener('window:keydown', ['$event'])
   onKeyPress( event : KeyboardEvent ) 
   {
+    console.log(event.key)
     switch (event.key) 
     {
       case 'Escape':
@@ -46,33 +47,33 @@ export class AppComponent
       case 'F1':
         this.#menuCustomService.triggerMenuCustom()
         break
-      case '1':
-        this.router.navigateByUrl('/moods')
-        break
-      case '2':
-        this.router.navigateByUrl('/tags')
-        break
-      case '3':
-        this.router.navigateByUrl('/franchises/gallery')
-        break
-      case '4':
-        this.router.navigateByUrl('/moods')
-        break
-      case '5':
-        this.router.navigateByUrl('/moods/mood-details')
-        break
-      case '6':
-        this.router.navigateByUrl('/tags')
-        break
-      case '7':
-        this.router.navigateByUrl('/scripts')
-        break
-      case '8':
-        this.router.navigateByUrl('/tools')
-        break
-      case '9':
-        this.router.navigateByUrl('/links')
-        break
+      // case '1':
+      //   this.router.navigateByUrl('/moods')
+      //   break
+      // case '2':
+      //   this.router.navigateByUrl('/tags')
+      //   break
+      // case '3':
+      //   this.router.navigateByUrl('/franchises/gallery')
+      //   break
+      // case '4':
+      //   this.router.navigateByUrl('/moods')
+      //   break
+      // case '5':
+      //   this.router.navigateByUrl('/moods/mood-details')
+      //   break
+      // case '6':
+      //   this.router.navigateByUrl('/tags')
+      //   break
+      // case '7':
+      //   this.router.navigateByUrl('/scripts')
+      //   break
+      // case '8':
+      //   this.router.navigateByUrl('/tools')
+      //   break
+      // case '9':
+      //   this.router.navigateByUrl('/links')
+      //   break
     }
   }
 }
