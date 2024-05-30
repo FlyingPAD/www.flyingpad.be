@@ -56,9 +56,6 @@ export class DiapasonComponent
   {
     switch (event.code) 
     {
-      case 'Backspace':
-        this.#router.navigateByUrl('/tools')
-        break
       case 'NumpadAdd':
         this.volumeUp()
         break
