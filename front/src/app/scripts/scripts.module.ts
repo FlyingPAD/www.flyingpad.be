@@ -19,6 +19,7 @@ import { MetricsBComponent } from './components/metrics-b/metrics-b.component';
 import { NotesExComponent } from './components/notes-ex/notes-ex.component';
 import { LearnMusicComponent } from './components/learn-music/learn-music.component';
 import { ViewpointComponent } from './components/viewpoint/viewpoint.component';
+import { ToolsModule } from '../tools/tools.module';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ViewpointComponent } from './components/viewpoint/viewpoint.component';
   imports: [
     CommonModule,
     ScriptsRoutingModule,
-    SharedModule
+    SharedModule,
+    ToolsModule
   ]
 })
 export class ScriptsModule { }

@@ -23,6 +23,10 @@ import { FlyingKeysMiniComponent } from './components/flying-keys-mini/flying-ke
     CommonModule,
     ToolsRoutingModule,
     SharedModule
+  ],
+  exports:
+  [
+    FlyingKeysMiniComponent
   ]
 })
 export class ToolsModule { }
