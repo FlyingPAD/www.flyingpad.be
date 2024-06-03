@@ -130,7 +130,7 @@ public class Context(DbContextOptions<Context> options) : DbContext(options)
 
         modelBuilder.Entity<RelationLinkCategory>()
             .HasOne(relation => relation.LinkCategory)
-            .WithMany(category => category.LinkCategories)
+            .WithMany(category => category.RLinkCategories)
             .HasForeignKey(relation => relation.LinkCategoryId);
 
         // - Link / Model

@@ -52,7 +52,7 @@ public class LinksControllerV1(IMediator mediator) : ControllerBase
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<UpdateLinkCommandResponse>> UpdateLink([FromBody] UpdateLinkCommand updateLinkCommand)
+    public async Task<ActionResult<BaseResponse>> UpdateLink([FromBody] UpdateLinkCommand updateLinkCommand)
         => Ok(await _mediator.Send(updateLinkCommand));
 
     [HttpDelete("Delete/{linkId}")]

@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { CreateLinkResponse, GetAllLinkCategoriesResponse, GetAllLinksResponse, GetLinksByCategoryResponse, GetOneLinkCategoryDetailsResponse, GetOneLinkDetailsResponse, LinkCreateForm } from '../models/link';
+import { CreateLinkResponse, GetAllLinkCategoriesResponse, GetAllLinksResponse, GetLinksByCategoryResponse, GetOneLinkCategoryDetailsResponse, GetOneLinkDetailsResponse, LinkCreateForm, LinkUpdateForm, getLinkCategoriesCheckBoxesResponse } from '../models/link';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BaseResponse } from '../models/base-response';
 
@@ -58,6 +58,11 @@ export class LinksEditionService
     )
   }
 
+  getLinkCategoriesCheckBoxes( linkId : number )
+  {
+    return this.#http.get<getLinkCategoriesCheckBoxesResponse>(`${this.#url}LinkCategories/GetCheckBoxesByLink/${linkId}`)
+  }
+
   // Flow
   linksEditionFlow$ = combineLatest([
     this.selectedCategoryId$,
@@ -100,9 +105,15 @@ export class LinksEditionService
   }
 
   // Update Link
-  public UpdateLink( form : LinkCreateForm )
+  public UpdateLink( form : LinkUpdateForm )
   {
-    return this.#http.put<BaseResponse>(`${this.#url}Links/Update`, form)
+    return this.#http.put<BaseResponse>(`${this.#url}Links/Update`, form).pipe(
+      tap( () => 
+        {
+          this.updateSelectedLink(null)
+          this.updateSelectedCategory(null)
+        })
+    )
   }
 
   // Delete Link
