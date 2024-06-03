@@ -144,7 +144,6 @@ public class MappingProfiles : Profile
         CreateMap<Link, GetLinkByIdVm>().ReverseMap();
         CreateMap<Link, CreateLinkDto>().ReverseMap();
         CreateMap<Link, UpdateLinkCommand>().ReverseMap();
-        CreateMap<Link, UpdateLinkDto>().ReverseMap();
         CreateMap<Link, DeleteLinkCommand>().ReverseMap();
         CreateMap<Link, LinksListByCategoryVm>().ReverseMap();
         CreateMap<Link, LinksContainingAbcVm>().ReverseMap();

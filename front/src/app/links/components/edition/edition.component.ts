@@ -3,7 +3,7 @@ import { LinksEditionService } from '../../../core/services/links-edition.servic
 import { MenuDesktopService } from '../../../core/services/menu-desktop.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { LinkCreateForm } from '../../../core/models/link';
+import { LinkCreateForm, LinkUpdateForm } from '../../../core/models/link';
 
 @Component({
   selector: 'app-edition',
@@ -113,8 +113,15 @@ export class EditionComponent implements OnDestroy
   }
   onUpdate()
   {
-    let form : LinkCreateForm = 
+    const businessId = this.linksEditionFlow().link?.businessId;
+    if (businessId === undefined) 
     {
+      throw new Error('businessId is required but was undefined.');
+    }
+
+    let form : LinkUpdateForm = 
+    {
+      businessId : businessId,
       name : this.updateFormGroup.value.name,
       description : this.updateFormGroup.value.description,
       url : this.updateFormGroup.value.url

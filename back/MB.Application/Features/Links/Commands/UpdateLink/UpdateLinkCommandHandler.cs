@@ -1,42 +1,33 @@
-﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
+﻿using MB.Application.Contracts.Persistence.Common;
+using MB.Application.Responses;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Links.Commands.UpdateLink;
 
-public class UpdateLinkCommandHandler : IRequestHandler<UpdateLinkCommand, UpdateLinkCommandResponse>
+public class UpdateLinkCommandHandler(IBaseRepository<Link> linkRepository) : IRequestHandler<UpdateLinkCommand, BaseResponse>
 {
-    private readonly IMapper _mapper;
-    private readonly IBaseRepository<Link> _linkRepository;
+    private readonly IBaseRepository<Link> _linkRepository = linkRepository;
 
-    public UpdateLinkCommandHandler(IMapper mapper, IBaseRepository<Link> linkRepository)
+    public async Task<BaseResponse> Handle(UpdateLinkCommand request, CancellationToken cancellationToken)
     {
-        _mapper = mapper;
-        _linkRepository = linkRepository;
-    }
-
-    public async Task<UpdateLinkCommandResponse> Handle(UpdateLinkCommand request, CancellationToken cancellationToken)
-    {
-        var link = await _linkRepository.GetByBusinessIdAsync(request.Id);
+        var link = await _linkRepository.GetByBusinessIdAsync(request.BusinessId);
 
         if (link == null)
         {
-            return new UpdateLinkCommandResponse { Success = false, Message = "Link wasn't found :(" };
+            return new BaseResponse { Success = false, Message = "Link wasn't found." };
         }
 
-        _mapper.Map(request, link);
+        link.Name = request.Name;
+        link.Description = request.Description;
+        link.Url = request.Url;
 
         await _linkRepository.UpdateAsync(link);
 
-        var updatedLinkDto = _mapper.Map<UpdateLinkDto>(link);
-
-        return new UpdateLinkCommandResponse
+        return new BaseResponse
         {
             Success = true,
-            Message = "Link was Updated :)",
-            UpdatedLink = updatedLinkDto
+            Message = "Update Successfull."
         };
     }
-
 }

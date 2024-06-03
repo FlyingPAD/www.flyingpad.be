@@ -1,4 +1,5 @@
 ﻿using MB.Application.Contracts.Persistence;
+using MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckBoxesByLink;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
@@ -16,5 +17,23 @@ public class LinkCategoryRepository(Context context) : BaseRepository<LinkCatego
                              .Where(category => businessIds.Contains(category.BusinessId))
                              .Select(category => category.EntityId)
                              .ToListAsync();
+    }
+
+    /// <summary>
+    /// Retrieves link categories checkboxes by link
+    /// </summary>
+    public async Task<IEnumerable<GetLinkCategoriesCheckBoxesByLinkQueryDto>> GetCheckBoxesByLink(int linkId)
+    {
+        var categories = await _context.LinkCategories
+                                   .Select(category => new GetLinkCategoriesCheckBoxesByLinkQueryDto
+                                   {
+                                       BusinessId = category.BusinessId,
+                                       Name = category.Name,
+                                       IsChecked = category.RLinkCategories != null && category.RLinkCategories.Any(relation => relation.LinkId == linkId)
+                                   })
+                                   .OrderBy(artist => artist.Name)
+                                   .ToListAsync();
+
+        return categories;
     }
 }

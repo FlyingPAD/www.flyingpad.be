@@ -35,6 +35,13 @@ export interface LinkCreateForm
     description : string
     url :         string
 }
+export interface LinkUpdateForm
+{
+    businessId :  number
+    name :        string
+    description : string
+    url :         string
+}
 export interface LinkCategoryCreateForm
 {
     name :        string
@@ -65,4 +72,9 @@ export interface GetOneLinkCategoryDetailsResponse extends BaseResponse
 export interface CreateLinkResponse extends BaseResponse
 {
     link : Link
+}
+
+export interface getLinkCategoriesCheckBoxesResponse extends BaseResponse
+{
+    linkCategoriesCheckBoxes : LinkCategoryLight[]
 }

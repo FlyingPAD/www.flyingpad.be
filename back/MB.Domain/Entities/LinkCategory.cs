@@ -9,5 +9,5 @@ public class LinkCategory : AuditableEntity
 
     // Navigation Properties :
 
-    public ICollection<RelationLinkCategory>? LinkCategories { get; set; }
+    public ICollection<RelationLinkCategory>? RLinkCategories { get; set; }
 }
