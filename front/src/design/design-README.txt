@@ -1,9 +1,9 @@
-==============================================
-- WELCOME to the MoodBoard CSS Documentation
-==============================================
+=================================
+- Flying PAD SCSS Documentation
+=================================
 
-1. Installation
-------------------
+1. Introduction
+-----------------
 
  => I created a "design" folder in ./src to put all my global *scss files. 
  => Of course, I also edited "angular.json" to add these files to the angular project.

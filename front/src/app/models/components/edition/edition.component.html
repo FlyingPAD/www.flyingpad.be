@@ -1,12 +1,12 @@
 <div *ngIf="modelsEditionFlow() as flow">
   <div id="layout-central">   
     <div class="top-options">
-      <!-- New Link Button -->
-      <div class="new-link" (click)="resetCreate()">
+      <!-- New Model Button -->
+      <div class="new" (click)="resetCreate()">
         <img src="../../../../assets/app_icons/icon_model_001.png" />
         <a>New Model</a>
       </div>
-      <!-- Filter Links User Input -->
+      <!-- Filter Models User Input -->
       <div class="filter">
           <input type="text" [(ngModel)]="searchModels" placeholder="Filter models ...">
       </div>
@@ -15,13 +15,13 @@
     <div id="list">
         <div *ngFor="let model of filterModels() | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage }">
           <div class="list-flex"> 
-            <a class="list-item link" routerLink="/models/model-gallery" (click)="updateModelId(model.businessId)"> ▸ {{model.pseudonym}}</a>   
-            <a class="list-item update" routerLink="/models/update-model">U</a>        
+            <a class="list-item link" routerLink="/models/model-gallery" (click)="updateModelId(model.businessId)"> ▸ {{model.pseudonym}}</a>    
+            <img class="edit" src="../../../../assets/app_icons/edit.svg" />        
           </div>  
         </div>
     </div>
   </div>
-  <!-- Pagination controls -->
+  <!-- Pagination -->
   <div class="pagination-row" *ngIf="flow.length > elementsPerPage">
     <div id="pagination">
       <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>

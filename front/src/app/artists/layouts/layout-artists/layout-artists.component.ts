@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ArtistsStateService } from '../../../core/services/artists.service';
 import { MoodStateService } from '../../../core/services/mood.service';
+import { MenuDesktopService } from '../../../core/services/menu-desktop.service';
 
 @Component({
   selector: 'app-layout-artists',
@@ -12,6 +13,7 @@ export class LayoutArtistsComponent
 {
   #artistsService = inject(ArtistsStateService)
   #moodsService = inject(MoodStateService)
+  menuService = inject(MenuDesktopService)
 
   nameSearchField : FormControl = this.#artistsService.nameSearchField
 
@@ -42,5 +44,10 @@ export class LayoutArtistsComponent
   {
     this.#moodsService.updateSelectedGalleryType('')
     this.#moodsService.updateSelectedMoodId(null)
+  }
+
+  menuTrigger() : void
+  {
+    this.menuService.menuRActive = !this.menuService.menuRActive
   }
 }

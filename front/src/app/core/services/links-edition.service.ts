@@ -110,8 +110,7 @@ export class LinksEditionService
     return this.#http.put<BaseResponse>(`${this.#url}Links/Update`, form).pipe(
       tap( () => 
         {
-          this.updateSelectedLink(null)
-          this.updateSelectedCategory(null)
+          this.updateSelectedLink(form.businessId)
         })
     )
   }

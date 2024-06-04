@@ -21,8 +21,8 @@ export class ArtistGalleryComponent
 
   artistFlow = this.#artistsService.artistFlow
   
-  mpp : number = 36
-  p : number = 1
+  moodsPerPage : number = 36
+  currentPage : number = 1
 
   getRandomMood()
   {

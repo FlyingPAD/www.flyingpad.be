@@ -5,7 +5,7 @@
         <div class="grid-section-left">
             <!-- Menu Trigger -->
             <div class="trigger">
-                <img [ngClass]="menuCustom.menuCustomOn ? 'img-active' : '' " 
+                <img [class.img-active]="menuCustom.menuCustomOn === true" 
                 src="../../../../assets/app_icons/icon_hamburger_001.png" 
                 (click)="menuCustom.triggerMenuCustom()" />
             </div>
@@ -83,12 +83,12 @@
                     <img src="../../../../assets/app_icons/icon_franchises_001.png" />
                     <p>Medias</p>
                 </a>
-                <a routerLink="/moods/gallery" routerLinkActive="active" routerLinkActive="active" 
+                <a routerLink="/moods/gallery" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
                     <img src="../../../../assets/app_icons/icon_moods_001.png" />
                     <p>Moods</p>
                 </a>
-                <a routerLink="/moods/mood-details" routerLinkActive="active" routerLinkActive="active" 
+                <a routerLink="/moods/mood-details" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
                     <img src="../../../../assets/app_icons/icon_mood_001.png" />
                     <p>Mood</p>
@@ -113,7 +113,7 @@
             </div>
             <!-- User ( Not Connected ) -->
             <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
-                <a class="user" routerLink="/authentication/register" routerLinkActive="active" (click)="menuTrigger()">
+                <a class="user" routerLink="/register" routerLinkActive="active" (click)="menuTrigger()">
                     <img src="../../../../assets/app_icons/icon_artists_001.png" />
                     <p>{{userService.appUser.firstName}}</p>
                 </a>
@@ -140,7 +140,11 @@
 </div>
 
 <!-- Overlay -->
-<div class="overlay" [class.overlay-hidden]="menuCustom.menuCustomOn === false" (click)="menuTrigger()"></div>
+<div class="overlay" 
+    [class.overlay-enabled]="menuCustom.menuCustomOn === true && overlayTrigger === true" 
+    [class.overlay-disabled]="menuCustom.menuCustomOn === false && overlayTrigger === false" 
+    (click)="menuTrigger()">
+</div>
 
 <!-- Header -->
 <header>
@@ -163,14 +167,14 @@
         <div class="grid-section-right">
             <!-- Login -->
             <div class="login" *ngIf="!(authService.isConnectedSub | async)">
-                <a routerLink="/authentication/login">
+                <a (click)="loginTriggerMethod()">
                     <img [class.img-active]="menuCustom.menuCustomOn === true" 
                     src="../../../../assets/app_icons/login.png" />
                 </a>
             </div>
             <!-- Logout -->
             <div class="login" *ngIf="authService.isConnectedSub | async">
-                <a routerLink="/home" (click)="logout()">
+                <a (click)="logout()">
                     <img [class.img-active]="menuCustom.menuCustomOn === true" 
                     src="../../../../assets/app_icons/logout.png" />
                 </a>
@@ -181,3 +185,50 @@
 
 <!-- Page Content ( Router Outlet )-->
 <div class="content"><router-outlet /></div>
+
+<!-- Login Modal -->
+<div class="login-modal" [class.on]="loginTrigger === true">
+    <!-- Form -->
+    <div id="layout-central">
+        <h1>Login</h1>
+        <div id="crud_form">
+        <form [formGroup]="formGroup">
+          <!-- Email Field -->
+          <div>
+            <label for="in_email">Email :</label>
+            <input type="email" id="in_email" formControlName="email" placeholder="example@domain.com">
+            <div *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.errors">
+              <p class="error" *ngIf="formGroup.get('email')?.errors?.['required']">
+                Email is required.
+              </p>
+              <p class="error" *ngIf="formGroup.get('email')?.errors?.['email']">
+                Please enter a valid email address.
+              </p>
+              <p class="error" *ngIf="formGroup.get('email')?.errors?.['maxLength']">
+                The email must not exceed 384 characters.
+              </p>
+            </div>
+          </div>
+          <!-- Password Field -->
+          <div>
+            <label for="in_password">Password :</label>
+            <input type="password" id="in_password" formControlName="password" placeholder="●●●●●●●●">
+            <div *ngIf="formGroup.get('password')?.touched && formGroup.get('password')?.errors">
+              <p class="error" *ngIf="formGroup.get('password')?.errors?.['required']">
+                A password is required.
+              </p>
+              <p class="error" *ngIf="formGroup.get('password')?.errors?.['minLength']">
+                The password must be at least 8 characters long.
+              </p>
+            </div>
+          </div>
+          <!-- Submit Button -->
+          <div class="form-buttons">
+            <span *ngIf="formGroup.invalid">Sign in</span>
+            <a (click)="onLogin()" *ngIf="formGroup.valid">Sign in</a>
+            <a (click)="loginTriggerMethod()">Cancel</a>
+          </div>  
+        </form> 
+      </div>
+    </div>
+</div>

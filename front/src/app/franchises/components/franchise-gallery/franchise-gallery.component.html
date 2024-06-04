@@ -1,89 +1,103 @@
-<div id="layout-central" *ngIf="franchise() as franchise">
+<div *ngIf="franchise() as flow">
+    <!-- Right Column Trigger -->
+    <div class="column-trigger" [class.column-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
+        <div class="trigger-arrow"></div>
+    </div>
+    <!-- Right Column -->
+    <div class="right-column" [ngClass]="menuService.menuRActive == true ? 'right-column-on' : 'right-column-off'">
+        <!-- Models -->
+        <div class="models">
+            <div *ngFor="let model of flow.models">
+                <a routerLink="/models/model-gallery" (click)="updateModelId(model.businessId)">
+                    <span [ngClass]="model.gender === 'F' ? 'female' : 'male' "> ▸ </span>{{model.pseudonym}}
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Central Layout -->
+    <div id="layout-central">
+        <!-- Moods Gallery -->
+        <div [ngClass]="menuService.menuRActive === true ? 'gallery menu-open' : 'gallery' ">
+            <div *ngFor="let m of flow.moods | paginate : { itemsPerPage : moodsPerPage, currentPage : currentPage }">
+                <section>
+                    <div *ngIf="m.type == 1">
+                        <a routerLink="/moods/mood-details" (click)="updateMoodId(m.businessId)">
+                            <img src="{{environment}}/Content/img_thumbs/{{m.businessId}}.{{m.extension}}" />
+                        </a>
+                    </div>
+                    <div *ngIf="m.type == 2">
+                        <a routerLink="/moods/mood-details" (click)="updateMoodId(m.businessId)">
+                            <img src="{{environment}}/Content/video_thumbs/{{m.businessId}}.jpg" />
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
     <!-- Pagination -->
-    <div class="row-sticky" *ngIf="franchise.moods.length > mpp">
+    <div class="pagination-row" *ngIf="flow.moods.length > moodsPerPage">
         <div id="pagination">
-            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="p = $event"></pagination-controls>
-        </div>
-    </div>       
-    <!-- Models -->
-    <div class="models">
-        <div *ngFor="let model of franchise.models">
-            <a routerLink="/models/model-gallery" (click)="updateModelId(model.businessId)">
-                <span [ngClass]="model.gender === 'F' ? 'female' : 'male' "> ▸ </span>{{model.pseudonym}}
-            </a>
+            <pagination-controls previousLabel="" nextLabel="" class="pagination"
+                (pageChange)="currentPage = $event"></pagination-controls>
         </div>
     </div>
-    <!-- Moods Gallery -->
-    <div class="gallery">
-        <div *ngFor="let m of franchise.moods | paginate : { itemsPerPage: mpp, currentPage: p }">
-            <section>
-                <div *ngIf="m.type == 1">           
-                    <a routerLink="/moods/mood-details" (click)="updateMoodId(m.businessId)">
-                        <img src="{{environment}}/Content/img_thumbs/{{m.businessId}}.{{m.extension}}"/>
-                    </a>
-                </div>
-                <div *ngIf="m.type == 2">
-                    <a routerLink="/moods/mood-details" (click)="updateMoodId(m.businessId)">
-                        <img src="{{environment}}/Content/video_thumbs/{{m.businessId}}.jpg"/>
-                    </a>         
-                </div>
-            </section>
-        </div>
+    <!-- Bottom Bar -->
+    <div class="bar">
+        <!-- Franchise Name -->
+        <a class="tweak">
+            <div class="position"><b>{{ flow.franchise.name }}</b></div>
+        </a>
+        <!-- Related Info -->
+        <a class="tweak">
+            <div class="position">{{ flow.moods.length | number : '4.0'}}</div>
+        </a>
+        <!-- Google Search -->
+        <a target="_blank" href="https://www.google.com/search?q={{flow.franchise.name}}"
+            *ngIf="flow.franchise.name != '# Unknown Franchise'">
+            <img src="../../../../assets/app_icons/google.png" />
+        </a>
+        <a target="_blank" href="https://images.google.com/images?q={{flow.franchise.name}}"
+            *ngIf="flow.franchise.name != '# Unknown Franchise'">
+            <img src="../../../../assets/app_icons/google_images.png" />
+        </a>
+        <!-- Info Button -->
+        <a (click)="infoTrigger()" [class.active]="infoIsActive === true">
+            <img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" />
+        </a>
+        <!-- To Top Button -->
+        <a (click)="toTop()" *ngIf="topButtonIsActive === true">
+            <img src="../../../../assets/app_icons/arrow_up.png" />
+        </a>
+        <span *ngIf="topButtonIsActive === false">
+            <img src="../../../../assets/app_icons/arrow_up_no.png" />
+        </span>
     </div>
-</div>
-
-<div class="bar" *ngIf="franchise() as flow">
-    <!-- Franchise Name -->
-    <a class="tweak">
-        <div class="position"><b>{{ flow.franchise.name }}</b></div>
-    </a>
-    <!-- Related Info -->
-    <a class="tweak">
-        <div class="position">{{ flow.moods.length | number : '4.0'}}</div>
-    </a>
-    <!-- Google Search -->
-    <a target="_blank" href="https://www.google.com/search?q={{flow.franchise.name}}" *ngIf="flow.franchise.name != '# Unknown Franchise'">
-        <img src="../../../../assets/app_icons/google.png" />
-    </a>
-    <a target="_blank" href="https://images.google.com/images?q={{flow.franchise.name}}" *ngIf="flow.franchise.name != '# Unknown Franchise'">
-        <img src="../../../../assets/app_icons/google_images.png" />
-    </a>
-    <!-- Info Button -->
-    <a (click)="infoTrigger()" [ngClass]="infoIsActive === true ? 'active' : '' ">
-        <img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" />
-    </a>
-    <!-- To Top Button -->
-    <a (click)="toTop()" *ngIf="topButtonIsActive === true">
-        <img src="../../../../assets/app_icons/arrow_up.png" />
-    </a>
-    <span *ngIf="topButtonIsActive === false">
-        <img src="../../../../assets/app_icons/arrow_up_no.png" />
-    </span>
-</div>
-
-<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="franchise() as flow" (click)="infoTrigger()">
-    <!-- Franchise Name -->
-    <h1>{{ flow.franchise.name }}</h1>
-    <!-- Related Info -->
-    <div *ngIf="flow.franchise.name !== '# Unknown Franchise'">
-        <div class="flex">
-            <p><b>Moods</b></p>
-            <p>{{ franchise()?.moods?.length | number : '3.0' }} / <b>{{ franchise()?.totalMoods | number : '3.0' }}</b></p>
+    <!-- Info Box -->
+    <div [ngClass]="infoIsActive === true ? 'info' : 'info off' " (click)="infoTrigger()">
+        <!-- Franchise Name -->
+        <h1>{{ flow.franchise.name }}</h1>
+        <!-- Related Info -->
+        <div *ngIf="flow.franchise.name !== '# Unknown Franchise'">
+            <div class="flex">
+                <p><b>Moods</b></p>
+                <p>{{ franchise()?.moods?.length | number : '3.0' }} / <b>{{ franchise()?.totalMoods | number : '3.0'
+                        }}</b></p>
+            </div>
+            <div class="flex">
+                <p><b>Models</b></p>
+                <p>{{ franchise()?.models?.length | number : '3.0'}}</p>
+            </div>
         </div>
-        <div class="flex">
-            <p><b>Models</b></p>
-            <p>{{ franchise()?.models?.length | number : '3.0'}}</p>
-        </div>  
-    </div>   
-    <!-- Auditable Info -->
-    <div class="flex_created">
-        <div class="box_created">
-            <p>Created :</p>
-            <p>{{ flow.franchise.created | date : 'MMMM d, y | HH:mm' }}</p>
-        </div>
-        <div class="box_created">
-            <p>Modified :</p>
-            <p>{{ flow.franchise.modified | date : 'MMMM d, y | HH:mm' }}</p>
+        <!-- Auditable Info -->
+        <div class="flex_created">
+            <div class="box_created">
+                <p>Created :</p>
+                <p>{{ flow.franchise.created | date : 'MMMM d, y | HH:mm' }}</p>
+            </div>
+            <div class="box_created">
+                <p>Modified :</p>
+                <p>{{ flow.franchise.modified | date : 'MMMM d, y | HH:mm' }}</p>
+            </div>
         </div>
     </div>
 </div>

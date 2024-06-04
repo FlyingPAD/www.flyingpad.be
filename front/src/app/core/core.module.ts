@@ -9,6 +9,8 @@ import { SharedModule } from '../shared/shared.module';
 import { LayoutCustomComponent } from './layouts/layout-custom/layout-custom.component';
 import { VideoTestComponent } from './components/video-test/video-test.component';
 import { DemoComponent } from './components/demo/demo.component';
+import { UserLoginErrorComponent } from './components/user-login-error/user-login-error.component';
+import { UserRegisterComponent } from './components/user-register/user-register.component';
 
 @NgModule({
   declarations: 
@@ -20,6 +22,8 @@ import { DemoComponent } from './components/demo/demo.component';
     LayoutCustomComponent,
     VideoTestComponent,
     DemoComponent,
+    UserRegisterComponent,
+    UserLoginErrorComponent,
   ],
   imports: 
   [

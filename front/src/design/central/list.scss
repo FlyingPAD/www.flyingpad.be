@@ -54,6 +54,20 @@
                 margin-right: 5px;
             }
 
+            .edit
+            {
+                height: 23px;
+                width: 23px;
+                margin-left: 5px;
+                opacity: 0.6;
+                cursor: pointer;
+                transition-duration: 150ms;
+            }
+            .edit:hover
+            {
+                opacity: 1;
+            }
+
             .num
             {
                 text-align: center;
