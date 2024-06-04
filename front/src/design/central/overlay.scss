@@ -1,0 +1,28 @@
+// ==============================
+// - MoodBoard | Overlay Design
+// ==============================
+
+.overlay
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    
+    background-color: rgb(107, 82, 64, 0.5);
+    backdrop-filter: blur(3px);
+
+    transition-duration: 500ms;
+    z-index: 19;
+}
+.overlay-enabled
+{
+    opacity: 1;
+    pointer-events: initial;
+}
+.overlay-disabled
+{
+    opacity: 0;
+    pointer-events: none;
+}

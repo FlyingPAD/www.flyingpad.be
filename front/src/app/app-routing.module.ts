@@ -8,6 +8,8 @@ import { LayoutCustomComponent } from './core/layouts/layout-custom/layout-custo
 import { VideoTestComponent } from './core/components/video-test/video-test.component';
 import { DemoComponent } from './core/components/demo/demo.component';
 import { LayoutEmptyComponent } from './core/layouts/layout-empty/layout-empty.component';
+import { UserLoginErrorComponent } from './core/components/user-login-error/user-login-error.component';
+import { UserRegisterComponent } from './core/components/user-register/user-register.component';
 
 const routes: Routes = 
 [
@@ -19,18 +21,16 @@ const routes: Routes =
       { path : 'about', component : AboutComponent, title : 'Flying PAD | About' },
       { path : 'not-found', component : NotFoundComponent, title : 'Flying PAD | Not Found' },
       { path : 'video-test', component : VideoTestComponent, title : 'Flying PAD | Video Test' },
+      { path : 'login-error', component : UserLoginErrorComponent, title : 'Flying PAD | Login Error' },
+      { path : 'register', component : UserRegisterComponent, title : 'Flying PAD | Register' },
     ]
   },
-  { path : '', component : LayoutEmptyComponent, children :
-  [
-    { path : 'demo', component : DemoComponent, title : 'Flying PAD | Demo' },
-  ]
-},
 
-  // Authentication
-  {
-    path : 'authentication', component : LayoutCustomComponent,
-    loadChildren:() => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
+  // Empty Layout ( for testing purpose )
+  { path : '', component : LayoutEmptyComponent, children :
+    [
+      { path : 'demo', component : DemoComponent, title : 'Flying PAD | Demo' },
+    ]
   },
 
   // Dashboard

@@ -7,17 +7,30 @@
     width: 1150px;
     margin: auto;
 
-    p
+    a
     {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 50px;
         width: 150px;
 
         padding: 5px;
         margin: 15px;
 
-        color: var(--colorMain);
-        background-color: #fff;
+        color: #fff;
+        background-color: var(--colorMain);
         border: 1px solid var(--colorMain);
         border-radius: 5px;
+
+        text-decoration: none;
+        text-align: center;
+    }
+    a:hover
+    {
+        color: var(--colorMain);
+        background-color: #fff;
+        transition-duration: 500ms;
     }
 }

@@ -5,6 +5,7 @@ import { FranchiseStateService } from '../../../core/services/franchise.service'
 import { ModelStateService } from '../../../core/services/model.service';
 import { MoodStateService } from '../../../core/services/mood.service';
 import { Location } from '@angular/common';
+import { MenuDesktopService } from '../../../core/services/menu-desktop.service';
 
 @Component({
   selector: 'app-franchise-gallery',
@@ -16,24 +17,28 @@ export class FranchiseGalleryComponent
   #moodsService = inject(MoodStateService)
   #franchisesService = inject(FranchiseStateService)  
   #modelsService = inject(ModelStateService)
+  menuService = inject(MenuDesktopService)
   location = inject(Location)
   
   environment = environment.apiBaseUrl
+
   franchise = this.#franchisesService.franchise
   model$ = this.#modelsService.currentModel$
+
   modelSubscription = new Subscription()
+
   topButtonIsActive = false
   infoIsActive = false
 
-  mpp : number = 36     // Pagination
-  p : number = 1        // Pagination
+  moodsPerPage : number = 36
+  currentPage : number = 1
 
-  ngOnDestroy()
+  ngOnDestroy() : void 
   {
     this.modelSubscription.unsubscribe()
   }
 
-  getModel( modelId : number )
+  getModel( modelId : number ) : void 
   {
     this.modelSubscription = this.#modelsService.GetOneDetails(modelId).subscribe({
       next : (data) => {
@@ -42,31 +47,36 @@ export class FranchiseGalleryComponent
     })
   }
 
-  updateModelId(modelId : number | null)
+  updateModelId(modelId : number | null) : void 
   {
     this.#modelsService.updateSelectedModelId(modelId)
     this.#moodsService.updateSelectedModelId(modelId)
   }
 
-  updateMoodId(moodId : number)
+  updateMoodId(moodId : number) : void 
   {
     this.#moodsService.updateSelectedGalleryType('franchise')
     this.#moodsService.updateSelectedMoodId(moodId)
   }
 
-  getRandomMood()
+  getRandomMood() : void 
   {
     this.#moodsService.updateSelectedGalleryType('')
     this.#moodsService.updateSelectedMoodId(null)
   }
 
-  infoTrigger()
+  menuTrigger()
+  {
+    this.menuService.menuRTrigger()
+  }
+
+  infoTrigger() : void 
   {
     this.infoIsActive = !this.infoIsActive
   }
 
   @HostListener('window:scroll', ['$event'])
-  onWindowScroll() 
+  onWindowScroll() : void 
   {
     const threshold = 100
     const currentScrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0

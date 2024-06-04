@@ -42,37 +42,30 @@
               "src/design/03_global_settings.scss",
 
               "src/design/central/animations.scss",
+              "src/design/central/bottom-bar.scss",
+              "src/design/central/box-social.scss",
+              "src/design/central/boxes.scss",
+              "src/design/central/crud-forms.scss",
+              "src/design/central/crud.scss",
+              "src/design/central/display-model.scss",
+              "src/design/central/form-cat-flex.scss",
+              "src/design/central/gallery.scss",
+              "src/design/central/list.scss",
+              "src/design/central/menu-flex.scss",
+              "src/design/central/modal.scss",
+              "src/design/central/overlay.scss",
+              "src/design/central/scripts-tools.scss",
+              "src/design/central/tags-gallery.scss",
+              "src/design/central/text.scss",
+              "src/design/central/user-details.scss",
+              "src/design/central/viewer.scss",
 
-              "src/design/central/elements_boxes.scss",
-              "src/design/central/elements_text.scss",
+              "src/design/header/header.scss",  
 
-              "src/design/central/component_box_social.scss",
+              "src/design/main-menu/main-menu-01.scss",
 
-              "src/design/central/component_tags_gallery.scss",
-              "src/design/central/component_gallery.scss",
-
-              "src/design/central/component_bar_bottom.scss",
-
-              "src/design/central/component_menu_flex.scss",
-              "src/design/central/component_list.scss",
-              "src/design/central/component_form_cat_flex.scss",
-              "src/design/central/component_display_model.scss",
-              "src/design/central/component_user_details.scss",
-              "src/design/central/component_viewer.scss",
-              "src/design/central/components_scripts_tools.scss",
-              "src/design/central/components_crud_forms.scss",
-              
-              "src/design/menu/elements.scss",
-              "src/design/menu/component_box_buttons.scss",
-              "src/design/menu/component_box_score.scss",
-              "src/design/menu/component_categories_list_admin.scss",
-              "src/design/menu/component_flex_created.scss",
-              "src/design/menu/component_flex_tags.scss",
-              "src/design/menu/component_flex.scss",
-              "src/design/menu/component_list_categories.scss",
-              "src/design/menu/component_model_flex.scss",
-              
-              "src/design/menu/menu-right-desktop.scss",
+              "src/design/right-column/right-column-trigger.scss",
+              "src/design/right-column/right-column.scss",
 
               "./node_modules/ngx-toastr/toastr.css"
             ],

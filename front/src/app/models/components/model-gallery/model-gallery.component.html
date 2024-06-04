@@ -1,88 +1,89 @@
-<div id="layout-central" *ngIf="model() as flow">
-    <!-- Pagination -->
-    <div class="row-sticky" *ngIf="flow.moods.length > mpp">
-        <div id="pagination">
-            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="p = $event"></pagination-controls>
-        </div>
-    </div>    
-    <!-- Gallery -->
-    <div class="gallery">
-        <div *ngFor="let mood of flow.moods | paginate : { itemsPerPage: mpp, currentPage: p }">
-            <section>
-                <div *ngIf="mood.type == 1">           
-                    <a routerLink="/moods/mood-details" (click)="updateMoodId(mood.businessId)">
-                        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"/></a>
-                </div>
-                <div *ngIf="mood.type == 2">
-                    <a routerLink="/moods/mood-details" (click)="updateMoodId(mood.businessId)">
-                        <img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"/></a>         
-                </div>
-            </section>
-        </div>
-    </div>
-</div>
-
-<div class="bar" *ngIf="model() as flow">
-    <!-- Model Pseudonym -->
-    <a class="tweak">
-        <div class="position"><b>{{ flow.model.pseudonym }}</b></div>
-    </a>
-    <!-- Moods Count -->
-    <a class="tweak">
-        <div class="position">{{ flow.moods.length | number : '4.0'}}</div>
-    </a>
-    <!-- Google Search -->
-    <a target="_blank" href="https://www.google.com/search?q={{flow.model.pseudonym}}" *ngIf="flow.model.pseudonym != '# Unknown Model'">
-        <img src="../../../../assets/app_icons/google.png" />
-    </a>
-    <a target="_blank" href="https://images.google.com/images?q={{flow.model.pseudonym}}" *ngIf="flow.model.pseudonym != '# Unknown Model'">
-        <img src="../../../../assets/app_icons/google_images.png" />
-    </a>
-    <!-- Info button Trigger -->
-    <a (click)="infoTrigger()" [ngClass]="infoIsActive === true ? 'active' : '' ">
-        <img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" />
-    </a>
-    <!-- To Top Button Trigger -->
-    <a (click)="toTop()" *ngIf="topButtonIsActive === true">
-        <img src="../../../../assets/app_icons/arrow_up.png" />
-    </a>
-    <span *ngIf="topButtonIsActive === false">
-        <img src="../../../../assets/app_icons/arrow_up_no.png" />
-    </span>
-</div>
-
-<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="model() as flow" (click)="infoTrigger()">
-    <!-- Model Pseudonym -->
-    <h1>{{ flow.model.pseudonym }}</h1>
-    <!-- Model Name -->
-    <div *ngIf="flow.model.pseudonym !== '# Unknown Model'">
-        <div class="flex" *ngIf="flow.model.firstName !== '...' ">
-            <p><b>First Name</b></p>
-            <p>{{flow.model.firstName}}</p>
-        </div>
-        <div class="flex" *ngIf="flow.model.lastName !== '...' ">
-            <p><b>Last Name</b></p>
-            <p>{{flow.model.lastName}}</p>
-        </div>
-    </div>   
-    <!-- Related Franchises -->
-    <div *ngIf="flow.franchises.length">
-        <p>From</p>
-        <div class="list_categories">
-            <div *ngFor="let franchise of flow.franchises">
-                <a routerLink="/franchises/franchise-gallery" (click)="updateFranchiseId(franchise.businessId)"> ▸ {{franchise.name}}</a>             
+<div *ngIf="model() as flow">
+    <div id="layout-central">   
+        <!-- Gallery -->
+        <div class="gallery">
+            <div *ngFor="let mood of flow.moods | paginate : { itemsPerPage : moodsPerPage, currentPage : currentPage }">
+                <section>
+                    <div *ngIf="mood.type == 1">           
+                        <a routerLink="/moods/mood-details" (click)="updateMoodId(mood.businessId)">
+                            <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"/></a>
+                    </div>
+                    <div *ngIf="mood.type == 2">
+                        <a routerLink="/moods/mood-details" (click)="updateMoodId(mood.businessId)">
+                            <img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"/></a>         
+                    </div>
+                </section>
             </div>
         </div>
     </div>
-    <!-- Auditable Info -->
-    <div class="flex_created">
-        <div class="box_created">
-            <p>Created :</p>
-            <p>{{ flow.model.created | date : 'MMMM d, y | HH:mm' }}</p>
+    <!-- Pagination  -->
+    <div class="pagination-row" *ngIf="flow.moods.length > moodsPerPage">
+        <div id="pagination">
+            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
+        </div>   
+    </div>
+    <!-- Bottom Bar -->
+    <div class="bar">
+        <!-- Model Pseudonym -->
+        <a class="tweak">
+            <div class="position"><b>{{ flow.model.pseudonym }}</b></div>
+        </a>
+        <!-- Moods Count -->
+        <a class="tweak">
+            <div class="position">{{ flow.moods.length | number : '4.0'}}</div>
+        </a>
+        <!-- Google Search -->
+        <a target="_blank" href="https://www.google.com/search?q={{flow.model.pseudonym}}" *ngIf="flow.model.pseudonym != '# Unknown Model'">
+            <img src="../../../../assets/app_icons/google.png" />
+        </a>
+        <a target="_blank" href="https://images.google.com/images?q={{flow.model.pseudonym}}" *ngIf="flow.model.pseudonym != '# Unknown Model'">
+            <img src="../../../../assets/app_icons/google_images.png" />
+        </a>
+        <!-- Info button Trigger -->
+        <a (click)="infoTrigger()" [ngClass]="infoIsActive === true ? 'active' : '' ">
+            <img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" />
+        </a>
+        <!-- To Top Button Trigger -->
+        <a (click)="toTop()" *ngIf="topButtonIsActive === true">
+            <img src="../../../../assets/app_icons/arrow_up.png" />
+        </a>
+        <span *ngIf="topButtonIsActive === false">
+            <img src="../../../../assets/app_icons/arrow_up_no.png" />
+        </span>
+    </div>    
+    <div [ngClass]="infoIsActive === true ? 'info' : 'info off' " (click)="infoTrigger()">
+        <!-- Model Pseudonym -->
+        <h1>{{ flow.model.pseudonym }}</h1>
+        <!-- Model Name -->
+        <div *ngIf="flow.model.pseudonym !== '# Unknown Model'">
+            <div class="flex" *ngIf="flow.model.firstName !== '...' ">
+                <p><b>First Name</b></p>
+                <p>{{flow.model.firstName}}</p>
+            </div>
+            <div class="flex" *ngIf="flow.model.lastName !== '...' ">
+                <p><b>Last Name</b></p>
+                <p>{{flow.model.lastName}}</p>
+            </div>
+        </div>   
+        <!-- Related Franchises -->
+        <div *ngIf="flow.franchises.length">
+            <p>From</p>
+            <div class="list_categories">
+                <div *ngFor="let franchise of flow.franchises">
+                    <a routerLink="/franchises/franchise-gallery" (click)="updateFranchiseId(franchise.businessId)"> ▸ {{franchise.name}}</a>             
+                </div>
+            </div>
         </div>
-        <div class="box_created">
-            <p>Modified :</p>
-            <p>{{ flow.model.modified | date : 'MMMM d, y | HH:mm' }}</p>
+        <!-- Auditable Info -->
+        <div class="flex_created">
+            <div class="box_created">
+                <p>Created :</p>
+                <p>{{ flow.model.created | date : 'MMMM d, y | HH:mm' }}</p>
+            </div>
+            <div class="box_created">
+                <p>Modified :</p>
+                <p>{{ flow.model.modified | date : 'MMMM d, y | HH:mm' }}</p>
+            </div>
         </div>
     </div>
 </div>

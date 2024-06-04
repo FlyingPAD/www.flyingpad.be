@@ -5,13 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './demo.component.html',
   styleUrl: './demo.component.scss'
 })
-export class DemoComponent {
+export class DemoComponent 
+{
 
-
-  menuTrigger : boolean = true
-
-  trigger()
-  {
-    this.menuTrigger = !this.menuTrigger
-  }
 }

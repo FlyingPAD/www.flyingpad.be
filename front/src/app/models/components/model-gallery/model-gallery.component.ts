@@ -17,12 +17,14 @@ export class ModelGalleryComponent
   #franchisesService = inject(FranchiseStateService)
   location = inject(Location)
 
-  mpp : number = 36                       // Pagination
-  p : number = 1                          // Pagination
-  environment = environment.apiBaseUrl    // API URL
-  topButtonIsActive = false               // To Top Button Trigger
-  infoIsActive = false                    // Info Box Trigger
-  model = this.#modelsService.model       // Signal Flow
+  environment = environment.apiBaseUrl
+  model = this.#modelsService.model
+
+  moodsPerPage : number = 36
+  currentPage : number = 1
+
+  topButtonIsActive = false
+  infoIsActive = false
 
   updateFranchiseId(franchiseId : number | null)
   {

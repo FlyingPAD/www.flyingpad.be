@@ -16,63 +16,78 @@ export class EditionComponent implements OnDestroy
   #formBuilder = inject(FormBuilder)
   menuService = inject(MenuDesktopService)            
 
-  // Signal
   linksEditionFlow = this.#linksEditionService.linksEditionFlow
 
-  // Pagination
   elementsPerPage : number = 18
   currentPage : number = 1
-  resetPage() : void
-  {
-    this.currentPage = 1
-  }
 
-  // Filter Links Search Input
   searchLinks : string = ''
-  filterLinks() 
-  {
-    return this.linksEditionFlow().links.filter(m => m.name.toLowerCase().includes(this.searchLinks.toLowerCase()))
-  }
-
-  // Trigger Right column
-  menuTrigger() : void
-  {
-    this.menuService.menuRActive = !this.menuService.menuRActive
-  }
-
-  // Link Selection
-  updateLink( linkId : number | null ) : void
-  {
-    this.#linksEditionService.updateSelectedLink( linkId )
-    this.triggerUpdate()
-  }
-
-  // Category Selection
-  updateCategory( categoryId : number | null ) : void
-  {
-    this.resetPage()
-    this.#linksEditionService.updateSelectedCategory( categoryId )
-  }
-
-  // CREATE MODAL
   linkTriggerCreate : boolean = false
-  triggerCreate() : void
-  {
-    this.linkTriggerCreate = !this.linkTriggerCreate
-  }
+  linkTriggerUpdate : boolean = false
+  linkTriggerDelete : boolean = false
+  topButtonIsActive : boolean = false  
+
   createFormGroup : FormGroup = this.#formBuilder.group
   ({
     name : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     description : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     url : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
+
+  updateFormGroup : FormGroup = this.#formBuilder.group
+  ({
+    name : [this.linksEditionFlow().link?.name, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    description : [this.linksEditionFlow().link?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    url : [this.linksEditionFlow().link?.url, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
+  })
+
   createSubscription = new Subscription()
-  resetCreate()
+  updateSubscription = new Subscription()
+  deleteSubscription = new Subscription()
+
+  ngOnDestroy() : void 
+  {
+    this.createSubscription.unsubscribe()
+    this.updateSubscription.unsubscribe()
+    this.deleteSubscription.unsubscribe()
+  }
+
+  resetPage() : void
+  {
+    this.currentPage = 1
+  }
+
+  filterLinks() 
+  {
+    return this.linksEditionFlow().links.filter(m => m.name.toLowerCase().includes(this.searchLinks.toLowerCase()))
+  }
+
+  menuTrigger() : void
+  {
+    this.menuService.menuRActive = !this.menuService.menuRActive
+  }
+
+  updateLink( linkId : number | null ) : void
+  {
+    this.#linksEditionService.updateSelectedLink( linkId )
+  }
+
+  updateCategory( categoryId : number | null ) : void
+  {
+    this.resetPage()
+    this.#linksEditionService.updateSelectedCategory( categoryId )
+  }
+
+  triggerCreate() : void
+  {
+    this.linkTriggerCreate = !this.linkTriggerCreate
+  }
+  resetCreate() : void
   {
     this.createFormGroup.reset()
     this.triggerCreate()
   }
-  onCreate()
+  onCreate() : void
   {
     let form : LinkCreateForm = 
     {
@@ -94,24 +109,26 @@ export class EditionComponent implements OnDestroy
     }
   }
 
-  // UPDATE Modal
-  linkTriggerUpdate : boolean = false
   triggerUpdate() : void
   {
     this.linkTriggerUpdate = !this.linkTriggerUpdate
   }
-  updateFormGroup : FormGroup = this.#formBuilder.group
-  ({
-    name : [this.linksEditionFlow().link?.name, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    description : [this.linksEditionFlow().link?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    url : [this.linksEditionFlow().link?.url, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
-  })
-  updateSubscription = new Subscription()
-  cancelUpdate()
+  resetUpdate( linkId : number) : void
+  {
+    this.updateLink(linkId)
+    this.triggerUpdate()
+    this.updateFormGroup = this.#formBuilder.group
+    ({
+      name : [this.linksEditionFlow().link?.name, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      description : [this.linksEditionFlow().link?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      url : [this.linksEditionFlow().link?.url, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
+    })
+  }
+  cancelUpdate() : void
   {
     this.triggerUpdate()
   }
-  onUpdate()
+  onUpdate() : void
   {
     const businessId = this.linksEditionFlow().link?.businessId;
     if (businessId === undefined) 
@@ -137,14 +154,11 @@ export class EditionComponent implements OnDestroy
     }
   }
 
-  // DELETE MODAL
-  linkTriggerDelete : boolean = false
   triggerDelete() : void
   {
     this.linkTriggerDelete = !this.linkTriggerDelete
   }
-  deleteSubscription = new Subscription()
-  cancelDelete()
+  cancelDelete() : void
   {
     this.triggerDelete()
   }
@@ -159,18 +173,9 @@ export class EditionComponent implements OnDestroy
     })
   }
 
-  // COMPONENT LIFE CYCLE
-  ngOnDestroy() : void 
-  {
-    this.createSubscription.unsubscribe()
-    this.updateSubscription.unsubscribe()
-    this.deleteSubscription.unsubscribe()
-  }
-
-  // TO TOP BUTTON
-  topButtonIsActive = false    
+  // TO TOP BUTTON  
   @HostListener('window:scroll', ['$event'])
-  onWindowScroll() 
+  onWindowScroll() : void
   {
     const threshold = 100
     const currentScrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0

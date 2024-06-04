@@ -1,36 +1,28 @@
 <!-- Right Column Trigger -->
-<div class="tags-trigger" [class.tags-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
-    <div class="tags-trigger-arrow"></div>
+<div class="column-trigger" [class.column-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
+    <div class="trigger-arrow"></div>
 </div>
 <!-- Right Colum -->
-<app-menu-right-desktop>
-    <div class="content_right_desktop">
-        <!-- Tags List -->
-        <div id="tag_list_main">
-            <div *ngFor="let tagList of tagsList()">
-                <div id="tags_container">
-                    <p class="category_name">{{tagList.category.name}}</p>
-                    <div *ngFor="let tag of tagList.tags">
-                        <div id="tag_box">
-                            <a id="{{tag.businessId}}" class="name-tag" [ngClass]="{'active': tag.name === moods().tagDetails?.name}"
-                                (click)="updateTagId(tag.businessId);pageReset()"> ▸ {{tag.name}}
-                            </a>                         
-                        </div>
+<div class="right-column" [ngClass]="menuService.menuRActive == true ? 'right-column-on' : 'right-column-off'">
+    <!-- Tags List -->
+    <div class="tags-list">
+        <div *ngFor="let tagList of tagsList()">
+            <div class="container">
+                <p class="category-name">{{tagList.category.name}}</p>
+                <div *ngFor="let tag of tagList.tags">
+                    <div class="box">
+                        <a id="{{tag.businessId}}" class="name-tag" [ngClass]="{'active': tag.name === moods().tagDetails?.name}"
+                            (click)="updateTagId(tag.businessId);pageReset()"> ▸ {{tag.name}}
+                        </a>                         
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</app-menu-right-desktop>
+</div>
 <!-- Central Layout -->
 <div id="layout-central">
     <div *ngIf="moods().moodsList.length; else loading">
-        <!-- Pagination -->
-        <div class="row-sticky" *ngIf="moods().moodsList.length > moodsPerPage">
-            <div id="pagination">
-                <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
-            </div>  
-        </div> 
         <!-- Gallery -->
         <div [ngClass]="menuService.menuRActive === true ? 'gallery menu-open' : 'gallery' ">
             <div *ngFor="let mood of moods().moodsList | paginate : { itemsPerPage : moodsPerPage, currentPage : currentPage }">
@@ -55,13 +47,19 @@
             </div>
         </div>
     </div>
-    <!-- or loading if not -->
+    <!-- Loading -->
     <ng-template #loading>
         <div class="loading">
             <p>Loading ...</p>
             <img src="../../../../assets/app_icons/spinner.gif" />
         </div>
     </ng-template>
+</div>
+<!-- Pagination -->
+<div class="pagination-row" *ngIf="moods().moodsList.length > moodsPerPage">
+    <div id="pagination">
+        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
+    </div>   
 </div>
 <!-- Bottom Bar -->
 <div class="bar" *ngIf="moods() as flow">

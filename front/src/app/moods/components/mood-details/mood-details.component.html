@@ -1,25 +1,24 @@
 <div *ngIf="mood() as flow">
-    <!-- Tags Column Trigger -->
-    <div class="tags-trigger" [class.tags-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
-        <div class="tags-trigger-arrow"></div>
+    <!-- Right Column Trigger -->
+    <div class="column-trigger" [class.column-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
+        <div class="trigger-arrow"></div>
     </div>
-    <!-- Tags Column -->
-    <app-menu-right-desktop (click)="menuTrigger()">
-        <div class="content_right_desktop">
-            <h1 class="item-top">Related Tags ( {{ flow.tags.length }} )</h1>
-            <div class="item-bottom list_categories">
-                <div *ngFor="let tag of flow.tags">
-                    <div>
-                        <a routerLink="/moods/gallery"
-                            [class.active]="tag.businessId === moods().tagDetails?.businessId"
-                            (click)="updateTagId(tag.businessId)">
-                            {{tag.name}}
-                        </a>
-                    </div>
+    <!-- Right Column -->
+    <div class="right-column" (click)="menuTrigger()"
+        [ngClass]="menuService.menuRActive == true ? 'right-column-on' : 'right-column-off'">
+        <h1 class="item-top">Related Tags ( {{ flow.tags.length }} )</h1>
+        <div class="item-bottom list-categories">
+            <div *ngFor="let tag of flow.tags">
+                <div>
+                    <a routerLink="/moods/gallery"
+                        [class.active]="tag.businessId === moods().tagDetails?.businessId"
+                        (click)="updateTagId(tag.businessId)">
+                        {{tag.name}}
+                    </a>
                 </div>
             </div>
         </div>
-    </app-menu-right-desktop>
+    </div>
     <!-- Central Layout -->
     <div id="layout-central">
         <!-- // Viewer    -->
