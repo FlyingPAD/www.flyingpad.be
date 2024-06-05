@@ -35,6 +35,6 @@
     <a (click)="updateUserNote('B')">B</a>
 </div>
 
-<h1>{{ userNote }} = {{ randomNote }}</h1>
+<h1 *ngIf="userNote && randomNote">{{ userNote }} = {{ randomNote }}</h1>
 
 <h1>{{ result }}</h1>
