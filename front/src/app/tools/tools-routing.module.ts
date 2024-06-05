@@ -5,6 +5,7 @@ import { ChordWheelSvgComponent } from './components/chord-wheel-svg/chord-wheel
 import { CircleOfFifthsComponent } from './components/circle-of-fifths/circle-of-fifths.component';
 import { DiapasonComponent } from './components/diapason/diapason.component';
 import { FlyingKeysMiniComponent } from './components/flying-keys-mini/flying-keys-mini.component';
+import { TrainerNotesComponent } from './components/trainer-notes/trainer-notes.component';
 
 const routes: Routes = 
 [
@@ -15,6 +16,7 @@ const routes: Routes =
   { path : 'circle-of-fifths', component : CircleOfFifthsComponent, title : 'Flying PAD | Circle of Fifths' },
   { path : 'diapason', component : DiapasonComponent, title : 'Flying PAD | Diapason' },
   { path : 'flying-keys-mini', component : FlyingKeysMiniComponent, title : 'Flying PAD | Flying Keys ( Mini )' },
+  { path : 'trainer-notes', component : TrainerNotesComponent, title : 'Flying PAD | Notes Trainer' },
 ];
 
 @NgModule({

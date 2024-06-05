@@ -1,0 +1,97 @@
+.trainer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .trainer-container
+    {
+        position: relative;
+
+        width: 500px;
+        height: 500px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img
+        {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+h1
+{
+    text-align: center;
+    color: var(--colorMain);
+    font-size: 20px;
+}
+
+.trainer-buttons
+{
+    margin-top: 15px;
+
+    display: flex;
+    justify-content: center;
+
+    a
+    {
+        display: block;
+
+        width: 125px;
+
+        padding: 10px;
+        margin: 10px;
+
+        background-color: var(--colorMain);
+        border: 1px solid var(--colorMain);
+        border-radius: 5px;
+
+        color: white;
+        text-align: center;
+    }
+    a:hover
+    {
+        background-color: white;
+        color: var(--colorMain);
+        cursor: pointer;
+        transition-duration: 500ms;
+    }
+}
+
+.notes
+{
+    margin-top: 15px;
+
+    display: flex;
+    justify-content: center;
+
+    a
+    {
+        display: block;
+
+        width: 50px;
+
+        padding: 10px;
+        margin: 10px;
+
+        background-color: var(--colorMain);
+        border: 1px solid var(--colorMain);
+        border-radius: 5px;
+
+        color: white;
+        text-align: center;
+    }
+    a:hover
+    {
+        background-color: white;
+        color: var(--colorMain);
+        cursor: pointer;
+        transition-duration: 500ms;
+    }
+}
