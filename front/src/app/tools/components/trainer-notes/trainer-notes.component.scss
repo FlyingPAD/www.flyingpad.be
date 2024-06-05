@@ -4,6 +4,15 @@
     justify-content: center;
     align-items: center;
 
+    width: 600px;
+    margin: auto;
+    margin-top: 10px;
+
+    border: 1px solid var(--colorMain);
+    background-color: rgba(255, 253, 251, 0.5);
+    backdrop-filter: blur(3px);
+    border-radius: 15px;
+
     .trainer-container
     {
         position: relative;
@@ -24,14 +33,32 @@
 
             width: 100%;
             height: 100%;
+
+            transition: top 0.5s ease;
+            pointer-events: none;
         }
+    
+        .row1 { top: -2%; }
+        .row2 { top: -6%; }
+        .row3 { top: -12.6%; }
+        .row4 { top: -18.4%; }
+        .row5 { top: -24.8%; }
+        .row6 { top: -31%; }
+        .row7 { top: -37.2%; }
+        .row8 { top: -43.4%; }
+        .row9 { top: -49.6%; }
+        .row10 { top: -55.8%; }
+        .row11 { top: -62%; }
+        .row12 { top: -68.2%; }
     }
 }
 
-@media screen and (max-width : 500px) 
+@media screen and (max-width : 950px) 
 {
     .trainer
     {   
+        width: 90%;
+
         .trainer-container
         {  
             width: 300px;
@@ -45,6 +72,17 @@ h1
     text-align: center;
     color: var(--colorMain);
     font-size: 20px;
+    text-shadow: 0px 3px 3px rgba(0,0,0,0.3);
+    letter-spacing: 2px;
+}
+
+p
+{
+    text-align: center;
+    color: rgb(68, 0, 0);
+    font-size: 15px;
+    text-shadow: 0px 3px 3px rgba(0,0,0,0.3);
+    letter-spacing: 2px;  
 }
 
 .trainer-buttons
@@ -66,7 +104,10 @@ h1
         background-color: var(--colorMain);
         border: 1px solid var(--colorMain);
         border-radius: 5px;
+        box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
 
+        font-size: 15px;
+        letter-spacing: 1px;
         color: white;
         text-align: center;
     }
@@ -77,10 +118,17 @@ h1
         cursor: pointer;
         transition-duration: 500ms;
     }
+    .active
+    {
+        background-color: white;
+        color: var(--colorMain);
+    }
 }
 
 .notes
 {
+    width: 400px;
+    margin: auto;    
     margin-top: 15px;
 
     display: flex;
