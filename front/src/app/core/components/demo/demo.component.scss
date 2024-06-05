@@ -1,0 +1,25 @@
+main 
+{
+    display: flex; /* Active Flexbox pour le layout du conteneur */
+    flex-direction: column; /* Alignement vertical des enfants */
+    border: 1px solid black;
+    width: 85vw;
+    height: 85vh;
+    margin: auto;
+    overflow: hidden; /* Empêche le dépassement du contenu */
+}
+
+section 
+{
+    border: 1px solid green;
+    overflow: auto; /* Permet le défilement si le contenu est trop grand */
+    flex-shrink: 0; /* Empêche la réduction de la taille de section */
+}
+
+article 
+{
+    flex-grow: 1; /* Prend tout l'espace restant */
+    border: 1px solid red;
+    overflow: auto; /* Permet le défilement si le contenu est trop grand */
+    min-height: 0; /* Permet à l'article de réduire sa taille si nécessaire */
+}

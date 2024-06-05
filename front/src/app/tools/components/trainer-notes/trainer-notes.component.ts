@@ -22,7 +22,7 @@ export class TrainerNotesComponent
 
   clefBass : boolean = false
   clefTreble : boolean = false
-  play : boolean = false
+  pic : boolean | undefined = false
   note : boolean = false
 
   notes : Note[] = 
@@ -44,6 +44,7 @@ export class TrainerNotesComponent
 
   userNote : string = ''
   randomNote : string = ''
+  previousRandomNote : string = ''
 
   result : string = ''
 
@@ -78,11 +79,13 @@ export class TrainerNotesComponent
     this.generateRandomNote()
   }
 
-  generateRandomNote() {
-    const randomIndex = Math.floor(Math.random() * this.notes.length); // Choix aléatoire d'un index
-    const selectedNote = this.notes[randomIndex]; // Récupération de la note aléatoire
-    this.randomNote = selectedNote.name; // Assignation du nom de la note à la propriété randomNote
-    this.playNote(selectedNote.freq); // Jouer la fréquence de la note sélectionnée
+  generateRandomNote() 
+  {
+    const randomIndex = Math.floor(Math.random() * this.notes.length)
+    const selectedNote = this.notes[randomIndex]
+    this.randomNote = selectedNote.name
+    this.previousRandomNote = selectedNote.name
+    this.playNote(selectedNote.freq)
   }
   checkNote()
   {
@@ -92,7 +95,7 @@ export class TrainerNotesComponent
     }
     if(this.userNote !== this.randomNote)
     {
-      this.result = 'You Suck !'
+      this.result = 'You Suck ... It was ' + this.previousRandomNote
     }
   }
 

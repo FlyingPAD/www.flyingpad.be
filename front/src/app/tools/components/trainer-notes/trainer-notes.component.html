@@ -10,7 +10,18 @@
 <div class="trainer" *ngIf="gameConfig || gameStart">
     <div class="trainer-container">
         <img src="../../../../assets/app_tools/trainer-notes-back.png" />
-        <img src="../../../../assets/app_tools/trainer-note-ref.png" *ngIf="note === true"/>
+        <img src="../../../../assets/app_tools/note-c.png" *ngIf="randomNote === 'C'"/>
+        <img src="../../../../assets/app_tools/note-cs.png" *ngIf="randomNote === 'C#'"/>
+        <img src="../../../../assets/app_tools/note-d.png" *ngIf="randomNote === 'D'"/>
+        <img src="../../../../assets/app_tools/note-ds.png" *ngIf="randomNote === 'D#'"/>
+        <img src="../../../../assets/app_tools/note-e.png" *ngIf="randomNote === 'E'"/>
+        <img src="../../../../assets/app_tools/note-f.png" *ngIf="randomNote === 'F'"/>
+        <img src="../../../../assets/app_tools/note-fs.png" *ngIf="randomNote === 'F#'"/>
+        <img src="../../../../assets/app_tools/note-g.png" *ngIf="randomNote === 'G'"/>
+        <img src="../../../../assets/app_tools/note-gs.png" *ngIf="randomNote === 'G#'"/>
+        <img src="../../../../assets/app_tools/note-a.png" *ngIf="randomNote === 'A'"/>
+        <img src="../../../../assets/app_tools/note-as.png" *ngIf="randomNote === 'A#'"/>
+        <img src="../../../../assets/app_tools/note-b.png" *ngIf="randomNote === 'B'"/>
         <img src="../../../../assets/app_tools/clef-treble.png" *ngIf="clefTreble === true"/>
         <img src="../../../../assets/app_tools/clef-bass.png" *ngIf="clefBass === true"/>
     </div>
@@ -34,6 +45,9 @@
     <a (click)="updateUserNote('A#')">A#</a>
     <a (click)="updateUserNote('B')">B</a>
 </div>
+
+<!-- <img class="result" src="../../../../assets/app_tools/result-true.png" *ngIf="userNote === previousRandomNote">
+<img class="result" src="../../../../assets/app_tools/result-false.png"  *ngIf="userNote !== previousRandomNote"> -->
 
 <h1 *ngIf="userNote && randomNote">{{ userNote }} = {{ randomNote }}</h1>
 
