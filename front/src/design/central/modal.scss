@@ -13,9 +13,10 @@
     width: 315px;
 
     background-color: rgb(255, 255, 255, 0.9);
-    backdrop-filter: blur(3px);
     border: 1px solid #6b5240;
+    backdrop-filter: blur(3px);
     border-radius: 15px;
+    box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
 
     opacity: 0;
     pointer-events: none;
@@ -30,14 +31,17 @@
         font-size: 16px;
         text-align: center;
         color: #6b5240;
-        letter-spacing: 1px;
+        letter-spacing: 2px;
+        text-shadow: 0px 3px 3px rgba(0,0,0,0.3);
     }
+
     p
     {
         font-size: 14px;
         text-align: center;
         color: #6b5240;
     }
+
     .warning
     {
         color: #761a00;  
@@ -87,12 +91,13 @@
         {
             display: block;
             width: 80px;
-            padding: 8px;
+            padding: 10px;
             margin: 10px;
 
             background-color: #6b5240;
             border: 1px solid #6b5240;
             border-radius: 5px;
+            box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
 
             text-align: center;
             font-size: 13px;
@@ -109,12 +114,13 @@
         {
             display: block;
             width: 80px;
-            padding: 8px;
+            padding: 10px;
             margin: 10px;
 
             background-color: #b5b5b5;
             border: 1px solid #535353;
             border-radius: 5px;
+            box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
 
             text-align: center;
             font-size: 13px;
@@ -149,33 +155,4 @@
     transition-duration: 500ms;
 
     z-index: 20;
-}
-
-// LOGIN MODAL
-.login-modal
-{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-
-    width: 300px;
-
-    background-color: rgb(255, 255, 255, 0.9);
-    border: 1px solid #6b5240;
-    border-radius: 15px;
-    box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
-
-    z-index: 20;
-    transition-duration: 500ms;
-
-    opacity: 0;
-    pointer-events: none;
-    transition-duration: 500ms;
-}
-.on
-{
-    opacity: 1;
-    pointer-events: initial;
 }
