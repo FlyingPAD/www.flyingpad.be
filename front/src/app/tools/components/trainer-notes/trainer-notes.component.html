@@ -1,17 +1,27 @@
-<div class="trainer-buttons" *ngIf="!gameStart"><a (click)="configTrigger()">CONFIG</a></div>
+<div class="trainer-buttons"><a (click)="reset()">RESET</a></div>
 
-<h1 *ngIf="gameConfig === true">Select your Clef</h1>
+<h1 *ngIf="gameStart === false">Select your Clef</h1>
+<h1 *ngIf="gameStart === true">Score : {{ score | number : '3.0' }} | Timer : {{ timer | number : '2.0'}}</h1>
 
-<div class="trainer-buttons" *ngIf="gameConfig === true">
-    <a (click)="clefTrebleTrigger()">Treble Clef</a>
-    <a (click)="clefBassTrigger()">Bass Clef</a>
+<div class="trainer-buttons" *ngIf="gameStart === false">
+    <a [class.active]="clefTreble" (click)="clefTrebleTrigger()">Treble Clef</a>
+    <a [class.active]="clefBass" (click)="clefBassTrigger()">Bass Clef</a>
+    <a [class.active]="clefAlto" (click)="clefAltoTrigger()">Alto Clef</a>
 </div>
 
-<div class="trainer" *ngIf="gameConfig || gameStart">
-    <div class="trainer-container">
+<div class="trainer">
+    <div class="trainer-container" *ngIf="gameEnd === false">
         <img src="../../../../assets/app_tools/trainer-notes-back.png" />
-        <img src="../../../../assets/app_tools/note-c.png" *ngIf="randomNote === 'C'"/>
-        <img src="../../../../assets/app_tools/note-cs.png" *ngIf="randomNote === 'C#'"/>
+        <img *ngIf="gameStart && randomNote.alteration === true" 
+        src="../../../../assets/app_tools/sharp.png" 
+        [ngClass]="'row' + randomNote.row" />
+        <img *ngIf="gameStart && randomNote.extension === true" 
+        src="../../../../assets/app_tools/extension.png" 
+        [ngClass]="'row' + randomNote.row" />
+        <img *ngIf="gameStart" 
+        src="../../../../assets/app_tools/note.png" 
+        [ngClass]="'row' + randomNote.row" />
+        <!-- <img src="../../../../assets/app_tools/note-cs.png" *ngIf="randomNote === 'C#'"/>
         <img src="../../../../assets/app_tools/note-d.png" *ngIf="randomNote === 'D'"/>
         <img src="../../../../assets/app_tools/note-ds.png" *ngIf="randomNote === 'D#'"/>
         <img src="../../../../assets/app_tools/note-e.png" *ngIf="randomNote === 'E'"/>
@@ -21,34 +31,27 @@
         <img src="../../../../assets/app_tools/note-gs.png" *ngIf="randomNote === 'G#'"/>
         <img src="../../../../assets/app_tools/note-a.png" *ngIf="randomNote === 'A'"/>
         <img src="../../../../assets/app_tools/note-as.png" *ngIf="randomNote === 'A#'"/>
-        <img src="../../../../assets/app_tools/note-b.png" *ngIf="randomNote === 'B'"/>
+        <img src="../../../../assets/app_tools/note-b.png" *ngIf="randomNote === 'B'"/> -->
         <img src="../../../../assets/app_tools/clef-treble.png" *ngIf="clefTreble === true"/>
         <img src="../../../../assets/app_tools/clef-bass.png" *ngIf="clefBass === true"/>
+        <img src="../../../../assets/app_tools/clef-alto.png" *ngIf="clefAlto === true"/>
+    </div>
+    <div class="trainer-container" *ngIf="gameEnd === true && score > 0">
+        <img src="../../../../assets/app_tools/winner.gif" />
+    </div>
+    <div class="trainer-container" *ngIf="gameEnd === true && score <= 0">
+        <img src="../../../../assets/app_tools/game-over.png" />
     </div>
 </div>
+<p>{{ message }}</p>
+<h1 *ngIf="gameEnd === true">Total Run : {{run | number : '2.0'}} seconds</h1>
 
-<div class="trainer-buttons" *ngIf="gameConfig">
+<div class="trainer-buttons" *ngIf="gameStart === false">
     <a (click)="start()">START</a>
 </div>
 
-<div class="notes" *ngIf="gameStart">
-    <a (click)="updateUserNote('C')">C</a>
-    <a (click)="updateUserNote('C#')">C#</a>
-    <a (click)="updateUserNote('D')">D</a>
-    <a (click)="updateUserNote('D#')">D#</a>
-    <a (click)="updateUserNote('E')">E</a>
-    <a (click)="updateUserNote('F')">F</a>
-    <a (click)="updateUserNote('F#')">F#</a>
-    <a (click)="updateUserNote('G')">G</a>
-    <a (click)="updateUserNote('G#')">G#</a>
-    <a (click)="updateUserNote('A')">A</a>
-    <a (click)="updateUserNote('A#')">A#</a>
-    <a (click)="updateUserNote('B')">B</a>
+<div class="notes" *ngIf="gameStart === true && gameEnd === false">
+    <div *ngFor="let note of notes">
+        <a (click)="updateUserNote(note)">{{note.name}}</a>
+    </div>
 </div>
-
-<!-- <img class="result" src="../../../../assets/app_tools/result-true.png" *ngIf="userNote === previousRandomNote">
-<img class="result" src="../../../../assets/app_tools/result-false.png"  *ngIf="userNote !== previousRandomNote"> -->
-
-<h1 *ngIf="userNote && randomNote">{{ userNote }} = {{ randomNote }}</h1>
-
-<h1>{{ result }}</h1>

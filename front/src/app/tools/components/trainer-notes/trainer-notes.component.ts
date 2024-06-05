@@ -1,11 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { AudioOldService } from '../../../core/services/audio-old.service';
 
-
 export class Note
 {
   name : string = ''
   freq : number = 0
+  row : number = 0
+  alteration : boolean = false
+  extension : boolean = false
 }
 
 @Component({
@@ -16,91 +18,206 @@ export class Note
 export class TrainerNotesComponent 
 {
   audioService = inject(AudioOldService)
-  gameConfig : boolean = false
+
+  timer : number = 10
+  intervalId : any | undefined = undefined
+  run : number = 0
+
   gameStart : boolean = false
   gameEnd : boolean = false
 
   clefBass : boolean = false
   clefTreble : boolean = false
+  clefAlto : boolean = false
+
+  score : number = 0
+  
   pic : boolean | undefined = false
   note : boolean = false
+  randomNote : Note = new Note() 
+  previousRandomNote : Note = new Note()
+  userNote : Note = new Note() 
+  
+  message : string = 'Get Ready !'
 
-  notes : Note[] = 
-  [
-    {name : 'C', freq : 261.63 },
-    {name : 'C#', freq : 277.18 },
-    {name : 'D', freq : 293.66 },
-    {name : 'D#', freq : 311.13, },
-    {name : 'E', freq : 329.63 },
-    {name : 'F', freq : 349.23 },
-    {name : 'F#', freq : 369.99 },
-    {name : 'G', freq : 392 },
-    {name : 'G#', freq : 415.3 },
-    {name : 'A', freq : 440 },
-    {name : 'A#', freq : 466.16 },
-    {name : 'B', freq : 493.88 },
+  notes : Note[] = []
 
-  ]
+  reset()
+  {
+    this.timerStop()
+    this.timer = 10
+    this.run = 0
 
-  userNote : string = ''
-  randomNote : string = ''
-  previousRandomNote : string = ''
+    this.gameStart = false
+    this.gameEnd = false
+  
+    this.clefBass = false
+    this.clefTreble = false
+    this.clefAlto = false
+  
+    this.score = 0
+    
+    this.pic = false  
+    this.note = false
+    this.randomNote = new Note() 
+    this.previousRandomNote = new Note() 
 
-  result : string = ''
+    this.userNote = new Note() 
+    this.message = 'Get ready !'
+  }
+
+  start()
+  {
+    if(this.clefBass || this.clefAlto || this.clefTreble)
+    {
+      this.initializeNotes()
+      this.gameStart = true
+      this.generateRandomNote()
+      this.timerStart()
+      this.message = "Let's Go !"
+    }
+    else
+    this.message = 'You must select a clef first !'
+  }
+
+  timerStart() : void
+  {
+    this.intervalId = setInterval(() => 
+    {
+      if(this.timer > 0)
+      {
+        this.timer -= 1
+        this.run += 1
+      }
+      else
+      {
+        this.timerStop()
+        this.gameEnd = true
+        if(this.score > 0) this.message = 'Congratulations !'
+        if(this.score <= 0) this.message = ' ... '
+      }
+    }, 
+    1000)
+  }  
+  timerStop() : void
+  {
+    if (this.intervalId !== undefined) 
+    {
+      clearInterval(this.intervalId)
+      this.intervalId = undefined
+    }
+  }
 
   clefBassTrigger()
   {
     this.clefBass = true
     this.clefTreble = false
+    this.clefAlto = false
   }
 
   clefTrebleTrigger()
   {
     this.clefBass = false
     this.clefTreble = true
+    this.clefAlto = false
   }
 
-  start()
+  clefAltoTrigger()
   {
-    this.gameConfig = false
-    this.gameStart = true
-    this.generateRandomNote()
+    this.clefBass = false
+    this.clefTreble = false
+    this.clefAlto = true
   }
 
-  configTrigger()
-  {
-    this.gameConfig = !this.gameConfig
-  }
-
-  updateUserNote( note : string)
+  updateUserNote(note : Note)
   {
     this.userNote = note
     this.checkNote()
     this.generateRandomNote()
   }
 
-  generateRandomNote() 
-  {
-    const randomIndex = Math.floor(Math.random() * this.notes.length)
-    const selectedNote = this.notes[randomIndex]
-    this.randomNote = selectedNote.name
-    this.previousRandomNote = selectedNote.name
-    this.playNote(selectedNote.freq)
-  }
+  generateRandomNote() {
+    let randomIndex = Math.floor(Math.random() * this.notes.length);
+    this.randomNote = this.notes[randomIndex];
+    this.previousRandomNote = this.notes[randomIndex]
+    this.playNote(this.randomNote.freq);
+}
+
   checkNote()
   {
     if(this.userNote === this.randomNote)
     {
-      this.result = 'You Rule !'
+      this.timer += 1
+      this.message = 'You Rule !'
+      this.score += 5    
     }
     if(this.userNote !== this.randomNote)
     {
-      this.result = 'You Suck ... It was ' + this.previousRandomNote
+      this.timer -= 2
+      this.message = 'You Suck ... It was ' + this.previousRandomNote.name
+      this.score -= 5 
     }
   }
 
   playNote(freq : number)
   {
     this.audioService.playFrequencyWithEnvelope(freq, 1, 1)
+  }
+
+  initializeNotes() {
+    if (this.clefTreble === true) 
+    {
+      this.notes =
+      [
+        { name: 'C', freq: 261.63, row: 1, alteration: false, extension: true },
+        { name: 'C#', freq: 277.18, row: 1, alteration: true, extension: true },
+        { name: 'D', freq: 293.66, row: 2, alteration: false, extension: false },
+        { name: 'D#', freq: 311.13, row: 2, alteration: true, extension: false },
+        { name: 'E', freq: 329.63, row: 3, alteration: false, extension: false },
+        { name: 'F', freq: 349.23, row: 4, alteration: false, extension: false },
+        { name: 'F#', freq: 369.99, row: 4, alteration: true, extension: false },
+        { name: 'G', freq: 392, row: 5, alteration: false, extension: false },
+        { name: 'G#', freq: 415.3, row: 5, alteration: true, extension: false },
+        { name: 'A', freq: 440, row: 6, alteration: false, extension: false },
+        { name: 'A#', freq: 466.16, row: 6, alteration: true, extension: false },
+        { name: 'B', freq: 493.88, row: 7, alteration: false, extension: false },
+      ]
+    }
+    if (this.clefBass === true) 
+    {
+      this.notes =
+      [
+        { name: 'C', freq: 130.815, row: 6, alteration: false, extension: false },
+        { name: 'C#', freq: 138.59, row: 6, alteration: true, extension: false },
+        { name: 'D', freq: 146.83, row: 7, alteration: false, extension: false },
+        { name: 'D#', freq: 155.565, row: 7, alteration: true, extension: false },
+        { name: 'E', freq: 164.815, row: 8, alteration: false, extension: false },
+        { name: 'F', freq: 174.615, row: 9, alteration: false, extension: false },
+        { name: 'F#', freq: 184.995, row: 9, alteration: true, extension: false },
+        { name: 'G', freq: 196, row: 10, alteration: false, extension: false },
+        { name: 'G#', freq: 207.65, row: 10, alteration: true, extension: false },
+        { name: 'A', freq: 220, row: 11, alteration: false, extension: false },
+        { name: 'A#', freq: 233.08, row: 11, alteration: true, extension: false },
+        { name: 'B', freq: 246.94, row: 12, alteration: false, extension: false }
+      ]
+    }
+    if (this.clefAlto === true) 
+    {
+      this.notes =
+      [
+        { name: 'C', freq: 261.63, row: 7, alteration: false, extension: false },
+        { name: 'C#', freq: 277.18, row: 7, alteration: true, extension: false },
+        { name: 'D', freq: 293.66, row: 8, alteration: false, extension: false },
+        { name: 'D#', freq: 311.13, row: 8, alteration: true, extension: false },
+        { name: 'E', freq: 329.63, row: 9, alteration: false, extension: false },
+        { name: 'F', freq: 349.23, row: 10, alteration: false, extension: false },
+        { name: 'F#', freq: 369.99, row: 10, alteration: true, extension: false },
+        { name: 'G', freq: 392, row: 11, alteration: false, extension: false },
+        { name: 'G#', freq: 415.3, row: 11, alteration: true, extension: false },
+        { name: 'A', freq: 440, row: 12, alteration: false, extension: false },
+        { name: 'A#', freq: 466.16, row: 12, alteration: true, extension: false },
+        { name: 'B', freq: 493.88, row: 13, alteration: false, extension: false },
+      ]
+    }
   }
 }
