@@ -7,13 +7,15 @@ export class AudioService {
   public audioContext: AudioContext;
   private gainNode: GainNode;
 
-  constructor() {
+  constructor() 
+  {
     this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     this.gainNode = this.audioContext.createGain();
     this.gainNode.connect(this.audioContext.destination);
   }
 
-  playFrequency(frequency: number, durationInSeconds: number) {
+  playFrequency(frequency: number, durationInSeconds: number) 
+  {
     const oscillator = this.audioContext.createOscillator();
     oscillator.type = 'sine';
     oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime);

@@ -7,7 +7,8 @@ import { ToolListComponent } from './components/tool-list/tool-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { CircleOfFifthsComponent } from './components/circle-of-fifths/circle-of-fifths.component';
 import { DiapasonComponent } from './components/diapason/diapason.component';
-import { FlyingKeysMiniComponent } from './components/flying-keys-mini/flying-keys-mini.component';;
+import { FlyingKeysMiniComponent } from './components/flying-keys-mini/flying-keys-mini.component';
+import { TrainerNotesComponent } from './components/trainer-notes/trainer-notes.component';;
 
 @NgModule({
   declarations: 
@@ -16,7 +17,8 @@ import { FlyingKeysMiniComponent } from './components/flying-keys-mini/flying-ke
     ChordWheelSvgComponent,
     CircleOfFifthsComponent,
     DiapasonComponent,
-    FlyingKeysMiniComponent
+    FlyingKeysMiniComponent,
+    TrainerNotesComponent
   ],
   imports: 
   [

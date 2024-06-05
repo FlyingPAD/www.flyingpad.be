@@ -1,0 +1,40 @@
+<div class="trainer-buttons" *ngIf="!gameStart"><a (click)="configTrigger()">CONFIG</a></div>
+
+<h1 *ngIf="gameConfig === true">Select your Clef</h1>
+
+<div class="trainer-buttons" *ngIf="gameConfig === true">
+    <a (click)="clefTrebleTrigger()">Treble Clef</a>
+    <a (click)="clefBassTrigger()">Bass Clef</a>
+</div>
+
+<div class="trainer" *ngIf="gameConfig || gameStart">
+    <div class="trainer-container">
+        <img src="../../../../assets/app_tools/trainer-notes-back.png" />
+        <img src="../../../../assets/app_tools/trainer-note-ref.png" *ngIf="note === true"/>
+        <img src="../../../../assets/app_tools/clef-treble.png" *ngIf="clefTreble === true"/>
+        <img src="../../../../assets/app_tools/clef-bass.png" *ngIf="clefBass === true"/>
+    </div>
+</div>
+
+<div class="trainer-buttons" *ngIf="gameConfig">
+    <a (click)="start()">START</a>
+</div>
+
+<div class="notes" *ngIf="gameStart">
+    <a (click)="updateUserNote('C')">C</a>
+    <a (click)="updateUserNote('C#')">C#</a>
+    <a (click)="updateUserNote('D')">D</a>
+    <a (click)="updateUserNote('D#')">D#</a>
+    <a (click)="updateUserNote('E')">E</a>
+    <a (click)="updateUserNote('F')">F</a>
+    <a (click)="updateUserNote('F#')">F#</a>
+    <a (click)="updateUserNote('G')">G</a>
+    <a (click)="updateUserNote('G#')">G#</a>
+    <a (click)="updateUserNote('A')">A</a>
+    <a (click)="updateUserNote('A#')">A#</a>
+    <a (click)="updateUserNote('B')">B</a>
+</div>
+
+<h1>{{ userNote }} = {{ randomNote }}</h1>
+
+<h1>{{ result }}</h1>
