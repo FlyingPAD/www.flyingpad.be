@@ -19,7 +19,7 @@ export class TrainerNotesComponent
 {
   audioService = inject(AudioOldService)
 
-  timer : number = 10
+  timer : number = 15
   intervalId : any | undefined = undefined
   run : number = 0
 
@@ -45,7 +45,7 @@ export class TrainerNotesComponent
   reset()
   {
     this.timerStop()
-    this.timer = 10
+    this.timer = 15
     this.run = 0
 
     this.gameStart = false
