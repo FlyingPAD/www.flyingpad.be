@@ -12,8 +12,10 @@
 
     width: 315px;
 
+    padding: 15px;
+
     background-color: rgb(255, 255, 255, 0.9);
-    border: 1px solid #6b5240;
+    border: 2px solid #6b5240;
     backdrop-filter: blur(3px);
     border-radius: 15px;
     box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
@@ -33,6 +35,23 @@
         color: #6b5240;
         letter-spacing: 2px;
         text-shadow: 0px 3px 3px rgba(0,0,0,0.3);
+    }
+
+    h3
+    {
+        font-size: 14px;
+        font-weight: normal;
+        text-align: left;
+        color: #6b5240;
+    }
+        
+    h4
+    {
+        font-size: 14px;
+        font-weight: normal;
+        text-align: left;
+        color: #6b5240;
+        text-indent: 15px;
     }
 
     p

@@ -195,6 +195,16 @@ export class TrainerNotesComponent implements OnDestroy
     {
       this.notes =
       [
+        { name: 'D', freq: 73.415, row: 0, alteration: false, extension: false, doubleUp: true },
+        { name: 'D#', freq: 77.783, row: 0, alteration: true, extension: false, doubleUp: true },
+        { name: 'E', freq: 82.408, row: 1, alteration: false, extension: true, doubleUp: undefined },
+        { name: 'F', freq: 87.308, row: 2, alteration: false, extension: false, doubleUp: undefined },
+        { name: 'F#', freq: 92.5, row: 2, alteration: true, extension: false, doubleUp: undefined },
+        { name: 'G', freq: 98, row: 3, alteration: false, extension: false, doubleUp: undefined },
+        { name: 'G#', freq: 103.825, row: 3, alteration: true, extension: false, doubleUp: undefined },
+        { name: 'A', freq: 110, row: 4, alteration: false, extension: false, doubleUp: undefined },
+        { name: 'A#', freq: 116.54, row: 4, alteration: true, extension: false, doubleUp: undefined },
+        { name: 'B', freq: 123.47, row: 5, alteration: false, extension: false, doubleUp: undefined },       
         { name: 'C', freq: 130.815, row: 6, alteration: false, extension: false, doubleUp : undefined },
         { name: 'C#', freq: 138.59, row: 6, alteration: true, extension: false, doubleUp : undefined },
         { name: 'D', freq: 146.83, row: 7, alteration: false, extension: false, doubleUp : undefined },
@@ -213,6 +223,18 @@ export class TrainerNotesComponent implements OnDestroy
     {
       this.notes =
       [
+        { name: 'C', freq: 130.815, row: 0, alteration: false, extension: false, doubleUp : true },
+        { name: 'C#', freq: 138.59, row: 0, alteration: true, extension: false, doubleUp : true },
+        { name: 'D', freq: 146.83, row: 1, alteration: false, extension: true, doubleUp : undefined },
+        { name: 'D#', freq: 155.565, row: 1, alteration: true, extension: true, doubleUp : undefined },
+        { name: 'E', freq: 164.815, row: 2, alteration: false, extension: false, doubleUp : undefined },
+        { name: 'F', freq: 174.615, row: 3, alteration: false, extension: false, doubleUp : undefined },
+        { name: 'F#', freq: 184.995, row: 3, alteration: true, extension: false, doubleUp : undefined },
+        { name: 'G', freq: 196, row: 4, alteration: false, extension: false, doubleUp : undefined },
+        { name: 'G#', freq: 207.65, row: 4, alteration: true, extension: false, doubleUp : undefined },
+        { name: 'A', freq: 220, row: 5, alteration: false, extension: false, doubleUp : undefined },
+        { name: 'A#', freq: 233.08, row: 5, alteration: true, extension: false, doubleUp : undefined },
+        { name: 'B', freq: 246.94, row: 6, alteration: false, extension: false, doubleUp: undefined },
         { name: 'C', freq: 261.63, row: 7, alteration: false, extension: false, doubleUp : undefined },
         { name: 'C#', freq: 277.18, row: 7, alteration: true, extension: false, doubleUp : undefined },
         { name: 'D', freq: 293.66, row: 8, alteration: false, extension: false, doubleUp : undefined },
@@ -224,15 +246,15 @@ export class TrainerNotesComponent implements OnDestroy
         { name: 'G#', freq: 415.3, row: 11, alteration: true, extension: false, doubleUp : undefined },
         { name: 'A', freq: 440, row: 12, alteration: false, extension: false, doubleUp : undefined },
         { name: 'A#', freq: 466.16, row: 12, alteration: true, extension: false, doubleUp : undefined },
-        { name: 'B', freq: 493.88, row: 13, alteration: false, extension: false, doubleUp : undefined },
+        // { name: 'B', freq: 493.88, row: 13, alteration: false, extension: false, doubleUp : undefined },
       ]
     }
     if (this.clefTreble === true) 
     {
       this.notes =
       [
-        { name: 'A', freq: 220, row: -1, alteration: false, extension: true, doubleUp: false },
-        { name: 'A#', freq: 233.08, row: -1, alteration: true, extension: true, doubleUp: false },
+        // { name: 'A', freq: 220, row: -1, alteration: false, extension: true, doubleUp: false },
+        // { name: 'A#', freq: 233.08, row: -1, alteration: true, extension: true, doubleUp: false },
         { name: 'B', freq: 246.94, row: 0, alteration: false, extension: false, doubleUp: true },
         { name: 'C', freq: 261.63, row: 1, alteration: false, extension: true, doubleUp : undefined },
         { name: 'C#', freq: 277.18, row: 1, alteration: true, extension: true, doubleUp : undefined },
