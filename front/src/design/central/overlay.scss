@@ -21,6 +21,10 @@
     opacity: 1;
     pointer-events: initial;
 }
+.overlay-enabled:hover
+{
+    cursor: pointer;
+}
 .overlay-disabled
 {
     opacity: 0;
