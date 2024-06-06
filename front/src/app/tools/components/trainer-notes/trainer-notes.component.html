@@ -31,15 +31,15 @@
     </div>
 </div>
 <div class="trainer-buttons" *ngIf="gameStart === false">
-    <a [class.active]="clefBass" (click)="clefBassTrigger()">Bass Clef</a>
-    <a [class.active]="clefAlto" (click)="clefAltoTrigger()">Alto Clef</a>
-    <a [class.active]="clefTreble" (click)="clefTrebleTrigger()">Treble Clef</a>
+    <a [class.active]="clefBass" (click)="clefBassTrigger()">Bass</a>
+    <a [class.active]="clefAlto" (click)="clefAltoTrigger()">Alto</a>
+    <a [class.active]="clefTreble" (click)="clefTrebleTrigger()">Treble</a>
 </div>
 <p>{{ message }}</p>
 <h1 *ngIf="gameEnd === true">Total Run : {{run | number : '2.0'}} seconds</h1>
 
 <div class="trainer-buttons" *ngIf="gameStart === false">
-    <a (click)="start()">START GAME</a>
+    <a class="start" (click)="start()">START GAME</a>
 </div>
 
 <div class="notes" *ngIf="gameStart === true && gameEnd === false">
@@ -48,7 +48,12 @@
     </div>
 </div>
 
-<div class="bottom-bar">
+<div class="bottom-bar" *ngIf="gameStart === false || gameEnd === true">
     <a routerLink="/tools"><img src="../../../../assets/app_icons/icon_tools_001.png" /></a>
     <a><img appAnimGrow src="../../../../assets/app_icons/logout.png" (click)="reset()" /></a>
+    <a><img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" (click)="infoTrigger()" /></a>
+</div>
+
+<div class="modal" [class.on]="info === true">
+    <h1>Rules</h1>
 </div>

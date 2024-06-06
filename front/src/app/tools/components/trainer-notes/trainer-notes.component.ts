@@ -58,6 +58,8 @@ export class TrainerNotesComponent implements OnDestroy
     { name: 'B', freq: 493.88, row: 7, alteration: false, extension: false, doubleUp : undefined },
   ]
 
+  info : boolean = false
+
   ngOnDestroy() : void 
   {
     this.timerStop()
@@ -85,6 +87,8 @@ export class TrainerNotesComponent implements OnDestroy
 
     this.userNote = new Note() 
     this.message = 'Get Ready !'
+
+    this.info = false
   }
 
   start()
@@ -112,10 +116,10 @@ export class TrainerNotesComponent implements OnDestroy
       }
       else
       {
-        this.timerStop()
         this.gameEnd = true
         if(this.score > 0) this.message = 'Congratulations !'
         if(this.score <= 0) this.message = ' ... '
+        this.timerStop()
       }
     }, 
     1000)
@@ -256,5 +260,10 @@ export class TrainerNotesComponent implements OnDestroy
         // { name: 'B', freq: 987.76, row: 14, alteration: false, extension: false, doubleUp : true }
       ]
     }
+  }
+
+  infoTrigger()
+  {
+    this.info = !this.info
   }
 }
