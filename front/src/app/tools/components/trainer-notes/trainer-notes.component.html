@@ -49,6 +49,11 @@
     </div>
 </div>
 
+<div class="trainer-buttons" *ngIf="gameEnd === true">
+    <a class="start" (click)="reset()">NEW GAME</a>
+    <a class="start" (click)="getName()">SAVE SCORE</a>
+</div>
+
 <div class="bottom-bar" *ngIf="gameStart === false || gameEnd === true">
     <a routerLink="/tools"><img src="../../../../assets/app_icons/icon_tools_001.png" /></a>
     <a><img appAnimGrow src="../../../../assets/app_icons/logout.png" (click)="reset()" /></a>
@@ -70,14 +75,29 @@
 
 <!-- Rules ( Info ) -->
 <div class="modal" [class.on]="scoreboard === true">
-    <h1>Score Board</h1>
-    <hr>
-    <div *ngFor="let result of gameResults">
-      <h3>  ▸  <b>{{ result.clef }}</b> | {{ result.duration | number : '3.0' }} sec. | <b>{{ result.score | number : '3.0' }}</b> | {{ result.timestamp | date:'dd/MM/yyyy | HH:mm:ss' }}</h3>
+    <div *ngIf="naming === true">
+        <form>
+            <input type="text" [(ngModel)]="playerName" name="playerName" />
+        </form>
+        <div class="modal-buttons">
+            <a (click)="saveGame()">SAVE</a>
+        </div>
+    </div>
+    <div *ngIf="naming === false">
+        <h1>Score Board</h1>
+        <hr>
+        <div *ngFor="let result of gameResults">
+            <h5> ▸ 
+                {{result.playerName}} | 
+                <b>{{ result.clef }}</b> | 
+                {{ result.duration | number : '3.0' }} sec. | 
+                <b>{{ result.score | number : '3.0' }}</b> | 
+                {{ result.timestamp | date:'dd/MM/yyyy | HH:mm:ss' }}
+            </h5>
+        </div>
     </div>
 </div>
   
-
 <!-- Overlay -->
 <div class="overlay" 
     [class.overlay-enabled]="info === true" 
