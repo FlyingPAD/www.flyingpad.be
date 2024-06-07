@@ -125,6 +125,12 @@ export class TrainerNotesComponent implements OnInit, OnDestroy
     this.message = 'You must select a clef first !'
   }
 
+  resetStorage()
+  {
+    this.storageService.removeItem('gameResults')
+    this.updateScoreboard()
+  }
+
   timerStart(): void 
   {
     this.intervalId = setInterval(() => 

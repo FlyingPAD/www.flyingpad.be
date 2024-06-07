@@ -92,6 +92,9 @@
                 <h5><b>{{ result.clef }}</b> | {{ result.duration | number : '3.0' }} sec. | <b>{{ result.score | number : '3.0' }}</b> | {{ result.timestamp | date:'dd/MM/yyyy | HH:mm:ss' }}</h5>
             </div>
         </div>
+        <div class="modal-buttons">
+            <a (click)="resetStorage()">RESET</a>
+        </div>
     </div>
 </div>
   
