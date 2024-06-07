@@ -14,6 +14,7 @@ export class Note
 
 export interface GameResult 
 {
+  playerName : string
   score : number
   duration : number
   timestamp : string
@@ -71,6 +72,8 @@ export class TrainerNotesComponent implements OnInit, OnDestroy
   info : boolean = false
   scoreboard : boolean = false
   gameResults : GameResult[] = []
+  playerName : string = ''
+  naming : boolean = false
 
   ngOnInit() : void 
   {
@@ -105,6 +108,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy
     this.message = 'Get Ready !'
 
     this.info = false
+    this.naming = false
   }
 
   start()
@@ -133,15 +137,6 @@ export class TrainerNotesComponent implements OnInit, OnDestroy
       else
       {
         // Game ends
-        const result: GameResult = 
-        {
-          score: this.score,
-          duration: this.run,
-          timestamp: new Date().toISOString(),
-          clef: this.clefBass ? 'Bass' : this.clefAlto ? 'Alto' : 'Treble'
-        }
-        this.saveGameResult(result)
-        this.updateScoreboard()
         this.gameEnd = true
         this.message = this.score > 0 ? 'Congratulations !' : '...'
         this.timerStop()
@@ -155,6 +150,28 @@ export class TrainerNotesComponent implements OnInit, OnDestroy
       clearInterval(this.intervalId)
       this.intervalId = undefined
     }
+  }
+
+  getName()
+  {
+    this.naming = true
+    this.scoreboard = true
+  }
+  saveGame() 
+  {
+    let result: GameResult = 
+    {
+      playerName: this.playerName,
+      score: this.score,
+      duration: this.run,
+      timestamp: new Date().toISOString(),
+      clef: this.clefBass ? 'Bass' : this.clefAlto ? 'Alto' : 'Treble'
+    }
+    this.saveGameResult(result)
+    this.updateScoreboard()
+    this.reset()
+    this.naming = false
+    this.scoreboard = true
   }
 
   clefBassTrigger()
