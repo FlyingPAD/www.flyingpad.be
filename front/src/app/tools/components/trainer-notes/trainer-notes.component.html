@@ -87,13 +87,10 @@
         <h1>Score Board</h1>
         <hr>
         <div *ngFor="let result of gameResults">
-            <h5> ▸ 
-                {{result.playerName}} | 
-                <b>{{ result.clef }}</b> | 
-                {{ result.duration | number : '3.0' }} sec. | 
-                <b>{{ result.score | number : '3.0' }}</b> | 
-                {{ result.timestamp | date:'dd/MM/yyyy | HH:mm:ss' }}
-            </h5>
+            <div class="line">
+                <h5> ▸ {{ result.playerName }}</h5>
+                <h5><b>{{ result.clef }}</b> | {{ result.duration | number : '3.0' }} sec. | <b>{{ result.score | number : '3.0' }}</b> | {{ result.timestamp | date:'dd/MM/yyyy | HH:mm:ss' }}</h5>
+            </div>
         </div>
     </div>
 </div>
