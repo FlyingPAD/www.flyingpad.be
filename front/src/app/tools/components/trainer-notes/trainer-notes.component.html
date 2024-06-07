@@ -40,6 +40,7 @@
 
 <div class="trainer-buttons" *ngIf="gameStart === false">
     <a class="start" (click)="start()">START GAME</a>
+    <a class="start" (click)="scoreBoardTrigger()">SCORE BOARD</a>
 </div>
 
 <div class="notes" *ngIf="gameStart === true && gameEnd === false">
@@ -67,9 +68,24 @@
     <h4> - Score - 6</h4>
 </div>
 
+<!-- Rules ( Info ) -->
+<div class="modal" [class.on]="scoreboard === true">
+    <h1>Score Board</h1>
+    <hr>
+    <div *ngFor="let result of gameResults">
+      <h3>  ▸  <b>{{ result.clef }}</b> | {{ result.duration | number : '3.0' }} sec. | <b>{{ result.score | number : '3.0' }}</b> | {{ result.timestamp | date:'dd/MM/yyyy | HH:mm:ss' }}</h3>
+    </div>
+</div>
+  
+
 <!-- Overlay -->
 <div class="overlay" 
     [class.overlay-enabled]="info === true" 
     [class.overlay-disabled]="info === false" 
     (click)="infoTrigger()">
+</div>
+<div class="overlay" 
+    [class.overlay-enabled]="scoreboard === true" 
+    [class.overlay-disabled]="scoreboard === false" 
+    (click)="scoreBoardTrigger()">
 </div>

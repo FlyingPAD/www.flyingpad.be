@@ -1,5 +1,6 @@
-import { Component, OnDestroy, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { AudioOldService } from '../../../core/services/audio-old.service';
+import { StorageService } from '../../../core/services/storage.service';
 
 export class Note
 {
@@ -11,14 +12,23 @@ export class Note
   doubleUp : boolean | undefined = undefined
 }
 
+export interface GameResult 
+{
+  score : number
+  duration : number
+  timestamp : string
+  clef : string
+}
+
 @Component({
   selector: 'app-trainer-notes',
   templateUrl: './trainer-notes.component.html',
   styleUrl: './trainer-notes.component.scss'
 })
-export class TrainerNotesComponent implements OnDestroy
+export class TrainerNotesComponent implements OnInit, OnDestroy
 {
   audioService = inject(AudioOldService)
+  storageService = inject(StorageService)
 
   timer : number = 15
   intervalId : any | undefined = undefined
@@ -59,7 +69,13 @@ export class TrainerNotesComponent implements OnDestroy
   ]
 
   info : boolean = false
+  scoreboard : boolean = false
+  gameResults : GameResult[] = []
 
+  ngOnInit() : void 
+  {
+    this.updateScoreboard()
+  }
   ngOnDestroy() : void 
   {
     this.timerStop()
@@ -105,25 +121,33 @@ export class TrainerNotesComponent implements OnDestroy
     this.message = 'You must select a clef first !'
   }
 
-  timerStart() : void
+  timerStart(): void 
   {
     this.intervalId = setInterval(() => 
     {
-      if(this.timer > 0)
+      if (this.timer > 0) 
       {
         this.timer -= 1
         this.run += 1
-      }
+      } 
       else
       {
+        // Game ends
+        const result: GameResult = 
+        {
+          score: this.score,
+          duration: this.run,
+          timestamp: new Date().toISOString(),
+          clef: this.clefBass ? 'Bass' : this.clefAlto ? 'Alto' : 'Treble'
+        }
+        this.saveGameResult(result)
+        this.updateScoreboard()
         this.gameEnd = true
-        if(this.score > 0) this.message = 'Congratulations !'
-        if(this.score <= 0) this.message = ' ... '
+        this.message = this.score > 0 ? 'Congratulations !' : '...'
         this.timerStop()
       }
-    }, 
-    1000)
-  }  
+    }, 1000)
+  }
   timerStop() : void
   {
     if (this.intervalId !== undefined) 
@@ -161,12 +185,13 @@ export class TrainerNotesComponent implements OnDestroy
     this.generateRandomNote()
   }
 
-  generateRandomNote() {
+  generateRandomNote() 
+  {
     let randomIndex = Math.floor(Math.random() * this.notes.length);
     this.randomNote = this.notes[randomIndex];
     this.previousRandomNote = this.notes[randomIndex]
     this.playNote(this.randomNote.freq);
-}
+  }
 
   checkNote()
   {
@@ -287,5 +312,28 @@ export class TrainerNotesComponent implements OnDestroy
   infoTrigger()
   {
     this.info = !this.info
+  }
+
+  scoreBoardTrigger()
+  {
+    this.scoreboard = !this.scoreboard
+  }
+
+  saveGameResult(result: GameResult) : void 
+  {
+    let results : GameResult[] = this.storageService.getItem<GameResult[]>('gameResults') || []
+    results.push(result)
+    this.storageService.setItem('gameResults', results)
+  }
+
+  getGameResults() : GameResult[] 
+  {
+    return this.storageService.getItem<GameResult[]>('gameResults') || []
+  }
+
+  updateScoreboard() : void 
+  {
+    let gameResults = this.getGameResults()
+    this.gameResults = gameResults.sort((a, b) => b.score - a.score)
   }
 }
