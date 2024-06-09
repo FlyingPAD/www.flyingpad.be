@@ -39,8 +39,8 @@
 <h1 *ngIf="gameEnd === true">Total Run : {{run | number : '2.0'}} seconds</h1>
 
 <div class="trainer-buttons" *ngIf="gameStart === false">
-    <a class="start" (click)="start()">START GAME</a>
     <a class="start" (click)="scoreBoardTrigger()">SCORE BOARD</a>
+    <a class="start" (click)="start()">START GAME</a>
 </div>
 
 <div class="notes" *ngIf="gameStart === true && gameEnd === false">
@@ -50,8 +50,8 @@
 </div>
 
 <div class="trainer-buttons" *ngIf="gameEnd === true">
-    <a class="start" (click)="reset()">NEW GAME</a>
     <a class="start" (click)="getName()">SAVE SCORE</a>
+    <a class="start" (click)="reset()">NEW GAME</a>
 </div>
 
 <div class="bottom-bar" *ngIf="gameStart === false || gameEnd === true">
@@ -92,6 +92,7 @@
                 <h5><b>{{ result.clef }}</b> | {{ result.duration | number : '3.0' }} sec. | <b>{{ result.score | number : '3.0' }}</b> | {{ result.timestamp | date:'dd/MM/yyyy | HH:mm:ss' }}</h5>
             </div>
         </div>
+        <hr *ngIf="gameResults.length">
         <div class="modal-buttons">
             <a (click)="resetStorage()">RESET</a>
         </div>
