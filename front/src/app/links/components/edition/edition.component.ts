@@ -1,8 +1,7 @@
-import { Component, HostListener, OnDestroy, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { LinksEditionService } from '../../../core/services/links-edition.service';
 import { MenuDesktopService } from '../../../core/services/menu-desktop.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { LinkCreateForm, LinkUpdateForm } from '../../../core/models/link';
 
 @Component({
@@ -10,7 +9,7 @@ import { LinkCreateForm, LinkUpdateForm } from '../../../core/models/link';
   templateUrl: './edition.component.html',
   styleUrl: './edition.component.scss'
 })
-export class EditionComponent implements OnDestroy
+export class EditionComponent
 {
   #linksEditionService = inject(LinksEditionService)
   #formBuilder = inject(FormBuilder)
@@ -40,17 +39,6 @@ export class EditionComponent implements OnDestroy
     description : [this.linksEditionFlow().link?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     url : [this.linksEditionFlow().link?.url, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
-
-  createSubscription = new Subscription()
-  updateSubscription = new Subscription()
-  deleteSubscription = new Subscription()
-
-  ngOnDestroy() : void 
-  {
-    this.createSubscription.unsubscribe()
-    this.updateSubscription.unsubscribe()
-    this.deleteSubscription.unsubscribe()
-  }
 
   resetPage() : void
   {
@@ -98,13 +86,11 @@ export class EditionComponent implements OnDestroy
 
     if(this.createFormGroup.valid)
     {
-      this.createSubscription = this.#linksEditionService.CreateLink(form).subscribe({
-        next : () => 
-        {
-          this.resetPage()
-          this.triggerCreate()
-          this.createFormGroup.reset()
-        }
+      this.#linksEditionService.CreateLink(form).subscribe( () =>
+      {
+        this.resetPage()
+        this.triggerCreate()
+        this.createFormGroup.reset()
       })
     }
   }
@@ -145,11 +131,9 @@ export class EditionComponent implements OnDestroy
     }
     if(this.updateFormGroup.valid)
     {
-      this.updateSubscription = this.#linksEditionService.UpdateLink(form).subscribe({
-        next : () => 
-        {
-          this.triggerUpdate()
-        }
+      this.#linksEditionService.UpdateLink(form).subscribe( () =>
+      {
+        this.triggerUpdate()
       })
     }
   }
@@ -165,11 +149,9 @@ export class EditionComponent implements OnDestroy
   onDelete( linkId : number | undefined ) : void 
   {
     if(linkId === undefined) return
-    this.deleteSubscription = this.#linksEditionService.DeleteLink(linkId).subscribe({
-      next : () => 
-      {
-        this.triggerDelete()
-      }
+    this.#linksEditionService.DeleteLink(linkId).subscribe( () =>
+    {
+      this.triggerDelete()
     })
   }
 
