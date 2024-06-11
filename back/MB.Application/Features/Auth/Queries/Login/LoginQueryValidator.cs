@@ -6,10 +6,10 @@ public class LoginQueryValidator : AbstractValidator<LoginQuery>
     public LoginQueryValidator()
     {
         RuleFor(query => query.Email)
-            .NotEmpty().WithMessage("L'email est obligatoire.")
-            .EmailAddress().WithMessage("L'email n'est pas dans un format valide.");
+            .NotEmpty().WithMessage("Email is required.")
+            .EmailAddress().WithMessage("Email format is invalid.");
 
         RuleFor(query => query.Password)
-            .NotEmpty().WithMessage("Le mot de passe est obligatoire.");
+            .NotEmpty().WithMessage("Password is required.");
     }
 }
