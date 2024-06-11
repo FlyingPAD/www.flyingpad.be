@@ -11,6 +11,7 @@ import { ModelStateService } from "../../../core/services/model.service"
 import { MoodStateService } from "../../../core/services/mood.service"
 import { Location } from '@angular/common';
 import { MenuDesktopService } from "../../../core/services/menu-desktop.service"
+import { UpdateMoodScoreCall } from "../../../core/models/mood"
 
 @Component({
   selector: 'app-mood-details',
@@ -278,5 +279,11 @@ export class MoodDetailsComponent implements OnDestroy
   menuTrigger()
   {
     this.menuService.menuRTrigger()
+  }
+
+  updateMoodScore( moodBusinessId : number, scoreValue : number) : void
+  {
+    let form : UpdateMoodScoreCall = { businessId : moodBusinessId, value : scoreValue }
+    this.#moodsService.updateScoreTrigger(form)
   }
 }
