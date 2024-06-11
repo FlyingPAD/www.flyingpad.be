@@ -640,6 +640,7 @@ public static class PostDeployment
             ("Tony", "Van Langenhove", "tonyvan@live.fr", new DateTime(1982, 7, 15), "Test1234=", 2),
             ("Floppy", "Disk", "floppy@gmail.com", new DateTime(1975, 1, 1), "Test1234=", 1),
             ("Vincent", "Megag", "vincent.megag@gmail.com", new DateTime(1980, 1, 1), "Test1234=", 2),
+            ("Admin", "...", "test@test.com", new DateTime(1980, 1, 1), "testpassword", 2),
         };
 
         foreach (var (FirstName, LastName, Email, Birthdate, Password, Role) in usersToCreate)
