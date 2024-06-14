@@ -1,5 +1,5 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { FranchiseStateService } from '../../../core/services/franchise.service';
+import { FranchiseStateService } from '../../../services/franchise.service';
 
 @Component({
   selector: 'app-media-gallery',

@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, combineLatest, map, of, switchMap, tap } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { CreateTagResponse, GetAllTagCategoriesResponse, GetAllTagsResponse, GetOneTagCategoryDetailsResponse, GetOneTagDetailsResponse, GetTagsByCategoryResponse, TagCreateForm } from '../models/tag';
-import { BaseResponse } from '../models/base-response';
+import { environment } from '../../environments/environment';
+import { CreateTagResponse, GetAllTagCategoriesResponse, GetAllTagsResponse, GetOneTagCategoryDetailsResponse, GetOneTagDetailsResponse, GetTagsByCategoryResponse, TagCreateForm } from '../core/models/tag';
+import { BaseResponse } from '../core/models/base-response';
 
 @Injectable({
   providedIn: 'root'

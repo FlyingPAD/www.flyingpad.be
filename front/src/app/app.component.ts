@@ -1,9 +1,9 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { UserService } from './core/services/user.service';
-import { CustomCookieService } from './core/services/cookie.service';
-import { AuthService } from './core/services/auth.service';
+import { UserService } from './services/user.service';
+import { CustomCookieService } from './services/cookie.service';
+import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
-import { MenuCustomService } from './core/services/menu-custom.service';
+import { MenuCustomService } from './services/menu-custom.service';
 
 @Component({
   selector: 'app-root',

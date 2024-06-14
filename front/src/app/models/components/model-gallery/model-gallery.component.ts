@@ -1,8 +1,8 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { ModelStateService } from '../../../core/services/model.service';
-import { FranchiseStateService } from '../../../core/services/franchise.service';
-import { MoodStateService } from '../../../core/services/mood.service';
+import { ModelStateService } from '../../../services/model.service';
+import { FranchiseStateService } from '../../../services/franchise.service';
+import { MoodStateService } from '../../../services/mood.service';
 import { Location } from '@angular/common';
 
 @Component({

@@ -1,11 +1,11 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { FranchiseStateService } from '../../../core/services/franchise.service';
-import { ModelStateService } from '../../../core/services/model.service';
-import { MoodStateService } from '../../../core/services/mood.service';
+import { FranchiseStateService } from '../../../services/franchise.service';
+import { ModelStateService } from '../../../services/model.service';
+import { MoodStateService } from '../../../services/mood.service';
 import { Location } from '@angular/common';
-import { MenuDesktopService } from '../../../core/services/menu-desktop.service';
+import { MenuDesktopService } from '../../../services/menu-desktop.service';
 
 @Component({
   selector: 'app-franchise-gallery',

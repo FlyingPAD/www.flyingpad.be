@@ -53,7 +53,7 @@ export interface ModelCheckForm
 
 export interface GetAllModelsResponse
 {
-    models : ModelLight[]
+    models : ModelCheckBox[]
 }
 
 export interface GetOneModelDetailsResponse extends BaseResponse

@@ -1,7 +1,7 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { FranchisesEditionService } from '../../../core/services/franchises-edition.service';
+import { FranchisesEditionService } from '../../../services/franchises-edition.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MenuDesktopService } from '../../../core/services/menu-desktop.service';
+import { MenuDesktopService } from '../../../services/menu-desktop.service';
 import { Subscription } from 'rxjs';
 import { FranchiseCreateForm } from '../../../core/models/franchise';
 

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { GetAllTagsResponse, TagsGetFullListResponse } from '../models/tag';
+import { GetAllTagsResponse, TagsGetFullListResponse } from '../core/models/tag';
 import { map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 

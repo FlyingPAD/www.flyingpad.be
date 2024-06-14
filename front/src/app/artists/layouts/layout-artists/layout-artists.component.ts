@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ArtistsStateService } from '../../../core/services/artists.service';
-import { MoodStateService } from '../../../core/services/mood.service';
-import { MenuDesktopService } from '../../../core/services/menu-desktop.service';
+import { ArtistsStateService } from '../../../services/artists.service';
+import { MoodStateService } from '../../../services/mood.service';
+import { MenuDesktopService } from '../../../services/menu-desktop.service';
 
 @Component({
   selector: 'app-layout-artists',

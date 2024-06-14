@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { AudioOldService } from '../../../core/services/audio-old.service';
-import { StorageService } from '../../../core/services/storage.service';
+import { AudioOldService } from '../../../services/audio-old.service';
+import { StorageService } from '../../../services/storage.service';
 
 export class Note
 {

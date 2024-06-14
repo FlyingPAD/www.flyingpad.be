@@ -1,18 +1,18 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { BehaviorSubject, switchMap, map, combineLatest, of, tap, catchError, take, Observable } from "rxjs";
-import { environment } from "../../../environments/environment";
-import { GetModelsByMoodResponse, GetModelsCheckBoxesByMoodResponse } from "../models/model";
-import { GetMoodsByArtistResponse, GetMoodsByModelResponse, GetMoodsByTagResponse, MoodFull, MoodUpdateForm, MoodUpdateResponse, MoodsGetAllResponse, MoodsGetOneDetailsResponse, UpdateMoodScoreCall, UpdateMoodScoreResponse } from "../models/mood";
+import { environment } from "../../environments/environment";
+import { GetModelsByMoodResponse, GetModelsCheckBoxesByMoodResponse } from "../core/models/model";
+import { GetMoodsByArtistResponse, GetMoodsByModelResponse, GetMoodsByTagResponse, MoodFull, MoodUpdateForm, MoodUpdateResponse, MoodsGetAllResponse, MoodsGetOneDetailsResponse, UpdateMoodScoreCall, UpdateMoodScoreResponse } from "../core/models/mood";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { GetFranchisesByMoodResponse } from "../models/franchise";
-import { GetOneTagDetailsResponse, GetTagsByMoodResponse, GetTagsCheckBoxesByMoodResponse } from "../models/tag";
-import { CreateMoodImageResponse, GetOneImageDetailsResponse, ImageForm } from "../models/mood-image";
-import { GetOneVideoDetailsResponse, Video } from "../models/mood-video";
-import { Image } from "../models/mood-image";
-import { GetOneVideoYoutubeDetailsResponse, VideoYouTube } from "../models/mood-video-youtube";
-import { GetArtistsByMoodResponse, GetArtistsCheckBoxesByMoodResponse } from "../models/artist";
-import { BaseResponse } from "../models/base-response";
+import { GetFranchisesByMoodResponse } from "../core/models/franchise";
+import { GetOneTagDetailsResponse, GetTagsByMoodResponse, GetTagsCheckBoxesByMoodResponse } from "../core/models/tag";
+import { CreateMoodImageResponse, GetOneImageDetailsResponse, ImageForm } from "../core/models/mood-image";
+import { GetOneVideoDetailsResponse, Video } from "../core/models/mood-video";
+import { Image } from "../core/models/mood-image";
+import { GetOneVideoYoutubeDetailsResponse, VideoYouTube } from "../core/models/mood-video-youtube";
+import { GetArtistsByMoodResponse, GetArtistsCheckBoxesByMoodResponse } from "../core/models/artist";
+import { BaseResponse } from "../core/models/base-response";
 
 type Media = Image | Video | VideoYouTube | null
 
@@ -345,4 +345,6 @@ export class MoodStateService
       })
     )
   }
+
+  galleryCurrentPage : number = 1
 }

@@ -2,7 +2,7 @@ import { Component, OnDestroy, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ArtistsStateService } from '../../../core/services/artists.service';
+import { ArtistsStateService } from '../../../services/artists.service';
 import { Subscription } from 'rxjs';
 
 @Component({

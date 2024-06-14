@@ -1,9 +1,9 @@
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MenuDesktopService } from '../../../core/services/menu-desktop.service';
+import { MenuDesktopService } from '../../../services/menu-desktop.service';
 import { ImageForm } from '../../../core/models/mood-image';
-import { MoodStateService } from '../../../core/services/mood.service';
+import { MoodStateService } from '../../../services/mood.service';
 
 @Component({
   selector: 'app-create-mood-image',

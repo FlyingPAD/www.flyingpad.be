@@ -11,53 +11,49 @@ import { ButtonTopComponent } from './components/button-top/button-top.component
 import { AnimRandomDirective } from './directives/anim-random.directive';
 import { AnimGrowDirective } from './directives/anim-grow.directive';
 import { AnimSpinDirective } from './directives/anim-spin.directive';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
-  declarations: 
+  declarations:
   [
-    // Components :
-
+    // Components.
     CurrentTimeComponent,
     ButtonBackComponent,
     ButtonTopComponent,
-
-    // Pipes :
-
+    DialogComponent,
+    // Pipes.
     FormatDurationPipe,
     FormatSizePipe,
-
-    // Directives :
-
+    // Directives.
     AnimRandomDirective,
     AnimGrowDirective,
     AnimSpinDirective,
   ],
-  imports: 
+  imports:
   [
+    // Modules.
     CommonModule,
-    RouterModule,                // RouterLink
-    ReactiveFormsModule,         // Form Use ( ngModel, ... )
-    FormsModule,                 // Form Use ( onSubmit, ... )
-    NgxPaginationModule,         // NGX Pagination Module
+    RouterModule,           // RouterLink
+    ReactiveFormsModule,    // Form Use ( ngModel, ... )
+    FormsModule,            // Form Use ( onSubmit, ... )
+    NgxPaginationModule,    // NGX Pagination Module
   ],
   exports:
   [
-    CurrentTimeComponent,    
+    // Modules.
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgxPaginationModule,
+    // Components.
+    CurrentTimeComponent,
     ButtonBackComponent,
     ButtonTopComponent,
-
-    RouterModule,                // RouterLink
-    ReactiveFormsModule,         // Form Use ( ngModel, ... )
-    FormsModule,                 // Form Use ( onSubmit, ... )
-    NgxPaginationModule,         // NGX Pagination Module
-
-    // Pipes :
-
+    DialogComponent,
+    // Pipes.
     FormatDurationPipe,
     FormatSizePipe,
-
-    // Directives :
-
+    // Directives.
     AnimRandomDirective,
     AnimGrowDirective,
     AnimSpinDirective,

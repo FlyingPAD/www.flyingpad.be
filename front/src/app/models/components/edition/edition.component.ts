@@ -1,9 +1,9 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { ModelsEditionService } from '../../../core/services/models-edition.service';
+import { ModelsEditionService } from '../../../services/models-edition.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { MoodStateService } from '../../../core/services/mood.service';
-import { ModelStateService } from '../../../core/services/model.service';
+import { MoodStateService } from '../../../services/mood.service';
+import { ModelStateService } from '../../../services/model.service';
 
 @Component({
   selector: 'app-edition',

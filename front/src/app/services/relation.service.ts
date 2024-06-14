@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { CheckRelationsArtistStyleByArtistResponse, CheckRelationsArtistStyleByStyleResponse, CreateRelationsArtistStyleResponse, CreateRelationsMoodArtistResponse, CreateRelationsMoodModelResponse, CreateRelationsMoodTagResponse, RelationsArtistStyleForm, RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm } from '../models/relations';
+import { CheckRelationsArtistStyleByArtistResponse, CheckRelationsArtistStyleByStyleResponse, CreateRelationsArtistStyleResponse, CreateRelationsMoodArtistResponse, CreateRelationsMoodModelResponse, CreateRelationsMoodTagResponse, RelationsArtistStyleForm, RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm } from '../core/models/relations';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

@@ -1,17 +1,18 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { MoodStateService } from '../../../services/mood.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
-import { TagStateService } from '../../../services/tag-state.service';
 import { MenuDesktopService } from '../../../services/menu-desktop.service';
+import { MoodStateService } from '../../../services/mood.service';
+import { TagStateService } from '../../../services/tag-state.service';
 import { Location } from '@angular/common';
+import { MultiTagService } from '../../../services/multi-tag.service';
 
 @Component({
-  selector: 'app-moods-gallery',
-  templateUrl: './moods-gallery.component.html',
-  styleUrl: './moods-gallery.component.scss'
+  selector: 'app-moods-multi-tag',
+  templateUrl: './moods-multi-tag.component.html',
+  styleUrl: './moods-multi-tag.component.scss'
 })
-export class MoodsGalleryComponent 
+export class MoodsMultiTagComponent 
 {
   // Properties :
 
@@ -20,6 +21,7 @@ export class MoodsGalleryComponent
   tagsService = inject(TagStateService)
   router = inject(Router)
   location = inject(Location)                 // Navigation
+  multiTagService = inject(MultiTagService)
 
   environment = environment.apiBaseUrl        // Environment
   moods = this.moodsService.moodsFlow         // Signal
@@ -27,6 +29,16 @@ export class MoodsGalleryComponent
   moodsPerPage :  number = 36                 // Pagination : Items per Page
   topButtonIsActive = false                   // To Top Button Trigger
   infoIsActive = false                        // Info Box Trigger
+  selectedMoods: number[] = []
+
+  selectionToggle(moodId : number) : void
+  {
+    this.multiTagService.selectionToggle(moodId)
+  }
+  checkIfSelected(moodId : number) : boolean
+  {
+    return this.multiTagService.checkIfSelected(moodId)
+  }
 
   // Methods :
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { TagStateService } from '../../../core/services/tag-state.service';
-import { MoodStateService } from '../../../core/services/mood.service';
+import { TagStateService } from '../../../services/tag-state.service';
+import { MoodStateService } from '../../../services/mood.service';
 
 @Component({
   selector: 'app-tags-gallery',
