@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ArtistsStateService } from '../../../core/services/artists.service';
+import { ArtistsStateService } from '../../../services/artists.service';
 import { Subscription } from 'rxjs';
 
 @Component({

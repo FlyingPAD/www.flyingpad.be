@@ -29,19 +29,23 @@
                 <section>
                     <div *ngIf="mood.type == 1">           
                         <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" 
-                        (click)="updateMoodId(mood.businessId)" />
+                        [class.active]="checkIfSelected(mood.businessId)"
+                        (click)="selectionToggle(mood.businessId)" />
                     </div>
                     <div *ngIf="mood.type == 2">
                         <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
-                        (click)="updateMoodId(mood.businessId)" />        
+                        [class.active]="checkIfSelected(mood.businessId)"
+                        (click)="selectionToggle(mood.businessId)" />        
                     </div>
                     <div *ngIf="mood.type == 3">
                         <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
-                        (click)="updateMoodId(mood.businessId)" />       
+                        [class.active]="checkIfSelected(mood.businessId)"
+                        (click)="selectionToggle(mood.businessId)" />       
                     </div>
                     <div *ngIf="mood.type == 4">
                         <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
-                        (click)="updateMoodId(mood.businessId)" />
+                        [class.active]="checkIfSelected(mood.businessId)"
+                        (click)="selectionToggle(mood.businessId)" />
                     </div>
                 </section>
             </div>
@@ -72,12 +76,20 @@
         <div class="position">{{ flow.moodsList.length | number : '4.0'}}</div>
     </a>
     <!-- Info Button -->
+    <a routerLink="/moods/gallery">
+        <img appAnimSpin src="../../../../assets/app_icons/icon_moods_001.png" />
+    </a>
+    <!-- Tag Artists -->
+    <a routerLink="/moods/multi-tag-artists">
+        <img src="../../../../assets/app_icons/icon_artists_001.png" />
+    </a>
+    <!-- Tag Models -->
+    <a routerLink="/moods/multi-tag-models">
+        <img src="../../../../assets/app_icons/icon_model_001.png" />
+    </a>
+    <!-- Info Button -->
     <a (click)="infoTrigger()" [ngClass]="infoIsActive === true ? 'active' : '' ">
         <img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" />
-    </a>
-    <!-- Multi Tag -->
-    <a routerLink="/moods/multi-tag">
-        <img src="../../../../assets/app_icons/edit.png" />
     </a>
     <!-- To Top Button -->
     <a (click)="toTop()" *ngIf="topButtonIsActive === true">

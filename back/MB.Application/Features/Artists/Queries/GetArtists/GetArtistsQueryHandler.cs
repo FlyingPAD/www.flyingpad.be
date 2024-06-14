@@ -14,7 +14,7 @@ public class GetArtistsQueryHandler(IBaseRepository<Artist> artistRepository, IM
     {
         try
         {
-            var artists = await _artistRepository.GetAllAsync();
+            var artists = await _artistRepository.GetAllAsync(x => x.Name);
             var response = new GetArtistsQueryResponse
             {
                 Success = true,

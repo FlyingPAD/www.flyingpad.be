@@ -8,6 +8,9 @@ import { MoodDetailsComponent } from './components/mood-details/mood-details.com
 import { MoodEditionComponent } from './components/mood-edition/mood-edition.component';
 import { CreateMoodImageComponent } from './components/create-mood-image/create-mood-image.component';
 import { CreateMoodVideoComponent } from './components/create-mood-video/create-mood-video.component';
+import { MoodsMultiTagComponent } from './components/moods-multi-tag/moods-multi-tag.component';
+import { MultiTagArtistsComponent } from './components/multi-tag-artists/multi-tag-artists.component';
+import { MultiTagModelsComponent } from './components/multi-tag-models/multi-tag-models.component';
 
 @NgModule({
   declarations: 
@@ -16,7 +19,10 @@ import { CreateMoodVideoComponent } from './components/create-mood-video/create-
     MoodDetailsComponent,
     MoodEditionComponent,
     CreateMoodImageComponent,
-    CreateMoodVideoComponent
+    CreateMoodVideoComponent,
+    MoodsMultiTagComponent,
+    MultiTagArtistsComponent,
+    MultiTagModelsComponent
   ],
   imports: 
   [

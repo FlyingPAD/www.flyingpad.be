@@ -53,7 +53,10 @@ export interface ArtistsCreateResponse extends BaseResponse
     artist : ArtistLight
 }
 
-export interface GetAllArtistsResponse extends BaseResponse {}
+export interface GetAllArtistsResponse extends BaseResponse 
+{
+    artists : ArtistCheckBox[]
+}
 
 export interface GetOneArtistResponse extends BaseResponse
 {

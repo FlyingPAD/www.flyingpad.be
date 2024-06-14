@@ -1,7 +1,7 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { MoodStateService } from '../../../core/services/mood.service';
-import { ArtistsStateService } from '../../../core/services/artists.service';
+import { MoodStateService } from '../../../services/mood.service';
+import { ArtistsStateService } from '../../../services/artists.service';
 import { Location } from '@angular/common';
 
 @Component({

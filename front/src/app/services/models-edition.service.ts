@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { GetAllModelsResponse } from '../models/model';
+import { environment } from '../../environments/environment';
+import { GetAllModelsResponse } from '../core/models/model';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({

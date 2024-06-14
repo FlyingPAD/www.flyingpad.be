@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ArtistsStateService } from '../../../core/services/artists.service';
-import { MoodStateService } from '../../../core/services/mood.service';
+import { ArtistsStateService } from '../../../services/artists.service';
+import { MoodStateService } from '../../../services/mood.service';
 
 @Component({
   selector: 'app-artists-list',

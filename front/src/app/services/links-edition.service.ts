@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { CreateLinkResponse, GetAllLinkCategoriesResponse, GetAllLinksResponse, GetLinksByCategoryResponse, GetOneLinkCategoryDetailsResponse, GetOneLinkDetailsResponse, LinkCreateForm, LinkUpdateForm, getLinkCategoriesCheckBoxesResponse } from '../models/link';
+import { CreateLinkResponse, GetAllLinkCategoriesResponse, GetAllLinksResponse, GetLinksByCategoryResponse, GetOneLinkCategoryDetailsResponse, GetOneLinkDetailsResponse, LinkCreateForm, LinkUpdateForm, getLinkCategoriesCheckBoxesResponse } from '../core/models/link';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { BaseResponse } from '../models/base-response';
+import { BaseResponse } from '../core/models/base-response';
 
 @Injectable({
   providedIn: 'root'

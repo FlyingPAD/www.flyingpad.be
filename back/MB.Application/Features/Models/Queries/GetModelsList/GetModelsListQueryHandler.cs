@@ -14,7 +14,7 @@ public class GetModelsListQueryHandler(IBaseRepository<Model> modelRepository, I
     {
         try
         {
-            var models = await _modelRepository.GetAllAsync();
+            var models = await _modelRepository.GetAllAsync(x => x.Pseudonym);
             var response = new GetModelsListQueryResponse
             {
                 Success = true,

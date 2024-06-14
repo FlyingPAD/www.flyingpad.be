@@ -2,10 +2,10 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { UserRegisterForm, UserLoginForm } from '../models/user';
+import { UserRegisterForm, UserLoginForm } from '../core/models/user';
 import { ToastrService } from 'ngx-toastr';
-import { LoginQueryResponse, RegisterCommandResponse } from '../models/auth';
-import { environment } from '../../../environments/environment';
+import { LoginQueryResponse, RegisterCommandResponse } from '../core/models/auth';
+import { environment } from '../../environments/environment';
 import { CustomCookieService } from './cookie.service';
 import { UserService } from './user.service';
 

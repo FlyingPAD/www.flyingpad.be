@@ -2,9 +2,9 @@ import { Component, HostListener, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { TagCreateForm } from '../../../core/models/tag';
-import { MenuDesktopService } from '../../../core/services/menu-desktop.service';
-import { TagsEditionService } from '../../../core/services/tags-edition.service';
-import { MoodStateService } from '../../../core/services/mood.service';
+import { MenuDesktopService } from '../../../services/menu-desktop.service';
+import { TagsEditionService } from '../../../services/tags-edition.service';
+import { MoodStateService } from '../../../services/mood.service';
 
 @Component({
   selector: 'app-edition',

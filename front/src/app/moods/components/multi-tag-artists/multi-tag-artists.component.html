@@ -1,0 +1,25 @@
+<div id="layout-central">
+  <p><b>{{multiTagService.selectedMoods.length}}</b> Moods Selected</p>
+    
+  <div class="row-white">
+    <div class="filter">
+        <input type="text" [(ngModel)]="searchArtist" placeholder="Filter artists ...">
+    </div>
+    <div class="form-container">
+        <div class="form-flex">
+            <div class="form_cat_box">
+                <div *ngFor="let m of filterArtists()">
+                    <div class="duo">
+                        <input type="checkbox" id="{{m.name}}" value="{{m.name}}" [checked]="m.isChecked" (change)="m.isChecked = !m.isChecked">
+                        <label for="{{m.name}}">{{m.name}}</label>
+                    </div>     
+                </div>   
+            </div>
+        </div> 
+    </div>
+    <div class="menu-flex">
+      <app-button-back></app-button-back>
+      <a (click)="onSubmit()">Submit</a>
+    </div>
+  </div>
+</div>
