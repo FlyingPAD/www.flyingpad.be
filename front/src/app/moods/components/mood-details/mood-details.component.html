@@ -22,7 +22,7 @@
                 <div>
                     <a routerLink="/moods/gallery"
                         [class.active]="tag.businessId === moods().tagDetails?.businessId"
-                        (click)="updateTagId(tag.businessId)">
+                        (click)="updateTagId(tag.businessId); pageReset()">
                         {{tag.name}}
                     </a>
                 </div>

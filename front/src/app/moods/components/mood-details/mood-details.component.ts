@@ -12,6 +12,7 @@ import { MoodStateService } from "../../../services/mood.service"
 import { Location } from '@angular/common';
 import { MenuDesktopService } from "../../../services/menu-desktop.service"
 import { UpdateMoodScoreCall } from "../../../core/models/mood"
+import { PaginationService } from "../../../services/pagination.service"
 
 @Component({
   selector: 'app-mood-details',
@@ -28,6 +29,7 @@ export class MoodDetailsComponent implements OnDestroy
   #location = inject(Location)
   menuService = inject(MenuDesktopService)
   userService = inject(UserService)
+  paginationService = inject(PaginationService)
 
   environment :       string          = environment.apiBaseUrl  // API URL
   windowHeight :      number          = window.innerHeight      // Window Height
@@ -285,5 +287,10 @@ export class MoodDetailsComponent implements OnDestroy
   {
     let form : UpdateMoodScoreCall = { businessId : moodBusinessId, value : scoreValue }
     this.#moodsService.updateScoreTrigger(form)
+  }
+
+  pageReset()
+  {
+    this.paginationService.moodsByTagCurrentPageReset()
   }
 }

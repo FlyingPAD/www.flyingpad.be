@@ -25,7 +25,7 @@
     <div *ngIf="moods().moodsList.length; else loading">
         <!-- Gallery -->
         <div [ngClass]="menuService.menuRActive === true ? 'gallery menu-open' : 'gallery' ">
-            <div *ngFor="let mood of moods().moodsList | paginate : { itemsPerPage : moodsPerPage, currentPage : moodsService.galleryCurrentPage}">
+            <div *ngFor="let mood of moods().moodsList | paginate : { itemsPerPage : moodsPerPage, currentPage : paginationService.moodsByTagCurrentPage}">
                 <section>
                     <div *ngIf="mood.type == 1">           
                         <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" 
@@ -58,7 +58,7 @@
 <!-- Pagination -->
 <div class="pagination-row" *ngIf="moods().moodsList.length > moodsPerPage">
     <div id="pagination">
-        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="moodsService.galleryCurrentPage = $event"></pagination-controls>
+        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.moodsByTagCurrentPage = $event"></pagination-controls>
     </div>   
 </div>
 <!-- Bottom Bar -->
