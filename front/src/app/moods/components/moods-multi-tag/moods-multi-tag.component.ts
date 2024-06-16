@@ -6,6 +6,7 @@ import { MoodStateService } from '../../../services/mood.service';
 import { TagStateService } from '../../../services/tag-state.service';
 import { Location } from '@angular/common';
 import { MultiTagService } from '../../../services/multi-tag.service';
+import { PaginationService } from '../../../services/pagination.service';
 
 @Component({
   selector: 'app-moods-multi-tag',
@@ -22,6 +23,7 @@ export class MoodsMultiTagComponent
   router = inject(Router)
   location = inject(Location)                 // Navigation
   multiTagService = inject(MultiTagService)
+  paginationService = inject(PaginationService)
 
   environment = environment.apiBaseUrl        // Environment
   moods = this.moodsService.moodsFlow         // Signal
@@ -59,7 +61,7 @@ export class MoodsMultiTagComponent
 
   pageReset()
   {
-    this.moodsService.galleryCurrentPage = 1
+    this.paginationService.moodsByTagCurrentPageReset()
   }
 
   getRandomMood() : void

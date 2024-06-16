@@ -345,6 +345,4 @@ export class MoodStateService
       })
     )
   }
-
-  galleryCurrentPage : number = 1
 }

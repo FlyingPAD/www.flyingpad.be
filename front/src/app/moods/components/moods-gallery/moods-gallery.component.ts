@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { TagStateService } from '../../../services/tag-state.service';
 import { MenuDesktopService } from '../../../services/menu-desktop.service';
 import { Location } from '@angular/common';
+import { PaginationService } from '../../../services/pagination.service';
 
 @Component({
   selector: 'app-moods-gallery',
@@ -20,6 +21,7 @@ export class MoodsGalleryComponent
   tagsService = inject(TagStateService)
   router = inject(Router)
   location = inject(Location)                 // Navigation
+  paginationService = inject(PaginationService)
 
   environment = environment.apiBaseUrl        // Environment
   moods = this.moodsService.moodsFlow         // Signal
@@ -47,7 +49,7 @@ export class MoodsGalleryComponent
 
   pageReset()
   {
-    this.moodsService.galleryCurrentPage = 1
+    this.paginationService.moodsByTagCurrentPageReset()
   }
 
   getRandomMood() : void
