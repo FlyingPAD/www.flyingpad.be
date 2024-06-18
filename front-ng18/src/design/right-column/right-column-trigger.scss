@@ -1,0 +1,54 @@
+// =====================================
+// - Flying PAD | Right Column Trigger
+// =====================================
+
+.column-trigger
+{
+    position: fixed;
+    top: 50%;
+    right: 0px;
+
+    height: 200px;
+    width: 75px;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 18;
+    transition-duration: 500ms;
+
+    .trigger-arrow
+    {
+       height: 125px;
+       width: 5px;
+       
+       background-color: rgba(107, 82, 64, 0.5);
+       border-radius: 3px;
+
+       transition-duration: 500ms;
+    }
+}
+.column-trigger:hover
+{
+    cursor: pointer;
+
+    .trigger-arrow
+    {
+        background-color: rgb(60, 45, 34);
+    }
+}
+.column-trigger-on
+{
+    right: 285px;
+}
+
+@media screen and (max-width : 1150px) 
+{
+    .column-trigger
+    {   
+        width: 30px;
+    }
+}

@@ -1,0 +1,33 @@
+<div class="menu-left" [ngClass]="menuService.menuCustomOn === true ? 'menu-on' : 'menu-off'">
+    <div class="menu-grid">
+        <div class="grid-section-left">
+            <div class="trigger">
+                <img [class.img-active]="menuService.menuCustomOn === true" 
+                src="/assets/app_icons/icon_hamburger_001.png" 
+                (click)="menuService.triggerMenuCustom()" />
+            </div>
+            <img class="logo" src="/assets/app_logos/fp_logo_03.png">
+        </div>
+    </div>
+    <div class="scroll">
+        <div class="menu-elements">
+            <div>
+                <a routerLink="/home" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="/assets/app_icons/icon_home_001.png" />
+                    <p>Home</p>
+                </a>
+                <a routerLink="/about" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="/assets/app_icons/icon_about_001.png" />
+                    <p>About</p>
+                </a>
+                <a routerLink="/models" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="/assets/app_icons/icon_model_001.png" />
+                    <p>Models</p>
+                </a>
+            </div>
+        </div>
+        <div class="menu-footer">
+            <p>© {{currentYear}} <a routerLink="/about" (click)="menuTrigger()">Flying PAD</a>
+        </div>
+    </div>
+</div>
