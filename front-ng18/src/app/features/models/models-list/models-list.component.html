@@ -1,0 +1,22 @@
+@if (models().length > 0) 
+{
+    <mat-list>
+        @for (model of models(); track $index)
+        {
+            <p>{{model.pseudonym}}</p>
+            <mat-list-item>
+                <nav matLine>{{ model.pseudonym }}</nav>
+                <button mat-icon-button (click)="handleEdit(model)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="handleDelete(model.businessId)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-list-item>
+        }
+    </mat-list>
+}
+@else 
+{
+    <p>No models have been found</p>
+}

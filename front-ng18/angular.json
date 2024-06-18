@@ -32,12 +32,48 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/design/01_normalize.scss",
+              "src/design/02_global_variables.scss",
+              "src/design/03_global_settings.scss",
+
+              "src/design/central/animations.scss",
+              "src/design/central/bottom-bar.scss",
+              "src/design/central/box-social.scss",
+              "src/design/central/boxes.scss",
+              "src/design/central/crud-forms.scss",
+              "src/design/central/crud.scss",
+              "src/design/central/display-model.scss",
+              "src/design/central/form-cat-flex.scss",
+              "src/design/central/gallery.scss",
+              "src/design/central/list.scss",
+              "src/design/central/menu-flex.scss",
+              "src/design/central/modal.scss",
+              "src/design/central/overlay.scss",
+              "src/design/central/scripts-tools.scss",
+              "src/design/central/tags-gallery.scss",
+              "src/design/central/text.scss",
+              "src/design/central/user-details.scss",
+              "src/design/central/viewer.scss",
+
+              "src/design/header/header.scss",  
+
+              "src/design/main-menu/main-menu-01.scss",
+
+              "src/design/right-column/right-column-trigger.scss",
+              "src/design/right-column/right-column.scss",
+
+              "./node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ], 
               "budgets": [
                 {
                   "type": "initial",
@@ -53,6 +89,12 @@
               "outputHashing": "all"
             },
             "development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.prod.ts",
+                  "with": "src/environments/environment.ts"
+                }
+              ],  
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
