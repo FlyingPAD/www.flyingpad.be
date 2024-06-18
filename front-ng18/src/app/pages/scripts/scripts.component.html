@@ -1,0 +1,51 @@
+<!-- scripts.component.html -->
+<div id="layout-central">
+    <div class="section-flex">
+      <section>
+        <h2>INTRODUCTION</h2>
+        <p>▸ <a (click)="selectScript('introduction')">Avant de commencer</a></p>
+        <p>▸ <a (click)="selectScript('pianoReference')">La Référence Clavier</a></p>
+        <p>▸ <a (click)="selectScript('viewpoint')">Point de Vue</a></p>
+        <p>▸ <a (click)="selectScript('notation')">La Notation Musicale</a></p>
+      </section>
+      <section>
+        <h2>HARMONIE</h2>
+        <p>▸ <a (click)="selectScript('notesFr')">Les Notes</a></p>
+        <p>▸ <a (click)="selectScript('notesEn')">Les Notes (en anglais)</a></p>
+        <p>▸ <a (click)="selectScript('intervals')">Les Intervalles</a></p>
+        <p>▸ <a (click)="selectScript('chords')">Les Accords</a></p>
+        <p>▸ <a (click)="selectScript('scales')">Les Gammes</a></p>
+        <p>▸ <a (click)="selectScript('melody')">La Mélodie</a></p>
+      </section>
+      <section>
+        <h2>HARMONIE: Exercices</h2>
+        <p>▸ <a (click)="selectScript('notesEx')">Les Notes</a></p>
+      </section>
+      <section>
+        <h2>RYTHME</h2>
+        <p>▸ <a (click)="selectScript('pulsation')">La Pulsation</a></p>
+        <p>▸ <a (click)="selectScript('metricsA')">Les Métriques (1)</a></p>
+        <p>▸ <a (click)="selectScript('metricsB')">Les Métriques (2)</a></p>
+      </section>
+    </div>
+  
+    <!-- Container for dynamically loaded script components -->
+    <ng-container [ngSwitch]="currentScript">
+      <app-introduction *ngSwitchCase="'introduction'"></app-introduction>
+      <app-keys-reference *ngSwitchCase="'pianoReference'"></app-keys-reference>
+      <app-point-of-view *ngSwitchCase="'viewpoint'"></app-point-of-view>
+      <app-notation *ngSwitchCase="'notation'"></app-notation>
+      <app-notes *ngSwitchCase="'notesFr'"></app-notes>
+      <app-notes-trad *ngSwitchCase="'notesEn'"></app-notes-trad>
+      <app-intervals *ngSwitchCase="'intervals'"></app-intervals>
+      <app-chords *ngSwitchCase="'chords'"></app-chords>
+      <app-scales *ngSwitchCase="'scales'"></app-scales>
+      <app-melody *ngSwitchCase="'melody'"></app-melody>
+      <app-notes-ex *ngSwitchCase="'notesEx'"></app-notes-ex>
+      <app-pulsation *ngSwitchCase="'pulsation'"></app-pulsation>
+      <app-metrics-a *ngSwitchCase="'metricsA'"></app-metrics-a>
+      <app-metrics-b *ngSwitchCase="'metricsB'"></app-metrics-b>
+      <!-- Continue adding cases as needed for each script -->
+    </ng-container>
+  </div>
+  

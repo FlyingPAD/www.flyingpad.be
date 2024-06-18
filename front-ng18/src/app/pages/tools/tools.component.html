@@ -1,0 +1,29 @@
+<div id="layout-central">
+  <div class="tools-icons">
+    <a (click)="selectTool('circleOfFifths')">
+      <img src="/assets/app_icons/circle_fifths.png">
+    </a>
+    <a (click)="selectTool('chordWheel')">
+      <img src="/assets/app_icons/chord_wheel.png">
+    </a>
+    <a (click)="selectTool('diapason')">
+      <img src="/assets/app_icons/diapason.svg">
+    </a>
+    <a (click)="selectTool('flyingKeysMini')">
+      <img src="/assets/app_icons/keys-mini.svg">
+    </a>
+    <a (click)="selectTool('trainerNotes')">
+      <img src="/assets/app_icons/trainer-notes.png">
+    </a>
+  </div>
+</div>
+
+<div [@routeAnimations]="currentTool">
+  <ng-container [ngSwitch]="currentTool">
+    <app-circle-of-fifths *ngSwitchCase="'circleOfFifths'" key="circleOfFifths"></app-circle-of-fifths>
+    <app-chord-wheel *ngSwitchCase="'chordWheel'" key="chordWheel"></app-chord-wheel>
+    <app-diapason *ngSwitchCase="'diapason'" key="diapason"></app-diapason>
+    <app-flying-keys-mini *ngSwitchCase="'flyingKeysMini'" key="flyingKeysMini"></app-flying-keys-mini>
+    <app-trainer-notes *ngSwitchCase="'trainerNotes'" key="trainerNotes"></app-trainer-notes>
+  </ng-container>
+</div>

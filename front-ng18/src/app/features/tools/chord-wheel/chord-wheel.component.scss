@@ -1,0 +1,37 @@
+#container_wheel
+{
+    position: relative;
+    height: 500px;
+    width: 500px;
+    margin: auto;
+    margin-top: 15px;
+
+    img
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        border-radius: 300px;
+
+        -moz-user-select: none; /* Firefox */
+        -webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
+        -ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
+        user-select: none; /* Propriété standard */
+    }
+}
+
+@media (max-width: 600px) 
+{
+    #container_wheel
+    {
+        width: 100%;
+        min-height: 450px;
+    }
+}
+
+#wheel 
+{
+    transition: transform 0.5s ease-out;
+}

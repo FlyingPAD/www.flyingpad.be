@@ -1,0 +1,34 @@
+.tools-icons
+{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    a
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 150px;
+        width: 150px;
+
+        background-color: rgb(107, 82, 64, 0.1);
+        border: 1px solid grey;
+        border-radius: 10px;
+
+        margin: 15px;
+
+        img
+        {
+            height: 85%;
+        }
+    }
+    a:hover
+    {
+        background-color: rgb(107, 82, 64, 0.4);
+        border: 1px solid var(--colorMain);
+        transition-duration: 500ms;
+    }
+}

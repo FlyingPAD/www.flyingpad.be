@@ -1,0 +1,10 @@
+<p>
+  Option selected: {{gamesList.selectedOptions.hasValue() ? gamesList.selectedOptions.selected[0].value.pseudonym : 'None'}}
+</p>
+
+<mat-selection-list #gamesList [multiple]="false">
+    @for (game of models(); track game) {
+      <mat-list-option [value]="game">{{game.pseudonym}}</mat-list-option>
+    }
+  </mat-selection-list>
+  

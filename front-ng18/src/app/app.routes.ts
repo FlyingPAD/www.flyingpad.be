@@ -13,12 +13,26 @@ import { TagsComponent } from './pages/tags/tags.component';
 import { ModelsEditionService } from './services/models-edition.service';
 import { inject } from '@angular/core';
 import { Model } from './models/models';
+import { TagList } from './models/tag';
+import { TagsService } from './services/tags.service';
+import { TestComponent } from './pages/test/test.component';
+import { ScriptsComponent } from './pages/scripts/scripts.component';
+import { ToolsComponent } from './pages/tools/tools.component';
 
-const modelsResolver: ResolveFn<Model[]> = (route, state) => {
-    const modelsEditionService = inject(ModelsEditionService);
-    return modelsEditionService.getAll();
-  }
+// Resolvers :
+const modelsResolver: ResolveFn<Model[]> = (route, state) => 
+{
+    const modelsEditionService = inject(ModelsEditionService)
+    return modelsEditionService.getAll()
+}
 
+const tagsListResolver: ResolveFn<TagList[]> = (route, state) => 
+{
+    const tagsService = inject(TagsService)
+    return tagsService.getAll()
+}
+
+// Routes :
 export const routes: Routes = 
 [
     { path : '', component : LayoutFullComponent, children :
@@ -27,12 +41,15 @@ export const routes: Routes =
             { path : 'home', component : HomeComponent, title : 'Flying PAD | Home' },
             { path : 'about', component : AboutComponent, title : 'Flying PAD | About' },
             { path : 'not-found', component : NotFoundComponent, title : 'Flying PAD | Not Found' },
+            { path : 'test', component : TestComponent, resolve : { models : modelsResolver }, title : 'Flying PAD | Test' },
             
             { path : 'moods', loadComponent : () => MoodsComponent, title : 'Flying PAD | Moods' },
-            { path : 'tags', loadComponent : () => TagsComponent, title : 'Flying PAD | Tags' },
+            { path : 'tags', loadComponent : () => TagsComponent, resolve : { tags : tagsListResolver }, title : 'Flying PAD | Tags' },
             { path : 'artists', loadComponent : () => ArtistsComponent, title : 'Flying PAD | Artists' },
             { path : 'models', loadComponent : () => ModelsComponent, resolve : { models : modelsResolver }, title : 'Flying PAD | Models' },
             { path : 'links', loadComponent : () => LinksComponent, title : 'Flying PAD | Links' },
+            { path : 'tools', loadComponent : () => ToolsComponent, title : 'Flying PAD | Tools' },
+            { path : 'scripts', loadComponent : () => ScriptsComponent, title : 'Flying PAD | Scripts' },
 
             { path : 'login', component : LoginComponent, title : 'Flying PAD | Login' },
             { path : 'register', component : RegisterComponent, title : 'Flying PAD | Register' },

@@ -1,0 +1,33 @@
+#composition
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+
+    #container
+    {    
+        position: relative;
+        width: 500px;
+    
+        svg
+        {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            border-radius: 50%;
+    
+            text
+            {
+                font-family: sans-serif;
+                font-weight: bold;
+                font-size: 12px;
+            }
+        }
+    
+        .wheel
+        {
+            transition-duration: 500ms;
+        }
+    }
+}
+
