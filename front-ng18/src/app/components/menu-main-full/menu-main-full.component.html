@@ -12,10 +12,18 @@
     <div class="scroll">
         <div class="menu-elements">
             <div>
-                <a routerLink="/home" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="/assets/app_icons/icon_home_001.png" />
-                    <p>Home</p>
-                </a>
+                @if(userService.appUser === undefined) {
+                    <a routerLink="/home" routerLinkActive="active" (click)="menuTrigger()">
+                        <img src="/assets/app_icons/icon_home_001.png" />
+                        <p>Home</p>
+                    </a>
+                }
+                @else {
+                    <a routerLink="/dashboard" routerLinkActive="active" (click)="menuTrigger()">
+                        <img src="/assets/app_icons/icon_home_001.png" />
+                        <p>Dashboard</p>
+                    </a>
+                }
                 <a routerLink="/about" routerLinkActive="active" (click)="menuTrigger()">
                     <img src="/assets/app_icons/icon_about_001.png" />
                     <p>About</p>
@@ -45,7 +53,30 @@
                     <p>Links</p>
                 </a>
             </div>
-            <app-button-login />
+            <!-- User ( Not Connected ) -->
+            @if(userService.appUser === undefined)
+            {
+                <a class="user" routerLink="/login" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="/assets/app_icons/icon_artists_001.png" />
+                    <p>Not Connected</p>
+                </a>
+            }
+            <!-- User ( Connected ) -->
+            @if(userService.appUser?.role === 1)
+            {
+                <a class="user" routerLink="/users/user-details" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/icon_artists_001.png" />
+                    <p>{{userService.appUser?.firstName}}</p>
+                </a> 
+            }
+            <!-- Administrator -->
+            @if(userService.appUser?.role === 2)
+            {
+                <a class="user" routerLink="/users/user-details" routerLinkActive="active" (click)="menuTrigger()">
+                    <img src="../../../../assets/app_icons/mood.png" />
+                    <p>{{userService.appUser?.firstName}}</p>
+                </a> 
+            }
         </div>
         <div class="menu-footer">
             <p>© {{currentYear}} <a routerLink="/about" (click)="menuTrigger()">Flying PAD</a>

@@ -1,6 +1,6 @@
 @if (models().length > 0) 
 {
-    <mat-list>
+    <mat-selection-list>
         @for (model of models(); track $index)
         {
             <p>{{model.pseudonym}}</p>
@@ -14,7 +14,7 @@
                 </button>
             </mat-list-item>
         }
-    </mat-list>
+    </mat-selection-list>
 }
 @else 
 {

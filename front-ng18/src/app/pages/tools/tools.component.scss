@@ -1,9 +1,8 @@
 .tools-icons
 {
-    margin-top: 25px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    overflow-x: scroll;
 
     a
     {
@@ -12,11 +11,12 @@
         align-items: center;
 
         height: 150px;
-        width: 150px;
+        min-width: 150px;
 
         background-color: rgb(107, 82, 64, 0.1);
-        border: 1px solid grey;
+        border: 3px solid grey;
         border-radius: 10px;
+        box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
 
         margin: 15px;
 
@@ -28,7 +28,22 @@
     a:hover
     {
         background-color: rgb(107, 82, 64, 0.4);
-        border: 1px solid var(--colorMain);
+        border: 3px solid var(--colorMain);
         transition-duration: 500ms;
+        cursor: pointer;
+    }
+    .active
+    {
+        background-color: rgb(107, 82, 64, 0.4);
+        border: 3px solid var(--colorMain);
+        transition-duration: 500ms;
+    }
+}
+
+@media (max-width: 900px) 
+{ 
+    .tools-icons
+    {
+        justify-content:left;
     }
 }

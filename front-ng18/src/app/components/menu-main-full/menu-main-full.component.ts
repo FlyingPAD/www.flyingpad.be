@@ -2,18 +2,19 @@ import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MenuMainService } from '../../services/menu-main.service';
 import { CommonModule } from '@angular/common';
-import { ButtonLoginComponent } from '../button-login/button-login.component';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-menu-main-full',
   standalone: true,
-  imports: [RouterModule, CommonModule, ButtonLoginComponent],
+  imports: [RouterModule, CommonModule],
   templateUrl: './menu-main-full.component.html',
   styleUrl: './menu-main-full.component.scss'
 })
 export class MenuMainFullComponent 
 {
   menuService = inject(MenuMainService)
+  userService = inject(UserService)
 
   currentYear : number = new Date().getFullYear()
 

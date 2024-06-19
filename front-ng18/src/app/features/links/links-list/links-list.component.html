@@ -1,1 +1,19 @@
-<p>links-list works!</p>
+@if (links().length > 0) 
+{
+    <p> Selected Link : {{linksList.selectedOptions.hasValue() ? linksList.selectedOptions.selected[0].value : 'None'}}</p>
+
+    <mat-selection-list #linksList [multiple]="false">
+        @for (link of links() | filter: search(); track $index)
+        {
+            <mat-list-option [value]="link.name">{{link.name}}</mat-list-option>
+        }
+        @empty 
+        {
+            <p>No links matching criteria ...</p>
+        }
+    </mat-selection-list>
+}
+@else 
+{
+    <p>No links has been found</p>
+}

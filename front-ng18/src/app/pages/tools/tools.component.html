@@ -1,18 +1,18 @@
 <div id="layout-central">
   <div class="tools-icons">
-    <a (click)="selectTool('circleOfFifths')">
+    <a (click)="selectTool('circleOfFifths')" [class.active]="currentTool === 'circleOfFifths' ">
       <img src="/assets/app_icons/circle_fifths.png">
     </a>
-    <a (click)="selectTool('chordWheel')">
+    <a (click)="selectTool('chordWheel')" [class.active]="currentTool === 'chordWheel' ">
       <img src="/assets/app_icons/chord_wheel.png">
     </a>
-    <a (click)="selectTool('diapason')">
+    <a (click)="selectTool('diapason')" [class.active]="currentTool === 'diapason' ">
       <img src="/assets/app_icons/diapason.svg">
     </a>
-    <a (click)="selectTool('flyingKeysMini')">
+    <a (click)="selectTool('flyingKeysMini')" [class.active]="currentTool === 'flyingKeysMini' ">
       <img src="/assets/app_icons/keys-mini.svg">
     </a>
-    <a (click)="selectTool('trainerNotes')">
+    <a (click)="selectTool('trainerNotes')" [class.active]="currentTool === 'trainerNotes' ">
       <img src="/assets/app_icons/trainer-notes.png">
     </a>
   </div>

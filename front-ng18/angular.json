@@ -55,6 +55,8 @@
               "src/design/central/user-details.scss",
               "src/design/central/viewer.scss",
 
+              "src/design/fp/form.scss",
+
               "src/design/header/header.scss",  
 
               "src/design/main-menu/main-menu-01.scss",

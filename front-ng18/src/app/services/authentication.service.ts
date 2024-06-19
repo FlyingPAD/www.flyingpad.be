@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment.prod';
 import { RegisterCommandResponse, LoginQueryResponse } from '../models/authentication';
 import { UserRegisterForm, UserLoginForm } from '../models/user';
@@ -17,10 +17,6 @@ export class AuthenticationService
   #cookieService = inject(CustomCookieService)
   #userService = inject(UserService)
 
-
-  #isConnected = new BehaviorSubject<Boolean>(false)
-  isConnectedSub: Observable<Boolean> = this.#isConnected.asObservable()
-
   // Register
   public register( form : UserRegisterForm ) : Observable<RegisterCommandResponse> 
   {
@@ -28,8 +24,7 @@ export class AuthenticationService
       tap(response => 
       {       
         this.#cookieService.storeToken(response.token)
-        this.#userService.setSpecificUser(response.token)
-        this.acceptConnection()
+        this.#userService.setUser(response.token)
       })
     )
   }
@@ -40,25 +35,19 @@ export class AuthenticationService
     return this.#http.post<LoginQueryResponse>(`${this.#url}Auth/Login`, form).pipe(
       tap(response => 
       {
-        this.#cookieService.storeToken(response.token)
-        this.#userService.setSpecificUser(response.token)
-        this.acceptConnection()
+        if(response.success)
+        {
+          this.#cookieService.storeToken(response.token)
+          this.#userService.setUser(response.token)
+        }
       })
     )
   }
 
   // Logout
-  // logout() : void 
-  // {
-  //   this.#cookieService.removeToken()
-  //   this.#userService.setDefaultUser()
-  //   this.closeConnection()  
-  //   this.#toastr.success('You have been logged out !', 'Success !')
-  // }
-
-  // Update connection status to "connected"  
-  public acceptConnection() : void { this.#isConnected.next(true) }
-
-  // Update connection status to "disconnected"
-  public closeConnection() : void { this.#isConnected.next(false) }
+  logout() : void 
+  {
+    this.#cookieService.removeToken()
+    this.#userService.removeUser()
+  }
 }

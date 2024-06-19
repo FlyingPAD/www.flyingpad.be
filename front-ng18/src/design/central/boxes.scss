@@ -725,25 +725,3 @@
     pointer-events: initial;
     margin-bottom: 150px;
 }
-
-
-button
-{
-    display: block;
-    width: 100px;
-    margin: auto;
-    border: 1px solid #6b5240;
-    border-radius: 5px;
-    padding: 8px;
-    background-color: #6b5240;          
-    text-align: center;
-    letter-spacing: 1px;
-    color:#ffffff;
-}
-button:hover
-{
-    background-color: rgb(255, 255, 255);
-    color:#6b5240;
-    cursor: pointer;
-    transition-duration: 500ms;
-}

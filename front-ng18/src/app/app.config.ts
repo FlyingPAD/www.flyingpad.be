@@ -2,9 +2,9 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withRouterConfig, withViewTransitions } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
-import { routes } from './app.routes';
+import { authInterceptor, routes } from './app.routes';
 import { CookieService } from 'ngx-cookie-service';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
@@ -24,6 +24,7 @@ export const appConfig: ApplicationConfig = {
       enableHtml: true                      // Whether HTML content is allowed in toastr messages
     }),
     CookieService,
-    provideHttpClient(withFetch()), provideAnimationsAsync()
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor])), 
+    provideAnimationsAsync()
   ],
 };

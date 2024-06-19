@@ -16,6 +16,8 @@ import { NotesTradComponent } from '../../features/scripts/notes-trad/notes-trad
 import { PointOfViewComponent } from '../../features/scripts/point-of-view/point-of-view.component';
 import { PulsationComponent } from '../../features/scripts/pulsation/pulsation.component';
 import { ScalesComponent } from '../../features/scripts/scales/scales.component';
+import { slideInAnimation } from '../../animations/animations';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-scripts',
@@ -23,6 +25,7 @@ import { ScalesComponent } from '../../features/scripts/scales/scales.component'
   imports: 
   [
     CommonModule, 
+    RouterModule,
     ButtonTopComponent, 
     ChordsComponent, 
     IntervalsComponent, 
@@ -41,7 +44,8 @@ import { ScalesComponent } from '../../features/scripts/scales/scales.component'
     ScalesComponent
   ],
   templateUrl: './scripts.component.html',
-  styleUrl: './scripts.component.scss'
+  styleUrl: './scripts.component.scss',
+  animations: [slideInAnimation]
 })
 export class ScriptsComponent {
   currentScript: string = '';

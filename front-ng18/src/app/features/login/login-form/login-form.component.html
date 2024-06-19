@@ -1,8 +1,27 @@
-<form (ngSubmit)="handleLogin()">
-    <h2>Login</h2>
-    <div [formGroup]="form">
-        <input formControlName="email" type="text" placeholder="Email"/>
-        <input formControlName="password" type="password" placeholder="Password"/>
-    </div>
-    <button [disabled]="form.invalid">Submit</button>
-</form>
+<div class="layout-fp">
+    <h1>Login</h1>
+    <form (ngSubmit)="handleLogin()" [formGroup]="formGroup">
+        <input formControlName="email" type="email" placeholder="example@domain.com"/>
+            <div *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.errors">
+                <p class="error" *ngIf="formGroup.get('email')?.errors?.['required']">
+                Email is required.
+                </p>
+                <p class="error" *ngIf="formGroup.get('email')?.errors?.['email']">
+                Please enter a valid email address.
+                </p>
+                <p class="error" *ngIf="formGroup.get('email')?.errors?.['maxLength']">
+                The email must not exceed 384 characters.
+                </p>
+            </div>
+        <input formControlName="password" type="password" placeholder="●●●●●●●●"/>
+            <div *ngIf="formGroup.get('password')?.touched && formGroup.get('password')?.errors">
+                <p class="error" *ngIf="formGroup.get('password')?.errors?.['required']">
+                A password is required.
+                </p>
+                <p class="error" *ngIf="formGroup.get('password')?.errors?.['minLength']">
+                The password must be at least 8 characters long.
+                </p>
+            </div>
+        <button type="submit" [disabled]="formGroup.invalid">Sign in</button>
+    </form>
+</div>

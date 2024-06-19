@@ -16,25 +16,23 @@
             <!-- <p>Search</p> -->
         </div>
         <!-- Section Right -->
-        <!-- <div class="grid-section-right">
-            @if (!authService.isConnectedSub) 
+        <div class="grid-section-right">
+            @if(userService.appUser === undefined) 
             {
-                <div class="login">
-                    <a>
-                        <img [class.img-active]="menuService.menuCustomOn === true" 
-                        src="../../../../assets/app_icons/login.png" />
+                <div class="login" (click)="login()">
+                    <a routerLink="/login">
+                        <img src="/assets/app_icons/login.png" />
                     </a>
                 </div>
             }
-            @if (authService.isConnectedSub) 
+            @if (userService.appUser) 
             {
-                <div class="login">
+                <div class="login" (click)="logout()">
                     <a>
-                        <img [class.img-active]="menuService.menuCustomOn === true" 
-                        src="../../../../assets/app_icons/logout.png" />
+                        <img src="/assets/app_icons/logout.png" />
                     </a>
                 </div>
             }
-        </div> -->
+        </div>
     </div>
 </header>

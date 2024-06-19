@@ -54,8 +54,9 @@
     <a class="start" (click)="reset()">NEW GAME</a>
 </div>
 
+<div class="bottom-box"></div>
+
 <div class="bottom-bar" *ngIf="gameStart === false || gameEnd === true">
-    <a routerLink="/tools"><img src="../../../../assets/app_icons/icon_tools_001.png" /></a>
     <a><img appAnimGrow src="../../../../assets/app_icons/logout.png" (click)="reset()" /></a>
     <a><img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" (click)="infoTrigger()" /></a>
 </div>
