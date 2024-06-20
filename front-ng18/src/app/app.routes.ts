@@ -26,6 +26,8 @@ import { Observable } from 'rxjs';
 import { CustomCookieService } from './services/custom-cookie.service';
 import { Link } from './models/link';
 import { LinksService } from './services/links.service';
+import { MoodLight } from './models/mood';
+import { MoodsService } from './services/moods.service';
 
 // Interceptors.
 export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) : Observable<HttpEvent<unknown>> 
@@ -64,6 +66,11 @@ const linksResolver : ResolveFn<Link[]> = (route, state) => {
     return linksService.getAll()
 }
 
+const moodsResolver : ResolveFn<MoodLight[]> = (route, state) => {
+    const moodsService = inject(MoodsService)
+    return moodsService.getAll()
+}
+
 // Guards.
 export const homeGuard : CanActivateFn = (route, state) => {
     const userService = inject(UserService)
@@ -75,7 +82,7 @@ export const homeGuard : CanActivateFn = (route, state) => {
     }
     return true
 }
-export const DashBoardGuard : CanActivateFn = (route, state) => {
+export const dashBoardGuard : CanActivateFn = (route, state) => {
     const userService = inject(UserService)
     const router = inject(Router)
     if(userService.appUser === undefined)
@@ -92,12 +99,12 @@ export const routes: Routes =
     { path : '', component : LayoutFullComponent, children :
         [
             { path : '', pathMatch : 'full', redirectTo : 'home'},
-            { path : 'dashboard', component : DashboardComponent, canActivate : [DashBoardGuard], title : 'Flying PAD | Dashboard' },
+            { path : 'dashboard', component : DashboardComponent, canActivate : [dashBoardGuard], title : 'Flying PAD | Dashboard' },
             { path : 'home', component : HomeComponent, canActivate : [homeGuard], title : 'Flying PAD | Home' },
             { path : 'about', component : AboutComponent, title : 'Flying PAD | About' },
             { path : 'not-found', component : NotFoundComponent, title : 'Flying PAD | Not Found' },
             
-            { path : 'moods', loadComponent : () => MoodsComponent, title : 'Flying PAD | Moods' },
+            { path : 'moods', loadComponent : () => MoodsComponent, resolve : { moods : moodsResolver }, title : 'Flying PAD | Moods' },
             { path : 'tags', loadComponent : () => TagsComponent, resolve : { tags : tagsListResolver }, title : 'Flying PAD | Tags' },
             { path : 'artists', loadComponent : () => ArtistsComponent, title : 'Flying PAD | Artists' },
             { path : 'models', loadComponent : () => ModelsComponent, resolve : { models : modelsResolver }, title : 'Flying PAD | Models' },
@@ -112,7 +119,6 @@ export const routes: Routes =
     { path : '', component : LayoutEmptyComponent, children :
         [
             { path : 'test', component : TestComponent, resolve : { models : modelsResolver }, title : 'Flying PAD | Test' },
-
         ]
     },
     { path: '**', redirectTo: '' }

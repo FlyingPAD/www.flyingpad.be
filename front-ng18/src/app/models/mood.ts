@@ -47,7 +47,7 @@ export interface MoodsCountResponse extends BaseResponse {}
 
 export interface MoodsCountByTagResponse extends BaseResponse {}
 
-export interface MoodsGetAllResponse extends BaseResponse
+export interface GetAllMoodsResponse extends BaseResponse
 {
     moodsList : MoodLight[]
 }

@@ -20,6 +20,7 @@ export class LinksComponent
   links = toSignal(this.#activatedRoute.data.pipe(
     map( (data : any) => data['links']) 
   ))
+  
   search = signal('');
 
   handleSearch(value : string) 

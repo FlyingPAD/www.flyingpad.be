@@ -1,11 +1,17 @@
 @if (links().length > 0) 
 {
-    <p> Selected Link : {{linksList.selectedOptions.hasValue() ? linksList.selectedOptions.selected[0].value : 'None'}}</p>
+    <div class="selection">
+        <img [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + (linksList.selectedOptions.selected[0]?.value.url || '') + '&sz=96'" />
+        <p> ▸ {{ linksList.selectedOptions.hasValue() ? linksList.selectedOptions.selected[0].value.name : 'None' }}</p>
+        <a [href]="linksList.selectedOptions.selected[0]?.value.url" target="_blank" rel="noopener noreferrer">Go</a>
+    </div>
 
     <mat-selection-list #linksList [multiple]="false">
         @for (link of links() | filter: search(); track $index)
         {
-            <mat-list-option [value]="link.name">{{link.name}}</mat-list-option>
+            <mat-list-option [value]="link">
+               <span> {{link.name}}</span>
+            </mat-list-option>
         }
         @empty 
         {
