@@ -22,9 +22,9 @@ import { UserService } from './services/user.service';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
 import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { CustomCookieService } from './services/custom-cookie.service';
-import { Link } from './models/link';
+import { Link, LinkCategoryLight } from './models/link';
 import { LinksService } from './services/links.service';
 import { MoodLight } from './models/mood';
 import { MoodsService } from './services/moods.service';
@@ -55,20 +55,29 @@ const modelsResolver : ResolveFn<Model[]> = (route, state) =>
     return modelsEditionService.getAll()
 }
 
+const moodsResolver : ResolveFn<MoodLight[]> = (route, state) => {
+    const moodsService = inject(MoodsService)
+    return moodsService.getAll()
+}
+
 const tagsListResolver : ResolveFn<TagList[]> = (route, state) => 
 {
     const tagsService = inject(TagsService)
     return tagsService.getAll()
 }
 
-const linksResolver : ResolveFn<Link[]> = (route, state) => {
+const linksResolver: ResolveFn<any> = (route, state) => {
     const linksService = inject(LinksService)
+    const category = route.queryParams['category']
+    if(category) {
+      return linksService.getLinksByCategory(category).pipe(tap(console.log))
+    } 
     return linksService.getAll()
-}
+  }
 
-const moodsResolver : ResolveFn<MoodLight[]> = (route, state) => {
-    const moodsService = inject(MoodsService)
-    return moodsService.getAll()
+const linkCategoriesResolver : ResolveFn<LinkCategoryLight[]> = (route, state) => {
+    const linksService = inject(LinksService)
+    return linksService.getCategories()
 }
 
 // Guards.
@@ -108,7 +117,8 @@ export const routes: Routes =
             { path : 'tags', loadComponent : () => TagsComponent, resolve : { tags : tagsListResolver }, title : 'Flying PAD | Tags' },
             { path : 'artists', loadComponent : () => ArtistsComponent, title : 'Flying PAD | Artists' },
             { path : 'models', loadComponent : () => ModelsComponent, resolve : { models : modelsResolver }, title : 'Flying PAD | Models' },
-            { path : 'links', loadComponent : () => LinksComponent, resolve : { links : linksResolver }, title : 'Flying PAD | Links' },
+            { path : 'links', loadComponent : () => LinksComponent, resolve : { links : linksResolver, linkCategories : linkCategoriesResolver },
+                runGuardsAndResolvers : 'always', title : 'Flying PAD | Links' },
             { path : 'tools', loadComponent : () => ToolsComponent, title : 'Flying PAD | Tools' },
             { path : 'scripts', loadComponent : () => ScriptsComponent, title : 'Flying PAD | Scripts' },
 

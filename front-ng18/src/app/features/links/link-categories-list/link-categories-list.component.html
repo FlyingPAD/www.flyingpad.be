@@ -1,0 +1,19 @@
+<!-- Right Column Trigger -->
+<div class="column-trigger" [class.column-trigger-on]="rightColumn.menuRActive === true" (click)="menuTrigger()">
+  <div class="trigger-arrow"></div>
+</div>
+<!-- Right Column -->
+<div class="right-column" [ngClass]="rightColumn.menuRActive == true ? 'right-column-on' : 'right-column-off'">
+  <!-- Categories -->
+  <div class="list">
+    <div class="link-flex">
+      <a class="category" [routerLink]="['/links']" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}" 
+        [queryParams]="{category : undefined}">Display all Links</a>
+    </div>
+    @for (category of linkCategories(); track $index) {
+    <div class="link-flex">
+      <a class="category" [routerLink]="['/links']" routerLinkActive="active" [queryParams]="{category: category.businessId}"> ▸ {{category.name}}</a>
+    </div>
+    }
+  </div>
+</div>
