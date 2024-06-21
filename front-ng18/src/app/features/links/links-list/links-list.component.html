@@ -1,25 +1,30 @@
-@if (links().length > 0) 
-{
-    <div class="selection">
-        <img [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + (linksList.selectedOptions.selected[0]?.value.url || '') + '&sz=96'" />
-        <p> ▸ {{ linksList.selectedOptions.hasValue() ? linksList.selectedOptions.selected[0].value.name : 'None' }}</p>
-        <a [href]="linksList.selectedOptions.selected[0]?.value.url" target="_blank" rel="noopener noreferrer">Go</a>
-    </div>
+@if (links().length > 0) {
+    @if (linksList.selectedOptions.hasValue()) {
+        <div class="selection">
+            <img [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + (linksList.selectedOptions.selected[0]?.value.url || '') + '&sz=96'" />
+            <p> ▸ {{ linksList.selectedOptions.hasValue() ? linksList.selectedOptions.selected[0].value.name : 'None' }}</p>
+            <a [href]="linksList.selectedOptions.selected[0]?.value.url" target="_blank" rel="noopener noreferrer">Go</a>
+        </div>
+    }
 
     <mat-selection-list #linksList [multiple]="false">
-        @for (link of links() | filter: search(); track $index)
-        {
+        @for (link of links() | filter: search() | paginate : { itemsPerPage : linksPerPage, currentPage: currentPage }; track $index) {
             <mat-list-option [value]="link">
                <span> {{link.name}}</span>
             </mat-list-option>
         }
-        @empty 
-        {
+        @empty {
             <p>No links matching criteria ...</p>
         }
     </mat-selection-list>
 }
-@else 
-{
-    <p>No links has been found</p>
+@else {
+    <p>No links have been found.</p>
 }
+
+<!-- Pagination controls -->
+<div class="pagination-row">
+    <div id="pagination">
+        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
+    </div>   
+</div>
