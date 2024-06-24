@@ -6,7 +6,7 @@ import { Link } from "../models/link";
   pure: false,
   standalone: true
 })
-export class FilterPipe implements PipeTransform 
+export class LinksFilterPipe implements PipeTransform 
 {
   transform(links : Link[], term : string) : any 
   {

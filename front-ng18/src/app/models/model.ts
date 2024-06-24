@@ -1,77 +1,39 @@
 import { BaseResponse } from "./base-response";
 
-// Models :
-
-export class ModelLight
+// Models.
+export interface Model
 {
-    businessId : number = 0
-    pseudonym : string = ''
-    gender : string = ''
+    businessId? : number
+    created? : Date
+    createdBy? : string
+    modified? : Date
+    modifiedBy? : string
+    firstName : string
+    lastName : string
+    pseudonym : string
+    gender : string
+    description? : string
+    isChecked? : boolean
 }
 
-export class ModelDetails
-{
-    businessId : number = 0
-    created : Date = new Date()
-    createdBy : string = ''
-    modified : Date = new Date()
-    modifiedBy : string = ''
-    firstName : string = ''
-    lastName : string = ''
-    pseudonym : string = ''
-    gender : string = ''
-    description : string = ''
-}
-
-export class ModelCheckBox
-{
-    businessId : number = 0
-    pseudonym : string = ''
-    isChecked : boolean = false
-}
-
-// Calls :
-
+// Calls.
 export interface ModelForm
 {
+    businessId? : number
     firstName : string
     lastName : string
-    aka : string
+    pseudonym : string
     gender : string
+    isChecked? : boolean
 }
 
-export interface ModelCheckForm
+// Responses.
+export interface GetAllModelsResponse extends BaseResponse
 {
-    firstName : string
-    lastName : string
-    aka : string
-    gender : string
-    isChecked : boolean
+    models : Model[]
 }
 
-// Responses :
-
-export interface GetAllModelsResponse
+export interface CreateModelResponse extends BaseResponse
 {
-    models : ModelCheckBox[]
-}
-
-export interface GetOneModelDetailsResponse extends BaseResponse
-{
-    model : ModelDetails
-}
-
-export interface GetModelsByMoodResponse extends BaseResponse
-{
-    modelsByMood : ModelLight[]
-}
-
-export interface GetModelsByFranchiseResponse extends BaseResponse
-{
-    modelsByFranchise : ModelLight[]
-}
-
-export interface GetModelsCheckBoxesByMoodResponse extends BaseResponse
-{
-   models : ModelCheckBox[]
+    modelId : number
 }

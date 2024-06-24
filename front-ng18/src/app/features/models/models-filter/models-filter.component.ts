@@ -2,13 +2,13 @@ import { Component, effect, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-link-filter',
+  selector: 'app-models-filter',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './link-filter.component.html',
-  styleUrl: './link-filter.component.scss'
+  templateUrl: './models-filter.component.html',
+  styleUrl: './models-filter.component.scss'
 })
-export class LinkFilterComponent {
+export class ModelsFilterComponent {
   search = output<string>();
   value = signal<string>('');
 

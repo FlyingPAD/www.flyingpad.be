@@ -1,22 +1,29 @@
-@if (models().length > 0) 
-{
-    <mat-selection-list>
-        @for (model of models(); track $index)
-        {
-            <p>{{model.pseudonym}}</p>
-            <mat-list-item>
-                <nav matLine>{{ model.pseudonym }}</nav>
-                <button mat-icon-button (click)="handleEdit(model)">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button (click)="handleDelete(model.businessId)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </mat-list-item>
+@if (models().length > 0) {
+    @if (modelsList.selectedOptions.hasValue()) {
+        <div class="selection">
+            <p> ▸ {{ modelsList.selectedOptions.hasValue() ? modelsList.selectedOptions.selected[0].value.pseudonym : 'None' }}</p>
+            <a>Go</a>
+        </div>
+    }
+
+    <mat-selection-list #modelsList [multiple]="false">
+        @for (model of models() | filter : search() | paginate : { itemsPerPage : modelsPerPage, currentPage: currentPage }; track $index) {
+            <mat-list-option [value]="model">
+               <span> {{model.pseudonym}}</span>
+            </mat-list-option>
+        }
+        @empty {
+            <p>No models matching criteria ...</p>
         }
     </mat-selection-list>
 }
-@else 
-{
-    <p>No models have been found</p>
+@else {
+    <p>No models have been found.</p>
 }
+
+<!-- Pagination controls -->
+<div class="pagination-row">
+    <div id="pagination">
+        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
+    </div>   
+</div>
