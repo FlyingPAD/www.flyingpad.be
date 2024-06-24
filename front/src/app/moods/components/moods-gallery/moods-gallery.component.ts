@@ -6,6 +6,8 @@ import { TagStateService } from '../../../services/tag-state.service';
 import { MenuDesktopService } from '../../../services/menu-desktop.service';
 import { Location } from '@angular/common';
 import { PaginationService } from '../../../services/pagination.service';
+import { UserService } from '../../../services/user.service';
+import { MenuCustomService } from '../../../services/menu-custom.service';
 
 @Component({
   selector: 'app-moods-gallery',
@@ -14,13 +16,13 @@ import { PaginationService } from '../../../services/pagination.service';
 })
 export class MoodsGalleryComponent 
 {
-  // Properties :
-
+  userService = inject(UserService)
   menuService = inject(MenuDesktopService)
+  menuCustom = inject(MenuCustomService)
   moodsService = inject(MoodStateService)
   tagsService = inject(TagStateService)
   router = inject(Router)
-  location = inject(Location)                 // Navigation
+  location = inject(Location)
   paginationService = inject(PaginationService)
 
   environment = environment.apiBaseUrl        // Environment
