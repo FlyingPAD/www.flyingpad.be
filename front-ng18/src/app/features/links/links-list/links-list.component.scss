@@ -15,38 +15,55 @@ p
 
     font-size: 13px;
 
-    img
+    .favicon
     {
-        height: 15px;
-        width: 15px;
+        height: 16px;
+        width: 16px;
         padding: 8px;
         background-color: rgb(255, 255, 255, 0.5);
-        border: 1px solid #6b5240;
+        border: 2px solid #6b5240;
         border-radius: 5px;
+        margin-right: 5px;
     }
 
     p
     {
-        width: 300px;
-        border: 1px solid #6b5240;
+        width: 250px;
+        border: 2px solid #6b5240;
         border-radius: 5px;
         padding: 8px;
         background-color: rgb(255, 255, 255, 0.5);
         color: #6b5240;      
         letter-spacing: 1px;
+        text-align: left;
+        font-size: 14px;
+        white-space: nowrap;        /* Empêche le texte de passer à la ligne */
+        overflow: hidden;           /* Coupe le texte qui déborde */
+        text-overflow: ellipsis;    /* Ajoute les points de suspension à la fin du texte */
     }
 
     a
     {
-        width: 40px;
-        border: 1px solid #6b5240;
-        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 50px;
         padding: 8px;
-        background-color: #6b5240;          
-        text-align: center;
-        letter-spacing: 1px;
-        color:#ffffff;
+        margin: 5px;
+
+        border: 2px solid #413429; 
+        background-color: rgb(107, 82, 64, 0.5);
+        border-radius: 7px;
+        
+        font-size: 14px;
+        color: white;
         text-decoration: none;
+
+        .icon
+        {
+            height: 15px;
+        }
     }
     a:hover
     {
@@ -59,9 +76,8 @@ p
 
 mat-selection-list 
 {
-  width: 100%;
-  margin: auto;
   max-width: 400px;
+  margin: auto;
 
   mat-list-option:hover 
   {
@@ -72,7 +88,7 @@ mat-selection-list
 span
 {
     color: #6b5240;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .pagination-row

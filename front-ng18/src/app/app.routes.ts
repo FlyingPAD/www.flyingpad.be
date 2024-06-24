@@ -12,7 +12,7 @@ import { MoodsComponent } from './pages/moods/moods.component';
 import { TagsComponent } from './pages/tags/tags.component';
 import { ModelsEditionService } from './services/models-edition.service';
 import { inject } from '@angular/core';
-import { Model } from './models/models';
+import { Model } from './models/model';
 import { TagList } from './models/tag';
 import { TagsService } from './services/tags.service';
 import { TestComponent } from './pages/test/test.component';
