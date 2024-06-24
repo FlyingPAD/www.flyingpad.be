@@ -76,7 +76,7 @@
         <img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" />
     </a>
     <!-- Multi Tag -->
-    <a routerLink="/moods/multi-tag">
+    <a routerLink="/moods/multi-tag" *ngIf="userService.appUser.role === 2">
         <img src="../../../../assets/app_icons/edit.png" />
     </a>
     <!-- To Top Button -->
@@ -109,4 +109,9 @@
             <p>{{ flow.tagDetails?.modified | date : 'MMMM d, y | HH:mm' }}</p>
         </div>
     </div>
+</div>
+<!-- Overlay -->
+<div class="overlay" 
+    [ngClass]="menuCustom.menuCustomOn === true && infoIsActive === true ? 'overlay-enabled' : 'overlay-disabled' "
+    (click)="menuTrigger()">
 </div>
