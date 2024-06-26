@@ -3,8 +3,8 @@ import { Injectable, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, map, combineLatest, switchMap, of, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { GetAllFranchisesResponse, GetOneFranchiseDetailsResponse, GetFranchisesByMediaResponse, GetAllMediasResponse, GetOneMediaDetailsResponse, FranchiseCreateForm, CreateFranchiseResponse } from '../core/models/franchise';
-import { BaseResponse } from '../core/models/base-response';
+import { GetAllFranchisesResponse, GetOneFranchiseDetailsResponse, GetFranchisesByMediaResponse, GetAllMediasResponse, GetOneMediaDetailsResponse, FranchiseCreateForm, CreateFranchiseResponse } from '../models/franchise';
+import { BaseResponse } from '../models/base-response';
 
 @Injectable({
   providedIn: 'root'

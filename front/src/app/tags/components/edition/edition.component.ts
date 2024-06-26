@@ -1,7 +1,7 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { TagCreateForm } from '../../../core/models/tag';
+import { TagCreateForm } from '../../../models/tag';
 import { MenuDesktopService } from '../../../services/menu-desktop.service';
 import { TagsEditionService } from '../../../services/tags-edition.service';
 import { MoodStateService } from '../../../services/mood.service';

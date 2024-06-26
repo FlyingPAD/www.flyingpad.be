@@ -19,6 +19,16 @@ export class StyleDetails
     modifiedBy : string = ''
 }
 
+export interface StyleFull
+{
+    businessId : number
+    name : string
+    createdDate : Date
+    createdBy : string
+    modifiedDate : Date
+    modifiedBy : string
+}
+
 export class StyleCheck
 {
     businessId : number = 0
@@ -61,6 +71,12 @@ export interface StylesGetOneDetailsResponse extends BaseResponse
 {
     style : StyleDetails
 }
+
+export interface GetStyleByIdResponse extends BaseResponse
+{
+    style : StyleFull
+}
+
 
 export interface StylesCheckResponse extends BaseResponse
 {

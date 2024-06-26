@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
-import { UserService } from '../../../services/user.service';
-import { MenuCustomService } from '../../../services/menu-custom.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
+import { MenuCustomService } from '../../services/menu-custom.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-layout-custom',

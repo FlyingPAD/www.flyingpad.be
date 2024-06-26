@@ -52,7 +52,7 @@ export interface MoodsGetAllResponse extends BaseResponse
     moodsList : MoodLight[]
 }
 
-export interface MoodsGetOneDetailsResponse extends BaseResponse
+export interface GetMoodByIdResponse extends BaseResponse
 {
     mood : MoodFull
 }

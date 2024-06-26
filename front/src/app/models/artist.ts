@@ -10,6 +10,12 @@ export class ArtistLight
     name : string = 'new artist'
 }
 
+export interface ArtistLight
+{
+    businessId : number
+    name : string
+}
+
 export class ArtistDetails
 {
     businessId : number = 0
@@ -18,6 +24,16 @@ export class ArtistDetails
     createdBy : string = ''
     modified : Date = new Date()
     modifiedBy : string = ''
+}
+
+export interface ArtistFull
+{
+    businessId : number
+    name : string
+    created : Date
+    createdBy : string
+    modified : Date
+    modifiedBy : string
 }
 
 export class ArtistCheckBox
@@ -63,14 +79,14 @@ export interface GetOneArtistResponse extends BaseResponse
     artist : ArtistLight
 }
 
-export interface GetOneArtistDetailsResponse extends BaseResponse
+export interface GetArtistByIdResponse extends BaseResponse
 {
-    artist : ArtistDetails
+    artist : ArtistFull
 }
 
 export interface GetArtistsByStyleResponse extends BaseResponse 
 {
-    artistsList : ArtistLight[]
+    artists : ArtistLight[]
 }
 
 export interface GetArtistsByMoodResponse extends BaseResponse 

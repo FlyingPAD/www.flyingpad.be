@@ -3,7 +3,7 @@ import { FranchisesEditionService } from '../../../services/franchises-edition.s
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuDesktopService } from '../../../services/menu-desktop.service';
 import { Subscription } from 'rxjs';
-import { FranchiseCreateForm } from '../../../core/models/franchise';
+import { FranchiseCreateForm } from '../../../models/franchise';
 
 @Component({
   selector: 'app-edition',

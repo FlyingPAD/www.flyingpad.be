@@ -23,6 +23,20 @@ export class ModelDetails
     description : string = ''
 }
 
+export interface ModelFull
+{
+    businessId : number
+    created : Date
+    createdBy : string
+    modified : Date
+    modifiedBy : string
+    firstName : string
+    lastName : string
+    pseudonym : string
+    gender : string
+    description : string
+}
+
 export class ModelCheckBox
 {
     businessId : number = 0
@@ -56,9 +70,9 @@ export interface GetAllModelsResponse
     models : ModelCheckBox[]
 }
 
-export interface GetOneModelDetailsResponse extends BaseResponse
+export interface GetModelByIdResponse extends BaseResponse
 {
-    model : ModelDetails
+    model : ModelFull
 }
 
 export interface GetModelsByMoodResponse extends BaseResponse

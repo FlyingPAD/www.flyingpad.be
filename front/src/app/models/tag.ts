@@ -2,6 +2,12 @@ import { BaseResponse } from "./base-response";
 
 // Models :
 
+export interface TagLight
+{
+    businessId : number
+    name :       string
+}
+
 export interface MiniTag
 {
     businessId : number
@@ -21,6 +27,18 @@ export class Tag
     modified :   Date = new Date
     modifiedBy : string = ''
 }
+
+export interface TagFull
+{
+    businessId : number
+    name :       string
+    description: string
+    created :    Date
+    createdBy :  string
+    modified :   Date
+    modifiedBy : string
+}
+
 export class TagList
 {
     category : MiniTagCategory = new MiniTagCategory()
@@ -43,6 +61,15 @@ export class TagCategory
     modified :    Date = new Date
     name :        string = ''
     description : string = ''
+}
+
+export interface TagCategoryFull
+{
+    businessId :  number
+    created :     Date
+    modified :    Date
+    name :        string
+    description : string
 }
 
 // Calls :
@@ -71,6 +98,10 @@ export interface GetOneTagDetailsResponse extends BaseResponse
 {
     tag : Tag
 }
+export interface GetTagByIdResponse extends BaseResponse
+{
+    tag : TagFull
+}
 export interface TagsGetFullListResponse extends BaseResponse
 {
     categoriesWithTags : TagList[]
@@ -87,9 +118,9 @@ export interface GetAllTagCategoriesResponse extends BaseResponse
 {
     tagCategories : MiniTagCategory[]
 }
-export interface GetOneTagCategoryDetailsResponse extends BaseResponse
+export interface GetTagCategoryByIdResponse extends BaseResponse
 {
-    tagCategory : TagCategory
+    tagCategory : TagCategoryFull
 }
 export interface CreateTagResponse extends BaseResponse
 {

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Chord } from '../core/models/chord';
-import { Key } from '../core/models/key';
-import { Note } from '../core/models/note';
-import { Scale } from '../core/models/scale';
+import { Chord } from '../models/chord';
+import { Key } from '../models/key';
+import { Note } from '../models/note';
+import { Scale } from '../models/scale';
 
 @Injectable({
   providedIn: 'root'

@@ -1,0 +1,40 @@
+<div class="mood-gallery">
+    <div class="pagination-row">
+        <div id="pagination">
+            <pagination-controls previousLabel="" nextLabel="" class="pagination"
+                (pageChange)="paginationService.moodsByTagCurrentPage = $event"></pagination-controls>
+        </div>
+    </div>
+    
+    <div *ngIf="moods?.length; else loading">
+        <div class="gallery">
+            <div
+                *ngFor="let mood of moods || [] | paginate : { itemsPerPage : moodsPerPage, currentPage : paginationService.moodsByTagCurrentPage}">
+                <section>
+                    <div *ngIf="mood.type == 1">
+                        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
+                            (click)="handleMoodId(mood.businessId)" />
+                    </div>
+                    <div *ngIf="mood.type == 2">
+                        <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
+                            (click)="handleMoodId(mood.businessId)" />
+                    </div>
+                    <div *ngIf="mood.type == 3">
+                        <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
+                            (click)="handleMoodId(mood.businessId)" />
+                    </div>
+                    <div *ngIf="mood.type == 4">
+                        <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
+                            (click)="handleMoodId(mood.businessId)" />
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <ng-template #loading>
+        <div class="loading">
+            <p>Loading ...</p>
+            <img src="../../../../assets/app_icons/spinner.gif" />
+        </div>
+    </ng-template>
+</div>

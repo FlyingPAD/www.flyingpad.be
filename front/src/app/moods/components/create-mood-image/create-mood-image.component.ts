@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuDesktopService } from '../../../services/menu-desktop.service';
-import { ImageForm } from '../../../core/models/mood-image';
+import { ImageForm } from '../../../models/mood-image';
 import { MoodStateService } from '../../../services/mood.service';
 
 @Component({

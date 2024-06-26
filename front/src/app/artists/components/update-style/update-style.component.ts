@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { StyleUpdateForm } from '../../../core/models/style';
+import { StyleUpdateForm } from '../../../models/style';
 import { ArtistsStateService } from '../../../services/artists.service';
 
 @Component({

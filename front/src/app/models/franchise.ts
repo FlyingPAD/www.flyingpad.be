@@ -19,6 +19,17 @@ export class FranchiseDetails
     description : string = ''
 }
 
+export interface FranchiseFull
+{
+    businessId : number
+    created : Date
+    createdBy : string
+    modified : Date
+    modifiedBy : string
+    name : string
+    description : string
+}
+
 export class MediaLight
 {
     businessId : number = 0
@@ -33,6 +44,16 @@ export class MediaDetails
     modifiedBy : string = ''
     name : string = ''
     description : string = ''
+}
+export interface MediaFull
+{
+    businessId : number
+    created : Date
+    createdBy : string
+    modified : Date
+    modifiedBy : string
+    name : string
+    description : string
 }
 export class MediaFullList
 {
@@ -70,6 +91,10 @@ export interface GetOneFranchiseDetailsResponse extends BaseResponse
 {
     franchise : FranchiseDetails
 }
+export interface GetFranchiseByIdResponse extends BaseResponse
+{
+    franchise : FranchiseFull
+}
 export interface GetFranchisesByMoodResponse extends BaseResponse
 {
     franchisesByMood : FranchiseLight[]
@@ -102,6 +127,10 @@ export interface GetMediasByMoodResponse extends BaseResponse
 export interface GetOneMediaDetailsResponse extends BaseResponse
 {
     media : MediaDetails
+}
+export interface GetMediaByIdResponse extends BaseResponse
+{
+    media : MediaFull
 }
 export interface GetMediaByModelResponse extends BaseResponse
 {

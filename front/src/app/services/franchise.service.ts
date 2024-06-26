@@ -3,9 +3,9 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, combineLatest, map, of, switchMap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FranchiseDetails, FranchiseLight, GetAllFranchisesResponse, GetFranchisesByMediaResponse, GetMediasFullListResponse, GetOneFranchiseDetailsResponse, GetOneMediaDetailsResponse, MediaDetails } from '../core/models/franchise';
-import { GetModelsByFranchiseResponse, ModelLight } from '../core/models/model';
-import { GetMoodsByFranchiseResponse, MoodLight } from '../core/models/mood';
+import { FranchiseDetails, FranchiseLight, GetAllFranchisesResponse, GetFranchisesByMediaResponse, GetMediasFullListResponse, GetOneFranchiseDetailsResponse, GetOneMediaDetailsResponse, MediaDetails } from '../models/franchise';
+import { GetModelsByFranchiseResponse, ModelLight } from '../models/model';
+import { GetMoodsByFranchiseResponse, MoodLight } from '../models/mood';
 
 @Injectable({
   providedIn: 'root'

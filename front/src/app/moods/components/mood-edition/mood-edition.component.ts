@@ -2,10 +2,10 @@ import { Component, HostListener, OnDestroy, inject } from '@angular/core';
 import { MoodStateService } from '../../../services/mood.service';
 import { environment } from '../../../../environments/environment';
 import { RelationService } from '../../../services/relation.service';
-import { RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm } from '../../../core/models/relations';
+import { RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm } from '../../../models/relations';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MoodUpdateForm, UpdateMoodScoreCall } from '../../../core/models/mood';
+import { MoodUpdateForm, UpdateMoodScoreCall } from '../../../models/mood';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 

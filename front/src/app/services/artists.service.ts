@@ -1,13 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, Observable, catchError, combineLatest, debounceTime, map, of, shareReplay, startWith, switchMap, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, combineLatest, debounceTime, map, of, shareReplay, startWith, switchMap, tap } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { ArtistCreateForm, ArtistCreateFormGroup, ArtistDeleteResponse, ArtistDetails, ArtistsCountResponse, ArtistsCreateResponse, ArtistsGetPageResponse, GetAllArtistsResponse, GetOneArtistDetailsResponse } from '../core/models/artist';
+import { ArtistCreateForm, ArtistCreateFormGroup, ArtistDeleteResponse, ArtistDetails, ArtistsCountResponse, ArtistsCreateResponse, ArtistsGetPageResponse, GetArtistByIdResponse } from '../models/artist';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { GetOneStyleDetailsResponse, StyleCreateForm, StyleDetails, StyleUpdateForm, StylesCreateResponse, StylesDeleteResponse, GetAllStylesResponse, StylesUpdateResponse, StyleCheck } from '../core/models/style';
-import { GetMoodsByArtistResponse } from '../core/models/mood';
-import { CheckRelationsArtistStyleByStyleResponse, CreateRelationsArtistStyleResponse, RelationsArtistStyleForm } from '../core/models/relations';
+import { GetOneStyleDetailsResponse, StyleCreateForm, StyleDetails, StyleUpdateForm, StylesCreateResponse, StylesDeleteResponse, GetAllStylesResponse, StylesUpdateResponse, StyleCheck } from '../models/style';
+import { GetMoodsByArtistResponse } from '../models/mood';
+import { CheckRelationsArtistStyleByStyleResponse, CreateRelationsArtistStyleResponse, RelationsArtistStyleForm } from '../models/relations';
 
 @Injectable({
   providedIn: 'root'
@@ -175,7 +175,7 @@ export class ArtistsStateService
 
   public GetOneDetails( artistId : number )
   {
-    return this.#http.get<GetOneArtistDetailsResponse>(`${this.#url}Artists/GetOneDetails/${artistId}`).pipe(
+    return this.#http.get<GetArtistByIdResponse>(`${this.#url}Artists/GetOneDetails/${artistId}`).pipe(
       map(response => response.artist))
   }
 

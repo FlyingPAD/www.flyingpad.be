@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './core/components/about/about.component';
-import { HomeComponent } from './core/components/home/home.component';
-import { NotFoundComponent } from './core/components/not-found/not-found.component';
+import { AboutComponent } from './pages/about/about.component';
+import { HomeComponent } from './pages/home/home.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { GalleryComponent } from './links/components/gallery/gallery.component';
-import { LayoutCustomComponent } from './core/layouts/layout-custom/layout-custom.component';
-import { VideoTestComponent } from './core/components/video-test/video-test.component';
-import { DemoComponent } from './core/components/demo/demo.component';
-import { LayoutEmptyComponent } from './core/layouts/layout-empty/layout-empty.component';
-import { UserLoginErrorComponent } from './core/components/user-login-error/user-login-error.component';
-import { UserRegisterComponent } from './core/components/user-register/user-register.component';
+import { VideoTestComponent } from './pages/video-test/video-test.component';
+import { DemoComponent } from './pages/demo/demo.component';
+import { UserLoginErrorComponent } from './pages/user-login-error/user-login-error.component';
+import { UserRegisterComponent } from './pages/user-register/user-register.component';
+import { FlowComponent } from './pages/flow/flow.component';
+import { ModelGalleryComponent } from './features/models/model-gallery/model-gallery.component';
+import { EditionComponent } from './features/models/edition/edition.component';
+import { LayoutCustomComponent } from './layouts/layout-custom/layout-custom.component';
+import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
 
 const routes: Routes = 
 [
-  // Core
   { path : '', component : LayoutCustomComponent, children :
     [
       { path : '', pathMatch : 'full', redirectTo : 'home'},
@@ -22,7 +24,7 @@ const routes: Routes =
       { path : 'not-found', component : NotFoundComponent, title : 'Flying PAD | Not Found' },
       { path : 'video-test', component : VideoTestComponent, title : 'Flying PAD | Video Test' },
       { path : 'login-error', component : UserLoginErrorComponent, title : 'Flying PAD | Login Error' },
-      { path : 'register', component : UserRegisterComponent, title : 'Flying PAD | Register' },
+      { path : 'register', component : UserRegisterComponent, title : 'Flying PAD | Register' }
     ]
   },
 
@@ -30,6 +32,7 @@ const routes: Routes =
   { path : '', component : LayoutEmptyComponent, children :
     [
       { path : 'demo', component : DemoComponent, title : 'Flying PAD | Demo' },
+      { path : 'flow', component : FlowComponent, title : 'Flying PAD | Flow' },
     ]
   },
 
@@ -61,8 +64,11 @@ const routes: Routes =
 
   // Models
   {
-    path : 'models', component : LayoutCustomComponent,
-    loadChildren:() => import('./models/models.module').then(m => m.ModelsModule)
+    path : 'models', component : LayoutCustomComponent, children : 
+    [
+      { path : 'model-gallery', component : ModelGalleryComponent, title : 'Flying PAD | Model Gallery' },
+      { path : 'edition', component : EditionComponent, title : 'Flying PAD | Models Edition' }
+    ]
   },
 
   // Moods
