@@ -5,16 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class AppSettingsService 
 {
-  // Window Width
-  appScreenWidth : number = window.innerWidth  
-
-  // Window Height        
+  appScreenWidth : number = window.innerWidth     
   appScreenHeight : number = window.innerHeight  
 
-  // Display Mode    
-  appDisplayMode : string = this.detectDisplayMode()             
-  
-  // Detect Display Mode
+  appDisplayMode : string = this.detectDisplayMode()       
   detectDisplayMode() : string
   {
     let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)

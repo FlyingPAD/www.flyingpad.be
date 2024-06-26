@@ -1,19 +1,13 @@
 import { BaseResponse } from "./base-response";
 
-// Models :
-export class Link
-{
-    businessId :  number = 0
-    name :        string = ''
-    description : string = ''
-    url :         string = ''
-    created :     Date = new Date()
-    createdBy :   string = ''
-    modified :    Date = new Date()
-    modifiedBy :  string = ''
+// Models.
+export interface LinkLight {
+    businessId :  number
+    name :        string
+    description : string
+    url :         string
 }
-export interface LinkFull
-{
+export interface LinkFull {
     businessId :  number
     name :        string
     description : string
@@ -23,78 +17,50 @@ export interface LinkFull
     modified :    Date
     modifiedBy :  string
 }
-
-export class LinkCategoryLight
-{
-    businessId : number = 0
-    name :       string = ''
+export interface LinkCategoryLight {
+    businessId : number
+    name :       string
 }
-export class LinkCategoryFull
-{
-    businessId :  number = 0
-    name :        string = ''
-    description : string = ''
-    created :     Date = new Date()
-    createdBy :   string = ''
-    modified :    Date = new Date()
-    modifiedBy :  string = ''
+export interface LinkCategoryFull {
+    businessId :  number
+    name :        string
+    description : string
+    created :     Date
+    createdBy :   string
+    modified :    Date
+    modifiedBy :  string
 }
 
-// Calls :
-export interface LinkCreateForm
-{
+// Calls.
+export interface LinkCreateForm {
     name :        string
     description : string
     url :         string
 }
-export interface LinkUpdateForm
-{
+export interface LinkUpdateForm {
     businessId :  number
     name :        string
     description : string
     url :         string
 }
-export interface LinkCategoryCreateForm
-{
+export interface LinkCategoryCreateForm {
     name :        string
     description : string
 }
 
-// Responses :
-export interface GetAllLinksResponse extends BaseResponse 
-{
-    linksList : Link[]
-}
-export interface GetAllLinkCategoriesResponse extends BaseResponse 
-{
-    linkCategories : LinkCategoryLight[]
-}
-export interface GetLinksByCategoryResponse extends BaseResponse 
-{
-    linksListByCategory : Link[]
-}
-export interface GetOneLinkDetailsResponse extends BaseResponse 
-{
-    link : Link
-}
-export interface GetLinkByIdResponse extends BaseResponse 
-{
+// Responses.
+export interface GetLinkResponse extends BaseResponse {
     link : LinkFull
 }
-export interface GetOneLinkCategoryDetailsResponse extends BaseResponse 
-{
+export interface GetLinksResponse extends BaseResponse  {
+    links : LinkLight[]
+}
+export interface GetLinkCategoryResponse extends BaseResponse {
     linkCategory : LinkCategoryFull
 }
-export interface GetLinkCategoryByIdResponse extends BaseResponse 
-{
-    linkCategory : LinkCategoryFull
+export interface GetLinkCategoriesResponse extends BaseResponse {
+    linkCategories : LinkCategoryLight[]
 }
-export interface CreateLinkResponse extends BaseResponse
-{
-    link : Link
-}
-
-export interface getLinkCategoriesCheckBoxesResponse extends BaseResponse
-{
-    linkCategoriesCheckBoxes : LinkCategoryLight[]
+export interface CreateLinkResponse extends BaseResponse {
+    linkId : number
 }

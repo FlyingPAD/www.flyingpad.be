@@ -20,7 +20,7 @@ public class GetLinksListByCategoryQueryHandler(ILinkRepository linkRepository, 
         {
             Success = true,
             Message = "Links list by Category",
-            LinksListByCategory = _mapper.Map<List<LinksListByCategoryVm>>(links)
+            Links = _mapper.Map<List<LinksListByCategoryVm>>(links)
         };
 
         return response;

@@ -2,9 +2,9 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, combineLatest, map, of, switchMap } from 'rxjs';
-import { GetModelByIdResponse, ModelDetails } from '../models/model';
+import { GetModelResponse, ModelFull } from '../models/model';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { GetMoodsByModelResponse } from '../models/mood';
+import { GetMoodsResponse } from '../models/mood';
 import { GetFranchisesByModelResponse } from '../models/franchise';
 
 @Injectable({
@@ -44,18 +44,18 @@ export class ModelStateService
       }
     })
   )
-  model = toSignal(this.model$, { initialValue: { model : new ModelDetails(), moods : [], franchises : [] } })
+  model = toSignal(this.model$)
 
   public GetOneDetails( modelId : number)
   {
-    return this.#http.get<GetModelByIdResponse>(this.#url + 'Models/GetOneDetails/' + modelId).pipe(
+    return this.#http.get<GetModelResponse>(this.#url + 'Models/GetOneDetails/' + modelId).pipe(
       map(response => response.model)
     )
   }
 
   public GetMoodsByModel( modelId : number )
   {
-    return this.#http.get<GetMoodsByModelResponse>(this.#url + 'Moods/GetByModel/' + modelId).pipe(
+    return this.#http.get<GetMoodsResponse>(this.#url + 'Moods/GetByModel/' + modelId).pipe(
       map(response => response.moods)
     )
   }
@@ -67,9 +67,9 @@ export class ModelStateService
     )
   }
 
-  #currentmodelSubject =  new BehaviorSubject<ModelDetails>(new ModelDetails())
+  #currentmodelSubject =  new BehaviorSubject<ModelFull | undefined>(undefined)
   get currentModel$()         { return this.#currentmodelSubject.asObservable() }
-  updateCurrentModel( model : ModelDetails ) 
+  updateCurrentModel( model : ModelFull ) 
   {
     this.#currentmodelSubject.next( model )
   }

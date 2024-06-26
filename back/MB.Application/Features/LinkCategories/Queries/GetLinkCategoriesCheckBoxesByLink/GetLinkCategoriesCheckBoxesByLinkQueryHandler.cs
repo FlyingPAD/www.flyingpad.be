@@ -29,7 +29,7 @@ namespace MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckB
             {
                 Success = true,
                 Message = "Categories retrieved successfully",
-                LinkCategoriesCheckBoxes = _mapper.Map<GetLinkCategoriesCheckBoxesByLinkQueryDto[]>(categories)
+                LinkCategories = _mapper.Map<GetLinkCategoriesCheckBoxesByLinkQueryDto[]>(categories)
             };
 
             return response;

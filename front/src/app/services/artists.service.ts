@@ -3,11 +3,12 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, Observable, catchError, combineLatest, debounceTime, map, of, shareReplay, startWith, switchMap, tap } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { ArtistCreateForm, ArtistCreateFormGroup, ArtistDeleteResponse, ArtistDetails, ArtistsCountResponse, ArtistsCreateResponse, ArtistsGetPageResponse, GetArtistByIdResponse } from '../models/artist';
+import { ArtistCreateForm, ArtistCreateFormGroup, ArtistDeleteResponse, ArtistsCountResponse, ArtistsCreateResponse, ArtistsGetPageResponse, GetArtistByIdResponse } from '../models/artist';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { GetOneStyleDetailsResponse, StyleCreateForm, StyleDetails, StyleUpdateForm, StylesCreateResponse, StylesDeleteResponse, GetAllStylesResponse, StylesUpdateResponse, StyleCheck } from '../models/style';
-import { GetMoodsByArtistResponse } from '../models/mood';
+import { CreateStyleResponse, GetStyleResponse, GetStylesResponse, StyleCreateForm, StyleLight } from '../models/style';
+import { GetMoodsResponse } from '../models/mood';
 import { CheckRelationsArtistStyleByStyleResponse, CreateRelationsArtistStyleResponse, RelationsArtistStyleForm } from '../models/relations';
+import { BaseResponse } from '../models/base-response';
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +35,8 @@ export class ArtistsStateService
   updateStartId( startId : number | null ) { this.#startId.next( startId ) }
 
   styles$ = this.#stylesUpdated.pipe(
-    switchMap(() => this.#http.get<GetAllStylesResponse>(`${this.#url}Styles/GetAll`)),
-    map(response => response.stylesList),
+    switchMap(() => this.#http.get<GetStylesResponse>(`${this.#url}Styles/GetAll`)),
+    map(response => response.styles),
     catchError(() => of([])),
     shareReplay(1)
   )
@@ -44,7 +45,7 @@ export class ArtistsStateService
     switchMap(styleId => 
     {
       if (styleId === null) return of(null);
-      return this.#http.get<GetOneStyleDetailsResponse>(`${this.#url}Styles/GetOneDetails/${styleId}`).pipe(
+      return this.#http.get<GetStyleResponse>(`${this.#url}Styles/GetOneDetails/${styleId}`).pipe(
         map(response => response.style),
         catchError(() => of(null))
       )
@@ -72,9 +73,9 @@ export class ArtistsStateService
   styleFlow$ = combineLatest([this.styleDetails$, this.relationsByStyle$]).pipe(
     map(([style, relations]) => ({ style, relations })),
     catchError(() => of({ style: null, relations: null })),
-    startWith({ style: new StyleDetails(), relations: null })
+    startWith({ style: undefined, relations: null })
   )
-  styleFlow = toSignal(this.styleFlow$, { initialValue: { style: new StyleDetails(), relations: null } });
+  styleFlow = toSignal(this.styleFlow$, { initialValue: { style: undefined, relations: null } })
 
   artistsFlow$ = combineLatest([
     this.#artistsUpdated.pipe(startWith(true)),
@@ -171,7 +172,7 @@ export class ArtistsStateService
       }
     })
   )
-  artistFlow = toSignal(this.artistFlow$, { initialValue: { artist : new ArtistDetails(), moods : [] } })
+  artistFlow = toSignal(this.artistFlow$)
 
   public GetOneDetails( artistId : number )
   {
@@ -181,7 +182,7 @@ export class ArtistsStateService
 
   public GetMoodsByArtist( artistId : number )
   {
-    return this.#http.get<GetMoodsByArtistResponse>(this.#url + 'Moods/GetByArtist/' + artistId).pipe(
+    return this.#http.get<GetMoodsResponse>(this.#url + 'Moods/GetByArtist/' + artistId).pipe(
       map(response => response.moods))
   }
 
@@ -252,28 +253,28 @@ export class ArtistsStateService
     
   // Get All Styles
   getAllStyles$ = this.#stylesUpdated.pipe(
-    switchMap(() => this.#http.get<GetAllStylesResponse>(`${this.#url}Styles/GetAll`)),
-    map(response => response.stylesList),
+    switchMap(() => this.#http.get<GetStylesResponse>(`${this.#url}Styles/GetAll`)),
+    map(response => response.styles),
     catchError(() => of([])),
     shareReplay(1)
   )
-  getAllStyles = toSignal(this.getAllStyles$, { initialValue : [] as StyleCheck[] })
+  getAllStyles = toSignal(this.getAllStyles$, { initialValue : [] })
 
   // Create Style
-  public CreateStyle( form : StyleCreateForm ) : Observable<StylesCreateResponse> 
+  public CreateStyle( form : StyleCreateForm ) : Observable<CreateStyleResponse> 
   {
-    return this.#http.post<StylesCreateResponse>(`${this.#url}Styles/Create`, form).pipe(
+    return this.#http.post<CreateStyleResponse>(`${this.#url}Styles/Create`, form).pipe(
       tap(response => {
         this.#stylesUpdated.next(true)
-        this.updateCurrentStyleId(response.style.businessId)
+        this.updateCurrentStyleId(response.styleId)
       })
     )
   }
 
   // Update Style
-  public UpdateStyle( form : StyleUpdateForm ) : Observable<StylesUpdateResponse>
+  public UpdateStyle( form : StyleLight ) : Observable<BaseResponse>
   {
-    return this.#http.put<StylesUpdateResponse>(`${this.#url}Styles/Update`, form).pipe( 
+    return this.#http.put<BaseResponse>(`${this.#url}Styles/Update`, form).pipe( 
       tap( () => {
         this.#stylesUpdated.next(true)
         this.updateCurrentStyleId(form.businessId)
@@ -282,9 +283,9 @@ export class ArtistsStateService
   }
 
   // Delete Style
-  public DeleteStyle( styleId : number ) : Observable<StylesDeleteResponse> 
+  public DeleteStyle( styleId : number ) : Observable<BaseResponse> 
   {
-    return this.#http.delete<StylesDeleteResponse>(`${this.#url}Styles/Delete/` + styleId).pipe(
+    return this.#http.delete<BaseResponse>(`${this.#url}Styles/Delete/` + styleId).pipe(
       tap( () => {
         this.#stylesUpdated.next(true)
         this.updateCurrentStyleId(null)

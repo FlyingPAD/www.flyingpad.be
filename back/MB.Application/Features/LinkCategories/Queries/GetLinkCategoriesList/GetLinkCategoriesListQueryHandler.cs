@@ -18,29 +18,15 @@ public class GetLinkCategoriesListQueryHandler : IRequestHandler<GetLinkCategori
 
     public async Task<GetLinkCategoriesListQueryResponse> Handle(GetLinkCategoriesListQuery request, CancellationToken cancellationToken)
     {
-        try
+        var linkCategories = await _linkCategoryRepository.GetAllAsync(category => category.Name, true);
+
+        var response = new GetLinkCategoriesListQueryResponse
         {
-            var linkCategories = await _linkCategoryRepository.GetAllAsync(category => category.Name, true);
+            Success = true,
+            Message = "Success !",
+            LinkCategories = _mapper.Map<List<LinkCategoryListVm>>(linkCategories)
+        };
 
-            var response = new GetLinkCategoriesListQueryResponse
-            {
-                Success = true,
-                Message = "Here are the LinkCategories !",
-                LinkCategories = _mapper.Map<List<LinkCategoryListVm>>(linkCategories)
-            };
-
-            return response;
-        }
-        catch (Exception ex)
-        {
-            // Gérez l'exception et renvoyez une réponse d'erreur
-            var response = new GetLinkCategoriesListQueryResponse
-            {
-                Success = false,
-                ValidationErrors = [$"Une erreur s'est produite ( {ex} )."]
-            };
-
-            return response;
-        }
+        return response;
     }
 }

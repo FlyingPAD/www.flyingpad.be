@@ -74,16 +74,16 @@
             </div>
             <!-- Administrator -->
             <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
-                <a routerLink="/dashboard/home" routerLinkActive="active" (click)="menuTrigger()">
+                <a routerLink="/dashboard" routerLinkActive="active" (click)="menuTrigger()">
                     <img src="../../../../assets/app_icons/icon_home_001.png" />
                     <p>Dashboard</p>
                 </a>
-                <a routerLink="/franchises/gallery" routerLinkActive="active" 
+                <a routerLink="/franchises" routerLinkActive="active" 
                     [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
                     <img src="../../../../assets/app_icons/icon_franchises_001.png" />
                     <p>Medias</p>
                 </a>
-                <a routerLink="/moods/gallery" routerLinkActive="active"
+                <a routerLink="/moods" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
                     <img src="../../../../assets/app_icons/icon_moods_001.png" />
                     <p>Moods</p>
@@ -93,7 +93,7 @@
                     <img src="../../../../assets/app_icons/icon_mood_001.png" />
                     <p>Mood</p>
                 </a>
-                <a routerLink="/tags/gallery" routerLinkActive="active" (click)="menuTrigger()"
+                <a routerLink="/tags" routerLinkActive="active" (click)="menuTrigger()"
                     [routerLinkActiveOptions]="{exact: true}">
                     <img src="../../../../assets/app_icons/icon_tags_001.png" />
                     <p>Tags</p>

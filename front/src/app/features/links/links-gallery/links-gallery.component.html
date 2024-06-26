@@ -1,0 +1,60 @@
+<div *ngIf="linksEditionFlow() as flow">
+    <!-- Right Column Trigger -->
+    <div class="column-trigger" [class.column-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
+      <div class="trigger-arrow"></div>
+    </div>
+    <!-- Right Column -->
+    <div class="right-column" [ngClass]="menuService.menuRActive == true ? 'right-column-on' : 'right-column-off'">
+      <!-- Categories -->
+      <div class="list">
+          <div class="link-flex">
+              <a class="category" (click)="updateCategory(null)">Display all Links</a>
+          </div>
+          <div class="link-flex" *ngFor="let category of flow.linkCategories">
+              <a class="category" id="{{category.businessId}}" (click)="updateCategory(category.businessId)"> ▸ {{category.name}}</a>
+          </div>
+      </div>
+    </div>
+    <!-- Central Layout -->
+    <div id="layout-central">
+      <div class="top-options">
+        <!-- Filter Links User Input -->
+        <div class="filter">
+            <input type="text" [(ngModel)]="searchLinks" placeholder="Filter links ...">
+        </div>
+      </div>
+      <!-- List -->
+      <div id="list">
+          <div *ngFor="let link of filterLinks() | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage }">
+            <div class="list-flex"> 
+              <img id="favicon" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + link.url + '&sz=96'" />
+              <a class="list-item link" href="{{ link.url }}" target="_blank"> ▸ {{link.name}}</a>   
+            </div>  
+          </div>
+      </div>
+    </div>
+    <!-- Pagination controls -->
+    <div class="pagination-row" *ngIf="flow.links.length > elementsPerPage">
+      <div id="pagination">
+        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
+      </div>   
+    </div>
+    <!-- Bottom Bar -->
+    <div class="bar">
+      <!-- Tag Name -->
+      <a class="tweak" *ngIf="flow.categoryDetails?.name">
+          <div class="position"><b>{{ flow.categoryDetails?.name}}</b></div>
+      </a>
+      <!-- Links Count -->
+      <a class="tweak">
+          <div class="position">{{ flow.links.length | number : '4.0'}}</div>
+      </a>
+      <!-- To Top Button -->
+      <a (click)="toTop()" *ngIf="topButtonIsActive === true">
+          <img src="../../../../assets/app_icons/arrow_up.png" />
+      </a>
+      <span *ngIf="topButtonIsActive === false">
+          <img src="../../../../assets/app_icons/arrow_up_no.png" />
+      </span>
+    </div>
+  </div>
