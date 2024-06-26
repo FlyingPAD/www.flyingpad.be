@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User, UserUpdateForm, UserUpdateResponse } from '../core/models/user';
+import { User, UserUpdateForm, UserUpdateResponse } from '../models/user';
 import { jwtDecode } from 'jwt-decode';
 import { environment } from '../../environments/environment';
 

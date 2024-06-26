@@ -12,6 +12,18 @@ export class Link
     modified :    Date = new Date()
     modifiedBy :  string = ''
 }
+export interface LinkFull
+{
+    businessId :  number
+    name :        string
+    description : string
+    url :         string
+    created :     Date
+    createdBy :   string
+    modified :    Date
+    modifiedBy :  string
+}
+
 export class LinkCategoryLight
 {
     businessId : number = 0
@@ -65,7 +77,15 @@ export interface GetOneLinkDetailsResponse extends BaseResponse
 {
     link : Link
 }
+export interface GetLinkByIdResponse extends BaseResponse 
+{
+    link : LinkFull
+}
 export interface GetOneLinkCategoryDetailsResponse extends BaseResponse 
+{
+    linkCategory : LinkCategoryFull
+}
+export interface GetLinkCategoryByIdResponse extends BaseResponse 
 {
     linkCategory : LinkCategoryFull
 }

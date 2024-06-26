@@ -30,7 +30,7 @@ public class TagCategoriesControllerV1(IMediator mediator) : ControllerBase
     public async Task<ActionResult<GetTagCategoriesListQueryResponse>> GetAll()
         => Ok(await _mediator.Send(new GetTagCategoriesListQuery()));
 
-    [HttpGet("GetById/{categoryId}")]
+    [HttpGet("GetOneDetails/{categoryId}")]
     public async Task<ActionResult<GetTagCategoryByIdQuery>> GetById(Guid categoryId)
         => Ok(await _mediator.Send(new GetTagCategoryByIdQuery { Id = categoryId }));
 

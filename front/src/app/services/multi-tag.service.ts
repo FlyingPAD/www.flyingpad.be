@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { GetAllArtistsResponse } from '../core/models/artist';
+import { GetAllArtistsResponse } from '../models/artist';
 import { map } from 'rxjs';
-import { GetAllModelsResponse } from '../core/models/model';
+import { GetAllModelsResponse } from '../models/model';
 
 @Injectable({
   providedIn: 'root'

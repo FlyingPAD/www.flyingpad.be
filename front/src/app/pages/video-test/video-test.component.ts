@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { VideoYouTubeDetails } from '../../models/youtube-test';
-import { VideoTestService } from '../../../services/video-test.service';
+import { VideoTestService } from '../../services/video-test.service';
 
 @Component({
   selector: 'app-video-test',

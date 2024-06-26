@@ -2,7 +2,7 @@ import { Component, HostListener, inject } from '@angular/core';
 import { LinksEditionService } from '../../../services/links-edition.service';
 import { MenuDesktopService } from '../../../services/menu-desktop.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LinkCreateForm, LinkUpdateForm } from '../../../core/models/link';
+import { LinkCreateForm, LinkUpdateForm } from '../../../models/link';
 
 @Component({
   selector: 'app-edition',

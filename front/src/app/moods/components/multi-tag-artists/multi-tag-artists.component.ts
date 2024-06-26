@@ -2,7 +2,7 @@ import { Component, OnDestroy, inject } from '@angular/core';
 import { MultiTagService } from '../../../services/multi-tag.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RelationService } from '../../../services/relation.service';
-import { RelationsMoodArtistForm } from '../../../core/models/relations';
+import { RelationsMoodArtistForm } from '../../../models/relations';
 import { Router } from '@angular/router';
 
 @Component({

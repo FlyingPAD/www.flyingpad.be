@@ -1,7 +1,7 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { AudioService } from '../../../services/audio.service';
-import { KeyStation } from '../../../core/models/key-station';
-import { Note } from '../../../core/models/note';
+import { KeyStation } from '../../../models/key-station';
+import { Note } from '../../../models/note';
 import { KeysService } from '../../../services/keys.service';
 import { Router } from '@angular/router';
 

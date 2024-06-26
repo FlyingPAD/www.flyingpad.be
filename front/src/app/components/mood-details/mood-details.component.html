@@ -1,0 +1,23 @@
+<div class="mood">
+    <p>{{mood?.name}}</p>
+    <div *ngIf="mood?.type == 1">           
+        <img src="{{environment}}/Content/img_thumbs/{{mood?.businessId}}.{{mood?.extension}}" />
+    </div>
+    <div *ngIf="mood?.type == 2">
+        <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood?.businessId}}.jpg" />        
+    </div>
+    <div *ngIf="mood?.type == 3">
+        <img src="{{environment}}/Content/txt_thumbs/{{mood?.businessId}}.jpg" />       
+    </div>
+    <div *ngIf="mood?.type == 4">
+        <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood?.businessId}}.jpg" />
+    </div>
+
+    <div class="box-score">
+        <button (click)="updateMoodScore(-10)">-10</button>
+        <button (click)="updateMoodScore(-1)">-1</button>
+        <p><b>{{ mood?.score | number : '3.0'}}</b></p>
+        <button (click)="updateMoodScore(1)">+1</button>
+        <button (click)="updateMoodScore(10)">+10</button>
+    </div>
+</div>

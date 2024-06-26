@@ -3,8 +3,8 @@ import { Injectable, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, combineLatest, map, of, switchMap, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { CreateTagResponse, GetAllTagCategoriesResponse, GetAllTagsResponse, GetOneTagCategoryDetailsResponse, GetOneTagDetailsResponse, GetTagsByCategoryResponse, TagCreateForm } from '../core/models/tag';
-import { BaseResponse } from '../core/models/base-response';
+import { CreateTagResponse, GetAllTagCategoriesResponse, GetAllTagsResponse, GetOneTagDetailsResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse, TagCreateForm } from '../models/tag';
+import { BaseResponse } from '../models/base-response';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +53,7 @@ export class TagsEditionService
 
   getCategoryDetails( categoryId : number )
   {
-    return this.#http.get<GetOneTagCategoryDetailsResponse>(this.#url + 'TagCategories/GetById/' + categoryId).pipe(
+    return this.#http.get<GetTagCategoryByIdResponse>(this.#url + 'TagCategories/GetById/' + categoryId).pipe(
       map(response => response.tagCategory)
     )
   }

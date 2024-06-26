@@ -1,9 +1,9 @@
 import { Component, inject, HostListener, OnDestroy } from "@angular/core"
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser"
 import { environment } from "../../../../environments/environment"
-import { Video } from "../../../core/models/mood-video"
-import { Image } from "../../../core/models/mood-image"
-import { VideoYouTube } from "../../../core/models/mood-video-youtube"
+import { Video } from "../../../models/mood-video"
+import { Image } from "../../../models/mood-image"
+import { VideoYouTube } from "../../../models/mood-video-youtube"
 import { ArtistsStateService } from "../../../services/artists.service"
 import { UserService } from "../../../services/user.service"
 import { FranchiseStateService } from "../../../services/franchise.service"
@@ -11,7 +11,7 @@ import { ModelStateService } from "../../../services/model.service"
 import { MoodStateService } from "../../../services/mood.service"
 import { Location } from '@angular/common';
 import { MenuDesktopService } from "../../../services/menu-desktop.service"
-import { UpdateMoodScoreCall } from "../../../core/models/mood"
+import { UpdateMoodScoreCall } from "../../../models/mood"
 import { PaginationService } from "../../../services/pagination.service"
 
 @Component({

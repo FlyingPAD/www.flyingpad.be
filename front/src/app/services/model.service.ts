@@ -2,10 +2,10 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, combineLatest, map, of, switchMap } from 'rxjs';
-import { GetOneModelDetailsResponse, ModelDetails } from '../core/models/model';
+import { GetModelByIdResponse, ModelDetails } from '../models/model';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { GetMoodsByModelResponse } from '../core/models/mood';
-import { GetFranchisesByModelResponse } from '../core/models/franchise';
+import { GetMoodsByModelResponse } from '../models/mood';
+import { GetFranchisesByModelResponse } from '../models/franchise';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +48,7 @@ export class ModelStateService
 
   public GetOneDetails( modelId : number)
   {
-    return this.#http.get<GetOneModelDetailsResponse>(this.#url + 'Models/GetOneDetails/' + modelId).pipe(
+    return this.#http.get<GetModelByIdResponse>(this.#url + 'Models/GetOneDetails/' + modelId).pipe(
       map(response => response.model)
     )
   }
