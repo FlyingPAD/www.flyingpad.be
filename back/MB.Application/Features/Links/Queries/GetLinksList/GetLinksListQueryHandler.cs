@@ -15,13 +15,13 @@ public class GetLinksListQueryHandler(IBaseRepository<Link> linkRepository, IMap
     {
         var linksQueryable = await _linkRepository.GetAllAsync(l => l.Name, true);
 
-        var linksList = await linksQueryable.ToListAsync(cancellationToken);
+        var links = await linksQueryable.ToListAsync(cancellationToken);
 
         var response = new GetLinksListQueryResponse
         {
             Success = true,
-            Message = "Here are the Links!",
-            LinksList = _mapper.Map<List<LinkListVm>>(linksList)
+            Message = "Success !",
+            Links = _mapper.Map<List<LinkListVm>>(links)
         };
 
         return response;

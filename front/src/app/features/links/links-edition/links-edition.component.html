@@ -1,0 +1,152 @@
+<div *ngIf="linksEditionFlow() as flow">
+    <!-- Right Column Trigger -->
+    <div class="column-trigger" [class.column-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
+      <div class="trigger-arrow"></div>
+    </div>
+    <!-- Right Column -->
+    <div class="right-column" [ngClass]="menuService.menuRActive == true ? 'right-column-on' : 'right-column-off'">
+      <!-- Categories -->
+      <div class="list">
+        <div class="link-flex">
+          <a class="category" (click)="updateCategory(null)">Display all Links</a>
+        </div>
+        <div class="link-flex" *ngFor="let category of flow.linkCategories">
+          <a class="category" id="{{category.businessId}}" (click)="updateCategory(category.businessId)"> ▸ {{category.name}}</a>
+          <img class="edit" src="../../../../assets/app_icons/edit.svg" />
+        </div>
+      </div>
+    </div>
+    <!-- Central Layout -->
+    <div id="layout-central">
+      <div class="top-options">
+        <!-- New Link Button -->
+        <div class="new" (click)="resetCreate()">
+          <img src="../../../../assets/app_icons/icon_links_001.png" />
+          <a>New Link</a>
+        </div>
+        <!-- Filter Links User Input -->
+        <div class="filter">
+          <input type="text" [(ngModel)]="searchLinks" placeholder="Filter links ...">
+        </div>
+      </div>
+      <!-- List -->
+      <div id="list">
+        <div *ngFor="let link of filterLinks() | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage }">
+          <div class="list-flex">
+            <img id="favicon" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + link.url + '&sz=96'" />
+            <a class="list-item link" href="{{ link.url }}" target="_blank"> ▸ {{link.name}}</a>
+            <img class="edit" src="../../../../assets/app_icons/edit.svg" (click)="resetUpdate(link.businessId)" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Create Modal -->
+    <div class="modal" [class.on]="linkTriggerCreate === true">
+      <h1>Create Link</h1>
+      <div class="form">
+        <form [formGroup]="createFormGroup">
+          <input type="text" placeholder="Name" formControlName="name" value="{{flow.link?.name}}">
+          <div *ngIf="createFormGroup.get('name')?.touched && createFormGroup.get('name')?.errors">
+            <p class="error" *ngIf="createFormGroup.get('name')?.errors?.['required']">
+              Name is required.
+            </p>
+            <p class="error" *ngIf="createFormGroup.get('name')?.errors?.['minLength']">
+              Name must be at least 1 character long.
+            </p>
+            <p class="error" *ngIf="createFormGroup.get('name')?.errors?.['maxLength']">
+              Name must not exceed 50 characters long.
+            </p>
+          </div>
+          <input type="text" placeholder="Description" formControlName="description" value="{{flow.link?.description}}">
+          <div *ngIf="createFormGroup.get('description')?.touched && createFormGroup.get('description')?.errors">
+            <p class="error" *ngIf="createFormGroup.get('description')?.errors?.['required']">
+              Description is required.
+            </p>
+            <p class="error" *ngIf="createFormGroup.get('description')?.errors?.['minLength']">
+              Description must be at least 1 character long.
+            </p>
+            <p class="error" *ngIf="createFormGroup.get('description')?.errors?.['maxLength']">
+              Description must not exceed 50 characters long.
+            </p>
+          </div>
+          <input type="text" placeholder="URL" formControlName="url" value="{{flow.link?.url}}">
+          <div *ngIf="createFormGroup.get('url')?.touched && createFormGroup.get('url')?.errors">
+            <p class="error" *ngIf="createFormGroup.get('url')?.errors?.['required']">
+              URL is required.
+            </p>
+            <p class="error" *ngIf="createFormGroup.get('url')?.errors?.['minLength']">
+              URL must be at least 1 character long.
+            </p>
+            <p class="error" *ngIf="createFormGroup.get('url')?.errors?.['maxLength']">
+              URL must not exceed 50 characters long.
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="modal-buttons">
+        <a (click)="onCreate()" *ngIf="createFormGroup.valid">Submit</a>
+        <span *ngIf="!createFormGroup.valid">Submit</span>
+        <a (click)="triggerCreate()">Cancel</a>
+      </div>
+    </div>
+    <!-- Update Modal -->
+    <div class="modal" [class.on]="linkTriggerUpdate === true">
+      <h1>Update Link</h1>
+      <div class="form">
+        <form [formGroup]="updateFormGroup">
+          <input type="text" formControlName="name" value="{{flow.link?.name}}">
+          <input type="text" formControlName="description" value="{{flow.link?.description}}">
+          <input type="text" formControlName="url" value="{{flow.link?.url}}">
+        </form>
+      </div>
+      <div class="modal-buttons">
+        <a (click)="onUpdate()" *ngIf="updateFormGroup.valid">Submit</a>
+        <span *ngIf="updateFormGroup.invalid">Submit</span>
+        <a (click)="cancelUpdate()">Cancel</a>
+        <a (click)="triggerDelete(); triggerUpdate()">Delete</a>
+      </div>
+    </div>
+    <!-- Delete Modal -->
+    <div class="modal" [class.on]="linkTriggerDelete === true">
+      <h1 class="warning">Warning !!</h1>
+      <br>
+      <p>This will <u>permanently</u> delete</p>
+      <p><b>{{flow.link?.name}}</b></p>
+      <br>
+      <p>Are you sure ?</p>
+      <div class="modal-buttons">
+        <a (click)="onDelete(flow.link?.businessId)">Delete</a>
+        <a (click)="cancelDelete()">Cancel</a>
+      </div>
+    </div>
+    <!-- Overlay -->
+    <div class="overlay"
+      [class.overlay-enabled]="linkTriggerCreate === true || linkTriggerUpdate === true || linkTriggerDelete === true"
+      [class.overlay-disabled]="linkTriggerCreate === false && linkTriggerUpdate === false && linkTriggerDelete === false">
+    </div>
+    <!-- Pagination controls -->
+    <div class="pagination-row" *ngIf="flow.links.length > elementsPerPage">
+      <div id="pagination">
+        <pagination-controls previousLabel="" nextLabel="" class="pagination"
+          (pageChange)="currentPage = $event"></pagination-controls>
+      </div>
+    </div>
+    <!-- Bottom Bar -->
+    <div class="bar">
+      <!-- Tag Name -->
+      <a class="tweak" *ngIf="flow.categoryDetails?.name">
+        <div class="position"><b>{{ flow.categoryDetails?.name}}</b></div>
+      </a>
+      <!-- Links Count -->
+      <a class="tweak">
+        <div class="position">{{ flow.links.length | number : '4.0'}}</div>
+      </a>
+      <!-- To Top Button -->
+      <a (click)="toTop()" *ngIf="topButtonIsActive === true">
+        <img src="../../../../assets/app_icons/arrow_up.png" />
+      </a>
+      <span *ngIf="topButtonIsActive === false">
+        <img src="../../../../assets/app_icons/arrow_up_no.png" />
+      </span>
+    </div>
+  </div>

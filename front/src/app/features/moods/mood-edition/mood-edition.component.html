@@ -1,0 +1,162 @@
+<div id="layout-central" *ngIf="moodEditionFlow() as flow">
+    <!-- Edition Menu -->
+    <div class="edition-menu">
+        <a (click)="triggerMoodEditionButton()" [class.active]="triggerMoodEdition === true">
+            <img src="../../../../assets/app_icons/icon_mood_001.png" />
+        </a>
+        <a (click)="triggerMoodTagsEditionButton()" [class.active]="triggerMoodTagsEdition === true">
+            <img src="../../../../assets/app_icons/icon_tags_001.png" />
+        </a>
+        <a (click)="triggerMoodModelsEditionButton()" [class.active]="triggerMoodModelsEdition === true">
+            <img src="../../../../assets/app_icons/icon_model_001.png" />
+        </a>
+        <a (click)="triggerMoodArtistsEditionButton()" [class.active]="triggerMoodArtistsEdition === true">
+            <img src="../../../../assets/app_icons/icon_artists_001.png" />
+        </a>
+    </div>
+    <!-- Sticky Picture -->
+    <div id="sticky-pic">
+        <div *ngIf="flow.mood?.type == 1">
+            <img src="{{environment}}/Content/img_thumbs/{{flow.mood?.businessId}}.{{flow.mood?.extension}}" />
+        </div>
+        <div *ngIf="flow.mood?.type == 2">
+            <img src="{{environment}}/Content/video_thumbs/{{flow.mood?.businessId}}.jpg" />
+        </div>
+    </div>
+    <!-- Edition -->
+    <div *ngIf="triggerMoodEdition">
+        <!-- Score Settings -->
+        <p>Score</p>
+        <div class="box-score" >
+            <button (click)="updateMoodScore(-10)">-10</button>
+            <button (click)="updateMoodScore(-1)">-1</button>
+            <p><b>{{ flow.mood?.score | number : '3.0'}}</b></p>
+            <button (click)="updateMoodScore(1)">+1</button>
+            <button (click)="updateMoodScore(10)">+10</button>
+        </div>
+        <!-- Name & Description Edition -->
+        <p>Title & Description</p>
+        <div class="mood-update-form">  
+            <form [formGroup]="formGroup">
+            <input class="form-item" type="text" formControlName="name" value="{{flow.mood?.name}}">
+            <input class="form-item" type="text" formControlName="description" value="{{flow.mood?.description}}">    
+            </form>
+        </div>
+        <!-- Delete Mood -->
+        <p class="delete-button" (click)="triggerDeleteMood()">
+            <span>Delete Mood</span>
+        </p>
+        <div [ngClass]="triggerDelete === true ? 'box-delete on-delete' : 'box-delete' " (click)="triggerDeleteMood()">
+            <h1>Warning !!</h1>
+            <br>
+            <p>This will delete mood & all associations permanently</p>
+            <br>
+            <p>Are you sure ?</p>
+            <br>
+            <span (click)="deleteMood()">Delete</span>
+        </div>
+    </div>
+    <!-- Tags Edition -->    
+    <div *ngIf="triggerMoodTagsEdition">
+        <form>
+            <div id="tags-wall">
+                <div *ngFor="let category of flow.tagsCheckBoxes">
+                    <!-- Box -->
+                    <div class="tags-box">
+                        <!-- Category Name -->
+                        <div class="box-category">
+                            <p>{{category.category.name}}</p> 
+                        </div>
+                        <!-- Tags in Category -->                    
+                        <div class="overflow">
+                            <div *ngFor="let tag of category.tagsCheckBoxes">
+                                <div>                                
+                                    <label for="{{tag.name}}">
+                                        <span>{{tag.name}}</span>
+                                        <input type="checkbox" id="{{tag.name}}" value="{{tag.name}}" [checked]="tag.isChecked" (change)="tag.isChecked = !tag.isChecked">
+                                        <div class="custom-checkbox"></div>
+                                    </label> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="triggerMoodModelsEdition">
+        <div class="filter">
+            <input type="text" [(ngModel)]="searchModel" placeholder="Filter models ...">
+        </div>
+        <div class="form-container">
+            <div class="form-flex">
+                <div class="form_cat_box">
+                    <div *ngFor="let m of filterModels()">
+                        <div class="duo">
+                            <input type="checkbox" id="{{m.pseudonym}}" value="{{m.pseudonym}}" [checked]="m.isChecked" (change)="m.isChecked = !m.isChecked">
+                            <label for="{{m.pseudonym}}">{{m.pseudonym}}</label>
+                        </div>     
+                    </div>   
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <div *ngIf="triggerMoodArtistsEdition">
+        <div class="filter">
+            <input type="text" [(ngModel)]="searchArtist" placeholder="Filter artists ...">
+        </div>
+        <div class="form-container">
+            <div class="form-flex">
+                <div class="form_cat_box">
+                    <div *ngFor="let a of filterArtists()">
+                        <div class="duo">
+                            <input type="checkbox" id="{{a.name}}" value="{{a.name}}" [checked]="a.isChecked" (change)="a.isChecked = !a.isChecked">
+                            <label for="{{a.name}}">{{a.name}}</label>
+                        </div>     
+                    </div>   
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+<div class="bar">
+    <!-- Back to Gallery -->
+    <a routerLink="/moods/gallery">
+        <img src="../../../../assets/app_icons/icon_moods_001.png" />
+    </a>
+    <!-- Save -->
+    <a (click)="SaveEdition(true)" *ngIf="triggerMoodEdition">
+        <img src="../../../../assets/app_icons/icon_mood_001.png"/>
+    </a>
+    <a (click)="SaveEdition(false)" *ngIf="triggerMoodEdition">
+        <img src="../../../../assets/app_icons/save.png"/>
+    </a>
+    <a (click)="SaveTagsEdition(true)" *ngIf="triggerMoodTagsEdition">
+        <img src="../../../../assets/app_icons/icon_mood_001.png"/>
+    </a>
+    <a (click)="SaveTagsEdition(false)" *ngIf="triggerMoodTagsEdition">
+        <img src="../../../../assets/app_icons/save.png"/>
+    </a>
+    <a (click)="SaveModelsEdition(true)" *ngIf="triggerMoodModelsEdition">
+        <img src="../../../../assets/app_icons/icon_mood_001.png"/>
+    </a>
+    <a (click)="SaveModelsEdition(false)" *ngIf="triggerMoodModelsEdition">
+        <img src="../../../../assets/app_icons/save.png"/>
+    </a>
+    <a (click)="SaveArtistsEdition(true)" *ngIf="triggerMoodArtistsEdition">
+        <img src="../../../../assets/app_icons/icon_mood_001.png"/>
+    </a>
+    <a (click)="SaveArtistsEdition(false)" *ngIf="triggerMoodArtistsEdition">
+        <img src="../../../../assets/app_icons/save.png"/>
+    </a>
+    <!-- To Top Button -->
+    <a (click)="toTop()" *ngIf="topButtonIsActive === true">
+        <img src="../../../../assets/app_icons/arrow_up.png" />
+    </a>
+    <span *ngIf="topButtonIsActive === false">
+        <img src="../../../../assets/app_icons/arrow_up_no.png" />
+    </span>
+</div>

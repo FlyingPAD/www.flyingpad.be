@@ -4,6 +4,6 @@ namespace MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckB
 {
     public class GetLinkCategoriesCheckBoxesByLinkQueryResponse : BaseResponse
     {
-        public GetLinkCategoriesCheckBoxesByLinkQueryDto[] LinkCategoriesCheckBoxes { get; set; } = [];
+        public GetLinkCategoriesCheckBoxesByLinkQueryDto[] LinkCategories { get; set; } = [];
     }
 }

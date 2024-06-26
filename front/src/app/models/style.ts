@@ -1,26 +1,12 @@
 import { BaseResponse } from "./base-response";
-import { PaginationResponse } from "./pagination-response";
 
-// Models
-
-export class Style
-{
-    businessId : number = 0
-    name: string = 'new style'
+// Models.
+export interface StyleLight {
+    businessId : number
+    name: string
+    isChecked? : boolean
 }
-
-export class StyleDetails
-{
-    businessId : number = 0
-    name : string = ''
-    createdDate : Date = new Date()
-    createdBy : string = ''
-    modifiedDate : Date = new Date()
-    modifiedBy : string = ''
-}
-
-export interface StyleFull
-{
+export interface StyleFull {
     businessId : number
     name : string
     createdDate : Date
@@ -29,67 +15,18 @@ export interface StyleFull
     modifiedBy : string
 }
 
-export class StyleCheck
-{
-    businessId : number = 0
-    name : string = ''
-    isChecked : boolean = false
-}
-
-// API Calls
-
-export interface StyleCreateForm
-{
+// Calls.
+export interface StyleCreateForm {
     name : string
 }
 
-export interface StyleUpdateForm extends Style {}
-
-// API Responses
-
-export interface StylesCountResponse extends BaseResponse
-{
-    stylesCount : number
-}
-
-export interface StylesCreateResponse extends BaseResponse 
-{
-    style : StyleCheck
-}
-
-export interface GetAllStylesResponse extends BaseResponse 
-{
-    stylesList : StyleCheck[]
-}
-
-export interface GetOneStyleDetailsResponse extends BaseResponse
-{
-    style : Style
-}
-
-export interface StylesGetOneDetailsResponse extends BaseResponse
-{
-    style : StyleDetails
-}
-
-export interface GetStyleByIdResponse extends BaseResponse
-{
+// Responses.
+export interface GetStyleResponse extends BaseResponse {
     style : StyleFull
 }
-
-
-export interface StylesCheckResponse extends BaseResponse
-{
-    stylesCheck : StyleCheck[]
+export interface GetStylesResponse extends BaseResponse {
+    styles : StyleLight[]
 }
-
-export interface StylesGetStylesResponse extends BaseResponse {}
-
-export interface StylesGetPageResponse extends BaseResponse, PaginationResponse
-{
-    stylesPage : Style[]
+export interface CreateStyleResponse extends BaseResponse {
+    styleId : number
 }
-
-export interface StylesUpdateResponse extends BaseResponse {}
-
-export interface StylesDeleteResponse extends BaseResponse {}

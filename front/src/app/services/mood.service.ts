@@ -2,8 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { BehaviorSubject, switchMap, map, combineLatest, of, tap, catchError, take, Observable } from "rxjs";
 import { environment } from "../../environments/environment";
-import { GetModelsByMoodResponse, GetModelsCheckBoxesByMoodResponse } from "../models/model";
-import { GetMoodByIdResponse, GetMoodsByArtistResponse, GetMoodsByModelResponse, GetMoodsByTagResponse, MoodFull, MoodUpdateForm, MoodUpdateResponse, MoodsGetAllResponse, UpdateMoodScoreCall, UpdateMoodScoreResponse } from "../models/mood";
+import { GetModelsCheckBoxesByMoodResponse, GetModelsResponse } from "../models/model";
+import { GetMoodByIdResponse, GetMoodsResponse, MoodUpdateForm, MoodUpdateResponse, UpdateMoodScoreCall, UpdateMoodScoreResponse } from "../models/mood";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { GetFranchisesByMoodResponse } from "../models/franchise";
 import { GetOneTagDetailsResponse, GetTagsByMoodResponse, GetTagsCheckBoxesByMoodResponse } from "../models/tag";
@@ -100,9 +100,9 @@ export class MoodStateService
             })
           )  
         default:
-          return this.#http.get<MoodsGetAllResponse>(`${this.#url}Moods/GetAll`).pipe(
+          return this.#http.get<GetMoodsResponse>(`${this.#url}Moods/GetAll`).pipe(
             map(response => ({
-              moodsList: response.moodsList.sort((a, b) => b.score - a.score),
+              moodsList: response.moods.sort((a, b) => b.score - a.score),
               tagDetails: null
             }))
           )
@@ -114,7 +114,7 @@ export class MoodStateService
   moodFlow$ = this.#selectedMoodId.pipe(
     switchMap(moodId => this.getMood(moodId)),
     switchMap(mood => {
-      if (!mood || mood.businessId == null) return of({ mood: new MoodFull(), models: [], franchises: [], artists : [], tags: [], media: null })
+      if (!mood || mood.businessId == null) return of({ mood: null, models: [], franchises: [], artists : [], tags: [], media: null })
       let mediaObservable$
       switch (mood.type) 
       {
@@ -145,7 +145,7 @@ export class MoodStateService
         )
       }),
     )      
-  getMoodFlow = toSignal(this.moodFlow$, { initialValue: { mood: new MoodFull(), models: [], franchises : [], artists : [],tags : [], media : null } })
+  getMoodFlow = toSignal(this.moodFlow$, { initialValue: { mood: null, models: [], franchises : [], artists : [],tags : [], media : null } })
 
   newMoodsFlow$ = combineLatest([
     this.moodFlow$,
@@ -154,7 +154,7 @@ export class MoodStateService
     map(([moodFlow, moodsFlow]) => 
       {
       let moodsList = moodsFlow.moodsList
-      let selectedMoodId = moodFlow.mood.businessId
+      let selectedMoodId = moodFlow.mood?.businessId
       let currentIndex = moodsList.findIndex(mood => mood.businessId === selectedMoodId)
   
       let previousMoodId: number | null = currentIndex > 0 ? moodsList[currentIndex - 1].businessId : moodsList.length ? moodsList[moodsList.length - 1]?.businessId : null
@@ -187,20 +187,20 @@ export class MoodStateService
 
   getMoodsByTag(TagId : number | null)
   {
-    return this.#http.get<GetMoodsByTagResponse>(`${this.#url}Moods/GetByTag/${TagId}`).pipe( 
+    return this.#http.get<GetMoodsResponse>(`${this.#url}Moods/GetByTag/${TagId}`).pipe( 
       map(response => response.moods) )
   }
 
   getMoodsByModel( modelId : number )
   {
-    return this.#http.get<GetMoodsByModelResponse>(this.#url + 'Moods/GetByModel/' + modelId).pipe(
+    return this.#http.get<GetMoodsResponse>(this.#url + 'Moods/GetByModel/' + modelId).pipe(
       map(response => response.moods)
     )
   }
 
   getMoodsByArtist( artistId : number )
   {
-    return this.#http.get<GetMoodsByArtistResponse>(this.#url + 'Moods/GetByArtist/' + artistId).pipe(
+    return this.#http.get<GetMoodsResponse>(this.#url + 'Moods/GetByArtist/' + artistId).pipe(
       map(response => response.moods)
     )
   }
@@ -232,8 +232,8 @@ export class MoodStateService
 
   getModelsByMood(businessId : number) 
   {
-    return this.#http.get<GetModelsByMoodResponse>(`${this.#url}Models/GetByMood/${businessId}`).pipe( 
-      map(response => response.modelsByMood) )
+    return this.#http.get<GetModelsResponse>(`${this.#url}Models/GetByMood/${businessId}`).pipe( 
+      map(response => response.models) )
   }
 
   getFranchisesByMood(businessId : number) 
@@ -292,7 +292,7 @@ export class MoodStateService
 
   moodEditionFlow$ = this.selectedMoodId$.pipe(
     switchMap(moodId => {
-      if (moodId === null) return of({ mood: new MoodFull(), tagsCheckBoxes: [], artists : [], models : [] })
+      if (moodId === null) return of({ mood: null, tagsCheckBoxes: [], artists : [], models : [] })
       else 
       {
         return combineLatest([
@@ -309,13 +309,13 @@ export class MoodStateService
           })),
           catchError(error => {
             console.error('Erreur lors de la récupération des données du mood ou des tags:', error)
-            return of({ mood : new MoodFull(), tagsCheckBoxes : [], artists : [], models : [] })
+            return of({ mood : null, tagsCheckBoxes : [], artists : [], models : [] })
           })
         )
       }
     })
   )
-  moodEditionFlow = toSignal(this.moodEditionFlow$, { initialValue: { mood: new MoodFull(), tagsCheckBoxes: [], artists : [], models : [] } })
+  moodEditionFlow = toSignal(this.moodEditionFlow$, { initialValue: { mood: null, tagsCheckBoxes: [], artists : [], models : [] } })
 
   // Update Mood
   public UpdateMood( form : MoodUpdateForm ) : Observable<number> 

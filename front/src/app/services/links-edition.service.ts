@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { CreateLinkResponse, GetAllLinkCategoriesResponse, GetAllLinksResponse, GetLinksByCategoryResponse, GetOneLinkCategoryDetailsResponse, GetOneLinkDetailsResponse, LinkCreateForm, LinkUpdateForm, getLinkCategoriesCheckBoxesResponse } from '../models/link';
+import { CreateLinkResponse, GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, GetLinksResponse, LinkCreateForm, LinkUpdateForm } from '../models/link';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BaseResponse } from '../models/base-response';
 
@@ -17,50 +17,43 @@ export class LinksEditionService
 
   #selectedLinkId = new BehaviorSubject<number | null>(null)
   selectedLinkId$ = this.#selectedLinkId.asObservable()
-  updateSelectedLink(linkId : number | null) 
-  {
+  updateSelectedLink(linkId : number | null) {
     this.#selectedLinkId.next(linkId)
   }
-
   #selectedCategoryId = new BehaviorSubject<number | null>(null)
   selectedCategoryId$ = this.#selectedCategoryId.asObservable()
-  updateSelectedCategory(categoryId : number | null) 
-  {
+  updateSelectedCategory(categoryId : number | null) {
     this.#selectedCategoryId.next(categoryId)
   }
 
-  linkCategories$ = this.#http.get<GetAllLinkCategoriesResponse>(this.#url + 'LinkCategories/GetAll').pipe(
+  links$ = this.#http.get<GetLinksResponse>(this.#url + 'Links/GetAll').pipe(
+    map(x => x.links)
+  )
+  linkCategories$ = this.#http.get<GetLinkCategoriesResponse>(this.#url + 'LinkCategories/GetAll').pipe(
     map(x => x.linkCategories)
   )
 
-  links$ = this.#http.get<GetAllLinksResponse>(this.#url + 'Links/GetAll').pipe(
-    map(x => x.linksList)
-  )
-
-  getLink( linkId : number )
-  {
-    return this.#http.get<GetOneLinkDetailsResponse>(this.#url + 'Links/GetOneDetails/' + linkId).pipe(
+  getLink( linkId : number ) {
+    return this.#http.get<GetLinkResponse>(this.#url + 'Links/GetOneDetails/' + linkId).pipe(
       map(response => response.link)
     )
   }
 
-  getLinksByCategory( categoryId : number )
-  {
-    return this.#http.get<GetLinksByCategoryResponse>(`${this.#url}Links/GetByCategory/${categoryId}`).pipe(
-      map(response => response.linksListByCategory)
+  getLinksByCategory( categoryId : number ) {
+    return this.#http.get<GetLinksResponse>(`${this.#url}Links/GetByCategory/${categoryId}`).pipe(
+      map(response => response.links)
     )
   }
 
-  getCategoryDetails( categoryId : number )
-  {
-    return this.#http.get<GetOneLinkCategoryDetailsResponse>(`${this.#url}LinkCategories/GetOneDetails/${categoryId}`).pipe(
+  getCategoryDetails( categoryId : number ) {
+    return this.#http.get<GetLinkCategoryResponse>(`${this.#url}LinkCategories/GetOneDetails/${categoryId}`).pipe(
       map(response => response.linkCategory)
     )
   }
 
   getLinkCategoriesCheckBoxes( linkId : number )
   {
-    return this.#http.get<getLinkCategoriesCheckBoxesResponse>(`${this.#url}LinkCategories/GetCheckBoxesByLink/${linkId}`)
+    return this.#http.get<GetLinkCategoriesResponse>(`${this.#url}LinkCategories/GetCheckBoxesByLink/${linkId}`)
   }
 
   // Flow

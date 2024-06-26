@@ -1,31 +1,13 @@
 import { BaseResponse } from "./base-response";
 import { PaginationResponse } from "./pagination-response";
-import { StyleCheck } from "./style";
+import { StyleLight } from "./style";
 
 // Models
-
-export class ArtistLight
-{
-    businessId : number = 0
-    name : string = 'new artist'
-}
-
 export interface ArtistLight
 {
     businessId : number
     name : string
 }
-
-export class ArtistDetails
-{
-    businessId : number = 0
-    name : string = ''
-    created : Date = new Date()
-    createdBy : string = ''
-    modified : Date = new Date()
-    modifiedBy : string = ''
-}
-
 export interface ArtistFull
 {
     businessId : number
@@ -48,7 +30,7 @@ export class ArtistCheckBox
 export interface ArtistCreateFormGroup
 {
     name : string
-    styles : StyleCheck[]
+    styles : StyleLight[]
 }
 export interface ArtistCreateForm
 {

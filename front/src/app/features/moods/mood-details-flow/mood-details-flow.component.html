@@ -1,0 +1,78 @@
+<div class="mood">
+    <h1>{{mood?.name}}</h1>
+    <h2>{{mood?.description}}</h2>
+
+    <div *ngIf="mood?.type == 1">           
+        <img src="{{environment}}/Content/img_thumbs/{{mood?.businessId}}.{{mood?.extension}}" />
+    </div>
+    <div *ngIf="mood?.type == 2">
+        <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood?.businessId}}.jpg" />        
+    </div>
+    <div *ngIf="mood?.type == 3">
+        <img src="{{environment}}/Content/txt_thumbs/{{mood?.businessId}}.jpg" />       
+    </div>
+    <div *ngIf="mood?.type == 4">
+        <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood?.businessId}}.jpg" />
+    </div>
+
+    <div class="box-score">
+        <button (click)="updateMoodScore(-10)">-10</button>
+        <button (click)="updateMoodScore(-1)">-1</button>
+        <p><b>{{ mood?.score | number : '3.0'}}</b></p>
+        <button (click)="updateMoodScore(1)">+1</button>
+        <button (click)="updateMoodScore(10)">+10</button>
+    </div>
+
+    <div *ngIf="mood?.type === 1 ">
+        <div class="item-top flex">
+            <p><b>Size</b></p>
+            <p>{{ typeCheck(mood).size | formatSize:2 }}</p>
+        </div>
+        <div class="item-middle flex">
+            <p><b>Extension</b></p>
+            <p>*.{{ typeCheck(mood).extension }}</p>
+        </div>
+        <div class="item-middle flex">
+            <p><b>Height</b></p>
+            <p>{{ typeCheck(mood).height }} pixels</p>
+        </div>
+        <div class="item-middle flex">
+            <p><b>Width</b></p>
+            <p>{{ typeCheck(mood).width }} pixels</p>
+        </div>
+        </div>
+
+    <div *ngIf="mood?.type === 2 ">
+        <div class="item-top flex">
+            <p><b>Size</b></p>
+            <p>{{ typeCheck(mood).size | formatSize:2 }}</p>
+        </div>
+        <div class="item-middle flex">
+            <p><b>Extension</b></p>
+            <p>*.{{ typeCheck(mood).extension }}</p>
+        </div>
+        <div class="item-middle flex">
+            <p><b>Height</b></p>
+            <p>{{typeCheck(mood).height}} pixels</p>
+        </div>
+        <div class="item-middle flex">
+            <p><b>Width</b></p>
+            <p>{{typeCheck(mood).width}} pixels</p>
+        </div>
+        <div class="item-middle flex">
+            <p><b>Duration</b></p>
+            <p>{{typeCheck(mood).duration | formatDuration }}</p>
+        </div>
+    </div>
+
+    <div class="flex_created">
+        <div class="box_created">
+            <p>Created :</p>
+            <p>{{ mood?.created | date : 'MMMM d, y | HH:mm' }}</p>
+        </div>
+        <div class="box_created">
+            <p>Modified :</p>
+            <p>{{ mood?.modified | date : 'MMMM d, y | HH:mm' }}</p>
+        </div>
+    </div>
+</div>

@@ -22,8 +22,8 @@
         <p class="count" [class.active]="showLinkCategories" (click)="toggleLinkCategories()"><span>Link Categories</span><span>{{ flow()?.linkCategories?.length || '0' }}</span></p>
     </div>
 
-    <div *ngIf="showMoods === true"><app-mood-gallery [moods]="flow()?.moods" (moodId)="handleMoodId($event)"></app-mood-gallery></div>
-    <div *ngIf="showMood === true && flow()?.mood as mood"><app-mood-details [mood]="flow()?.mood" /></div>
+    <div *ngIf="showMoods === true"><app-moods-gallery-flow [moods]="flow()?.moods" (moodId)="handleMoodId($event)" /></div>
+    <div *ngIf="showMood === true && flow()?.mood as mood"><app-mood-details-flow [mood]="flow()?.mood" /></div>
     
     <ul *ngIf="showMoodsByTag"><li *ngFor="let mood of flow()?.moodsByTag" (click)="updateMoodId(mood.businessId)">{{ mood.name }}</li></ul>
     <ul *ngIf="showMoodsByModel"><li *ngFor="let mood of flow()?.moodsByModel" (click)="updateMoodId(mood.businessId)">{{ mood.name }}</li></ul>
@@ -45,7 +45,7 @@
     <ul *ngIf="showLinksByCategory"><li *ngFor="let link of flow()?.linksByCategory" (click)="updateLinkId(link.businessId)">{{ link.name }}</li></ul>
     <ul *ngIf="showLinkCategories"><li *ngFor="let linkCategory of flow()?.linkCategories" (click)="updateLinkCategoryId(linkCategory.businessId)">{{ linkCategory.name }}</li></ul>
 
-    <div class="tag" *ngIf="showTag === true && flow()?.tag as tag"><app-mood-gallery [moods]="flow()?.moodsByTag" (moodId)="handleMoodId($event)"></app-mood-gallery></div>
+    <div class="tag" *ngIf="showTag === true && flow()?.tag as tag"><app-moods-gallery-flow [moods]="flow()?.moodsByTag" (moodId)="handleMoodId($event)" /></div>
 
     <div class="details">
         <p [class.active]="showMood" (click)="toggleMood()">{{flow()?.mood?.name || 'Mood'}}</p>
