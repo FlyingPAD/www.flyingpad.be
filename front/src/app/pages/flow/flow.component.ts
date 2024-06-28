@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FlowService } from '../../services/flow.service';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flow',
@@ -9,14 +10,15 @@ import { environment } from '../../../environments/environment';
 })
 export class FlowComponent 
 {
+  #router = inject(Router)
   flowService = inject(FlowService)  
   flow = this.flowService.flow
 
   environment = environment.apiBaseUrl
 
   // Boolean toggles for showing or hiding elements
-  showMood = false
-  showMoods = false
+  showMood = true
+  showMoods = true
   showMoodsByTag = false
   showMoodsByModel = false
   showMoodsByArtist = false
@@ -107,7 +109,8 @@ export class FlowComponent
     this.flowService.updateLinkId(linkId);
   }
 
-  handleMoodId(moodId : number) {
-    this.updateMoodId(moodId)
+  goBack()
+  {
+    this.#router.navigateByUrl('/dashboard')
   }
 }

@@ -14,7 +14,7 @@ public class GetTagsListQueryHandler(IBaseRepository<Tag> tagRepository, IMapper
     {
         try
         {
-            var tags = await _tagRepository.GetAllAsync();
+            var tags = await _tagRepository.GetAllAsync(x => x.Name);
             var response = new GetTagsListQueryResponse
             {
                 Success = true,

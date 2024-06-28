@@ -10,7 +10,7 @@
         <div class="item-bottom list-categories">
             <div *ngFor="let tag of flow.tags">
                 <div>
-                    <a routerLink="/moods/gallery"
+                    <a routerLink="/moods"
                         [class.active]="tag.businessId === moods().tagDetails?.businessId"
                         (click)="updateTagId(tag.businessId); pageReset()">
                         {{tag.name}}
@@ -67,7 +67,7 @@
             <img appAnimGrow src="../../../../assets/app_icons/arrow_right.png" />
         </a>
         <!-- Go Back -->
-        <a routerLink="/moods/gallery">
+        <a routerLink="/moods">
             <img src="../../../../assets/app_icons/icon_moods_001.png" />
         </a>
         <!-- Toggle Size -->

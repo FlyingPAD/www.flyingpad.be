@@ -11,7 +11,6 @@ import { ModelStateService } from "../../../services/model.service"
 import { MoodStateService } from "../../../services/mood.service"
 import { Location } from '@angular/common';
 import { MenuDesktopService } from "../../../services/menu-desktop.service"
-import { UpdateMoodScoreCall } from "../../../models/mood"
 import { PaginationService } from "../../../services/pagination.service"
 
 @Component({

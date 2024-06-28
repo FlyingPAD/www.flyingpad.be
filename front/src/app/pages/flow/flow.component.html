@@ -1,62 +1,236 @@
 <div class="flow">
-    <div class="count-box">
-        <a routerLink="/dashboard"><p class="count">Dashboard</a>
-        <p class="count" [class.active]="showMoods" (click)="toggleMoods()"><span>Moods</span><span>{{ flow()?.moods?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showMoodsByTag" (click)="toggleMoodsByTag()"><span>MoodsByTag</span><span>{{ flow()?.moodsByTag?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showMoodsByModel" (click)="toggleMoodsByModel()"><span>MoodsByModel</span><span>{{ flow()?.moodsByModel?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showMoodsByArtist" (click)="toggleMoodsByArtist()"><span>MoodsByArtist</span><span>{{ flow()?.moodsByArtist?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showMoodsByFranchise" (click)="toggleMoodsByFranchise()"><span>MoodsByFranchise</span><span>{{ flow()?.moodsByFranchise?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showTags" (click)="toggleTags()"><span>Tags</span><span>{{ flow()?.tags?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showTagsByCategory" (click)="toggleTagsByCategory()"><span>TagsByCategory</span><span>{{ flow()?.tagsByCategory?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showTagCategories" (click)="toggleTagCategories()"><span>Tag Categories</span><span>{{ flow()?.tagCategories?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showArtists" (click)="toggleArtists()"><span>Artists</span><span>{{ flow()?.artists?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showArtistsByStyle" (click)="toggleArtistsByStyle()"><span>ArtistsByStyle</span><span>{{ flow()?.artistsByStyle?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showStyles" (click)="toggleStyles()"><span>Styles</span><span>{{ flow()?.styles?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showModels" (click)="toggleModels()"><span>Models</span><span>{{ flow()?.models?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showModelsByFranchise" (click)="toggleModelsByFranchise()"><span>ModelsByFranchise</span><span>{{ flow()?.modelsByFranchise?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showFranchises" (click)="toggleFranchises()"><span>Franchises</span><span>{{ flow()?.franchises?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showFranchisesByMedia" (click)="toggleFranchisesByMedia()"><span>FranchisesByMedia</span><span>{{ flow()?.franchisesByMedia?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showMedias" (click)="toggleMedias()"><span>Medias</span><span>{{ flow()?.medias?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showLinks" (click)="toggleLinks()"><span>Links</span><span>{{ flow()?.links?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showLinksByCategory" (click)="toggleLinksByCategory()"><span>LinksByCategory</span><span>{{ flow()?.linksByCategory?.length || '0' }}</span></p>
-        <p class="count" [class.active]="showLinkCategories" (click)="toggleLinkCategories()"><span>Link Categories</span><span>{{ flow()?.linkCategories?.length || '0' }}</span></p>
+    <div class="flow-toolbar">
+        <div class="toolbar-card" (click)="goBack()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/arrow_left.png" />
+                <p>Dashboard</p>
+            </div>
+        </div>
+
+        <div [class.active]="showMoods" class="toolbar-card" (click)="toggleMoods()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_moods_001.png" />
+                <p>Moods</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.moods?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showTags" class="toolbar-card" (click)="toggleTags()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_tags_001.png" />
+                <p>Tags</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.tags?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showTagCategories" class="toolbar-card" (click)="toggleTagCategories()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_scripts_001.png" />
+                <p>Tag Categories</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.tagCategories?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showTagsByCategory" class="toolbar-card" (click)="toggleTagsByCategory()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_tags_001.png" />
+                <p>Tags By Category</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.tags?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showMoodsByTag" class="toolbar-card" (click)="toggleMoodsByTag()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_moods_001.png" />
+                <p>Moods By Tag</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.moodsByTag?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showArtists" class="toolbar-card" (click)="toggleArtists()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_artists_001.png" />
+                <p>Artists</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.artists?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showStyles" class="toolbar-card" (click)="toggleStyles()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_scripts_001.png" />
+                <p>Styles</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.styles?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showArtistsByStyle" class="toolbar-card" (click)="toggleArtistsByStyle()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_artists_001.png" />
+                <p>Artists By Style</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.artistsByStyle?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showMoodsByArtist" class="toolbar-card" (click)="toggleMoodsByArtist()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_moods_001.png" />
+                <p>Moods By Artist</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.moodsByArtist?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showFranchises" class="toolbar-card" (click)="toggleFranchises()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_franchises_001.png" />
+                <p>Franchises</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.franchises?.length || '0' }} )</p>
+            </div>
+        </div>
+        
+        <div [class.active]="showMedias" class="toolbar-card" (click)="toggleMedias()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_medias_001.png" />
+                <p>Medias</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.medias?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showFranchisesByMedia" class="toolbar-card" (click)="toggleFranchisesByMedia()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_franchises_001.png" />
+                <p>Franchises By Media</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.franchisesByMedia?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showMoodsByFranchise" class="toolbar-card" (click)="toggleMoodsByFranchise()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_moods_001.png" />
+                <p>Moods By Franchise</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.moodsByFranchise?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showModels" class="toolbar-card" (click)="toggleModels()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_model_001.png" />
+                <p>Models</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.models?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showModelsByFranchise" class="toolbar-card" (click)="toggleModelsByFranchise()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_model_001.png" />
+                <p>Models By Franchise</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.modelsByFranchise?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showMoodsByModel" class="toolbar-card" (click)="toggleMoodsByModel()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_moods_001.png" />
+                <p>Moods By Model</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.moodsByModel?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showLinks" class="toolbar-card" (click)="toggleLinks()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_links_001.png" />
+                <p>Links</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.links?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showLinkCategories" class="toolbar-card" (click)="toggleLinkCategories()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_scripts_001.png" />
+                <p>Link Categories</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.linkCategories?.length || '0' }} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showLinksByCategory" class="toolbar-card" (click)="toggleLinksByCategory()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_links_001.png" />
+                <p>Links By Category</p>
+            </div>
+            <div class="card-info">
+                <p>( {{ flow()?.linksByCategory?.length || '0' }} )</p>
+            </div>
+        </div>
     </div>
-
-    <div *ngIf="showMoods === true"><app-moods-gallery-flow [moods]="flow()?.moods" (moodId)="handleMoodId($event)" /></div>
-    <div *ngIf="showMood === true && flow()?.mood as mood"><app-mood-details-flow [mood]="flow()?.mood" /></div>
+   
+    <div *ngIf="showTagCategories"><app-list-flow property="name" [list]="flow()?.tagCategories" (itemId)="updateTagCategoryId($event)" /></div>
+    <div *ngIf="showTags"><app-list-flow property="name"  [list]="flow()?.tags" (itemId)="updateTagId($event)" /></div>
+    <div *ngIf="showTagsByCategory"><app-list-flow property="name" [list]="flow()?.tagsByCategory" (itemId)="updateTagId($event)" /></div>
+    <div *ngIf="showStyles"><app-list-flow property="name" [list]="flow()?.styles" (itemId)="updateStyleId($event)" /></div>
+    <div *ngIf="showArtists"><app-list-flow property="name" [list]="flow()?.artists" (itemId)="updateArtistId($event)" /></div>
+    <div *ngIf="showArtistsByStyle"><app-list-flow property="name" [list]="flow()?.artistsByStyle" (itemId)="updateArtistId($event)" /></div>
+    <div *ngIf="showModels"><app-list-flow property="pseudonym" [list]="flow()?.models" (itemId)="updateModelId($event)" /></div>
+    <div *ngIf="showModelsByFranchise"><app-list-flow property="pseudonym" [list]="flow()?.modelsByFranchise" (itemId)="updateModelId($event)" /></div>
+    <div *ngIf="showMedias"><app-list-flow property="name" [list]="flow()?.medias" (itemId)="updateMediaId($event)" /></div>
+    <div *ngIf="showFranchises"><app-list-flow property="name" [list]="flow()?.franchises" (itemId)="updateFranchiseId($event)" /></div>
+    <div *ngIf="showFranchisesByMedia"><app-list-flow property="name" [list]="flow()?.franchisesByMedia" (itemId)="updateFranchiseId($event)" /></div>
+    <div *ngIf="showLinkCategories"><app-list-flow property="name" [list]="flow()?.linkCategories" (itemId)="updateLinkCategoryId($event)" /></div>
+    <div *ngIf="showLinks"><app-list-flow property="name" [list]="flow()?.links" (itemId)="updateLinkId($event)" /></div>
+    <div *ngIf="showLinksByCategory"><app-list-flow property="name" [list]="flow()?.linksByCategory" (itemId)="updateLinkId($event)" /></div>
     
-    <ul *ngIf="showMoodsByTag"><li *ngFor="let mood of flow()?.moodsByTag" (click)="updateMoodId(mood.businessId)">{{ mood.name }}</li></ul>
-    <ul *ngIf="showMoodsByModel"><li *ngFor="let mood of flow()?.moodsByModel" (click)="updateMoodId(mood.businessId)">{{ mood.name }}</li></ul>
-    <ul *ngIf="showMoodsByArtist"><li *ngFor="let mood of flow()?.moodsByArtist" (click)="updateMoodId(mood.businessId)">{{ mood.name }}</li></ul>
-    <ul *ngIf="showMoodsByFranchise"><li *ngFor="let mood of flow()?.moodsByFranchise" (click)="updateMoodId(mood.businessId)">{{ mood.name }}</li></ul>
-    
-    <ul *ngIf="showTags"><li *ngFor="let tag of flow()?.tags" (click)="updateTagId(tag.businessId)">{{ tag.name }}</li></ul>
-    <ul *ngIf="showTagsByCategory"><li *ngFor="let tag of flow()?.tagsByCategory" (click)="updateTagId(tag.businessId)">{{ tag.name }}</li></ul>
-    <ul *ngIf="showTagCategories"><li *ngFor="let tagCategory of flow()?.tagCategories" (click)="updateTagCategoryId(tagCategory.businessId)">{{ tagCategory.name }}</li></ul>
-    <ul *ngIf="showArtists"><li *ngFor="let artist of flow()?.artists" (click)="updateArtistId(artist.businessId)">{{ artist.name }}</li></ul>
-    <ul *ngIf="showArtistsByStyle"><li *ngFor="let artist of flow()?.artistsByStyle" (click)="updateArtistId(artist.businessId)">{{ artist.name }}</li></ul>
-    <ul *ngIf="showStyles"><li *ngFor="let style of flow()?.styles" (click)="updateStyleId(style.businessId)">{{ style.name }}</li></ul>
-    <ul *ngIf="showModels"><li *ngFor="let model of flow()?.models" (click)="updateModelId(model.businessId)">{{ model.pseudonym }}</li></ul>
-    <ul *ngIf="showModelsByFranchise"><li *ngFor="let model of flow()?.modelsByFranchise" (click)="updateModelId(model.businessId)">{{ model.pseudonym }}</li></ul>
-    <ul *ngIf="showFranchises"><li *ngFor="let franchise of flow()?.franchises" (click)="updateFranchiseId(franchise.businessId)">{{ franchise.name }}</li></ul>
-    <ul *ngIf="showFranchisesByMedia"><li *ngFor="let franchise of flow()?.franchisesByMedia" (click)="updateFranchiseId(franchise.businessId)">{{ franchise.name }}</li></ul>
-    <ul *ngIf="showMedias"><li *ngFor="let media of flow()?.medias" (click)="updateMediaId(media.businessId)">{{ media.name }}</li></ul>
-    <ul *ngIf="showLinks"><li *ngFor="let link of flow()?.links" (click)="updateLinkId(link.businessId)">{{ link.name }}</li></ul>
-    <ul *ngIf="showLinksByCategory"><li *ngFor="let link of flow()?.linksByCategory" (click)="updateLinkId(link.businessId)">{{ link.name }}</li></ul>
-    <ul *ngIf="showLinkCategories"><li *ngFor="let linkCategory of flow()?.linkCategories" (click)="updateLinkCategoryId(linkCategory.businessId)">{{ linkCategory.name }}</li></ul>
+    <div *ngIf="showMoods"><app-moods-gallery-flow [moods]="flow()?.moods" (moodId)="updateMoodId($event)" /></div>
+    <div *ngIf="showMoodsByTag"><app-moods-gallery-flow [moods]="flow()?.moodsByTag" (moodId)="updateMoodId($event)" /></div>
+    <div *ngIf="showMoodsByModel"><app-moods-gallery-flow [moods]="flow()?.moodsByModel" (moodId)="updateMoodId($event)" /></div>
+    <div *ngIf="showMoodsByArtist"><app-moods-gallery-flow [moods]="flow()?.moodsByArtist" (moodId)="updateMoodId($event)" /></div>
+    <div *ngIf="showMoodsByFranchise"><app-moods-gallery-flow [moods]="flow()?.moodsByFranchise" (moodId)="updateMoodId($event)" /></div>
 
-    <div class="tag" *ngIf="showTag === true && flow()?.tag as tag"><app-moods-gallery-flow [moods]="flow()?.moodsByTag" (moodId)="handleMoodId($event)" /></div>
+    <div *ngIf="showMood && flow()?.mood as mood"><app-mood-details-flow [mood]="flow()?.mood" /></div>
 
     <div class="details">
         <p [class.active]="showMood" (click)="toggleMood()">{{flow()?.mood?.name || 'Mood'}}</p>
-        <p [class.active]="showTag" (click)="toggleTag()">{{flow()?.tag?.name || 'Tag'}}</p>
         <p [class.active]="showTagCategory" (click)="toggleTagCategory()">{{flow()?.tagCategory?.name || 'Tag Category'}}</p>
+        <p [class.active]="showTag" (click)="toggleTag()">{{flow()?.tag?.name || 'Tag'}}</p>
         <p [class.active]="showModel" (click)="toggleModel()">{{flow()?.model?.pseudonym || 'Model'}}</p>
-        <p [class.active]="showArtist" (click)="toggleArtist()">{{flow()?.artist?.name || 'Artist'}}</p>
         <p [class.active]="showStyle" (click)="toggleStyle()">{{flow()?.style?.name || 'Style'}}</p>
-        <p [class.active]="showFranchise" (click)="toggleFranchise()">{{flow()?.franchise?.name || 'Franchise'}}</p>
+        <p [class.active]="showArtist" (click)="toggleArtist()">{{flow()?.artist?.name || 'Artist'}}</p>
         <p [class.active]="showMedia" (click)="toggleMedia()">{{flow()?.media?.name || 'Media'}}</p>
-        <a href="{{flow()?.link?.url}}" target="_blank" (click)="toggleLink()"><p [class.active]="showLink" >{{flow()?.link?.name || 'Link'}}</p></a>
+        <p [class.active]="showFranchise" (click)="toggleFranchise()">{{flow()?.franchise?.name || 'Franchise'}}</p>
         <p [class.active]="showLinkCategory" (click)="toggleLinkCategory()">{{flow()?.linkCategory?.name || 'Link Category'}}</p>
+        <a href="{{flow()?.link?.url}}" target="_blank" (click)="toggleLink()"><p [class.active]="showLink" >{{flow()?.link?.name || 'Link'}}</p></a>
     </div>
 </div>

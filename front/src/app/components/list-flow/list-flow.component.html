@@ -1,0 +1,13 @@
+<div class="flow-list">
+    <ul>
+        @if(property === 'name')
+        {
+            <li [class.active]="item.businessId === itemListId" *ngFor="let item of list" (click)="handleId(item.businessId)"> ▸ {{ item.name }}</li>
+        }
+        @if(property === 'pseudonym')
+        {
+            <li [class.active]="item.businessId === itemListId" *ngFor="let item of list" (click)="handleId(item.businessId)"> ▸ {{ item.pseudonym }}</li>
+        }
+    </ul>
+    <div class="bottom-space"></div>
+</div>

@@ -23,6 +23,10 @@ export interface MoodFull {
 }
 
 // Calls.
+export interface MoodCreateForm {
+    name : string
+    description : string
+}
 export interface MoodUpdateForm {
     moodId : number
     name : string

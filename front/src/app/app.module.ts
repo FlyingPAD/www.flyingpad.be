@@ -86,6 +86,7 @@ import { LinksGalleryComponent } from './features/links/links-gallery/links-gall
 import { MoodDetailsFlowComponent } from './features/moods/mood-details-flow/mood-details-flow.component';
 import { MoodsGalleryFlowComponent } from './features/moods/moods-gallery-flow/moods-gallery-flow.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
+import { ListFlowComponent } from './components/list-flow/list-flow.component';
 
 @NgModule({
   declarations: 
@@ -115,9 +116,11 @@ import { MoodDetailsComponent } from './features/moods/mood-details/mood-details
     HomeComponent,
     AboutComponent,
     NotFoundComponent,
+    ListFlowComponent,
     // => Layouts
     LayoutEmptyComponent,
     LayoutCustomComponent,
+    LayoutArtistsComponent,
     // => Moods
     MoodDetailsComponent,
     MoodsGalleryComponent,

@@ -22,7 +22,7 @@ public class GetModelsByMoodQueryHandler(IMapper mapper, IBaseRepository<Mood> m
         {
             Success = true,
             Message = "Models By Mood",
-            ModelsByMood = _mapper.Map<List<GetModelsByMoodQueryVm>>(models)
+            Models = _mapper.Map<List<GetModelsByMoodQueryVm>>(models)
         };
 
         return response;

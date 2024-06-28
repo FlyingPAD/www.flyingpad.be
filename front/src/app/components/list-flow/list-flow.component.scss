@@ -1,0 +1,44 @@
+.flow-list
+{
+    min-height: 910px;
+    max-height: 910px;
+    overflow-y: scroll;
+    min-width: 215px;
+    
+    border-right: 3px solid #6b5240;
+
+    margin-top: 85px;
+
+    ul
+    {       
+        margin:0;
+        padding:0;
+        margin-top: 15px;
+        
+        li
+        {
+            font-size: 13px;
+            text-indent: 15px;
+
+            white-space: nowrap;        /* Empêche le texte de passer à la ligne */
+            overflow: hidden;           /* Coupe le texte qui déborde */
+            text-overflow: ellipsis;    /* Ajoute les points de suspension à la fin du texte */
+
+            color: #6b5240;
+        }
+        li:hover
+        {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .active
+        {
+            text-decoration: underline;
+        }
+    }
+
+    .bottom-space
+    {
+        height: 150px;
+    }
+}

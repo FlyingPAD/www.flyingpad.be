@@ -1,7 +1,10 @@
-<div class="mood">
-    <h1>{{mood?.name}}</h1>
-    <h2>{{mood?.description}}</h2>
-
+<div class="mood-card">
+    <div class="form">  
+        <form [formGroup]="formGroup">
+            <input type="text" formControlName="name" placeholder="{{mood?.name}}">
+            <input type="text" formControlName="description" placeholder="{{mood?.description}}">    
+        </form>
+    </div>
     <div *ngIf="mood?.type == 1">           
         <img src="{{environment}}/Content/img_thumbs/{{mood?.businessId}}.{{mood?.extension}}" />
     </div>
@@ -14,7 +17,6 @@
     <div *ngIf="mood?.type == 4">
         <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood?.businessId}}.jpg" />
     </div>
-
     <div class="box-score">
         <button (click)="updateMoodScore(-10)">-10</button>
         <button (click)="updateMoodScore(-1)">-1</button>
@@ -22,7 +24,6 @@
         <button (click)="updateMoodScore(1)">+1</button>
         <button (click)="updateMoodScore(10)">+10</button>
     </div>
-
     <div *ngIf="mood?.type === 1 ">
         <div class="item-top flex">
             <p><b>Size</b></p>
@@ -40,8 +41,7 @@
             <p><b>Width</b></p>
             <p>{{ typeCheck(mood).width }} pixels</p>
         </div>
-        </div>
-
+    </div>
     <div *ngIf="mood?.type === 2 ">
         <div class="item-top flex">
             <p><b>Size</b></p>
@@ -64,7 +64,6 @@
             <p>{{typeCheck(mood).duration | formatDuration }}</p>
         </div>
     </div>
-
     <div class="flex_created">
         <div class="box_created">
             <p>Created :</p>
@@ -75,4 +74,18 @@
             <p>{{ mood?.modified | date : 'MMMM d, y | HH:mm' }}</p>
         </div>
     </div>
+    <div class="buttons">
+        <a [class.disabled]="formGroup.invalid" (click)="update()">Update</a>
+        <a (click)="triggerDeleteMood()">Delete</a>
+    </div>
+    <div [ngClass]="triggerDelete === true ? 'box-delete on-delete' : 'box-delete' " (click)="triggerDeleteMood()">
+        <h1>Warning !!</h1>
+        <br>
+        <p>This will delete mood & all associations permanently</p>
+        <br>
+        <p>Are you sure ?</p>
+        <br>
+        <span (click)="deleteMood()">Delete</span>
+    </div>
+    <div class="bottom-space"></div>
 </div>

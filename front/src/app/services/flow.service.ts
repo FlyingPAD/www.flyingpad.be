@@ -3,13 +3,14 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable, map, of, combineLatest, BehaviorSubject, switchMap, startWith, Subject, take, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { GetMoodByIdResponse, GetMoodsResponse, MoodFull, MoodLight, UpdateMoodScoreCall, UpdateMoodScoreResponse } from '../models/mood';
+import { GetMoodByIdResponse, GetMoodsResponse, MoodFull, MoodLight, MoodUpdateForm, MoodUpdateResponse, UpdateMoodScoreCall, UpdateMoodScoreResponse } from '../models/mood';
 import { GetAllTagCategoriesResponse, GetAllTagsResponse, GetTagByIdResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse, TagCategoryFull, TagFull, TagLight } from '../models/tag';
 import { ArtistFull, ArtistLight, GetAllArtistsResponse, GetArtistByIdResponse, GetArtistsByStyleResponse } from '../models/artist';
 import { GetAllModelsResponse, GetModelResponse, GetModelsResponse, ModelFull, ModelLight } from '../models/model';
 import { GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, GetLinksResponse, LinkCategoryFull, LinkFull, LinkLight } from '../models/link';
 import { GetStyleResponse, GetStylesResponse, StyleFull } from '../models/style';
 import { FranchiseFull, FranchiseLight, GetAllFranchisesResponse, GetAllMediasResponse, GetFranchiseByIdResponse, GetFranchisesByMediaResponse, GetMediaByIdResponse, MediaFull } from '../models/franchise';
+import { BaseResponse } from '../models/base-response';
 
 @Injectable({
   providedIn: 'root'
@@ -41,11 +42,11 @@ export class FlowService {
   updateLinkCategoryId(linkCategoryId: number | null) { this.#linkCategoryId.next(linkCategoryId) }
 
   // Reload
-  #reloadMoods = new Subject<void>()
-  refreshMoods() { this.#reloadMoods.next() }
+  #refreshMoods = new Subject<void>()
+  refreshMoods() { this.#refreshMoods.next() }
   
   // Get All
-  moods$ = this.#reloadMoods.pipe(
+  moods$ = this.#refreshMoods.pipe(
     startWith(null),
     switchMap(() => this.#http.get<GetMoodsResponse>(`${this.#url}Moods/GetAll`)),
     map(response => response.moods)
@@ -61,7 +62,7 @@ export class FlowService {
   linkCategories$ = this.#http.get<GetLinkCategoriesResponse>(`${this.#url}LinkCategories/GetAll`).pipe(map(response => response.linkCategories))
 
   // Get By ...
-  mood$ = combineLatest([this.#moodId, this.#reloadMoods.pipe(startWith(null))])
+  mood$ = combineLatest([this.#moodId, this.#refreshMoods.pipe(startWith(null))])
   .pipe(
     switchMap(([moodId]) => {
       if (moodId === null) return of(undefined)
@@ -78,11 +79,36 @@ export class FlowService {
   media$ = this.#mediaId.pipe(switchMap(mediaId => mediaId ? this.getMediaById(mediaId) : of(undefined)), startWith(undefined))
   link$ = this.#linkId.pipe(switchMap(linkId => linkId ? this.getLinkById(linkId) : of(undefined)), startWith(undefined))
   linkCategory$ = this.#linkCategoryId.pipe(switchMap(linkCategoryId => linkCategoryId ? this.getLinkCategoryById(linkCategoryId) : of(undefined)), startWith(undefined))
-  
-  moodsByTag$ = this.#tagId.pipe(switchMap(tagId => tagId ? this.getMoodsByTag(tagId) : of([])), startWith([]))
-  moodsByModel$ = this.#modelId.pipe(switchMap(modelId => modelId ? this.getMoodsByModel(modelId) : of([])), startWith([]))
-  moodsByArtist$ = this.#artistId.pipe(switchMap(artistId => artistId ? this.getMoodsByArtist(artistId) : of([])), startWith([]))
-  moodsByFranchise$ = this.#franchiseId.pipe(switchMap(franchiseId => franchiseId ? this.getMoodsByFranchise(franchiseId) : of([])), startWith([]))
+   
+  moodsByTag$ = combineLatest([this.#tagId, this.#refreshMoods.pipe(startWith(null))])
+  .pipe(
+    switchMap(([tagId]) => {
+      return tagId ? this.getMoodsByTag(tagId) : of([])
+    }),
+    startWith([])
+  )
+  moodsByModel$ = combineLatest([this.#modelId, this.#refreshMoods.pipe(startWith(null))])
+  .pipe(
+    switchMap(([modelId]) => {
+      return modelId ? this.getMoodsByModel(modelId) : of([])
+    }),
+    startWith([])
+  )
+  moodsByArtist$ = combineLatest([this.#artistId, this.#refreshMoods.pipe(startWith(null))])
+  .pipe(
+    switchMap(([artistId]) => {
+      return artistId ? this.getMoodsByArtist(artistId) : of([])
+    }),
+    startWith([])
+  )
+  moodsByFranchise$ = combineLatest([this.#franchiseId, this.#refreshMoods.pipe(startWith(null))])
+  .pipe(
+    switchMap(([franchiseId]) => {
+      return franchiseId ? this.getMoodsByFranchise(franchiseId) : of([])
+    }),
+    startWith([])
+  )
+
   tagsByCategory$ = this.#tagCategoryId.pipe(switchMap(tagCategoryId => tagCategoryId ? this.getTagsByCategory(tagCategoryId) : of([])), startWith([]))
   modelsByFranchise$ = this.#franchiseId.pipe(switchMap(franchiseId => franchiseId ? this.getModelsByFranchise(franchiseId) : of([])), startWith([]))
   artistsByStyle$ = this.#styleId.pipe(switchMap(styleId => styleId ? this.getArtistsByStyle(styleId) : of([])), startWith([]))
@@ -149,7 +175,7 @@ export class FlowService {
   }
 
   // Update.
-  updateScoreTrigger(form: UpdateMoodScoreCall): void {
+  updateScore(form: UpdateMoodScoreCall): void {
     this.#http.put<UpdateMoodScoreResponse>(`${this.#url}Moods/UpdateScore`, form).pipe(
       take(1),
       tap(response => {
@@ -160,6 +186,19 @@ export class FlowService {
       }),
     ).subscribe()
   }
+
+    // Update.
+    public UpdateMood( form : MoodUpdateForm ) { 
+      return this.#http.put<MoodUpdateResponse>(`${this.#url}Moods/Update`, form)
+    }
+  
+    // Delete.
+    public DeleteMood( moodId : number ) {
+      return this.#http.delete<BaseResponse>(`${this.#url}Moods/Delete/${moodId}`)
+    }
+    public DeleteTag( tagId : number ) {
+      return this.#http.delete<BaseResponse>(`${this.#url}Tags/Delete/${tagId}`)
+    }
 
   // Observable.
   flow$ = combineLatest([
