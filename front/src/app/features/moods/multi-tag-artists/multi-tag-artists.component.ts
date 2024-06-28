@@ -41,7 +41,7 @@ export class MultiTagArtistsComponent implements OnDestroy
       form.moodId = mood      
       this.relationService.InsertRMA(form).subscribe()
     })
-    this.router.navigateByUrl('/moods/gallery')
+    this.router.navigateByUrl('/moods')
   }
 
     // Filter artists based on search input

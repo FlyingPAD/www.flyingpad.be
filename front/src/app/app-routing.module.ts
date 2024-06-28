@@ -56,6 +56,7 @@ import { LinksEditionComponent } from './features/links/links-edition/links-edit
 import { LinksGalleryComponent } from './features/links/links-gallery/links-gallery.component';
 import { FranchisesGalleryComponent } from './features/franchises/franchises-gallery/franchises-gallery.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
+import { LayoutArtistsComponent } from './layouts/layout-artists/layout-artists.component';
 
 const routes: Routes = 
 [
@@ -79,11 +80,9 @@ const routes: Routes =
   },
 
   // Artists
-  {
-    path : 'artists', component : LayoutCustomComponent, children :
+  { path : 'artists', component : LayoutCustomComponent, children :
     [
-
-      { path : 'list', component : ArtistsListComponent, title : 'Flying PAD | Artists' },
+      { path : 'artist-gallery', component : ArtistGalleryComponent, title : 'Flying PAD | Artist Gallery' },
     
       { path : 'update-artist', component : UpdateArtistComponent, title : 'Flying PAD | Update Artist' },
       { path : 'update-style', component : UpdateStyleComponent, title : 'Flying PAD | Update Style' },
@@ -92,13 +91,16 @@ const routes: Routes =
       { path : 'create-style', component : CreateStyleComponent, title : 'Flying PAD | Create Style' },
       { path : 'delete-artist', component : DeleteArtistComponent, title : 'Flying PAD | Delete Artist' },
       { path : 'delete-style', component : DeleteStyleComponent, title : 'Flying PAD | Delete Style' },
+      { path : 'list', component : LayoutArtistsComponent, children :
+        [
+          { path : '', component : ArtistsListComponent, title : 'Flying PAD | Artists' },
+        ]
+      },
     ]
   },
-  { path : 'artist-gallery', component : ArtistGalleryComponent, title : 'Flying PAD | Artist Gallery' },
 
   // Franchises
-  {
-    path : 'franchises', component : LayoutCustomComponent, children :
+  { path : 'franchises', component : LayoutCustomComponent, children :
     [
       { path : 'franchise-gallery', component : FranchiseGalleryComponent, title : 'Flying PAD | Franchise Gallery' },
       { path : 'gallery', component : FranchisesGalleryComponent, title : 'Flying PAD | Franchises Gallery' },
@@ -108,17 +110,15 @@ const routes: Routes =
   },
 
   // Models
-  {
-    path : 'models', component : LayoutCustomComponent, children : 
+  { path : 'models', component : LayoutCustomComponent, children : 
     [
-      { path : '', component : ModelGalleryComponent, title : 'Flying PAD | Model Gallery' },
+      { path : 'model-gallery', component : ModelGalleryComponent, title : 'Flying PAD | Model Gallery' },
       { path : 'edition', component : EditionComponent, title : 'Flying PAD | Models Edition' }
     ]
   },
 
   // Moods
-  {
-    path : 'moods', component : LayoutCustomComponent, children : 
+  { path : 'moods', component : LayoutCustomComponent, children : 
     [
       { path : '', component : MoodsGalleryComponent, title : 'Flying PAD | Moods Gallery' },  
       { path : 'mood-details', component : MoodDetailsComponent, title : 'Flying PAD | Mood Details' },
@@ -131,8 +131,7 @@ const routes: Routes =
   },
 
   // Links
-  {
-    path : 'links', component : LayoutCustomComponent, children : 
+  { path : 'links', component : LayoutCustomComponent, children : 
     [
       { path : '', component : LinksGalleryComponent, title : 'Flying PAD | Links Gallery' },
       { path : 'edition', component : LinksEditionComponent, title : 'Flying PAD | Links Edition' },
@@ -140,8 +139,7 @@ const routes: Routes =
   },
 
   // Scripts
-  {
-    path : 'scripts', component : LayoutCustomComponent, children : 
+  { path : 'scripts', component : LayoutCustomComponent, children : 
     [
       { path : '', component : ListComponent, title : 'Flying PAD | Tools List' },  
       { path : 'introduction', component : IntroComponent, title : 'Flying PAD | Introduction' },
@@ -163,8 +161,7 @@ const routes: Routes =
   },
 
   // Tags
-  {
-    path : 'tags', component : LayoutCustomComponent, children : 
+  { path : 'tags', component : LayoutCustomComponent, children : 
     [
       { path : '', component : TagsGalleryComponent, title : 'Flying PAD | Tags Gallery' },  
       { path : 'edition', component : EditionComponent, title : 'Flying PAD | Tags CRUD' },  
@@ -172,8 +169,7 @@ const routes: Routes =
   },
 
   // Tools
-  {
-    path : 'tools', component : LayoutCustomComponent, children : 
+  { path : 'tools', component : LayoutCustomComponent, children : 
     [
       { path : '', component : ToolListComponent, title : 'Flying PAD | Tools List' },    
       { path : 'chord-wheel', component : ChordWheelSvgComponent, title : 'Flying PAD | Chord Wheel' },
@@ -185,8 +181,7 @@ const routes: Routes =
   },
 
   // Users
-  {
-    path : 'users', component : LayoutCustomComponent, children : 
+  { path : 'users', component : LayoutCustomComponent, children : 
     [
       { path : 'user-details', component : UserDetailsComponent, title : 'Flying PAD | User Details' },
       { path : 'user-update', component : UserUpdateComponent, title : 'Flying PAD | Update User' },

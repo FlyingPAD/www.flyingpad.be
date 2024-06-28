@@ -125,11 +125,11 @@ export class MoodEditionComponent implements OnDestroy
       const mood = this.moodEditionFlow().mood;
       if (!mood || mood.businessId == null) {
         this.#toastr.error('Invalid mood data. Please try again.');
-        return; // Arrête l'exécution si mood est null ou si businessId est undefined
+        return;
       }
   
       let form: MoodUpdateForm = {
-        moodId: mood.businessId, // Ici, nous sommes sûrs que moodId n'est ni null ni undefined
+        moodId: mood.businessId,
         name: this.formGroup.value.name,
         description: this.formGroup.value.description
       };
@@ -262,7 +262,7 @@ export class MoodEditionComponent implements OnDestroy
     this.DeleteMoodSubscription = this.#moodService.Delete(moodId).subscribe({
       next: () => {
         this.#toastr.success('Mood successfully deleted.');
-        this.#router.navigateByUrl('/moods/gallery');
+        this.#router.navigateByUrl('/moods');
       },
       error: (error) => {
         this.#toastr.error('Failed to delete mood. Please try again.');

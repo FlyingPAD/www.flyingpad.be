@@ -41,7 +41,7 @@ export class MultiTagModelsComponent implements OnDestroy
       form.moodId = mood      
       this.relationService.InsertRMM(form).subscribe()
     })
-    this.router.navigateByUrl('/moods/gallery')
+    this.router.navigateByUrl('/moods')
   }
 
     // Filter models based on search input

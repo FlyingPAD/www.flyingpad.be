@@ -1,15 +1,8 @@
-<div class="mood-gallery">
-    <div class="pagination-row">
-        <div id="pagination">
-            <pagination-controls previousLabel="" nextLabel="" class="pagination"
-                (pageChange)="paginationService.moodsByTagCurrentPage = $event"></pagination-controls>
-        </div>
-    </div>
-    
+<div class="moods-gallery">   
     <div *ngIf="moods?.length; else loading">
         <div class="gallery">
             <div
-                *ngFor="let mood of moods || [] | paginate : { itemsPerPage : moodsPerPage, currentPage : paginationService.moodsByTagCurrentPage}">
+                *ngFor="let mood of moods || [] | paginate : { itemsPerPage : moodsPerPage, currentPage : currentPage}">
                 <section>
                     <div *ngIf="mood.type == 1">
                         <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
@@ -33,8 +26,13 @@
     </div>
     <ng-template #loading>
         <div class="loading">
-            <p>Loading ...</p>
-            <img src="../../../../assets/app_icons/spinner.gif" />
+            <p>No moods found ...</p>
         </div>
     </ng-template>
+    <div class="pagination-row" *ngIf="moods && moods.length > moodsPerPage">
+        <div id="pagination">
+            <pagination-controls previousLabel="" nextLabel="" class="pagination"
+                (pageChange)="currentPage = $event"></pagination-controls>
+        </div>
+    </div>
 </div>

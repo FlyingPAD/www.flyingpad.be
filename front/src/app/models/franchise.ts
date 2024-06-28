@@ -7,6 +7,7 @@ export class FranchiseLight
 {
     businessId : number = 0
     name : string = ''
+    description : string = ''
 }
 export class FranchiseDetails
 {
