@@ -113,4 +113,12 @@ export class FlowComponent
   {
     this.#router.navigateByUrl('/dashboard')
   }
+
+  goToURL(): void {
+    const url = this.flow()?.link?.url
+    if (url) 
+    {
+      window.open(url, '_blank')
+    } 
+  }
 }

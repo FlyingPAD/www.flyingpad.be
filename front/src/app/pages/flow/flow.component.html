@@ -1,5 +1,5 @@
 <div class="flow">
-    <div class="flow-toolbar">
+    <div class="flow-toolbar toolbar-top">
         <div class="toolbar-card" (click)="goBack()">
             <div class="card-title">
                 <img src="../../../assets/app_icons/arrow_left.png" />
@@ -29,7 +29,7 @@
 
         <div [class.active]="showTagCategories" class="toolbar-card" (click)="toggleTagCategories()">
             <div class="card-title">
-                <img src="../../../assets/app_icons/icon_scripts_001.png" />
+                <img src="../../../assets/app_icons/icon_medias_001.png" />
                 <p>Tag Categories</p>
             </div>
             <div class="card-info">
@@ -69,7 +69,7 @@
 
         <div [class.active]="showStyles" class="toolbar-card" (click)="toggleStyles()">
             <div class="card-title">
-                <img src="../../../assets/app_icons/icon_scripts_001.png" />
+                <img src="../../../assets/app_icons/icon_medias_001.png" />
                 <p>Styles</p>
             </div>
             <div class="card-info">
@@ -179,7 +179,7 @@
 
         <div [class.active]="showLinkCategories" class="toolbar-card" (click)="toggleLinkCategories()">
             <div class="card-title">
-                <img src="../../../assets/app_icons/icon_scripts_001.png" />
+                <img src="../../../assets/app_icons/icon_medias_001.png" />
                 <p>Link Categories</p>
             </div>
             <div class="card-info">
@@ -221,16 +221,105 @@
 
     <div *ngIf="showMood && flow()?.mood as mood"><app-mood-details-flow [mood]="flow()?.mood" /></div>
 
-    <div class="details">
-        <p [class.active]="showMood" (click)="toggleMood()">{{flow()?.mood?.name || 'Mood'}}</p>
-        <p [class.active]="showTagCategory" (click)="toggleTagCategory()">{{flow()?.tagCategory?.name || 'Tag Category'}}</p>
-        <p [class.active]="showTag" (click)="toggleTag()">{{flow()?.tag?.name || 'Tag'}}</p>
-        <p [class.active]="showModel" (click)="toggleModel()">{{flow()?.model?.pseudonym || 'Model'}}</p>
-        <p [class.active]="showStyle" (click)="toggleStyle()">{{flow()?.style?.name || 'Style'}}</p>
-        <p [class.active]="showArtist" (click)="toggleArtist()">{{flow()?.artist?.name || 'Artist'}}</p>
-        <p [class.active]="showMedia" (click)="toggleMedia()">{{flow()?.media?.name || 'Media'}}</p>
-        <p [class.active]="showFranchise" (click)="toggleFranchise()">{{flow()?.franchise?.name || 'Franchise'}}</p>
-        <p [class.active]="showLinkCategory" (click)="toggleLinkCategory()">{{flow()?.linkCategory?.name || 'Link Category'}}</p>
-        <a href="{{flow()?.link?.url}}" target="_blank" (click)="toggleLink()"><p [class.active]="showLink" >{{flow()?.link?.name || 'Link'}}</p></a>
+    <div class="flow-toolbar toolbar-bottom">
+        <div [class.active]="showMood" class="toolbar-card" (click)="toggleMood()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_mood_001.png" />
+                <p>Mood</p>
+            </div>
+            <div class="card-info">
+                <p>( {{flow()?.mood?.name || 'Mood'}} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showTagCategory" class="toolbar-card" (click)="toggleTagCategory()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_medias_001.png" />
+                <p>Tag Category</p>
+            </div>
+            <div class="card-info">
+                <p>( {{flow()?.tagCategory?.name || 'Tag Category'}} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showTag" class="toolbar-card" (click)="toggleTag()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_tags_001.png" />
+                <p>Tag</p>
+            </div>
+            <div class="card-info">
+                <p>( {{flow()?.tag?.name || 'Tag'}} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showModel" class="toolbar-card" (click)="toggleModel()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_model_001.png" />
+                <p>Model</p>
+            </div>
+            <div class="card-info">
+                <p>( {{flow()?.model?.pseudonym || 'Model'}} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showStyle" class="toolbar-card" (click)="toggleStyle()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_medias_001.png" />
+                <p>Style</p>
+            </div>
+            <div class="card-info">
+                <p>( {{flow()?.style?.name || 'Style'}} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showArtist" class="toolbar-card" (click)="toggleArtist()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_artists_001.png" />
+                <p>Artist</p>
+            </div>
+            <div class="card-info">
+                <p>( {{flow()?.artist?.name || 'Artist'}} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showMedia" class="toolbar-card" (click)="toggleMedia()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_medias_001.png" />
+                <p>Media</p>
+            </div>
+            <div class="card-info">
+                <p>( {{flow()?.media?.name || 'Media'}} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showFranchise" class="toolbar-card" (click)="toggleFranchise()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_franchises_001.png" />
+                <p>Franchise</p>
+            </div>
+            <div class="card-info">
+                <p>( {{flow()?.franchise?.name || 'Franchise'}} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showLinkCategory" class="toolbar-card" (click)="toggleLinkCategory()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_medias_001.png" />
+                <p>Link Category</p>
+            </div>
+            <div class="card-info">
+                <p>( {{flow()?.linkCategory?.name || 'Link Category'}} )</p>
+            </div>
+        </div>
+
+        <div [class.active]="showLink" class="toolbar-card" (click)="toggleLink(); goToURL()">
+            <div class="card-title">
+                <img src="../../../assets/app_icons/icon_links_001.png" />
+                <p>Link</p>
+            </div>
+            <div class="card-info">
+                <p>( {{flow()?.link?.name || 'Link'}} )</p>
+            </div>
+        </div>
     </div>
 </div>

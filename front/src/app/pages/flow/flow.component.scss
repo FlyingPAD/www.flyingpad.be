@@ -8,8 +8,6 @@
     .flow-toolbar
     {
         position: fixed;
-        top: 0;
-        left: 0;
 
         height: 75px;
         width: 100vw;
@@ -20,7 +18,6 @@
         padding: 5px;
 
         background-color: rgb(255, 255, 255, 0.85);
-        border-bottom: 3px solid #6b5240;
 
         .toolbar-card
         {
@@ -150,75 +147,16 @@
             transition-duration: 650ms;  
         }
     }
-
-    .details
+    .toolbar-top
     {
-        width: 100vw;
-        position: fixed;
+        top: 0;
+        left: 0;
+        border-bottom: 3px solid #6b5240;
+    }
+    .toolbar-bottom
+    {
         bottom: 0;
         left: 0;
-        padding: 5px;
-
-        display: flex;
-
         border-top: 3px solid #6b5240;
-        background-color: rgb(255, 255, 255, 0.85);
-
-        overflow-x: scroll;
-
-        a
-        {
-            color: #6b5240;
-            text-decoration: none;
-        }
-        
-        p
-        {
-            background-color: rgb(107, 82, 64, 0.7);
-            border: 2px solid #6b5240;
-            border-radius: 5px;
-            box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
-            
-            min-width: 155px;
-            height: 15px;
-            
-            margin: 5px;
-            padding: 10px;
-            
-            color: #fff;
-            font-size: 13px;
-
-            white-space: nowrap;        /* Empêche le texte de passer à la ligne */
-            overflow: hidden;           /* Coupe le texte qui déborde */
-            text-overflow: ellipsis;    /* Ajoute les points de suspension à la fin du texte */
-        }
-        p:hover
-        {
-            background-color: rgba(255, 255, 255, 0.5);       
-            color: #6b5240;
-            transition-duration: 650ms;
-            cursor: pointer;
-        }
-        .active
-        {
-            background-color: rgba(255, 255, 255, 0.5);       
-            color: #6b5240;
-        }
-    }
-
-    .off
-    {
-        display: none;
-    }
-
-    .tag
-    {
-        display: flex;
-        flex-wrap: wrap;
-
-        img
-        {
-            width: 250px;
-        }
     }
 }
