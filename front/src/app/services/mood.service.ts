@@ -3,7 +3,7 @@ import { Injectable, inject } from "@angular/core";
 import { BehaviorSubject, switchMap, map, combineLatest, of, tap, catchError, take, Observable } from "rxjs";
 import { environment } from "../../environments/environment";
 import { GetModelsCheckBoxesByMoodResponse, GetModelsResponse } from "../models/model";
-import { GetMoodByIdResponse, GetMoodsResponse, MoodUpdateForm, MoodUpdateResponse, UpdateMoodScoreCall, UpdateMoodScoreResponse } from "../models/mood";
+import { GetMoodByIdResponse, GetMoodsResponse, MoodUpdateForm, MoodUpdateResponse, UpdateMoodScoreCall } from "../models/mood";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { GetFranchisesByMoodResponse } from "../models/franchise";
 import { GetOneTagDetailsResponse, GetTagsByMoodResponse, GetTagsCheckBoxesByMoodResponse } from "../models/tag";
@@ -230,33 +230,26 @@ export class MoodStateService
       map(response => response.videoYouTube) )
   }
 
-  getModelsByMood(businessId : number) 
-  {
+  getModelsByMood(businessId : number) {
     return this.#http.get<GetModelsResponse>(`${this.#url}Models/GetByMood/${businessId}`).pipe( 
       map(response => response.models) )
   }
-
-  getFranchisesByMood(businessId : number) 
-  {
+  getFranchisesByMood(businessId : number) {
     return this.#http.get<GetFranchisesByMoodResponse>(`${this.#url}Franchises/GetByMood/${businessId}`).pipe( 
       map(response => response.franchisesByMood) )
   }
-
-  getArtistsByMood(businessId : number) 
-  {
+  getArtistsByMood(businessId : number) {
     return this.#http.get<GetArtistsByMoodResponse>(`${this.#url}Artists/GetByMood/${businessId}`).pipe( 
       map(response => response.artistsByMood) )
   }
-
-  getTagsByMood(businessId : number) 
-  {
+  getTagsByMood(businessId : number) {
     return this.#http.get<GetTagsByMoodResponse>(`${this.#url}Tags/GetByMood/${businessId}`).pipe( 
       map(response => response.tagsByMood) )
   }
 
   updateScoreTrigger(form: UpdateMoodScoreCall) 
   {
-    this.#http.put<UpdateMoodScoreResponse>(`${this.#url}Moods/UpdateScore`, form).pipe(
+    this.#http.put<BaseResponse>(`${this.#url}Moods/UpdateScore`, form).pipe(
       take(1),
       tap(response => 
         {

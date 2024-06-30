@@ -3,14 +3,15 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable, map, of, combineLatest, BehaviorSubject, switchMap, startWith, Subject, take, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { GetMoodByIdResponse, GetMoodsResponse, MoodFull, MoodLight, MoodUpdateForm, MoodUpdateResponse, UpdateMoodScoreCall, UpdateMoodScoreResponse } from '../models/mood';
-import { GetAllTagCategoriesResponse, GetAllTagsResponse, GetTagByIdResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse, TagCategoryFull, TagFull, TagLight } from '../models/tag';
-import { ArtistFull, ArtistLight, GetAllArtistsResponse, GetArtistByIdResponse, GetArtistsByStyleResponse } from '../models/artist';
+import { GetMoodByIdResponse, GetMoodsResponse, MoodCreateForm, MoodCreateResponse, MoodFull, MoodLight, MoodUpdateForm, MoodUpdateResponse, UpdateMoodScoreCall } from '../models/mood';
+import { GetAllTagCategoriesResponse, GetAllTagsResponse, GetTagByIdResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse, GetTagsByMoodResponse, TagCategoryFull, TagFull, TagLight } from '../models/tag';
+import { ArtistFull, ArtistLight, GetAllArtistsResponse, GetArtistByIdResponse, GetArtistsByMoodResponse, GetArtistsByStyleResponse } from '../models/artist';
 import { GetAllModelsResponse, GetModelResponse, GetModelsResponse, ModelFull, ModelLight } from '../models/model';
 import { GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, GetLinksResponse, LinkCategoryFull, LinkFull, LinkLight } from '../models/link';
 import { GetStyleResponse, GetStylesResponse, StyleFull } from '../models/style';
-import { FranchiseFull, FranchiseLight, GetAllFranchisesResponse, GetAllMediasResponse, GetFranchiseByIdResponse, GetFranchisesByMediaResponse, GetMediaByIdResponse, MediaFull } from '../models/franchise';
+import { FranchiseFull, FranchiseLight, GetAllFranchisesResponse, GetAllMediasResponse, GetFranchiseByIdResponse, GetFranchisesByMediaResponse, GetFranchisesByMoodResponse, GetMediaByIdResponse, MediaFull } from '../models/franchise';
 import { BaseResponse } from '../models/base-response';
+import { RelationsMoodTagForm, CreateRelationsMoodTagResponse, RelationsMoodArtistForm, CreateRelationsMoodArtistResponse, RelationsMoodModelForm, CreateRelationsMoodModelResponse, RelationsArtistStyleForm, CreateRelationsArtistStyleResponse } from '../models/relations';
 
 @Injectable({
   providedIn: 'root'
@@ -174,9 +175,51 @@ export class FlowService {
     return this.#http.get<GetLinksResponse>(`${this.#url}Links/GetByCategory/${linkCategoryId}`).pipe(map(response => response.links));
   }
 
+  // Get By Mood.
+  getModelsByMood(businessId : number) {
+    return this.#http.get<GetModelsResponse>(`${this.#url}Models/GetByMood/${businessId}`).pipe( 
+      map(response => response.models) )
+  }
+  getFranchisesByMood(businessId : number) {
+    return this.#http.get<GetFranchisesByMoodResponse>(`${this.#url}Franchises/GetByMood/${businessId}`).pipe( 
+      map(response => response.franchisesByMood) )
+  }
+  getArtistsByMood(businessId : number) {
+    return this.#http.get<GetArtistsByMoodResponse>(`${this.#url}Artists/GetByMood/${businessId}`).pipe( 
+      map(response => response.artistsByMood) )
+  }
+  getTagsByMood(businessId : number) {
+    return this.#http.get<GetTagsByMoodResponse>(`${this.#url}Tags/GetByMood/${businessId}`).pipe( 
+      map(response => response.tagsByMood) )
+  }
+
+  // Insert Relations.
+  public InsertRMT( rmtForm : RelationsMoodTagForm ) : Observable<CreateRelationsMoodTagResponse> {
+    return this.#http.post<CreateRelationsMoodTagResponse>(this.#url + 'Relations/MoodTag/Create', rmtForm)
+  }
+  public InsertRMA( rmaForm : RelationsMoodArtistForm ) : Observable<CreateRelationsMoodArtistResponse> {
+    return this.#http.post<CreateRelationsMoodArtistResponse>(this.#url + 'Relations/MoodArtist/Create', rmaForm)
+  }
+  public InsertRMM( rmmForm : RelationsMoodModelForm ) : Observable<CreateRelationsMoodModelResponse> {
+    return this.#http.post<CreateRelationsMoodModelResponse>(this.#url + 'Relations/MoodModel/Create', rmmForm)
+  }
+  public InsertRAS( rasForm : RelationsArtistStyleForm ) : Observable<CreateRelationsArtistStyleResponse> {
+    return this.#http.post<CreateRelationsArtistStyleResponse>(this.#url + 'Relations/ArtistStyle/Create', rasForm)
+  }
+
+  // Create.
+  CreateMood( form : MoodCreateForm ) {
+    return this.#http.post<MoodCreateResponse>(`${this.#url}Moods/Create`, form).pipe(
+      tap(response => { 
+        if (response.success) { 
+          this.refreshMoods()
+          this.updateMoodId(response.moodId)
+        } } ))
+  }
+
   // Update.
   updateScore(form: UpdateMoodScoreCall): void {
-    this.#http.put<UpdateMoodScoreResponse>(`${this.#url}Moods/UpdateScore`, form).pipe(
+    this.#http.put<BaseResponse>(`${this.#url}Moods/UpdateScore`, form).pipe(
       take(1),
       tap(response => {
         if (response.success) {
@@ -187,18 +230,36 @@ export class FlowService {
     ).subscribe()
   }
 
-    // Update.
-    public UpdateMood( form : MoodUpdateForm ) { 
-      return this.#http.put<MoodUpdateResponse>(`${this.#url}Moods/Update`, form)
-    }
-  
-    // Delete.
-    public DeleteMood( moodId : number ) {
-      return this.#http.delete<BaseResponse>(`${this.#url}Moods/Delete/${moodId}`)
-    }
-    public DeleteTag( tagId : number ) {
-      return this.#http.delete<BaseResponse>(`${this.#url}Tags/Delete/${tagId}`)
-    }
+  // Update.
+  UpdateMood( form : MoodUpdateForm ) { 
+    return this.#http.put<MoodUpdateResponse>(`${this.#url}Moods/Update`, form).pipe(tap(response => { if (response.success) this.refreshMoods() } ))
+  }
+
+  // Delete.
+  DeleteMood( moodId : number ) {
+    return this.#http.delete<BaseResponse>(`${this.#url}Moods/Delete/${moodId}`).pipe(tap(response => { if (response.success) this.refreshMoods() } ))
+  }
+  DeleteTag( tagId : number ) {
+    return this.#http.delete<BaseResponse>(`${this.#url}Tags/Delete/${tagId}`)
+  }
+  DeleteArtist( artistId : number ) {
+    return this.#http.delete<BaseResponse>(`${this.#url}Artists/Delete/${artistId}`)
+  }
+  DeleteStyle( styleId : number ) {
+    return this.#http.delete<BaseResponse>(`${this.#url}Styles/Delete/${styleId}`)
+  }
+  DeleteFranchise( franchiseId : number ) {
+    return this.#http.delete<BaseResponse>(`${this.#url}Franchises/Delete/${franchiseId}`)
+  }
+  DeleteMedia( mediaId : number ) {
+    return this.#http.delete<BaseResponse>(`${this.#url}Medias/Delete/${mediaId}`)
+  }
+  DeleteLinkCategory( linkCategoryId : number ) {
+    return this.#http.delete<BaseResponse>(`${this.#url}LinkCategoriess/Delete/${linkCategoryId}`)
+  }
+  DeleteLink( linkId : number ) {
+    return this.#http.delete<BaseResponse>(`${this.#url}Links/Delete/${linkId}`)
+  }
 
   // Observable.
   flow$ = combineLatest([

@@ -6,16 +6,16 @@
         </form>
     </div>
     <div *ngIf="mood?.type == 1">           
-        <img src="{{environment}}/Content/img_thumbs/{{mood?.businessId}}.{{mood?.extension}}" />
+        <a target="_blank" href="{{environment}}/Content/img_thumbs/{{mood?.businessId}}.{{mood?.extension}}"><img src="{{environment}}/Content/img_thumbs/{{mood?.businessId}}.{{mood?.extension}}" /></a>
     </div>
     <div *ngIf="mood?.type == 2">
-        <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood?.businessId}}.jpg" />        
+        <a target="_blank" href="{{environment}}/Content/video_thumbs/{{mood?.businessId}}.jpg"><img class="vid" src="{{environment}}/Content/video_thumbs/{{mood?.businessId}}.jpg" />   </a>     
     </div>
     <div *ngIf="mood?.type == 3">
-        <img src="{{environment}}/Content/txt_thumbs/{{mood?.businessId}}.jpg" />       
+        <a target="_blank" href="{{environment}}/Content/txt_thumbs/{{mood?.businessId}}.jpg"><img src="{{environment}}/Content/txt_thumbs/{{mood?.businessId}}.jpg" />  </a>     
     </div>
     <div *ngIf="mood?.type == 4">
-        <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood?.businessId}}.jpg" />
+        <a target="_blank" href="{{environment}}/Content/youtube_thumbs/{{mood?.businessId}}.jpg"><img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood?.businessId}}.jpg" /></a>
     </div>
     <div class="box-score">
         <button (click)="updateMoodScore(-10)">-10</button>
