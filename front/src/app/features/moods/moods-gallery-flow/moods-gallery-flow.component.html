@@ -5,7 +5,8 @@
                 *ngFor="let mood of moods || [] | paginate : { itemsPerPage : moodsPerPage, currentPage : currentPage}">
                 <section>
                     <div *ngIf="mood.type == 1">
-                        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
+                        <img [class.active]="mood.businessId === currentMoodId"
+                            src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
                             (click)="handleMoodId(mood.businessId)" />
                     </div>
                     <div *ngIf="mood.type == 2">

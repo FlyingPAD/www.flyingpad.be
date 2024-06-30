@@ -13,11 +13,14 @@ export class MoodsGalleryFlowComponent {
 
   environment : string = environment.apiBaseUrl  
 
+  currentMoodId : number = 0
+
   moodsPerPage : number = 36  
   currentPage : number = 1
 
   handleMoodId(moodId : number) : void
   {
+    this.currentMoodId = moodId
     this.moodId.emit(moodId)
   }
 }

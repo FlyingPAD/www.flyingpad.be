@@ -44,7 +44,9 @@ export interface GetMoodsResponse extends BaseResponse {
 export interface GetMoodByIdResponse extends BaseResponse {
     mood : MoodFull
 }
+export interface MoodCreateResponse extends BaseResponse {
+    moodId : number
+}
 export interface MoodUpdateResponse extends BaseResponse {
     updatedMood : MoodLight
 }
-export interface UpdateMoodScoreResponse extends BaseResponse {}

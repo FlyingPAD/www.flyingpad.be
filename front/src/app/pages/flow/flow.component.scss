@@ -25,8 +25,6 @@
             border: 2px solid #6b5240;
             border-radius: 5px;
 
-            min-width: 195px;
-
             .card-title
             {
                 display: flex;
@@ -152,11 +150,21 @@
         top: 0;
         left: 0;
         border-bottom: 3px solid #6b5240;
+
+        .toolbar-card
+        {
+            min-width: 195px;
+        }
     }
     .toolbar-bottom
     {
         bottom: 0;
         left: 0;
         border-top: 3px solid #6b5240;
+
+        .toolbar-card
+        {
+            min-width: 186px;  
+        }
     }
 }
