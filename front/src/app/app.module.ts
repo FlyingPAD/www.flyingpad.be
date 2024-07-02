@@ -27,16 +27,13 @@ import { ChordWheelSvgComponent } from './features/tools/chord-wheel-svg/chord-w
 import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circle-of-fifths.component';
 import { DiapasonComponent } from './features/tools/diapason/diapason.component';
 import { FlyingKeysMiniComponent } from './features/tools/flying-keys-mini/flying-keys-mini.component';
-import { ToolListComponent } from './features/tools/tool-list/tool-list.component';
 import { TrainerNotesComponent } from './features/tools/trainer-notes/trainer-notes.component';
-import { TagsGalleryComponent } from './features/tags/tags-gallery/tags-gallery.component';
 import { TagsEditionComponent } from './features/tags/tags-edition/tags-edition.component';
 import { ChordsComponent } from './features/scripts/chords/chords.component';
 import { IntervalsComponent } from './features/scripts/intervals/intervals.component';
 import { IntroComponent } from './features/scripts/intro/intro.component';
 import { KeyRefComponent } from './features/scripts/key-ref/key-ref.component';
 import { LearnMusicComponent } from './features/scripts/learn-music/learn-music.component';
-import { ListComponent } from './features/scripts/list/list.component';
 import { MelodyComponent } from './features/scripts/melody/melody.component';
 import { MetricsAComponent } from './features/scripts/metrics-a/metrics-a.component';
 import { MetricsBComponent } from './features/scripts/metrics-b/metrics-b.component';
@@ -87,14 +84,29 @@ import { MoodDetailsFlowComponent } from './features/moods/mood-details-flow/moo
 import { MoodsGalleryFlowComponent } from './features/moods/moods-gallery-flow/moods-gallery-flow.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
 import { ListFlowComponent } from './components/list-flow/list-flow.component';
+import { TagsComponent } from './pages/tags/tags.component';
+import { ScriptsComponent } from './pages/scripts/scripts.component';
+import { ToolsComponent } from './pages/tools/tools.component';
 
 @NgModule({
   declarations: 
   [
+    // Pages.
+    HomeComponent,
+    DashboardHomeComponent,
+    AboutComponent,
+    FlowComponent,
+    ScriptsComponent,
+    TagsComponent,
+    ToolsComponent,
+    NotFoundComponent,
     // Components.
     AppComponent,
-    DashboardHomeComponent,
-    FlowComponent,
+    ListFlowComponent,
+    CurrentTimeComponent,
+    ButtonBackComponent,
+    ButtonTopComponent,
+    DialogComponent,
     // => Franchises
     FranchiseGalleryComponent,
     FranchisesGalleryComponent,
@@ -112,11 +124,6 @@ import { ListFlowComponent } from './components/list-flow/list-flow.component';
     DeleteArtistComponent,
     DeleteStyleComponent,
     ArtistGalleryComponent,
-    // => Core
-    HomeComponent,
-    AboutComponent,
-    NotFoundComponent,
-    ListFlowComponent,
     // => Layouts
     LayoutEmptyComponent,
     LayoutCustomComponent,
@@ -136,10 +143,8 @@ import { ListFlowComponent } from './components/list-flow/list-flow.component';
     ModelGalleryComponent,
     EditionComponent,
     // => Tags
-    TagsGalleryComponent,
     TagsEditionComponent,
     // => Scripts
-    ListComponent,
     NotesComponent,
     NotesTradComponent,
     PulsationComponent,
@@ -156,7 +161,6 @@ import { ListFlowComponent } from './components/list-flow/list-flow.component';
     LearnMusicComponent,
     ViewpointComponent,
     // => Tools
-    ToolListComponent,
     ChordWheelSvgComponent,
     CircleOfFifthsComponent,
     DiapasonComponent,
@@ -170,11 +174,6 @@ import { ListFlowComponent } from './components/list-flow/list-flow.component';
     // => Links
     LinksEditionComponent,
     LinksGalleryComponent,
-    // Misc. Components.
-    CurrentTimeComponent,
-    ButtonBackComponent,
-    ButtonTopComponent,
-    DialogComponent,
     // Pipes.
     FormatDurationPipe,
     FormatSizePipe,
