@@ -212,20 +212,15 @@ export class MoodStateService
     )
   }
 
-  getImage(businessId : number) 
-  {
+  getImage(businessId : number) {
     return this.#http.get<GetOneImageDetailsResponse>(`${this.#url}Images/GetOneDetails/${businessId}`).pipe( 
       map(response => response.image) )
   }
-
-  getVideo(businessId : number) 
-  {
+  getVideo(businessId : number) {
     return this.#http.get<GetOneVideoDetailsResponse>(`${this.#url}Videos/GetOneDetails/${businessId}`).pipe( 
       map(response => response.video) )
   }
-
-  getVideoYoutube(businessId : number) 
-  {
+  getVideoYoutube(businessId : number) {
     return this.#http.get<GetOneVideoYoutubeDetailsResponse>(`${this.#url}VideosYouTube/GetOneDetails/${businessId}`).pipe( 
       map(response => response.videoYouTube) )
   }
