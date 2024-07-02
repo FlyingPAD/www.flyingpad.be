@@ -12,6 +12,11 @@ import { GetStyleResponse, GetStylesResponse, StyleFull } from '../models/style'
 import { FranchiseFull, FranchiseLight, GetAllFranchisesResponse, GetAllMediasResponse, GetFranchiseByIdResponse, GetFranchisesByMediaResponse, GetFranchisesByMoodResponse, GetMediaByIdResponse, MediaFull } from '../models/franchise';
 import { BaseResponse } from '../models/base-response';
 import { RelationsMoodTagForm, CreateRelationsMoodTagResponse, RelationsMoodArtistForm, CreateRelationsMoodArtistResponse, RelationsMoodModelForm, CreateRelationsMoodModelResponse, RelationsArtistStyleForm, CreateRelationsArtistStyleResponse } from '../models/relations';
+import { GetOneVideoDetailsResponse, Video } from '../models/mood-video';
+import { GetOneImageDetailsResponse, Image } from '../models/mood-image';
+import { GetOneVideoYoutubeDetailsResponse, VideoYouTube } from '../models/mood-video-youtube';
+
+type Media = Image | Video | VideoYouTube | null
 
 @Injectable({
   providedIn: 'root'
@@ -66,11 +71,71 @@ export class FlowService {
   mood$ = combineLatest([this.#moodId, this.#refreshMoods.pipe(startWith(null))])
   .pipe(
     switchMap(([moodId]) => {
-      if (moodId === null) return of(undefined)
-      return this.getMoodById(moodId)
+      if (moodId === null) return of(undefined);
+      return this.getMoodById(moodId).pipe(
+        switchMap(mood => {
+          if (!mood || mood.businessId == null) {
+            return of(undefined);
+          }
+          let mediaObservable$: Observable<any>;
+          switch (mood.type) {
+            case 1:   // Image
+              mediaObservable$ = this.getImage(mood.businessId).pipe(
+                map(image => ({
+                  mediaType: 'Image',
+                  width: image.width,
+                  height: image.height,
+                  size: image.size // Ajout de la propriété size pour les images
+                }))
+              );
+              break;
+            case 2:   // Video
+              mediaObservable$ = this.getVideo(mood.businessId).pipe(
+                map(video => ({
+                  mediaType: 'Video',
+                  width: video.width,
+                  height: video.height,
+                  duration: video.duration,
+                  size: video.size // Ajout de la propriété size pour les vidéos
+                }))
+              );
+              break;
+            case 4:   // VideoYouTube
+              mediaObservable$ = this.getVideoYoutube(mood.businessId).pipe(
+                map(videoYouTube => ({
+                  mediaType: 'VideoYouTube',
+                  url: videoYouTube.url
+                  // La propriété size n'est pas pertinente pour les vidéos YouTube selon les modèles fournis
+                }))
+              );
+              break;
+            default:  // No Type
+              mediaObservable$ = of({});
+          }
+
+          return combineLatest([
+            of(mood),
+            mediaObservable$,
+            this.getModelsByMood(mood.businessId),
+            this.getFranchisesByMood(mood.businessId),
+            this.getArtistsByMood(mood.businessId),
+            this.getTagsByMood(mood.businessId)
+          ]).pipe(
+            map(([mood, mediaProps, models, franchises, artists, tags]) => ({
+              ...mood, // Spread original mood properties
+              ...mediaProps, // Spread media properties directly into mood
+              models, 
+              franchises, 
+              artists, 
+              tags
+            }))
+          );
+        }),
+      );
     }),
     startWith(undefined)
   )
+
   tag$ = this.#tagId.pipe(switchMap(tagId => tagId ? this.getTagById(tagId) : of(undefined)), startWith(undefined))
   tagCategory$ = this.#tagCategoryId.pipe(switchMap(tagCategoryId => tagCategoryId ? this.getTagCategoryById(tagCategoryId) : of(undefined)), startWith(undefined))
   model$ = this.#modelId.pipe(switchMap(modelId => modelId ? this.getModelById(modelId) : of(undefined)), startWith(undefined))
@@ -173,6 +238,20 @@ export class FlowService {
   }
   getLinksByCategory(linkCategoryId: number): Observable<LinkLight[]> {
     return this.#http.get<GetLinksResponse>(`${this.#url}Links/GetByCategory/${linkCategoryId}`).pipe(map(response => response.links));
+  }
+
+  // Get Mood Type.
+  getImage(businessId : number) {
+    return this.#http.get<GetOneImageDetailsResponse>(`${this.#url}Images/GetOneDetails/${businessId}`).pipe( 
+      map(response => response.image) )
+  }
+  getVideo(businessId : number) {
+    return this.#http.get<GetOneVideoDetailsResponse>(`${this.#url}Videos/GetOneDetails/${businessId}`).pipe( 
+      map(response => response.video) )
+  }
+  getVideoYoutube(businessId : number) {
+    return this.#http.get<GetOneVideoYoutubeDetailsResponse>(`${this.#url}VideosYouTube/GetOneDetails/${businessId}`).pipe( 
+      map(response => response.videoYouTube) )
   }
 
   // Get By Mood.
