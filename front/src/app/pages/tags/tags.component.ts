@@ -1,14 +1,13 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { TagStateService } from '../../../services/tag-state.service';
-import { MoodStateService } from '../../../services/mood.service';
+import { Component, inject } from '@angular/core';
+import { MoodStateService } from '../../services/mood.service';
+import { TagStateService } from '../../services/tag-state.service';
 
 @Component({
-  selector: 'app-tags-gallery',
-  templateUrl: './tags-gallery.component.html',
-  styleUrl: './tags-gallery.component.scss'
+  selector: 'app-tags',
+  templateUrl: './tags.component.html',
+  styleUrl: './tags.component.scss'
 })
-export class TagsGalleryComponent implements OnInit
-{
+export class TagsComponent {
   #tagsService = inject(TagStateService)
   #moodsService = inject(MoodStateService)
 

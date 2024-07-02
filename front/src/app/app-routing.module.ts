@@ -16,10 +16,7 @@ import { ChordWheelSvgComponent } from './features/tools/chord-wheel-svg/chord-w
 import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circle-of-fifths.component';
 import { DiapasonComponent } from './features/tools/diapason/diapason.component';
 import { FlyingKeysMiniComponent } from './features/tools/flying-keys-mini/flying-keys-mini.component';
-import { ToolListComponent } from './features/tools/tool-list/tool-list.component';
 import { TrainerNotesComponent } from './features/tools/trainer-notes/trainer-notes.component';
-import { TagsGalleryComponent } from './features/tags/tags-gallery/tags-gallery.component';
-import { ListComponent } from './features/scripts/list/list.component';
 import { ChordsComponent } from './features/scripts/chords/chords.component';
 import { IntervalsComponent } from './features/scripts/intervals/intervals.component';
 import { IntroComponent } from './features/scripts/intro/intro.component';
@@ -57,6 +54,9 @@ import { LinksGalleryComponent } from './features/links/links-gallery/links-gall
 import { FranchisesGalleryComponent } from './features/franchises/franchises-gallery/franchises-gallery.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
 import { LayoutArtistsComponent } from './layouts/layout-artists/layout-artists.component';
+import { TagsComponent } from './pages/tags/tags.component';
+import { ScriptsComponent } from './pages/scripts/scripts.component';
+import { ToolsComponent } from './pages/tools/tools.component';
 
 const routes: Routes = 
 [
@@ -141,7 +141,7 @@ const routes: Routes =
   // Scripts
   { path : 'scripts', component : LayoutCustomComponent, children : 
     [
-      { path : '', component : ListComponent, title : 'Flying PAD | Tools List' },  
+      { path : '', component : ScriptsComponent, title : 'Flying PAD | Scripts' },  
       { path : 'introduction', component : IntroComponent, title : 'Flying PAD | Introduction' },
       { path : 'piano-reference', component : KeyRefComponent, title : 'Flying PAD | Référence' },
       { path : 'notation', component : NotationComponent, title : 'Flying PAD | La Notation Musicale' },      
@@ -163,7 +163,7 @@ const routes: Routes =
   // Tags
   { path : 'tags', component : LayoutCustomComponent, children : 
     [
-      { path : '', component : TagsGalleryComponent, title : 'Flying PAD | Tags Gallery' },  
+      { path : '', component : TagsComponent, title : 'Flying PAD | Tags Gallery' },  
       { path : 'edition', component : EditionComponent, title : 'Flying PAD | Tags CRUD' },  
     ]
   },
@@ -171,7 +171,7 @@ const routes: Routes =
   // Tools
   { path : 'tools', component : LayoutCustomComponent, children : 
     [
-      { path : '', component : ToolListComponent, title : 'Flying PAD | Tools List' },    
+      { path : '', component : ToolsComponent, title : 'Flying PAD | Tools' },    
       { path : 'chord-wheel', component : ChordWheelSvgComponent, title : 'Flying PAD | Chord Wheel' },
       { path : 'circle-of-fifths', component : CircleOfFifthsComponent, title : 'Flying PAD | Circle of Fifths' },
       { path : 'diapason', component : DiapasonComponent, title : 'Flying PAD | Diapason' },
