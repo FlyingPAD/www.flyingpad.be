@@ -1,9 +1,9 @@
 import { Component, OnDestroy, inject } from '@angular/core';
 import { MultiTagService } from '../../../services/multi-tag.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { RelationService } from '../../../services/relation.service';
 import { RelationsMoodArtistForm } from '../../../models/relations';
 import { Router } from '@angular/router';
+import { FlowService } from '../../../services/flow.service';
 
 @Component({
   selector: 'app-multi-tag-artists',
@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 })
 export class MultiTagArtistsComponent implements OnDestroy
 {
+  #flowService = inject(FlowService)
   multiTagService = inject(MultiTagService)
-  relationService = inject(RelationService)
   router = inject(Router)
 
   artists$ = this.multiTagService.getArtists()
@@ -39,7 +39,7 @@ export class MultiTagArtistsComponent implements OnDestroy
 
     this.multiTagService.selectedMoods.forEach(mood => {
       form.moodId = mood      
-      this.relationService.InsertRMA(form).subscribe()
+      this.#flowService.InsertRMA(form).subscribe()
     })
     this.router.navigateByUrl('/moods')
   }

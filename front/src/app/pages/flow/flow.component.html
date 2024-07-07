@@ -219,7 +219,12 @@
     <div *ngIf="showMoodsByArtist"><app-moods-gallery-flow [moods]="flow()?.moodsByArtist" (moodId)="updateMoodId($event)" /></div>
     <div *ngIf="showMoodsByFranchise"><app-moods-gallery-flow [moods]="flow()?.moodsByFranchise" (moodId)="updateMoodId($event)" /></div>
 
-    <div *ngIf="showMood && flow()?.mood"><app-mood-details-flow [mood]="flow()?.mood" /></div>
+    <div *ngIf="showMood && flow()?.mood"><app-mood-details-flow 
+        (artistId)="updateArtistId($event); showMoodsByArtistId()" (modelId)="updateModelId($event); showMoodsByModelId()"
+        (tagId)="updateTagId($event); showMoodsByTagId()" (franchiseId)="updateFranchiseId($event); showMoodsByFranchiseId()"
+        [mood]="flow()?.mood" [artists]="flow()?.mood.artists" [models]="flow()?.mood.models" 
+        [tags]="flow()?.mood.tags" [franchises]="flow()?.mood.franchises"/>
+    </div>
 
     <div class="flow-toolbar toolbar-bottom">
         <div [class.active]="showMood" class="toolbar-card" (click)="toggleMood()">

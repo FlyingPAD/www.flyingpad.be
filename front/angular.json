@@ -43,7 +43,6 @@
 
               "src/design/central/animations.scss",
               "src/design/central/bottom-bar.scss",
-              "src/design/central/box-social.scss",
               "src/design/central/boxes.scss",
               "src/design/central/crud-forms.scss",
               "src/design/central/crud.scss",
@@ -58,14 +57,6 @@
               "src/design/central/tags-gallery.scss",
               "src/design/central/text.scss",
               "src/design/central/user-details.scss",
-              "src/design/central/viewer.scss",
-
-              "src/design/header/header.scss",  
-
-              "src/design/main-menu/main-menu-01.scss",
-
-              "src/design/right-column/right-column-trigger.scss",
-              "src/design/right-column/right-column.scss",
 
               "./node_modules/ngx-toastr/toastr.css"
             ],

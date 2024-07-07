@@ -1,0 +1,83 @@
+<div *ngIf="flow() as flow">
+    @if(showGallery)
+    {
+        @if(flow.moodsGalleryType === 'all')
+        {
+            <app-moods-gallery [moods]="flow.moods" (moodId)="updateMoodId($event)" />
+            <app-dialog *ngIf="showDialog" (dialog)="handleDialog()"><app-dialog-info [moodsLength]="flow.moods.length"/></app-dialog>        
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moods.length" (topButton)="toTop()" (dialog)="openDialog()" />
+        }
+        @if(flow.moodsGalleryType === 'artist')
+        {
+            <app-moods-gallery [moods]="flow.moodsByArtist" (moodId)="updateMoodId($event)" />
+            <app-dialog *ngIf="showDialog" (dialog)="handleDialog()"><app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.artist" [moodsLength]="flow.moodsByArtist.length"/></app-dialog>
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.artist?.name" [moodsLength]="flow.moodsByArtist.length" (topButton)="toTop()" (dialog)="openDialog()"/>
+        }
+        @if(flow.moodsGalleryType === 'model')
+        {
+            <app-moods-gallery [moods]="flow.moodsByModel" (moodId)="updateMoodId($event)" />
+            <app-dialog *ngIf="showDialog" (dialog)="handleDialog()"><app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.model" [moodsLength]="flow.moodsByModel.length"/></app-dialog>
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.model?.pseudonym" [moodsLength]="flow.moodsByModel.length" (topButton)="toTop()" (dialog)="openDialog()"/>
+        }
+        @if(flow.moodsGalleryType === 'tag')
+        {
+            <app-moods-gallery [moods]="flow.moodsByTag" (moodId)="updateMoodId($event)" />
+            <app-dialog *ngIf="showDialog" (dialog)="handleDialog()"><app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.tag" [moodsLength]="flow.moodsByTag.length"/></app-dialog>  
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.tag?.name" [moodsLength]="flow.moodsByTag.length" (topButton)="toTop()" (dialog)="openDialog()"/>
+        }
+        @if(flow.moodsGalleryType === 'franchise')
+        {
+            <app-moods-gallery [moods]="flow.moodsByFranchise" (moodId)="updateMoodId($event)" />
+            <app-dialog *ngIf="showDialog" (dialog)="handleDialog()"><app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.franchise" [moodsLength]="flow.moodsByFranchise.length"/></app-dialog>  
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.franchise?.name" [moodsLength]="flow.moodsByFranchise.length" (topButton)="toTop()" (dialog)="openDialog()"/>
+        }
+        <app-right-column>
+            <app-column-full [tags]="flow.tagsWithCategories" [currentTagId]="flow.tag?.businessId" (tagId)="updateTagId($event)" />
+        </app-right-column>
+    }
+
+    @if(showDetails)
+    {
+        <app-mood-viewer [mood]="flow.mood" (getIndex)="getPage($event)" />
+        <app-mood-details 
+        [mood]="flow.mood" [artists]="flow.mood.artists" [models]="flow.mood.models" 
+        [tags]="flow.mood.tags" [franchises]="flow.mood.franchises"
+        (artistId)="updateArtistId($event)" (modelId)="updateModelId($event)" (tagId)="updateTagId($event)" 
+        (franchiseId)="updateFranchiseId($event)" />
+
+        <app-right-column>
+            <app-related-tags [relatedTags]="flow.mood.tags" [currentTagId]="flow.tag?.businessId" (tagId)="updateTagId($event)" />
+        </app-right-column>
+
+        @if(flow.moodsGalleryType === 'all') {
+            <app-bottom-bar 
+            [moodsGalleryType]="'details'" [moodsLength]="flow.moods.length" [currentIndex]="flow.moodsIndexes.currentIndex"
+            (topButton)="toTop()" (dialog)="openDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
+            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" />
+        }
+        @if(flow.moodsGalleryType === 'artist') {
+            <app-bottom-bar 
+            [moodsGalleryType]="'details'" [moodsLength]="flow.moodsByArtist.length" [currentIndex]="flow.moodsByArtistIndexes.currentIndex"
+            (topButton)="toTop()" (dialog)="openDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
+            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" />   
+        }
+        @if(flow.moodsGalleryType === 'model') {
+            <app-bottom-bar 
+            [moodsGalleryType]="'details'" [moodsLength]="flow.moodsByModel.length" [currentIndex]="flow.moodsByModelIndexes.currentIndex"
+            (topButton)="toTop()" (dialog)="openDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
+            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" /> 
+        }
+        @if(flow.moodsGalleryType === 'tag') {
+            <app-bottom-bar 
+            [moodsGalleryType]="'details'" [moodsLength]="flow.moodsByTag.length" [currentIndex]="flow.moodsByTagIndexes.currentIndex"
+            (topButton)="toTop()" (dialog)="openDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
+            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" />
+        }
+        @if(flow.moodsGalleryType === 'franchise') {
+            <app-bottom-bar 
+            [moodsGalleryType]="'details'" [moodsLength]="flow.moodsByFranchise.length" [currentIndex]="flow.moodsByFranchiseIndexes.currentIndex"
+            (topButton)="toTop()" (dialog)="openDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
+            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" />
+        }
+    }
+</div>

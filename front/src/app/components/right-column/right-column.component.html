@@ -1,0 +1,7 @@
+<div class="column-trigger" [class.column-trigger-on]="columnOut === true" (click)="menuTrigger()">
+    <div class="trigger-arrow"></div>
+</div>
+
+<div class="right-column" [ngClass]="columnOut === true ? 'right-column-on' : 'right-column-off'">
+    <ng-content />
+</div>

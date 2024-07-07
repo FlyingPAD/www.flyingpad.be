@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { MoodStateService } from '../../services/mood.service';
-import { TagStateService } from '../../services/tag-state.service';
+import { FlowService } from '../../services/flow.service';
 
 @Component({
   selector: 'app-tags',
@@ -8,23 +7,21 @@ import { TagStateService } from '../../services/tag-state.service';
   styleUrl: './tags.component.scss'
 })
 export class TagsComponent {
-  #tagsService = inject(TagStateService)
-  #moodsService = inject(MoodStateService)
+  #flowService = inject(FlowService)
 
-  tagsList = this.#tagsService.tagsList
-  moods = this.#moodsService.moodsFlow
+  flow = this.#flowService.flow
 
   ngOnInit() : void
   {
     window.scrollTo(0, 0)
-    const businessIdString = `${this.moods().tagDetails?.businessId ?? 'fallbackValue'}`
+    const businessIdString = `${this.flow()?.tag?.businessId ?? 'fallbackValue'}`
     this.scrollToStart(businessIdString)
   }
 
   updateTagId( tagId : number | null)
   {
-    this.#moodsService.updateSelectedTagId( tagId )
-    this.#moodsService.updateSelectedGalleryType('tag')
+    this.#flowService.updateTagId( tagId )
+    // this.#moodsService.updateSelectedGalleryType('tag')
   }
 
   scrollToStart( elementId : string ) : void 

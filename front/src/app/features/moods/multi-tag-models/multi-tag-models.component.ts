@@ -3,7 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { RelationsMoodModelForm } from '../../../models/relations';
 import { MultiTagService } from '../../../services/multi-tag.service';
-import { RelationService } from '../../../services/relation.service';
+import { FlowService } from '../../../services/flow.service';
 
 @Component({
   selector: 'app-multi-tag-models',
@@ -12,8 +12,8 @@ import { RelationService } from '../../../services/relation.service';
 })
 export class MultiTagModelsComponent implements OnDestroy
 {
+  #flowService = inject(FlowService)
   multiTagService = inject(MultiTagService)
-  relationService = inject(RelationService)
   router = inject(Router)
 
   models$ = this.multiTagService.getModels()
@@ -39,7 +39,7 @@ export class MultiTagModelsComponent implements OnDestroy
 
     this.multiTagService.selectedMoods.forEach(mood => {
       form.moodId = mood      
-      this.relationService.InsertRMM(form).subscribe()
+      this.#flowService.InsertRMM(form).subscribe()
     })
     this.router.navigateByUrl('/moods')
   }

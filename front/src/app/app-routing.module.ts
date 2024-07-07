@@ -32,7 +32,6 @@ import { NotesComponent } from './features/scripts/notes/notes.component';
 import { PulsationComponent } from './features/scripts/pulsation/pulsation.component';
 import { ScalesComponent } from './features/scripts/scales/scales.component';
 import { ViewpointComponent } from './features/scripts/viewpoint/viewpoint.component';
-import { MoodsGalleryComponent } from './features/moods/moods-gallery/moods-gallery.component';
 import { CreateMoodImageComponent } from './features/moods/create-mood-image/create-mood-image.component';
 import { MoodEditionComponent } from './features/moods/mood-edition/mood-edition.component';
 import { MoodsMultiTagComponent } from './features/moods/moods-multi-tag/moods-multi-tag.component';
@@ -57,6 +56,7 @@ import { LayoutArtistsComponent } from './layouts/layout-artists/layout-artists.
 import { TagsComponent } from './pages/tags/tags.component';
 import { ScriptsComponent } from './pages/scripts/scripts.component';
 import { ToolsComponent } from './pages/tools/tools.component';
+import { MoodsComponent } from './pages/moods/moods.component';
 
 const routes: Routes = 
 [
@@ -120,7 +120,7 @@ const routes: Routes =
   // Moods
   { path : 'moods', component : LayoutCustomComponent, children : 
     [
-      { path : '', component : MoodsGalleryComponent, title : 'Flying PAD | Moods Gallery' },  
+      { path : '', component : MoodsComponent, title : 'Flying PAD | Moods Gallery' },  
       { path : 'mood-details', component : MoodDetailsComponent, title : 'Flying PAD | Mood Details' },
       { path : 'mood-edition', component : MoodEditionComponent, title : 'Flying PAD | Mood Edition' },
       { path : 'create-mood-image', component : CreateMoodImageComponent, title : 'Flying PAD | Create Mood(s)' },

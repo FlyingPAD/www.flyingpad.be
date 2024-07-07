@@ -87,6 +87,13 @@ import { ListFlowComponent } from './components/list-flow/list-flow.component';
 import { TagsComponent } from './pages/tags/tags.component';
 import { ScriptsComponent } from './pages/scripts/scripts.component';
 import { ToolsComponent } from './pages/tools/tools.component';
+import { MoodsComponent } from './pages/moods/moods.component';
+import { RelatedTagsComponent } from './features/tags/related-tags/related-tags.component';
+import { ColumnFullComponent } from './features/tags/column-full/column-full.component';
+import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component';
+import { DialogInfoComponent } from './components/dialog-info/dialog-info.component';
+import { RightColumnComponent } from './components/right-column/right-column.component';
+import { MoodViewerComponent } from './features/moods/mood-viewer/mood-viewer.component';
 
 @NgModule({
   declarations: 
@@ -181,6 +188,13 @@ import { ToolsComponent } from './pages/tools/tools.component';
     AnimRandomDirective,
     AnimGrowDirective,
     AnimSpinDirective,
+    MoodsComponent,
+    RelatedTagsComponent,
+    ColumnFullComponent,
+    BottomBarComponent,
+    DialogInfoComponent,
+    RightColumnComponent,
+    MoodViewerComponent,
   ],
   imports: 
   [

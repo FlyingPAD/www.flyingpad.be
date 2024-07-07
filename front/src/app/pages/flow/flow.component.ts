@@ -121,4 +121,129 @@ export class FlowComponent
       window.open(url, '_blank')
     } 
   }
+
+  showMoodsByArtistId()
+  {
+    this.showMoods = false
+    this.showMoodsByTag = false
+    this.showMoodsByModel = false
+    this.showMoodsByArtist = true
+    this.showMoodsByFranchise = false
+    this.showTag = false
+    this.showTags = false
+    this.showTagsByCategory = false
+    this.showTagCategory = false
+    this.showTagCategories = false
+    this.showArtist = false
+    this.showArtists = false
+    this.showArtistsByStyle = false
+    this.showStyle = false
+    this.showStyles = false
+    this.showModel = false
+    this.showModels = false
+    this.showModelsByFranchise = false
+    this.showFranchise = false
+    this.showFranchises = false
+    this.showFranchisesByMedia = false
+    this.showMedia = false
+    this.showMedias = false
+    this.showLink = false
+    this.showLinks = false
+    this.showLinksByCategory = false
+    this.showLinkCategory = false
+    this.showLinkCategories = false
+  }
+  showMoodsByModelId()
+  {
+    this.showMoods = false
+    this.showMoodsByTag = false
+    this.showMoodsByModel = true
+    this.showMoodsByArtist = false
+    this.showMoodsByFranchise = false
+    this.showTag = false
+    this.showTags = false
+    this.showTagsByCategory = false
+    this.showTagCategory = false
+    this.showTagCategories = false
+    this.showArtist = false
+    this.showArtists = false
+    this.showArtistsByStyle = false
+    this.showStyle = false
+    this.showStyles = false
+    this.showModel = false
+    this.showModels = false
+    this.showModelsByFranchise = false
+    this.showFranchise = false
+    this.showFranchises = false
+    this.showFranchisesByMedia = false
+    this.showMedia = false
+    this.showMedias = false
+    this.showLink = false
+    this.showLinks = false
+    this.showLinksByCategory = false
+    this.showLinkCategory = false
+    this.showLinkCategories = false
+  }
+  showMoodsByTagId()
+  {
+    this.showMoods = false
+    this.showMoodsByTag = true
+    this.showMoodsByModel = false
+    this.showMoodsByArtist = false
+    this.showMoodsByFranchise = false
+    this.showTag = false
+    this.showTags = false
+    this.showTagsByCategory = false
+    this.showTagCategory = false
+    this.showTagCategories = false
+    this.showArtist = false
+    this.showArtists = false
+    this.showArtistsByStyle = false
+    this.showStyle = false
+    this.showStyles = false
+    this.showModel = false
+    this.showModels = false
+    this.showModelsByFranchise = false
+    this.showFranchise = false
+    this.showFranchises = false
+    this.showFranchisesByMedia = false
+    this.showMedia = false
+    this.showMedias = false
+    this.showLink = false
+    this.showLinks = false
+    this.showLinksByCategory = false
+    this.showLinkCategory = false
+    this.showLinkCategories = false
+  }
+  showMoodsByFranchiseId()
+  {
+    this.showMoods = false
+    this.showMoodsByTag = false
+    this.showMoodsByModel = false
+    this.showMoodsByArtist = false
+    this.showMoodsByFranchise = true
+    this.showTag = false
+    this.showTags = false
+    this.showTagsByCategory = false
+    this.showTagCategory = false
+    this.showTagCategories = false
+    this.showArtist = false
+    this.showArtists = false
+    this.showArtistsByStyle = false
+    this.showStyle = false
+    this.showStyles = false
+    this.showModel = false
+    this.showModels = false
+    this.showModelsByFranchise = false
+    this.showFranchise = false
+    this.showFranchises = false
+    this.showFranchisesByMedia = false
+    this.showMedia = false
+    this.showMedias = false
+    this.showLink = false
+    this.showLinks = false
+    this.showLinksByCategory = false
+    this.showLinkCategory = false
+    this.showLinkCategories = false
+  }
 }

@@ -1,0 +1,63 @@
+.tags-list
+{
+    .container
+    {
+        border: 1px solid var(--colorMain);
+        border-radius: 5px;
+
+        margin: 15px;
+        padding: 15px; padding-top: 0px;
+
+        background-color: #6b52401d;
+        box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
+
+        .category-name
+        {
+            font-size: 13px;
+            font-weight: bold;
+            color : var(--colorMain);
+        }
+        .box
+        {
+            display: flex;
+            justify-content: space-between;
+    
+            a
+            {
+                line-height: 30px;
+                margin-bottom: 5px;
+            }
+            .name-tag
+            {       
+                display: block;
+    
+                width: 180px;
+        
+                border: 1px solid var(--colorMain);
+                border-radius: 5px;
+        
+                background-color: rgba(255, 255, 255, 0.5);
+        
+                color: var(--colorMain);
+                text-align: left;
+                text-indent: 10px;
+                text-decoration: none;
+                font-size: 12px;
+
+                flex-grow: 1;
+            }
+            .name-tag:hover
+            {
+                cursor: pointer;
+                background-color: #92715a;
+                color: rgba(255, 255, 255, 0.79);      
+                transition-duration: 250ms;  
+            }
+            .active
+            {
+                background-color: var(--colorMain);
+                color: white;
+            }
+        }
+    }
+} 

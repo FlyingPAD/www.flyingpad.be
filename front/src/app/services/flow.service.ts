@@ -4,19 +4,17 @@ import { environment } from '../../environments/environment';
 import { Observable, map, of, combineLatest, BehaviorSubject, switchMap, startWith, Subject, take, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { GetMoodByIdResponse, GetMoodsResponse, MoodCreateForm, MoodCreateResponse, MoodFull, MoodLight, MoodUpdateForm, MoodUpdateResponse, UpdateMoodScoreCall } from '../models/mood';
-import { GetAllTagCategoriesResponse, GetAllTagsResponse, GetTagByIdResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse, GetTagsByMoodResponse, TagCategoryFull, TagFull, TagLight } from '../models/tag';
+import { GetAllTagCategoriesResponse, GetAllTagsResponse, GetTagByIdResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse, GetTagsByMoodResponse, TagCategoryFull, TagFull, TagLight, TagsGetFullListResponse } from '../models/tag';
 import { ArtistFull, ArtistLight, GetAllArtistsResponse, GetArtistByIdResponse, GetArtistsByMoodResponse, GetArtistsByStyleResponse } from '../models/artist';
 import { GetAllModelsResponse, GetModelResponse, GetModelsResponse, ModelFull, ModelLight } from '../models/model';
 import { GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, GetLinksResponse, LinkCategoryFull, LinkFull, LinkLight } from '../models/link';
 import { GetStyleResponse, GetStylesResponse, StyleFull } from '../models/style';
 import { FranchiseFull, FranchiseLight, GetAllFranchisesResponse, GetAllMediasResponse, GetFranchiseByIdResponse, GetFranchisesByMediaResponse, GetFranchisesByMoodResponse, GetMediaByIdResponse, MediaFull } from '../models/franchise';
 import { BaseResponse } from '../models/base-response';
-import { RelationsMoodTagForm, CreateRelationsMoodTagResponse, RelationsMoodArtistForm, CreateRelationsMoodArtistResponse, RelationsMoodModelForm, CreateRelationsMoodModelResponse, RelationsArtistStyleForm, CreateRelationsArtistStyleResponse } from '../models/relations';
-import { GetOneVideoDetailsResponse, Video } from '../models/mood-video';
-import { GetOneImageDetailsResponse, Image } from '../models/mood-image';
-import { GetOneVideoYoutubeDetailsResponse, VideoYouTube } from '../models/mood-video-youtube';
-
-type Media = Image | Video | VideoYouTube | null
+import { RelationsMoodTagForm, CreateRelationsMoodTagResponse, RelationsMoodArtistForm, CreateRelationsMoodArtistResponse, RelationsMoodModelForm, CreateRelationsMoodModelResponse, RelationsArtistStyleForm, CreateRelationsArtistStyleResponse, CheckRelationsArtistStyleByArtistResponse, CheckRelationsArtistStyleByStyleResponse } from '../models/relations';
+import { GetOneVideoDetailsResponse } from '../models/mood-video';
+import { GetOneImageDetailsResponse } from '../models/mood-image';
+import { GetOneVideoYoutubeDetailsResponse } from '../models/mood-video-youtube';
 
 @Injectable({
   providedIn: 'root'
@@ -25,33 +23,36 @@ export class FlowService {
   #http = inject(HttpClient)
   #url: string = environment.apiBaseUrl + '/api/V1/'
 
-  // Subjects
+  // Subjects.
   #moodId = new BehaviorSubject<number | null>(null)
   updateMoodId(moodId: number | null) { this.#moodId.next(moodId) }
   #tagId = new BehaviorSubject<number | null>(null)
-  updateTagId(tagId : number | null) { this.#tagId.next(tagId) }
+  updateTagId(tagId : number | null) { this.#tagId.next(tagId); this.#moodsGalleryType.next('tag') }
   #tagCategoryId = new BehaviorSubject<number | null>(null)
   updateTagCategoryId(tagCategoryId: number | null) { this.#tagCategoryId.next(tagCategoryId) }
   #modelId = new BehaviorSubject<number | null>(null)
-  updateModelId(modelId: number | null) { this.#modelId.next(modelId) }
+  updateModelId(modelId: number | null) { this.#modelId.next(modelId); this.#moodsGalleryType.next('model') }
   #artistId = new BehaviorSubject<number | null>(null)
-  updateArtistId(artistId: number | null) { this.#artistId.next(artistId) }
+  updateArtistId(artistId: number | null) { this.#artistId.next(artistId); this.#moodsGalleryType.next('artist') }
   #styleId = new BehaviorSubject<number | null>(null)
   updateStyleId(styleId: number | null) { this.#styleId.next(styleId) }
   #franchiseId = new BehaviorSubject<number | null>(null)
-  updateFranchiseId(franchiseId: number | null) { this.#franchiseId.next(franchiseId) }
+  updateFranchiseId(franchiseId: number | null) { this.#franchiseId.next(franchiseId); this.#moodsGalleryType.next('franchise') }
   #mediaId = new BehaviorSubject<number | null>(null)
   updateMediaId(mediaId: number | null) { this.#mediaId.next(mediaId) }
   #linkId = new BehaviorSubject<number | null>(null)
   updateLinkId(linkId: number | null) { this.#linkId.next(linkId) }
   #linkCategoryId = new BehaviorSubject<number | null>(null)
   updateLinkCategoryId(linkCategoryId: number | null) { this.#linkCategoryId.next(linkCategoryId) }
+  #moodsGalleryType = new BehaviorSubject<string>('all')
+  updateMoodsGalleryType(moodsGalleryType : string) { this.#moodsGalleryType.next(moodsGalleryType) }
+  moodsGalleryType$ = this.#moodsGalleryType.asObservable()
 
-  // Reload
+  // Refresh Moods Trigger.
   #refreshMoods = new Subject<void>()
   refreshMoods() { this.#refreshMoods.next() }
   
-  // Get All
+  // Get All.
   moods$ = this.#refreshMoods.pipe(
     startWith(null),
     switchMap(() => this.#http.get<GetMoodsResponse>(`${this.#url}Moods/GetAll`)),
@@ -59,6 +60,7 @@ export class FlowService {
   )
   tags$ = this.#http.get<GetAllTagsResponse>(`${this.#url}Tags/GetAll`).pipe(map(response => response.tags))
   tagCategories$ = this.#http.get<GetAllTagCategoriesResponse>(`${this.#url}TagCategories/GetAll`).pipe(map(response => response.tagCategories))
+  tagsWithCategories$ = this.#http.get<TagsGetFullListResponse>(this.#url + 'Tags/GetTagsList').pipe(map(x => x.categoriesWithTags))
   artists$ = this.#http.get<GetAllArtistsResponse>(`${this.#url}Artists/GetAll`).pipe(map(response => response.artists))
   styles$ = this.#http.get<GetStylesResponse>(`${this.#url}Styles/GetAll`).pipe(map(response => response.styles))
   models$ = this.#http.get<GetAllModelsResponse>(`${this.#url}Models/GetAll`).pipe(map(response => response.models))
@@ -67,16 +69,24 @@ export class FlowService {
   links$ = this.#http.get<GetLinksResponse>(`${this.#url}Links/GetAll`).pipe(map(response => response.links))
   linkCategories$ = this.#http.get<GetLinkCategoriesResponse>(`${this.#url}LinkCategories/GetAll`).pipe(map(response => response.linkCategories))
 
-  // Get By ...
+  // Get Random Mood
+  getRandomMood(): Observable<MoodFull> {
+    return this.#http.get<GetMoodByIdResponse>(`${this.#url}Moods/GetOneDetailsRandom`).pipe(map(response => response.mood))
+  }
+  // Get By ID.
   mood$ = combineLatest([this.#moodId, this.#refreshMoods.pipe(startWith(null))])
   .pipe(
     switchMap(([moodId]) => {
-      if (moodId === null) return of(undefined);
-      return this.getMoodById(moodId).pipe(
+      const moodObservable$ = moodId === null 
+        ? this.getRandomMood() 
+        : this.getMoodById(moodId);
+
+      return moodObservable$.pipe(
         switchMap(mood => {
           if (!mood || mood.businessId == null) {
             return of(undefined);
           }
+
           let mediaObservable$: Observable<any>;
           switch (mood.type) {
             case 1:   // Image
@@ -85,7 +95,7 @@ export class FlowService {
                   mediaType: 'Image',
                   width: image.width,
                   height: image.height,
-                  size: image.size // Ajout de la propriété size pour les images
+                  size: image.size
                 }))
               );
               break;
@@ -96,7 +106,7 @@ export class FlowService {
                   width: video.width,
                   height: video.height,
                   duration: video.duration,
-                  size: video.size // Ajout de la propriété size pour les vidéos
+                  size: video.size
                 }))
               );
               break;
@@ -105,11 +115,10 @@ export class FlowService {
                 map(videoYouTube => ({
                   mediaType: 'VideoYouTube',
                   url: videoYouTube.url
-                  // La propriété size n'est pas pertinente pour les vidéos YouTube selon les modèles fournis
                 }))
               );
               break;
-            default:  // No Type
+            default:
               mediaObservable$ = of({});
           }
 
@@ -122,19 +131,19 @@ export class FlowService {
             this.getTagsByMood(mood.businessId)
           ]).pipe(
             map(([mood, mediaProps, models, franchises, artists, tags]) => ({
-              ...mood, // Spread original mood properties
-              ...mediaProps, // Spread media properties directly into mood
+              ...mood,
+              ...mediaProps,
               models, 
               franchises, 
               artists, 
               tags
             }))
           );
-        }),
+        })
       );
     }),
     startWith(undefined)
-  )
+  );
 
   tag$ = this.#tagId.pipe(switchMap(tagId => tagId ? this.getTagById(tagId) : of(undefined)), startWith(undefined))
   tagCategory$ = this.#tagCategoryId.pipe(switchMap(tagCategoryId => tagCategoryId ? this.getTagCategoryById(tagCategoryId) : of(undefined)), startWith(undefined))
@@ -286,6 +295,14 @@ export class FlowService {
     return this.#http.post<CreateRelationsArtistStyleResponse>(this.#url + 'Relations/ArtistStyle/Create', rasForm)
   }
 
+  // Check Relations.
+  public CheckRelationsArtistStyleByArtist( artistId : number ) : Observable<CheckRelationsArtistStyleByArtistResponse> {
+    return this.#http.get<CheckRelationsArtistStyleByArtistResponse>(this.#url + 'Relations/ArtistStyle/CheckRelationsByArtist?artistId=' + artistId )
+  }
+  public CheckRelationsArtistStyleByStyle( styleId : number ) : Observable<CheckRelationsArtistStyleByStyleResponse> {
+    return this.#http.get<CheckRelationsArtistStyleByStyleResponse>(this.#url + 'Relations/ArtistStyle/CheckRelationsByStyle?styleId=' + styleId )
+  }
+
   // Create.
   CreateMood( form : MoodCreateForm ) {
     return this.#http.post<MoodCreateResponse>(`${this.#url}Moods/Create`, form).pipe(
@@ -340,8 +357,17 @@ export class FlowService {
     return this.#http.delete<BaseResponse>(`${this.#url}Links/Delete/${linkId}`)
   }
 
+  // Calcul des index courants, précédents et suivants pour chaque tableau de humeurs.
+  private calculateIndexes(moods: MoodLight[], selectedMoodId: number | null) {
+    const currentIndex = selectedMoodId !== null ? moods.findIndex(m => m.businessId === selectedMoodId) : -1;
+    const previousMoodId = currentIndex > 0 ? moods[currentIndex - 1]?.businessId : moods.length ? moods[moods.length - 1]?.businessId : null;
+    const nextMoodId = currentIndex >= 0 && currentIndex < moods.length - 1 ? moods[currentIndex + 1]?.businessId : moods.length ? moods[0]?.businessId : null;
+    return { currentIndex, previousMoodId, nextMoodId };
+  }
+
   // Observable.
   flow$ = combineLatest([
+    this.moodsGalleryType$,
     this.mood$,
     this.moods$,
     this.moodsByTag$,
@@ -353,6 +379,7 @@ export class FlowService {
     this.tagCategory$,
     this.tagsByCategory$,
     this.tagCategories$,
+    this.tagsWithCategories$,
     this.artist$,
     this.artists$,
     this.artistsByStyle$,
@@ -370,9 +397,15 @@ export class FlowService {
     this.links$,
     this.linkCategory$,
     this.linksByCategory$,
-    this.linkCategories$
+    this.linkCategories$,
+    combineLatest([this.moods$, this.#moodId]).pipe(map(([moods, moodId]) => this.calculateIndexes(moods, moodId))),
+    combineLatest([this.moodsByArtist$, this.#moodId]).pipe(map(([moodsByArtist, moodId]) => this.calculateIndexes(moodsByArtist, moodId))),
+    combineLatest([this.moodsByModel$, this.#moodId]).pipe(map(([moodsByModel, moodId]) => this.calculateIndexes(moodsByModel, moodId))),
+    combineLatest([this.moodsByTag$, this.#moodId]).pipe(map(([moodsByTag, moodId]) => this.calculateIndexes(moodsByTag, moodId))),
+    combineLatest([this.moodsByFranchise$, this.#moodId]).pipe(map(([moodsByFranchise, moodId]) => this.calculateIndexes(moodsByFranchise, moodId))),
   ]).pipe(
     map(([
+      moodsGalleryType,
       mood,
       moods, 
       moodsByTag,
@@ -384,6 +417,7 @@ export class FlowService {
       tagCategory,
       tagsByCategory,
       tagCategories,
+      tagsWithCategories,
       artist,
       artists,
       artistsByStyle,
@@ -401,8 +435,14 @@ export class FlowService {
       links,
       linkCategory,
       linksByCategory,
-      linkCategories
+      linkCategories,
+      moodsIndexes,
+      moodsByArtistIndexes,
+      moodsByModelIndexes,
+      moodsByTagIndexes,
+      moodsByFranchiseIndexes
     ]) => ({
+      moodsGalleryType,
       mood,
       moods, 
       moodsByTag,
@@ -414,6 +454,7 @@ export class FlowService {
       tagCategory,
       tagsByCategory,
       tagCategories,
+      tagsWithCategories,
       artist,
       artists,
       artistsByStyle,
@@ -431,7 +472,12 @@ export class FlowService {
       links,
       linkCategory,
       linksByCategory,
-      linkCategories
+      linkCategories,
+      moodsIndexes,
+      moodsByArtistIndexes,
+      moodsByModelIndexes,
+      moodsByTagIndexes,
+      moodsByFranchiseIndexes
     }))
   )
 
