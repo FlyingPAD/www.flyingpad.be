@@ -1,13 +1,13 @@
 import { Component, HostListener, OnDestroy, inject } from '@angular/core';
 import { MoodStateService } from '../../../services/mood.service';
 import { environment } from '../../../../environments/environment';
-import { RelationService } from '../../../services/relation.service';
 import { RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm } from '../../../models/relations';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MoodUpdateForm, UpdateMoodScoreCall } from '../../../models/mood';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { FlowService } from '../../../services/flow.service';
 
 @Component({
   selector: 'app-mood-edition',
@@ -18,7 +18,7 @@ export class MoodEditionComponent implements OnDestroy
 {
   // Services
   #moodService = inject(MoodStateService)
-  #relationService = inject(RelationService)
+  #flowService = inject(FlowService)
   #formBuilder = inject(FormBuilder)
   #router = inject(Router)
   #toastr = inject(ToastrService)
@@ -166,7 +166,7 @@ export class MoodEditionComponent implements OnDestroy
       return; // Optionnel : Arrête l'exécution si aucun tag n'est sélectionné
     }
   
-    this.EditionTagsSubscription = this.#relationService.InsertRMT(rmtForm).subscribe({
+    this.EditionTagsSubscription = this.#flowService.InsertRMT(rmtForm).subscribe({
       next: () => {
         this.success();
         if (exit) {
@@ -196,7 +196,7 @@ export class MoodEditionComponent implements OnDestroy
       return; // Optionnel : Arrête l'exécution si aucun modèle n'est sélectionné
     }
   
-    this.EditionModelsSubscription = this.#relationService.InsertRMM(rmmForm).subscribe({
+    this.EditionModelsSubscription = this.#flowService.InsertRMM(rmmForm).subscribe({
       next: () => {
         this.success();
         if (exit) {
@@ -227,7 +227,7 @@ export class MoodEditionComponent implements OnDestroy
       return; // Optionnel : Arrête l'exécution si aucun artiste n'est sélectionné
     }
   
-    this.EditionArtistsSubscription = this.#relationService.InsertRMA(rmaForm).subscribe({
+    this.EditionArtistsSubscription = this.#flowService.InsertRMA(rmaForm).subscribe({
       next: () => {
         this.success();
         if (exit) {

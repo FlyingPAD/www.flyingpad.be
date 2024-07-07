@@ -1,13 +1,13 @@
-import { Component, HostListener, inject } from '@angular/core';
-import { MoodStateService } from '../../../services/mood.service';
+import { Component, EventEmitter, HostListener, inject, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
-import { TagStateService } from '../../../services/tag-state.service';
 import { MenuDesktopService } from '../../../services/menu-desktop.service';
 import { Location } from '@angular/common';
 import { PaginationService } from '../../../services/pagination.service';
 import { UserService } from '../../../services/user.service';
 import { MenuCustomService } from '../../../services/menu-custom.service';
+import { FlowService } from '../../../services/flow.service';
+import { MoodLight } from '../../../models/mood';
 
 @Component({
   selector: 'app-moods-gallery',
@@ -16,21 +16,23 @@ import { MenuCustomService } from '../../../services/menu-custom.service';
 })
 export class MoodsGalleryComponent 
 {
+  #flowService = inject(FlowService)
   userService = inject(UserService)
   menuService = inject(MenuDesktopService)
   menuCustom = inject(MenuCustomService)
-  moodsService = inject(MoodStateService)
-  tagsService = inject(TagStateService)
   router = inject(Router)
   location = inject(Location)
   paginationService = inject(PaginationService)
 
-  environment = environment.apiBaseUrl        // Environment
-  moods = this.moodsService.moodsFlow         // Signal
-  tagsList = this.tagsService.tagsList        // Signal
-  moodsPerPage :  number = 36                 // Pagination : Items per Page
-  topButtonIsActive = false                   // To Top Button Trigger
-  infoIsActive = false                        // Info Box Trigger
+  @Input() moods : MoodLight[] | undefined = undefined
+  @Output() moodId = new EventEmitter<number>()
+
+  environment = environment.apiBaseUrl
+  flow = this.#flowService.flow
+  moodsPerPage :  number = 36      
+  topButtonIsActive = false             
+  infoIsActive = false          
+  galleryType : string = 'all'
 
   // Methods :
 
@@ -39,13 +41,13 @@ export class MoodsGalleryComponent
   ngOnInit() : void
   {
     window.scrollTo(0, 0)
-    const businessIdString = `${this.moods().tagDetails?.businessId ?? 'fallbackValue'}`
+    const businessIdString = `${this.flow()?.tag?.businessId ?? 'fallbackValue'}`
     this.scrollToStart(businessIdString)
   }
 
   ngAfterViewChecked() : void
   {
-    const businessIdString = `${this.moods().tagDetails?.businessId ?? 'fallbackValue'}`
+    const businessIdString = `${this.flow()?.tag?.businessId ?? 'fallbackValue'}`
     this.scrollToStart(businessIdString)
   }
 
@@ -56,21 +58,21 @@ export class MoodsGalleryComponent
 
   getRandomMood() : void
   {
-    this.moodsService.updateSelectedMoodId(null)
-    this.moodsService.updateSelectedGalleryType('')
+    this.#flowService.updateMoodId(null)
+    // this.moodsService.updateSelectedGalleryType('')
     this.router.navigateByUrl('/moods/mood-details')
   }
 
   updateMoodId( moodId : number | null ) : void
   {
-    this.moodsService.updateSelectedMoodId(moodId)
+    this.#flowService.updateMoodId(moodId)
     this.router.navigateByUrl('moods/mood-details')
   }
 
   updateTagId( tagId : number | null ) : void
   {
-    this.moodsService.updateSelectedGalleryType('tag')
-    this.moodsService.updateSelectedTagId( tagId )
+    this.galleryType = 'tags'
+    this.#flowService.updateTagId( tagId )
   }
 
   scrollToStart( elementId : string ) : void 
@@ -109,21 +111,8 @@ export class MoodsGalleryComponent
     this.menuService.menuRTrigger()
   }
 
-  // KEYBOARD CONFIGURATION
-  @HostListener('window:keydown', ['$event'])
-  onKeyPress(event: KeyboardEvent) 
+  handleMoodId(moodId : number) : void
   {
-    switch (event.key) 
-    {
-      case 'Enter':
-        this.infoTrigger()
-        break
-      case '+':
-        this.menuTrigger()
-        break
-      case 'Backspace':
-        this.location.back()
-        break
-    }
+    this.moodId.emit(moodId)
   }
 }

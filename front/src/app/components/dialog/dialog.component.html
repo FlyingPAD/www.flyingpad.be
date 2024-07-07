@@ -1,1 +1,8 @@
-<p>dialog works!</p>
+<div class="dialog">
+    <ng-content />
+    <hr>
+    <div class="dialog-buttons">
+        <a (click)="handleDialog()">Close</a>
+    </div>
+</div>
+<div class="dialog-overlay"></div>

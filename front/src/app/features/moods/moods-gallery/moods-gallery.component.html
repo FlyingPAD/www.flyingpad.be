@@ -1,47 +1,24 @@
-<!-- Right Column Trigger -->
-<div class="column-trigger" [class.column-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
-    <div class="trigger-arrow"></div>
-</div>
-<!-- Right Colum -->
-<div class="right-column" [ngClass]="menuService.menuRActive == true ? 'right-column-on' : 'right-column-off'">
-    <!-- Tags List -->
-    <div class="tags-list">
-        <div *ngFor="let tagList of tagsList()">
-            <div class="container">
-                <p class="category-name">{{tagList.category.name}}</p>
-                <div *ngFor="let tag of tagList.tags">
-                    <div class="box">
-                        <a id="{{tag.businessId}}" class="name-tag" [ngClass]="{'active': tag.name === moods().tagDetails?.name}"
-                            (click)="updateTagId(tag.businessId);pageReset()"> ▸ {{tag.name}}
-                        </a>                         
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Central Layout -->
 <div id="layout-central">
-    <div *ngIf="moods().moodsList.length; else loading">
+    <div *ngIf="moods?.length; else loading">
         <!-- Gallery -->
         <div [ngClass]="menuService.menuRActive === true ? 'gallery menu-open' : 'gallery' ">
-            <div *ngFor="let mood of moods().moodsList | paginate : { itemsPerPage : moodsPerPage, currentPage : paginationService.moodsByTagCurrentPage}">
+            <div *ngFor="let mood of moods || [] | paginate : { itemsPerPage : moodsPerPage, currentPage : paginationService.moodsByTagCurrentPage}">
                 <section>
                     <div *ngIf="mood.type == 1">           
                         <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" 
-                        (click)="updateMoodId(mood.businessId)" />
+                        (click)="handleMoodId(mood.businessId)" />
                     </div>
                     <div *ngIf="mood.type == 2">
                         <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
-                        (click)="updateMoodId(mood.businessId)" />        
+                        (click)="handleMoodId(mood.businessId)" />        
                     </div>
                     <div *ngIf="mood.type == 3">
                         <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
-                        (click)="updateMoodId(mood.businessId)" />       
+                        (click)="handleMoodId(mood.businessId)" />       
                     </div>
                     <div *ngIf="mood.type == 4">
                         <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
-                        (click)="updateMoodId(mood.businessId)" />
+                        (click)="handleMoodId(mood.businessId)" />
                     </div>
                 </section>
             </div>
@@ -54,64 +31,10 @@
             <img src="../../../../assets/app_icons/spinner.gif" />
         </div>
     </ng-template>
-</div>
-<!-- Pagination -->
-<div class="pagination-row" *ngIf="moods().moodsList.length > moodsPerPage">
-    <div id="pagination">
-        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.moodsByTagCurrentPage = $event"></pagination-controls>
-    </div>   
-</div>
-<!-- Bottom Bar -->
-<div class="bar" *ngIf="moods() as flow">
-    <!-- Tag Name -->
-    <a class="tweak" *ngIf="flow.tagDetails?.name">
-        <div class="position"><b>{{ flow.tagDetails?.name }}</b></div>
-    </a>
-    <!-- Moods Count -->
-    <a class="tweak">
-        <div class="position">{{ flow.moodsList.length | number : '4.0'}}</div>
-    </a>
-    <!-- Info Button -->
-    <a (click)="infoTrigger()" [ngClass]="infoIsActive === true ? 'active' : '' ">
-        <img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" />
-    </a>
-    <!-- Multi Tag -->
-    <a routerLink="/moods/multi-tag" *ngIf="userService.appUser.role === 2">
-        <img src="../../../../assets/app_icons/edit.png" />
-    </a>
-    <!-- To Top Button -->
-    <a (click)="toTop()" *ngIf="topButtonIsActive === true">
-        <img src="../../../../assets/app_icons/arrow_up.png" />
-    </a>
-    <span *ngIf="topButtonIsActive === false">
-        <img src="../../../../assets/app_icons/arrow_up_no.png" />
-    </span>
-</div>
-<!-- Info Box -->
-<div [ngClass]="infoIsActive === true ? 'info' : 'info off' " *ngIf="moods() as flow" (click)="infoTrigger()">
-    <!-- Tag Name -->
-    <h1>{{ flow.tagDetails?.name }}</h1>
-    <!-- Tag Description -->
-    <p>{{ flow.tagDetails?.description }}</p>
-    <!-- Related Info -->
-    <div class="flex">
-        <p><b>Moods</b></p>
-        <p>{{flow.moodsList.length | number : '4.0'}}</p>
+    <!-- Pagination -->
+    <div class="pagination-row" *ngIf="moods && moods.length > moodsPerPage">
+        <div id="pagination">
+            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.moodsByTagCurrentPage = $event"></pagination-controls>
+        </div>   
     </div>
-    <!-- Auditable Info -->
-    <div class="flex_created" *ngIf="flow.tagDetails?.name">
-        <div class="box_created">
-            <p>Created :</p>
-            <p>{{ flow.tagDetails?.created | date : 'MMMM d, y | HH:mm' }}</p>
-        </div>
-        <div class="box_created">
-            <p>Modified :</p>
-            <p>{{ flow.tagDetails?.modified | date : 'MMMM d, y | HH:mm' }}</p>
-        </div>
-    </div>
-</div>
-<!-- Overlay -->
-<div class="overlay" 
-    [ngClass]="menuCustom.menuCustomOn === true && infoIsActive === true ? 'overlay-enabled' : 'overlay-disabled' "
-    (click)="menuTrigger()">
 </div>

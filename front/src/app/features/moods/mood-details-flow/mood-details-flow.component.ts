@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { MoodFull, MoodUpdateForm, UpdateMoodScoreCall } from '../../../models/mood';
 import { FlowService } from '../../../services/flow.service';
@@ -7,6 +7,11 @@ import { Video } from '../../../models/mood-video';
 import { VideoYouTube } from '../../../models/mood-video-youtube';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ArtistLight } from '../../../models/artist';
+import { ModelLight } from '../../../models/model';
+import { TagLight } from '../../../models/tag';
+import { FranchiseLight } from '../../../models/franchise';
+import { ActivePane } from '../../../models/enumerations/enumerations';
 
 @Component({
   selector: 'app-mood-details-flow',
@@ -16,27 +21,46 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class MoodDetailsFlowComponent {
   flowService = inject(FlowService)
   #toastr = inject(ToastrService)
-  #formBuilder = inject(FormBuilder)
-  
+  #formBuilder = inject(FormBuilder)  
   @Input() mood! : MoodFull | undefined
+  @Input() artists! : ArtistLight[] | undefined
+  @Input() models! : ModelLight[] | undefined
+  @Input() tags! : TagLight[] | undefined
+  @Input() franchises! : FranchiseLight[] | undefined
+  @Output() modelId = new EventEmitter<number>()
+  @Output() artistId = new EventEmitter<number>()
+  @Output() tagId = new EventEmitter<number>()
+  @Output() franchiseId = new EventEmitter<number>()
   environment : string = environment.apiBaseUrl  
+  currentArtistId : number = 0
+  currentModelId : number = 0
+  currentTagId : number = 0
+  currentFranchiseId : number = 0
   triggerDelete : boolean = false
+  ActivePane = ActivePane
+  activePane: ActivePane = ActivePane.Mood
   formGroup : FormGroup = this.#formBuilder.group
   ({
     name : [this.mood?.name, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     description : [this.mood?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
   
-  updateMoodScore(scoreValue : number) : void
-  {
+  // Handle Panels
+  setActivePane(pane: ActivePane): void {
+    this.activePane = pane
+  }
+  isPaneActive(pane: ActivePane): boolean {
+    return this.activePane === pane
+  }
+
+  updateMoodScore(scoreValue : number): void {
     if(this.mood?.businessId != undefined)
       {
         let form : UpdateMoodScoreCall = { businessId : this.mood.businessId, value : scoreValue }
         this.flowService.updateScore(form)
       }
   }
-
-  update() {
+  update(): void {
     if (this.mood && this.formGroup.valid) 
     {  
       let form : MoodUpdateForm = 
@@ -57,8 +81,7 @@ export class MoodDetailsFlowComponent {
     this.formGroup.reset()
   }
 
-  typeCheck(media : any)
-  {
+  typeCheck(media : any) {
     if(this.mood?.type === 1)
     {
       return media as Image
@@ -77,7 +100,11 @@ export class MoodDetailsFlowComponent {
     }
   }
 
-  deleteMood() { 
+  triggerDeleteMood(): void {
+    this.triggerDelete = !this.triggerDelete
+  }
+
+  deleteMood(): void { 
     if(this.mood)
       {
         this.flowService.DeleteMood(this.mood?.businessId).subscribe({
@@ -91,8 +118,20 @@ export class MoodDetailsFlowComponent {
       }
   }
 
-  triggerDeleteMood()
-  {
-    this.triggerDelete = !this.triggerDelete
+  handleArtistId(artistId : number) : void {
+    this.currentArtistId = artistId
+    this.artistId.emit(artistId)
+  }
+  handleModelId(modelId : number) : void {
+    this.currentModelId = modelId
+    this.modelId.emit(modelId)
+  }
+  handleTagId(tagId : number) : void {
+    this.currentTagId = tagId
+    this.tagId.emit(tagId)
+  }
+  handleFranchiseId(franchiseId : number) : void {
+    this.currentFranchiseId = franchiseId
+    this.franchiseId.emit(franchiseId)
   }
 }

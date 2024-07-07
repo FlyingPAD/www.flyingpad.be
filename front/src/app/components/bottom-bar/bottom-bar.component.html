@@ -1,0 +1,30 @@
+<div class="bar">
+    @if(moodsGalleryType === 'all') {
+
+    }
+    @if(moodsGalleryType === 'artist' || moodsGalleryType === 'model' || moodsGalleryType === 'tag' || moodsGalleryType === 'franchise') {
+        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
+    }
+    @if(moodsGalleryType === 'all' || moodsGalleryType === 'artist' || moodsGalleryType === 'model' || moodsGalleryType === 'tag' || moodsGalleryType === 'franchise') {
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>    
+        <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" /></a>
+        <a routerLink="/moods/multi-tag" *ngIf="userService.appUser.role === 2"><img src="../../../../assets/app_icons/edit.png" /></a>
+        <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true"><img src="../../../../assets/app_icons/arrow_up.png" /></a>
+        <span *ngIf="topButtonIsActive === false"><img src="../../../../assets/app_icons/arrow_up_no.png" /></span>
+    }
+    @if(moodsGalleryType === 'model') {
+
+    }
+    @if(moodsGalleryType === 'details') {
+        <a (click)="handleGetIndex('previous')"><img appAnimGrow src="../../../../assets/app_icons/arrow_left.png" /></a>
+        <a class="tweak"><div class="position">{{ currentIndex + 1 | number : '3.0'}} / {{moodsLength | number : '3.0'}}</div></a>
+        <a (click)="handleGetIndex('next')"><img appAnimGrow src="../../../../assets/app_icons/arrow_right.png" /></a>
+        <a (click)="handleBackToGallery()"><img src="../../../../assets/app_icons/icon_moods_001.png" /></a>
+        <a *ngIf="!diaporamaIsActive" (click)="handleDiaporamaStart(false)"><img src="../../../../assets/app_icons/play.png" /></a>
+        <a *ngIf="!diaporamaIsActive" (click)="handleDiaporamaStart(true)"><img src="../../../../assets/app_icons/play-random.png" /></a>
+        <a *ngIf="diaporamaIsActive" (click)="handleDiaporamaStop()"><img src="../../../../assets/app_icons/stop.png" /></a>
+        <a routerLink="/moods/mood-edition" *ngIf="userService.appUser.role === 2"><img appAnimGrow src="../../../../assets/app_icons/edit.png" /></a>
+        <a (click)="handleOpenMoodInNewTab()"><img class="toggle" src="../../../../assets/app_icons/download.png" /></a>
+        <a (click)="handleRandomMood()"><img appAnimRandom src="../../../../assets/app_icons/random.png" /></a>
+    }
+</div>

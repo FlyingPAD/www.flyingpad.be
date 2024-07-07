@@ -2,11 +2,10 @@ import { Component, HostListener, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { MenuDesktopService } from '../../../services/menu-desktop.service';
-import { MoodStateService } from '../../../services/mood.service';
-import { TagStateService } from '../../../services/tag-state.service';
 import { Location } from '@angular/common';
 import { MultiTagService } from '../../../services/multi-tag.service';
 import { PaginationService } from '../../../services/pagination.service';
+import { FlowService } from '../../../services/flow.service';
 
 @Component({
   selector: 'app-moods-multi-tag',
@@ -15,19 +14,16 @@ import { PaginationService } from '../../../services/pagination.service';
 })
 export class MoodsMultiTagComponent 
 {
-  // Properties :
-
+  #flowService = inject(FlowService)
   menuService = inject(MenuDesktopService)
-  moodsService = inject(MoodStateService)
-  tagsService = inject(TagStateService)
   router = inject(Router)
   location = inject(Location)                 // Navigation
   multiTagService = inject(MultiTagService)
   paginationService = inject(PaginationService)
 
   environment = environment.apiBaseUrl        // Environment
-  moods = this.moodsService.moodsFlow         // Signal
-  tagsList = this.tagsService.tagsList        // Signal
+
+  flow = this.#flowService.flow
   moodsPerPage :  number = 36                 // Pagination : Items per Page
   topButtonIsActive = false                   // To Top Button Trigger
   infoIsActive = false                        // Info Box Trigger
@@ -49,13 +45,13 @@ export class MoodsMultiTagComponent
   ngOnInit() : void
   {
     window.scrollTo(0, 0)
-    const businessIdString = `${this.moods().tagDetails?.businessId ?? 'fallbackValue'}`
+    const businessIdString = `${this.flow()?.tag?.businessId ?? 'fallbackValue'}`
     this.scrollToStart(businessIdString)
   }
 
   ngAfterViewChecked() : void
   {
-    const businessIdString = `${this.moods().tagDetails?.businessId ?? 'fallbackValue'}`
+    const businessIdString = `${this.flow()?.tag?.businessId ?? 'fallbackValue'}`
     this.scrollToStart(businessIdString)
   }
 
@@ -66,21 +62,21 @@ export class MoodsMultiTagComponent
 
   getRandomMood() : void
   {
-    this.moodsService.updateSelectedMoodId(null)
-    this.moodsService.updateSelectedGalleryType('')
+    this.#flowService.updateMoodId(null)
+    // this.moodsService.updateSelectedGalleryType('')
     this.router.navigateByUrl('/moods/mood-details')
   }
 
   updateMoodId( moodId : number | null ) : void
   {
-    this.moodsService.updateSelectedMoodId(moodId)
+    this.#flowService.updateMoodId(moodId)
     this.router.navigateByUrl('moods/mood-details')
   }
 
   updateTagId( tagId : number | null ) : void
   {
-    this.moodsService.updateSelectedGalleryType('tag')
-    this.moodsService.updateSelectedTagId( tagId )
+    // this.moodsService.updateSelectedGalleryType('tag')
+    this.#flowService.updateTagId( tagId )
   }
 
   scrollToStart( elementId : string ) : void 

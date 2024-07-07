@@ -1,0 +1,28 @@
+@if(entity != undefined) {
+    @if(moodsGalleryType === 'model') {
+        <h1>{{entity.pseudonym}}</h1> 
+    }
+    @else {
+        <h1>{{entity.name}}</h1>
+    }
+    <p>{{entity.description}}</p>
+}
+
+<div class="flex">
+    <p><b>Moods</b></p>
+    <p>{{moodsLength | number : '4.0'}}</p>
+</div>
+
+@if(entity != undefined)
+{
+    <div class="flex_created">
+        <div class="box_created">
+            <p>Created :</p>
+            <p>{{entity.created | date : 'MMMM d, y | HH:mm' }}</p>
+        </div>
+        <div class="box_created">
+            <p>Modified :</p>
+            <p>{{entity.modified | date : 'MMMM d, y | HH:mm' }}</p>
+        </div>
+    </div>  
+}
