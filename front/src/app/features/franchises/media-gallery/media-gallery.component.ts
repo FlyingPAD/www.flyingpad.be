@@ -1,5 +1,5 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { FranchiseStateService } from '../../../services/franchise.service';
+import { FlowService } from '../../../services/flow.service';
 
 @Component({
   selector: 'app-media-gallery',
@@ -8,13 +8,12 @@ import { FranchiseStateService } from '../../../services/franchise.service';
 })
 export class MediaGalleryComponent 
 {
-  #franchisesService = inject(FranchiseStateService)
+  #flowService = inject(FlowService)
 
-  singleMediaFlow = this.#franchisesService.singleMediaFlow
+  flow = this.#flowService.flow
 
-  updateFranchiseId( franchiseId : number | null)
-  {
-    this.#franchisesService.updateSelectedFranchiseId(franchiseId)
+  updateFranchiseId(franchiseId: number): void {
+    this.#flowService.updateFranchiseId(franchiseId)
   }
 
   // TO TOP BUTTON

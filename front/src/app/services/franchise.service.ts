@@ -85,12 +85,10 @@ export class FranchiseStateService
 
     singleMediaFlow$ = this.selectedMediaId$.pipe(
       switchMap(mediaId => {
-        if(mediaId === null)
-          {
-            return of(null)
-          }
-        else
-        {
+        if(mediaId === null) {
+          return of(null)
+        }
+        else {
           return combineLatest([
             this.GetOneMediaDetails(mediaId),
             this.GetFranchisesByMedia(mediaId)

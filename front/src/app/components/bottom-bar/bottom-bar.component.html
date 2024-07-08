@@ -12,8 +12,13 @@
         <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true"><img src="../../../../assets/app_icons/arrow_up.png" /></a>
         <span *ngIf="topButtonIsActive === false"><img src="../../../../assets/app_icons/arrow_up_no.png" /></span>
     }
-    @if(moodsGalleryType === 'model') {
-
+    @if(moodsGalleryType === 'model' && entityName != '# Unrelated Model' || moodsGalleryType === 'model' && entityName != '# Unknown Model') {
+        <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><img src="../../../../assets/app_icons/google.png" /></a>
+        <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><img src="../../../../assets/app_icons/google_images.png" /></a>
+    }
+    @if(moodsGalleryType === 'artist' && entityName != '# Unknown Artist') {
+        <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><img src="../../../../assets/app_icons/google.png" /></a>
+        <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><img src="../../../../assets/app_icons/google_images.png" /></a>
     }
     @if(moodsGalleryType === 'details') {
         <a (click)="handleGetIndex('previous')"><img appAnimGrow src="../../../../assets/app_icons/arrow_left.png" /></a>
