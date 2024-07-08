@@ -1,31 +1,14 @@
-<div *ngIf="singleMediaFlow() as flow">
-    <!-- Central Layout -->
+<div *ngIf="flow() as flow">
     <div id="layout-central">
-        <h1>{{ flow.media.name }}</h1>
+        <h1>{{ flow.media?.name }}</h1>
         <div class="franchises">
-            <div *ngFor="let franchise of flow.franchises">
-                <a routerLink="/franchises/franchise-gallery"
+            <div *ngFor="let franchise of flow.franchisesByMedia">
+                <a routerLink="/moods"
                     (click)="updateFranchiseId(franchise.businessId)">{{franchise.name }}
                 </a>
             </div>
         </div>
     </div>
-    <!-- Bottom Bar -->
-    <div class="bar">
-        <!-- Tag Name -->
-        <a class="tweak" *ngIf="flow?.media?.name">
-            <div class="position"><b>{{flow?.media?.name}}</b></div>
-        </a>
-        <!-- Franchises Count -->
-        <a class="tweak">
-            <div class="position">{{flow.franchises.length | number : '4.0'}}</div>
-        </a>
-        <!-- To Top Button -->
-        <a (click)="toTop()" *ngIf="topButtonIsActive === true">
-            <img src="../../../../assets/app_icons/arrow_up.png" />
-        </a>
-        <span *ngIf="topButtonIsActive === false">
-            <img src="../../../../assets/app_icons/arrow_up_no.png" />
-        </span>
-    </div>
+
+    <app-bottom-bar [entityName]="flow?.media?.name" [moodsLength]="flow.franchisesByMedia.length"/>
 </div>

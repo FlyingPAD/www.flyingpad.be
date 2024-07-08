@@ -6,7 +6,6 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UserLoginErrorComponent } from './pages/user-login-error/user-login-error.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { FlowComponent } from './pages/flow/flow.component';
-import { ModelGalleryComponent } from './features/models/model-gallery/model-gallery.component';
 import { EditionComponent } from './features/models/edition/edition.component';
 import { LayoutCustomComponent } from './layouts/layout-custom/layout-custom.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
@@ -37,10 +36,8 @@ import { MoodEditionComponent } from './features/moods/mood-edition/mood-edition
 import { MoodsMultiTagComponent } from './features/moods/moods-multi-tag/moods-multi-tag.component';
 import { MultiTagArtistsComponent } from './features/moods/multi-tag-artists/multi-tag-artists.component';
 import { MultiTagModelsComponent } from './features/moods/multi-tag-models/multi-tag-models.component';
-import { DashboardHomeComponent } from './pages/dashboard-home/dashboard-home.component';
-import { FranchiseGalleryComponent } from './features/franchises/franchise-gallery/franchise-gallery.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MediaGalleryComponent } from './features/franchises/media-gallery/media-gallery.component';
-import { ArtistGalleryComponent } from './features/artists/artist-gallery/artist-gallery.component';
 import { ArtistsListComponent } from './features/artists/artists-list/artists-list.component';
 import { CreateArtistComponent } from './features/artists/create-artist/create-artist.component';
 import { CreateStyleComponent } from './features/artists/create-style/create-style.component';
@@ -50,13 +47,14 @@ import { UpdateArtistComponent } from './features/artists/update-artist/update-a
 import { UpdateStyleComponent } from './features/artists/update-style/update-style.component';
 import { LinksEditionComponent } from './features/links/links-edition/links-edition.component';
 import { LinksGalleryComponent } from './features/links/links-gallery/links-gallery.component';
-import { FranchisesGalleryComponent } from './features/franchises/franchises-gallery/franchises-gallery.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
 import { LayoutArtistsComponent } from './layouts/layout-artists/layout-artists.component';
 import { TagsComponent } from './pages/tags/tags.component';
 import { ScriptsComponent } from './pages/scripts/scripts.component';
 import { ToolsComponent } from './pages/tools/tools.component';
 import { MoodsComponent } from './pages/moods/moods.component';
+import { MediasComponent } from './pages/medias/medias.component';
+import { LinksComponent } from './pages/links/links.component';
 
 const routes: Routes = 
 [
@@ -68,7 +66,8 @@ const routes: Routes =
       { path : 'not-found', component : NotFoundComponent, title : 'Flying PAD | Not Found' },
       { path : 'login-error', component : UserLoginErrorComponent, title : 'Flying PAD | Login Error' },
       { path : 'register', component : UserRegisterComponent, title : 'Flying PAD | Register' },
-      { path : 'dashboard', component : DashboardHomeComponent, title : 'Flying PAD | Dashboard' },
+      { path : 'medias', component : MediasComponent, title : 'Flying PAD | Medias' },
+      { path : 'dashboard', component : DashboardComponent, title : 'Flying PAD | Dashboard' },
     ]
   },
 
@@ -81,9 +80,7 @@ const routes: Routes =
 
   // Artists
   { path : 'artists', component : LayoutCustomComponent, children :
-    [
-      { path : 'artist-gallery', component : ArtistGalleryComponent, title : 'Flying PAD | Artist Gallery' },
-    
+    [  
       { path : 'update-artist', component : UpdateArtistComponent, title : 'Flying PAD | Update Artist' },
       { path : 'update-style', component : UpdateStyleComponent, title : 'Flying PAD | Update Style' },
 
@@ -102,8 +99,6 @@ const routes: Routes =
   // Franchises
   { path : 'franchises', component : LayoutCustomComponent, children :
     [
-      { path : 'franchise-gallery', component : FranchiseGalleryComponent, title : 'Flying PAD | Franchise Gallery' },
-      { path : 'gallery', component : FranchisesGalleryComponent, title : 'Flying PAD | Franchises Gallery' },
       { path : 'media-gallery', component : MediaGalleryComponent, title : 'Flying PAD | Media Gallery' },
       { path : 'edition', component : EditionComponent, title : 'Flying PAD | Franchises CRUD' },
     ]
@@ -112,7 +107,6 @@ const routes: Routes =
   // Models
   { path : 'models', component : LayoutCustomComponent, children : 
     [
-      { path : 'model-gallery', component : ModelGalleryComponent, title : 'Flying PAD | Model Gallery' },
       { path : 'edition', component : EditionComponent, title : 'Flying PAD | Models Edition' }
     ]
   },
@@ -133,7 +127,7 @@ const routes: Routes =
   // Links
   { path : 'links', component : LayoutCustomComponent, children : 
     [
-      { path : '', component : LinksGalleryComponent, title : 'Flying PAD | Links Gallery' },
+      { path : '', component : LinksComponent, title : 'Flying PAD | Links' },
       { path : 'edition', component : LinksEditionComponent, title : 'Flying PAD | Links Edition' },
     ]
   },

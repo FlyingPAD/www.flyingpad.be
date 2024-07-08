@@ -2,11 +2,11 @@ import { Component, inject } from '@angular/core';
 import { AppSettingsService } from '../../services/app-settings.service';
 
 @Component({
-  selector: 'app-dashboard-home',
-  templateUrl: './dashboard-home.component.html',
-  styleUrls: ['./dashboard-home.component.scss']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardHomeComponent 
+export class DashboardComponent 
 {
   appSettings = inject(AppSettingsService)
 }

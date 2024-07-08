@@ -1,0 +1,22 @@
+<div class="filter-links">
+    <input type="text" [(ngModel)]="searchLinks" placeholder="Filter links ...">
+</div>
+
+<div class="list">
+    <div *ngFor="let item of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage }">
+        <img id="favicon" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + item.url + '&sz=96'" />
+        <a> ▸ {{item.name}}</a>
+    </div>
+</div>
+
+<div class="pagination-row">
+    <div id="pagination">
+      <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
+    </div>   
+</div>
+
+<app-right-column>
+    <app-right-column-list [table]="flow()?.linkCategories" (entityId)="updateLinkCategoryId($event)"/>
+</app-right-column>
+
+<app-bottom-bar [entityName]="flow()?.linkCategory?.name" [moodsLength]="flow()?.linksByCategory?.length" />

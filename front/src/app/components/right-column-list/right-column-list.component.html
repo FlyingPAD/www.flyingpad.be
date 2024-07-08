@@ -1,0 +1,6 @@
+<div class="list">
+    <a [class.active]="currentEntityId === null" (click)="handleId(null)">Display all Links</a>
+    <div *ngFor="let item of table">
+        <a [class.active]="currentEntityId === item.businessId" (click)="handleId(item.businessId)"> ▸ {{item.name}}</a>
+    </div>
+</div>

@@ -1,6 +1,14 @@
 @if(entity != undefined) {
     @if(moodsGalleryType === 'model') {
         <h1>{{entity.pseudonym}}</h1> 
+        <div class="flex">
+            <p><b>First Name</b></p>
+            <p>{{entity.firstName}}</p>
+        </div>
+        <div class="flex">
+            <p><b>Last Name</b></p>
+            <p>{{entity.lastName}}</p>
+        </div>
     }
     @else {
         <h1>{{entity.name}}</h1>

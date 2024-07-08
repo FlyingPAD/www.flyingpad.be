@@ -9,7 +9,7 @@ import { ArtistFull, ArtistLight, GetAllArtistsResponse, GetArtistByIdResponse, 
 import { GetAllModelsResponse, GetModelResponse, GetModelsResponse, ModelFull, ModelLight } from '../models/model';
 import { GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, GetLinksResponse, LinkCategoryFull, LinkFull, LinkLight } from '../models/link';
 import { GetStyleResponse, GetStylesResponse, StyleFull } from '../models/style';
-import { FranchiseFull, FranchiseLight, GetAllFranchisesResponse, GetAllMediasResponse, GetFranchiseByIdResponse, GetFranchisesByMediaResponse, GetFranchisesByMoodResponse, GetMediaByIdResponse, MediaFull } from '../models/franchise';
+import { FranchiseFull, FranchiseLight, GetAllFranchisesResponse, GetAllMediasResponse, GetFranchiseByIdResponse, GetFranchisesByMediaResponse, GetFranchisesByMoodResponse, GetMediaByIdResponse, GetMediasFullListResponse, MediaFull } from '../models/franchise';
 import { BaseResponse } from '../models/base-response';
 import { RelationsMoodTagForm, CreateRelationsMoodTagResponse, RelationsMoodArtistForm, CreateRelationsMoodArtistResponse, RelationsMoodModelForm, CreateRelationsMoodModelResponse, RelationsArtistStyleForm, CreateRelationsArtistStyleResponse, CheckRelationsArtistStyleByArtistResponse, CheckRelationsArtistStyleByStyleResponse } from '../models/relations';
 import { GetOneVideoDetailsResponse } from '../models/mood-video';
@@ -65,6 +65,7 @@ export class FlowService {
   styles$ = this.#http.get<GetStylesResponse>(`${this.#url}Styles/GetAll`).pipe(map(response => response.styles))
   models$ = this.#http.get<GetAllModelsResponse>(`${this.#url}Models/GetAll`).pipe(map(response => response.models))
   franchises$ = this.#http.get<GetAllFranchisesResponse>(`${this.#url}Franchises/GetAll`).pipe(map(response => response.franchises))
+  franchisesWithMedias$ = this.#http.get<GetMediasFullListResponse>(this.#url + 'Franchises/GetFranchisesList').pipe(map(response => response.medias))
   medias$ = this.#http.get<GetAllMediasResponse>(`${this.#url}Medias/GetAll`).pipe(map(response => response.medias))
   links$ = this.#http.get<GetLinksResponse>(`${this.#url}Links/GetAll`).pipe(map(response => response.links))
   linkCategories$ = this.#http.get<GetLinkCategoriesResponse>(`${this.#url}LinkCategories/GetAll`).pipe(map(response => response.linkCategories))
@@ -188,7 +189,7 @@ export class FlowService {
   modelsByFranchise$ = this.#franchiseId.pipe(switchMap(franchiseId => franchiseId ? this.getModelsByFranchise(franchiseId) : of([])), startWith([]))
   artistsByStyle$ = this.#styleId.pipe(switchMap(styleId => styleId ? this.getArtistsByStyle(styleId) : of([])), startWith([]))
   franchisesByMedia$ = this.#mediaId.pipe(switchMap(mediaId => mediaId ? this.getFranchisesByMedia(mediaId) : of([])), startWith([]))
-  linksByCategory$ = this.#linkCategoryId.pipe(switchMap(linkCategoryId => linkCategoryId ? this.getLinksByCategory(linkCategoryId) : of([])), startWith([]))
+  linksByCategory$ = this.#linkCategoryId.pipe(switchMap(linkCategoryId => linkCategoryId != null ? this.getLinksByCategory(linkCategoryId) : this.links$), startWith([]))
   
   getMoodById(moodId: number): Observable<MoodFull> {
     return this.#http.get<GetMoodByIdResponse>(`${this.#url}Moods/GetOneDetails/${moodId}`).pipe(map(response => response.mood))
@@ -393,6 +394,7 @@ export class FlowService {
     this.franchisesByMedia$,
     this.media$,
     this.medias$,
+    this.franchisesWithMedias$,
     this.link$,
     this.links$,
     this.linkCategory$,
@@ -431,6 +433,7 @@ export class FlowService {
       franchisesByMedia,
       media,
       medias,
+      franchisesWithMedias,
       link,
       links,
       linkCategory,
@@ -468,6 +471,7 @@ export class FlowService {
       franchisesByMedia,
       media,
       medias,
+      franchisesWithMedias,
       link,
       links,
       linkCategory,

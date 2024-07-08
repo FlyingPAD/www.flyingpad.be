@@ -56,7 +56,6 @@
               "src/design/central/scripts-tools.scss",
               "src/design/central/tags-gallery.scss",
               "src/design/central/text.scss",
-              "src/design/central/user-details.scss",
 
               "./node_modules/ngx-toastr/toastr.css"
             ],

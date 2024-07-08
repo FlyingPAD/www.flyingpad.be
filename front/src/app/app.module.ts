@@ -19,7 +19,6 @@ import { UserLoginErrorComponent } from './pages/user-login-error/user-login-err
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
 import { LayoutCustomComponent } from './layouts/layout-custom/layout-custom.component';
-import { ModelGalleryComponent } from './features/models/model-gallery/model-gallery.component';
 import { EditionComponent } from './features/models/edition/edition.component';
 import { UserUpdateComponent } from './features/users/user-update/user-update.component';
 import { UserDetailsComponent } from './features/users/user-details/user-details.component';
@@ -64,12 +63,9 @@ import { MoodsGalleryComponent } from './features/moods/moods-gallery/moods-gall
 import { MoodsMultiTagComponent } from './features/moods/moods-multi-tag/moods-multi-tag.component';
 import { MultiTagArtistsComponent } from './features/moods/multi-tag-artists/multi-tag-artists.component';
 import { MultiTagModelsComponent } from './features/moods/multi-tag-models/multi-tag-models.component';
-import { DashboardHomeComponent } from './pages/dashboard-home/dashboard-home.component';
-import { FranchisesGalleryComponent } from './features/franchises/franchises-gallery/franchises-gallery.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FranchisesEditionComponent } from './features/franchises/franchises-edition/franchises-edition.component';
-import { FranchiseGalleryComponent } from './features/franchises/franchise-gallery/franchise-gallery.component';
 import { MediaGalleryComponent } from './features/franchises/media-gallery/media-gallery.component';
-import { ArtistGalleryComponent } from './features/artists/artist-gallery/artist-gallery.component';
 import { ArtistsListComponent } from './features/artists/artists-list/artists-list.component';
 import { CreateArtistComponent } from './features/artists/create-artist/create-artist.component';
 import { CreateStyleComponent } from './features/artists/create-style/create-style.component';
@@ -94,18 +90,25 @@ import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component
 import { DialogInfoComponent } from './components/dialog-info/dialog-info.component';
 import { RightColumnComponent } from './components/right-column/right-column.component';
 import { MoodViewerComponent } from './features/moods/mood-viewer/mood-viewer.component';
+import { MediasComponent } from './pages/medias/medias.component';
+import { LinksComponent } from './pages/links/links.component';
+import { RightColumnListComponent } from './components/right-column-list/right-column-list.component';
+import { ListCentralComponent } from './components/list-central/list-central.component';
 
 @NgModule({
   declarations: 
   [
     // Pages.
     HomeComponent,
-    DashboardHomeComponent,
+    DashboardComponent,
     AboutComponent,
-    FlowComponent,
-    ScriptsComponent,
+    MoodsComponent,
     TagsComponent,
+    MediasComponent,
+    ScriptsComponent,
     ToolsComponent,
+    FlowComponent,
+    LinksComponent,
     NotFoundComponent,
     // Components.
     AppComponent,
@@ -114,12 +117,15 @@ import { MoodViewerComponent } from './features/moods/mood-viewer/mood-viewer.co
     ButtonBackComponent,
     ButtonTopComponent,
     DialogComponent,
+    RelatedTagsComponent,
+    ColumnFullComponent,
+    BottomBarComponent,
+    DialogInfoComponent,
+    RightColumnComponent,
+    RightColumnListComponent,
     // => Franchises
-    FranchiseGalleryComponent,
-    FranchisesGalleryComponent,
     MediaGalleryComponent,
     FranchisesEditionComponent,
-    FranchisesGalleryComponent,
     FranchisesEditionComponent,
     // => Artists
     LayoutArtistsComponent,
@@ -130,7 +136,6 @@ import { MoodViewerComponent } from './features/moods/mood-viewer/mood-viewer.co
     UpdateStyleComponent,
     DeleteArtistComponent,
     DeleteStyleComponent,
-    ArtistGalleryComponent,
     // => Layouts
     LayoutEmptyComponent,
     LayoutCustomComponent,
@@ -146,8 +151,8 @@ import { MoodViewerComponent } from './features/moods/mood-viewer/mood-viewer.co
     MultiTagModelsComponent,
     MoodDetailsFlowComponent,
     MoodsGalleryFlowComponent,
+    MoodViewerComponent,
     // => Models
-    ModelGalleryComponent,
     EditionComponent,
     // => Tags
     TagsEditionComponent,
@@ -188,13 +193,7 @@ import { MoodViewerComponent } from './features/moods/mood-viewer/mood-viewer.co
     AnimRandomDirective,
     AnimGrowDirective,
     AnimSpinDirective,
-    MoodsComponent,
-    RelatedTagsComponent,
-    ColumnFullComponent,
-    BottomBarComponent,
-    DialogInfoComponent,
-    RightColumnComponent,
-    MoodViewerComponent,
+    ListCentralComponent,
   ],
   imports: 
   [
