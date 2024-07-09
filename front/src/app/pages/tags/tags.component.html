@@ -1,19 +1,16 @@
-<!-- Top Button -->
 <app-button-top />
 <div id="layout-central" *ngIf="flow() as flow">
-    <!-- Mobile Display -->
+
     <div class="mobile"> 
         <div class="tags-gallery" *ngIf="flow.tags.length; else loading">
             <div *ngFor="let list of flow.tagsWithCategories">
                 <div class="box">
-                    <!-- Category Name -->
                     <p>{{ list.category.name }}</p>
-                    <!-- Tag List -->
                     <div class="flex">
                         <div *ngFor="let tag of list.tags">
                             <a id="{{tag.businessId}}" 
                                 [class.active]="tag.businessId === flow.tag?.businessId" 
-                                routerLink="/moods/gallery" 
+                                routerLink="/moods" 
                                 (click)="updateTagId(tag.businessId)">▸ {{ tag.name }}
                             </a>
                         </div>
@@ -21,7 +18,6 @@
                 </div>
             </div>
         </div>    
-        <!-- Loading -->
         <ng-template #loading>
             <div class="loading">
                 <p>Loading ...</p>
@@ -29,16 +25,14 @@
             </div>
         </ng-template>
     </div>
-    <!-- Desktop Display -->
+
     <div class="desktop">
         <div id="tags-wall" *ngIf="flow.tags.length; else loading">
             <div class="tags-box" *ngFor="let category of flow.tagsWithCategories">
                 <div class="box-category">
-                    <!-- Category Name -->
                     <p class="name-cat left">{{ category.category.name }}</p>
                 </div>
                 <div class="overflow">
-                    <!-- Tag List -->
                     <div *ngFor="let tag of category.tags">
                         <p>
                             <span> ▸ </span>
@@ -48,7 +42,6 @@
                 </div>
             </div>   
         </div>
-        <!-- Loading -->
         <ng-template #loading>
             <div class="loading">
                 <p>Loading ...</p>
