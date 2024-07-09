@@ -20,8 +20,8 @@ import { UserRegisterComponent } from './pages/user-register/user-register.compo
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
 import { LayoutCustomComponent } from './layouts/layout-custom/layout-custom.component';
 import { EditionComponent } from './features/models/edition/edition.component';
-import { UserUpdateComponent } from './features/users/user-update/user-update.component';
-import { UserDetailsComponent } from './features/users/user-details/user-details.component';
+import { UserUpdateComponent } from './pages/user-update/user-update.component';
+import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { ChordWheelSvgComponent } from './features/tools/chord-wheel-svg/chord-wheel-svg.component';
 import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circle-of-fifths.component';
 import { DiapasonComponent } from './features/tools/diapason/diapason.component';
@@ -76,8 +76,8 @@ import { UpdateStyleComponent } from './features/artists/update-style/update-sty
 import { LayoutArtistsComponent } from './layouts/layout-artists/layout-artists.component';
 import { LinksEditionComponent } from './features/links/links-edition/links-edition.component';
 import { LinksGalleryComponent } from './features/links/links-gallery/links-gallery.component';
-import { MoodDetailsFlowComponent } from './features/moods/mood-details-flow/mood-details-flow.component';
-import { MoodsGalleryFlowComponent } from './features/moods/moods-gallery-flow/moods-gallery-flow.component';
+import { MoodDetailsFlowComponent } from './features/flow/mood-details-flow/mood-details-flow.component';
+import { MoodsGalleryFlowComponent } from './features/flow/moods-gallery-flow/moods-gallery-flow.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
 import { ListFlowComponent } from './components/list-flow/list-flow.component';
 import { TagsComponent } from './pages/tags/tags.component';
@@ -124,6 +124,8 @@ import { LeftCardComponent } from './components/left-card/left-card.component';
     DialogInfoComponent,
     RightColumnComponent,
     RightColumnListComponent,
+    ListCentralComponent,
+    LeftCardComponent,
     // => Franchises
     MediaGalleryComponent,
     FranchisesEditionComponent,
@@ -194,8 +196,6 @@ import { LeftCardComponent } from './components/left-card/left-card.component';
     AnimRandomDirective,
     AnimGrowDirective,
     AnimSpinDirective,
-    ListCentralComponent,
-    LeftCardComponent,
   ],
   imports: 
   [

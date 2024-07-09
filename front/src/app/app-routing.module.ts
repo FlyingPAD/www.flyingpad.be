@@ -9,13 +9,8 @@ import { FlowComponent } from './pages/flow/flow.component';
 import { EditionComponent } from './features/models/edition/edition.component';
 import { LayoutCustomComponent } from './layouts/layout-custom/layout-custom.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
-import { UserDetailsComponent } from './features/users/user-details/user-details.component';
-import { UserUpdateComponent } from './features/users/user-update/user-update.component';
-import { ChordWheelSvgComponent } from './features/tools/chord-wheel-svg/chord-wheel-svg.component';
-import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circle-of-fifths.component';
-import { DiapasonComponent } from './features/tools/diapason/diapason.component';
-import { FlyingKeysMiniComponent } from './features/tools/flying-keys-mini/flying-keys-mini.component';
-import { TrainerNotesComponent } from './features/tools/trainer-notes/trainer-notes.component';
+import { UserDetailsComponent } from './pages/user-details/user-details.component';
+import { UserUpdateComponent } from './pages/user-update/user-update.component';
 import { ChordsComponent } from './features/scripts/chords/chords.component';
 import { IntervalsComponent } from './features/scripts/intervals/intervals.component';
 import { IntroComponent } from './features/scripts/intro/intro.component';
@@ -46,7 +41,6 @@ import { DeleteStyleComponent } from './features/artists/delete-style/delete-sty
 import { UpdateArtistComponent } from './features/artists/update-artist/update-artist.component';
 import { UpdateStyleComponent } from './features/artists/update-style/update-style.component';
 import { LinksEditionComponent } from './features/links/links-edition/links-edition.component';
-import { LinksGalleryComponent } from './features/links/links-gallery/links-gallery.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
 import { LayoutArtistsComponent } from './layouts/layout-artists/layout-artists.component';
 import { TagsComponent } from './pages/tags/tags.component';
@@ -165,12 +159,7 @@ const routes: Routes =
   // Tools
   { path : 'tools', component : LayoutCustomComponent, children : 
     [
-      { path : '', component : ToolsComponent, title : 'Flying PAD | Tools' },    
-      { path : 'chord-wheel', component : ChordWheelSvgComponent, title : 'Flying PAD | Chord Wheel' },
-      { path : 'circle-of-fifths', component : CircleOfFifthsComponent, title : 'Flying PAD | Circle of Fifths' },
-      { path : 'diapason', component : DiapasonComponent, title : 'Flying PAD | Diapason' },
-      { path : 'flying-keys-mini', component : FlyingKeysMiniComponent, title : 'Flying PAD | Flying Keys ( Mini )' },
-      { path : 'trainer-notes', component : TrainerNotesComponent, title : 'Flying PAD | Notes Trainer' },
+      { path : '', component : ToolsComponent, title : 'Flying PAD | Tools' },
     ]
   },
 

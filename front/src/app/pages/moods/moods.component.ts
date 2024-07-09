@@ -122,7 +122,6 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   getRandomMood(): void {
-    this.#flowService.updateMoodsGalleryType('all')
     this.#flowService.updateMoodId(null)
     this.showGallery = false
     this.showDetails = true

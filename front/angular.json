@@ -42,7 +42,7 @@
               "src/design/03_global_settings.scss",
 
               "src/design/central/animations.scss",
-              "src/design/central/bottom-bar.scss",
+              "src/design/central/bottom-bar-larger.scss",
               "src/design/central/boxes.scss",
               "src/design/central/crud-forms.scss",
               "src/design/central/crud.scss",

@@ -226,6 +226,10 @@
         [tags]="flow()?.mood.tags" [franchises]="flow()?.mood.franchises"/>
     </div>
 
+    <div *ngIf="showTag">
+        <p>Tag</p>
+    </div>
+
     <div class="flow-toolbar toolbar-bottom">
         <div [class.active]="showMood" class="toolbar-card" (click)="toggleMood()">
             <div class="card-title">
