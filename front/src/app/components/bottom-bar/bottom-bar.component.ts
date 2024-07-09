@@ -14,6 +14,7 @@ export class BottomBarComponent {
   @Input() infoTriggerIsActive : boolean | undefined = undefined
   @Input() moodsGalleryType : string = 'all'
   @Input() currentIndex : number = 0
+  @Input() moodType : number = 0
   
   @Output() topButton = new EventEmitter<void>()
   @Output() dialog = new EventEmitter<void>()
@@ -23,9 +24,13 @@ export class BottomBarComponent {
   @Output() getIndex = new EventEmitter<string>()
   @Output() diaporamaStart = new EventEmitter<boolean>()
   @Output() diaporamaStop = new EventEmitter<void>()
+  @Output() leftCard = new EventEmitter<void>()
+  @Output() isFocused = new EventEmitter<boolean>(false)
   
   topButtonIsActive : boolean = false
   diaporamaIsActive : boolean = false
+  leftCardIsActive : boolean = false
+  focusIsActive : boolean = false
 
   handleTopButton(): void {this.topButton.emit()}
   handleDialog(): void {this.dialog.emit()}
@@ -35,6 +40,8 @@ export class BottomBarComponent {
   handleGetIndex(direction : string): void {this.getIndex.emit(direction)}
   handleDiaporamaStart(isRandom : boolean): void {this.diaporamaStart.emit(isRandom); this.diaporamaIsActive = true}
   handleDiaporamaStop(): void {this.diaporamaStop.emit(); this.diaporamaIsActive = false}
+  handleLeftCard(): void {this.leftCard.emit()}
+  handleToggleFocus(): void {this.isFocused.emit(this.focusIsActive ? false : true); this.focusIsActive = this.focusIsActive ? false : true}
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(): void {

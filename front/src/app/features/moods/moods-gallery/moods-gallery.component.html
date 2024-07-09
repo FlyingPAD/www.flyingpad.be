@@ -1,7 +1,6 @@
 <div id="layout-central">
     <div *ngIf="moods?.length; else loading">
-        <!-- Gallery -->
-        <div [ngClass]="menuService.menuRActive === true ? 'gallery menu-open' : 'gallery' ">
+        <div [ngClass]="rightColumnIsActive() ? 'gallery menu-open' : 'gallery' ">
             <div *ngFor="let mood of moods || [] | paginate : { itemsPerPage : moodsPerPage, currentPage : paginationService.moodsByTagCurrentPage}">
                 <section>
                     <div *ngIf="mood.type == 1">           
@@ -24,14 +23,12 @@
             </div>
         </div>
     </div>
-    <!-- Loading -->
     <ng-template #loading>
         <div class="loading">
             <p>Loading ...</p>
             <img src="../../../../assets/app_icons/spinner.gif" />
         </div>
     </ng-template>
-    <!-- Pagination -->
     <div class="pagination-row" *ngIf="moods && moods.length > moodsPerPage">
         <div id="pagination">
             <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.moodsByTagCurrentPage = $event"></pagination-controls>

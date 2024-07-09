@@ -1,7 +1,5 @@
 <div id="layout-central">
-    <!-- Flying Keys ( Mini ) -->
     <div id="keyboard">
-        <!-- Volume  -->
         <div class="volume">
             <p><b>Volume</b></p>  
             <div class="slider">
@@ -16,7 +14,6 @@
         </div>
         <div class="station-controls">
             <section>
-                <!-- Notation Options -->
                 <p (click)="triggerShowNotes(keyStation)" class="button" [ngClass]="keyStation.showNotes ? 'button-active' : '' ">EN</p>
                 <p (click)="triggerShowNotesFr(keyStation)" class="button righty" [ngClass]="keyStation.showNotesFr ? 'button-active' : '' ">FR</p>  
                 <div *ngIf="!keyStation.showNotes && !keyStation.showNotesFr ">
@@ -63,9 +60,4 @@
         </div>
     </div>
 </div>
-
 <div class="bottom-box"></div>
-
-<div class="bottom-bar">
-    <a routerLink="/tools"><img src="../../../../assets/app_icons/icon_tools_001.png" /></a>
-</div>

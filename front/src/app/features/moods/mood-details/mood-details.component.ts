@@ -28,7 +28,7 @@ export class MoodDetailsComponent
 
   moodIndexPosition : number          = 0                       // Mood Index Position ( pagination )
   flow = this.#flowService.flow
-  infoIsActive = false                                          // Info Box Trigger
+  infoIsActive = true                                          // Info Box Trigger
 
   @Input() mood : any | undefined = undefined
   @Input() artists! : ArtistLight[] | undefined
@@ -39,6 +39,7 @@ export class MoodDetailsComponent
   @Output() artistId = new EventEmitter<number>()
   @Output() tagId = new EventEmitter<number>()
   @Output() franchiseId = new EventEmitter<number>()
+
 
   updateArtistId(artistId: number) : void {
     this.artistId.emit(artistId)
@@ -74,8 +75,7 @@ export class MoodDetailsComponent
     }
   }
 
-  infoTrigger()
-  {
+  infoTrigger(): void {
     this.infoIsActive = !this.infoIsActive
   }
 

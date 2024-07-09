@@ -94,6 +94,7 @@ import { MediasComponent } from './pages/medias/medias.component';
 import { LinksComponent } from './pages/links/links.component';
 import { RightColumnListComponent } from './components/right-column-list/right-column-list.component';
 import { ListCentralComponent } from './components/list-central/list-central.component';
+import { LeftCardComponent } from './components/left-card/left-card.component';
 
 @NgModule({
   declarations: 
@@ -194,6 +195,7 @@ import { ListCentralComponent } from './components/list-central/list-central.com
     AnimGrowDirective,
     AnimSpinDirective,
     ListCentralComponent,
+    LeftCardComponent,
   ],
   imports: 
   [

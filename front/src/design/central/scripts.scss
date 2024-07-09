@@ -1,0 +1,63 @@
+// ==============================================
+// - MoodBoard | Central Layout
+// ==============================================
+
+#layout-central
+{
+    .article_box
+    {
+        width: 750px;    
+        margin: auto;
+        margin-top: 30px; margin-bottom: 30px;
+
+        p
+        {
+            text-align: left;
+            color: #4a372a;     
+        }
+        a
+        {
+            text-decoration: none;
+            color: darkred;
+        }
+        a:hover
+        {
+            text-decoration: underline;
+        }
+        li
+        {
+            color: #4a372a;   
+        }
+    }
+
+    .primary
+    {
+        background-color: rgb(107, 82, 64, 0.05);   
+        border: 4px solid rgb(107, 82, 64, 0.9);   
+        border-radius: 5px;
+        padding: 25px;
+    }
+
+    .image_single
+    {
+        width: 800px;
+        margin: auto;
+
+        img
+        {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 850px) 
+    {
+        .article_box
+        {
+            width: 80%;
+        }
+        .image_single
+        {
+            width: 80%
+        }
+    }
+}

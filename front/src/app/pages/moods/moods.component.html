@@ -34,7 +34,8 @@
     @if(showDetails)
     {
         <app-mood-viewer [mood]="flow.mood" (getIndex)="getPage($event)" />
-        <app-mood-details 
+        
+        <app-mood-details *ngIf="leftCardIsActive"
         [mood]="flow.mood" [artists]="flow.mood.artists" [models]="flow.mood.models" 
         [tags]="flow.mood.tags" [franchises]="flow.mood.franchises"
         (artistId)="updateArtistId($event)" (modelId)="updateModelId($event)" (tagId)="updateTagId($event)" 
@@ -46,33 +47,38 @@
 
         @if(flow.moodsGalleryType === 'all') {
             <app-bottom-bar 
-            moodsGalleryType="details" [moodsLength]="flow.moods.length" [currentIndex]="flow.moodsIndexes.currentIndex"
+            moodsGalleryType="details" [moodsLength]="flow.moods.length" [currentIndex]="flow.moodsIndexes.currentIndex" [moodType]="flow.mood.type"
             (topButton)="toTop()" (dialog)="openDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
-            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" />
+            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" 
+            (leftCard)="leftCardToggle()" (isFocused)="getMoodHeight($event)"/>
         }
         @if(flow.moodsGalleryType === 'artist') {
             <app-bottom-bar 
-            moodsGalleryType="details" [moodsLength]="flow.moodsByArtist.length" [currentIndex]="flow.moodsByArtistIndexes.currentIndex"
+            moodsGalleryType="details" [moodsLength]="flow.moodsByArtist.length" [currentIndex]="flow.moodsByArtistIndexes.currentIndex" [moodType]="flow.mood.type"
             (topButton)="toTop()" (dialog)="openDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
-            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" />   
+            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" 
+            (leftCard)="leftCardToggle()" (isFocused)="getMoodHeight($event)"/>   
         }
         @if(flow.moodsGalleryType === 'model') {
             <app-bottom-bar 
-            moodsGalleryType="details" [moodsLength]="flow.moodsByModel.length" [currentIndex]="flow.moodsByModelIndexes.currentIndex"
+            moodsGalleryType="details" [moodsLength]="flow.moodsByModel.length" [currentIndex]="flow.moodsByModelIndexes.currentIndex" [moodType]="flow.mood.type"
             (topButton)="toTop()" (dialog)="openDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
-            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" /> 
+            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" 
+            (leftCard)="leftCardToggle()" (isFocused)="getMoodHeight($event)"/> 
         }
         @if(flow.moodsGalleryType === 'tag') {
             <app-bottom-bar 
-            moodsGalleryType="details" [moodsLength]="flow.moodsByTag.length" [currentIndex]="flow.moodsByTagIndexes.currentIndex"
+            moodsGalleryType="details" [moodsLength]="flow.moodsByTag.length" [currentIndex]="flow.moodsByTagIndexes.currentIndex" [moodType]="flow.mood.type"
             (topButton)="toTop()" (dialog)="openDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
-            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" />
+            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" 
+            (leftCard)="leftCardToggle()" (isFocused)="getMoodHeight($event)"/>
         }
         @if(flow.moodsGalleryType === 'franchise') {
             <app-bottom-bar 
-            moodsGalleryType="details" [moodsLength]="flow.moodsByFranchise.length" [currentIndex]="flow.moodsByFranchiseIndexes.currentIndex"
+            moodsGalleryType="details" [moodsLength]="flow.moodsByFranchise.length" [currentIndex]="flow.moodsByFranchiseIndexes.currentIndex" [moodType]="flow.mood.type"
             (topButton)="toTop()" (dialog)="openDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
-            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" />
+            (back)="backToGallery()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" 
+            (leftCard)="leftCardToggle()" (isFocused)="getMoodHeight($event)"/>
         }
     }
 </div>
