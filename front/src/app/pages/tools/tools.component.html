@@ -1,19 +1,13 @@
-<div id="layout-central">
-    <div class="tools-icons">
-        <a routerLink="/tools/circle-of-fifths"> 
-            <img src="../../../../assets/app_icons/circle_fifths.png">
-        </a>
-        <a routerLink="/tools/chord-wheel">
-            <img src="../../../../assets/app_icons/chord_wheel.png">
-        </a>
-        <a routerLink="/tools/diapason">
-            <img src="../../../../assets/app_icons/diapason.svg">
-        </a>
-        <a routerLink="/tools/flying-keys-mini">
-            <img src="../../../../assets/app_icons/keys-mini.svg">
-        </a>
-        <a routerLink="/tools/trainer-notes">
-            <img src="../../../../assets/app_icons/trainer-notes.png">
-        </a>
-    </div>
+<div class="tools-icons">
+    <a [class.active]="showCircleofFifths" (click)="toggleCircleofFifths()"><img src="../../../../assets/app_icons/circle_fifths.png"></a>
+    <a [class.active]="showChordWheel" (click)="toggleChordWheel()"><img src="../../../../assets/app_icons/chord_wheel.png"></a>
+    <a [class.active]="showDiapason" (click)="toggleDiapason()"><img src="../../../../assets/app_icons/diapason.svg"></a>
+    <a [class.active]="showMiniKeys" (click)="toggleMiniKeys()"><img src="../../../../assets/app_icons/keys-mini.svg"></a>
+    <a [class.active]="showTrainer" (click)="toggleTrainer()"><img src="../../../../assets/app_icons/trainer-notes.png"></a>
 </div>
+
+<app-circle-of-fifths *ngIf="showCircleofFifths" />
+<app-chord-wheel-svg *ngIf="showChordWheel" />
+<app-diapason *ngIf="showDiapason" />
+<app-flying-keys-mini *ngIf="showMiniKeys" />
+<app-trainer-notes *ngIf="showTrainer" />

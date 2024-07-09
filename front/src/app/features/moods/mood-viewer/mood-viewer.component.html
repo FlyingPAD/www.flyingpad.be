@@ -1,14 +1,12 @@
 <div id="viewer">
-    <!-- Type : Image -->
     <div class="mood-image" *ngIf="mood?.type === 1">
         <div id="mood_content" >
-            <img [style.height.px]="moodHeight"
+            <img [style.height.px]="moodHeight()"
             src="{{environment}}/Content/img_thumbs/{{mood?.businessId}}.{{mood?.extension}}" />
         </div>
         <div (click)="handleGetIndex('previous')" id="page_previous"></div>
         <div (click)="handleGetIndex('next')" id="page_next"></div>
     </div>
-    <!-- Type : Video -->
     <div class="mood-video" *ngIf="mood?.type === 2">
         <div class="video-container">
             <video
@@ -21,7 +19,6 @@
             </video>
         </div>
     </div>
-    <!-- Type : Video YouTube -->
     <div class="mood-video" *ngIf="mood?.type === 4">
         <div class="video-container">
             <div class="youtube" [innerHTML]="getSafeContent(mood.url)"></div>

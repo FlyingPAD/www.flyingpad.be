@@ -1,32 +1,46 @@
 <app-button-top />
-<div id="layout-central">    
-    <div class="section-flex">
-        <section>
-            <h2>INTRODUCTION</h2>
-            <p>▸ <a routerLink="/scripts/introduction"> Avant de commencer</a></p>
-            <p>▸ <a routerLink="/scripts/piano-reference"> La Référence Clavier</a></p>
-            <p>▸ <a routerLink="/scripts/viewpoint"> Point de Vue</a></p>
-            <p>▸ <a routerLink="/scripts/notation"> La Notation Musicale</a></p>
-        </section>
-        <section>
-            <h2>HARMONIE</h2>
-            <p>▸ <a routerLink="/scripts/notes-fr"> Les Notes</a></p>
-            <p>▸ <a routerLink="/scripts/notes-en"> Les Notes ( en anglais )</a></p>
-            <p>▸ <a routerLink="/scripts/intervals"> Les Intervalles</a></p>
-            <p>▸ <a routerLink="/scripts/chords"> Les Accords</a></p>
-            <p>▸ <a routerLink="/scripts/scales"> Les Gammes</a></p>
-            <p>▸ <a routerLink="/scripts/melody"> La Mélodie</a></p>
-        </section>
-        <section>
-            <h2>HARMONIE : Exercices</h2>
-            <p>▸ <a routerLink="/scripts/notes-ex"> Les Notes</a></p>
-        </section>
-        <section>
-            <h2>RYTHME</h2>
-            <p>▸ <a routerLink="/scripts/pulsation"> La Pulsation</a></p>
-            <p>▸ <a routerLink="/scripts/metrics-a"> Les Métriques ( 1 )</a></p>
-            <p>▸ <a routerLink="/scripts/metrics-b"> Les Métriques ( 2 )</a></p>
-        </section>
-    </div>
+<div class="section-flex">
+    <section>
+    <h2>INTRODUCTION</h2>
+    <p>▸ <a (click)="selectScript('introduction')" [class.active]="currentScript === 'introduction'">Avant de commencer</a></p>
+    <p>▸ <a (click)="selectScript('pianoReference')" [class.active]="currentScript === 'pianoReference'">La Référence Clavier</a></p>
+    <p>▸ <a (click)="selectScript('viewpoint')" [class.active]="currentScript === 'viewpoint'">Point de Vue</a></p>
+    <p>▸ <a (click)="selectScript('notation')" [class.active]="currentScript === 'notation'">La Notation Musicale</a></p>
+    </section>
+    <section>
+    <h2>HARMONIE</h2>
+    <p>▸ <a (click)="selectScript('notesFr')" [class.active]="currentScript === 'notesFr'">Les Notes</a></p>
+    <p>▸ <a (click)="selectScript('notesEn')" [class.active]="currentScript === 'notesEn'">Les Notes (en anglais)</a></p>
+    <p>▸ <a (click)="selectScript('intervals')" [class.active]="currentScript === 'intervals'">Les Intervalles</a></p>
+    <p>▸ <a (click)="selectScript('chords')" [class.active]="currentScript === 'chords'">Les Accords</a></p>
+    <p>▸ <a (click)="selectScript('scales')" [class.active]="currentScript === 'scales'">Les Gammes</a></p>
+    <p>▸ <a (click)="selectScript('melody')" [class.active]="currentScript === 'melody'">La Mélodie</a></p>
+    </section>
+    <section>
+    <h2>HARMONIE: Exercices</h2>
+    <p>▸ <a (click)="selectScript('notesEx')" [class.active]="currentScript === 'notesEx'">Les Notes</a></p>
+    </section>
+    <section>
+    <h2>RYTHME</h2>
+    <p>▸ <a (click)="selectScript('pulsation')" [class.active]="currentScript === 'pulsation'">La Pulsation</a></p>
+    <p>▸ <a (click)="selectScript('metricsA')" [class.active]="currentScript === 'metricsA'">Les Métriques (1)</a></p>
+    <p>▸ <a (click)="selectScript('metricsB')" [class.active]="currentScript === 'metricsB'">Les Métriques (2)</a></p>
+    </section>
 </div>
+<ng-container [ngSwitch]="currentScript">
+    <app-intro *ngSwitchCase="'introduction'"></app-intro>
+    <app-key-ref *ngSwitchCase="'pianoReference'"></app-key-ref>
+    <app-viewpoint *ngSwitchCase="'viewpoint'"></app-viewpoint>
+    <app-notation *ngSwitchCase="'notation'"></app-notation>
+    <app-notes *ngSwitchCase="'notesFr'"></app-notes>
+    <app-notes-trad *ngSwitchCase="'notesEn'"></app-notes-trad>
+    <app-intervals *ngSwitchCase="'intervals'"></app-intervals>
+    <app-chords *ngSwitchCase="'chords'"></app-chords>
+    <app-scales *ngSwitchCase="'scales'"></app-scales>
+    <app-melody *ngSwitchCase="'melody'"></app-melody>
+    <app-notes-ex *ngSwitchCase="'notesEx'"></app-notes-ex>
+    <app-pulsation *ngSwitchCase="'pulsation'"></app-pulsation>
+    <app-metrics-a *ngSwitchCase="'metricsA'"></app-metrics-a>
+    <app-metrics-b *ngSwitchCase="'metricsB'"></app-metrics-b>
+</ng-container>    
 <div class="bottom-box"></div>

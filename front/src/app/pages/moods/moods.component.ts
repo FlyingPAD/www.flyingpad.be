@@ -6,6 +6,7 @@ import { MenuCustomService } from '../../services/menu-custom.service';
 import { MenuDesktopService } from '../../services/menu-desktop.service';
 import { UserService } from '../../services/user.service';
 import { PaginationService } from '../../services/pagination.service';
+import { ViewerService } from '../../services/viewer.service';
 
 @Component({
   selector: 'app-moods',
@@ -19,18 +20,29 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   menuCustom = inject(MenuCustomService)
   router = inject(Router)
   paginationService = inject(PaginationService)
+  viewerService = inject(ViewerService)
 
   environment = environment.apiBaseUrl
-  flow = this.#flowService.flow  
-  topButtonIsActive = false             
-  infoIsActive = false          
+
+  flow = this.#flowService.flow
+
   showGallery : boolean = true
   showDetails : boolean = false
   showDialog : boolean = false
+
   intervalId : any | undefined = undefined
   diaporamaSwitch : boolean = false
+
+  topButtonIsActive = false             
+  infoIsActive = false   
+  leftCardIsActive : boolean = false
+
+  getMoodHeight(focusState: boolean) {
+    this.viewerService.getMoodHeight(focusState, window.innerHeight, this.flow()?.mood.height)
+  }
   
   ngOnInit(): void {
+    this.getMoodHeight(false)
     window.scrollTo(0, 0)
     const businessIdString = `${this.flow()?.tag?.businessId ?? 'fallbackValue'}`
     this.scrollToStart(businessIdString)
@@ -165,6 +177,9 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
   menuTrigger(): void {
     this.menuService.menuRTrigger()
+  }
+  leftCardToggle(): void {
+    this.leftCardIsActive = !this.leftCardIsActive
   }
 
   handleDialog() {

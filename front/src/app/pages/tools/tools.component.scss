@@ -13,8 +13,8 @@
         height: 150px;
         min-width: 150px;
 
-        background-color: rgb(107, 82, 64, 0.1);
-        border: 3px solid grey;
+        background-color: rgb(107, 82, 64, 0.4);
+        border: 3px solid var(--colorMain);
         border-radius: 10px;
         box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
 
@@ -23,20 +23,29 @@
         img
         {
             height: 85%;
+            opacity: 0.5;
         }
     }
-    a:hover
+    a:hover:not(.active)
     {
-        background-color: rgb(107, 82, 64, 0.4);
-        border: 3px solid var(--colorMain);
-        transition-duration: 500ms;
+        background-color: rgb(107, 82, 64, 0.1);
+        border: 3px solid grey;
+        transition-duration: 300ms;
         cursor: pointer;
+        img
+        {
+            opacity: 1;
+            transition-duration: 300ms;
+        }
     }
     .active
     {
-        background-color: rgb(107, 82, 64, 0.4);
-        border: 3px solid var(--colorMain);
-        transition-duration: 500ms;
+        background-color: rgb(107, 82, 64, 0.1);
+        border: 3px solid grey;
+        img
+        {
+            opacity: 1;
+        }
     }
 }
 
