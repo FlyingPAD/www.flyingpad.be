@@ -17,7 +17,12 @@
 }
 
 <div class="flex">
-    <p><b>Moods</b></p>
+    @if(moodsGalleryType === 'link') {
+        <p><b>Links</b></p>
+    }
+    @else {
+        <p><b>Moods</b></p>
+    }
     <p>{{moodsLength | number : '4.0'}}</p>
 </div>
 

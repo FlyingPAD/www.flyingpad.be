@@ -1,24 +1,54 @@
 <div class="bar">
     @if(moodsGalleryType === 'all') {
-
-    }
-    @if(moodsGalleryType === 'artist' || moodsGalleryType === 'model' || moodsGalleryType === 'tag' || moodsGalleryType === 'franchise') {
-        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
-    }
-    @if(moodsGalleryType === 'all' || moodsGalleryType === 'artist' || moodsGalleryType === 'model' || moodsGalleryType === 'tag' || moodsGalleryType === 'franchise') {
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>    
         <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" /></a>
         <a routerLink="/moods/multi-tag" *ngIf="userService.appUser.role === 2"><img src="../../../../assets/app_icons/edit.png" /></a>
         <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true"><img src="../../../../assets/app_icons/arrow_up.png" /></a>
         <span *ngIf="topButtonIsActive === false"><img src="../../../../assets/app_icons/arrow_up_no.png" /></span>
     }
-    @if(moodsGalleryType === 'model' && entityName != '# Unrelated Model' || moodsGalleryType === 'model' && entityName != '# Unknown Model') {
-        <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><img src="../../../../assets/app_icons/google.png" /></a>
-        <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><img src="../../../../assets/app_icons/google_images.png" /></a>
+    @if(moodsGalleryType === 'artist') {
+        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>    
+        <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" /></a>
+        <a routerLink="/moods/multi-tag" *ngIf="userService.appUser.role === 2"><img src="../../../../assets/app_icons/edit.png" /></a>
+        <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true"><img src="../../../../assets/app_icons/arrow_up.png" /></a>
+        <span *ngIf="topButtonIsActive === false"><img src="../../../../assets/app_icons/arrow_up_no.png" /></span>
+        @if(entityName != '# Unknown Artist') {
+            <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><img src="../../../../assets/app_icons/google.png" /></a>
+            <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><img src="../../../../assets/app_icons/google_images.png" /></a>
+        }
     }
-    @if(moodsGalleryType === 'artist' && entityName != '# Unknown Artist') {
-        <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><img src="../../../../assets/app_icons/google.png" /></a>
-        <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><img src="../../../../assets/app_icons/google_images.png" /></a>
+    @if(moodsGalleryType === 'model') {
+        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>    
+        <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" /></a>
+        <a routerLink="/moods/multi-tag" *ngIf="userService.appUser.role === 2"><img src="../../../../assets/app_icons/edit.png" /></a>
+        <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true"><img src="../../../../assets/app_icons/arrow_up.png" /></a>
+        <span *ngIf="topButtonIsActive === false"><img src="../../../../assets/app_icons/arrow_up_no.png" /></span>
+        @if(entityName != '# Unrelated Model' && entityName != '# Unknown Model') {
+            <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><img src="../../../../assets/app_icons/google.png" /></a>
+            <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><img src="../../../../assets/app_icons/google_images.png" /></a>
+        }
+    }
+    @if(moodsGalleryType === 'tag') {
+        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>    
+        <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" /></a>
+        <a routerLink="/moods/multi-tag" *ngIf="userService.appUser.role === 2"><img src="../../../../assets/app_icons/edit.png" /></a>
+        <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true"><img src="../../../../assets/app_icons/arrow_up.png" /></a>
+        <span *ngIf="topButtonIsActive === false"><img src="../../../../assets/app_icons/arrow_up_no.png" /></span>
+    }
+    @if(moodsGalleryType === 'franchise') {
+        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>    
+        <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" /></a>
+        <a routerLink="/moods/multi-tag" *ngIf="userService.appUser.role === 2"><img src="../../../../assets/app_icons/edit.png" /></a>
+        <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true"><img src="../../../../assets/app_icons/arrow_up.png" /></a>
+        <span *ngIf="topButtonIsActive === false"><img src="../../../../assets/app_icons/arrow_up_no.png" /></span>
+        @if(entityName != '# Unrelated Franchise') {
+            <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><img src="../../../../assets/app_icons/google.png" /></a>
+            <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><img src="../../../../assets/app_icons/google_images.png" /></a>
+        }
     }
     @if(moodsGalleryType === 'details') {
         <a (click)="handleGetIndex('previous')"><img appAnimGrow src="../../../../assets/app_icons/arrow_left.png" /></a>
@@ -34,5 +64,12 @@
         <span class="toggle" *ngIf="moodType !== 1"><img src="../../../../assets/app_icons/toggle_no.png" /></span>
         <a (click)="handleOpenMoodInNewTab()"><img class="toggle" src="../../../../assets/app_icons/download.png" /></a>
         <a (click)="handleRandomMood()"><img appAnimRandom src="../../../../assets/app_icons/random.png" /></a>
+    }
+    @if(moodsGalleryType === 'link') {
+        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>    
+        <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" /></a>
+        <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true"><img src="../../../../assets/app_icons/arrow_up.png" /></a>
+        <span *ngIf="topButtonIsActive === false"><img src="../../../../assets/app_icons/arrow_up_no.png" /></span>
     }
 </div>
