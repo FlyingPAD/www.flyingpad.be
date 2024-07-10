@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace MB.API.Configuration;
+namespace MB.API;
 
 public static class Swagger
 {

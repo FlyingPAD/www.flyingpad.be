@@ -1,4 +1,4 @@
-﻿namespace MB.API.Configuration;
+﻿namespace MB.API;
 
 // Configure Cross-Origin Resource Sharing (CORS).
 public static class AddCors

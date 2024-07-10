@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Franchises.Commands.CreateFranchise;
+﻿namespace MB.Application.Features.Franchises.Commands.CreateFranchise;
 
 public class CreateFranchiseCommandResponse : BaseResponse
 {

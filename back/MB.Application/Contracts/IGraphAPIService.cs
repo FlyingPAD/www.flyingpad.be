@@ -1,6 +1,4 @@
-﻿using MB.Application.Dto;
-
-namespace MB.Application.Contracts;
+﻿namespace MB.Application.Contracts;
 
 public interface IGraphAPIService
 {

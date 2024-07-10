@@ -1,24 +1,18 @@
 import { BaseResponse } from "./base-response";
 
-// Models :
-
-export interface TagLight
-{
+// Models.
+export interface TagLight {
     businessId : number
     name :       string
 }
-
-export interface MiniTag
-{
+export interface MiniTag {
     businessId : number
     name :       string
 }
-export interface TagsCheckBoxes extends MiniTag
-{
+export interface TagsCheckBoxes extends MiniTag {
     isChecked : boolean
 }
-export class Tag
-{
+export class Tag {
     businessId : number = 0
     name :       string = '# All Files'
     description: string = ''
@@ -27,9 +21,7 @@ export class Tag
     modified :   Date = new Date
     modifiedBy : string = ''
 }
-
-export interface TagFull
-{
+export interface TagFull {
     businessId : number
     name :       string
     description: string
@@ -38,33 +30,26 @@ export interface TagFull
     modified :   Date
     modifiedBy : string
 }
-
-export class TagList
-{
+export class TagList {
     category : MiniTagCategory = new MiniTagCategory()
     tags :     MiniTag[] = []
 }
-export class TagsCheckBoxesList
-{
+export class TagsCheckBoxesList {
     category : MiniTagCategory = new MiniTagCategory()
     tagsCheckBoxes : TagsCheckBoxes[] = []
 }
-export class MiniTagCategory
-{
+export class MiniTagCategory {
     businessId : number = 0
     name :       string = ''
 }
-export class TagCategory
-{
+export class TagCategory  {
     businessId :  number = 0
     created :     Date = new Date
     modified :    Date = new Date
     name :        string = ''
     description : string = ''
 }
-
-export interface TagCategoryFull
-{
+export interface TagCategoryFull {
     businessId :  number
     created :     Date
     modified :    Date
@@ -72,57 +57,49 @@ export interface TagCategoryFull
     description : string
 }
 
-// Calls :
-export interface TagCreateForm
-{
+// Calls.
+export interface TagCreateForm {
     name :        string
     description : string
 }
-export interface TagCategoryCreateForm
-{
+export interface TagUpdateForm {
+    tagId : number
+    name : string
+    description : string
+}
+export interface TagCategoryCreateForm {
     name :        string
     description : string
 }
 
-// Response :
-
-export interface GetAllTagsResponse extends BaseResponse
-{
+// Responses.
+export interface GetAllTagsResponse extends BaseResponse {
     tags : MiniTag[]
 }
-export interface GetTagsByCategoryResponse extends BaseResponse
-{
+export interface GetTagsByCategoryResponse extends BaseResponse {
     tags : MiniTag[]
 }
-export interface GetOneTagDetailsResponse extends BaseResponse
-{
+export interface GetOneTagDetailsResponse extends BaseResponse {
     tag : Tag
 }
-export interface GetTagByIdResponse extends BaseResponse
-{
+export interface GetTagByIdResponse extends BaseResponse {
     tag : TagFull
 }
-export interface TagsGetFullListResponse extends BaseResponse
-{
+export interface TagsGetFullListResponse extends BaseResponse {
     categoriesWithTags : TagList[]
 }
-export interface GetTagsByMoodResponse extends BaseResponse
-{
+export interface GetTagsByMoodResponse extends BaseResponse {
     tagsByMood : MiniTag[]
 }
-export interface GetTagsCheckBoxesByMoodResponse extends BaseResponse
-{
+export interface GetTagsCheckBoxesByMoodResponse extends BaseResponse {
    tagsCheckBoxesList : TagsCheckBoxesList[]
 }
-export interface GetAllTagCategoriesResponse extends BaseResponse
-{
+export interface GetAllTagCategoriesResponse extends BaseResponse {
     tagCategories : MiniTagCategory[]
 }
-export interface GetTagCategoryByIdResponse extends BaseResponse
-{
+export interface GetTagCategoryByIdResponse extends BaseResponse {
     tagCategory : TagCategoryFull
 }
-export interface CreateTagResponse extends BaseResponse
-{
+export interface CreateTagResponse extends BaseResponse {
     link : Tag
 }

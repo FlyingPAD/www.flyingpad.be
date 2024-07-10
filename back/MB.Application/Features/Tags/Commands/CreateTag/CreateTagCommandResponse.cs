@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Tags.Commands.CreateTag;
+﻿namespace MB.Application.Features.Tags.Commands.CreateTag;
 
 public class CreateTagCommandResponse : BaseResponse
 {

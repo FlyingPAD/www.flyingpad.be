@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Styles.Queries.CountStyles;
+﻿namespace MB.Application.Features.Styles.Queries.CountStyles;
 
 public class CountStylesQueryResponse : BaseResponse
 {

@@ -1,5 +1,4 @@
 ﻿using MB.Application.Features.Videos.Queries.GetOneVideoDetailsQuery;
-using MB.Application.Responses;
 
 namespace MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetailsQuery;
 

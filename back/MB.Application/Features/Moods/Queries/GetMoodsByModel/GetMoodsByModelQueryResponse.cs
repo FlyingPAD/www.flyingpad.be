@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Moods.Queries.GetMoodsByModel;
+﻿namespace MB.Application.Features.Moods.Queries.GetMoodsByModel;
 
 public class GetMoodsByModelQueryResponse : BaseResponse
 {

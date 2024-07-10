@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Users.Commands.UpdateUser;
+﻿namespace MB.Application.Features.Users.Commands.UpdateUser;
 
 public class UpdateUserCommandResponse : BaseResponse
 {

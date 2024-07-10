@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.TaskCategories.Queries.CountTaskCategories;
+﻿namespace MB.Application.Features.TaskCategories.Queries.CountTaskCategories;
 
 public class CountTaskCategoriesQueryResponse : BaseResponse
 {

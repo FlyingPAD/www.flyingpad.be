@@ -4,9 +4,9 @@ import { environment } from '../../environments/environment';
 import { Observable, map, of, combineLatest, BehaviorSubject, switchMap, startWith, Subject, take, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { GetMoodByIdResponse, GetMoodsResponse, MoodCreateForm, MoodCreateResponse, MoodFull, MoodLight, MoodUpdateForm, MoodUpdateResponse, UpdateMoodScoreCall } from '../models/mood';
-import { GetAllTagCategoriesResponse, GetAllTagsResponse, GetTagByIdResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse, GetTagsByMoodResponse, TagCategoryFull, TagFull, TagLight, TagsGetFullListResponse } from '../models/tag';
-import { ArtistFull, ArtistLight, GetAllArtistsResponse, GetArtistByIdResponse, GetArtistsByMoodResponse, GetArtistsByStyleResponse } from '../models/artist';
-import { GetAllModelsResponse, GetModelResponse, GetModelsResponse, ModelFull, ModelLight } from '../models/model';
+import { GetAllTagCategoriesResponse, GetAllTagsResponse, GetTagByIdResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse, GetTagsByMoodResponse, TagCategoryFull, TagFull, TagLight, TagsGetFullListResponse, TagUpdateForm } from '../models/tag';
+import { ArtistFull, ArtistLight, ArtistUpdateForm, GetAllArtistsResponse, GetArtistByIdResponse, GetArtistsByMoodResponse, GetArtistsByStyleResponse } from '../models/artist';
+import { GetAllModelsResponse, GetModelResponse, GetModelsResponse, ModelFull, ModelLight, ModelUpdateForm } from '../models/model';
 import { GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, GetLinksResponse, LinkCategoryFull, LinkFull, LinkLight } from '../models/link';
 import { GetStyleResponse, GetStylesResponse, StyleFull } from '../models/style';
 import { FranchiseFull, FranchiseLight, GetAllFranchisesResponse, GetAllMediasResponse, GetFranchiseByIdResponse, GetFranchisesByMediaResponse, GetFranchisesByMoodResponse, GetMediaByIdResponse, GetMediasFullListResponse, MediaFull } from '../models/franchise';
@@ -331,6 +331,15 @@ export class FlowService {
   UpdateMood( form : MoodUpdateForm ) { 
     return this.#http.put<MoodUpdateResponse>(`${this.#url}Moods/Update`, form).pipe(tap(response => { if (response.success) this.refreshMoods() } ))
   }
+  UpdateTag( form : TagUpdateForm ) { 
+    return this.#http.put<BaseResponse>(`${this.#url}Tags/Update`, form).pipe(tap(response => { if (response.success) this.updateTagId(form.tagId); this.refreshMoods() } ))
+  }
+  UpdateArtist( form : ArtistUpdateForm ) { 
+    return this.#http.put<BaseResponse>(`${this.#url}Artists/Update`, form).pipe(tap(response => { if (response.success) this.updateArtistId(form.businessId); this.refreshMoods() } ))
+  }
+  UpdateModel( form : ModelUpdateForm ) { 
+    return this.#http.put<BaseResponse>(`${this.#url}Models/Update`, form).pipe(tap(response => { if (response.success) this.updateModelId(form.modelId); this.refreshMoods() } ))
+  }
 
   // Delete.
   DeleteMood( moodId : number ) {
@@ -339,11 +348,17 @@ export class FlowService {
   DeleteTag( tagId : number ) {
     return this.#http.delete<BaseResponse>(`${this.#url}Tags/Delete/${tagId}`)
   }
+  DeleteTagCategory( tagCategoryId : number ) {
+    return this.#http.delete<BaseResponse>(`${this.#url}TagCategories/Delete/${tagCategoryId}`)
+  }
   DeleteArtist( artistId : number ) {
     return this.#http.delete<BaseResponse>(`${this.#url}Artists/Delete/${artistId}`)
   }
   DeleteStyle( styleId : number ) {
     return this.#http.delete<BaseResponse>(`${this.#url}Styles/Delete/${styleId}`)
+  }
+  DeleteModel( modelId : number ) {
+    return this.#http.delete<BaseResponse>(`${this.#url}Models/Delete/${modelId}`)
   }
   DeleteFranchise( franchiseId : number ) {
     return this.#http.delete<BaseResponse>(`${this.#url}Franchises/Delete/${franchiseId}`)
@@ -357,8 +372,11 @@ export class FlowService {
   DeleteLink( linkId : number ) {
     return this.#http.delete<BaseResponse>(`${this.#url}Links/Delete/${linkId}`)
   }
+  DeleteUser( userId : number ) {
+    return this.#http.delete<BaseResponse>(`${this.#url}Users/Delete/${userId}`)
+  }
 
-  // Calcul des index courants, précédents et suivants pour chaque tableau de humeurs.
+  // Calculate indexes.
   private calculateIndexes(moods: MoodLight[], selectedMoodId: number | null) {
     const currentIndex = selectedMoodId !== null ? moods.findIndex(m => m.businessId === selectedMoodId) : -1;
     const previousMoodId = currentIndex > 0 ? moods[currentIndex - 1]?.businessId : moods.length ? moods[moods.length - 1]?.businessId : null;

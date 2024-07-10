@@ -1,5 +1,4 @@
-﻿using MB.Application.Responses;
-using MediatR;
+﻿using MediatR;
 
 namespace MB.Application.Features.Relations.Commands.CreateRelationsModelFranchise;
 

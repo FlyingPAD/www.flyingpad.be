@@ -34,8 +34,8 @@ public class ModelsControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(new GetModelsListQuery()));
 
     [HttpGet("GetOneDetails/{modelId}")]
-    public async Task<ActionResult<GetModelByIdQueryResponse>> GetOneDetails(Guid modelId)
-        => Ok(await _mediator.Send(new GetModelByIdQuery { ModelId = modelId }));
+    public async Task<IActionResult> GetOneDetails(Guid modelId)
+        => ResponseToActionResultMapper.Map(await _mediator.Send(new GetModelByIdQuery { ModelId = modelId }));
 
     [HttpGet("GetByMood/{moodId}")]
     public async Task<ActionResult<GetModelsByMoodQueryResponse>> GetByMood(Guid moodId)
@@ -51,8 +51,8 @@ public class ModelsControllerV1(IMediator mediator) : ControllerBase
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<UpdateModelCommandResponse>> Update([FromBody] UpdateModelCommand updateModelCommand)
-        => Ok(await _mediator.Send(updateModelCommand));
+    public async Task<IActionResult> Update([FromBody] UpdateModelCommand updateModelCommand)
+        => ResponseToActionResultMapper.Map(await _mediator.Send(updateModelCommand));
 
     [HttpDelete("Delete/{modelId}")]
     [Authorize(AuthenticationSchemes = "Bearer")]
