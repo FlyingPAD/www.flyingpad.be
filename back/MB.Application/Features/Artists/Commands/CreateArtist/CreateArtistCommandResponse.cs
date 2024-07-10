@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Artists.Commands.CreateArtist;
+﻿namespace MB.Application.Features.Artists.Commands.CreateArtist;
 
 public class CreateArtistCommandResponse : BaseResponse
 {

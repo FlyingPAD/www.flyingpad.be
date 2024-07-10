@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Styles.Queries.GetStylesCheck;
+﻿namespace MB.Application.Features.Styles.Queries.GetStylesCheck;
 
 public class GetStylesCheckQueryResponse : BaseResponse
 {

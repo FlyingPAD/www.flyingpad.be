@@ -2,7 +2,14 @@
     <div class="form">  
         <form [formGroup]="formGroup">
             <input type="text" formControlName="pseudonym" placeholder="{{model?.pseudonym}}">
+            <input type="text" formControlName="firstName" placeholder="{{model?.firstName}}">
+            <input type="text" formControlName="lastName" placeholder="{{model?.lastName}}">
+            <input type="text" formControlName="gender" placeholder="{{model?.gender}}">
             <input type="text" formControlName="description" placeholder="{{model?.description}}">    
         </form>
+    </div>
+    <div class="buttons">
+        <a [class.disabled]="formGroup.invalid" (click)="update()">Update</a>
+        <a (click)="triggerDeleteModel()">Delete</a>
     </div>
 </div>

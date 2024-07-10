@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.TagCategories.Commands.UpdateTagCategory;
+﻿namespace MB.Application.Features.TagCategories.Commands.UpdateTagCategory;
 
 public class UpdateTagCategoryCommandResponse : BaseResponse
 {

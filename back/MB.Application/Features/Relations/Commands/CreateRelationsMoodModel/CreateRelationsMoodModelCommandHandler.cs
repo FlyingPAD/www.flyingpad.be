@@ -1,5 +1,4 @@
 ﻿using MB.Application.Contracts.Persistence;
-using MB.Application.Responses;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodModel;

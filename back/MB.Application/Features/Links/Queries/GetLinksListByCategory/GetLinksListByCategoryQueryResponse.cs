@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Links.Queries.GetLinksListByCategory;
+﻿namespace MB.Application.Features.Links.Queries.GetLinksListByCategory;
 
 public class GetLinksListByCategoryQueryResponse : BaseResponse
 {

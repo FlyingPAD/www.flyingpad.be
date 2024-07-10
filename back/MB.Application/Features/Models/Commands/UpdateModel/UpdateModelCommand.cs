@@ -2,9 +2,12 @@
 
 namespace MB.Application.Features.Models.Commands.UpdateModel;
 
-public class UpdateModelCommand : IRequest<UpdateModelCommandResponse>
+public class UpdateModelCommand : IRequest<BaseResponse>
 {
-    public Guid Id { get; set; }
+    public Guid ModelId { get; set; }
+    public string Pseudonym { get; set; } = string.Empty;
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
+    public string Gender { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 }

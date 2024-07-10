@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Medias.Commands.CreateMedia;
+﻿namespace MB.Application.Features.Medias.Commands.CreateMedia;
 
 public class CreateMediaCommandResponse : BaseResponse
 {

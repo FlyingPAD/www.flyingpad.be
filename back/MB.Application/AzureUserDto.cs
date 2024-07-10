@@ -1,4 +1,4 @@
-﻿namespace MB.Application.Dto;
+﻿namespace MB.Application;
 
 public class AzureUserDto
 {

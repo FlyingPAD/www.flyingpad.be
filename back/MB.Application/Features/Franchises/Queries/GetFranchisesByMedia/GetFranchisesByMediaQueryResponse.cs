@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Franchises.Queries.GetFranchisesByMedia;
+﻿namespace MB.Application.Features.Franchises.Queries.GetFranchisesByMedia;
 
 public class GetFranchisesByMediaQueryResponse : BaseResponse
 {

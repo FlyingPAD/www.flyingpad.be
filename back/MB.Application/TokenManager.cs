@@ -6,7 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace MB.Application.Security;
+namespace MB.Application;
 
 /// <summary>
 /// Constructor :
@@ -14,8 +14,8 @@ namespace MB.Application.Security;
 /// <param name="config"></param>
 public class TokenManager(IConfiguration config) : ITokenManager
 {
-    private readonly string? _issuer = config.GetSection("Jwt").GetSection("Issuer").Value, 
-                             _audience = config.GetSection("Jwt").GetSection("Audience").Value, 
+    private readonly string? _issuer = config.GetSection("Jwt").GetSection("Issuer").Value,
+                             _audience = config.GetSection("Jwt").GetSection("Audience").Value,
                              _key = config.GetSection("Jwt").GetSection("Key").Value;
 
     /// <summary>
@@ -33,7 +33,7 @@ public class TokenManager(IConfiguration config) : ITokenManager
 
         // Payload Creation / User Info
 
-        Claim[] claims = 
+        Claim[] claims =
         [
             new ("businessId", user.BusinessId.ToString()),
             new ("created", user.Created.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")),
@@ -47,7 +47,7 @@ public class TokenManager(IConfiguration config) : ITokenManager
 
         // Token Configuration
 
-        JwtSecurityToken token = new (
+        JwtSecurityToken token = new(
                 claims: claims,
                 signingCredentials: credentials,
                 issuer: _issuer,
@@ -57,7 +57,7 @@ public class TokenManager(IConfiguration config) : ITokenManager
 
         // Token Generation
 
-        JwtSecurityTokenHandler handler = new ();
+        JwtSecurityTokenHandler handler = new();
 
         return handler.WriteToken(token);
     }

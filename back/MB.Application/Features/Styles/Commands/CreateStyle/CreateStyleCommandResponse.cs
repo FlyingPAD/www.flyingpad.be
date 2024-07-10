@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Styles.Commands.CreateStyle;
+﻿namespace MB.Application.Features.Styles.Commands.CreateStyle;
 
 public class CreateStyleCommandResponse : BaseResponse
 {

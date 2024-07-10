@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Medias.Queries.GetMediaById;
+﻿namespace MB.Application.Features.Medias.Queries.GetMediaById;
 
 public class GetMediaByIdQueryResponse : BaseResponse
 {

@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Franchises.Commands.DeleteFranchise;
+﻿namespace MB.Application.Features.Franchises.Commands.DeleteFranchise;
 
 public class DeleteFranchiseCommandResponse : BaseResponse
 {

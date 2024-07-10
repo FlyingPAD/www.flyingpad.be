@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.LinkCategories.Commands.DeleteLinkCategory;
+﻿namespace MB.Application.Features.LinkCategories.Commands.DeleteLinkCategory;
 
 public class DeleteLinkCategoryCommandResponse : BaseResponse
 {

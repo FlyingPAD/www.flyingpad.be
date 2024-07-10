@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.TagCategories.Commands.DeleteTagCategory;
+﻿namespace MB.Application.Features.TagCategories.Commands.DeleteTagCategory;
 
 public class DeleteTagCategoryCommandResponse : BaseResponse
 {

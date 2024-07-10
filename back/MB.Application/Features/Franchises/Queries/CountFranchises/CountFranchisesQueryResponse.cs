@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Franchises.Queries.CountFranchises;
+﻿namespace MB.Application.Features.Franchises.Queries.CountFranchises;
 
 public class CountFranchisesQueryResponse : BaseResponse
 {

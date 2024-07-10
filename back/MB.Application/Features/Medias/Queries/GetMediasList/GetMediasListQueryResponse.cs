@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Medias.Queries.GetMediasList;
+﻿namespace MB.Application.Features.Medias.Queries.GetMediasList;
 
 public class GetMediasListQueryResponse : BaseResponse
 {

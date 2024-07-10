@@ -1,6 +1,4 @@
-﻿using MB.Application.Responses;
-
-namespace MB.Application.Features.Medias.Queries.CountMedias;
+﻿namespace MB.Application.Features.Medias.Queries.CountMedias;
 
 public class CountMediasQueryResponse : BaseResponse
 {

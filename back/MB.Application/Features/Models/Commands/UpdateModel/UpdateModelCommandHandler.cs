@@ -5,38 +5,34 @@ using MediatR;
 
 namespace MB.Application.Features.Models.Commands.UpdateModel;
 
-public class UpdateModelCommandHandler : IRequestHandler<UpdateModelCommand, UpdateModelCommandResponse>
+public class UpdateModelCommandHandler(IMapper mapper, IBaseRepository<Model> modelRepository) : IRequestHandler<UpdateModelCommand, BaseResponse>
 {
-    private readonly IMapper _mapper;
-    private readonly IBaseRepository<Model> _modelRepository;
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<Model> _modelRepository = modelRepository;
 
-    public UpdateModelCommandHandler(IMapper mapper, IBaseRepository<Model> modelRepository)
+    public async Task<BaseResponse> Handle(UpdateModelCommand request, CancellationToken cancellationToken)
     {
-        _mapper = mapper;
-        _modelRepository = modelRepository;
-    }
-
-    public async Task<UpdateModelCommandResponse> Handle(UpdateModelCommand request, CancellationToken cancellationToken)
-    {
-        var model = await _modelRepository.GetByBusinessIdAsync(request.Id);
+        var model = await _modelRepository.GetByBusinessIdAsync(request.ModelId);
 
         if (model == null)
         {
-            return new UpdateModelCommandResponse { Success = false, Message = "Model wasn't found :(" };
+            return new BaseResponse 
+            { 
+                Success = false, 
+                StatusCode = ResponseStatus.NotFound, 
+                Message = "Model was not found." 
+            };
         }
 
         _mapper.Map(request, model);
 
         await _modelRepository.UpdateAsync(model);
 
-        var updatedModelDto = _mapper.Map<UpdateModelDto>(model);
-
-        return new UpdateModelCommandResponse
+        return new BaseResponse
         {
             Success = true,
-            Message = "Model was Updated :)",
-            UpdatedModel = updatedModelDto
+            StatusCode = ResponseStatus.Success,
+            Message = "Model successfully updated."
         };
     }
-
 }
