@@ -226,8 +226,8 @@
         [tags]="flow()?.mood.tags" [franchises]="flow()?.mood.franchises"/>
     </div>
 
-    <div *ngIf="showTag">
-        <p>Tag</p>
+    <div *ngIf="showModel">
+        <app-model-details-flow [model]="flow()?.model" />
     </div>
 
     <div class="flow-toolbar toolbar-bottom">

@@ -42,7 +42,7 @@
     .active
     {
         background-color: rgb(107, 82, 64, 0.1);
-        border: 3px solid grey;
+        border: 3px solid var(--colorMain);
         img
         {
             opacity: 1;

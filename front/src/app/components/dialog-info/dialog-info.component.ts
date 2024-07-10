@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class DialogInfoComponent {
   @Input() entity : any | undefined = undefined 
-  @Input() moodsLength : number = 0
+  @Input() moodsLength : number | undefined = 0
   @Input() moodsGalleryType : string = 'all'
 }
