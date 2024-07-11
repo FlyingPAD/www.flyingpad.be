@@ -42,7 +42,11 @@
               "src/design/03_global_settings.scss",
 
               "src/design/central/animations.scss",
+
               "src/design/central/bottom-bar-larger.scss",
+              "src/design/central/scripts.scss",
+              "src/design/central/flow-cards.scss",
+
               "src/design/central/boxes.scss",
               "src/design/central/crud-forms.scss",
               "src/design/central/crud.scss",
@@ -53,7 +57,6 @@
               "src/design/central/menu-flex.scss",
               "src/design/central/modal.scss",
               "src/design/central/overlay.scss",
-              "src/design/central/scripts.scss",
               "src/design/central/tags-gallery.scss",
               "src/design/central/text.scss",
 

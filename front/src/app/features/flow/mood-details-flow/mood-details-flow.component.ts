@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { MoodFull, MoodUpdateForm, UpdateMoodScoreCall } from '../../../models/mood';
+import { MoodFull } from '../../../models/mood';
 import { FlowService } from '../../../services/flow.service';
 import { Image } from '../../../models/mood-image';
 import { Video } from '../../../models/mood-video';
@@ -12,6 +12,7 @@ import { ModelLight } from '../../../models/model';
 import { TagLight } from '../../../models/tag';
 import { FranchiseLight } from '../../../models/franchise';
 import { ActivePane } from '../../../models/enumerations/enumerations';
+import { MoodScoreUpdate, MoodUpdateForm } from '../../../models/forms-update';
 
 @Component({
   selector: 'app-mood-details-flow',
@@ -56,7 +57,7 @@ export class MoodDetailsFlowComponent {
   updateMoodScore(scoreValue : number): void {
     if(this.mood?.businessId != undefined)
       {
-        let form : UpdateMoodScoreCall = { businessId : this.mood.businessId, value : scoreValue }
+        let form : MoodScoreUpdate = { businessId : this.mood.businessId, value : scoreValue }
         this.flowService.updateScore(form)
       }
   }

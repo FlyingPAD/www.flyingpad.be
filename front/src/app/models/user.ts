@@ -1,9 +1,7 @@
 import { BaseResponse } from "./base-response"
 
-// Models :
-
-export class User
-{
+// Models.
+export class User {
     created : Date = new Date
     modified : Date = new Date
     businessId : number = 0
@@ -14,10 +12,8 @@ export class User
     role : number = 0
 }
 
-// Calls :
-
-export interface UserRegisterForm
-{
+// Calls.
+export interface UserRegisterForm {
     firstName: string;
     lastName: string;
     birthdate : Date;
@@ -25,15 +21,11 @@ export interface UserRegisterForm
     pass: string;
     confirmPass : string;
 }
-
-export interface UserLoginForm
-{
+export interface UserLoginForm {
     email : string;
     password : string;
 }
-
-export interface UserUpdateForm
-{
+export interface UserUpdateForm {
     created : Date;
     modified : Date;
     businessId : number;
@@ -42,9 +34,7 @@ export interface UserUpdateForm
     birthdate : Date;
 }
 
-// Responses :
-
-export interface UserUpdateResponse extends BaseResponse
-{
+// Responses.
+export interface UserUpdateResponse extends BaseResponse {
     updatedUser : User
 }

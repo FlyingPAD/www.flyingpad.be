@@ -4,10 +4,10 @@ import { environment } from '../../../../environments/environment';
 import { RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm } from '../../../models/relations';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MoodUpdateForm, UpdateMoodScoreCall } from '../../../models/mood';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { FlowService } from '../../../services/flow.service';
+import { MoodScoreUpdate, MoodUpdateForm } from '../../../models/forms-update';
 
 @Component({
   selector: 'app-mood-edition',
@@ -248,7 +248,7 @@ export class MoodEditionComponent implements OnDestroy
       return; // Arrête l'exécution si businessId est null ou undefined
     }
   
-    let form: UpdateMoodScoreCall = { businessId, value: scoreValue };
+    let form: MoodScoreUpdate = { businessId, value: scoreValue };
     this.#moodService.updateScoreTrigger(form);
   }
 

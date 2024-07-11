@@ -2,8 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { BehaviorSubject, switchMap, map, combineLatest, of, tap, catchError, take, Observable } from "rxjs";
 import { environment } from "../../environments/environment";
-import { GetModelsCheckBoxesByMoodResponse, GetModelsResponse } from "../models/model";
-import { GetMoodByIdResponse, GetMoodsResponse, MoodUpdateForm, MoodUpdateResponse, UpdateMoodScoreCall } from "../models/mood";
+import { GetModelsByMoodResponse, GetModelsResponse } from "../models/model";
+import { GetMoodResponse, GetMoodsResponse } from "../models/mood";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { GetFranchisesByMoodResponse } from "../models/franchise";
 import { GetOneTagDetailsResponse, GetTagsByMoodResponse, GetTagsCheckBoxesByMoodResponse } from "../models/tag";
@@ -13,6 +13,7 @@ import { Image } from "../models/mood-image";
 import { GetOneVideoYoutubeDetailsResponse, VideoYouTube } from "../models/mood-video-youtube";
 import { GetArtistsByMoodResponse, GetArtistsCheckBoxesByMoodResponse } from "../models/artist";
 import { BaseResponse } from "../models/base-response";
+import { MoodScoreUpdate, MoodUpdateForm } from "../models/forms-update";
 
 type Media = Image | Video | VideoYouTube | null
 
@@ -176,7 +177,7 @@ export class MoodStateService
   getMood(moodId: number | null) 
   {
     const url = moodId === null ? `${this.#url}Moods/GetOneDetailsRandom` : `${this.#url}Moods/GetOneDetails/${moodId}`
-    return this.#http.get<GetMoodByIdResponse>(url).pipe(
+    return this.#http.get<GetMoodResponse>(url).pipe(
       tap(response => 
       {
         if (moodId === null && response.mood && response.mood.businessId) this.updateSelectedMoodId(response.mood.businessId)
@@ -242,7 +243,7 @@ export class MoodStateService
       map(response => response.tagsByMood) )
   }
 
-  updateScoreTrigger(form: UpdateMoodScoreCall) 
+  updateScoreTrigger(form: MoodScoreUpdate) 
   {
     this.#http.put<BaseResponse>(`${this.#url}Moods/UpdateScore`, form).pipe(
       take(1),
@@ -268,7 +269,7 @@ export class MoodStateService
 
   getModelsCheckBoxesByMood( moodId : number | null ) 
   {
-    return this.#http.get<GetModelsCheckBoxesByMoodResponse>(`${this.#url}Models/GetCheckBoxesByMood/${moodId}`).pipe( 
+    return this.#http.get<GetModelsByMoodResponse>(`${this.#url}Models/GetCheckBoxesByMood/${moodId}`).pipe( 
       map(response => response.models) )
   }
 
@@ -306,11 +307,10 @@ export class MoodStateService
   moodEditionFlow = toSignal(this.moodEditionFlow$, { initialValue: { mood: null, tagsCheckBoxes: [], artists : [], models : [] } })
 
   // Update Mood
-  public UpdateMood( form : MoodUpdateForm ) : Observable<number> 
+  public UpdateMood( form : MoodUpdateForm )
   { 
-    return this.#http.put<MoodUpdateResponse>(`${this.#url}Moods/Update`, form).pipe(
-      map(response => response.updatedMood.businessId),
-      tap(businessId => this.updateSelectedMoodId(businessId))
+    return this.#http.put<BaseResponse>(`${this.#url}Moods/Update`, form).pipe(
+      tap(businessId => this.updateSelectedMoodId(form.moodId))
     )
   }
 

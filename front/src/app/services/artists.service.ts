@@ -3,12 +3,12 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, Observable, catchError, combineLatest, debounceTime, map, of, shareReplay, startWith, switchMap, tap } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { ArtistCreateForm, ArtistCreateFormGroup, ArtistDeleteResponse, ArtistsCountResponse, ArtistsCreateResponse, ArtistsGetPageResponse, GetArtistByIdResponse } from '../models/artist';
+import { ArtistCreateForm, ArtistCreateFormGroup, ArtistDeleteResponse, ArtistsCountResponse, ArtistsCreateResponse, ArtistsGetPageResponse, CreateStyleResponse, GetArtistByIdResponse, GetStyleResponse, GetStylesResponse, StyleLight } from '../models/artist';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { CreateStyleResponse, GetStyleResponse, GetStylesResponse, StyleCreateForm, StyleLight } from '../models/style';
 import { GetMoodsResponse } from '../models/mood';
-import { CheckRelationsArtistStyleByStyleResponse, CreateRelationsArtistStyleResponse, RelationsArtistStyleForm } from '../models/relations';
+import { CheckRelationsArtistStyleByStyleResponse, RelationsArtistStyleForm } from '../models/relations';
 import { BaseResponse } from '../models/base-response';
+import { StyleCreateForm } from '../models/forms-create';
 
 @Injectable({
   providedIn: 'root'
@@ -233,9 +233,8 @@ export class ArtistsStateService
   }
 
   // Insert Relation ( Artist / Style )
-  public InsertRAS( rasForm : RelationsArtistStyleForm ) : Observable<CreateRelationsArtistStyleResponse>
-  {
-    return this.#http.post<CreateRelationsArtistStyleResponse>(this.#url + 'Relations/ArtistStyle/Create', rasForm)
+  public InsertRAS( rasForm : RelationsArtistStyleForm ) {
+    return this.#http.post<BaseResponse>(this.#url + 'Relations/ArtistStyle/Create', rasForm)
   }
 
   // Delete Artist

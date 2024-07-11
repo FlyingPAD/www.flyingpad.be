@@ -1,10 +1,8 @@
-export interface Token
-{
+export interface Token {
     token : string
 }
 
-export interface TokenCustom
-{ 
+export interface TokenCustom { 
     id: number, 
     firstName: string, 
     lastName: string, 
