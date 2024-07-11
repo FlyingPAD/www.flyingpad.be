@@ -7,7 +7,7 @@
         <div *ngFor="let item of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage }">
             <div class="group">
                 <img id="favicon" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + item.url + '&sz=96'" />
-                <a> ▸ {{item.name}}</a>
+                <a target="_blank" href="{{item.url}}"> ▸ {{item.name}}</a>
             </div>
         </div>
     </div>

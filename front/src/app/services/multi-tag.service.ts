@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { GetAllArtistsResponse } from '../models/artist';
 import { map } from 'rxjs';
-import { GetAllModelsResponse } from '../models/model';
+import { GetModelsByMoodResponse, GetModelsResponse } from '../models/model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +51,7 @@ export class MultiTagService
 
   getModels()
   {
-    return this.#http.get<GetAllModelsResponse>(`${this.#url}Models/GetAll`).pipe(
+    return this.#http.get<GetModelsByMoodResponse>(`${this.#url}Models/GetAll`).pipe(
       map(response => response.models)
     )
   }

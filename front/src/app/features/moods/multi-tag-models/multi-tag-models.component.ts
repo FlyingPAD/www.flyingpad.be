@@ -44,9 +44,7 @@ export class MultiTagModelsComponent implements OnDestroy
     this.router.navigateByUrl('/moods')
   }
 
-    // Filter models based on search input
-    filterModels() 
-    {
-      return this.models()?.filter(m => m.pseudonym.toLowerCase().includes(this.searchModel.toLowerCase()))
-    }
+  filterModels() {
+    return this.models()?.filter(m => m.pseudonym.toLowerCase().includes(this.searchModel.toLowerCase()))
+  }
 }
