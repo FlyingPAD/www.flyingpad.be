@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Medias.Commands.DeleteMedia;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Medias.Commands.DeleteMedia;
 
 public class DeleteMediaCommandResponse : BaseResponse
 {

@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.LinkCategories.Queries.CountLinkCategories;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.LinkCategories.Queries.CountLinkCategories;
 
 public class CountLinkCategoriesQueryResponse : BaseResponse
 {

@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Artists.Queries.GetArtistsByMood;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Artists.Queries.GetArtistsByMood;
 
 public class GetArtistsByMoodQueryResponse : BaseResponse
 {

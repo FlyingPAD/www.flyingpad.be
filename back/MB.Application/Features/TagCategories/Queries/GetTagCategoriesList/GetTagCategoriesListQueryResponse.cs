@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.TagCategories.Queries.GetTagCategoriesList;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.TagCategories.Queries.GetTagCategoriesList;
 
 public class GetTagCategoriesListQueryResponse : BaseResponse
 {

@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Moods.Queries.GetMoodsByFranchise;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Moods.Queries.GetMoodsByFranchise;
 
 public class GetMoodsByFranchiseQueryResponse : BaseResponse
 {

@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Tags.Queries.GetTagById;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Tags.Queries.GetTagById;
 
 public class GetTagByIdQueryResponse : BaseResponse
 {

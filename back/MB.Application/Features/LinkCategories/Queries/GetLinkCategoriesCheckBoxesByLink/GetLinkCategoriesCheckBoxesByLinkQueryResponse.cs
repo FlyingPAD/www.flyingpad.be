@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckBoxesByLink
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckBoxesByLink
 {
     public class GetLinkCategoriesCheckBoxesByLinkQueryResponse : BaseResponse
     {

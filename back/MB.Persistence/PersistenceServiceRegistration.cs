@@ -5,9 +5,9 @@ using MB.Application.Contracts.Persistence;
 using MB.Persistence.Repositories;
 using MB.Application.Contracts.Persistence.Common;
 using MB.Persistence.Repositories.Common;
+using MB.Application.Security;
 using MB.Application.Contracts;
 using Microsoft.Extensions.Logging;
-using MB.Application;
 
 namespace MB.Persistence;
 

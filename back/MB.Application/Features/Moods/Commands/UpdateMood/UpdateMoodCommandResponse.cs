@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Moods.Commands.UpdateMood;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Moods.Commands.UpdateMood;
 
 public class UpdateMoodCommandResponse : BaseResponse
 {

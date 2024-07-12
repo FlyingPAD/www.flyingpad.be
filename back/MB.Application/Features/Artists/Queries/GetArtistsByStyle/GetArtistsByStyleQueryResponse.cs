@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Artists.Queries.GetArtistsByStyle;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Artists.Queries.GetArtistsByStyle;
 
 public class GetArtistsByStyleQueryResponse : BaseResponse  
 {

@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Models.Queries.GetModelsByFranchise;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Models.Queries.GetModelsByFranchise;
 
 public class GetModelsByFranchiseQueryResponse : BaseResponse
 {

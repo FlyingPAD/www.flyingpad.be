@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Moods.Commands.CreateMood;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Moods.Commands.CreateMood;
 
 public class CreateMoodCommandResponse : BaseResponse
 {

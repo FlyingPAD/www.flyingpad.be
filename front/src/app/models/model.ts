@@ -12,9 +12,9 @@ export interface ModelFull {
     createdBy : string
     modified : Date
     modifiedBy : string
-    pseudonym : string
     firstName : string
     lastName : string
+    pseudonym : string
     gender : string
     description : string
 }
@@ -26,19 +26,10 @@ export class ModelCheckBox {
 
 // Calls.
 export interface ModelForm {
-    pseudonym : string
     firstName : string
     lastName : string
+    aka : string
     gender : string
-    description : string
-}
-export interface ModelUpdateForm {
-    modelId : number
-    pseudonym : string
-    firstName : string
-    lastName : string
-    gender : string
-    description : string
 }
 export interface ModelCheckForm {
     firstName : string

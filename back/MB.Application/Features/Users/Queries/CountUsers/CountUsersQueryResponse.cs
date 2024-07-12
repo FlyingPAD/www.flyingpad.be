@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Users.Queries.CountUsers;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Users.Queries.CountUsers;
 
 public class CountUsersQueryResponse : BaseResponse
 {

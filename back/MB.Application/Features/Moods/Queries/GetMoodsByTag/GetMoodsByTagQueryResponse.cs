@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Moods.Queries.GetMoodsByTag;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Moods.Queries.GetMoodsByTag;
 
 public class GetMoodsByTagQueryResponse : BaseResponse
 {

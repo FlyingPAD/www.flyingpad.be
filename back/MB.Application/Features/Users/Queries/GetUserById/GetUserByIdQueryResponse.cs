@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Users.Queries.GetUserById;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Users.Queries.GetUserById;
 
 public class GetUserByIdQueryResponse : BaseResponse
 {

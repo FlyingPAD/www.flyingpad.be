@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Users.Commands.DeleteUser;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Users.Commands.DeleteUser;
 
 public class DeleteUserCommandResponse : BaseResponse
 {

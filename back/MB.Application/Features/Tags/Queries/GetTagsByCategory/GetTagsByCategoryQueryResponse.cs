@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Tags.Queries.GetTagsByCategory
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Tags.Queries.GetTagsByCategory
 {
     public class GetTagsByCategoryQueryResponse : BaseResponse
     {

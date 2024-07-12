@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Artists.Queries.CountArtists;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Artists.Queries.CountArtists;
 
 public class CountArtistsQueryResponse : BaseResponse
 {

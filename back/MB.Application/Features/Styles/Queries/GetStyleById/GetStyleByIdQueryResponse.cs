@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Styles.Queries.GetStyleById;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Styles.Queries.GetStyleById;
 
 public class GetStyleByIdQueryResponse : BaseResponse
 {

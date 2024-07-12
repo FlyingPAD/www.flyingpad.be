@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Tags.Queries.CountTags;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Tags.Queries.CountTags;
 
 public class CountTagsQueryResponse : BaseResponse
 {

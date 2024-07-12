@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Franchises.Queries.GetFranchiseById;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Franchises.Queries.GetFranchiseById;
 
 public class GetFranchiseByIdQueryResponse : BaseResponse
 {

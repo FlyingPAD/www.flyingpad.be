@@ -1,5 +1,5 @@
-﻿using MB.Application;
-using MB.Application.Contracts;
+﻿using MB.Application.Contracts;
+using MB.Application.Dto;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;

@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.LinkCategories.Commands.CreateLinkCategory;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.LinkCategories.Commands.CreateLinkCategory;
 
 public class CreateLinkCategoryCommandResponse : BaseResponse
 {

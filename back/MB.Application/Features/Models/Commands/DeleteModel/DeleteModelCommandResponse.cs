@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Models.Commands.DeleteModel;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Models.Commands.DeleteModel;
 
 public class DeleteModelCommandResponse : BaseResponse
 {

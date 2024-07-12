@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Links.Queries.GetLinksContainingAbc;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Links.Queries.GetLinksContainingAbc;
 
 public class GetLinksContainingAbcQueryResponse : BaseResponse
 {

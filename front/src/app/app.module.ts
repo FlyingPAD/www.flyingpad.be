@@ -96,8 +96,6 @@ import { RightColumnListComponent } from './components/right-column-list/right-c
 import { ListCentralComponent } from './components/list-central/list-central.component';
 import { LeftCardComponent } from './components/left-card/left-card.component';
 import { ModelDetailsFlowComponent } from './features/flow/model-details-flow/model-details-flow.component';
-import { ArtistDetailsFlowComponent } from './features/flow/artist-details-flow/artist-details-flow.component';
-import { TagDetailsFlowComponent } from './features/flow/tag-details.flow/tag-details.flow.component';
 
 @NgModule({
   declarations: 
@@ -200,8 +198,6 @@ import { TagDetailsFlowComponent } from './features/flow/tag-details.flow/tag-de
     AnimGrowDirective,
     AnimSpinDirective,
     ModelDetailsFlowComponent,
-    ArtistDetailsFlowComponent,
-    TagDetailsFlowComponent,
   ],
   imports: 
   [

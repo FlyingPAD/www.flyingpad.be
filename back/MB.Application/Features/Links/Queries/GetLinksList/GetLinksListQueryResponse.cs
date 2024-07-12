@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Links.Queries.GetLinksList;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Links.Queries.GetLinksList;
 
 public class GetLinksListQueryResponse : BaseResponse
 {

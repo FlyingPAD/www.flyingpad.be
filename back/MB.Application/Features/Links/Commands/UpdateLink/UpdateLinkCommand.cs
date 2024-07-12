@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using MB.Application.Responses;
+using MediatR;
 
 namespace MB.Application.Features.Links.Commands.UpdateLink;
 

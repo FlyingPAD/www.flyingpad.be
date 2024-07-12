@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 
 public class GetArtistCheckBoxesByMoodQueryResponse : BaseResponse
 {

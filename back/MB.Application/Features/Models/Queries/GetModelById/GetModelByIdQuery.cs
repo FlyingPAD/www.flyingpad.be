@@ -6,3 +6,4 @@ public class GetModelByIdQuery : IRequest<GetModelByIdQueryResponse>
 {
     public Guid ModelId { get; set; }
 }
+

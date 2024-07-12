@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Moods.Queries.GetMoodsList;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Moods.Queries.GetMoodsList;
 
 public class GetMoodsListQueryResponse : BaseResponse
 {

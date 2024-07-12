@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Tags.Queries.GetTagsList;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Tags.Queries.GetTagsList;
 
 public class GetTagsListQueryResponse : BaseResponse
 {

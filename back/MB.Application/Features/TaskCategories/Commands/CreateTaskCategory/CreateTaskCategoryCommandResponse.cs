@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.TaskCategories.Commands.CreateTaskCategory;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.TaskCategories.Commands.CreateTaskCategory;
 
 public class CreateTaskCategoryCommandResponse : BaseResponse
 {

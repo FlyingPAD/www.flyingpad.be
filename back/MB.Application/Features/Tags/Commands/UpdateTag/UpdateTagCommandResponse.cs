@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Tags.Commands.UpdateTag;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Tags.Commands.UpdateTag;
 
 public class UpdateTagCommandResponse : BaseResponse
 {

@@ -5,10 +5,16 @@ using MediatR;
 
 namespace MB.Application.Features.Models.Queries.GetModelById;
 
-public class GetModelByIdQueryHandler(IMapper mapper, IBaseRepository<Model> modelRepository) : IRequestHandler<GetModelByIdQuery, GetModelByIdQueryResponse>
+public class GetModelByIdQueryHandler : IRequestHandler<GetModelByIdQuery, GetModelByIdQueryResponse>
 {
-    private readonly IMapper _mapper = mapper;
-    private IBaseRepository<Model> _modelRepository = modelRepository;
+    private readonly IMapper _mapper;
+    private IBaseRepository<Model> _modelRepository;
+
+    public GetModelByIdQueryHandler(IMapper mapper, IBaseRepository<Model> modelRepository)
+    {
+        _mapper = mapper;
+        _modelRepository = modelRepository;
+    }
 
     public async Task<GetModelByIdQueryResponse> Handle(GetModelByIdQuery request, CancellationToken cancellationToken)
     {
@@ -16,12 +22,7 @@ public class GetModelByIdQueryHandler(IMapper mapper, IBaseRepository<Model> mod
 
         if (model == null)
         {
-            return new GetModelByIdQueryResponse 
-            { 
-                Success = false,
-                StatusCode = ResponseStatus.NotFound,
-                Message = "Model was not found." 
-            };
+            return new GetModelByIdQueryResponse { Success = false, Message = "Model wasn't found :(" };
         }
 
         var modelDto = _mapper.Map<GetModelByIdVm>(model);
@@ -29,8 +30,7 @@ public class GetModelByIdQueryHandler(IMapper mapper, IBaseRepository<Model> mod
         return new GetModelByIdQueryResponse
         {
             Success = true,
-            StatusCode = ResponseStatus.Success,
-            Message = "Model successfully requested.",
+            Message = "Model was found :)",
             Model = modelDto
         };
     }

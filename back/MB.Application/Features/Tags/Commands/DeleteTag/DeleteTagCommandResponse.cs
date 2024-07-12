@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Tags.Commands.DeleteTag;
+﻿using MB.Application.Responses;
+
+namespace MB.Application.Features.Tags.Commands.DeleteTag;
 
 public class DeleteTagCommandResponse : BaseResponse
 {
