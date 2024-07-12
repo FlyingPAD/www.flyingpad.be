@@ -3,8 +3,10 @@ import { Injectable, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, map, combineLatest, switchMap, of, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { GetAllFranchisesResponse, GetOneFranchiseDetailsResponse, GetFranchisesByMediaResponse, GetAllMediasResponse, GetOneMediaDetailsResponse, FranchiseCreateForm, CreateFranchiseResponse } from '../models/franchise';
+import { GetFranchiseResponse, GetFranchisesByMediaResponse, GetFranchisesResponse, GetMediaResponse, GetMediasResponse } from '../models/franchise';
 import { BaseResponse } from '../models/base-response';
+import { FranchiseCreateForm } from '../models/forms-create';
+import { CreateFranchiseResponse } from '../models/responses-create';
 
 @Injectable({
   providedIn: 'root'
@@ -28,17 +30,17 @@ export class FranchisesEditionService
     this.#selectedMediaId.next(mediaId)
   }
 
-  medias$ = this.#http.get<GetAllMediasResponse>(this.#url + 'Medias/GetAll').pipe(
+  medias$ = this.#http.get<GetMediasResponse>(this.#url + 'Medias/GetAll').pipe(
     map(x => x.medias)
   )
 
-  franchises$ = this.#http.get<GetAllFranchisesResponse>(this.#url + 'Franchises/GetAll').pipe(
+  franchises$ = this.#http.get<GetFranchisesResponse>(this.#url + 'Franchises/GetAll').pipe(
     map(x => x.franchises)
   )
 
   getFranchise( franchiseId : number )
   {
-    return this.#http.get<GetOneFranchiseDetailsResponse>(this.#url + 'Franchises/GetOneDetails/' + franchiseId).pipe(
+    return this.#http.get<GetFranchiseResponse>(this.#url + 'Franchises/GetOneDetails/' + franchiseId).pipe(
       map(response => response.franchise)
     )
   }
@@ -52,7 +54,7 @@ export class FranchisesEditionService
 
   getMediaDetails( mediaId : number )
   {
-    return this.#http.get<GetOneMediaDetailsResponse>(`${this.#url}Medias/GetOneDetails/${mediaId}`).pipe(
+    return this.#http.get<GetMediaResponse>(`${this.#url}Medias/GetOneDetails/${mediaId}`).pipe(
       map(response => response.media)
     )
   }

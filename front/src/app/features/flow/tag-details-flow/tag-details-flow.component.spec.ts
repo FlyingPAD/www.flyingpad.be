@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TagDetailsFlowComponent } from './tag-details.flow.component';
+import { TagDetailsFlowComponent } from './tag-details-flow.component';
 
 describe('TagDetailsFlowComponent', () => {
   let component: TagDetailsFlowComponent;

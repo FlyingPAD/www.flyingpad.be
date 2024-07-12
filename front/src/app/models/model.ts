@@ -1,10 +1,10 @@
 import { BaseResponse } from "./base-response";
 
 // Models.
-export class ModelLight {
-    businessId : number = 0
-    pseudonym : string = ''
-    gender : string = ''
+export interface ModelLight {
+    businessId : number
+    pseudonym : string
+    gender : string
 }
 export interface ModelFull {
     businessId : number
@@ -18,22 +18,14 @@ export interface ModelFull {
     gender : string
     description : string
 }
-export class ModelCheckBox {
-    businessId : number = 0
-    pseudonym : string = ''
-    isChecked : boolean = false
+export interface ModelCheckBox {
+    businessId : number
+    pseudonym : string
+    isChecked : boolean
 }
 
 // Calls.
 export interface ModelForm {
-    pseudonym : string
-    firstName : string
-    lastName : string
-    gender : string
-    description : string
-}
-export interface ModelUpdateForm {
-    modelId : number
     pseudonym : string
     firstName : string
     lastName : string
@@ -49,15 +41,12 @@ export interface ModelCheckForm {
 }
 
 // Responses.
-export interface GetAllModelsResponse {
+export interface GetModelsResponse extends BaseResponse {
+    models : ModelLight[]
+}
+export interface GetModelsByMoodResponse extends BaseResponse {
     models : ModelCheckBox[]
 }
 export interface GetModelResponse extends BaseResponse {
     model : ModelFull
-}
-export interface GetModelsResponse extends BaseResponse {
-    models : ModelLight[]
-}
-export interface GetModelsCheckBoxesByMoodResponse extends BaseResponse {
-    models : ModelCheckBox[]
 }

@@ -1,5 +1,4 @@
-export interface PaginationResponse
-{
+export interface PaginationResponse{
     totalItems: number
     itemPosition: number
     previousId : number
