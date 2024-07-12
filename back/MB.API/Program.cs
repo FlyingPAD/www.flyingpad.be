@@ -16,7 +16,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        // Builder Creation.
+        // Builder Creation...
         var builder = WebApplication.CreateBuilder(args);
 
         // Serilog Initialization.
