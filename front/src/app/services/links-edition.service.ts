@@ -3,9 +3,12 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { CreateLinkResponse, GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, GetLinksResponse, LinkCreateForm, LinkUpdateForm } from '../models/link';
+import { GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, GetLinksResponse } from '../models/link';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BaseResponse } from '../models/base-response';
+import { LinkCreateForm } from '../models/forms-create';
+import { LinkUpdateForm } from '../models/forms-update';
+import { CreateLinkResponse } from '../models/responses-create';
 
 @Injectable({
   providedIn: 'root'
@@ -103,7 +106,7 @@ export class LinksEditionService
     return this.#http.put<BaseResponse>(`${this.#url}Links/Update`, form).pipe(
       tap( () => 
         {
-          this.updateSelectedLink(form.businessId)
+          this.updateSelectedLink(form.linkId)
         })
     )
   }

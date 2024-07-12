@@ -22,31 +22,10 @@ export interface MoodFull {
     extension: string
 }
 
-// Calls.
-export interface MoodCreateForm {
-    name : string
-    description : string
-}
-export interface MoodUpdateForm {
-    moodId : number
-    name : string
-    description : string
-}
-export class UpdateMoodScoreCall {
-    businessId : number = 0
-    value : number = 0
-}
-
 // Responses.
 export interface GetMoodsResponse extends BaseResponse {
     moods : MoodLight[]
 }
-export interface GetMoodByIdResponse extends BaseResponse {
+export interface GetMoodResponse extends BaseResponse {
     mood : MoodFull
-}
-export interface MoodCreateResponse extends BaseResponse {
-    moodId : number
-}
-export interface MoodUpdateResponse extends BaseResponse {
-    updatedMood : MoodLight
 }

@@ -5,11 +5,7 @@ export interface TagLight {
     businessId : number
     name :       string
 }
-export interface MiniTag {
-    businessId : number
-    name :       string
-}
-export interface TagsCheckBoxes extends MiniTag {
+export interface TagsCheckBoxes extends TagLight {
     isChecked : boolean
 }
 export class Tag {
@@ -32,7 +28,7 @@ export interface TagFull {
 }
 export class TagList {
     category : MiniTagCategory = new MiniTagCategory()
-    tags :     MiniTag[] = []
+    tags :     TagLight[] = []
 }
 export class TagsCheckBoxesList {
     category : MiniTagCategory = new MiniTagCategory()
@@ -57,27 +53,12 @@ export interface TagCategoryFull {
     description : string
 }
 
-// Calls.
-export interface TagCreateForm {
-    name :        string
-    description : string
-}
-export interface TagUpdateForm {
-    tagId : number
-    name : string
-    description : string
-}
-export interface TagCategoryCreateForm {
-    name :        string
-    description : string
-}
-
 // Responses.
 export interface GetAllTagsResponse extends BaseResponse {
-    tags : MiniTag[]
+    tags : TagLight[]
 }
 export interface GetTagsByCategoryResponse extends BaseResponse {
-    tags : MiniTag[]
+    tags : TagLight[]
 }
 export interface GetOneTagDetailsResponse extends BaseResponse {
     tag : Tag
@@ -89,7 +70,7 @@ export interface TagsGetFullListResponse extends BaseResponse {
     categoriesWithTags : TagList[]
 }
 export interface GetTagsByMoodResponse extends BaseResponse {
-    tagsByMood : MiniTag[]
+    tagsByMood : TagLight[]
 }
 export interface GetTagsCheckBoxesByMoodResponse extends BaseResponse {
    tagsCheckBoxesList : TagsCheckBoxesList[]
@@ -99,7 +80,4 @@ export interface GetAllTagCategoriesResponse extends BaseResponse {
 }
 export interface GetTagCategoryByIdResponse extends BaseResponse {
     tagCategory : TagCategoryFull
-}
-export interface CreateTagResponse extends BaseResponse {
-    link : Tag
 }
