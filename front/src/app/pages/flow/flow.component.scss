@@ -63,9 +63,9 @@
                 }
             }
         }
-        .toolbar-card:hover:not(.active)
+        .toolbar-card:hover
         {
-            background-color: rgba(255, 146, 146, 0.1);
+            background-color: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition-duration: 500ms;
 

@@ -31,6 +31,23 @@ export interface LinkCategoryFull {
     modifiedBy :  string
 }
 
+// Calls.
+export interface LinkCreateForm {
+    name :        string
+    description : string
+    url :         string
+}
+export interface LinkUpdateForm {
+    businessId :  number
+    name :        string
+    description : string
+    url :         string
+}
+export interface LinkCategoryCreateForm {
+    name :        string
+    description : string
+}
+
 // Responses.
 export interface GetLinkResponse extends BaseResponse {
     link : LinkFull
@@ -43,4 +60,7 @@ export interface GetLinkCategoryResponse extends BaseResponse {
 }
 export interface GetLinkCategoriesResponse extends BaseResponse {
     linkCategories : LinkCategoryLight[]
+}
+export interface CreateLinkResponse extends BaseResponse {
+    linkId : number
 }

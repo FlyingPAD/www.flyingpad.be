@@ -3,20 +3,18 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable, map, of, combineLatest, BehaviorSubject, switchMap, startWith, Subject, take, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { GetMoodResponse, GetMoodsResponse, MoodFull, MoodLight } from '../models/mood';
-import { GetAllTagCategoriesResponse, GetAllTagsResponse, GetTagByIdResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse, GetTagsByMoodResponse, TagCategoryFull, TagFull, TagLight, TagsGetFullListResponse } from '../models/tag';
-import { ArtistFull, ArtistLight, GetAllArtistsResponse, GetArtistByIdResponse, GetArtistsByMoodResponse, GetArtistsByStyleResponse, GetStyleResponse, GetStylesResponse, StyleFull } from '../models/artist';
-import { GetModelResponse, GetModelsResponse, ModelFull, ModelLight } from '../models/model';
+import { GetMoodByIdResponse, GetMoodsResponse, MoodCreateForm, MoodCreateResponse, MoodFull, MoodLight, MoodUpdateForm, MoodUpdateResponse, UpdateMoodScoreCall } from '../models/mood';
+import { GetAllTagCategoriesResponse, GetAllTagsResponse, GetTagByIdResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse, GetTagsByMoodResponse, TagCategoryFull, TagFull, TagLight, TagsGetFullListResponse, TagUpdateForm } from '../models/tag';
+import { ArtistFull, ArtistLight, ArtistUpdateForm, GetAllArtistsResponse, GetArtistByIdResponse, GetArtistsByMoodResponse, GetArtistsByStyleResponse } from '../models/artist';
+import { GetAllModelsResponse, GetModelResponse, GetModelsResponse, ModelFull, ModelLight, ModelUpdateForm } from '../models/model';
 import { GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, GetLinksResponse, LinkCategoryFull, LinkFull, LinkLight } from '../models/link';
-import { FranchiseFull, FranchiseLight, GetFranchiseResponse, GetFranchisesByMediaResponse, GetFranchisesByMoodResponse, GetFranchisesResponse, GetMediaResponse, GetMediasListResponse, GetMediasResponse, MediaFull } from '../models/franchise';
+import { GetStyleResponse, GetStylesResponse, StyleFull } from '../models/style';
+import { FranchiseFull, FranchiseLight, GetAllFranchisesResponse, GetAllMediasResponse, GetFranchiseByIdResponse, GetFranchisesByMediaResponse, GetFranchisesByMoodResponse, GetMediaByIdResponse, GetMediasFullListResponse, MediaFull } from '../models/franchise';
 import { BaseResponse } from '../models/base-response';
-import { RelationsMoodTagForm, RelationsMoodArtistForm, RelationsMoodModelForm, RelationsArtistStyleForm, CheckRelationsArtistStyleByArtistResponse, CheckRelationsArtistStyleByStyleResponse } from '../models/relations';
+import { RelationsMoodTagForm, CreateRelationsMoodTagResponse, RelationsMoodArtistForm, CreateRelationsMoodArtistResponse, RelationsMoodModelForm, CreateRelationsMoodModelResponse, RelationsArtistStyleForm, CreateRelationsArtistStyleResponse, CheckRelationsArtistStyleByArtistResponse, CheckRelationsArtistStyleByStyleResponse } from '../models/relations';
 import { GetOneVideoDetailsResponse } from '../models/mood-video';
 import { GetOneImageDetailsResponse } from '../models/mood-image';
 import { GetOneVideoYoutubeDetailsResponse } from '../models/mood-video-youtube';
-import { ArtistUpdateForm, FranchiseUpdateForm, LinkCategoryUpdateForm, LinkUpdateForm, MediaUpdateForm, ModelUpdateForm, MoodScoreUpdate, MoodUpdateForm, StyleUpdateForm, TagCategoryUpdateForm, TagUpdateForm } from '../models/forms-update';
-import { CreateLinkResponse, CreateMoodResponse } from '../models/responses-create';
-import { LinkCreateForm, MoodCreateForm } from '../models/forms-create';
 
 @Injectable({
   providedIn: 'root'
@@ -65,29 +63,24 @@ export class FlowService {
   tagsWithCategories$ = this.#http.get<TagsGetFullListResponse>(this.#url + 'Tags/GetTagsList').pipe(map(x => x.categoriesWithTags))
   artists$ = this.#http.get<GetAllArtistsResponse>(`${this.#url}Artists/GetAll`).pipe(map(response => response.artists))
   styles$ = this.#http.get<GetStylesResponse>(`${this.#url}Styles/GetAll`).pipe(map(response => response.styles))
-  models$ = this.#http.get<GetModelsResponse>(`${this.#url}Models/GetAll`).pipe(map(response => response.models))
-  franchises$ = this.#http.get<GetFranchisesResponse>(`${this.#url}Franchises/GetAll`).pipe(map(response => response.franchises))
-  franchisesWithMedias$ = this.#http.get<GetMediasListResponse>(this.#url + 'Franchises/GetFranchisesList').pipe(map(response => response.medias))
-  medias$ = this.#http.get<GetMediasResponse>(`${this.#url}Medias/GetAll`).pipe(map(response => response.medias))
+  models$ = this.#http.get<GetAllModelsResponse>(`${this.#url}Models/GetAll`).pipe(map(response => response.models))
+  franchises$ = this.#http.get<GetAllFranchisesResponse>(`${this.#url}Franchises/GetAll`).pipe(map(response => response.franchises))
+  franchisesWithMedias$ = this.#http.get<GetMediasFullListResponse>(this.#url + 'Franchises/GetFranchisesList').pipe(map(response => response.medias))
+  medias$ = this.#http.get<GetAllMediasResponse>(`${this.#url}Medias/GetAll`).pipe(map(response => response.medias))
   links$ = this.#http.get<GetLinksResponse>(`${this.#url}Links/GetAll`).pipe(map(response => response.links))
   linkCategories$ = this.#http.get<GetLinkCategoriesResponse>(`${this.#url}LinkCategories/GetAll`).pipe(map(response => response.linkCategories))
 
   // Get Random Mood
   getRandomMood(): Observable<MoodFull> {
-    return this.#http.get<GetMoodResponse>(`${this.#url}Moods/GetOneDetailsRandom`).pipe(map(response => response.mood))
+    return this.#http.get<GetMoodByIdResponse>(`${this.#url}Moods/GetOneDetailsRandom`).pipe(map(response => response.mood))
   }
   // Get By ID.
   mood$ = combineLatest([this.#moodId, this.#refreshMoods.pipe(startWith(null))])
   .pipe(
     switchMap(([moodId]) => {
-      let moodObservable$ : Observable<MoodFull>   
-      if(moodId === null) {
-        moodObservable$ = this.getRandomMood() 
-        this.updateMoodsGalleryType('all')
-      }
-      else {
-        moodObservable$ = this.getMoodById(moodId)
-      }
+      const moodObservable$ = moodId === null 
+        ? this.getRandomMood() 
+        : this.getMoodById(moodId);
 
       return moodObservable$.pipe(
         switchMap(mood => {
@@ -199,7 +192,7 @@ export class FlowService {
   linksByCategory$ = this.#linkCategoryId.pipe(switchMap(linkCategoryId => linkCategoryId != null ? this.getLinksByCategory(linkCategoryId) : this.links$), startWith([]))
   
   getMoodById(moodId: number): Observable<MoodFull> {
-    return this.#http.get<GetMoodResponse>(`${this.#url}Moods/GetOneDetails/${moodId}`).pipe(map(response => response.mood))
+    return this.#http.get<GetMoodByIdResponse>(`${this.#url}Moods/GetOneDetails/${moodId}`).pipe(map(response => response.mood))
   }  
   getTagById(tagId: number): Observable<TagFull> {
     return this.#http.get<GetTagByIdResponse>(`${this.#url}Tags/GetOneDetails/${tagId}`).pipe(map(response => response.tag))
@@ -217,10 +210,10 @@ export class FlowService {
     return this.#http.get<GetStyleResponse>(`${this.#url}Styles/GetOneDetails/${styleId}`).pipe(map(response => response.style))
   }  
   getFranchiseById(franchiseId: number): Observable<FranchiseFull> {
-    return this.#http.get<GetFranchiseResponse>(`${this.#url}Franchises/GetOneDetails/${franchiseId}`).pipe(map(response => response.franchise))
+    return this.#http.get<GetFranchiseByIdResponse>(`${this.#url}Franchises/GetOneDetails/${franchiseId}`).pipe(map(response => response.franchise))
   }  
   getMediaById(mediaId: number): Observable<MediaFull> {
-    return this.#http.get<GetMediaResponse>(`${this.#url}Medias/GetOneDetails/${mediaId}`).pipe(map(response => response.media))
+    return this.#http.get<GetMediaByIdResponse>(`${this.#url}Medias/GetOneDetails/${mediaId}`).pipe(map(response => response.media))
   }  
   getLinkById(linkId: number): Observable<LinkFull> {
     return this.#http.get<GetLinkResponse>(`${this.#url}Links/GetOneDetails/${linkId}`).pipe(map(response => response.link))
@@ -290,17 +283,17 @@ export class FlowService {
   }
 
   // Insert Relations.
-  public InsertRMT( rmtForm : RelationsMoodTagForm ) {
-    return this.#http.post<BaseResponse>(this.#url + 'Relations/MoodTag/Create', rmtForm)
+  public InsertRMT( rmtForm : RelationsMoodTagForm ) : Observable<CreateRelationsMoodTagResponse> {
+    return this.#http.post<CreateRelationsMoodTagResponse>(this.#url + 'Relations/MoodTag/Create', rmtForm)
   }
-  public InsertRMA( rmaForm : RelationsMoodArtistForm ) {
-    return this.#http.post<BaseResponse>(this.#url + 'Relations/MoodArtist/Create', rmaForm)
+  public InsertRMA( rmaForm : RelationsMoodArtistForm ) : Observable<CreateRelationsMoodArtistResponse> {
+    return this.#http.post<CreateRelationsMoodArtistResponse>(this.#url + 'Relations/MoodArtist/Create', rmaForm)
   }
-  public InsertRMM( rmmForm : RelationsMoodModelForm ) {
-    return this.#http.post<BaseResponse>(this.#url + 'Relations/MoodModel/Create', rmmForm)
+  public InsertRMM( rmmForm : RelationsMoodModelForm ) : Observable<CreateRelationsMoodModelResponse> {
+    return this.#http.post<CreateRelationsMoodModelResponse>(this.#url + 'Relations/MoodModel/Create', rmmForm)
   }
-  public InsertRAS( rasForm : RelationsArtistStyleForm ) {
-    return this.#http.post<BaseResponse>(this.#url + 'Relations/ArtistStyle/Create', rasForm)
+  public InsertRAS( rasForm : RelationsArtistStyleForm ) : Observable<CreateRelationsArtistStyleResponse> {
+    return this.#http.post<CreateRelationsArtistStyleResponse>(this.#url + 'Relations/ArtistStyle/Create', rasForm)
   }
 
   // Check Relations.
@@ -313,19 +306,16 @@ export class FlowService {
 
   // Create.
   CreateMood( form : MoodCreateForm ) {
-    return this.#http.post<CreateMoodResponse>(`${this.#url}Moods/Create`, form).pipe(
+    return this.#http.post<MoodCreateResponse>(`${this.#url}Moods/Create`, form).pipe(
       tap(response => { 
         if (response.success) { 
           this.refreshMoods()
           this.updateMoodId(response.moodId)
         } } ))
   }
-  public CreateLink( form : LinkCreateForm ) {
-    return this.#http.post<CreateLinkResponse>(`${this.#url}Links/Create`, form)
-  }
 
   // Update.
-  updateScore(form: MoodScoreUpdate): void {
+  updateScore(form: UpdateMoodScoreCall): void {
     this.#http.put<BaseResponse>(`${this.#url}Moods/UpdateScore`, form).pipe(
       take(1),
       tap(response => {
@@ -339,34 +329,16 @@ export class FlowService {
 
   // Update.
   UpdateMood( form : MoodUpdateForm ) { 
-    return this.#http.put<BaseResponse>(`${this.#url}Moods/Update`, form).pipe(tap(response => { if (response.success) this.refreshMoods() } ))
-  }
-  UpdateTagCategory( form : TagCategoryUpdateForm ) { 
-    return this.#http.put<BaseResponse>(`${this.#url}TagCategories/Update`, form).pipe(tap(response => { if (response.success) this.updateTagCategoryId(form.tagCategoryId); this.refreshMoods() } ))
+    return this.#http.put<MoodUpdateResponse>(`${this.#url}Moods/Update`, form).pipe(tap(response => { if (response.success) this.refreshMoods() } ))
   }
   UpdateTag( form : TagUpdateForm ) { 
     return this.#http.put<BaseResponse>(`${this.#url}Tags/Update`, form).pipe(tap(response => { if (response.success) this.updateTagId(form.tagId); this.refreshMoods() } ))
   }
-  UpdateStyle( form : StyleUpdateForm ) { 
-    return this.#http.put<BaseResponse>(`${this.#url}Styles/Update`, form).pipe(tap(response => { if (response.success) this.updateStyleId(form.styleId); this.refreshMoods() } ))
-  }
   UpdateArtist( form : ArtistUpdateForm ) { 
-    return this.#http.put<BaseResponse>(`${this.#url}Artists/Update`, form).pipe(tap(response => { if (response.success) this.updateArtistId(form.artistId); this.refreshMoods() } ))
+    return this.#http.put<BaseResponse>(`${this.#url}Artists/Update`, form).pipe(tap(response => { if (response.success) this.updateArtistId(form.businessId); this.refreshMoods() } ))
   }
   UpdateModel( form : ModelUpdateForm ) { 
     return this.#http.put<BaseResponse>(`${this.#url}Models/Update`, form).pipe(tap(response => { if (response.success) this.updateModelId(form.modelId); this.refreshMoods() } ))
-  }
-  UpdateMedia( form : MediaUpdateForm ) { 
-    return this.#http.put<BaseResponse>(`${this.#url}Media/Update`, form).pipe(tap(response => { if (response.success) this.updateMediaId(form.mediaId); this.refreshMoods() } ))
-  }
-  UpdateFranchise( form : FranchiseUpdateForm ) { 
-    return this.#http.put<BaseResponse>(`${this.#url}Franchises/Update`, form).pipe(tap(response => { if (response.success) this.updateFranchiseId(form.franchiseId); this.refreshMoods() } ))
-  }
-  UpdateLinkCategory( form : LinkCategoryUpdateForm ) { 
-    return this.#http.put<BaseResponse>(`${this.#url}LinkCategories/Update`, form).pipe(tap(response => { if (response.success) this.updateLinkCategoryId(form.linkCategoryId); this.refreshMoods() } ))
-  }
-  UpdateLink( form : LinkUpdateForm ) { 
-    return this.#http.put<BaseResponse>(`${this.#url}Links/Update`, form).pipe(tap(response => { if (response.success) this.updateLinkId(form.linkId); this.refreshMoods() } ))
   }
 
   // Delete.

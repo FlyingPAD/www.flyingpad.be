@@ -226,40 +226,8 @@
         [tags]="flow()?.mood.tags" [franchises]="flow()?.mood.franchises"/>
     </div>
 
-    <div *ngIf="showTagCategory">
-        <app-tag-category-details-flow [tagCategory]="flow()?.tagCategory" />
-    </div>
-
-    <div *ngIf="showTag">
-        <app-tag-details-flow [tag]="flow()?.tag" />
-    </div>
-
     <div *ngIf="showModel">
         <app-model-details-flow [model]="flow()?.model" />
-    </div>
-
-    <div *ngIf="showStyle">
-        <app-style-details-flow [style]="flow()?.style" />
-    </div>
-
-    <div *ngIf="showArtist">
-        <app-artist-details-flow [artist]="flow()?.artist" />
-    </div>
-
-    <div *ngIf="showMedia">
-        <app-media-details-flow [media]="flow()?.media" />
-    </div>
-
-    <div *ngIf="showFranchise">
-        <app-franchise-details-flow [franchise]="flow()?.franchise" />
-    </div>
-
-    <div *ngIf="showLinkCategory">
-        <app-link-category-details-flow [linkCategory]="flow()?.linkCategory" />
-    </div>
-
-    <div *ngIf="showLink">
-        <app-link-details-flow [link]="flow()?.link" />
     </div>
 
     <div class="flow-toolbar toolbar-bottom">

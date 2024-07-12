@@ -16,6 +16,7 @@ export class FlowComponent
 
   environment = environment.apiBaseUrl
 
+  // Boolean toggles for showing or hiding elements
   showMood = true
   showMoods = true
   showMoodsByTag = false
@@ -46,104 +47,70 @@ export class FlowComponent
   showLinkCategory = false
   showLinkCategories = false
 
-  resetTopBar() {
-    this.showMoods = false
-    this.showMoodsByTag = false
-    this.showMoodsByModel = false
-    this.showMoodsByArtist = false
-    this.showMoodsByFranchise = false
-    this.showTags = false
-    this.showTagsByCategory = false
-    this.showTagCategories = false
-    this.showArtists = false
-    this.showArtistsByStyle = false
-    this.showStyles = false
-    this.showModels = false
-    this.showModelsByFranchise = false
-    this.showFranchises = false
-    this.showFranchisesByMedia = false
-    this.showMedias = false
-    this.showLinks = false
-    this.showLinksByCategory = false
-    this.showLinkCategories = false
-  }
-
-  resetBottomBar() {
-    this.showMood = true
-    this.showTag = false
-    this.showTagCategory = false
-    this.showArtist = false
-    this.showStyle = false
-    this.showModel = false
-    this.showFranchise = false
-    this.showMedia = false
-    this.showLink = false
-    this.showLinkCategory = false
-  }
-
   // Toggle methods
-  toggleMood(): void { this.showMood = !this.showMood }
-  toggleMoods(): void { this.showMoods = !this.showMoods }
-  toggleMoodsByTag(): void { this.showMoodsByTag = !this.showMoodsByTag }
-  toggleMoodsByModel(): void { this.showMoodsByModel = !this.showMoodsByModel }
-  toggleMoodsByArtist(): void { this.showMoodsByArtist = !this.showMoodsByArtist }
-  toggleMoodsByFranchise(): void { this.showMoodsByFranchise = !this.showMoodsByFranchise }
-  toggleTag(): void { this.showTag = !this.showTag }
-  toggleTags(): void { this.showTags = !this.showTags }
-  toggleTagsByCategory(): void { this.showTagsByCategory = !this.showTagsByCategory }
-  toggleTagCategory(): void { this.showTagCategory = !this.showTagCategory }
-  toggleTagCategories(): void { this.showTagCategories = !this.showTagCategories }
-  toggleArtist(): void { this.showArtist = !this.showArtist }
-  toggleArtists(): void { this.showArtists = !this.showArtists }
-  toggleArtistsByStyle(): void { this.showArtistsByStyle = !this.showArtistsByStyle }
-  toggleStyle(): void { this.showStyle = !this.showStyle }
-  toggleStyles(): void { this.showStyles = !this.showStyles }
-  toggleModel(): void { this.showModel = !this.showModel }
-  toggleModels(): void { this.showModels = !this.showModels }
-  toggleModelsByFranchise(): void { this.showModelsByFranchise = !this.showModelsByFranchise }
-  toggleFranchise(): void { this.showFranchise = !this.showFranchise }
-  toggleFranchises(): void { this.showFranchises = !this.showFranchises }
-  toggleFranchisesByMedia(): void { this.showFranchisesByMedia = !this.showFranchisesByMedia }
-  toggleMedia(): void { this.showMedia = !this.showMedia }
-  toggleMedias(): void { this.showMedias = !this.showMedias }
-  toggleLink(): void { this.showLink = !this.showLink }
-  toggleLinks(): void { this.showLinks = !this.showLinks }
-  toggleLinksByCategory(): void { this.showLinksByCategory = !this.showLinksByCategory }
-  toggleLinkCategory(): void { this.showLinkCategory = !this.showLinkCategory }
-  toggleLinkCategories(): void { this.showLinkCategories = !this.showLinkCategories }
+  toggleMood() { this.showMood = !this.showMood }
+  toggleMoods() { this.showMoods = !this.showMoods }
+  toggleMoodsByTag() { this.showMoodsByTag = !this.showMoodsByTag }
+  toggleMoodsByModel() { this.showMoodsByModel = !this.showMoodsByModel }
+  toggleMoodsByArtist() { this.showMoodsByArtist = !this.showMoodsByArtist }
+  toggleMoodsByFranchise() { this.showMoodsByFranchise = !this.showMoodsByFranchise }
+  toggleTag() { this.showTag = !this.showTag }
+  toggleTags() { this.showTags = !this.showTags }
+  toggleTagsByCategory() { this.showTagsByCategory = !this.showTagsByCategory }
+  toggleTagCategory() { this.showTagCategory = !this.showTagCategory }
+  toggleTagCategories() { this.showTagCategories = !this.showTagCategories }
+  toggleArtist() { this.showArtist = !this.showArtist }
+  toggleArtists() { this.showArtists = !this.showArtists }
+  toggleArtistsByStyle() { this.showArtistsByStyle = !this.showArtistsByStyle }
+  toggleStyle() { this.showStyle = !this.showStyle }
+  toggleStyles() { this.showStyles = !this.showStyles }
+  toggleModel() { this.showModel = !this.showModel }
+  toggleModels() { this.showModels = !this.showModels }
+  toggleModelsByFranchise() { this.showModelsByFranchise = !this.showModelsByFranchise }
+  toggleFranchise() { this.showFranchise = !this.showFranchise }
+  toggleFranchises() { this.showFranchises = !this.showFranchises }
+  toggleFranchisesByMedia() { this.showFranchisesByMedia = !this.showFranchisesByMedia }
+  toggleMedia() { this.showMedia = !this.showMedia }
+  toggleMedias() { this.showMedias = !this.showMedias }
+  toggleLink() { this.showLink = !this.showLink }
+  toggleLinks() { this.showLinks = !this.showLinks }
+  toggleLinksByCategory() { this.showLinksByCategory = !this.showLinksByCategory }
+  toggleLinkCategory() { this.showLinkCategory = !this.showLinkCategory }
+  toggleLinkCategories() { this.showLinkCategories = !this.showLinkCategories }
 
-  updateMoodId(moodId: number): void {
-    this.flowService.updateMoodId(moodId);this.showMood = true
+  updateMoodId(moodId: number) {
+    this.flowService.updateMoodId(moodId);
   }
-  updateTagId(tagId: number): void {
-    this.flowService.updateTagId(tagId); this.showTag = true
+  updateTagId(tagId: number) {
+    this.flowService.updateTagId(tagId);
   }
-  updateTagCategoryId(tagCategoryId: number): void {
-    this.flowService.updateTagCategoryId(tagCategoryId); this.showTagCategory = true
+  updateTagCategoryId(tagCategoryId: number) {
+    this.flowService.updateTagCategoryId(tagCategoryId);
   }
-  updateModelId(modelId: number): void {
-    this.flowService.updateModelId(modelId); this.showModel = true
+  updateModelId(modelId: number) {
+    this.flowService.updateModelId(modelId);
   }
-  updateArtistId(artistId: number): void {
-    this.flowService.updateArtistId(artistId); this.showArtist = true
+  updateArtistId(artistId: number) {
+    this.flowService.updateArtistId(artistId);
   }  
-  updateStyleId(styleId: number): void {
-    this.flowService.updateStyleId(styleId); this.showStyle = true
+  updateStyleId(styleId: number) {
+    this.flowService.updateStyleId(styleId);
   }
-  updateFranchiseId(franchiseId: number): void {
-    this.flowService.updateFranchiseId(franchiseId); this.showFranchise = true
+  updateFranchiseId(franchiseId: number) {
+    this.flowService.updateFranchiseId(franchiseId);
   }
-  updateMediaId(mediaId: number): void {
-    this.flowService.updateMediaId(mediaId); this.showMedia = true
+  updateMediaId(mediaId: number) {
+    this.flowService.updateMediaId(mediaId);
   }
-  updateLinkCategoryId(linkCategoryId: number): void {
-    this.flowService.updateLinkCategoryId(linkCategoryId); this.showLinkCategory = true
+  updateLinkCategoryId(linkCategoryId: number) {
+    this.flowService.updateLinkCategoryId(linkCategoryId);
   }
-  updateLinkId(linkId: number): void {
-    this.flowService.updateLinkId(linkId); this.showLink = true
+  updateLinkId(linkId: number) {
+    this.flowService.updateLinkId(linkId);
   }
 
-  goBack(): void {
+  goBack()
+  {
     this.#router.navigateByUrl('/dashboard')
   }
 
@@ -155,20 +122,128 @@ export class FlowComponent
     } 
   }
 
-  showMoodsByArtistId(): void {
-    this.resetTopBar()
+  showMoodsByArtistId()
+  {
+    this.showMoods = false
+    this.showMoodsByTag = false
+    this.showMoodsByModel = false
     this.showMoodsByArtist = true
+    this.showMoodsByFranchise = false
+    this.showTag = false
+    this.showTags = false
+    this.showTagsByCategory = false
+    this.showTagCategory = false
+    this.showTagCategories = false
+    this.showArtist = false
+    this.showArtists = false
+    this.showArtistsByStyle = false
+    this.showStyle = false
+    this.showStyles = false
+    this.showModel = false
+    this.showModels = false
+    this.showModelsByFranchise = false
+    this.showFranchise = false
+    this.showFranchises = false
+    this.showFranchisesByMedia = false
+    this.showMedia = false
+    this.showMedias = false
+    this.showLink = false
+    this.showLinks = false
+    this.showLinksByCategory = false
+    this.showLinkCategory = false
+    this.showLinkCategories = false
   }
-  showMoodsByModelId(): void {
-    this.resetTopBar()
+  showMoodsByModelId()
+  {
+    this.showMoods = false
+    this.showMoodsByTag = false
     this.showMoodsByModel = true
+    this.showMoodsByArtist = false
+    this.showMoodsByFranchise = false
+    this.showTag = false
+    this.showTags = false
+    this.showTagsByCategory = false
+    this.showTagCategory = false
+    this.showTagCategories = false
+    this.showArtist = false
+    this.showArtists = false
+    this.showArtistsByStyle = false
+    this.showStyle = false
+    this.showStyles = false
+    this.showModel = false
+    this.showModels = false
+    this.showModelsByFranchise = false
+    this.showFranchise = false
+    this.showFranchises = false
+    this.showFranchisesByMedia = false
+    this.showMedia = false
+    this.showMedias = false
+    this.showLink = false
+    this.showLinks = false
+    this.showLinksByCategory = false
+    this.showLinkCategory = false
+    this.showLinkCategories = false
   }
-  showMoodsByTagId(): void {
-    this.resetTopBar()
+  showMoodsByTagId()
+  {
+    this.showMoods = false
     this.showMoodsByTag = true
+    this.showMoodsByModel = false
+    this.showMoodsByArtist = false
+    this.showMoodsByFranchise = false
+    this.showTag = false
+    this.showTags = false
+    this.showTagsByCategory = false
+    this.showTagCategory = false
+    this.showTagCategories = false
+    this.showArtist = false
+    this.showArtists = false
+    this.showArtistsByStyle = false
+    this.showStyle = false
+    this.showStyles = false
+    this.showModel = false
+    this.showModels = false
+    this.showModelsByFranchise = false
+    this.showFranchise = false
+    this.showFranchises = false
+    this.showFranchisesByMedia = false
+    this.showMedia = false
+    this.showMedias = false
+    this.showLink = false
+    this.showLinks = false
+    this.showLinksByCategory = false
+    this.showLinkCategory = false
+    this.showLinkCategories = false
   }
-  showMoodsByFranchiseId(): void {
-    this.resetTopBar()
+  showMoodsByFranchiseId()
+  {
+    this.showMoods = false
+    this.showMoodsByTag = false
+    this.showMoodsByModel = false
+    this.showMoodsByArtist = false
     this.showMoodsByFranchise = true
+    this.showTag = false
+    this.showTags = false
+    this.showTagsByCategory = false
+    this.showTagCategory = false
+    this.showTagCategories = false
+    this.showArtist = false
+    this.showArtists = false
+    this.showArtistsByStyle = false
+    this.showStyle = false
+    this.showStyles = false
+    this.showModel = false
+    this.showModels = false
+    this.showModelsByFranchise = false
+    this.showFranchise = false
+    this.showFranchises = false
+    this.showFranchisesByMedia = false
+    this.showMedia = false
+    this.showMedias = false
+    this.showLink = false
+    this.showLinks = false
+    this.showLinksByCategory = false
+    this.showLinkCategory = false
+    this.showLinkCategories = false
   }
 }

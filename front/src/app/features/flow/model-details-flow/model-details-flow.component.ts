@@ -1,9 +1,8 @@
 import { Component, inject, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModelFull } from '../../../models/model';
+import { ModelFull, ModelUpdateForm } from '../../../models/model';
 import { FlowService } from '../../../services/flow.service';
 import { ToastrService } from 'ngx-toastr';
-import { ModelUpdateForm } from '../../../models/forms-update';
 
 @Component({
   selector: 'app-model-details-flow',
@@ -53,6 +52,7 @@ export class ModelDetailsFlowComponent {
   triggerDeleteModel(): void {
     this.triggerDelete = !this.triggerDelete
   }
+
 
   deleteModel(): void { 
     if(this.model)

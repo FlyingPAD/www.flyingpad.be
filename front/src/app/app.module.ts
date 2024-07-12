@@ -97,13 +97,7 @@ import { ListCentralComponent } from './components/list-central/list-central.com
 import { LeftCardComponent } from './components/left-card/left-card.component';
 import { ModelDetailsFlowComponent } from './features/flow/model-details-flow/model-details-flow.component';
 import { ArtistDetailsFlowComponent } from './features/flow/artist-details-flow/artist-details-flow.component';
-import { TagDetailsFlowComponent } from './features/flow/tag-details-flow/tag-details-flow.component';
-import { FranchiseDetailsFlowComponent } from './features/flow/franchise-details-flow/franchise-details-flow.component';
-import { LinkCategoryDetailsFlowComponent } from './features/flow/link-category-details-flow/link-category-details-flow.component';
-import { LinkDetailsFlowComponent } from './features/flow/link-details-flow/link-details-flow.component';
-import { MediaDetailsFlowComponent } from './features/flow/media-details-flow/media-details-flow.component';
-import { StyleDetailsFlowComponent } from './features/flow/style-details-flow/style-details-flow.component';
-import { TagCategoryDetailsFlowComponent } from './features/flow/tag-category-details-flow/tag-category-details-flow.component';
+import { TagDetailsFlowComponent } from './features/flow/tag-details.flow/tag-details.flow.component';
 
 @NgModule({
   declarations: 
@@ -161,6 +155,8 @@ import { TagCategoryDetailsFlowComponent } from './features/flow/tag-category-de
     MoodsMultiTagComponent,
     MultiTagArtistsComponent,
     MultiTagModelsComponent,
+    MoodDetailsFlowComponent,
+    MoodsGalleryFlowComponent,
     MoodViewerComponent,
     // => Models
     EditionComponent,
@@ -196,18 +192,6 @@ import { TagCategoryDetailsFlowComponent } from './features/flow/tag-category-de
     // => Links
     LinksEditionComponent,
     LinksGalleryComponent,
-    // => Flow.
-    MoodsGalleryFlowComponent,
-    MoodDetailsFlowComponent,
-    TagCategoryDetailsFlowComponent,
-    TagDetailsFlowComponent,
-    StyleDetailsFlowComponent,
-    ArtistDetailsFlowComponent,
-    ModelDetailsFlowComponent,
-    MediaDetailsFlowComponent,
-    FranchiseDetailsFlowComponent,
-    LinkCategoryDetailsFlowComponent,
-    LinkDetailsFlowComponent,
     // Pipes.
     FormatDurationPipe,
     FormatSizePipe,
@@ -215,6 +199,9 @@ import { TagCategoryDetailsFlowComponent } from './features/flow/tag-category-de
     AnimRandomDirective,
     AnimGrowDirective,
     AnimSpinDirective,
+    ModelDetailsFlowComponent,
+    ArtistDetailsFlowComponent,
+    TagDetailsFlowComponent,
   ],
   imports: 
   [

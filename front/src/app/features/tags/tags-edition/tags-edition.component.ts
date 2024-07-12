@@ -1,11 +1,10 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { TagCreateForm } from '../../../models/tag';
 import { MenuDesktopService } from '../../../services/menu-desktop.service';
 import { MoodStateService } from '../../../services/mood.service';
 import { TagsEditionService } from '../../../services/tags-edition.service';
-import { TagCreateForm } from '../../../models/forms-create';
-import { TagUpdateForm } from '../../../models/forms-update';
 
 @Component({
   selector: 'app-tags-edition',
@@ -117,29 +116,21 @@ export class TagsEditionComponent
   {
     this.triggerUpdate()
   }
-  onUpdate() {
-    const tagFlow = this.tagsEditionFlow();
-    if (!tagFlow || !tagFlow.tag) {
-      return;
-    }
-  
-    const { tag } = tagFlow;
-    if (!tag.businessId) {
-      return;
-    }
-  
-    let form : TagUpdateForm = {
-      tagId : tag.businessId,
+  onUpdate()
+  {
+    let form : TagCreateForm = 
+    {
       name : this.updateFormGroup.value.name,
       description : this.updateFormGroup.value.description
-    };
-  
-    if(this.updateFormGroup.valid) {
+    }
+    if(this.updateFormGroup.valid)
+    {
       this.updateSubscription = this.#tagsEditionService.UpdateTag(form).subscribe({
-        next : () => {
-          this.triggerUpdate();
+        next : () => 
+        {
+          this.triggerUpdate()
         }
-      });
+      })
     }
   }
 

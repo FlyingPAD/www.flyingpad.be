@@ -1,9 +1,8 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LinkCreateForm, LinkUpdateForm } from '../../../models/link';
 import { LinksEditionService } from '../../../services/links-edition.service';
 import { MenuDesktopService } from '../../../services/menu-desktop.service';
-import { LinkCreateForm } from '../../../models/forms-create';
-import { LinkUpdateForm } from '../../../models/forms-update';
 
 @Component({
   selector: 'app-links-edition',
@@ -125,7 +124,7 @@ export class LinksEditionComponent
 
     let form : LinkUpdateForm = 
     {
-      linkId : businessId,
+      businessId : businessId,
       name : this.updateFormGroup.value.name,
       description : this.updateFormGroup.value.description,
       url : this.updateFormGroup.value.url

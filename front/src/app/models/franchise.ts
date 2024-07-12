@@ -1,71 +1,143 @@
 import { BaseResponse } from "./base-response";
 import { ModelLight } from "./model";
 
-// Models.
-export interface FranchiseLight {
-    businessId : number
-    name : string
-    description : string
+// Models :
+
+export class FranchiseLight
+{
+    businessId : number = 0
+    name : string = ''
+    description : string = ''
 }
-export interface FranchiseFull {
-    businessId : number
-    created : Date
-    createdBy : string
-    modified : Date
-    modifiedBy : string
-    name : string
-    description : string
-}
-export interface MediaLight {
-    businessId : number
-    name : string
-}
-export interface MediaFull {
-    businessId : number
-    created : Date
-    createdBy : string
-    modified : Date
-    modifiedBy : string
-    name : string
-    description : string
-}
-export interface FranchiseList {
-    businessId : number
-    name : string
-    models : ModelLight[]
-}
-export interface MediaList {
-    businessId : number
-    name : string
-    franchises : FranchiseList[]
+export class FranchiseDetails
+{
+    businessId : number = 0
+    created : Date = new Date()
+    createdBy : string = ''
+    modified : Date = new Date()
+    modifiedBy : string = ''
+    name : string = ''
+    description : string = ''
 }
 
-// Responses.
-export interface GetFranchisesResponse extends BaseResponse {
+export interface FranchiseFull
+{
+    businessId : number
+    created : Date
+    createdBy : string
+    modified : Date
+    modifiedBy : string
+    name : string
+    description : string
+}
+
+export class MediaLight
+{
+    businessId : number = 0
+    name : string = ''
+}
+export class MediaDetails
+{
+    businessId : number = 0
+    created : Date = new Date()
+    createdBy : string = ''
+    modified : Date = new Date()
+    modifiedBy : string = ''
+    name : string = ''
+    description : string = ''
+}
+export interface MediaFull
+{
+    businessId : number
+    created : Date
+    createdBy : string
+    modified : Date
+    modifiedBy : string
+    name : string
+    description : string
+}
+export class MediaFullList
+{
+    businessId : number = 0
+    name : string = ''
+    franchises : FranchiseList[] = []
+}
+export class FranchiseList
+{
+    businessId : number = 0
+    name : string = ''
+    models : ModelLight[] = []
+}
+
+// Calls :
+
+export interface FranchiseCreateForm
+{
+    name :        string
+    description : string
+}
+export interface MediaCreateForm
+{
+    name :        string
+    description : string
+}
+
+// Responses :
+
+export interface GetAllFranchises extends BaseResponse
+{
     franchises : FranchiseLight[]
 }
-export interface GetFranchisesByMoodResponse extends BaseResponse {
-    franchisesByMood : FranchiseLight[]
+export interface GetOneFranchiseDetailsResponse extends BaseResponse
+{
+    franchise : FranchiseDetails
 }
-export interface GetFranchisesByModelResponse extends BaseResponse {
-    franchisesByModel : FranchiseLight[]
-}
-export interface GetFranchisesByMediaResponse extends BaseResponse {
-    franchises : FranchiseLight[]
-}
-export interface GetFranchiseResponse extends BaseResponse {
+export interface GetFranchiseByIdResponse extends BaseResponse
+{
     franchise : FranchiseFull
 }
+export interface GetFranchisesByMoodResponse extends BaseResponse
+{
+    franchisesByMood : FranchiseLight[]
+}
+export interface GetFranchisesByModelResponse extends BaseResponse
+{
+    franchisesByModel : FranchiseLight[]
+}
+export interface GetFranchisesByMediaResponse extends BaseResponse
+{
+    franchises : FranchiseLight[]
+}
+export interface GetAllFranchisesResponse extends BaseResponse
+{
+    franchises : FranchiseLight[]
+}
+export interface CreateFranchiseResponse extends BaseResponse
+{
+    franchise : FranchiseDetails
+}
 
-export interface GetMediasResponse extends BaseResponse {
+export interface GetAllMediasResponse extends BaseResponse
+{
     medias : MediaLight[]
 }
-export interface GetMediasByMoodResponse extends BaseResponse {
+export interface GetMediasByMoodResponse extends BaseResponse
+{
     mediasByMood : MediaLight[]
 }
-export interface GetMediaResponse extends BaseResponse {
+export interface GetOneMediaDetailsResponse extends BaseResponse
+{
+    media : MediaDetails
+}
+export interface GetMediaByIdResponse extends BaseResponse
+{
     media : MediaFull
 }
-export interface GetMediasListResponse extends BaseResponse {
-    medias : MediaList[]
+export interface GetMediaByModelResponse extends BaseResponse
+{
+    media : MediaDetails
+}
+export interface GetMediasFullListResponse extends BaseResponse
+{
+    medias : MediaFullList[]
 }
