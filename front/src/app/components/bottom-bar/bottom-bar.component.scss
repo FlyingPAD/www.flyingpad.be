@@ -81,4 +81,14 @@
         border: 1px solid rgba(0, 0, 0, 0.15);
         cursor: default;
     }
+    .toggle
+    {
+        display: flex;
+    }
+
+    @media screen and (max-width: 1150px) {
+        .toggle {
+            display: none
+        }   
+    }
 }

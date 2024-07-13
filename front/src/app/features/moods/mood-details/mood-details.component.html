@@ -1,8 +1,3 @@
-<div class="bar" *ngIf="flow() as flow">
-    <!-- <a (click)="handleToggleFocus()" class="toggle" *ngIf="mood.type === 1"><img [ngClass]="{'rotate': isFocused, 'rotate-back': !isFocused}" src="../../../../assets/app_icons/toggle.png" /></a>
-    <span class="toggle" *ngIf="mood?.type !== 1"><img src="../../../../assets/app_icons/toggle_no.png" /></span> -->
-</div>
-
 <div [ngClass]="infoIsActive === true ? 'info' : 'info off' ">
     <h1 *ngIf="mood?.name !== '...' ">{{ mood?.name }}</h1>
     <p *ngIf="mood?.description !== '...' ">{{mood?.description}}</p>
