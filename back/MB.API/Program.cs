@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using System.Globalization;
 using System.Text;
 
 namespace MB.API;
@@ -16,6 +17,9 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+        CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
+
         // Builder Creation.
         var builder = WebApplication.CreateBuilder(args);
 
