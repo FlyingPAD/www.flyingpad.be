@@ -7,9 +7,8 @@ namespace MB.API.Controllers;
 [Route("api/V1/Status")]
 [ApiController]
 [ApiExplorerSettings(GroupName = "system")]
-public class StatusController(IMediator mediator) : ControllerBase
+public class StatusController() : ControllerBase
 {
-    private readonly IMediator _mediator = mediator;
 
     [HttpGet("Get")]
     public ActionResult<CountLinksQueryResponse> GetStatus()
