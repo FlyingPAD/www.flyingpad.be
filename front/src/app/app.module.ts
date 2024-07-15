@@ -75,7 +75,6 @@ import { UpdateArtistComponent } from './features/artists/update-artist/update-a
 import { UpdateStyleComponent } from './features/artists/update-style/update-style.component';
 import { LayoutArtistsComponent } from './layouts/layout-artists/layout-artists.component';
 import { LinksEditionComponent } from './features/links/links-edition/links-edition.component';
-import { LinksGalleryComponent } from './features/links/links-gallery/links-gallery.component';
 import { MoodDetailsFlowComponent } from './features/flow/mood-details-flow/mood-details-flow.component';
 import { MoodsGalleryFlowComponent } from './features/flow/moods-gallery-flow/moods-gallery-flow.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
@@ -195,7 +194,6 @@ import { TagCategoryDetailsFlowComponent } from './features/flow/tag-category-de
     UserLoginErrorComponent,
     // => Links
     LinksEditionComponent,
-    LinksGalleryComponent,
     // => Flow.
     MoodsGalleryFlowComponent,
     MoodDetailsFlowComponent,
