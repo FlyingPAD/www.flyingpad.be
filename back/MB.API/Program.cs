@@ -17,7 +17,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        // Configure Culture.
+        // Configure Culture...
         CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
         CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 
