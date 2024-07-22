@@ -395,7 +395,7 @@ export class FlowService {
     return this.#http.delete<BaseResponse>(`${this.#url}Medias/Delete/${mediaId}`)
   }
   DeleteLinkCategory( linkCategoryId : number ) {
-    return this.#http.delete<BaseResponse>(`${this.#url}LinkCategoriess/Delete/${linkCategoryId}`)
+    return this.#http.delete<BaseResponse>(`${this.#url}LinkCategories/Delete/${linkCategoryId}`)
   }
   DeleteLink( linkId : number ) {
     return this.#http.delete<BaseResponse>(`${this.#url}Links/Delete/${linkId}`)

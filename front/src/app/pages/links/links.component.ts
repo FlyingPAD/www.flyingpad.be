@@ -14,6 +14,7 @@ export class LinksComponent {
   elementsPerPage : number = 17
   currentPage : number = 1
   showDialog : boolean = false
+  showFormDialog : boolean = false
 
   searchLinks : string = ''
   filterLinks() {
@@ -22,6 +23,15 @@ export class LinksComponent {
   updateLinkCategoryId(linkCategoryId: number | null): void {
     this.#flowService.updateLinkCategoryId(linkCategoryId)
     this.pageReset()
+  }
+  updateLinkId(linkId: number): void {
+    this.#flowService.updateLinkId(linkId)
+  }
+  handleFormDialog() {
+    this.showFormDialog = false
+  }
+  openFormDialog() {
+    this.showFormDialog = !this.showFormDialog
   }
   handleDialog() {
     this.showDialog = false
