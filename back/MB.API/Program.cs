@@ -1,5 +1,4 @@
-
-using Hangfire;
+//using Hangfire;
 using MB.Application;
 using MB.Infrastructure;
 using MB.Infrastructure.Configurations;
@@ -116,7 +115,7 @@ public class Program
 
             // Custom Middlewares.
             app.UseMiddleware<ExceptionHandler>();
-            app.UseHangfireDashboard("/hangfire");
+            //app.UseHangfireDashboard("/hangfire");
 
             // app.ResetDatabaseAsync(); // ( check 'Options/ResetDatabase' )
             app.UseStaticFiles(new StaticFileOptions

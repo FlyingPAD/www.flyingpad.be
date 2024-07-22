@@ -103,6 +103,7 @@ import { LinkDetailsFlowComponent } from './features/flow/link-details-flow/link
 import { MediaDetailsFlowComponent } from './features/flow/media-details-flow/media-details-flow.component';
 import { StyleDetailsFlowComponent } from './features/flow/style-details-flow/style-details-flow.component';
 import { TagCategoryDetailsFlowComponent } from './features/flow/tag-category-details-flow/tag-category-details-flow.component';
+import { CreateLinkFormComponent } from './features/links/create-link-form/create-link-form.component';
 
 @NgModule({
   declarations: 
@@ -213,6 +214,7 @@ import { TagCategoryDetailsFlowComponent } from './features/flow/tag-category-de
     AnimRandomDirective,
     AnimGrowDirective,
     AnimSpinDirective,
+    CreateLinkFormComponent,
   ],
   imports: 
   [
