@@ -20,10 +20,10 @@
 
 <div [@routeAnimations]="currentTool">
   <ng-container [ngSwitch]="currentTool">
-    <app-circle-of-fifths *ngSwitchCase="'circleOfFifths'" key="circleOfFifths"></app-circle-of-fifths>
-    <app-chord-wheel *ngSwitchCase="'chordWheel'" key="chordWheel"></app-chord-wheel>
-    <app-diapason *ngSwitchCase="'diapason'" key="diapason"></app-diapason>
-    <app-flying-keys-mini *ngSwitchCase="'flyingKeysMini'" key="flyingKeysMini"></app-flying-keys-mini>
-    <app-trainer-notes *ngSwitchCase="'trainerNotes'" key="trainerNotes"></app-trainer-notes>
+    <app-circle-of-fifths *ngSwitchCase="'circleOfFifths'" key="circleOfFifths" />
+    <app-chord-wheel *ngSwitchCase="'chordWheel'" key="chordWheel" />
+    <app-diapason *ngSwitchCase="'diapason'" key="diapason" />
+    <app-flying-keys-mini *ngSwitchCase="'flyingKeysMini'" key="flyingKeysMini" />
+    <app-trainer-notes *ngSwitchCase="'trainerNotes'" key="trainerNotes" />
   </ng-container>
 </div>
