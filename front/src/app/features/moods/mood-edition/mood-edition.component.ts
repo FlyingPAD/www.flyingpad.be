@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, inject } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, inject } from '@angular/core';
 import { MoodStateService } from '../../../services/mood.service';
 import { environment } from '../../../../environments/environment';
 import { RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm } from '../../../models/relations';
@@ -14,82 +14,80 @@ import { MoodScoreUpdate, MoodUpdateForm } from '../../../models/forms-update';
   templateUrl: './mood-edition.component.html',
   styleUrl: './mood-edition.component.scss'
 })
-export class MoodEditionComponent implements OnDestroy
-{
-  // Services
+export class MoodEditionComponent implements OnDestroy {
   #moodService = inject(MoodStateService)
   #flowService = inject(FlowService)
   #formBuilder = inject(FormBuilder)
   #router = inject(Router)
   #toastr = inject(ToastrService)
   
-  // API URL
   environment : string = environment.apiBaseUrl
   
-  // Signal :
+  @Input() moodId : number = 0
+
+  flow = this.#flowService.flow
   moodEditionFlow = this.#moodService.moodEditionFlow
 
-  // To Top Button Trigger
   topButtonIsActive = false                   
 
-  // Subscriptions :
   EditionSubscription = new Subscription()
   EditionTagsSubscription = new Subscription()
   EditionModelsSubscription = new Subscription()
   EditionArtistsSubscription = new Subscription()
   DeleteMoodSubscription = new Subscription()
 
-  // Triggers
   triggerMoodEdition : boolean = true
   triggerMoodTagsEdition : boolean = false
   triggerMoodModelsEdition : boolean = false
   triggerMoodArtistsEdition : boolean = false
   triggerDelete : boolean = false
 
-  // Search
   searchModel : string = ''
   searchArtist : string = ''
 
-  // Filter models based on search input
+  ngOnInit(): void {
+    this.#moodService.updateSelectedMoodId(this.moodId)
+  }
+
+  ngOnDestroy(): void {
+    this.EditionSubscription.unsubscribe()
+    this.EditionTagsSubscription.unsubscribe()
+    this.EditionModelsSubscription.unsubscribe()
+    this.EditionArtistsSubscription.unsubscribe()
+    this.DeleteMoodSubscription.unsubscribe()
+  }
+
   filterModels() 
   {
     return this.moodEditionFlow().models.filter(m => m.pseudonym.toLowerCase().includes(this.searchModel.toLowerCase()))
   }
-  // Filter artists based on search input
   filterArtists() 
   {
     return this.moodEditionFlow().artists.filter(m => m.name.toLowerCase().includes(this.searchArtist.toLowerCase()))
   }
 
-  triggerMoodEditionButton()
-  {
+  triggerReset():void {
+    this.triggerMoodEdition = false
+    this.triggerMoodTagsEdition = false
+    this.triggerMoodModelsEdition = false
+    this.triggerMoodArtistsEdition = false
+  }
+  triggerMoodEditionButton():void {
+    this.triggerReset()
     this.triggerMoodEdition = true
-    this.triggerMoodTagsEdition = false
-    this.triggerMoodModelsEdition = false
-    this.triggerMoodArtistsEdition = false
   }
-  triggerMoodTagsEditionButton()
-  {
-    this.triggerMoodEdition = false
+  triggerMoodTagsEditionButton():void {
+    this.triggerReset()
     this.triggerMoodTagsEdition = true
-    this.triggerMoodModelsEdition = false
-    this.triggerMoodArtistsEdition = false
   }
-  triggerMoodArtistsEditionButton()
-  {
-    this.triggerMoodEdition = false
-    this.triggerMoodTagsEdition = false
-    this.triggerMoodModelsEdition = false
+  triggerMoodArtistsEditionButton():void {
+    this.triggerReset()
     this.triggerMoodArtistsEdition = true
   }
-  triggerMoodModelsEditionButton()
-  {
-    this.triggerMoodEdition = false
-    this.triggerMoodTagsEdition = false
+  triggerMoodModelsEditionButton():void {
+    this.triggerReset()
     this.triggerMoodModelsEdition = true
-    this.triggerMoodArtistsEdition = false
   }
-
   triggerDeleteMood()
   {
     this.triggerDelete = !this.triggerDelete
@@ -100,15 +98,6 @@ export class MoodEditionComponent implements OnDestroy
     name : [this.moodEditionFlow().mood?.name, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     description : [this.moodEditionFlow().mood?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
-
-  ngOnDestroy() : void 
-  {
-    this.EditionSubscription.unsubscribe()
-    this.EditionTagsSubscription.unsubscribe()
-    this.EditionModelsSubscription.unsubscribe()
-    this.EditionArtistsSubscription.unsubscribe()
-    this.DeleteMoodSubscription.unsubscribe()
-  }
 
   success() {
     this.#toastr.success('Mood was successfully updated!');

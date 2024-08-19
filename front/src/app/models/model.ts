@@ -50,3 +50,7 @@ export interface GetModelsByMoodResponse extends BaseResponse {
 export interface GetModelResponse extends BaseResponse {
     model : ModelFull
 }
+
+export interface GetModelsCheckBoxesByMoodResponse extends BaseResponse {
+    models : ModelCheckBox[]
+ }

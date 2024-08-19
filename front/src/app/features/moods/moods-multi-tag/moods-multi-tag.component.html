@@ -1,26 +1,4 @@
 <div *ngIf="flow() as flow">
-    <!-- Right Column Trigger -->
-    <div class="column-trigger" [class.column-trigger-on]="menuService.menuRActive === true" (click)="menuTrigger()">
-        <div class="trigger-arrow"></div>
-    </div>
-    <!-- Right Colum -->
-    <div class="right-column" [ngClass]="menuService.menuRActive == true ? 'right-column-on' : 'right-column-off'">
-        <!-- Tags List -->
-        <div class="tags-list">
-            <div *ngFor="let tagList of flow.tagsWithCategories">
-                <div class="container">
-                    <p class="category-name">{{tagList.category.name}}</p>
-                    <div *ngFor="let tag of tagList.tags">
-                        <div class="box">
-                            <a id="{{tag.businessId}}" class="name-tag" [ngClass]="{'active': tag.name === flow.tag?.name}"
-                                (click)="updateTagId(tag.businessId);pageReset()"> ▸ {{tag.name}}
-                            </a>                         
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Central Layout -->
     <div id="layout-central">
         <div *ngIf="flow.moods.length; else loading">
