@@ -120,7 +120,7 @@ export class CreateMoodImageComponent
         error : (e) => console.error(e),
         complete : () => 
         {
-          this.#router.navigateByUrl('/moods/mood-details')
+          this.#router.navigateByUrl('/moods')
         }
       })   
     }

@@ -4,9 +4,9 @@ import { environment } from '../../environments/environment';
 import { Observable, map, of, combineLatest, BehaviorSubject, switchMap, startWith, Subject, take, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { GetMoodResponse, GetMoodsResponse, MoodFull, MoodLight } from '../models/mood';
-import { GetAllTagCategoriesResponse, GetAllTagsResponse, GetTagByIdResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse, GetTagsByMoodResponse, TagCategoryFull, TagFull, TagLight, TagsGetFullListResponse } from '../models/tag';
-import { ArtistFull, ArtistLight, GetAllArtistsResponse, GetArtistByIdResponse, GetArtistsByMoodResponse, GetArtistsByStyleResponse, GetStyleResponse, GetStylesResponse, StyleFull } from '../models/artist';
-import { GetModelResponse, GetModelsResponse, ModelFull, ModelLight } from '../models/model';
+import { GetAllTagCategoriesResponse, GetAllTagsResponse, GetTagByIdResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse, GetTagsByMoodResponse, GetTagsCheckBoxesByMoodResponse, TagCategoryFull, TagFull, TagLight, TagsGetFullListResponse } from '../models/tag';
+import { ArtistFull, ArtistLight, GetAllArtistsResponse, GetArtistByIdResponse, GetArtistsByMoodResponse, GetArtistsByStyleResponse, GetArtistsCheckBoxesByMoodResponse, GetStyleResponse, GetStylesResponse, StyleFull } from '../models/artist';
+import { GetModelResponse, GetModelsCheckBoxesByMoodResponse, GetModelsResponse, ModelFull, ModelLight } from '../models/model';
 import { GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, GetLinksResponse, LinkCategoryFull, LinkFull, LinkLight } from '../models/link';
 import { FranchiseFull, FranchiseLight, GetFranchiseResponse, GetFranchisesByMediaResponse, GetFranchisesByMoodResponse, GetFranchisesResponse, GetMediaResponse, GetMediasListResponse, GetMediasResponse, MediaFull } from '../models/franchise';
 import { BaseResponse } from '../models/base-response';
@@ -136,7 +136,8 @@ export class FlowService {
             this.getModelsByMood(mood.businessId),
             this.getFranchisesByMood(mood.businessId),
             this.getArtistsByMood(mood.businessId),
-            this.getTagsByMood(mood.businessId)
+            this.getTagsByMood(mood.businessId),
+
           ]).pipe(
             map(([mood, mediaProps, models, franchises, artists, tags]) => ({
               ...mood,
@@ -287,6 +288,18 @@ export class FlowService {
   getTagsByMood(businessId : number) {
     return this.#http.get<GetTagsByMoodResponse>(`${this.#url}Tags/GetByMood/${businessId}`).pipe( 
       map(response => response.tagsByMood) )
+  }
+  getTagsCheckBoxByMood(businessId : number) {
+    return this.#http.get<GetTagsCheckBoxesByMoodResponse>(`${this.#url}Tags/GetCheckBoxesByMood/${businessId}`).pipe( 
+      map(response => response.tagsCheckBoxesList) )
+  }
+  getArtistsCheckBoxByMood(businessId : number) {
+    return this.#http.get<GetArtistsCheckBoxesByMoodResponse>(`${this.#url}Artists/GetCheckBoxesByMood/${businessId}`).pipe( 
+      map(response => response.artists) )
+  }
+  getModelsCheckBoxByMood(businessId : number) {
+    return this.#http.get<GetModelsCheckBoxesByMoodResponse>(`${this.#url}Models/GetCheckBoxesByMood/${businessId}`).pipe( 
+      map(response => response.models) )
   }
 
   // Insert Relations.

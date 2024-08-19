@@ -28,6 +28,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   showGallery : boolean = true
   showDetails : boolean = false
+  showEdition : boolean = false
   showDialog : boolean = false
 
   intervalId : any | undefined = undefined
@@ -60,6 +61,13 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   backToGallery(): void {
     this.showGallery = true
     this.showDetails = false
+    this.showEdition = false
+  }
+
+  goEdition(): void {
+    this.showGallery = false
+    this.showDetails = false
+    this.showEdition = true
   }
 
   pageReset(): void {
@@ -125,35 +133,41 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.#flowService.updateMoodId(null)
     this.showGallery = false
     this.showDetails = true
+    this.showEdition = false
   }
 
   updateMoodId(moodId: number | null): void {
     this.#flowService.updateMoodId(moodId)
     this.showGallery = false
     this.showDetails = true
+    this.showEdition = false
   }
   updateArtistId(artistId: number | null): void {
     this.#flowService.updateArtistId(artistId)
     this.showGallery = true
     this.showDetails = false
+    this.showEdition = false
     this.pageReset()
   }
   updateModelId(modelId: number | null): void {
     this.#flowService.updateModelId(modelId)
     this.showGallery = true
     this.showDetails = false
+    this.showEdition = false
     this.pageReset()
   }
   updateTagId(tagId: number): void {
     this.#flowService.updateTagId(tagId)
     this.showGallery = true
     this.showDetails = false
+    this.showEdition = false
     this.pageReset()
   }
   updateFranchiseId(franchiseId: number | null): void {
     this.#flowService.updateFranchiseId(franchiseId)
     this.showGallery = true
     this.showDetails = false
+    this.showEdition = false
     this.pageReset()
   }
 

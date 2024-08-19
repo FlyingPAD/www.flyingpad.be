@@ -59,7 +59,7 @@
         <a class="toggle" *ngIf="!diaporamaIsActive" (click)="handleDiaporamaStart(true)"><img src="../../../../assets/app_icons/play-random.png" /></a>
         <a *ngIf="diaporamaIsActive" (click)="handleDiaporamaStop()"><img src="../../../../assets/app_icons/stop.png" /></a>
         <a (click)="handleLeftCard()"><img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" /></a>
-        <a routerLink="/moods/mood-edition" *ngIf="userService.appUser.role === 2"><img appAnimGrow src="../../../../assets/app_icons/edit.png" /></a>
+        <a (click)="handleEditButton()" *ngIf="userService.appUser.role === 2"><img appAnimGrow src="../../../../assets/app_icons/edit.png" /></a>
         <a class="toggle" (click)="handleToggleFocus()" *ngIf="moodType === 1"><img [ngClass]="{'rotate': focusIsActive, 'rotate-back': !focusIsActive}" src="../../../../assets/app_icons/toggle.png" /></a>
         <span class="toggle" *ngIf="moodType !== 1"><img src="../../../../assets/app_icons/toggle_no.png" /></span>
         <a class="toggle" (click)="handleOpenMoodInNewTab()"><img src="../../../../assets/app_icons/download.png" /></a>
@@ -71,5 +71,8 @@
         <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" /></a>
         <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true"><img src="../../../../assets/app_icons/arrow_up.png" /></a>
         <span *ngIf="topButtonIsActive === false"><img src="../../../../assets/app_icons/arrow_up_no.png" /></span>
+    }
+    @if(moodsGalleryType === 'edition') {
+        <a>coucou</a>
     }
 </div>

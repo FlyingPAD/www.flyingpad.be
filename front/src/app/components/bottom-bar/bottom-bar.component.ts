@@ -26,6 +26,7 @@ export class BottomBarComponent {
   @Output() diaporamaStop = new EventEmitter<void>()
   @Output() leftCard = new EventEmitter<void>()
   @Output() isFocused = new EventEmitter<boolean>(false)
+  @Output() edition = new EventEmitter<void>()
   
   topButtonIsActive : boolean = false
   diaporamaIsActive : boolean = false
@@ -37,6 +38,7 @@ export class BottomBarComponent {
   handleOpenMoodInNewTab(): void {this.openMoodInNewTab.emit()}
   handleRandomMood(): void {this.randomMood.emit()}
   handleBackToGallery(): void {this.back.emit()}
+  handleEditButton(): void {this.edition.emit()}
   handleGetIndex(direction : string): void {this.getIndex.emit(direction)}
   handleDiaporamaStart(isRandom : boolean): void {this.diaporamaStart.emit(isRandom); this.diaporamaIsActive = true}
   handleDiaporamaStop(): void {this.diaporamaStop.emit(); this.diaporamaIsActive = false}
