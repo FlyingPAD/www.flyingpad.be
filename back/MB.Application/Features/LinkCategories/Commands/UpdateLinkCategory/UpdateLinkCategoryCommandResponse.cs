@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.LinkCategories.Commands.UpdateLinkCategory;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.LinkCategories.Commands.UpdateLinkCategory;
 
 public class UpdateLinkCategoryCommandResponse : BaseResponse
 {

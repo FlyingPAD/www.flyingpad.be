@@ -1,40 +1,68 @@
-#layout-central
+.display-info
 {
-    .dashboard
+    width: 370px;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+    .info-group
     {
-        max-width: 800px;
-        margin: auto;
-        margin-top: 15px;
-    
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
+
+        background-color: rgba(107, 82, 64, 0.15);
+        border-radius: 12px;
+
+        margin-left: 15px; margin-right: 15px;
+        margin-bottom: 10px;
+        
+        padding-left: 15px; padding-right: 15px;
+        padding: 15px;
+
+        p
+        {
+            margin: 0;
+            color: #6b5240;
+            font-size: 13px;
+        }
+    }
+}
+
+.dashboard
+{
+    max-width: 900px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 50px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    a
+    {
+        display: flex;
         align-items: center;
-    
-        a
+        margin: 10px;
+        padding: 10px;
+
+        width: 140px;
+
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 12px;
+        color: var(--colorMain);
+        text-decoration: none;
+
+        img
         {
-            display: flex;
-            align-items: center;
-            margin: 10px;
-            padding: 10px;
-    
-            width: 140px;
-    
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            color: var(--colorMain);
-            text-decoration: none;
-    
-            img
-            {
-                width: 35px;
-                margin-right: 15px;
-            }
+            width: 35px;
+            margin-right: 15px;
         }
-        a:hover
-        {
-            background-color: rgba(255, 255, 255, 1);
-            transition-duration: 500ms;
-        }
+    }
+    a:hover
+    {
+        background-color: rgba(255, 255, 255, 1);
+        transition-duration: 500ms;
     }
 }

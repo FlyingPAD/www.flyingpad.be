@@ -1,14 +1,16 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, Observable, catchError, combineLatest, debounceTime, map, of, shareReplay, startWith, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, combineLatest, debounceTime, from, map, of, shareReplay, startWith, switchMap, tap } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { ArtistCreateForm, ArtistCreateFormGroup, ArtistDeleteResponse, ArtistsCountResponse, ArtistsCreateResponse, ArtistsGetPageResponse, CreateStyleResponse, GetArtistByIdResponse, GetStyleResponse, GetStylesResponse, StyleLight } from '../models/artist';
+import { ArtistDeleteResponse, ArtistsCountResponse, ArtistsGetPageResponse, GetArtistByIdResponse } from '../models/artist';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { GetMoodsResponse } from '../models/mood';
 import { CheckRelationsArtistStyleByStyleResponse, RelationsArtistStyleForm } from '../models/relations';
 import { BaseResponse } from '../models/base-response';
-import { StyleCreateForm } from '../models/forms-create';
+import { ArtistCreateForm, StyleCreateForm } from '../models/forms-create';
+import { GetAllStylesResponse, GetStyleByIdResponse, StyleLight } from '../models/style';
+import { CreateArtistResponse, CreateStyleResponse } from '../models/responses-create';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +37,7 @@ export class ArtistsStateService
   updateStartId( startId : number | null ) { this.#startId.next( startId ) }
 
   styles$ = this.#stylesUpdated.pipe(
-    switchMap(() => this.#http.get<GetStylesResponse>(`${this.#url}Styles/GetAll`)),
+    switchMap(() => this.#http.get<GetAllStylesResponse>(`${this.#url}Styles/GetAll`)),
     map(response => response.styles),
     catchError(() => of([])),
     shareReplay(1)
@@ -45,7 +47,7 @@ export class ArtistsStateService
     switchMap(styleId => 
     {
       if (styleId === null) return of(null);
-      return this.#http.get<GetStyleResponse>(`${this.#url}Styles/GetOneDetails/${styleId}`).pipe(
+      return this.#http.get<GetStyleByIdResponse>(`${this.#url}Styles/GetOneDetails/${styleId}`).pipe(
         map(response => response.style),
         catchError(() => of(null))
       )
@@ -187,42 +189,42 @@ export class ArtistsStateService
   }
 
   // Create Artist
-  public CreateArtist(formGroup: ArtistCreateFormGroup): Observable<ArtistsCreateResponse> {
-    let styleIds: number[] = formGroup.styles.filter(style => style.isChecked).map(style => style.businessId);
-    let createForm: ArtistCreateForm = { name: formGroup.name };
+  public CreateArtist(formGroup: ArtistCreateForm): Observable<CreateArtistResponse> {
+    let styleIds: number[] = formGroup.styles.filter(style => style.isChecked).map(style => style.businessId)
+    let createForm: ArtistCreateForm = { name: formGroup.name, description : formGroup.description, styles : [] }
   
-    return this.#http.post<ArtistsCreateResponse>(`${this.#url}Artists/Create`, createForm).pipe(
+    return this.#http.post<CreateArtistResponse>(`${this.#url}Artists/Create`, createForm).pipe(
       switchMap(response => {
-        this.updateSelectedArtistId(response.artist.businessId);
-        this.#artistsUpdated.next(true);  // Déplacer ici pour garantir l'exécution
+        this.updateSelectedArtistId(response.artistId)
+        this.#artistsUpdated.next(true)
   
         if (styleIds.length > 0) {
-          let rasForm: RelationsArtistStyleForm = { artistId: response.artist.businessId, styleIds: styleIds };
+          let rasForm: RelationsArtistStyleForm = { artistId: response.artistId, styleIds: styleIds }
           return this.InsertRAS(rasForm).pipe(
             map(() => response)
-          );
+          )
         }
   
-        return of(response);
+        return of(response)
       })
-    );
+    )
   }
 
   // Update Artist
-  public UpdateArtist( formGroup : ArtistCreateFormGroup ) : Observable<ArtistsCreateResponse> 
+  public UpdateArtist( formGroup : ArtistCreateForm ) : Observable<CreateArtistResponse> 
   {
     let styleIds: number[] = formGroup.styles.filter(style => style.isChecked).map(style => style.businessId);
-    let createForm: ArtistCreateForm = { name: formGroup.name };
+    let createForm: ArtistCreateForm = { name: formGroup.name, description : formGroup.description, styles : [] }
   
-    return this.#http.post<ArtistsCreateResponse>(`${this.#url}Artists/Update`, createForm).pipe(
+    return this.#http.post<CreateArtistResponse>(`${this.#url}Artists/Update`, createForm).pipe(
       switchMap(response => 
         {
-        this.updateSelectedArtistId(response.artist.businessId);
+        this.updateSelectedArtistId(response.artistId);
         this.#artistsUpdated.next(true)
   
         if (styleIds.length > 0) 
         {
-          let rasForm: RelationsArtistStyleForm = { artistId: response.artist.businessId, styleIds: styleIds }
+          let rasForm: RelationsArtistStyleForm = { artistId: response.artistId, styleIds: styleIds }
           return this.InsertRAS(rasForm).pipe(
             map(() => response)
           )
@@ -252,7 +254,7 @@ export class ArtistsStateService
     
   // Get All Styles
   getAllStyles$ = this.#stylesUpdated.pipe(
-    switchMap(() => this.#http.get<GetStylesResponse>(`${this.#url}Styles/GetAll`)),
+    switchMap(() => this.#http.get<GetAllStylesResponse>(`${this.#url}Styles/GetAll`)),
     map(response => response.styles),
     catchError(() => of([])),
     shareReplay(1)

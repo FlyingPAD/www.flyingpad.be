@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { TagCategoryUpdateForm } from '../../../models/forms-update';
-import { TagCategoryFull } from '../../../models/tag';
+import { TagCategoryFull } from '../../../models/tag-category';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { FlowService } from '../../../services/flow.service';

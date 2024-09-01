@@ -1,21 +1,16 @@
-<div id="layout-central" *ngIf="flow() as flow">
-  <!-- Title -->
-  <h2>Create Artist</h2> 
-  <!-- Form -->
-  <div class="artist-form">  
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">  
-
-      <input class="form-item" type="text" formControlName="name" placeholder="New Artist Name">
-
-      <button class="form-item" type="submit" [disabled]="formGroup.invalid">Submit</button>
-
-      <div class="form-item checkbox" formArrayName="styles">
-        <div class="combo" *ngFor="let styleControl of getStyles.controls; let i = index" [formGroupName]="i">
-          <input type="checkbox" [id]="styleControl.value.name" formControlName="isChecked">
+<div class="edition">
+  <h2 class="h2">Create Artist</h2>
+  <form [formGroup]="formGroup">
+    <input type="text" formControlName="name" placeholder="Full Name">
+    <input type="text" formControlName="description" placeholder="Description">
+    <div class="checkboxes" formArrayName="styles">
+      <div *ngFor="let styleControl of getStyles.controls; let i = index" [formGroupName]="i">
+        <div class="combo">
           <label [for]="styleControl.value.name">{{ styleControl.value.name }}</label>
+          <input type="checkbox" [id]="styleControl.value.name" formControlName="isChecked">
         </div>
       </div>
-
-    </form>
-  </div>
+    </div>
+  </form>
+  <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="onSubmit()">Submit</a>
 </div>

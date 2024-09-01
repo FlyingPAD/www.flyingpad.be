@@ -19,6 +19,7 @@ export interface TagUpdateForm {
     tagId : number
     name : string
     description : string
+    tagCategoryId : number
 }
 
 export interface ModelUpdateForm {

@@ -9,6 +9,7 @@ using MB.Application.Features.Tags.Queries.GetTagsByMood;
 using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
 using MB.Application.Features.Tags.Queries.GetTagsList;
+using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -57,11 +58,11 @@ public class TagsControllerV1(IMediator mediator) : ControllerBase
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<UpdateTagCommandResponse>> Update([FromBody] UpdateTagCommand updateTagCommand)
+    public async Task<ActionResult<BaseResponse>> Update([FromBody] UpdateTagCommand updateTagCommand)
         => Ok(await _mediator.Send(updateTagCommand));
 
     [HttpDelete("Delete/{tagId}")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<DeleteTagCommandResponse>> Delete(Guid tagId)
-        => Ok(await _mediator.Send(new DeleteTagCommand { Id = tagId }));
+    public async Task<ActionResult<BaseResponse>> Delete(Guid tagId)
+        => Ok(await _mediator.Send(new DeleteTagCommand { TagId = tagId }));
 }

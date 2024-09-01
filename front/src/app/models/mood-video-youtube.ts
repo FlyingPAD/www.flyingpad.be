@@ -1,9 +1,6 @@
-// Models :
-
 import { BaseResponse } from "./base-response";
 
-export class VideoYouTube
-{
+export class VideoYouTube {
     businessId : number = 0
     created : Date = new Date()
     createdBy : string = ''
@@ -17,9 +14,6 @@ export class VideoYouTube
     url: string = ''
 }
 
-// Responses :
-
-export interface GetOneVideoYoutubeDetailsResponse extends BaseResponse
-{
+export interface GetOneVideoYoutubeDetailsResponse extends BaseResponse {
     videoYouTube : VideoYouTube
 }

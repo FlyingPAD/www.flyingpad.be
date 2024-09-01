@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Models.Queries.GetModelsList;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Models.Queries.GetModelsList;
 
 public class GetModelsListQueryResponse : BaseResponse
 {

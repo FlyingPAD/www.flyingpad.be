@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Videos.Queries.GetOneVideoDetailsQuery;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Videos.Queries.GetOneVideoDetailsQuery;
 
 public class GetOneVideoDetailsQueryResponse : BaseResponse
 {

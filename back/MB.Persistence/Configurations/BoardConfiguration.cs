@@ -8,9 +8,9 @@ public class BoardConfiguration : IEntityTypeConfiguration<Board>
 {
     public void Configure(EntityTypeBuilder<Board> builder)
     {
-        builder.HasKey(entity => entity.EntityId); // Définir la clé primaire
+        builder.HasKey(entity => entity.EntityId);
 
         builder.Property(entity => entity.EntityId)
-            .ValueGeneratedOnAdd(); // Indiquer que la valeur est générée lors de l'ajout (auto-increment)
+            .ValueGeneratedOnAdd();
     }
 }

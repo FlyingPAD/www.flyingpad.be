@@ -7,13 +7,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class RightColumnListComponent {
   @Input() table : any[] | undefined = []
+  @Input() currentEntityId : number | undefined = undefined
 
   @Output() entityId = new EventEmitter<number | null>()
 
-  currentEntityId : number | null = null
-
   handleId(entityId : number | null): void {
-    this.currentEntityId = entityId
     this.entityId.emit(entityId)
   }
 }

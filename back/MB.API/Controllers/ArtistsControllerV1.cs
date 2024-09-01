@@ -1,15 +1,15 @@
-﻿using MB.Application;
-using MB.Application.Features.Artists.Commands.CreateArtist;
+﻿using MB.Application.Features.Artists.Commands.CreateArtist;
 using MB.Application.Features.Artists.Commands.DeleteArtist;
 using MB.Application.Features.Artists.Commands.UpdateArtist;
 using MB.Application.Features.Artists.Queries.CountArtists;
-using MB.Application.Features.Artists.Queries.GetArtist;
+using MB.Application.Features.Artists.Queries.GetAllArtists;
+using MB.Application.Features.Artists.Queries.GetArtistById;
 using MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 using MB.Application.Features.Artists.Queries.GetArtistDetails;
-using MB.Application.Features.Artists.Queries.GetArtists;
 using MB.Application.Features.Artists.Queries.GetArtistsByMood;
 using MB.Application.Features.Artists.Queries.GetArtistsByStyle;
 using MB.Application.Features.Artists.Queries.GetArtistsPage;
+using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -36,15 +36,15 @@ public class ArtistsControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(new CountArtistsQuery(), cancellationToken));
 
     [HttpGet("GetAll")]
-    [ProducesResponseType(typeof(GetArtistsQueryResponse), 200)]
-    public async Task<ActionResult<GetArtistsQueryResponse>> GetAll(CancellationToken cancellationToken)
-        => Ok(await _mediator.Send(new GetArtistsQuery(), cancellationToken));
+    [ProducesResponseType(typeof(GetAllArtistsQueryResponse), 200)]
+    public async Task<ActionResult<GetAllArtistsQueryResponse>> GetAll(CancellationToken cancellationToken)
+        => Ok(await _mediator.Send(new GetAllArtistsQuery(), cancellationToken));
 
     [HttpGet("GetOne/{artistId}")]
-    [ProducesResponseType(typeof(GetArtistQuery), 200)]
+    [ProducesResponseType(typeof(GetArtistByIdQuery), 200)]
     [ProducesResponseType(404)]
-    public async Task<ActionResult<GetArtistQuery>> GetOne(Guid artistId, CancellationToken cancellationToken)
-        => Ok(await _mediator.Send(new GetArtistQuery { ArtistId = artistId }, cancellationToken));
+    public async Task<ActionResult<GetArtistByIdQuery>> GetOne(Guid artistId, CancellationToken cancellationToken)
+        => Ok(await _mediator.Send(new GetArtistByIdQuery { ArtistId = artistId }, cancellationToken));
 
     [HttpGet("GetOneDetails/{artistId}")]
     [ProducesResponseType(typeof(GetArtistDetailsQuery), 200)]

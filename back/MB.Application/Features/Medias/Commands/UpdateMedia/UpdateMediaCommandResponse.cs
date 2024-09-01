@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Medias.Commands.UpdateMedia;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Medias.Commands.UpdateMedia;
 
 public class UpdateMediaCommandResponse : BaseResponse
 {

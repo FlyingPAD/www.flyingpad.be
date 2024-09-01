@@ -1,0 +1,190 @@
+.edition {
+    .edition-selection {
+        p {
+            display: block;
+            width: 300px;
+
+            margin: auto;
+            margin-top: 20px;
+            padding: 10px;
+
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 3px solid rgb(107, 82, 64, 0.8);
+            border-radius: 7px;
+
+            text-align: center;
+            color: rgb(107, 82, 64, 0.8);
+        }
+
+        .edition-buttons {
+            display: flex;
+            justify-content: center;
+
+            img {
+                display: block;
+                height: 25px;
+                width: 25px;
+
+                padding: 8px;
+
+                background-color: rgba(255, 255, 255, 0.3);
+                border: 3px solid rgb(107, 82, 64, 0.8);
+                border-radius: 0 0 7px 7px;
+                border-top: none;
+
+                margin-left: 5px;
+                margin-right: 5px;
+                margin-bottom: 10px;
+            }
+
+            img:hover:not(.active) {
+                background-color: rgba(255, 255, 255, 0.5);
+                color: #6b5240;
+                transition-duration: 200ms;
+                cursor: pointer;
+            }
+
+            .active {
+                background-color: rgba(255, 255, 255, 0.7);
+                color: #6b5240;
+            }
+        }
+    }
+
+    .edition-list {
+        margin-top: 5px;
+        margin-bottom: 150px;
+
+        a {
+            display: block;
+
+            height: 20px;
+            width: 215px;
+            margin: auto;
+            margin-bottom: 5px;
+
+            padding: 5px;
+
+            background-color: rgb(255, 255, 255, 0.85);
+            border: 2px solid rgb(107, 82, 64, 0.5);
+            border-radius: 5px;
+
+            color: #6b5240;
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 20px;
+
+            z-index: 0;
+        }
+
+        a:hover:not(.active) {
+            background-color: rgb(107, 82, 64, 0.5);
+            color: white;
+            cursor: pointer;
+            transition-duration: 300ms;
+        }
+
+        .active {
+            background-color: rgb(107, 82, 64, 0.7);
+            color: white;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        margin-top: 15px;
+
+        input {
+            display: block;
+            width: 200px;
+
+            margin: auto;
+            margin-bottom: 5px;
+            padding: 10px;
+
+            border: 2px solid rgba(107, 82, 64, 0.3);
+            border-radius: 10px;
+        }
+
+        input:focus {
+            outline: none;
+            border: 2px solid #413429;
+        }
+
+        select {
+            display: block;
+            width: 220px;
+
+            margin: auto;
+            margin-bottom: 5px;
+            padding: 10px;
+
+            border: 2px solid rgba(107, 82, 64, 0.3);
+            border-radius: 10px;
+        }
+
+        select:focus {
+            outline: none;
+            border: 2px solid #413429;
+        }
+
+        .checkboxes {
+            width: 200px;
+            margin: auto;
+            border: 1px solid #6b5240;
+            border-radius: 10px;
+
+            padding: 10px;
+
+            .combo {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                label {
+                    display: block;
+                    width: 175px;
+                    color:#6b5240;
+                }
+
+                input {
+                    height: 20px;
+                    width: 20px;
+                }
+            }
+        }
+    }
+
+    .edition-button {
+        display: block;
+        width: 200px;
+
+        margin: auto;
+        margin-top: 15px;
+        padding: 10px;
+
+        background-color: #6b5240;
+        border: 2px solid rgba(107, 82, 64, 0.3);
+        border-radius: 10px;
+
+        text-align: center;
+        letter-spacing: 1px;
+        color: #ffffff;
+    }
+
+    .edition-button:hover:not(.edition-button-disabled) {
+        background-color: rgb(255, 255, 255);
+        border: 2px solid #6b6b6b;
+        color: #6b5240;
+        cursor: pointer;
+        transition-duration: 500ms;
+    }
+
+    .edition-button-disabled {
+        background-color: rgba(192, 192, 192, 0.8);
+        color: rgba(102, 102, 102);
+        cursor: not-allowed;
+    }
+}

@@ -1,0 +1,44 @@
+<div class="edition" *ngIf="flow() as flow">
+    <div class="edition-selection">
+        @if(currentModel){
+            <p><b>{{currentModel.pseudonym}}</b></p>
+        }
+        @else {
+            <p>Please, select a model from the list.</p>
+        }
+        <div class="edition-buttons">
+            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
+            <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
+            @if(currentModel){
+                <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
+                <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
+            }
+        </div>
+    </div>
+
+    @if (showList) {
+        <div class="filter">
+            <input type="text" [(ngModel)]="searchModels" placeholder="Filter models ...">
+        </div>
+        
+        <div class="edition-list">
+            <div *ngFor="let model of filterModels() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: paginationService.editModelsCurrentPage}">
+                <a [class.active]="model.pseudonym === currentModel?.pseudonym" (click)="setModel(model)"> ▸ {{model.pseudonym}}</a>
+            </div>
+        </div>
+        
+        <div class="pagination-row" *ngIf="flow.models.length > elementsPerPage">
+            <div id="pagination">
+              <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editModelsCurrentPage = $event"></pagination-controls>
+            </div>   
+        </div>
+    }
+    @if (showNew) {
+        <app-create-model (trigger)="triggerShowList()" />
+    }
+    @if (showEdit) {
+        <app-edit-model [model]="flow.model" (showListTrigger)="triggerShowList()" />
+    }
+    
+    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.models.length" />
+</div>

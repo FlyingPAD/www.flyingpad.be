@@ -86,6 +86,7 @@ export class TagsEditionComponent
     {
       name : this.createFormGroup.value.name,
       description : this.createFormGroup.value.description,
+      tagCategoryId : 0
     }
 
     if(this.createFormGroup.valid)
@@ -131,7 +132,8 @@ export class TagsEditionComponent
     let form : TagUpdateForm = {
       tagId : tag.businessId,
       name : this.updateFormGroup.value.name,
-      description : this.updateFormGroup.value.description
+      description : this.updateFormGroup.value.description, 
+      tagCategoryId : 0
     };
   
     if(this.updateFormGroup.valid) {

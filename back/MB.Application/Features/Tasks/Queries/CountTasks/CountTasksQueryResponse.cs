@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Tasks.Queries.CountTasks;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Tasks.Queries.CountTasks;
 
 public class CountTasksQueryResponse : BaseResponse
 {

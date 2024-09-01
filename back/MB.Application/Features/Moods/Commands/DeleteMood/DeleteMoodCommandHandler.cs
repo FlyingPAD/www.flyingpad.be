@@ -1,5 +1,6 @@
 ﻿using MB.Application.Contracts;
 using MB.Application.Contracts.Persistence;
+using MB.Application.Models;
 using MediatR;
 
 namespace MB.Application.Features.Moods.Commands.DeleteMood;

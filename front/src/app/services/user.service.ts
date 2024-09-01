@@ -13,16 +13,10 @@ export class UserService
   #http = inject(HttpClient)
   #url : string = environment.apiBaseUrl + '/api/V1/'
 
-  // Properties : 
-
   appUser = new User()
 
-  // Methods :
-
-  setDefaultUser()
-  {
-    this.appUser = 
-    {
+  setDefaultUser() {
+    this.appUser = {
       businessId : 0,
       created : new Date(),
       modified : new Date(),
@@ -34,14 +28,10 @@ export class UserService
     }
   }
 
-  setSpecificUser( token : string ) : User
-  {
-    // Decode the JWT to extract user info
-
+  setSpecificUser( token : string ) : User {
     let user : User = jwtDecode( token )
 
     // Assure that role is treated as a number, matching the User model
-
     user.role = Number( user.role )
 
     this.appUser = user
@@ -49,25 +39,15 @@ export class UserService
     return user
   }
 
-  // - Get One User
-
-  public GetOne( userId : number ) : Observable<User> | undefined 
-  {
+  public GetOne( userId : number ) : Observable<User> | undefined {
     return this.#http.get<User>(this.#url + 'Users/' + userId)
   }
 
-  // - Update One User
-
-  public UpdateOneUser( form : UserUpdateForm ) : Observable<UserUpdateResponse>
-  {
+  public UpdateOneUser( form : UserUpdateForm ) : Observable<UserUpdateResponse> {
     return this.#http.put<UserUpdateResponse>(this.#url + "Users/Update/", form)
   }
   
-  // - Delete One User
-
-  public Delete( userId : number ) : Observable<Boolean>
-  {
+  public Delete( userId : number ) : Observable<Boolean> {
     return this.#http.delete<Boolean>( this.#url + "Users/Update" + userId )
   }
-
 }

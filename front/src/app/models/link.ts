@@ -1,6 +1,5 @@
 import { BaseResponse } from "./base-response";
 
-// Models.
 export interface LinkLight {
     businessId :  number
     name :        string
@@ -31,7 +30,6 @@ export interface LinkCategoryFull {
     modifiedBy :  string
 }
 
-// Responses.
 export interface GetLinkResponse extends BaseResponse {
     link : LinkFull
 }

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, combineLatest, map, of, switchMap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FranchiseFull, FranchiseLight, GetFranchiseResponse, GetFranchisesByMediaResponse, GetFranchisesResponse, GetMediaResponse, GetMediasListResponse, MediaFull } from '../models/franchise';
-import { GetModelsResponse, ModelLight } from '../models/model';
+import { GetAllModelsResponse, ModelLight } from '../models/model';
 import { GetMoodsResponse, MoodLight } from '../models/mood';
 
 @Injectable({
@@ -57,7 +57,7 @@ export class FranchiseStateService
 
     public GetModelsByFranchise( franchiseId : number ) : Observable<ModelLight[]>
     {
-      return this.#http.get<GetModelsResponse>(this.#url + 'Models/GetByFranchise/' + franchiseId).pipe(
+      return this.#http.get<GetAllModelsResponse>(this.#url + 'Models/GetByFranchise/' + franchiseId).pipe(
         map(response => response.models)
       )
     }

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { AudioOldService } from '../../../services/audio-old.service';
+import { AudioService } from '../../../services/audio.service';
 import { StorageService } from '../../../services/storage.service';
 
 export class Note
@@ -28,7 +28,7 @@ export interface GameResult
 })
 export class TrainerNotesComponent implements OnInit, OnDestroy
 {
-  audioService = inject(AudioOldService)
+  audioService = inject(AudioService)
   storageService = inject(StorageService)
 
   timer : number = 15

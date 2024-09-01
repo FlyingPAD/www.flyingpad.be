@@ -1,48 +1,29 @@
-/*  Flying PAD | SCSS Global Variables
-   ====================================== */
 :root {
-    // Break Points :
+    --mobile: 450px;
+    --tablet-small: 768px;
+    --tablet: 992px;
+    --desktop: 1024px;
 
-    --mobile :          450px;
-    --tablet-small :    768px;
-    --tablet :          992px;
-    --desktop :         1024px;
+    --colorMain: #6b5240;
+    --colorGreen: green;
+    --colorOrange: orange;
+    --colorRed: red;
+    --colorWhite: white;
 
-    // Main Colors :
-
-    --colorMain :        #6b5240;
-
-    // CRUD Colors :
-
-    --colorGreen :       green;
-    --colorOrange :      orange;
-    --colorRed :         red;
-    --colorWhite :       white;
-
-    // Fonts & Typography : 
-
-    --fontFamily : 'Open Sans', sans-serif;
+    --fontFamily: 'Open Sans', sans-serif;
 
     $sizeH1 : 17px;
     $sizeH2 : 16px;
     $sizeH3 : 15px;
 
-    // Logos : 
+    --logoFull: url(../assets/app_logos/fp_logo_01.png);
+    --logoSmall: url(../assets/app_logos/fp_logo_02.png);
 
-    --logoFull : url(../assets/app_logos/fp_logo_01.png);
-    --logoSmall : url(../assets/app_logos/fp_logo_02.png);
+    --hamburger: url(../assets/app_icons/icon_hamburger_001.png);
+    --hamburgerLeft: url(../assets/app_icons/icon_hamburger_left_001.png);
+    --hamburgerRight: url(../assets/app_icons/icon_hamburger_right_001.png);
 
-    // Icons :
+    --texture001: url(../assets/app_backgrounds/texture_001.jpg);
 
-    --hamburger : url(../assets/app_icons/icon_hamburger_001.png);
-    --hamburgerLeft : url(../assets/app_icons/icon_hamburger_left_001.png);
-    --hamburgerRight : url(../assets/app_icons/icon_hamburger_right_001.png);
-
-    // Backgrounds & Textures :
-
-    --texture001 : url(../assets/app_backgrounds/texture_001.jpg);
-
-    // - Borders :
-
-    --border : 1px;
+    --border: 1px;
 }

@@ -7,9 +7,6 @@ namespace MB.Persistence.Repositories;
 
 public class FranchiseRepository(Context context) : BaseRepository<Franchise>(context), IFranchiseRepository
 {
-    /// <summary>
-    /// Gets the primary IDs by business IDs.
-    /// </summary>
     public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
     {
         return await _context.Artists
@@ -18,9 +15,6 @@ public class FranchiseRepository(Context context) : BaseRepository<Franchise>(co
                              .ToListAsync();
     }
 
-    /// <summary>
-    /// Gets the franchises by media ID.
-    /// </summary>
     public async Task<List<Franchise>> GetFranchisesByMedia(int? mediaId)
     {
         return await _context.Franchises
@@ -29,9 +23,6 @@ public class FranchiseRepository(Context context) : BaseRepository<Franchise>(co
             .ToListAsync();
     }
 
-    /// <summary>
-    /// Gets the franchises by model IDs.
-    /// </summary>
     public async Task<List<Franchise>> GetFranchisesByModels(List<int> modelIds)
     {
         var franchises = await _context.Franchises
@@ -43,9 +34,6 @@ public class FranchiseRepository(Context context) : BaseRepository<Franchise>(co
         return franchises ?? [];
     }
 
-    /// <summary>
-    /// Updates the set of medias associated with a specific Franchise.
-    /// </summary>
     public async System.Threading.Tasks.Task UpdateMedias(int franchiseId, ICollection<int> mediasIds)
     {
         var franchise = await _context.Franchises

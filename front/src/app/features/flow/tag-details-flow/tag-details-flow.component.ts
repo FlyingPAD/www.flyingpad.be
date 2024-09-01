@@ -31,6 +31,7 @@ export class TagDetailsFlowComponent {
        tagId : this.tag?.businessId,
        name : this.formGroup.value.name,
        description : this.formGroup.value.description,
+       tagCategoryId : 0
       }
       this.#flowService.UpdateTag(form).subscribe({
         next: () => {
@@ -51,7 +52,7 @@ export class TagDetailsFlowComponent {
   delete(): void { 
     if(this.tag)
       {
-        this.#flowService.DeleteTag(this.tag?.businessId).subscribe({
+        this.#flowService.DeleteTag(this.tag?.businessId, this.tag.tagCategoryId).subscribe({
           next: () => {
             this.#toastr.success('Tag successfully deleted.')
           },

@@ -1,17 +1,8 @@
-﻿namespace MB.Application.Features.Models.Commands.CreateModel;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Models.Commands.CreateModel;
 
 public class CreateModelCommandResponse : BaseResponse
 {
-    /// <summary>
-    /// Properties
-    /// </summary>
-    public CreateModelDto Model { get; set; } = default!;
-
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    public CreateModelCommandResponse() : base()
-    {
-
-    }
+    public Guid ModelId { get; set; } = Guid.Empty;
 }

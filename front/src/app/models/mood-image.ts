@@ -1,10 +1,7 @@
-// Models :
-
 import { BaseResponse } from "./base-response";
 import { MoodLight } from "./mood";
 
-export class Image
-{
+export class Image {
     businessId : number = 0
     created : Date = new Date()
     modified : Date = new Date()
@@ -17,11 +14,7 @@ export class Image
     height: number = 0
     width: number = 0
 }
-
-// Calls : 
-
-export interface ImageForm
-{
+export interface ImageForm {
     title : string
     description : string
     type : number
@@ -33,14 +26,9 @@ export interface ImageForm
     url : string
 }
 
-// Responses :
-
-export interface GetOneImageDetailsResponse extends BaseResponse
-{
+export interface GetOneImageDetailsResponse extends BaseResponse {
     image : Image
 }
-
-export interface CreateMoodImageResponse extends BaseResponse
-{
+export interface CreateMoodImageResponse extends BaseResponse {
     mood : MoodLight
 }

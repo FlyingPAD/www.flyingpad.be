@@ -9,8 +9,6 @@ public static class PostDeployment
 {
     public static void AddData(ModelBuilder modelBuilder)
     {
-        // Default Artists
-
         var artistList = new List<Artist>
         {
             new() { EntityId = 1, BusinessId = Guid.NewGuid(), Name = "# Unknown Artist" },
@@ -39,9 +37,6 @@ public static class PostDeployment
         };
         modelBuilder.Entity<Artist>().HasData(artistList);
 
-
-        // Default Styles
-
         var styleList = new List<Style>
         {
             new() { EntityId = 1, BusinessId = Guid.NewGuid(), Name = "2D" },
@@ -56,9 +51,6 @@ public static class PostDeployment
             new() { EntityId = 10, BusinessId = Guid.NewGuid(), Name = "Video Games" },
         };
         modelBuilder.Entity<Style>().HasData(styleList);
-
-
-        // Default Relations Artist / Style
 
         var relationsAS = new List<RelationArtistStyle>
         {
@@ -78,9 +70,6 @@ public static class PostDeployment
         };
         modelBuilder.Entity<RelationArtistStyle>().HasData(relationsAS);
 
-
-        // Default Franchises
-
         var franchiseList = new List<Franchise>
         {
             new() { EntityId = 1, BusinessId = Guid.NewGuid(), Name = "Flying PAD" },
@@ -88,9 +77,6 @@ public static class PostDeployment
             new() { EntityId = 3, BusinessId = Guid.NewGuid(), Name = "# Unrelated Franchise" },
         };
         modelBuilder.Entity<Franchise>().HasData(franchiseList);
-
-
-        // Default Medias
 
         var mediasList = new List<Media>
         {
@@ -106,9 +92,6 @@ public static class PostDeployment
         };
         modelBuilder.Entity<Media>().HasData(mediasList);
 
-
-        // Default Relations Franchise / Media
-
         var relationsFM = new List<RelationFranchiseMedia>
         {
             new() { FranchiseId = 1, MediaId = 9 },
@@ -117,18 +100,12 @@ public static class PostDeployment
         };
         modelBuilder.Entity<RelationFranchiseMedia>().HasData(relationsFM);
 
-
-        // Default Relations Franchise / Model
-
         var relationsFModels = new List<RelationFranchiseModel>
         {
             new() { FranchiseId = 1, ModelId = 3 },
             new() { FranchiseId = 3, ModelId = 2 },
         };
         modelBuilder.Entity<RelationFranchiseModel>().HasData(relationsFModels);
-
-
-        // Default Links
 
         var linkList = new List<Link>
         {
@@ -166,9 +143,6 @@ public static class PostDeployment
         };
         modelBuilder.Entity<Link>().HasData(linkList);
 
-
-        // Default Link Categories
-
         var categoriesList = new List<LinkCategory>
         {
             new() { EntityId = 1, BusinessId = Guid.NewGuid(), Name = "Audio" },
@@ -188,9 +162,6 @@ public static class PostDeployment
             new() { EntityId = 15, BusinessId = Guid.NewGuid(), Name = "YouTube | Piano & Keys" },
         };
         modelBuilder.Entity<LinkCategory>().HasData(categoriesList);
-
-
-        // Default Relations Link Categories
 
         var relationsLC = new List<RelationLinkCategory>
         {
@@ -239,9 +210,6 @@ public static class PostDeployment
         };
         modelBuilder.Entity<RelationLinkCategory>().HasData(relationsLC);
 
-
-        // Default Models
-
         var modelList = new List<Model>
         {
             new() { EntityId = 1, BusinessId = Guid.NewGuid(), FirstName = "", LastName = "", Pseudonym = "# Unknown Model" },
@@ -249,9 +217,6 @@ public static class PostDeployment
             new() { EntityId = 3, BusinessId = Guid.NewGuid(), FirstName = "Tony", LastName = "Van Langenhove", Pseudonym = "Flying PAD", Gender = "M" },
         };
         modelBuilder.Entity<Model>().HasData(modelList);
-
-
-        // Default Moods
 
         var imagesList = new List<Image>
         {
@@ -294,8 +259,6 @@ public static class PostDeployment
         modelBuilder.Entity<VideoYouTube>().HasData(videoYouTubeList);
 
 
-        // Default Relations Mood / Artist
-
         var relationsMA = new List<RelationMoodArtist>
         {
             new() { MoodId = 1, ArtistId = 1 },
@@ -327,8 +290,6 @@ public static class PostDeployment
         modelBuilder.Entity<RelationMoodArtist>().HasData(relationsMA);
 
 
-        // Default Relations Mood / Model
-
         var relationsMM = new List<RelationMoodModel>
         {
             new() { MoodId = 1, ModelId = 1 },
@@ -358,9 +319,6 @@ public static class PostDeployment
             new() { MoodId = 85, ModelId = 1 },
         };
         modelBuilder.Entity<RelationMoodModel>().HasData(relationsMM);
-
-
-        // Default Relations Mood / Tag
 
         var relationsMT = new List<RelationMoodTag>
         {
@@ -515,9 +473,6 @@ public static class PostDeployment
         };
         modelBuilder.Entity<RelationMoodTag>().HasData(relationsMT);
 
-
-        // Default Tags
-
         var tagList = new List<Tag>
         {
             new() { EntityId = 1,  BusinessId = Guid.NewGuid(), Name = "# All Files", TagCategoryId = 1 },
@@ -582,9 +537,6 @@ public static class PostDeployment
         };
         modelBuilder.Entity<Tag>().HasData(tagList);
 
-
-        // Default Tag Categories
-
         var tagCategoriesList = new List<TagCategory>
         {
             new() { EntityId = 1,  BusinessId = Guid.NewGuid(), Name = "#" },
@@ -607,9 +559,6 @@ public static class PostDeployment
         };
         modelBuilder.Entity<TagCategory>().HasData(tagCategoriesList);
 
-
-        // Default Task Categories
-
         var taskCategories = new List<TaskCategory>
         {
             new() { EntityId = 1, BusinessId = Guid.NewGuid(), Name = "PAD Mobile" },
@@ -620,17 +569,11 @@ public static class PostDeployment
         };
         modelBuilder.Entity<TaskCategory>().HasData(taskCategories);
 
-
-        // Default Tasks
-
         var tasks = new List<Domain.Entities.Task>
         {
             new() { EntityId = 1, BusinessId = Guid.NewGuid(), Name = "Check Mails", TaskCategoryId = 5 }
         };
         modelBuilder.Entity<Domain.Entities.Task>().HasData(tasks);
-
-
-        // Default Users
 
         var userList = new List<User>();
         int entityId = 1;

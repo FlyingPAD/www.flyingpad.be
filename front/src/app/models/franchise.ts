@@ -1,7 +1,6 @@
 import { BaseResponse } from "./base-response";
 import { ModelLight } from "./model";
 
-// Models.
 export interface FranchiseLight {
     businessId : number
     name : string
@@ -40,7 +39,6 @@ export interface MediaList {
     franchises : FranchiseList[]
 }
 
-// Responses.
 export interface GetFranchisesResponse extends BaseResponse {
     franchises : FranchiseLight[]
 }

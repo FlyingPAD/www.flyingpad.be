@@ -6,8 +6,8 @@ public class DeleteTagCommandValidator : AbstractValidator<DeleteTagCommand>
 {
     public DeleteTagCommandValidator()
     {
-        RuleFor(x => x.Id)
-            .NotEmpty().WithMessage("ID is required.")
-            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
+        RuleFor(property => property.TagId)
+            .NotEmpty().WithMessage("Tag ID is required.")
+            .NotEqual(Guid.Empty).WithMessage("Tag ID must not be empty.");
     }
 }

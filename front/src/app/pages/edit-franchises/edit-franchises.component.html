@@ -1,0 +1,48 @@
+<div class="edition" *ngIf="flow() as flow">
+    <div class="edition-selection">
+        @if(currentFranchise){
+            <p><b>{{currentFranchise.name}}</b></p>
+        }
+        @else {
+            <p>Please, select a franchise from the list.</p>
+        }
+        <div class="edition-buttons">
+            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
+            <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
+            @if(currentFranchise){
+                <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
+                <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
+            }
+        </div>
+    </div>
+
+    @if (showList) {
+        <div class="filter">
+            <input type="text" [(ngModel)]="searchFranchises" placeholder="Filter franchises ...">
+        </div>
+        
+        <div class="edition-list">
+            <div *ngFor="let franchise of filterFranchises() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: paginationService.editFranchisesCurrentPage}">
+                <a [class.active]="franchise.name === currentFranchise?.name" (click)="setFranchise(franchise)"> ▸ {{franchise.name}}</a>
+            </div>
+        </div>
+
+        <app-right-column>
+            <app-right-column-list [table]="flow.medias" (entityId)="updateMediaId($event)" />
+        </app-right-column>
+        
+        <div class="pagination-row" *ngIf="flow.franchises.length > elementsPerPage">
+            <div id="pagination">
+              <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editFranchisesCurrentPage = $event"></pagination-controls>
+            </div>   
+        </div>
+    }
+    @if (showNew) {
+        <app-create-franchise (trigger)="triggerShowList()" />
+    }
+    @if (showEdit) {
+        <app-edit-franchise [franchise]="flow.franchise" />
+    }
+    
+    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.franchises.length" />
+</div>

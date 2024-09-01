@@ -1,4 +1,4 @@
-﻿using MB.Application;
+﻿using MB.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MB.API
@@ -9,25 +9,25 @@ namespace MB.API
         {
             return response.StatusCode switch
             {
-                ResponseStatus.Success => new OkObjectResult(response),
-                ResponseStatus.Created => new CreatedResult(string.Empty, response),
-                ResponseStatus.Accepted => new AcceptedResult(),
-                ResponseStatus.NoContent => new NoContentResult(),
-                ResponseStatus.ResetContent => new StatusCodeResult((int)ResponseStatus.ResetContent),
-                ResponseStatus.PartialContent => new StatusCodeResult((int)ResponseStatus.PartialContent),
-                ResponseStatus.BadRequest => new BadRequestObjectResult(response),
-                ResponseStatus.Unauthorized => new UnauthorizedObjectResult(response),
-                ResponseStatus.Forbidden => new ForbidResult(),
-                ResponseStatus.NotFound => new NotFoundObjectResult(response),
-                ResponseStatus.MethodNotAllowed => new StatusCodeResult((int)ResponseStatus.MethodNotAllowed),
-                ResponseStatus.Conflict => new ConflictObjectResult(response),
-                ResponseStatus.UnprocessableEntity => new UnprocessableEntityObjectResult(response),
-                ResponseStatus.TooManyRequests => new StatusCodeResult((int)ResponseStatus.TooManyRequests),
-                ResponseStatus.InternalServerError => new ObjectResult(response) { StatusCode = (int)ResponseStatus.InternalServerError },
-                ResponseStatus.NotImplemented => new StatusCodeResult((int)ResponseStatus.NotImplemented),
-                ResponseStatus.ServiceUnavailable => new StatusCodeResult((int)ResponseStatus.ServiceUnavailable),
-                ResponseStatus.ImATeapot => new StatusCodeResult((int)ResponseStatus.ImATeapot),
-                _ => new StatusCodeResult((int)ResponseStatus.InternalServerError)
+                ResponseStatusEnumeration.Success => new OkObjectResult(response),
+                ResponseStatusEnumeration.Created => new CreatedResult(string.Empty, response),
+                ResponseStatusEnumeration.Accepted => new AcceptedResult(),
+                ResponseStatusEnumeration.NoContent => new NoContentResult(),
+                ResponseStatusEnumeration.ResetContent => new StatusCodeResult((int)ResponseStatusEnumeration.ResetContent),
+                ResponseStatusEnumeration.PartialContent => new StatusCodeResult((int)ResponseStatusEnumeration.PartialContent),
+                ResponseStatusEnumeration.BadRequest => new BadRequestObjectResult(response),
+                ResponseStatusEnumeration.Unauthorized => new UnauthorizedObjectResult(response),
+                ResponseStatusEnumeration.Forbidden => new ForbidResult(),
+                ResponseStatusEnumeration.NotFound => new NotFoundObjectResult(response),
+                ResponseStatusEnumeration.MethodNotAllowed => new StatusCodeResult((int)ResponseStatusEnumeration.MethodNotAllowed),
+                ResponseStatusEnumeration.Conflict => new ConflictObjectResult(response),
+                ResponseStatusEnumeration.UnprocessableEntity => new UnprocessableEntityObjectResult(response),
+                ResponseStatusEnumeration.TooManyRequests => new StatusCodeResult((int)ResponseStatusEnumeration.TooManyRequests),
+                ResponseStatusEnumeration.InternalServerError => new ObjectResult(response) { StatusCode = (int)ResponseStatusEnumeration.InternalServerError },
+                ResponseStatusEnumeration.NotImplemented => new StatusCodeResult((int)ResponseStatusEnumeration.NotImplemented),
+                ResponseStatusEnumeration.ServiceUnavailable => new StatusCodeResult((int)ResponseStatusEnumeration.ServiceUnavailable),
+                ResponseStatusEnumeration.ImATeapot => new StatusCodeResult((int)ResponseStatusEnumeration.ImATeapot),
+                _ => new StatusCodeResult((int)ResponseStatusEnumeration.InternalServerError)
             };
         }
     }

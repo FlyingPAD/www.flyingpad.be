@@ -1,25 +1,24 @@
 <div id="layout-central">
     <p><b>{{multiTagService.selectedMoods.length}}</b> Moods Selected</p>
-      
+
     <div class="row-white">
-      <div class="filter">
-          <input type="text" [(ngModel)]="searchModel" placeholder="Filter models ...">
-      </div>
-      <div class="form-container">
-          <div class="form-flex">
-              <div class="form_cat_box">
-                  <div *ngFor="let m of filterModels()">
-                      <div class="duo">
-                          <input type="checkbox" id="{{m.pseudonym}}" value="{{m.pseudonym}}" [checked]="m.isChecked" (change)="m.isChecked = !m.isChecked">
-                          <label for="{{m.pseudonym}}">{{m.pseudonym}}</label>
-                      </div>     
-                  </div>   
-              </div>
-          </div> 
-      </div>
-      <div class="menu-flex">
-        <app-button-back></app-button-back>
-        <a (click)="onSubmit()">Submit</a>
-      </div>
+        <div class="filter"><input type="text" [(ngModel)]="searchModel" placeholder="Filter models ..."></div>
+        <div class="form-container">
+            <div class="form-flex">
+                <div class="form_cat_box">
+                    <div *ngFor="let m of filterModels()">
+                        <div class="duo">
+                            <input type="checkbox" id="{{m.pseudonym}}" value="{{m.pseudonym}}" [checked]="m.isChecked"
+                                (change)="m.isChecked = !m.isChecked">
+                            <label for="{{m.pseudonym}}">{{m.pseudonym}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-flex">
+            <app-button-back />
+            <a (click)="onSubmit()">Submit</a>
+        </div>
     </div>
 </div>

@@ -19,7 +19,6 @@ import { UserLoginErrorComponent } from './pages/user-login-error/user-login-err
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
 import { LayoutCustomComponent } from './layouts/layout-custom/layout-custom.component';
-import { EditionComponent } from './features/models/edition/edition.component';
 import { UserUpdateComponent } from './pages/user-update/user-update.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { ChordWheelSvgComponent } from './features/tools/chord-wheel-svg/chord-wheel-svg.component';
@@ -58,7 +57,6 @@ import { FormatDurationPipe } from './pipes/format-duration.pipe';
 import { FormatSizePipe } from './pipes/format-size.pipe';
 import { CreateMoodImageComponent } from './features/moods/create-mood-image/create-mood-image.component';
 import { CreateMoodVideoComponent } from './features/moods/create-mood-video/create-mood-video.component';
-import { MoodEditionComponent } from './features/moods/mood-edition/mood-edition.component';
 import { MoodsGalleryComponent } from './features/moods/moods-gallery/moods-gallery.component';
 import { MoodsMultiTagComponent } from './features/moods/moods-multi-tag/moods-multi-tag.component';
 import { MultiTagArtistsComponent } from './features/moods/multi-tag-artists/multi-tag-artists.component';
@@ -104,6 +102,28 @@ import { MediaDetailsFlowComponent } from './features/flow/media-details-flow/me
 import { StyleDetailsFlowComponent } from './features/flow/style-details-flow/style-details-flow.component';
 import { TagCategoryDetailsFlowComponent } from './features/flow/tag-category-details-flow/tag-category-details-flow.component';
 import { CreateLinkFormComponent } from './features/links/create-link-form/create-link-form.component';
+import { EditionMenuComponent } from './features/moods/edition-menu/edition-menu.component';
+import { EditionTagsComponent } from './features/moods/edition-tags/edition-tags.component';
+import { EditionArtistsComponent } from './features/moods/edition-artists/edition-artists.component';
+import { EditionModelsComponent } from './features/moods/edition-models/edition-models.component';
+import { EditionInfoComponent } from './features/moods/edition-info/edition-info.component';
+import { EditModelsComponent } from './pages/edit-models/edit-models.component';
+import { EditTagsComponent } from './pages/edit-tags/edit-tags.component';
+import { EditFranchisesComponent } from './pages/edit-franchises/edit-franchises.component';
+import { EditArtistsComponent } from './pages/edit-artists/edit-artists.component';
+import { EditLinksComponent } from './pages/edit-links/edit-links.component';
+import { CreateModelComponent } from './features/models/create-model/create-model.component';
+import { EditModelComponent } from './features/models/edit-model/edit-model.component';
+import { EditTagComponent } from './features/tags/edit-tag/edit-tag.component';
+import { CreateTagComponent } from './features/tags/create-tag/create-tag.component';
+import { EditLinkComponent } from './features/links/edit-link/edit-link.component';
+import { CreateLinkComponent } from './features/links/create-link/create-link.component';
+import { EditArtistComponent } from './features/artists/edit-artist/edit-artist.component';
+import { EditFranchiseComponent } from './features/franchises/edit-franchise/edit-franchise.component';
+import { CreateFranchiseComponent } from './features/franchises/create-franchise/create-franchise.component';
+import { EditTagCategoryComponent } from './features/tags/edit-tag-category/edit-tag-category.component';
+import { DeleteModelComponent } from './features/models/delete-model/delete-model.component';
+import { DeleteTagComponent } from './features/tags/delete-tag/delete-tag.component';
 
 @NgModule({
   declarations: 
@@ -155,7 +175,6 @@ import { CreateLinkFormComponent } from './features/links/create-link-form/creat
     // => Moods
     MoodDetailsComponent,
     MoodsGalleryComponent,
-    MoodEditionComponent,
     CreateMoodImageComponent,
     CreateMoodVideoComponent,
     MoodsMultiTagComponent,
@@ -163,7 +182,8 @@ import { CreateLinkFormComponent } from './features/links/create-link-form/creat
     MultiTagModelsComponent,
     MoodViewerComponent,
     // => Models
-    EditionComponent,
+    CreateModelComponent,
+    EditModelComponent,
     // => Tags
     TagsEditionComponent,
     // => Scripts
@@ -215,6 +235,26 @@ import { CreateLinkFormComponent } from './features/links/create-link-form/creat
     AnimGrowDirective,
     AnimSpinDirective,
     CreateLinkFormComponent,
+    EditionMenuComponent,
+    EditionTagsComponent,
+    EditionArtistsComponent,
+    EditionModelsComponent,
+    EditionInfoComponent,
+    EditModelsComponent,
+    EditTagsComponent,
+    EditFranchisesComponent,
+    EditArtistsComponent,
+    EditLinksComponent,
+    EditTagComponent,
+    CreateTagComponent,
+    EditLinkComponent,
+    CreateLinkComponent,
+    EditArtistComponent,
+    EditFranchiseComponent,
+    CreateFranchiseComponent,
+    EditTagCategoryComponent,
+    DeleteModelComponent,
+    DeleteTagComponent,
   ],
   imports: 
   [

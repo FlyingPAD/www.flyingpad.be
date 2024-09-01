@@ -46,6 +46,8 @@
               "src/design/central/bottom-bar-larger.scss",
               "src/design/central/scripts.scss",
               "src/design/central/flow-cards.scss",
+              "src/design/central/buttons.scss",
+              "src/design/central/edition.scss",
 
               "src/design/central/boxes.scss",
               "src/design/central/crud-forms.scss",
@@ -58,7 +60,6 @@
               "src/design/central/modal.scss",
               "src/design/central/overlay.scss",
               "src/design/central/tags-gallery.scss",
-              "src/design/central/text.scss",
 
               "./node_modules/ngx-toastr/toastr.css"
             ],

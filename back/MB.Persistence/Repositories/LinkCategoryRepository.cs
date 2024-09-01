@@ -8,9 +8,6 @@ namespace MB.Persistence.Repositories;
 
 public class LinkCategoryRepository(Context context) : BaseRepository<LinkCategory>(context), ILinkCategoryRepository
 {
-    /// <summary>
-    /// Gets the primary IDs by business IDs.
-    /// </summary>
     public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
     {
         return await _context.LinkCategories
@@ -19,9 +16,6 @@ public class LinkCategoryRepository(Context context) : BaseRepository<LinkCatego
                              .ToListAsync();
     }
 
-    /// <summary>
-    /// Retrieves link categories checkboxes by link
-    /// </summary>
     public async Task<IEnumerable<GetLinkCategoriesCheckBoxesByLinkQueryDto>> GetCheckBoxesByLink(int linkId)
     {
         var categories = await _context.LinkCategories

@@ -1,17 +1,8 @@
-﻿namespace MB.Application.Features.Artists.Commands.CreateArtist;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Artists.Commands.CreateArtist;
 
 public class CreateArtistCommandResponse : BaseResponse
 {
-    /// <summary>
-    /// Properties
-    /// </summary>
-    public CreateArtistDto Artist { get; set; } = default!;
-
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    public CreateArtistCommandResponse() : base()
-    {
-
-    }
+    public Guid ArtistId { get; set; } = Guid.Empty;
 }

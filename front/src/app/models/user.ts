@@ -1,6 +1,5 @@
 import { BaseResponse } from "./base-response"
 
-// Models.
 export class User {
     created : Date = new Date
     modified : Date = new Date
@@ -12,7 +11,6 @@ export class User {
     role : number = 0
 }
 
-// Calls.
 export interface UserRegisterForm {
     firstName: string;
     lastName: string;
@@ -34,7 +32,6 @@ export interface UserUpdateForm {
     birthdate : Date;
 }
 
-// Responses.
 export interface UserUpdateResponse extends BaseResponse {
     updatedUser : User
 }

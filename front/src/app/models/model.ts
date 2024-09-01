@@ -1,6 +1,5 @@
 import { BaseResponse } from "./base-response";
 
-// Models.
 export interface ModelLight {
     businessId : number
     pseudonym : string
@@ -24,7 +23,6 @@ export interface ModelCheckBox {
     isChecked : boolean
 }
 
-// Calls.
 export interface ModelForm {
     pseudonym : string
     firstName : string
@@ -40,8 +38,7 @@ export interface ModelCheckForm {
     isChecked : boolean
 }
 
-// Responses.
-export interface GetModelsResponse extends BaseResponse {
+export interface GetAllModelsResponse extends BaseResponse {
     models : ModelLight[]
 }
 export interface GetModelsByMoodResponse extends BaseResponse {
@@ -50,7 +47,9 @@ export interface GetModelsByMoodResponse extends BaseResponse {
 export interface GetModelResponse extends BaseResponse {
     model : ModelFull
 }
-
 export interface GetModelsCheckBoxesByMoodResponse extends BaseResponse {
     models : ModelCheckBox[]
+ }
+ export interface CreateModelResponse extends BaseResponse {
+    modelId : number
  }

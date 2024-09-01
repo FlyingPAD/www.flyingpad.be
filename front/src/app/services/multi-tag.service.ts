@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { GetAllArtistsResponse } from '../models/artist';
-import { map } from 'rxjs';
-import { GetModelsByMoodResponse, GetModelsResponse } from '../models/model';
+import { ArtistCheckBox, GetAllArtistsResponse } from '../models/artist';
+import { map, Observable } from 'rxjs';
+import { GetModelsByMoodResponse, ModelCheckBox } from '../models/model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,50 +14,41 @@ export class MultiTagService
   #url : string = environment.apiBaseUrl + '/api/V1/'
   selectedMoods : number[] = []
 
-  selectionToggle(moodId : number) : void
-  {
+  selectionToggle(moodId : number): void {
     let index = this.selectedMoods.findIndex(x => x === moodId)
   
-    if (index === -1) 
-    {
+    if (index === -1) {
       this.selectedMoods.push(moodId)
     } 
-    else 
-    {
+    else {
       this.selectedMoods.splice(index, 1)
     }
   }
   
-  checkIfSelected(moodId : number) : boolean
-  {
+  checkIfSelected(moodId : number): boolean {
     let index = this.selectedMoods.findIndex(x => x === moodId)
   
-    if (index === -1) 
-    {
+    if (index === -1) {
       return false
     } 
-    else 
-    {
+    else {
       return true
     }
   }
 
-  getArtists()
-  {
+  getArtists(): Observable<ArtistCheckBox[]> {
     return this.#http.get<GetAllArtistsResponse>(`${this.#url}Artists/GetAll`).pipe(
       map(response => response.artists)
     )
   }
 
-  getModels()
-  {
+  getModels(): Observable<ModelCheckBox[]> {
     return this.#http.get<GetModelsByMoodResponse>(`${this.#url}Models/GetAll`).pipe(
       map(response => response.models)
     )
   }
 
-  reset()
-  {
+  reset(): void {
     this.selectedMoods = []
   }
 }

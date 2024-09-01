@@ -37,10 +37,6 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   topButtonIsActive = false             
   infoIsActive = false   
   leftCardIsActive : boolean = false
-
-  getMoodHeight(focusState: boolean) {
-    this.viewerService.getMoodHeight(focusState, window.innerHeight, this.flow()?.mood.height)
-  }
   
   ngOnInit(): void {
     this.getMoodHeight(false)
@@ -58,15 +54,25 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.diaporamaStop()
   }
 
-  backToGallery(): void {
-    this.showGallery = true
+  showOff()
+  {
+    this.showGallery = false
     this.showDetails = false
     this.showEdition = false
   }
 
-  goEdition(): void {
-    this.showGallery = false
-    this.showDetails = false
+  showGalleryON(): void {
+    this.showOff()
+    this.showGallery = true
+  }
+
+  showDetailsON(): void {
+    this.showOff()
+    this.showDetails = true
+  }
+
+  showEditionON(): void {
+    this.showOff()
     this.showEdition = true
   }
 
@@ -215,39 +221,46 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
     }
   }
 
+  getMoodHeight(focusState: boolean) {
+    this.viewerService.getMoodHeight(focusState, window.innerHeight, this.flow()?.mood.height)
+  }
+
   // KEYBOARD CONFIGURATION
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) 
   {
-    switch (event.key) 
+    if(this.showEdition != true)
     {
-      case 'ArrowLeft':
-        this.getPage('previous')
-        break
-      case 'ArrowRight':
-        this.getPage('next')
-        break
-      case ' ':
-        // this.intervalId === undefined ? this.diaporamaStart(false) : this.diaporamaStop()
-        break
-      case 'Shift':
-        this.openMoodInNewTab()
-        break
-      case '0':
-        this.getRandomMood()
-        break
-      case 'Control':
-        // this.toggleFocus()
-        break
-      case 'Enter':
-        this.infoTrigger()
-        break
-      case '+':
-        this.menuTrigger()
-        break
-      case 'Backspace':
-        this.backToGallery()
-        break
+      switch (event.key) 
+      {
+        case 'ArrowLeft':
+          this.getPage('previous')
+          break
+        case 'ArrowRight':
+          this.getPage('next')
+          break
+        case ' ':
+          // this.intervalId === undefined ? this.diaporamaStart(false) : this.diaporamaStop()
+          break
+        case 'Shift':
+          this.openMoodInNewTab()
+          break
+        case '0':
+          this.getRandomMood()
+          break
+        case 'Control':
+          // this.toggleFocus()
+          break
+        case 'Enter':
+          this.infoTrigger()
+          break
+        case '+':
+          this.menuTrigger()
+          break
+        case 'Backspace':
+          this.showGalleryON()
+          break
+      }
     }
   }
 }

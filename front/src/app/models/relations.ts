@@ -1,24 +1,23 @@
 import { BaseResponse } from "./base-response"
 
-// API Calls.
 export interface RelationsArtistStyleForm {
     artistId : number
     styleIds : number[]
 }
-export class RelationsMoodTagForm {
-    moodId : number = 0
-    tagIds : number[] = []
+export interface RelationsMoodTagForm {
+    moodId : number
+    tagIds : number[]
 }
-export class RelationsMoodArtistForm {
-    moodId : number = 0
-    artistIds : number[] = []
+export interface RelationsMoodArtistForm {
+    moodId : number
+    artistIds : number[]
 }
-export class RelationsMoodModelForm {
-    moodId : number = 0
-    modelIds : number[] = []
+export interface RelationsMoodModelForm {
+    moodId : number
+    modelIds : number[]
 }
 
-// API Responses.
+
 export interface CheckRelationsArtistStyleByStyleResponse extends BaseResponse {
     numberOfRelations : number
 }

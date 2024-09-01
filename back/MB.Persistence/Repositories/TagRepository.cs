@@ -10,9 +10,6 @@ namespace MB.Persistence.Repositories;
 
 public class TagRepository(Context context) : BaseRepository<Tag>(context), ITagRepository
 {
-    /// <summary>
-    /// Retrieves a list of tag entity IDs based on their business IDs.
-    /// </summary>
     public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
     {
         return await _context.Tags
@@ -21,9 +18,6 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
                              .ToListAsync();
     }
 
-    /// <summary>
-    /// Gets tags associated with a specific mood.
-    /// </summary>
     public async Task<IEnumerable<GetTagsByMoodQueryVm>> GetTagsByMood(int? moodId)
     {
         return await _context.RMoodTag
@@ -37,38 +31,45 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
             .ToListAsync();
     }
 
-    /// <summary>
-    /// Gets checkboxes for tags filtered by mood, organized by tag categories.
-    /// </summary>
     public async Task<IEnumerable<GetTagsCheckBoxesListDto>> GetTagsCheckBoxesByMood(int? moodId)
     {
-        return await _context.TagCategories
-            .Include(tc => tc.Tags)
-                .ThenInclude(tag => tag.MoodTags)
+        var tagCategories = await _context.TagCategories
+            .AsNoTracking()
             .OrderBy(tc => tc.Name)
-            .Select(tc => new GetTagsCheckBoxesListDto
+            .Select(tc => new
             {
-                Category = new TagCategoryDto
-                {
-                    BusinessId = tc.BusinessId,
-                    Name = tc.Name
-                },
-                TagsCheckBoxes = tc.Tags
-                    .Select(tag => new GetTagsCheckBoxesDto
+                tc.BusinessId,
+                tc.Name,
+                Tags = tc.Tags
+                    .OrderBy(tag => tag.Name)
+                    .Select(tag => new
                     {
-                        BusinessId = tag.BusinessId,
-                        Name = tag.Name,
+                        tag.BusinessId,
+                        tag.Name,
                         IsChecked = tag.MoodTags != null && tag.MoodTags.Any(mt => mt.MoodId == moodId)
                     })
-                    .OrderBy(tag => tag.Name)
                     .ToList()
             })
             .ToListAsync();
+
+        return tagCategories.Select(tc => new GetTagsCheckBoxesListDto
+        {
+            Category = new TagCategoryDto
+            {
+                BusinessId = tc.BusinessId,
+                Name = tc.Name
+            },
+            TagsCheckBoxes = tc.Tags
+                .Select(tag => new GetTagsCheckBoxesDto
+                {
+                    BusinessId = tag.BusinessId,
+                    Name = tag.Name,
+                    IsChecked = tag.IsChecked
+                })
+                .ToList()
+        });
     }
 
-    /// <summary>
-    /// Retrieves a complete list of tags categorized by tag categories.
-    /// </summary>
     public async Task<IEnumerable<GetTagsFullListQueryVm>> GetTagsFullListAsync()
     {
         return await _context.TagCategories
@@ -82,9 +83,6 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
             .ToListAsync();
     }
 
-    /// <summary>
-    /// Finds a tag by its name.
-    /// </summary>
     public async Task<Tag?> GetByName(string name)
     {
         return await _context.Set<Tag>()
@@ -92,14 +90,37 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
     }
 
 
-    /// <summary>
-    /// Retrieves a list of tags by their category ID.
-    /// </summary>
     public async Task<List<Tag>> GetByCategory(int categoryId)
     {
         return await _context.Tags
                              .Where(tag => tag.TagCategoryId == categoryId)
                              .OrderBy(tag => tag.Name)
                              .ToListAsync();
+    }
+
+    public async Task<Guid> GetTagCategoryBusinessId(int tagCategoryId)
+    {
+        var tagCategory = await _context.Set<TagCategory>()
+            .SingleOrDefaultAsync(tagCategory => tagCategory.EntityId == tagCategoryId);
+
+        if(tagCategory == null)
+        {
+            return Guid.Empty;
+        }
+        else
+        {
+            return tagCategory.BusinessId;
+        }
+    }
+
+    public async System.Threading.Tasks.Task DeleteTagRelations(int tagId)
+    {
+        var moodTagRelations = await _context.RMoodTag
+                                .Where(relation => relation.TagId == tagId)
+                                .ToListAsync();
+
+        _context.RMoodTag.RemoveRange(moodTagRelations);
+
+        await _context.SaveChangesAsync();
     }
 }

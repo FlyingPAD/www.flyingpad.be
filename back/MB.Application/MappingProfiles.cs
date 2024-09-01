@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MB.Application.Features.Artists.Commands.CreateArtist;
-using MB.Application.Features.Artists.Queries.GetArtist;
+using MB.Application.Features.Artists.Queries.GetAllArtists;
+using MB.Application.Features.Artists.Queries.GetArtistById;
 using MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 using MB.Application.Features.Artists.Queries.GetArtistDetails;
-using MB.Application.Features.Artists.Queries.GetArtists;
 using MB.Application.Features.Artists.Queries.GetArtistsByMood;
 using MB.Application.Features.Artists.Queries.GetArtistsByStyle;
 using MB.Application.Features.Artists.Queries.GetArtistsPage;
@@ -63,7 +63,6 @@ using MB.Application.Features.TagCategories.Commands.DeleteTagCategory;
 using MB.Application.Features.TagCategories.Commands.UpdateTagCategory;
 using MB.Application.Features.TagCategories.Queries.GetTagCategoriesList;
 using MB.Application.Features.TagCategories.Queries.GetTagCategoryById;
-using MB.Application.Features.Tags.Commands.CreateTag;
 using MB.Application.Features.Tags.Commands.DeleteTag;
 using MB.Application.Features.Tags.Commands.UpdateTag;
 using MB.Application.Features.Tags.Queries.GetTagById;
@@ -94,33 +93,28 @@ public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {
-        // Artists :
-
-        CreateMap<Artist, CreateArtistDto>().ReverseMap();
-
-        CreateMap<Artist, GetArtistsVm>().ReverseMap();
-        CreateMap<Artist, GetArtistVm>().ReverseMap();
+        // Artists.
+        CreateMap<Artist, CreateArtistCommand>().ReverseMap();
+        CreateMap<Artist, GetAllArtistsQueryDto>().ReverseMap();
+        CreateMap<Artist, GetArtistByIdQueryDto>().ReverseMap();
         CreateMap<Artist, GetArtistDetailsVm>().ReverseMap();
         CreateMap<Artist, GetArtistsPageVm>().ReverseMap();
         CreateMap<Artist, GetArtistsByStyleVm>().ReverseMap();
         CreateMap<Artist, GetArtistsByMoodQueryVm>().ReverseMap();
         CreateMap<Artist, GetArtistCheckBoxesByMoodQueryDto>().ReverseMap();
 
-        // Styles : 
-
+        // Styles.
         CreateMap<Style, StyleListVm>().ReverseMap();
         CreateMap<Style, GetStyleByIdVm>().ReverseMap();
         CreateMap<Style, CreateStyleDto>().ReverseMap();
         CreateMap<Style, UpdateStyleCommand>().ReverseMap();
         CreateMap<Style, DeleteStyleCommand>().ReverseMap();
 
-        // Franchises :
-
+        // Franchises.
         CreateMap<Franchise, CreateFranchiseDto>().ReverseMap();
         CreateMap<Franchise, UpdateFranchiseCommand>().ReverseMap();
         CreateMap<Franchise, UpdateFranchiseDto>().ReverseMap();
         CreateMap<Franchise, DeleteFranchiseCommand>().ReverseMap();
-
         CreateMap<Franchise, GetFranchiseByIdVm>().ReverseMap();
         CreateMap<Franchise, GFLQFranchiseDto>().ReverseMap();
         CreateMap<Franchise, GetAllFranchisesQueryVm>().ReverseMap();
@@ -128,8 +122,7 @@ public class MappingProfiles : Profile
         CreateMap<Franchise, GetFranchisesByModelQueryVm>().ReverseMap();
         CreateMap<Franchise, GetFranchisesByMediaQueryVm>().ReverseMap();
 
-        // Medias :
-
+        // Medias.
         CreateMap<Media, MediaListVm>().ReverseMap();
         CreateMap<Media, GetMediaByIdVm>().ReverseMap();
         CreateMap<Media, CreateMediaDto>().ReverseMap();
@@ -138,8 +131,7 @@ public class MappingProfiles : Profile
         CreateMap<Media, DeleteMediaCommand>().ReverseMap();
         CreateMap<Media, GFLQMediaDto>().ReverseMap();
 
-        // Links :
-
+        // Links.
         CreateMap<Link, LinkListVm>().ReverseMap();
         CreateMap<Link, GetLinkByIdVm>().ReverseMap();
         CreateMap<Link, CreateLinkDto>().ReverseMap();
@@ -149,8 +141,7 @@ public class MappingProfiles : Profile
         CreateMap<Link, LinksContainingAbcVm>().ReverseMap();
         CreateMap<Link, PageLinksContainingAbcVm>().ReverseMap();
 
-        // Link Categories :
-
+        // Link Categories.
         CreateMap<LinkCategory, LinkCategoryListVm>().ReverseMap();
         CreateMap<LinkCategory, GetLinkCategoryByIdVm>().ReverseMap();
         CreateMap<LinkCategory, CreateLinkCategoryDto>().ReverseMap();
@@ -158,12 +149,10 @@ public class MappingProfiles : Profile
         CreateMap<LinkCategory, UpdateLinkCategoryDto>().ReverseMap();
         CreateMap<LinkCategory, DeleteLinkCategoryCommand>().ReverseMap();
 
-        // Models :
-
-        CreateMap<Model, CreateModelDto>().ReverseMap();
+        // Models.
+        CreateMap<Model, CreateModelCommand>().ReverseMap();
         CreateMap<Model, DeleteModelCommand>().ReverseMap();
         CreateMap<Model, UpdateModelCommand>().ReverseMap();
-
         CreateMap<Model, ModelListVm>().ReverseMap();
         CreateMap<Model, GetModelByIdVm>().ReverseMap();
         CreateMap<Model, GetModelsByMoodQueryVm>().ReverseMap();
@@ -171,14 +160,12 @@ public class MappingProfiles : Profile
         CreateMap<Model, GFLQModelDto>().ReverseMap();
         CreateMap<Model, GetModelCheckBoxesByMoodQueryDto>().ReverseMap();
 
-        // Moods :
-
+        // Moods.
         CreateMap<Mood, CreateMoodDto>().ReverseMap();
         CreateMap<Mood, CreateMoodImageCommandDto>().ReverseMap();
         CreateMap<Mood, UpdateMoodCommand>().ReverseMap();
         CreateMap<Mood, UpdateMoodDto>().ReverseMap();
         CreateMap<Mood, DeleteMoodCommand>().ReverseMap();
-
         CreateMap<Mood, MoodListVm>().ReverseMap();
         CreateMap<Mood, GetMoodByIdVm>().ReverseMap();
         CreateMap<Mood, GetRandomMoodQueryVm>().ReverseMap();
@@ -187,25 +174,18 @@ public class MappingProfiles : Profile
         CreateMap<Mood, GetMoodsByModelQueryVm>().ReverseMap();
         CreateMap<Mood, GetMoodsByFranchiseQueryVm>().ReverseMap();
 
-        // Images :
-
+        // Images.
         CreateMap<Image, GetOneImageDetailsQueryVm>().ReverseMap();
 
-        // Videos :
-
+        // Videos.
         CreateMap<Video, GetOneVideoDetailsQueryVm>().ReverseMap();
 
-        // Videos YouTube:
-
+        // Videos YouTube.
         CreateMap<VideoYouTube, GetOneVideoYTDetailsQueryVm>().ReverseMap();
 
-        // Tags :
-
-        CreateMap<Tag, CreateTagDto>().ReverseMap();
+        // Tags.
         CreateMap<Tag, UpdateTagCommand>().ReverseMap();
-        CreateMap<Tag, UpdateTagDto>().ReverseMap();
         CreateMap<Tag, DeleteTagCommand>().ReverseMap();
-
         CreateMap<Tag, TagDto>();
         CreateMap<Tag, TagListVm>().ReverseMap();
         CreateMap<Tag, GetTagByIdVm>().ReverseMap();
@@ -213,8 +193,7 @@ public class MappingProfiles : Profile
         CreateMap<Tag, GetTagsCheckBoxesDto>().ReverseMap();
         CreateMap<Tag, GetTagsByCategoryQueryDto>().ReverseMap();
 
-        // Tag Categories :
-
+        // Tag Categories.
         CreateMap<TagCategory, DeleteTagCategoryCommand>().ReverseMap();
         CreateMap<TagCategory, UpdateTagCategoryCommand>().ReverseMap();
         CreateMap<TagCategory, CreateTagCategoryDto>().ReverseMap();
@@ -223,22 +202,19 @@ public class MappingProfiles : Profile
         CreateMap<TagCategory, UpdateTagCategoryDto>().ReverseMap();
         CreateMap<TagCategory, TagCategoryDto>();
 
-        // Tasks :
-
+        // Tasks.
         CreateMap<Domain.Entities.Task, CreateTaskCommand>().ReverseMap();
         CreateMap<Domain.Entities.Task, TasksListVm>().ReverseMap();
         CreateMap<Domain.Entities.Task, TaskDetailsVm>().ReverseMap();
         CreateMap<Domain.Entities.Task, UpdateTaskCommand>().ReverseMap();
         CreateMap<Domain.Entities.Task, DeleteTaskCommand>().ReverseMap();
 
-        // Task Categories :
-
+        // Task Categories.
         CreateMap<TaskCategory, TaskCategoryDto>().ReverseMap();
         CreateMap<TaskCategory, TaskCategoryListVm>().ReverseMap();
         CreateMap<TaskCategory, TaskCategoryTaskListVm>().ReverseMap();
 
-        // Users :
-
+        // Users.
         CreateMap<User, UserListVm>().ReverseMap();
         CreateMap<User, GetUserByIdVm>().ReverseMap();
         CreateMap<User, CreateUserDto>().ReverseMap();

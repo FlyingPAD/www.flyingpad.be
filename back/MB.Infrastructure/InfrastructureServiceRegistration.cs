@@ -12,8 +12,6 @@ namespace MB.Infrastructure
         {
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IEMailService, EMailService>();
-            services.AddScoped<IGraphAPIService, GraphAPIService>();
-            services.AddSingleton<IAuthentificationService, AuthenticationService>();
 
             services.AddHttpClient();
 

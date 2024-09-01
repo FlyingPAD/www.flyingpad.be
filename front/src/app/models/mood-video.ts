@@ -1,5 +1,3 @@
-// Models :
-
 import { BaseResponse } from "./base-response";
 
 export class Video
@@ -17,8 +15,6 @@ export class Video
     width: number = 0
     duration : number = 0
 }
-
-// Responses :
 
 export interface GetOneVideoDetailsResponse extends BaseResponse
 {

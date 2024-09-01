@@ -1,0 +1,38 @@
+<div class="edition-menu">
+    <a (click)="triggerMoodEditionButton()" [class.active]="triggerMoodEdition === true">
+        <img src="../../../../assets/app_icons/icon_mood_001.png" />
+    </a>
+    <a (click)="triggerMoodTagsEditionButton()" [class.active]="triggerMoodTagsEdition === true">
+        <img src="../../../../assets/app_icons/icon_tags_001.png" />
+    </a>
+    <a (click)="triggerMoodModelsEditionButton()" [class.active]="triggerMoodModelsEdition === true">
+        <img src="../../../../assets/app_icons/icon_model_001.png" />
+    </a>
+    <a (click)="triggerMoodArtistsEditionButton()" [class.active]="triggerMoodArtistsEdition === true">
+        <img src="../../../../assets/app_icons/icon_artists_001.png" />
+    </a>
+</div>
+
+<div class="thumbnail">
+    @if(mood.type == 1){
+        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" />
+    }
+    @if(mood.type == 2){
+        <img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg" />
+    }
+</div>
+
+@if(triggerMoodEdition){
+    <app-edition-info [mood]="mood" />
+}
+@if(triggerMoodTagsEdition){
+    <app-edition-tags [mood]="mood" />
+}
+@if(triggerMoodModelsEdition){
+    <app-edition-models [mood]="mood" />
+}
+@if(triggerMoodArtistsEdition){
+    <app-edition-artists [mood]="mood" />
+}
+
+<app-bottom-bar [moodsGalleryType]="'edition'" (showDetails)="handleShowDetails()"/>

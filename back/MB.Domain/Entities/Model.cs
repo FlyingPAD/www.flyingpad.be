@@ -10,9 +10,6 @@ public class Model : AuditableEntity
     public string Gender { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
 
-
-    // Navigation Properties :
-
     public ICollection<RelationMoodModel>? MoodModels { get; set; }
     public ICollection<RelationFranchiseModel>? FranchiseModels { get; set; }
     public ICollection<RelationLinkModel>? LinkModels { get; set; }

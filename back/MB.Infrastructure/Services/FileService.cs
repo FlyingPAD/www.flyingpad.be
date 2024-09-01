@@ -26,7 +26,6 @@ public class FileService : IFileService
         string pathOriginal = Path.Combine(rootPath, "img", $"{moodId}.{extension}");
         string pathThumb = Path.Combine(rootPath, "img_thumbs", $"{moodId}.{extension}");
 
-        // Utilisation de Task.Run uniquement pour la suppression de fichiers car il n'y a pas de méthode asynchrone native pour cela
         await Task.Run(() =>
         {
             if (File.Exists(pathOriginal)) File.Delete(pathOriginal);

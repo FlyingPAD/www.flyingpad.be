@@ -7,9 +7,6 @@ namespace MB.Persistence.Repositories;
 
 public class MoodRepository(Context context) : BaseRepository<Mood>(context), IMoodRepository
 {
-    /// <summary>
-    /// Retrieves a random Mood detail from the database.
-    /// </summary>
     public async Task<Mood> GetOneDetailsRandom()
     {
         var ids = await _context.Moods.Select(m => m.EntityId).ToListAsync();
@@ -19,9 +16,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         return randomMood!;
     }
 
-    /// <summary>
-    /// Fetches Moods associated with a specific tag.
-    /// </summary>
     public async Task<List<Mood>> GetMoodsByTag(int? tagId)
     {
         var moodsByTag = await _context.Moods
@@ -32,9 +26,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         return moodsByTag;
     }
 
-    /// <summary>
-    /// Fetches Moods associated with a specific artist.
-    /// </summary>
     public async Task<List<Mood>> GetMoodsByArtist(int? artistId)
     {
         var moodsByArtist = await _context.Moods
@@ -45,9 +36,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         return moodsByArtist;
     }
 
-    /// <summary>
-    /// Fetches Moods associated with a specific model.
-    /// </summary>
     public async Task<List<Mood>> GetMoodsByModel(int? modelId)
     {
         var moodsByModel = await _context.Moods
@@ -58,9 +46,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         return moodsByModel;
     }
 
-    /// <summary>
-    /// Fetches Moods associated with any of the specified models.
-    /// </summary>
     public async Task<List<Mood>> GetMoodsByModels(List<int> modelIds)
     {
         return await _context.Moods
@@ -69,9 +54,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
             .ToListAsync();
     }
 
-    /// <summary>
-    /// Updates the score of a specific Mood.
-    /// </summary>
     public async System.Threading.Tasks.Task UpdateScore(int? entityId, int value)
     {
         var moodToUpdate = await _context.Moods.FindAsync(entityId);
@@ -88,9 +70,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         }
     }
 
-    /// <summary>
-    /// Updates the set of tags associated with a specific Mood.
-    /// </summary>
     public async System.Threading.Tasks.Task UpdateTags(int moodId, ICollection<int> tagIds)
     {
         var mood = await _context.Moods
@@ -116,9 +95,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         await _context.SaveChangesAsync();
     }
 
-    /// <summary>
-    /// Updates the set of artists associated with a specific Mood.
-    /// </summary>
     public async System.Threading.Tasks.Task UpdateArtists(int moodId, ICollection<int> artistIds)
     {
         var mood = await _context.Moods
@@ -144,9 +120,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         await _context.SaveChangesAsync();
     }
 
-    /// <summary>
-    /// Updates the set of models associated with a specific Mood.
-    /// </summary>
     public async System.Threading.Tasks.Task UpdateModels(int moodId, ICollection<int> modelIds)
     {
         var mood = await _context.Moods
@@ -172,9 +145,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         await _context.SaveChangesAsync();
     }
 
-    /// <summary>
-    /// Deletes all tags associated with a specific Mood.
-    /// </summary>
     public async System.Threading.Tasks.Task DeleteTags(int moodId)
     {
         var relations = await _context.RMoodTag
@@ -186,9 +156,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         await _context.SaveChangesAsync();
     }
 
-    /// <summary>
-    /// Deletes all artists associated with a specific Mood.
-    /// </summary>
     public async System.Threading.Tasks.Task DeleteArtists(int moodId)
     {
         var relations = await _context.RMoodArtist
@@ -200,9 +167,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         await _context.SaveChangesAsync();
     }
 
-    /// <summary>
-    /// Deletes all models associated with a specific Mood.
-    /// </summary>
     public async System.Threading.Tasks.Task DeleteModels(int moodId)
     {
         var relations = await _context.RMoodModel

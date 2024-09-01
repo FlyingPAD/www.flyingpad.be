@@ -1,29 +1,63 @@
-/*  Flying PAD | SCSS Global Settings
-   ==================================== */
 html {
-    // Main Y scrollbar always visible to prevent page 'shaking'
     overflow-y: scroll;             
     scrollbar-color: rgb(107, 82, 64, 0.7) #f1f1f1;    
 
-    // Main X scrollbar always hidden to prevent page losing focus
     overflow-x: hidden;     
 
     // Disable User Selection
-    /* Firefox */
-    -moz-user-select: none;     
-    /* Chrome, Safari, Opéra since version 15 */    
-    -webkit-user-select: none;     
-    /* Internet explorer since version 10 & Edge */ 
-    -ms-user-select: none;   
-    /* Standard Property */       
-    user-select: none;              
+        /* Firefox */
+        -moz-user-select: none;     
+        /* Chrome, Safari, Opéra since version 15 */    
+        -webkit-user-select: none;     
+        /* Internet explorer since version 10 & Edge */ 
+        -ms-user-select: none;   
+        /* Standard Property */       
+        user-select: none;              
 }  
 
 body {
-    // Main Font
-    font-family: var(--fontFamily);       
-    // Custom Background              
-    background-image: var(--texture001); 
-    // Limit Width               
+    font-family: var(--fontFamily);                
+    background-image: var(--texture001);      
     max-width: 100vw;                                   
+}
+
+.h1 {
+    margin: 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    font-size: 19px;
+    font-weight: normal;
+    text-align: center;
+    letter-spacing: 1px;
+
+    color: #6b5240;
+    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.h2 {
+    margin: 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    font-size: 17px;
+    font-weight: normal;
+    text-align: center;
+    letter-spacing: 1px;
+
+    color: #6b5240;
+    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.222);
+}
+
+.p {
+    margin: 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    color: #6b5240;
+    text-align: center;
+}
+
+.ul {
+    padding: 0;
 }

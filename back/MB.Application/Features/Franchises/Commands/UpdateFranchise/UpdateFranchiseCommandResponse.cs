@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Franchises.Commands.UpdateFranchise;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Franchises.Commands.UpdateFranchise;
 
 public class UpdateFranchiseCommandResponse : BaseResponse
 {

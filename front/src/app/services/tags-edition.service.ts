@@ -3,11 +3,12 @@ import { Injectable, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, combineLatest, map, of, switchMap, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { GetAllTagCategoriesResponse, GetAllTagsResponse, GetOneTagDetailsResponse, GetTagCategoryByIdResponse, GetTagsByCategoryResponse } from '../models/tag';
+import { GetAllTagsResponse, GetOneTagDetailsResponse, GetTagsByCategoryResponse } from '../models/tag';
 import { BaseResponse } from '../models/base-response';
 import { TagCreateForm } from '../models/forms-create';
 import { TagUpdateForm } from '../models/forms-update';
 import { CreateTagResponse } from '../models/responses-create';
+import { GetAllTagCategoriesResponse, GetTagCategoryByIdResponse } from '../models/tag-category';
 
 @Injectable({
   providedIn: 'root'

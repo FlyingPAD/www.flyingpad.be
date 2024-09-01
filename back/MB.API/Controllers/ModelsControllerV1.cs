@@ -7,6 +7,7 @@ using MB.Application.Features.Models.Queries.GetModelCheckBoxesByMood;
 using MB.Application.Features.Models.Queries.GetModelsByFranchise;
 using MB.Application.Features.Models.Queries.GetModelsByMood;
 using MB.Application.Features.Models.Queries.GetModelsList;
+using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -56,6 +57,6 @@ public class ModelsControllerV1(IMediator mediator) : ControllerBase
 
     [HttpDelete("Delete/{modelId}")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<DeleteModelCommandResponse>> Delete(Guid modelId)
+    public async Task<ActionResult<BaseResponse>> Delete(Guid modelId)
         => Ok(await _mediator.Send(new DeleteModelCommand { ModelId = modelId }));
 }

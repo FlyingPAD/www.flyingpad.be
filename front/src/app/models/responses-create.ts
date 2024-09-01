@@ -15,3 +15,11 @@ export interface CreateLinkResponse extends BaseResponse {
 export interface CreateFranchiseResponse extends BaseResponse {
     franchiseId : number
 }
+
+export interface CreateArtistResponse extends BaseResponse {
+    artistId : number
+}
+
+export interface CreateStyleResponse extends BaseResponse {
+    styleId : number
+}

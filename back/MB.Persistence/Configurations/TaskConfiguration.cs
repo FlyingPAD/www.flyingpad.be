@@ -7,10 +7,10 @@ public class TaskConfiguration : IEntityTypeConfiguration<MB.Domain.Entities.Tas
 {
     public void Configure(EntityTypeBuilder<MB.Domain.Entities.Task> builder)
     {
-        builder.HasKey(entity => entity.EntityId); // Définir la clé primaire
+        builder.HasKey(entity => entity.EntityId);
 
         builder.Property(entity => entity.EntityId)
-            .ValueGeneratedOnAdd(); // Indiquer que la valeur est générée lors de l'ajout (auto-increment)
+            .ValueGeneratedOnAdd();
 
         builder.Property(entity => entity.Name)
             .HasDefaultValue(DateTime.Now);

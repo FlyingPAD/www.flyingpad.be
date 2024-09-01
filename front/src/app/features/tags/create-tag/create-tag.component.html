@@ -1,0 +1,11 @@
+<div class="edition"> 
+    <h2 class="h2">Create new tag.</h2>
+    <form [formGroup]="createFormGroup">
+        <input type="text" formControlName="name" placeholder="Name">
+        <input type="text" formControlName="description" placeholder="Description">  
+        <select formControlName="tagCategoryId">
+          <option *ngFor="let category of tagCategories" [value]="category.businessId">{{category.name}}</option>
+        </select>  
+    </form>
+    <a class="edition-button" [class.edition-button-disabled]="createFormGroup.invalid" (click)="onSubmit()">Submit</a>
+</div>
