@@ -8,9 +8,6 @@ namespace MB.Persistence.Repositories;
 
 public class StyleRepository(Context context) : BaseRepository<Style>(context), IStyleRepository
 {
-    /// <summary>
-    /// Retrieves primary entity ID based on business ID.
-    /// </summary>
     public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
     {
         return await _context.Styles
@@ -19,9 +16,6 @@ public class StyleRepository(Context context) : BaseRepository<Style>(context), 
                              .ToListAsync();
     }
 
-    /// <summary>
-    /// Gets styles with a check mark if they're linked to a specified artist.
-    /// </summary>
     public async Task<List<GetStylesCheckQueryDto>> GetStylesWithCheck(Guid artistGuid)
     {
         var stylesWithCheck = await (from style in _context.Styles
@@ -40,9 +34,6 @@ public class StyleRepository(Context context) : BaseRepository<Style>(context), 
         return stylesWithCheck;
     }
 
-    /// <summary>
-    /// Deletes all artists associated with a specific style.
-    /// </summary>
     public async System.Threading.Tasks.Task DeleteArtists(int styleId)
     {
         var relations = await _context.RArtistStyle

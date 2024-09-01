@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TagList } from '../../../models/tag';
+import { TagList } from '../../../models/tags-list';
 
 @Component({
   selector: 'app-column-full',

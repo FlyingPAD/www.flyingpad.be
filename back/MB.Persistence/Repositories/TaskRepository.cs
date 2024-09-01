@@ -5,9 +5,6 @@ namespace MB.Persistence.Repositories
 {
     public class TaskRepository(Context context) : BaseRepository<MB.Domain.Entities.Task>(context), ITaskRepository
     {
-        /// <summary>
-        /// Checks if the task name and date are unique.
-        /// </summary>
         public Task<bool> IsTaskNameAndDateUnique(string name, DateTime taskDateStart)
         {
             var matches = _context.Tasks.Any(e => e.Name.Equals(name) && e.DateStart.Date.Equals(taskDateStart.Date));

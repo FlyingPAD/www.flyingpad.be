@@ -1,20 +1,11 @@
-﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
-using MB.Domain.Entities;
+﻿using MB.Application.Contracts.Persistence;
 using MediatR;
 
 namespace MB.Application.Features.Tags.Queries.GetTagById;
 
-public class GetTagByIdQueryHandler : IRequestHandler<GetTagByIdQuery, GetTagByIdQueryResponse>
+public class GetTagByIdQueryHandler(ITagRepository tagRepository) : IRequestHandler<GetTagByIdQuery, GetTagByIdQueryResponse>
 {
-    private readonly IMapper _mapper;
-    private readonly IBaseRepository<Tag> _tagRepository;
-
-    public GetTagByIdQueryHandler(IMapper mapper, IBaseRepository<Tag> tagRepository)
-    {
-        _mapper = mapper;
-        _tagRepository = tagRepository;
-    }
+    private readonly ITagRepository _tagRepository = tagRepository;
 
     public async Task<GetTagByIdQueryResponse> Handle(GetTagByIdQuery request, CancellationToken cancellationToken)
     {
@@ -22,16 +13,28 @@ public class GetTagByIdQueryHandler : IRequestHandler<GetTagByIdQuery, GetTagByI
 
         if (tag == null)
         {
-            return new GetTagByIdQueryResponse { Success = false, Message = "Tag wasn't found :(" };
+            return new GetTagByIdQueryResponse { Success = false, Message = "Tag was not found." };
         }
 
-        var tagVm = _mapper.Map<GetTagByIdVm>(tag);
+        var tagCategoryBusinessId = await _tagRepository.GetTagCategoryBusinessId(tag.TagCategoryId);
+
+        var tagToReturn = new GetTagByIdVm 
+        {
+            BusinessId  = tag.BusinessId,
+            Name = tag.Name,
+            Description = tag.Description,
+            Created = tag.Created,
+            CreatedBy = tag.CreatedBy,
+            Modified = tag.Modified,
+            ModifiedBy = tag.ModifiedBy,
+            TagCategoryId  = tagCategoryBusinessId
+        };
 
         return new GetTagByIdQueryResponse
         {
             Success = true,
-            Message = "Tag was found :)",
-            Tag = tagVm
+            Message = "Success",
+            Tag = tagToReturn
         };
     }
 }

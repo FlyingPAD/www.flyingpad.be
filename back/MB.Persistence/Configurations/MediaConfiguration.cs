@@ -8,10 +8,10 @@ public class MediaConfiguration : IEntityTypeConfiguration<Media>
 {
     public void Configure(EntityTypeBuilder<Media> builder)
     {
-        builder.HasKey(entity => entity.EntityId); // Définir la clé primaire
+        builder.HasKey(entity => entity.EntityId);
 
         builder.Property(entity => entity.EntityId)
-            .ValueGeneratedOnAdd(); // Indiquer que la valeur est générée lors de l'ajout (auto-increment)
+            .ValueGeneratedOnAdd();
 
         builder.Property(entity => entity.Name)
             .IsRequired()

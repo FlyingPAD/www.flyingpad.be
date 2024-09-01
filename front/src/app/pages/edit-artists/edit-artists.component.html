@@ -1,0 +1,48 @@
+<div class="edition" *ngIf="flow() as flow">
+    <div class="edition-selection">
+        @if(currentArtist){
+            <p><b>{{currentArtist.name}}</b></p>
+        }
+        @else {
+            <p>Please, select an artist from the list.</p>
+        }
+        <div class="edition-buttons">
+            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
+            <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
+            @if(currentArtist){
+                <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
+                <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
+            }
+        </div>
+    </div>
+
+    @if (showList) {
+        <div class="filter">
+            <input type="text" [(ngModel)]="searchArtists" placeholder="Filter artists ...">
+        </div>
+        
+        <div class="edition-list">
+            <div *ngFor="let artist of filterArtists() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: paginationService.editArtistsCurrentPage}">
+                <a [class.active]="artist.name === currentArtist?.name" (click)="setArtist(artist)"> ▸ {{artist.name}}</a>
+            </div>
+        </div>
+
+        <app-right-column>
+            <app-right-column-list [table]="flow.styles" (entityId)="updateStyleId($event)" />
+        </app-right-column>
+        
+        <div class="pagination-row" *ngIf="flow.artists.length > elementsPerPage">
+            <div id="pagination">
+              <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editArtistsCurrentPage = $event"></pagination-controls>
+            </div>   
+        </div>
+    }
+    @if (showNew) {
+        <app-create-artist (trigger)="triggerShowList()" [styles]="flow.styles" />
+    }
+    @if (showEdit) {
+        <app-edit-artist [artist]="flow.artist" />
+    }
+    
+    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.artists.length" />
+</div>

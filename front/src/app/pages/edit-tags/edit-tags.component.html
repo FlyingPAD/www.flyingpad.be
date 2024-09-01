@@ -1,0 +1,48 @@
+<div class="edition" *ngIf="flow() as flow">
+    <div class="edition-selection">
+        @if(flow.tag?.name){
+            <p><b>{{flow.tag?.name}}</b></p>
+        }
+        @else {
+            <p>Please, select a tag from the list.</p>
+        }
+        <div class="edition-buttons">
+            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
+            <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
+            @if(flow.tag?.name){
+                <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
+                <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
+            }
+        </div>
+    </div>
+
+    @if (showList) {
+        <div class="filter">
+            <input type="text" [(ngModel)]="searchTags" placeholder="Filter tags ...">
+        </div>
+        
+        <div class="edition-list">
+            <div *ngFor="let tag of filterTags() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: paginationService.editTagsCurrentPage}">
+                <a [class.active]="tag.name === flow.tag?.name" (click)="setTag(tag)"> ▸ {{tag.name}}</a>
+            </div>
+        </div>
+
+        <app-right-column>
+            <app-right-column-list [table]="flow.tagCategories" [currentEntityId]="flow.tagCategory?.businessId" (entityId)="updateTagCategoryId($event)" />
+        </app-right-column>
+        
+        <div class="pagination-row" *ngIf="flow.tags.length > elementsPerPage">
+            <div id="pagination">
+              <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editTagsCurrentPage = $event"></pagination-controls>
+            </div>   
+        </div>
+    }
+    @if (showNew) {
+        <app-create-tag [tagCategories]="flow.tagCategories" (trigger)="triggerShowList()" />
+    }
+    @if (showEdit) {
+        <app-edit-tag [tag]="flow.tag" [tagCategories]="flow.tagCategories" (showListTrigger)="triggerShowList()" />
+    }
+    
+    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.tags.length"/>
+</div>

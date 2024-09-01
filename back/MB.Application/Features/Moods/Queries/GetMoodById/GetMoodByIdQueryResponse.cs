@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Moods.Queries.GetMoodById;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Moods.Queries.GetMoodById;
 
 public class GetMoodByIdQueryResponse : BaseResponse
 {

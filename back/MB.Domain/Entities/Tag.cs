@@ -8,8 +8,6 @@ public class Tag : AuditableEntity
     public string Description { get; set; } = string.Empty;
     public int TagCategoryId { get; set; } = 0;
 
-    // Navigation Properties :
-
     public TagCategory? TagCategory { get; set; }
     public ICollection<RelationMoodTag>? MoodTags { get; set; }
 }

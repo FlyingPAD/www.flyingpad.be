@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByStyle;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByStyle;
 
 public class CheckRelationsArtistStyleByStyleQueryResponse : BaseResponse
 {

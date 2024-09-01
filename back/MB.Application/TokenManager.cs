@@ -8,30 +8,19 @@ using System.Text;
 
 namespace MB.Application;
 
-/// <summary>
-/// Constructor :
-/// </summary>
-/// <param name="config"></param>
 public class TokenManager(IConfiguration config) : ITokenManager
 {
     private readonly string? _issuer = config.GetSection("Jwt").GetSection("Issuer").Value,
                              _audience = config.GetSection("Jwt").GetSection("Audience").Value,
                              _key = config.GetSection("Jwt").GetSection("Key").Value;
 
-    /// <summary>
-    /// Generate Token
-    /// </summary>
     public string GenerateToken(User user)
     {
         ArgumentNullException.ThrowIfNull(user);
         if (string.IsNullOrEmpty(_key)) throw new InvalidOperationException("JWT may not be null or empty");
 
-        // Create sign in key 
-
         SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(_key));
         SigningCredentials credentials = new(securityKey, SecurityAlgorithms.HmacSha512);
-
-        // Payload Creation / User Info
 
         Claim[] claims =
         [
@@ -45,8 +34,6 @@ public class TokenManager(IConfiguration config) : ITokenManager
             new ("role", user.Role.ToString())
         ];
 
-        // Token Configuration
-
         JwtSecurityToken token = new(
                 claims: claims,
                 signingCredentials: credentials,
@@ -54,9 +41,6 @@ public class TokenManager(IConfiguration config) : ITokenManager
                 audience: _audience,
                 expires: DateTime.Now.AddDays(1)
             );
-
-        // Token Generation
-
         JwtSecurityTokenHandler handler = new();
 
         return handler.WriteToken(token);

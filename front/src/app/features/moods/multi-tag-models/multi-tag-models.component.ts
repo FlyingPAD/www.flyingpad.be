@@ -25,13 +25,16 @@ export class MultiTagModelsComponent implements OnDestroy
     this.multiTagService.reset()
   }
   
-  onSubmit()
-  {
-    let form : RelationsMoodModelForm = new RelationsMoodModelForm()
-    let idListModels : number[] = []
+  onSubmit() {
+    let form : RelationsMoodModelForm = {
+      moodId: 0,
+      modelIds : []
+    }
+
+    let idListModels: number[] = []
+
     this.models()?.forEach(model => {
-      if (model.isChecked)
-      {
+      if (model.isChecked) {
         idListModels.push(model.businessId)
       }
     })

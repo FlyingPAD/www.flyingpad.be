@@ -1,0 +1,62 @@
+import { Component, inject } from '@angular/core';
+import { FlowService } from '../../services/flow.service';
+import { Router } from '@angular/router';
+import { PaginationService } from '../../services/pagination.service';
+import { ArtistLight } from '../../models/artist';
+
+@Component({
+  selector: 'app-edit-artists',
+  templateUrl: './edit-artists.component.html',
+  styleUrl: './edit-artists.component.scss'
+})
+export class EditArtistsComponent {
+  #flowService = inject(FlowService)
+  #router = inject(Router)
+  paginationService = inject(PaginationService)
+
+  flow = this.#flowService.flow
+
+  currentArtist : ArtistLight | undefined = this.flow()?.artist
+  searchArtists : string = ''
+  elementsPerPage : number = 18
+
+  showList : boolean = true
+  showNew : boolean = false
+  showEdit : boolean = false
+
+  triggerReset() {
+    this.showList = false
+    this.showNew = false
+    this.showEdit = false
+  }
+  triggerShowList(): void{
+    this.triggerReset()
+    this.showList = true
+  }
+  triggerShowNew(): void{
+    this.triggerReset()
+    this.showNew = true
+  }
+  triggerShowEdit(): void{
+    this.triggerReset()
+    this.showEdit = true
+  }
+
+  filterArtists(): ArtistLight[] | undefined {
+    return this.flow()?.artistsByStyle.filter(artist => artist.name.toLowerCase().includes(this.searchArtists.toLowerCase()))
+  }
+
+  go():void {
+    this.#flowService.updateMoodsGalleryType('artist')
+    this.#router.navigateByUrl('/moods')
+  }
+
+  setArtist(artist : ArtistLight): void {
+    this.currentArtist = artist
+    this.#flowService.updateArtistId(artist.businessId)
+  }
+
+  updateStyleId(styleId : number | null): void {
+    this.#flowService.updateStyleId(styleId)
+  }
+}

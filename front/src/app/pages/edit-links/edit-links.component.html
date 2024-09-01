@@ -1,0 +1,48 @@
+<div class="edition" *ngIf="flow() as flow">
+    <div class="edition-selection">
+        @if(currentLink){
+            <p><b>{{currentLink.name}}</b></p>
+        }
+        @else {
+            <p>Please, select a link from the list.</p>
+        }
+        <div class="edition-buttons">
+            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
+            <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
+            @if(currentLink){
+                <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
+                <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
+            }
+        </div>
+    </div>
+
+    @if (showList) {
+        <div class="filter">
+            <input type="text" [(ngModel)]="searchLinks" placeholder="Filter links ...">
+        </div>
+        
+        <div class="edition-list">
+            <div *ngFor="let link of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: paginationService.editLinksCurrentPage}">
+                <a [class.active]="link.name === currentLink?.name" (click)="setLink(link)"> ▸ {{link.name}}</a>
+            </div>
+        </div>
+
+        <app-right-column>
+            <app-right-column-list [table]="flow.linkCategories" (entityId)="updateLinkCategoryId($event)" />
+        </app-right-column>
+        
+        <div class="pagination-row" *ngIf="flow.links.length > elementsPerPage">
+            <div id="pagination">
+              <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editLinksCurrentPage = $event"></pagination-controls>
+            </div>   
+        </div>
+    }
+    @if (showNew) {
+        <app-create-link (trigger)="triggerShowList()" />
+    }
+    @if (showEdit) {
+        <app-edit-link [link]="flow.link" />
+    }
+    
+    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.links.length"/>
+</div>

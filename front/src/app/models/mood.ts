@@ -1,6 +1,5 @@
 import { BaseResponse } from "./base-response";
 
-// Models.
 export interface MoodLight {
     businessId : number
     type : number
@@ -22,7 +21,6 @@ export interface MoodFull {
     extension: string
 }
 
-// Responses.
 export interface GetMoodsResponse extends BaseResponse {
     moods : MoodLight[]
 }

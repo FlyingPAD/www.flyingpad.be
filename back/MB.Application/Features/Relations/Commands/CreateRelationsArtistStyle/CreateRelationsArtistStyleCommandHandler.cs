@@ -1,5 +1,6 @@
 ﻿using MB.Application.Contracts.Persistence;
 using MB.Application.Contracts.Persistence.Common;
+using MB.Application.Models;
 using MB.Domain.Entities;
 using MediatR;
 

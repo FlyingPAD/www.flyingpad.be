@@ -1,5 +1,5 @@
 <div class="list">
-    <a [class.active]="currentEntityId === null" (click)="handleId(null)"> ▸ All Links</a>
+    <a [class.active]="currentEntityId === null" (click)="handleId(null)"> ▸ All Items</a>
     <div *ngFor="let item of table">
         <a [class.active]="currentEntityId === item.businessId" (click)="handleId(item.businessId)"> ▸ {{item.name}}</a>
     </div>

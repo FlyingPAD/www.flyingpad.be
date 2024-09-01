@@ -1,60 +1,58 @@
-import { Component, OnDestroy, inject } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ArtistsStateService } from '../../../services/artists.service';
 import { Subscription } from 'rxjs';
+import { StyleLight } from '../../../models/style';
+import { FlowService } from '../../../services/flow.service';
 
 @Component({
   selector: 'app-create-artist',
   templateUrl: './create-artist.component.html',
   styleUrls: ['./create-artist.component.scss']
 })
-export class CreateArtistComponent implements OnDestroy
-{
-  #artistsService = inject(ArtistsStateService)
+export class CreateArtistComponent implements OnInit, OnDestroy {
+  @Input() styles! : StyleLight[]
+  #flowService = inject(FlowService)
   #builder = inject(FormBuilder)
   #router = inject(Router)
   #toastr = inject(ToastrService)
 
-  flow = this.#artistsService.getAllStyles
-
   subscription = new Subscription()
+  formGroup! : FormGroup
 
-  formGroup: FormGroup = this.#builder.group({
-    name: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    styles: this.#builder.array(this.flow().map(style => this.#builder.group({
-      businessId: [style.businessId],
-      name: [style.name],
-      isChecked: [style.isChecked]
-    })))
-  })
-
-  get getStyles()
-  {
+  get getStyles() {
     return this.formGroup.get('styles') as FormArray
   }
 
-  onSubmit() : void
-  {
-    if (this.formGroup.valid) 
-    {
-      this.subscription = this.#artistsService.CreateArtist(this.formGroup.value).subscribe({
-        next : () => 
-        {
+  ngOnInit(): void {
+    this.formGroup = this.#builder.group({
+      name: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      description: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      styles: this.#builder.array(this.styles.map(style => this.#builder.group({
+        businessId: [style.businessId],
+        name: [style.name],
+        isChecked: [style.isChecked]
+      })))
+    })
+  }
+
+  ngOnDestroy() : void {
+    this.subscription.unsubscribe()
+  }
+
+  onSubmit() : void {
+    if (this.formGroup.valid) {
+      this.subscription = this.#flowService.CreateArtist(this.formGroup.value).subscribe({
+        next : () => {
           this.#toastr.success('Artist was successfully created.')
-          this.#router.navigateByUrl('/artists')
+          this.#router.navigateByUrl('/artists/edition')
         },
-        error : () => 
-        {
+        error : () => {
           this.#toastr.error('Error ...')
         }
       })
     }
-  }
-
-  ngOnDestroy() : void
-  {
-    this.subscription.unsubscribe()
   }
 }

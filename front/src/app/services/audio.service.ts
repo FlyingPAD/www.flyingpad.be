@@ -4,24 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AudioService {
-  public audioContext: AudioContext;
-  private gainNode: GainNode;
+  public audioContext: AudioContext
+  private gainNode: GainNode
 
-  constructor() 
-  {
-    this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-    this.gainNode = this.audioContext.createGain();
-    this.gainNode.connect(this.audioContext.destination);
-  }
-
-  playFrequency(frequency: number, durationInSeconds: number) 
-  {
-    const oscillator = this.audioContext.createOscillator();
-    oscillator.type = 'sine';
-    oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
-    oscillator.connect(this.gainNode);
-    oscillator.start();
-    oscillator.stop(this.audioContext.currentTime + durationInSeconds);
+  constructor() {
+    this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+    this.gainNode = this.audioContext.createGain()
+    this.gainNode.connect(this.audioContext.destination)
   }
 
   playFrequencyWithEnvelope(frequency: number, durationInSeconds: number, volume: number) {

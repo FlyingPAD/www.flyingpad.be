@@ -1,3 +1,5 @@
+import { StyleLight } from "./style"
+
 export interface MoodCreateForm {
     name : string
     description : string
@@ -11,6 +13,7 @@ export interface TagCategoryCreateForm {
 export interface TagCreateForm {
     name : string
     description : string
+    tagCategoryId : number
 }
 
 export interface ModelCreateForm {
@@ -29,6 +32,7 @@ export interface StyleCreateForm {
 export interface ArtistCreateForm {
     name : string
     description : string
+    styles : StyleLight[]
 }
 
 export interface MediaCreateForm {

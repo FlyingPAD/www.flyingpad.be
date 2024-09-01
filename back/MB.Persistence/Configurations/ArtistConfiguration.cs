@@ -8,11 +8,9 @@ public class ArtistConfiguration : IEntityTypeConfiguration<Artist>
 {
     public void Configure(EntityTypeBuilder<Artist> builder)
     {
-        builder.HasKey(entity => entity.EntityId);          // Primary Key
-
+        builder.HasKey(entity => entity.EntityId);
         builder.Property(entity => entity.EntityId)
-            .ValueGeneratedOnAdd();                         // Auto Increment
-
+            .ValueGeneratedOnAdd();
         builder.Property(entity => entity.Name)
             .IsRequired()
             .HasMaxLength(50);

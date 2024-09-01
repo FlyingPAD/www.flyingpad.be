@@ -1,17 +1,8 @@
-﻿namespace MB.Application.Features.Tags.Commands.CreateTag;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Tags.Commands.CreateTag;
 
 public class CreateTagCommandResponse : BaseResponse
 {
-    /// <summary>
-    /// Properties
-    /// </summary>
-    public CreateTagDto Tag { get; set; } = default!;
-
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    public CreateTagCommandResponse() : base()
-    {
-
-    }
+    public Guid BusinessId { get; set; }
 }

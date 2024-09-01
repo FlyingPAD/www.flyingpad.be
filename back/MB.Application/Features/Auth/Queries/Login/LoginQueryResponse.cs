@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Auth.Queries.Login;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Auth.Queries.Login;
 
 public class LoginQueryResponse(string? token) : BaseResponse()
 {

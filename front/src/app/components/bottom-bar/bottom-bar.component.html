@@ -73,6 +73,10 @@
         <span *ngIf="topButtonIsActive === false"><img src="../../../../assets/app_icons/arrow_up_no.png" /></span>
     }
     @if(moodsGalleryType === 'edition') {
-        <a>coucou</a>
+        <a (click)="handleShowDetails()"><img src="../../../assets/app_icons/icon_mood_001.png" /></a>
+    }
+    @if(moodsGalleryType === 'list-edition'){
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>  
+        <a routerLink="/dashboard"><img src="../../../assets/app_icons/icon_home_001.png" /></a>
     }
 </div>

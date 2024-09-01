@@ -16,10 +16,8 @@ public class GetTagsCheckBoxesByMoodQueryHandler(IMapper mapper, IMoodRepository
 
         var tags = await _tagRepository.GetTagsCheckBoxesByMood(moodId);
 
-        // Mapper les données des tags au DTO de la réponse
         var tagsDto = _mapper.Map<GetTagsCheckBoxesListDto[]>(tags);
 
-        // Construire la réponse
         var response = new GetTagsCheckBoxesByMoodQueryResponse
         {
             Success = true,

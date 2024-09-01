@@ -10,8 +10,6 @@ public class Mood : AuditableEntity
     public int Score { get; set; } = 0;
     public string Extension { get; set; } = string.Empty;
 
-    // Navigation Properties :
-
     public ICollection<RelationMoodArtist>? MoodArtists { get; set; }
     public ICollection<RelationMoodModel>? MoodModels { get; set; }
     public ICollection<RelationMoodFranchise>? MoodFranchises { get; set; }

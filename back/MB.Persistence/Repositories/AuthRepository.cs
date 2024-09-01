@@ -10,9 +10,6 @@ public class AuthRepository(Context context) : IAuthRepository
 {
     private readonly Context _context = context;
 
-    /// <summary>
-    /// Logs in a user with the specified email and password.
-    /// </summary>
     public async Task<User?> LoginAsync(string email, string password)
     {
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
@@ -25,9 +22,6 @@ public class AuthRepository(Context context) : IAuthRepository
         return null;
     }
 
-    /// <summary>
-    /// Registers a new user with the specified password.
-    /// </summary>
     public async Task<User> RegisterAsync(User user, string password)
     {
         if (await UserExists(user.Email))
@@ -44,17 +38,11 @@ public class AuthRepository(Context context) : IAuthRepository
         return user;
     }
 
-    /// <summary>
-    /// Checks if a user with the specified email exists.
-    /// </summary>
     public async Task<bool> UserExists(string email)
     {
         return await _context.Users.AnyAsync(u => u.Email == email);
     }
 
-    /// <summary>
-    /// Creates a password hash and salt for the specified password.
-    /// </summary>
     private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
     {
         using var hmac = new HMACSHA512();
@@ -62,9 +50,6 @@ public class AuthRepository(Context context) : IAuthRepository
         passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
     }
 
-    /// <summary>
-    /// Verifies the password hash against the stored hash and salt.
-    /// </summary>
     private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
     {
         using var hmac = new HMACSHA512(storedSalt);

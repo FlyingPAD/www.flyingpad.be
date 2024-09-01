@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { ArtistsStateService } from '../../../services/artists.service';
-import { StyleLight } from '../../../models/artist';
+import { StyleLight } from '../../../models/style';
 
 @Component({
   selector: 'app-update-style',

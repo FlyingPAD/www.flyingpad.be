@@ -1,5 +1,6 @@
 ﻿using MB.Application.Contracts.Persistence.Common;
 using MB.Application.Features.Links.Commands.DeleteLink;
+using MB.Application.Models;
 using MB.Domain.Entities;
 using MediatR;
 

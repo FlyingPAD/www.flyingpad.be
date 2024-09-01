@@ -1,57 +1,48 @@
-// ==============================================
-// - MoodBoard | Central Pages | Central Layout
-// ==============================================
+.menu-flex {
+    display: flex;
+    justify-content: center;
+    z-index: 15;
 
-#layout-central
-{
-    .menu-flex
-    {
-        display: flex;
-        justify-content: center;
-        z-index: 15;
+    a {
+        display: block;
+        width: 125px;
+        margin: 10px;
+        padding: 9px;
 
-        a
-        {
-            display: block;
-            width: 125px;
-            margin: 10px;
-            padding: 9px;
+        border: 1px solid #6b5240;
+        border-radius: 5px;
+        background-color: #6b5240;
 
-            border: 1px solid #6b5240;  
-            border-radius: 5px;
-            background-color: #6b5240;          
+        font-size: 14px;
+        text-align: center;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: #ffffff;
+    }
 
-            font-size: 14px;
-            text-align: center;
-            letter-spacing: 1px;
-            text-decoration: none;
-            color:#ffffff;
-        }
-        a:hover
-        {
-            background-color: rgb(255, 255, 255);
-            color:#6b5240;
-            transition-duration: 500ms;
-            cursor: pointer;
-        }
-        span
-        {
-            display: block;
-            width: 125px;
-            margin: 10px;
-            padding: 9px;
+    a:hover {
+        background-color: rgb(255, 255, 255);
+        color: #6b5240;
+        transition-duration: 500ms;
+        cursor: pointer;
+    }
 
-            border: 1px solid #6b5240;  
-            border-radius: 5px;
-            background-color: rgb(192, 192, 192);        
+    span {
+        display: block;
+        width: 125px;
+        margin: 10px;
+        padding: 9px;
 
-            font-size: 14px;
-            text-align: center;
-            letter-spacing: 1px;
-            text-decoration: none;
-            color: #666;
+        border: 1px solid #6b5240;
+        border-radius: 5px;
+        background-color: rgb(192, 192, 192);
 
-            cursor: not-allowed;
-        }
+        font-size: 14px;
+        text-align: center;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: #666;
+
+        cursor: not-allowed;
     }
 }

@@ -9,9 +9,6 @@ namespace MB.Persistence.Repositories;
 
 public class ArtistRepository(Context context) : BaseRepository<Artist>(context), IArtistRepository
 {
-    /// <summary>
-    /// Retrieves primary IDs by business IDs.
-    /// </summary>
     public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
     {
         return await _context.Artists
@@ -20,9 +17,6 @@ public class ArtistRepository(Context context) : BaseRepository<Artist>(context)
                              .ToListAsync();
     }
 
-    /// <summary>
-    /// Fetches artists associated with a specific mood.
-    /// </summary>
     public async Task<IEnumerable<Artist>> GetArtistsByMood(int? moodId)
     {
         return await _context.Artists
@@ -30,9 +24,6 @@ public class ArtistRepository(Context context) : BaseRepository<Artist>(context)
             .ToListAsync();
     }
 
-    /// <summary>
-    /// Fetches artists associated with a specific style.
-    /// </summary>
     public async Task<IEnumerable<Artist>> GetArtistsByStyle(int? styleId)
     {
         return await _context.Artists
@@ -40,14 +31,10 @@ public class ArtistRepository(Context context) : BaseRepository<Artist>(context)
             .ToListAsync();
     }
 
-    /// <summary>
-    /// Retrieves a paginated list of artists.
-    /// </summary>
     public async Task<PaginationCursor<Artist>> GetArtistsPage(int? styleId, int? startId, string abc, int pageSize)
     {
         IQueryable<Artist> query = _context.Artists;
 
-        // Filters
         if (styleId.HasValue)
         {
             query = query.Where(artist => artist.ArtistStyles != null && artist.ArtistStyles.Any(style => style.StyleId == styleId));
@@ -58,10 +45,8 @@ public class ArtistRepository(Context context) : BaseRepository<Artist>(context)
             query = query.Where(artist => EF.Functions.Like(artist.Name, $"%{abc}%"));
         }
 
-        // Order & fetch artists full list
         var orderedArtists = await query.OrderBy(artist => artist.Name).ToListAsync();
 
-        // Find start element index based on EntityId ( startId )
         int startIndex = 0;
         if (startId.HasValue)
         {
@@ -69,10 +54,8 @@ public class ArtistRepository(Context context) : BaseRepository<Artist>(context)
             startIndex = artistIndex >= 0 ? artistIndex : 0;
         }
 
-        // Pagination
         var page = orderedArtists.Skip(startIndex).Take(pageSize).ToList();
 
-        // Build response with NextId & PreviousId
         Guid? nextId = startIndex + pageSize < orderedArtists.Count ? orderedArtists[startIndex + pageSize].BusinessId : null;
         Guid? previousId = startIndex - pageSize >= 0 ? orderedArtists[Math.Max(0, startIndex - pageSize)].BusinessId : null;
 
@@ -88,9 +71,6 @@ public class ArtistRepository(Context context) : BaseRepository<Artist>(context)
         return response;
     }
 
-    /// <summary>
-    /// Retrieves artist checkboxes by mood.
-    /// </summary>
     public async Task<IEnumerable<GetArtistCheckBoxesByMoodQueryDto>> GetArtistsCheckBoxesByMood(int moodId)
     {
         var artists = await _context.Artists
@@ -106,9 +86,6 @@ public class ArtistRepository(Context context) : BaseRepository<Artist>(context)
         return artists;
     }
 
-    /// <summary>
-    /// Deletes all styles associated with a specific artist.
-    /// </summary>
     public async System.Threading.Tasks.Task DeleteStyles(int artistId)
     {
         var artistStyles = await _context.RArtistStyle

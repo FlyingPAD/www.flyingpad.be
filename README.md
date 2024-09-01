@@ -32,11 +32,6 @@ I wanted to write my own CSS in this one. I think it's a great way to exercise a
 - `02_global_variables.scss`: Contains global variables for the entire project (planned for future theming)
 - `03_global_settings.scss`: Basic global CSS configurations (html, body, etc.)
 
-#### Additional Styles in `./src/design/central`:
-
-- `bottom-bar-larger.scss`: Used in "circle-of-fifths", "chord-wheel", "trainer-notes"
-- `scripts.scss`: Centralized style definitions for various scripts
-
 ### Installed Libraries:
 
 - `jwt-decode`: `npm install jwt-decode`

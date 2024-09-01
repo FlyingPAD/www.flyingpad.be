@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 
 public class GetTagsCheckBoxesByMoodQueryResponse : BaseResponse
 {

@@ -8,9 +8,6 @@ namespace MB.Persistence.Repositories;
 
 public class ModelRepository(Context context) : BaseRepository<Model>(context), IModelRepository
 {
-    /// <summary>
-    /// Gets the primary IDs by business IDs.
-    /// </summary>
     public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
     {
         return await _context.Models
@@ -19,9 +16,6 @@ public class ModelRepository(Context context) : BaseRepository<Model>(context), 
                              .ToListAsync();
     }
 
-    /// <summary>
-    /// Gets models by mood ID.
-    /// </summary>
     public async Task<IEnumerable<Model>> GetModelsByMood(int? moodId)
     {
         return await _context.Models
@@ -30,9 +24,6 @@ public class ModelRepository(Context context) : BaseRepository<Model>(context), 
                             .ToListAsync();
     }
 
-    /// <summary>
-    /// Gets models by franchise ID.
-    /// </summary>
     public async Task<IEnumerable<Model>> GetModelsByFranchise(int? franchiseId)
     {
         return await _context.Models
@@ -41,9 +32,6 @@ public class ModelRepository(Context context) : BaseRepository<Model>(context), 
                             .ToListAsync();
     }
 
-    /// <summary>
-    /// Gets model checkboxes by mood ID.
-    /// </summary>
     public async Task<IEnumerable<GetModelCheckBoxesByMoodQueryDto>> GetModelsCheckBoxesByMood(int moodId)
     {
         var models = await _context.Models
@@ -59,9 +47,6 @@ public class ModelRepository(Context context) : BaseRepository<Model>(context), 
         return models;
     }
 
-    /// <summary>
-    /// Updates the set of franchises associated with a specific Model.
-    /// </summary>
     public async System.Threading.Tasks.Task UpdateFranchises(int modelId, ICollection<int> franchiseIds)
     {
         var model = await _context.Models
@@ -83,6 +68,25 @@ public class ModelRepository(Context context) : BaseRepository<Model>(context), 
             if (franchiseToRemove != null)
                 _context.RFranchiseModel.Remove(franchiseToRemove);
         }
+
+        await _context.SaveChangesAsync();
+    }
+
+    public async System.Threading.Tasks.Task DeleteModelRelations(int modelId)
+    {
+        var moodModelRelations = await _context.RMoodModel
+                                .Where(relation => relation.ModelId == modelId)
+                                .ToListAsync();
+        var modelFranchiseRelations = await _context.RFranchiseModel
+                                .Where(relation => relation.ModelId == modelId)
+                                .ToListAsync();
+        var modelLinksRelations = await _context.RLinkModel
+                                .Where(relation => relation.ModelId == modelId)
+                                .ToListAsync();
+
+        _context.RMoodModel.RemoveRange(moodModelRelations);
+        _context.RFranchiseModel.RemoveRange(modelFranchiseRelations);
+        _context.RLinkModel.RemoveRange(modelLinksRelations);
 
         await _context.SaveChangesAsync();
     }

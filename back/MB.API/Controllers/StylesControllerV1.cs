@@ -1,11 +1,11 @@
-﻿using MB.Application;
-using MB.Application.Features.Styles.Commands.CreateStyle;
+﻿using MB.Application.Features.Styles.Commands.CreateStyle;
 using MB.Application.Features.Styles.Commands.DeleteStyle;
 using MB.Application.Features.Styles.Commands.UpdateStyle;
 using MB.Application.Features.Styles.Queries.CountStyles;
 using MB.Application.Features.Styles.Queries.GetStyleById;
 using MB.Application.Features.Styles.Queries.GetStylesCheck;
 using MB.Application.Features.Styles.Queries.GetStylesList;
+using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

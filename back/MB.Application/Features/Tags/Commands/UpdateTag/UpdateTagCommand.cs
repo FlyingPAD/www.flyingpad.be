@@ -1,9 +1,12 @@
-﻿using MediatR;
+﻿using MB.Application.Models;
+using MediatR;
 
 namespace MB.Application.Features.Tags.Commands.UpdateTag;
 
-public class UpdateTagCommand : IRequest<UpdateTagCommandResponse>
+public class UpdateTagCommand : IRequest<BaseResponse>
 {
-    public Guid Id { get; set; }
+    public Guid TagId { get; set; }
     public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public Guid TagCategoryId { get; set; }
 }

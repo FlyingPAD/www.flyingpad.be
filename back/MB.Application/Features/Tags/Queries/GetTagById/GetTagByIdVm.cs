@@ -9,4 +9,5 @@ public class GetTagByIdVm
     public string? CreatedBy { get; set; } = string.Empty;
     public DateTime Modified { get; set; } = DateTime.MinValue;
     public string? ModifiedBy { get; set; } = string.Empty;
+    public Guid TagCategoryId { get; set; } = Guid.Empty;
 }

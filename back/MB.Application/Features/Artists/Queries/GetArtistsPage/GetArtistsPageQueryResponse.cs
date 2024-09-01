@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Artists.Queries.GetArtistsPage;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Artists.Queries.GetArtistsPage;
 
 public class GetArtistsPageQueryResponse : BaseResponse
 {

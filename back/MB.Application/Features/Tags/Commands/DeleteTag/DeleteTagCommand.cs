@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using MB.Application.Models;
+using MediatR;
 
 namespace MB.Application.Features.Tags.Commands.DeleteTag;
 
-public class DeleteTagCommand : IRequest<DeleteTagCommandResponse>
+public class DeleteTagCommand : IRequest<BaseResponse>
 {
-    public Guid Id { get; set; }
+    public Guid TagId { get; set; }
 }

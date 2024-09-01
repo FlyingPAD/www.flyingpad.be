@@ -4,14 +4,14 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { RelationsMoodArtistForm } from '../../../models/relations';
 import { Router } from '@angular/router';
 import { FlowService } from '../../../services/flow.service';
+import { ArtistCheckBox } from '../../../models/artist';
 
 @Component({
   selector: 'app-multi-tag-artists',
   templateUrl: './multi-tag-artists.component.html',
   styleUrl: './multi-tag-artists.component.scss'
 })
-export class MultiTagArtistsComponent implements OnDestroy
-{
+export class MultiTagArtistsComponent implements OnDestroy {
   #flowService = inject(FlowService)
   multiTagService = inject(MultiTagService)
   router = inject(Router)
@@ -25,10 +25,10 @@ export class MultiTagArtistsComponent implements OnDestroy
     this.multiTagService.reset()
   }
 
-  onSubmit()
-  {
-    let form : RelationsMoodArtistForm = new RelationsMoodArtistForm()
+  onSubmit() {
+    let form : RelationsMoodArtistForm = { moodId : 0, artistIds : [] }
     let idListArtist : number[] = []
+
     this.artists()?.forEach(artist => {
       if (artist.isChecked)
       {
@@ -41,12 +41,11 @@ export class MultiTagArtistsComponent implements OnDestroy
       form.moodId = mood      
       this.#flowService.InsertRMA(form).subscribe()
     })
+
     this.router.navigateByUrl('/moods')
   }
 
-    // Filter artists based on search input
-    filterArtists() 
-    {
-      return this.artists()?.filter(m => m.name.toLowerCase().includes(this.searchArtist.toLowerCase()))
-    }
+  filterArtists(): ArtistCheckBox[] | undefined {
+    return this.artists()?.filter(m => m.name.toLowerCase().includes(this.searchArtist.toLowerCase()))
+  }
 }

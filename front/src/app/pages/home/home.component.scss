@@ -1,0 +1,25 @@
+.button-big
+{
+    display : block;
+
+    width : 215px;
+
+    margin : auto;
+    margin-top : 25px; margin-bottom: 25px;
+    padding : 20px; 
+    
+    background-color : var(--colorMain);  
+    border : 2px solid var(--colorMain);  
+    border-radius : 8px;
+
+    color : var(--colorWhite);  
+    letter-spacing : 1px;
+    text-align : center;
+    text-decoration : none;
+}
+.button-big:hover
+{
+    background-color : rgba(255, 255, 255, 0.5);  
+    color : var(--colorMain); 
+    transition-duration : 500ms;
+}

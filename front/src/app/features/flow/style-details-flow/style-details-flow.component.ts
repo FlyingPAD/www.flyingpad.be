@@ -3,7 +3,7 @@ import { StyleUpdateForm } from '../../../models/forms-update';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { FlowService } from '../../../services/flow.service';
-import { StyleFull } from '../../../models/artist';
+import { StyleFull } from '../../../models/style';
 
 @Component({
   selector: 'app-style-details-flow',

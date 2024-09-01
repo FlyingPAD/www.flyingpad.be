@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Contracts.Persistence.Common;
+using MB.Application.Models;
 using MB.Domain.Entities;
 using MediatR;
 
@@ -19,7 +20,7 @@ public class GetModelByIdQueryHandler(IMapper mapper, IBaseRepository<Model> mod
             return new GetModelByIdQueryResponse 
             { 
                 Success = false,
-                StatusCode = ResponseStatus.NotFound,
+                StatusCode = ResponseStatusEnumeration.NotFound,
                 Message = "Model was not found." 
             };
         }
@@ -29,7 +30,7 @@ public class GetModelByIdQueryHandler(IMapper mapper, IBaseRepository<Model> mod
         return new GetModelByIdQueryResponse
         {
             Success = true,
-            StatusCode = ResponseStatus.Success,
+            StatusCode = ResponseStatusEnumeration.Success,
             Message = "Model successfully requested.",
             Model = modelDto
         };

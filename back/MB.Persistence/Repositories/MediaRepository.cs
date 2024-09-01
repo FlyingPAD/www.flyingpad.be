@@ -7,9 +7,6 @@ namespace MB.Persistence.Repositories;
 
 public class MediaRepository(Context context) : BaseRepository<Media>(context), IMediaRepository
 {
-    /// <summary>
-    /// Gets the primary IDs by business IDs.
-    /// </summary>
     public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
     {
         return await _context.Medias

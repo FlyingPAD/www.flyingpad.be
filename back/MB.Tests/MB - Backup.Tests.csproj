@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\LinkCategories\Commands\" />
+    <Folder Include="Features\Links\Commands\" />
+    <Folder Include="Features\Medias\Commands\" />
+    <Folder Include="Features\Models\Commands\" />
+    <Folder Include="Features\Moods\Commands\" />
+    <Folder Include="Features\Styles\Commands\" />
+    <Folder Include="Features\TagCategories\Commands\" />
+    <Folder Include="Features\Tags\Commands\" />
+    <Folder Include="Features\TaskCategories\Commands\" />
+    <Folder Include="Features\Tasks\Commands\" />
+    <Folder Include="Features\Users\Commands\" />
+  </ItemGroup>
+
+</Project>

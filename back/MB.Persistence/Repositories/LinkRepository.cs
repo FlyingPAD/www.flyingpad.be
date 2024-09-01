@@ -8,9 +8,6 @@ namespace MB.Persistence.Repositories;
 
 public class LinkRepository(Context context) : BaseRepository<Link>(context), ILinkRepository
 {
-    /// <summary>
-    /// Get Links by Category
-    /// </summary>
     public async Task<List<Link>> GetLinksListByCategory(int? linkCategoryId)
     {
         List<Link> linksByCategory;
@@ -25,9 +22,6 @@ public class LinkRepository(Context context) : BaseRepository<Link>(context), IL
         return linksByCategory;
     }
 
-    /// <summary>
-    /// Get Links containing a specified string.
-    /// </summary>
     public async Task<List<Link>> GetLinksContainingAbc(string? abc)
     {
         List<Link> linksContainingAbc;
@@ -40,18 +34,12 @@ public class LinkRepository(Context context) : BaseRepository<Link>(context), IL
         }
         else
         {
-            // if 'abc' is null
             linksContainingAbc = [];
         }
 
         return linksContainingAbc;
     }
 
-    /// <summary>
-    /// Get Page of Links Containing ' ABC '
-    /// </summary>
-    /// <param name="abc"></param>
-    /// <returns>Links List</returns>
     public async Task<PaginationCursor<Link>> GetPageLinksContainingAbc(string abc, Guid startId, int pageSize, bool isFirstItem)
     {
         IQueryable<Link> query = _context.Links
@@ -80,9 +68,6 @@ public class LinkRepository(Context context) : BaseRepository<Link>(context), IL
         return response;
     }
 
-    /// <summary>
-    /// Updates the set of categories associated with a specific link.
-    /// </summary>
     public async System.Threading.Tasks.Task UpdateCategories(int linkId, ICollection<int> categoryIds)
     {
         var link = await _context.Links
