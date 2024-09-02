@@ -18,15 +18,13 @@ export class FranchisesEditionService
 
   #selectedFranchiseId = new BehaviorSubject<number | null>(null)
   selectedFranchiseId$ = this.#selectedFranchiseId.asObservable()
-  updateSelectedFranchise(franchiseId : number | null) 
-  {
+  updateSelectedFranchise(franchiseId : number | null) {
     this.#selectedFranchiseId.next(franchiseId)
   }
 
   #selectedMediaId = new BehaviorSubject<number | null>(null)
   selectedMediaId$ = this.#selectedMediaId.asObservable()
-  updateSelectedMedia(mediaId : number | null) 
-  {
+  updateSelectedMedia(mediaId : number | null) {
     this.#selectedMediaId.next(mediaId)
   }
 
@@ -59,7 +57,6 @@ export class FranchisesEditionService
     )
   }
 
-  // Flow
   franchisesEditionFlow$ = combineLatest([
     this.selectedMediaId$,
     this.medias$,
@@ -89,10 +86,8 @@ export class FranchisesEditionService
       )
     })
   )
-  // Signal
   franchisesEditionFlow = toSignal(this.franchisesEditionFlow$, { initialValue: { franchises: [], medias: [], mediaDetails: null, franchise: null } })
 
-  // Create Franchise
   public CreateFranchise( form : FranchiseCreateForm )
   {
     return this.#http.post<CreateFranchiseResponse>(`${this.#url}Franchises/Create`, form).pipe(
@@ -100,13 +95,11 @@ export class FranchisesEditionService
     )
   }
 
-  // Update Franchise
   public UpdateFranchise( form : FranchiseCreateForm )
   {
     return this.#http.put<BaseResponse>(`${this.#url}Franchises/Update`, form)
   }
 
-  // Delete Franchise
   public DeleteFranchise( franchiseId : number )
   {
     return this.#http.delete<BaseResponse>(`${this.#url}Franchises/Delete/` + franchiseId).pipe(

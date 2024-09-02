@@ -5,14 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class HeaderService 
 {
-  // Properties :
-
   headerMobileMenuActive : boolean = false
 
-  // Methods :
-
-  headerMobileMenuTrigger() : void
-  {
+  headerMobileMenuTrigger(): void {
     this.headerMobileMenuActive = !this.headerMobileMenuActive
   }
 }

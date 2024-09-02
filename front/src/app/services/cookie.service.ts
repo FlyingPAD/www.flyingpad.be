@@ -8,10 +8,7 @@ export class CustomCookieService
 {
   #cookieService = inject(CookieService)
 
-  // Store token in a secured cookie
-
-  storeToken( token: string ) : void 
-  {
+  storeToken( token: string ): void {
     this.#cookieService.set('authToken', token, 
     { 
       secure: true, 
@@ -20,17 +17,11 @@ export class CustomCookieService
     })
   }
 
-  // Retrieve Token from cookie
-
-  retrieveToken(): string | null 
-  {
+  retrieveToken(): string | null {
     return this.#cookieService.get('authToken')
   }
 
-  // Delete token from cookie
-
-  removeToken() : void
-  {
+  removeToken(): void {
     this.#cookieService.delete('authToken', '/', undefined, true, 'Strict')
   }
 }

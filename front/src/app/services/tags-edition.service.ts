@@ -92,10 +92,8 @@ export class TagsEditionService
       )
     })
   )
-  // Signal
   tagsEditionFlow = toSignal(this.tagsEditionFlow$, { initialValue: { tags: [], tagCategories: [], categoryDetails: null, tag: null } })
 
-  // Create Tag
   public CreateTag( form : TagCreateForm )
   {
     return this.#http.post<CreateTagResponse>(`${this.#url}Tags/Create`, form).pipe(
@@ -103,13 +101,11 @@ export class TagsEditionService
     )
   }
 
-  // Update Tag
   public UpdateTag( form : TagUpdateForm )
   {
     return this.#http.put<BaseResponse>(`${this.#url}Tags/Update`, form)
   }
 
-  // Delete Tag
   public DeleteTag( tagId : number )
   {
     return this.#http.delete<BaseResponse>(`${this.#url}Tags/Delete/` + tagId).pipe(
