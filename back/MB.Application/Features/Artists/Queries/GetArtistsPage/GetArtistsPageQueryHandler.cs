@@ -14,18 +14,6 @@ public class GetArtistsPageQueryHandler(IMapper mapper, IArtistRepository artist
 
     public async Task<GetArtistsPageQueryResponse> Handle(GetArtistsPageQuery request, CancellationToken cancellationToken)
     {
-        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-
-        if (!validationResult.IsValid)
-        {
-            return new GetArtistsPageQueryResponse
-            {
-                Success = false,
-                Message = "Validation failed",
-                ValidationErrors = validationResult.Errors.Select(e => e.ErrorMessage).ToList()
-            };
-        }
-
         int? styleId = await _styleRepository.GetPrimaryIdByBusinessIdAsync(request.StyleId);
         int? startId = await _artistRepository.GetPrimaryIdByBusinessIdAsync(request.StartId);
 
