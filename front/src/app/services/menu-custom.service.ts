@@ -7,18 +7,15 @@ export class MenuCustomService
 {
   menuCustomOn : boolean = false
   
-  triggerMenuCustom() : void
-  {
+  triggerMenuCustom(): void {
     this.menuCustomOn = !this.menuCustomOn
   }
 
-  MenuCustomOn() : void 
-  {
+  MenuCustomOn(): void {
     this.menuCustomOn = true
   }
 
-  MenuCustomOff() : void 
-  {
+  MenuCustomOff(): void {
     this.menuCustomOn = false
   }
 }

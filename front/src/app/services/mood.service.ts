@@ -22,11 +22,9 @@ export class MoodStateService
   #selectedTagId = new BehaviorSubject<number | null>(null)
   updateSelectedTagId(TagId : number | null) { this.#selectedTagId.next(TagId) }
 
-
   #selectedArtistId = new BehaviorSubject<number | null>(null)
   updateSelectedArtistId( artistId : number | null ) : void { this.#selectedArtistId.next(artistId) }
 
-  // Insert new Image
   public Insert(form : ImageForm) : Observable<number> 
   {
     return this.#http.post<CreateMoodImageResponse>(`${this.#url}Moods/CreateMoodImage`, form).pipe(
@@ -34,5 +32,4 @@ export class MoodStateService
       tap(businessId => this.updateSelectedMoodId(businessId))
     )
   }
-
 }

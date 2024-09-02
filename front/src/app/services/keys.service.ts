@@ -10,13 +10,10 @@ import { Scale } from '../models/music-tools/scale';
 export class KeysService 
 {
   // Référence ISO 440 Hz
-
   frequencyREF : number = 440    
   
-  // Pour la numérotation des notes, je me suis basé sur la convention latine ( le premier Do = Do 1 )
-  
-  notesREF :     Note[] = 
-  [
+  // Pour la numérotation des notes, je me suis basé sur la convention latine ( le premier Do = Do 1 )  
+  notesREF :     Note[] = [
     { id :  1, octave : 0, name : 'A',  enharmony : '',   nameFr : 'La',   enharmonyFr : '',     frequency: 27.5,    alteration : false, pressed : false, degree : 'vi',      degreeName : 'Sub-Mediant',  degreeNameFr : 'Sus-Dominante' },
     { id :  2, octave : 0, name : 'A#', enharmony : 'Bb', nameFr : 'La#',  enharmonyFr : 'Si♭',  frequency: 29.14,   alteration : true,  pressed : false, degree : '',        degreeName : '',             degreeNameFr : '' },
     { id :  3, octave : 0, name : 'B',  enharmony : 'Cb', nameFr : 'Si',   enharmonyFr : 'Do♭',  frequency: 30.87,   alteration : false, pressed : false, degree : 'vii(b5)', degreeName : 'Leading Tone', degreeNameFr : 'Sensible' },
@@ -107,13 +104,11 @@ export class KeysService
     { id : 88, octave : 8, name : 'C',  enharmony : '',   nameFr : 'Do',   enharmonyFr : '',     frequency: 4186.01, alteration : false, pressed : false, degree : 'I',       degreeName : 'Tonic',        degreeNameFr : 'Tonique' }
   ] 
 
-  chordsREF :    Chord[] = 
-  [
+  chordsREF :    Chord[] = [
     { id : 1, name : 'C Major', intervals : [], notes : [] }
   ]
 
-  KeysREF :      Key[] = 
-  [
+  KeysREF :      Key[] = [
     { id :  1, name : 'C',  enharmony : '',    nameFr : 'Do',    enharmonyFr : '',      scales : [new Scale()] },
     { id :  2, name : 'G',  enharmony : '',    nameFr : 'Sol',   enharmonyFr : '',      scales : [] },
     { id :  3, name : 'D',  enharmony : '',    nameFr : 'Ré',    enharmonyFr : '',      scales : [] },
