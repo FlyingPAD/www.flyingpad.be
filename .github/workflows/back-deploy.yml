@@ -33,25 +33,9 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore ./back/MB.API/MB.API.csproj
 
-      # Run MB.API tests
-      - name: Run MB.API tests
-        run: dotnet test ./back/MB.API.Test/MB.API.Test.csproj
-
-      # Run MB.Application tests
-      - name: Run MB.Application tests
-        run: dotnet test ./back/MB.Application.Test/MB.Application.Test.csproj
-
-      # Run MB.Domain tests
-      - name: Run MB.Domain tests
-        run: dotnet test ./back/MB.Domain.Test/MB.Domain.Test.csproj
-
-      # Run MB.Infrastructure tests
-      - name: Run MB.Infrastructure tests
-        run: dotnet test ./back/MB.Infrastructure.Test/MB.Infrastructure.Test.csproj
-
-      # Run MB.Persistence tests
-      - name: Run MB.Persistence tests
-        run: dotnet test ./back/MB.Persistence.Test/MB.Persistence.Test.csproj
+      # Run MB.Tests
+      - name: Run MB.Tests
+        run: dotnet test ./back/MB.Tests/MB.Tests.csproj
 
       # Publish .NET project
       - name: Publish .NET project
