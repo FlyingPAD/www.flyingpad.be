@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MB.Application.Contracts.Persistence;
+using MB.Application.Interfaces.Persistence;
 
 namespace MB.Application.Features.Tasks.Commands.CreateTask;
 

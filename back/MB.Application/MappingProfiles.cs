@@ -7,7 +7,6 @@ using MB.Application.Features.Artists.Queries.GetArtistDetails;
 using MB.Application.Features.Artists.Queries.GetArtistsByMood;
 using MB.Application.Features.Artists.Queries.GetArtistsByStyle;
 using MB.Application.Features.Artists.Queries.GetArtistsPage;
-using MB.Application.Features.Franchises.Commands.CreateFranchise;
 using MB.Application.Features.Franchises.Commands.DeleteFranchise;
 using MB.Application.Features.Franchises.Commands.UpdateFranchise;
 using MB.Application.Features.Franchises.Queries.GetFranchiseById;
@@ -16,12 +15,10 @@ using MB.Application.Features.Franchises.Queries.GetFranchisesByModel;
 using MB.Application.Features.Franchises.Queries.GetFranchisesByMood;
 using MB.Application.Features.Franchises.Queries.GetFranchisesList;
 using MB.Application.Features.Images.Queries;
-using MB.Application.Features.LinkCategories.Commands.CreateLinkCategory;
 using MB.Application.Features.LinkCategories.Commands.DeleteLinkCategory;
 using MB.Application.Features.LinkCategories.Commands.UpdateLinkCategory;
 using MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesList;
 using MB.Application.Features.LinkCategories.Queries.GetLinkCategoryById;
-using MB.Application.Features.Links.Commands.CreateLink;
 using MB.Application.Features.Links.Commands.DeleteLink;
 using MB.Application.Features.Links.Commands.UpdateLink;
 using MB.Application.Features.Links.Queries.GetLinkById;
@@ -29,7 +26,6 @@ using MB.Application.Features.Links.Queries.GetLinksContainingAbc;
 using MB.Application.Features.Links.Queries.GetLinksList;
 using MB.Application.Features.Links.Queries.GetLinksListByCategory;
 using MB.Application.Features.Links.Queries.GetPageLinksContainingAbc;
-using MB.Application.Features.Medias.Commands.CreateMedia;
 using MB.Application.Features.Medias.Commands.DeleteMedia;
 using MB.Application.Features.Medias.Commands.UpdateMedia;
 using MB.Application.Features.Medias.Queries.GetMediaById;
@@ -53,12 +49,10 @@ using MB.Application.Features.Moods.Queries.GetMoodsByModel;
 using MB.Application.Features.Moods.Queries.GetMoodsByTag;
 using MB.Application.Features.Moods.Queries.GetMoodsList;
 using MB.Application.Features.Moods.Queries.GetRandomMoodQuery;
-using MB.Application.Features.Styles.Commands.CreateStyle;
 using MB.Application.Features.Styles.Commands.DeleteStyle;
 using MB.Application.Features.Styles.Commands.UpdateStyle;
 using MB.Application.Features.Styles.Queries.GetStyleById;
 using MB.Application.Features.Styles.Queries.GetStylesList;
-using MB.Application.Features.TagCategories.Commands.CreateTagCategory;
 using MB.Application.Features.TagCategories.Commands.DeleteTagCategory;
 using MB.Application.Features.TagCategories.Commands.UpdateTagCategory;
 using MB.Application.Features.TagCategories.Queries.GetTagCategoriesList;
@@ -78,7 +72,6 @@ using MB.Application.Features.Tasks.Commands.DeleteTask;
 using MB.Application.Features.Tasks.Commands.UpdateTask;
 using MB.Application.Features.Tasks.Queries.GetTaskDetails;
 using MB.Application.Features.Tasks.Queries.GetTasksList;
-using MB.Application.Features.Users.Commands.CreateUser;
 using MB.Application.Features.Users.Commands.DeleteUser;
 using MB.Application.Features.Users.Commands.UpdateUser;
 using MB.Application.Features.Users.Queries.GetUserById;
@@ -106,12 +99,10 @@ public class MappingProfiles : Profile
         // Styles.
         CreateMap<Style, StyleListVm>().ReverseMap();
         CreateMap<Style, GetStyleByIdVm>().ReverseMap();
-        CreateMap<Style, CreateStyleDto>().ReverseMap();
         CreateMap<Style, UpdateStyleCommand>().ReverseMap();
         CreateMap<Style, DeleteStyleCommand>().ReverseMap();
 
         // Franchises.
-        CreateMap<Franchise, CreateFranchiseDto>().ReverseMap();
         CreateMap<Franchise, UpdateFranchiseCommand>().ReverseMap();
         CreateMap<Franchise, UpdateFranchiseDto>().ReverseMap();
         CreateMap<Franchise, DeleteFranchiseCommand>().ReverseMap();
@@ -125,7 +116,6 @@ public class MappingProfiles : Profile
         // Medias.
         CreateMap<Media, MediaListVm>().ReverseMap();
         CreateMap<Media, GetMediaByIdVm>().ReverseMap();
-        CreateMap<Media, CreateMediaDto>().ReverseMap();
         CreateMap<Media, UpdateMediaCommand>().ReverseMap();
         CreateMap<Media, UpdateMediaDto>().ReverseMap();
         CreateMap<Media, DeleteMediaCommand>().ReverseMap();
@@ -134,7 +124,6 @@ public class MappingProfiles : Profile
         // Links.
         CreateMap<Link, LinkListVm>().ReverseMap();
         CreateMap<Link, GetLinkByIdVm>().ReverseMap();
-        CreateMap<Link, CreateLinkDto>().ReverseMap();
         CreateMap<Link, UpdateLinkCommand>().ReverseMap();
         CreateMap<Link, DeleteLinkCommand>().ReverseMap();
         CreateMap<Link, LinksListByCategoryVm>().ReverseMap();
@@ -144,7 +133,6 @@ public class MappingProfiles : Profile
         // Link Categories.
         CreateMap<LinkCategory, LinkCategoryListVm>().ReverseMap();
         CreateMap<LinkCategory, GetLinkCategoryByIdVm>().ReverseMap();
-        CreateMap<LinkCategory, CreateLinkCategoryDto>().ReverseMap();
         CreateMap<LinkCategory, UpdateLinkCategoryCommand>().ReverseMap();
         CreateMap<LinkCategory, UpdateLinkCategoryDto>().ReverseMap();
         CreateMap<LinkCategory, DeleteLinkCategoryCommand>().ReverseMap();
@@ -196,7 +184,6 @@ public class MappingProfiles : Profile
         // Tag Categories.
         CreateMap<TagCategory, DeleteTagCategoryCommand>().ReverseMap();
         CreateMap<TagCategory, UpdateTagCategoryCommand>().ReverseMap();
-        CreateMap<TagCategory, CreateTagCategoryDto>().ReverseMap();
         CreateMap<TagCategory, TagCategoryListVm>().ReverseMap();
         CreateMap<TagCategory, GetTagCategoryByIdVm>().ReverseMap();
         CreateMap<TagCategory, UpdateTagCategoryDto>().ReverseMap();
@@ -217,7 +204,6 @@ public class MappingProfiles : Profile
         // Users.
         CreateMap<User, UserListVm>().ReverseMap();
         CreateMap<User, GetUserByIdVm>().ReverseMap();
-        CreateMap<User, CreateUserDto>().ReverseMap();
         CreateMap<User, UpdateUserCommand>().ReverseMap();
         CreateMap<User, UpdateUserDto>().ReverseMap();
         CreateMap<User, DeleteUserCommand>().ReverseMap();

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MB.Application.Contracts.Persistence;
+using MB.Application.Interfaces.Persistence;
 using MediatR;
 
 namespace MB.Application.Features.Artists.Queries.GetArtistsByStyle;

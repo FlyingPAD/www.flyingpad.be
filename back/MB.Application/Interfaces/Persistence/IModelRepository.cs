@@ -1,8 +1,8 @@
-﻿using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Features.Models.Queries.GetModelCheckBoxesByMood;
+﻿using MB.Application.Features.Models.Queries.GetModelCheckBoxesByMood;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 
-namespace MB.Application.Contracts.Persistence;
+namespace MB.Application.Interfaces.Persistence;
 
 public interface IModelRepository : IBaseRepository<Model>
 {

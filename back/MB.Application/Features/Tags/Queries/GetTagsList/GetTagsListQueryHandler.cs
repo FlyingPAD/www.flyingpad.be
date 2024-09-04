@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
@@ -12,27 +12,15 @@ public class GetTagsListQueryHandler(IBaseRepository<Tag> tagRepository, IMapper
 
     public async Task<GetTagsListQueryResponse> Handle(GetTagsListQuery request, CancellationToken cancellationToken)
     {
-        try
-        {
-            var tags = await _tagRepository.GetAllAsync(x => x.Name);
-            var response = new GetTagsListQueryResponse
-            {
-                Success = true,
-                Message = "Here are the Tags !",
-                Tags = _mapper.Map<List<TagListVm>>(tags)
-            };
+        var tags = await _tagRepository.GetAllAsync(x => x.Name);
 
-            return response;
-        }
-        catch (Exception ex)
+        var response = new GetTagsListQueryResponse
         {
-            var response = new GetTagsListQueryResponse
-            {
-                Success = false,
-                ValidationErrors = [$"Une erreur s'est produite ( {ex} )."]
-            };
+            Success = true,
+            Message = "Here are the Tags !",
+            Tags = _mapper.Map<List<TagListVm>>(tags)
+        };
 
-            return response;
-        }
+        return response;
     }
 }

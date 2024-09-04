@@ -4,5 +4,5 @@ namespace MB.Application.Features.Links.Commands.CreateLink;
 
 public class CreateLinkCommandResponse : BaseResponse
 {
-    public CreateLinkDto Link { get; set; } = default!;
+    public Guid LinkId { get; set; }
 }

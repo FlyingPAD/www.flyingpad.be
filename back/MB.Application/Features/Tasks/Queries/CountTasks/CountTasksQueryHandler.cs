@@ -1,4 +1,4 @@
-﻿using MB.Application.Contracts.Persistence.Common;
+﻿using MB.Application.Interfaces.Persistence.Common;
 using MediatR;
 
 namespace MB.Application.Features.Tasks.Queries.CountTasks;

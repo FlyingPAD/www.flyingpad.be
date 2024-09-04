@@ -1,5 +1,5 @@
-﻿using MB.Application.Contracts.Persistence;
-using MB.Application.Features.Models.Queries.GetModelCheckBoxesByMood;
+﻿using MB.Application.Features.Models.Queries.GetModelCheckBoxesByMood;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;

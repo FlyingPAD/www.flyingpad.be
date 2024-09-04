@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Application.Models;
 using MB.Domain.Entities;
 using MediatR;
@@ -20,7 +20,6 @@ public class UpdateModelCommandHandler(IMapper mapper, IBaseRepository<Model> mo
             return new BaseResponse 
             { 
                 Success = false, 
-                StatusCode = ResponseStatusEnumeration.NotFound, 
                 Message = "Model was not found." 
             };
         }
@@ -32,7 +31,6 @@ public class UpdateModelCommandHandler(IMapper mapper, IBaseRepository<Model> mo
         return new BaseResponse
         {
             Success = true,
-            StatusCode = ResponseStatusEnumeration.Success,
             Message = "Model successfully updated."
         };
     }

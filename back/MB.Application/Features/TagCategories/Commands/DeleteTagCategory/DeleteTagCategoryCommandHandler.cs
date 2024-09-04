@@ -1,56 +1,24 @@
-﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Features.TagCategories.Commands.DeleteTagCategory;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Task.Commands.DeleteTask;
+namespace MB.Application.Features.TagCategories.Commands.DeleteTagCategory;
 
-public class DeleteTagCategoryCommandHandler : IRequestHandler<DeleteTagCategoryCommand, DeleteTagCategoryCommandResponse>
+public class DeleteTagCategoryCommandHandler(IBaseRepository<TagCategory> tagCategoryRepository) : IRequestHandler<DeleteTagCategoryCommand, DeleteTagCategoryCommandResponse>
 {
-    private readonly IMapper _mapper;
-    private readonly IBaseRepository<TagCategory> _tagCategoryRepository;
-
-    public DeleteTagCategoryCommandHandler(IMapper mapper, IBaseRepository<TagCategory> tagCategoryRepository)
-    {
-        _mapper = mapper;
-        _tagCategoryRepository = tagCategoryRepository;
-    }
+    private readonly IBaseRepository<TagCategory> _tagCategoryRepository = tagCategoryRepository;
 
     public async Task<DeleteTagCategoryCommandResponse> Handle(DeleteTagCategoryCommand request, CancellationToken cancellationToken)
     {
-        var deleteTagCategoryCommandResponse = new DeleteTagCategoryCommandResponse();
+        var tagCategory = await _tagCategoryRepository.GetByBusinessIdAsync(request.Id) ?? throw new NotFoundException($"Tag Category with ID {request.Id} was not found.");
 
-        var validator = new DeleteTagCategoryCommandValidator();
-        var validationResult = await validator.ValidateAsync(request);
+        await _tagCategoryRepository.DeleteAsync(tagCategory);
 
-        if (validationResult.Errors.Count > 0)
+        return new DeleteTagCategoryCommandResponse
         {
-            deleteTagCategoryCommandResponse.Success = false;
-            deleteTagCategoryCommandResponse.ValidationErrors = new List<string>();
-            foreach (var error in validationResult.Errors)
-            {
-                deleteTagCategoryCommandResponse.ValidationErrors.Add(error.ErrorMessage);
-            }
-        }
-        if (deleteTagCategoryCommandResponse.Success)
-        {
-            var tagCategory = await _tagCategoryRepository.GetByBusinessIdAsync(request.Id);
-            if (tagCategory != null)
-            {
-                await _tagCategoryRepository.DeleteAsync(tagCategory);
-                deleteTagCategoryCommandResponse.Success = true;
-            }
-            else
-            {
-                deleteTagCategoryCommandResponse.Success = false;
-                deleteTagCategoryCommandResponse.ValidationErrors = new List<string>
-                {
-                    "Selected tagCategory doesn't exist."
-                };
-            }
-        }
-
-        return deleteTagCategoryCommandResponse;
+            Success = true,
+            Message = "Success."
+        };
     }
 }

@@ -1,35 +1,16 @@
-﻿using MB.Application.Contracts.Persistence;
+﻿using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Commands.CreateRelationsModelFranchise;
 
-public class CreateRelationsModelFranchiseCommandHandler : IRequestHandler<CreateRelationsModelFranchiseCommand, BaseResponse>
+public class CreateRelationsModelFranchiseCommandHandler(IModelRepository modelRepository, IFranchiseRepository franchiseRepository) : IRequestHandler<CreateRelationsModelFranchiseCommand, BaseResponse>
 {
-    private readonly IModelRepository _modelRepository;
-    private readonly IFranchiseRepository _franchiseRepository;
-    private readonly CreateRelationsModelFranchiseCommandValidator _validator;
-
-    public CreateRelationsModelFranchiseCommandHandler(IModelRepository modelRepository, IFranchiseRepository franchiseRepository, CreateRelationsModelFranchiseCommandValidator validator)
-    {
-        _modelRepository = modelRepository;
-        _franchiseRepository = franchiseRepository;
-        _validator = validator;
-    }
+    private readonly IModelRepository _modelRepository = modelRepository;
+    private readonly IFranchiseRepository _franchiseRepository = franchiseRepository;
 
     public async Task<BaseResponse> Handle(CreateRelationsModelFranchiseCommand request, CancellationToken cancellationToken)
     {
-        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-        if (validationResult.Errors.Count > 0)
-        {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "Validation Error(s)",
-                ValidationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList()
-            };
-        }
-
         var modelPrimaryId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId);
         if (modelPrimaryId == null)
         {

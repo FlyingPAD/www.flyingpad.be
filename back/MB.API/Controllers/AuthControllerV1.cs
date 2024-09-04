@@ -1,7 +1,6 @@
 ﻿using MB.Application.Features.Auth.Commands.Register;
 using MB.Application.Features.Auth.Queries.Login;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MB.API.Controllers;

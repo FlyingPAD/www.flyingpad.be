@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace MB.Application.Contracts.Persistence.Common;
+namespace MB.Application.Interfaces.Persistence.Common;
 
 public interface IBaseRepository<T> where T : class
 {

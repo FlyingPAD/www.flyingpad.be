@@ -1,54 +1,23 @@
-﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence.Common;
 using MediatR;
 
 namespace MB.Application.Features.Tasks.Commands.DeleteTask;
 
-public class DeleteTaskCommandHandler : IRequestHandler<DeleteTaskCommand, DeleteTaskCommandResponse>
+public class DeleteTaskCommandHandler(IBaseRepository<Domain.Entities.Task> taskRepository) : IRequestHandler<DeleteTaskCommand, DeleteTaskCommandResponse>
 {
-    private readonly IMapper _mapper;
-    private readonly IBaseRepository<MB.Domain.Entities.Task> _taskRepository;
-
-    public DeleteTaskCommandHandler(IMapper mapper, IBaseRepository<MB.Domain.Entities.Task> taskRepository)
-    {
-        _mapper = mapper;
-        _taskRepository = taskRepository;
-    }
+    private readonly IBaseRepository<MB.Domain.Entities.Task> _taskRepository = taskRepository;
 
     public async Task<DeleteTaskCommandResponse> Handle(DeleteTaskCommand request, CancellationToken cancellationToken)
     {
-        var deleteTaskCommandResponse = new DeleteTaskCommandResponse();
+        var task = await _taskRepository.GetByBusinessIdAsync(request.Id) ?? throw new NotFoundException($"Task with ID {request.Id} was not found.");
 
-        var validator = new DeleteTaskCommandValidator();
-        var validationResult = await validator.ValidateAsync(request);
+        await _taskRepository.DeleteAsync(task);
 
-        if (validationResult.Errors.Count > 0)
+        return new DeleteTaskCommandResponse
         {
-            deleteTaskCommandResponse.Success = false;
-            deleteTaskCommandResponse.ValidationErrors = new List<string>();
-            foreach (var error in validationResult.Errors)
-            {
-                deleteTaskCommandResponse.ValidationErrors.Add(error.ErrorMessage);
-            }
-        }
-        if (deleteTaskCommandResponse.Success)
-        {
-            var task = await _taskRepository.GetByBusinessIdAsync(request.Id);
-            if (task != null)
-            {
-                await _taskRepository.DeleteAsync(task);
-                deleteTaskCommandResponse.Success = true;
-            }
-            else
-            {
-                deleteTaskCommandResponse.Success = false;
-                deleteTaskCommandResponse.ValidationErrors = new List<string>
-                {
-                    "La catégorie de lien spécifiée n'existe pas."
-                };
-            }
-        }
-
-        return deleteTaskCommandResponse;
+            Success = true,
+            Message = "Success."
+        };
     }
 }

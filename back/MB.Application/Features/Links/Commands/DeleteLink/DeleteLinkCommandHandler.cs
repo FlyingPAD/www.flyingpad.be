@@ -1,10 +1,10 @@
-﻿using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Features.Links.Commands.DeleteLink;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Application.Models;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Task.Commands.DeleteTask;
+namespace MB.Application.Features.Links.Commands.DeleteLink;
 
 public class DeleteLinkCommandHandler(IBaseRepository<Link> linkRepository) : IRequestHandler<DeleteLinkCommand, BaseResponse>
 {
@@ -12,32 +12,15 @@ public class DeleteLinkCommandHandler(IBaseRepository<Link> linkRepository) : IR
 
     public async Task<BaseResponse> Handle(DeleteLinkCommand request, CancellationToken cancellationToken)
     {
-        var response = new BaseResponse();
-        var validator = new DeleteLinkCommandValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        var link = await _linkRepository.GetByBusinessIdAsync(request.LinkId) 
+            ?? throw new NotFoundException($"Link with ID {request.LinkId} was not found.");
 
-        if (validationResult.Errors.Count > 0)
+        await _linkRepository.DeleteAsync(link);
+
+        return new BaseResponse
         {
-            foreach (var error in validationResult.Errors)
-            {
-                response.ValidationErrors.Add(error.ErrorMessage);
-            }
-            return response;
-        }
-
-        var link = await _linkRepository.GetByBusinessIdAsync(request.LinkId);
-
-        if (link != null)
-        {
-            await _linkRepository.DeleteAsync(link);
-            response.Success = true;
-        }
-        else
-        {
-            response.Success = false;
-            response.Message = "Link was not found.";
-        }
-
-        return response;
+            Success = true,
+            Message = "Success."
+        };
     }
 }

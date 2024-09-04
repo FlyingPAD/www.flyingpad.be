@@ -1,10 +1,10 @@
-﻿using MB.Application.Contracts.Persistence;
-using MB.Application.Features.Artists.Commands.DeleteArtist;
+﻿using MB.Application.Features.Artists.Commands.DeleteArtist;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using Moq;
 using Xunit;
 
-namespace MB.Application.Test.Features.Artists.Commands;
+namespace MB.Tests.Features.Artists.Commands;
 
 public class DeleteArtistCommandHandlerTest
 {
@@ -28,7 +28,7 @@ public class DeleteArtistCommandHandlerTest
         _artistRepoMock.Setup(repo => repo.GetByBusinessIdAsync(artistId))
             .ReturnsAsync((Artist?)null);
 
-        var response = await _handler.Handle(request, new System.Threading.CancellationToken());
+        var response = await _handler.Handle(request, new CancellationToken());
 
         Assert.False(response.Success);
         Assert.Contains($"Artist with ID {artistId} was not found.", response.ValidationErrors);
@@ -45,7 +45,7 @@ public class DeleteArtistCommandHandlerTest
 
         _artistRepoMock.Setup(repo => repo.GetByBusinessIdAsync(artistId)).ReturnsAsync(artist);
 
-        await _handler.Handle(request, new System.Threading.CancellationToken());
+        await _handler.Handle(request, new CancellationToken());
 
         _artistRepoMock.Verify(repo => repo.DeleteStyles(artist.EntityId), Times.Once);
         _artistRepoMock.Verify(repo => repo.DeleteAsync(artist), Times.Once);

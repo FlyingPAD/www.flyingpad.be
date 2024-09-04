@@ -1,56 +1,24 @@
-﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Features.Medias.Commands.DeleteMedia;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Task.Commands.DeleteTask;
+namespace MB.Application.Features.Medias.Commands.DeleteMedia;
 
-public class DeleteMediaCommandHandler : IRequestHandler<DeleteMediaCommand, DeleteMediaCommandResponse>
+public class DeleteMediaCommandHandler(IBaseRepository<Media> mediaRepository) : IRequestHandler<DeleteMediaCommand, DeleteMediaCommandResponse>
 {
-    private readonly IMapper _mapper;
-    private readonly IBaseRepository<Media> _mediaRepository;
-
-    public DeleteMediaCommandHandler(IMapper mapper, IBaseRepository<Media> mediaRepository)
-    {
-        _mapper = mapper;
-        _mediaRepository = mediaRepository;
-    }
+    private readonly IBaseRepository<Media> _mediaRepository = mediaRepository;
 
     public async Task<DeleteMediaCommandResponse> Handle(DeleteMediaCommand request, CancellationToken cancellationToken)
     {
-        var deleteMediaCommandResponse = new DeleteMediaCommandResponse();
+        var media = await _mediaRepository.GetByBusinessIdAsync(request.MediaId) ?? throw new NotFoundException($"Media with ID {request.MediaId} was not found.");
 
-        var validator = new DeleteMediaCommandValidator();
-        var validationResult = await validator.ValidateAsync(request);
+        await _mediaRepository.DeleteAsync(media);
 
-        if (validationResult.Errors.Count > 0)
+        return new DeleteMediaCommandResponse
         {
-            deleteMediaCommandResponse.Success = false;
-            deleteMediaCommandResponse.ValidationErrors = new List<string>();
-            foreach (var error in validationResult.Errors)
-            {
-                deleteMediaCommandResponse.ValidationErrors.Add(error.ErrorMessage);
-            }
-        }
-        if (deleteMediaCommandResponse.Success)
-        {
-            var media = await _mediaRepository.GetByBusinessIdAsync(request.MediaId);
-            if (media != null)
-            {
-                await _mediaRepository.DeleteAsync(media);
-                deleteMediaCommandResponse.Success = true;
-            }
-            else
-            {
-                deleteMediaCommandResponse.Success = false;
-                deleteMediaCommandResponse.ValidationErrors = new List<string>
-                {
-                    "Selected media doesn't exist."
-                };
-            }
-        }
-
-        return deleteMediaCommandResponse;
+            Success = true,
+            Message = "Success."
+        };
     }
 }

@@ -1,9 +1,9 @@
-﻿using MB.Application.Contracts.Persistence;
-using MB.Application.Features.Tags.Commands.DeleteTag;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
 using MediatR;
 
-namespace MB.Application.Features.Task.Commands.DeleteTask;
+namespace MB.Application.Features.Tags.Commands.DeleteTag;
 
 public class DeleteTagCommandHandler(ITagRepository tagRepository) : IRequestHandler<DeleteTagCommand, BaseResponse>
 {
@@ -11,37 +11,16 @@ public class DeleteTagCommandHandler(ITagRepository tagRepository) : IRequestHan
 
     public async Task<BaseResponse> Handle(DeleteTagCommand request, CancellationToken cancellationToken)
     {
-        var response = new BaseResponse();
+        var tag = await _tagRepository.GetByBusinessIdAsync(request.TagId)
+            ?? throw new NotFoundException($"Tag with ID {request.TagId} was not found.");
 
-        var validator = new DeleteTagCommandValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        await _tagRepository.DeleteTagRelations(tag.EntityId);
+        await _tagRepository.DeleteAsync(tag);
 
-        if (validationResult.Errors.Count > 0)
+        return new BaseResponse
         {
-            response.Success = false;
-            response.ValidationErrors = [];
-            foreach (var error in validationResult.Errors)
-            {
-                response.ValidationErrors.Add(error.ErrorMessage);
-            }
-
-            return response;
-        }
-
-        var tag = await _tagRepository.GetByBusinessIdAsync(request.TagId);
-
-        if (tag != null)
-        {
-            await _tagRepository.DeleteTagRelations(tag.EntityId);
-            await _tagRepository.DeleteAsync(tag);
-            response.Success = true;
-        }
-        else
-        {
-            response.Success = false;
-            response.ValidationErrors = ["Selected tag doesn't exist."];
-        }
-
-        return response;
+            Success = true,
+            Message = "Success."
+        };
     }
 }

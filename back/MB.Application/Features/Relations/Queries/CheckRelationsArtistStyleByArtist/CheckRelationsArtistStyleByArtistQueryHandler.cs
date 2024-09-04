@@ -1,30 +1,18 @@
-﻿using MB.Application.Contracts.Persistence.Common;
+﻿using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByArtist;
 
-public class CheckRelationsArtistStyleByArtistQueryHandler(IBaseRepository<RelationArtistStyle> relationRepository, IBaseRepository<Artist> artistRepository, CheckRelationsArtistStyleByArtistQueryValidator validator) : IRequestHandler<CheckRelationsArtistStyleByArtistQuery, CheckRelationsArtistStyleByArtistQueryResponse>
+public class CheckRelationsArtistStyleByArtistQueryHandler(IBaseRepository<RelationArtistStyle> relationRepository, IBaseRepository<Artist> artistRepository) : IRequestHandler<CheckRelationsArtistStyleByArtistQuery, CheckRelationsArtistStyleByArtistQueryResponse>
 {
     private readonly IBaseRepository<RelationArtistStyle> _relationRepository = relationRepository;
     private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
-    private readonly CheckRelationsArtistStyleByArtistQueryValidator _validator = validator;
 
     public async Task<CheckRelationsArtistStyleByArtistQueryResponse> Handle(CheckRelationsArtistStyleByArtistQuery request, CancellationToken cancellationToken)
     {
-        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-
-        if (validationResult.Errors.Count != 0)
-        {
-            return new CheckRelationsArtistStyleByArtistQueryResponse
-            {
-                Success = false,
-                Message = "Validation Error(s)",
-                ValidationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList()
-            };
-        }
-
         int? artistPrimaryId = await _artistRepository.GetPrimaryIdByBusinessIdAsync(request.ArtistId);
+
         if (!artistPrimaryId.HasValue)
         {
             return new CheckRelationsArtistStyleByArtistQueryResponse

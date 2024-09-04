@@ -1,4 +1,4 @@
-﻿using MB.Application.Contracts.Persistence;
+﻿using MB.Application.Interfaces.Persistence;
 using MB.Persistence.Repositories.Common;
 
 namespace MB.Persistence.Repositories

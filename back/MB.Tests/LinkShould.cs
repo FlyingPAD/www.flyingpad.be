@@ -1,7 +1,7 @@
 ﻿using MB.Domain.Entities;
 using Xunit;
 
-namespace MB.Application.Test;
+namespace MB.Tests;
 
 [Trait("Category", "Link")]
 public class LinkShould

@@ -1,29 +1,17 @@
 ﻿using MB.Application.Contracts;
-using MB.Application.Contracts.Persistence;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Auth.Commands.Register;
 
-public class RegisterCommandHandler(IAuthRepository authRepository, ITokenManager tokenManager, RegisterCommandValidator validator) : IRequestHandler<RegisterCommand, RegisterCommandResponse>
+public class RegisterCommandHandler(IAuthRepository authRepository, ITokenManager tokenManager) : IRequestHandler<RegisterCommand, RegisterCommandResponse>
 {
     private readonly IAuthRepository _authRepository = authRepository;
     private readonly ITokenManager _tokenManager = tokenManager;
-    private readonly RegisterCommandValidator _validator = validator;
 
     public async Task<RegisterCommandResponse> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
-        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-
-        if (!validationResult.IsValid)
-        {
-            return new RegisterCommandResponse(null)
-            {
-                Success = false,
-                ValidationErrors = validationResult.Errors.Select(e => e.ErrorMessage).ToList()
-            };
-        }
-
         if (await _authRepository.UserExists(request.Email))
         {
             return new RegisterCommandResponse(null)
