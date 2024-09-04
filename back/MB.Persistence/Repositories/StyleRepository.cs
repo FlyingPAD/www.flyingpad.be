@@ -34,7 +34,7 @@ public class StyleRepository(Context context) : BaseRepository<Style>(context), 
         return stylesWithCheck;
     }
 
-    public async System.Threading.Tasks.Task DeleteArtists(int styleId)
+    public async System.Threading.Tasks.Task DeleteStyleRelations(int styleId)
     {
         var relations = await _context.RArtistStyle
                                      .Where(relation => relation.StyleId == styleId)

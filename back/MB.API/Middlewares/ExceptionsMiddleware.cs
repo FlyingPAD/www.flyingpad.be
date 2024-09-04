@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace MB.API.Middlewares;
 
-public class ExceptionsHandlingMiddleware(RequestDelegate next)
+public class ExceptionsMiddleware(RequestDelegate next)
 {
     private static readonly JsonSerializerOptions _jsonSerializerOptions = new()
     {

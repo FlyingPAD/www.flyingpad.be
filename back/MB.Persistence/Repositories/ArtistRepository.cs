@@ -86,7 +86,7 @@ public class ArtistRepository(Context context) : BaseRepository<Artist>(context)
         return artists;
     }
 
-    public async System.Threading.Tasks.Task DeleteStyles(int artistId)
+    public async System.Threading.Tasks.Task DeleteArtistRelations(int artistId)
     {
         var artistStyles = await _context.RArtistStyle
                                          .Where(relation => relation.ArtistId == artistId)
