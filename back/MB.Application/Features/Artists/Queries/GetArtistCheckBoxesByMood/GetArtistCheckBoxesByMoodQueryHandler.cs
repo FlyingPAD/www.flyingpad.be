@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Contracts.Persistence;
 using MB.Domain.Entities;
 using MediatR;
+using MB.Application.Interfaces.Persistence.Common;
+using MB.Application.Interfaces.Persistence;
 
 namespace MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 

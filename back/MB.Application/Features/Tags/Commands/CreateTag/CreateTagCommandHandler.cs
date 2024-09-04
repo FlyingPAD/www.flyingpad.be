@@ -1,4 +1,4 @@
-﻿using MB.Application.Contracts.Persistence.Common;
+﻿using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
@@ -12,15 +12,6 @@ public class CreateTagCommandHandler(IBaseRepository<Tag> tagRepository, IBaseRe
     public async Task<CreateTagCommandResponse> Handle(CreateTagCommand request, CancellationToken cancellationToken)
     {
         var createTagCommandResponse = new CreateTagCommandResponse();
-        var validator = new CreateTagCommandValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
-
-        if (validationResult.Errors.Count != 0)
-        {
-            createTagCommandResponse.Success = false;
-            createTagCommandResponse.ValidationErrors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
-            return createTagCommandResponse;
-        }
 
         var tagCategoryEntityId = await _tagCategoryRepository.GetPrimaryIdByBusinessIdAsync(request.TagCategoryId);
 

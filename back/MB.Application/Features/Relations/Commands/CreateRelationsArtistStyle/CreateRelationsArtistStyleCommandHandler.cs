@@ -1,41 +1,22 @@
-﻿using MB.Application.Contracts.Persistence;
-using MB.Application.Contracts.Persistence.Common;
+﻿using MB.Application.Features.Relations.Commands.RAS;
+using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Application.Models;
 using MB.Domain.Entities;
 using MediatR;
 
-namespace MB.Application.Features.Relations.Commands.RAS;
+namespace MB.Application.Features.Relations.Commands.CreateRelationsArtistStyle;
 
-public class CreateRelationsArtistStyleCommandHandler : IRequestHandler<CreateRelationsArtistStyleCommand, BaseResponse>
+public class CreateRelationsArtistStyleCommandHandler(IBaseRepository<Artist> artistRepository, IStyleRepository styleRepository, IBaseRepository<RelationArtistStyle> relationRepository) : IRequestHandler<CreateRelationsArtistStyleCommand, BaseResponse>
 {
-    private readonly CreateRelationsArtistStyleCommandValidator _validator;
-    private readonly IBaseRepository<Artist> _artistRepository;
-    private readonly IStyleRepository _styleRepository;
-    private readonly IBaseRepository<RelationArtistStyle> _relationRepository;
-
-    public CreateRelationsArtistStyleCommandHandler(CreateRelationsArtistStyleCommandValidator validator, IBaseRepository<Artist> artistRepository, IStyleRepository styleRepository, IBaseRepository<RelationArtistStyle> relationRepository)
-    {
-        _validator = validator;
-        _artistRepository = artistRepository;
-        _styleRepository = styleRepository;
-        _relationRepository = relationRepository;
-    }
+    private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
+    private readonly IStyleRepository _styleRepository = styleRepository;
+    private readonly IBaseRepository<RelationArtistStyle> _relationRepository = relationRepository;
 
     public async Task<BaseResponse> Handle(CreateRelationsArtistStyleCommand request, CancellationToken cancellationToken)
     {
-        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-
-        if (validationResult.Errors.Count != 0)
-        {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "Validation Error(s)",
-                ValidationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList()
-            };
-        }
-
         var artistPrimaryId = await _artistRepository.GetPrimaryIdByBusinessIdAsync(request.ArtistId);
+
         if (artistPrimaryId == null)
         {
             return new BaseResponse
@@ -46,6 +27,7 @@ public class CreateRelationsArtistStyleCommandHandler : IRequestHandler<CreateRe
         }
 
         var stylePrimaryIds = await _styleRepository.GetPrimaryIdsByBusinessIdsAsync(request.StyleIds);
+
         if (stylePrimaryIds.Count != request.StyleIds.Count)
         {
             return new BaseResponse
@@ -55,7 +37,7 @@ public class CreateRelationsArtistStyleCommandHandler : IRequestHandler<CreateRe
             };
         }
 
-        foreach (var styleId in stylePrimaryIds) 
+        foreach (var styleId in stylePrimaryIds)
         {
             var relation = new RelationArtistStyle
             {

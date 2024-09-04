@@ -1,7 +1,7 @@
-﻿using MB.Application.Contracts.Persistence;
-using MB.Application.Features.Tags.Queries.GetTagsByMood;
+﻿using MB.Application.Features.Tags.Queries.GetTagsByMood;
 using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;

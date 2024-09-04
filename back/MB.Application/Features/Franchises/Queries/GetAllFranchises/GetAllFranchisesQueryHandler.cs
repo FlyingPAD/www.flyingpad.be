@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
@@ -12,28 +12,15 @@ public class GetAllFranchisesQueryHandler(IBaseRepository<Franchise> franchiseRe
 
     public async Task<GetAllFranchisesQueryResponse> Handle(GetAllFranchisesQuery request, CancellationToken cancellationToken)
     {
-        try
-        {
-            var franchises = await _franchiseRepository.GetAllAsync();
-            var response = new GetAllFranchisesQueryResponse
-            {
-                Success = true,
-                Message = "Here are the Franchises !",
-                Franchises = _mapper.Map<List<GetAllFranchisesQueryVm>>(franchises)
-            };
+        var franchises = await _franchiseRepository.GetAllAsync();
 
-            return response;
-        }
-        catch (Exception ex)
+        var response = new GetAllFranchisesQueryResponse
         {
-            // Gérez l'exception et renvoyez une réponse d'erreur
-            var response = new GetAllFranchisesQueryResponse
-            {
-                Success = false,
-                ValidationErrors = [$"Error : ( {ex} )."]
-            };
+            Success = true,
+            Message = "Success.",
+            Franchises = _mapper.Map<List<GetAllFranchisesQueryVm>>(franchises)
+        };
 
-            return response;
-        }
+        return response;
     }
 }

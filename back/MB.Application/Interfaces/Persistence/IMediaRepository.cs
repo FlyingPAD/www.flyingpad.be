@@ -1,7 +1,7 @@
-﻿using MB.Application.Contracts.Persistence.Common;
+﻿using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 
-namespace MB.Application.Contracts.Persistence;
+namespace MB.Application.Interfaces.Persistence;
 
 public interface IMediaRepository : IBaseRepository<Media>
 {

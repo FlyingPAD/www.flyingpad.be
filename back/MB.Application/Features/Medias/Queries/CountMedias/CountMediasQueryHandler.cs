@@ -1,4 +1,4 @@
-﻿using MB.Application.Contracts.Persistence.Common;
+﻿using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
@@ -12,28 +12,15 @@ public class GetTagCategoriesListQueryHandler(IBaseRepository<TagCategory> tagCa
 
     public async Task<GetTagCategoriesListQueryResponse> Handle(GetTagCategoriesListQuery request, CancellationToken cancellationToken)
     {
-        try
-        {
-            var tagCategories = await _tagCategoryRepository.GetAllAsync(x => x.Name, true);
-            var response = new GetTagCategoriesListQueryResponse
-            {
-                Success = true,
-                Message = "Success !",
-                TagCategories = _mapper.Map<List<TagCategoryListVm>>(tagCategories)
-            };
 
-            return response;
-        }
-        catch (Exception ex)
+        var tagCategories = await _tagCategoryRepository.GetAllAsync(tagCategory => tagCategory.Name, true);
+        var response = new GetTagCategoriesListQueryResponse
         {
-            // Gérez l'exception et renvoyez une réponse d'erreur
-            var response = new GetTagCategoriesListQueryResponse
-            {
-                Success = false,
-                ValidationErrors = ["Error ( " + ex + " )."]
-            };
+            Success = true,
+            Message = "Success !",
+            TagCategories = _mapper.Map<List<TagCategoryListVm>>(tagCategories)
+        };
 
-            return response;
-        }
+        return response;
     }
 }

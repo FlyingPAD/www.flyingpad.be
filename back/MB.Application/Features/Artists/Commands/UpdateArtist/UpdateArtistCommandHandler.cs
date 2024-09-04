@@ -1,4 +1,5 @@
-﻿using MB.Application.Contracts.Persistence.Common;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Application.Models;
 using MB.Domain.Entities;
 using MediatR;
@@ -11,24 +12,18 @@ public class UpdateArtistCommandHandler(IBaseRepository<Artist> artistRepository
 
     public async Task<BaseResponse> Handle(UpdateArtistCommand request, CancellationToken cancellationToken)
     {
-        var artist = await _artistRepository.GetByBusinessIdAsync(request.BusinessId);
-        if (artist == null)
-        {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "Artist not found. Please ensure you are using a valid identifier.",
-                ValidationErrors = { $"Artist with ID {request.BusinessId} was not found." }
-            };
-        }
+        var artist = await _artistRepository.GetByBusinessIdAsync(request.BusinessId)
+            ?? throw new NotFoundException($"Artist with ID {request.BusinessId} was not found.");
+
         artist.Name = request.Name;
+        artist.Description = request.Description;
 
         await _artistRepository.UpdateAsync(artist);
 
         return new BaseResponse
         {
             Success = true,
-            Message = "Artist updated successfully."
+            Message = "Success."
         };
     }
 }

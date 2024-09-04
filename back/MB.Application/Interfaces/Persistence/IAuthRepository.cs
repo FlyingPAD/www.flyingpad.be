@@ -1,6 +1,6 @@
 ﻿using MB.Domain.Entities;
 
-namespace MB.Application.Contracts.Persistence;
+namespace MB.Application.Interfaces.Persistence;
 
 public interface IAuthRepository
 {

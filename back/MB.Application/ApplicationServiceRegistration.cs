@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using PowerplantCodingChallenge.Services;
 using System.Reflection;
 
 namespace MB.Application;

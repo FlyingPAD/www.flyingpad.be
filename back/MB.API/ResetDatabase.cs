@@ -1,7 +1,7 @@
 ﻿using MB.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace MB.API.Options;
+namespace MB.API;
 
 public static class ResetDatabase
 {

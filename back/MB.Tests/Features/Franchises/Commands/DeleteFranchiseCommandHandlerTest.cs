@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
 using MB.Application.Features.Franchises.Commands.DeleteFranchise;
-using MB.Application.Features.Task.Commands.DeleteTask;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using Moq;
 using Xunit;

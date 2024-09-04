@@ -1,8 +1,8 @@
-﻿using MB.Application.Contracts.Persistence.Common;
+﻿using MB.Application.Interfaces.Persistence.Common;
 
-namespace MB.Application.Contracts.Persistence;
+namespace MB.Application.Interfaces.Persistence;
 
-public interface ITaskRepository : IBaseRepository<MB.Domain.Entities.Task>
+public interface ITaskRepository : IBaseRepository<Domain.Entities.Task>
 {
     Task<bool> IsTaskNameAndDateUnique(string name, DateTime taskDateStart);
 }

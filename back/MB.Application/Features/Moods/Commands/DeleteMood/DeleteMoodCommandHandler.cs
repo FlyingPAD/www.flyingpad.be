@@ -1,5 +1,6 @@
 ﻿using MB.Application.Contracts;
-using MB.Application.Contracts.Persistence;
+using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
 using MediatR;
 
@@ -12,40 +13,17 @@ public class DeleteMoodCommandHandler(IMoodRepository moodRepo, IFileService fil
 
     public async Task<BaseResponse> Handle(DeleteMoodCommand request, CancellationToken cancellationToken)
     {
-        var response = new BaseResponse();
-        var validator = new DeleteMoodCommandValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        var mood = await _moodRepo.GetByBusinessIdAsync(request.MoodId)
+            ?? throw new NotFoundException($"Mood with ID {request.MoodId} was not found.");
 
-        if (validationResult.Errors.Count > 0)
+        await _moodRepo.DeleteMoodRelations(mood.EntityId);
+        await _fileService.DeleteMoodAsync("Content", mood.BusinessId, mood.Extension);
+        await _moodRepo.DeleteAsync(mood);
+
+        return new BaseResponse
         {
-            response.ValidationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList();
-            return response;
-        }
-
-        var mood = await _moodRepo.GetByBusinessIdAsync(request.MoodId);
-
-        if (mood != null)
-        {
-            response.Success = true;
-
-            // Delete Existing Relations
-            await _moodRepo.DeleteTags(mood.EntityId);
-            await _moodRepo.DeleteArtists(mood.EntityId);
-            await _moodRepo.DeleteModels(mood.EntityId);
-
-            // Delete Files
-            await _fileService.DeleteMoodAsync("Content", mood.BusinessId, mood.Extension);
-
-            // Delete Mood
-            await _moodRepo.DeleteAsync(mood);
-
-            response.Message = "Mood deleted successfully.";
-        }
-        else
-        {
-            response.ValidationErrors.Add("Mood was not found.");
-        }
-
-        return response;
+            Success = true,
+            Message = "Success."
+        };
     }
 }

@@ -1,5 +1,5 @@
-﻿using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Features.Links.Queries.CountLinks;
+﻿using MB.Application.Features.Links.Queries.CountLinks;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using Moq;
 using Xunit;

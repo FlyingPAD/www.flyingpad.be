@@ -1,8 +1,8 @@
-﻿using MB.Application.Contracts.Persistence.Common;
-using MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckBoxesByLink;
+﻿using MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckBoxesByLink;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 
-namespace MB.Application.Contracts.Persistence;
+namespace MB.Application.Interfaces.Persistence;
 
 public interface ILinkCategoryRepository : IBaseRepository<LinkCategory>
 {

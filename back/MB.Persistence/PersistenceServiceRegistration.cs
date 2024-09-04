@@ -1,7 +1,7 @@
 ﻿using MB.Application;
 using MB.Application.Contracts;
-using MB.Application.Contracts.Persistence;
-using MB.Application.Contracts.Persistence.Common;
+using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Persistence.Repositories;
 using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;

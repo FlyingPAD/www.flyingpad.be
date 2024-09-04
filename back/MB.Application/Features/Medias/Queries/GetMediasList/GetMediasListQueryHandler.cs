@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MB.Application.Contracts.Persistence.Common;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
@@ -12,27 +12,15 @@ public class GetMediasListQueryHandler(IBaseRepository<Media> mediaRepository, I
 
     public async Task<GetMediasListQueryResponse> Handle(GetMediasListQuery request, CancellationToken cancellationToken)
     {
-        try
-        {
-            var medias = await _mediaRepository.GetAllAsync();
-            var response = new GetMediasListQueryResponse
-            {
-                Success = true,
-                Message = "Success",
-                Medias = _mapper.Map<List<MediaListVm>>(medias)
-            };
 
-            return response;
-        }
-        catch (Exception ex)
+        var medias = await _mediaRepository.GetAllAsync();
+        var response = new GetMediasListQueryResponse
         {
-            var response = new GetMediasListQueryResponse
-            {
-                Success = false,
-                ValidationErrors = ["Error ( " + ex + " )."]
-            };
+            Success = true,
+            Message = "Success.",
+            Medias = _mapper.Map<List<MediaListVm>>(medias)
+        };
 
-            return response;
-        }
+        return response;
     }
 }

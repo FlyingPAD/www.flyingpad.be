@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
-using MB.Application.Contracts.Persistence;
+using MB.Application.Interfaces.Persistence;
 using MediatR;
 
 namespace MB.Application.Features.Artists.Queries.GetArtistsPage;

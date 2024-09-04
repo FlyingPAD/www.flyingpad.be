@@ -1,4 +1,4 @@
-﻿using MB.Application.Contracts.Persistence;
+﻿using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
@@ -145,35 +145,21 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         await _context.SaveChangesAsync();
     }
 
-    public async System.Threading.Tasks.Task DeleteTags(int moodId)
+    public async System.Threading.Tasks.Task DeleteMoodRelations(int moodId)
     {
-        var relations = await _context.RMoodTag
-                                         .Where(relation => relation.MoodId == moodId)
-                                         .ToListAsync();
+        var relationsMoodTag = await _context.RMoodTag
+                                 .Where(relation => relation.MoodId == moodId)
+                                 .ToListAsync();
+        var relationsMoodArtist = await _context.RMoodArtist
+                                 .Where(relation => relation.MoodId == moodId)
+                                 .ToListAsync();
+        var relationsMoodModel = await _context.RMoodModel
+                                 .Where(relation => relation.MoodId == moodId)
+                                 .ToListAsync();
 
-        _context.RMoodTag.RemoveRange(relations);
-
-        await _context.SaveChangesAsync();
-    }
-
-    public async System.Threading.Tasks.Task DeleteArtists(int moodId)
-    {
-        var relations = await _context.RMoodArtist
-                                         .Where(relation => relation.MoodId == moodId)
-                                         .ToListAsync();
-
-        _context.RMoodArtist.RemoveRange(relations);
-
-        await _context.SaveChangesAsync();
-    }
-
-    public async System.Threading.Tasks.Task DeleteModels(int moodId)
-    {
-        var relations = await _context.RMoodModel
-                                         .Where(relation => relation.MoodId == moodId)
-                                         .ToListAsync();
-
-        _context.RMoodModel.RemoveRange(relations);
+        _context.RMoodTag.RemoveRange(relationsMoodTag);
+        _context.RMoodArtist.RemoveRange(relationsMoodArtist);
+        _context.RMoodModel.RemoveRange(relationsMoodModel);
 
         await _context.SaveChangesAsync();
     }

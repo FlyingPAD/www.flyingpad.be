@@ -1,49 +1,26 @@
-﻿using AutoMapper;
-using MB.Application.Contracts.Persistence;
-using MB.Application.Features.Models.Commands.DeleteModel;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
 using MediatR;
 
-namespace MB.Application.Features.Task.Commands.DeleteTask;
+namespace MB.Application.Features.Models.Commands.DeleteModel;
 
-public class DeleteModelCommandHandler(IMapper mapper, IModelRepository modelRepository) : IRequestHandler<DeleteModelCommand, BaseResponse>
+public class DeleteModelCommandHandler(IModelRepository modelRepository) : IRequestHandler<DeleteModelCommand, BaseResponse>
 {
-    private readonly IMapper _mapper = mapper;
     private readonly IModelRepository _modelRepository = modelRepository;
 
     public async Task<BaseResponse> Handle(DeleteModelCommand request, CancellationToken cancellationToken)
     {
-        var response = new BaseResponse();
+        var model = await _modelRepository.GetByBusinessIdAsync(request.ModelId)
+            ?? throw new NotFoundException($"Model with ID {request.ModelId} was not found.");
 
-        var validator = new DeleteModelCommandValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        await _modelRepository.DeleteModelRelations(model.EntityId);
+        await _modelRepository.DeleteAsync(model);
 
-        if (validationResult.Errors.Count > 0)
+        return new BaseResponse
         {
-            response.Success = false;
-            response.ValidationErrors = [];
-            foreach (var error in validationResult.Errors)
-            {
-                response.ValidationErrors.Add(error.ErrorMessage);
-            }
-
-            return response;
-        }
-
-        var model = await _modelRepository.GetByBusinessIdAsync(request.ModelId);
-
-        if (model != null)
-        {
-            await _modelRepository.DeleteModelRelations(model.EntityId);
-            await _modelRepository.DeleteAsync(model);
-            response.Success = true;
-        }
-        else
-        {
-            response.Success = false;
-            response.ValidationErrors = ["Selected model doesn't exist."];
-        }
-
-        return response;
+            Success = true,
+            Message = "Model successfully deleted."
+        };
     }
 }
