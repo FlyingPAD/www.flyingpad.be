@@ -31,15 +31,7 @@ import { MultiTagArtistsComponent } from './features/moods/multi-tag-artists/mul
 import { MultiTagModelsComponent } from './features/moods/multi-tag-models/multi-tag-models.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MediaGalleryComponent } from './features/franchises/media-gallery/media-gallery.component';
-import { ArtistsListComponent } from './features/artists/artists-list/artists-list.component';
-import { CreateArtistComponent } from './features/artists/create-artist/create-artist.component';
-import { CreateStyleComponent } from './features/artists/create-style/create-style.component';
-import { DeleteArtistComponent } from './features/artists/delete-artist/delete-artist.component';
-import { DeleteStyleComponent } from './features/artists/delete-style/delete-style.component';
-import { UpdateArtistComponent } from './features/artists/update-artist/update-artist.component';
-import { UpdateStyleComponent } from './features/artists/update-style/update-style.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
-import { LayoutArtistsComponent } from './layouts/layout-artists/layout-artists.component';
 import { TagsComponent } from './pages/tags/tags.component';
 import { ScriptsComponent } from './pages/scripts/scripts.component';
 import { ToolsComponent } from './pages/tools/tools.component';
@@ -51,6 +43,7 @@ import { EditFranchisesComponent } from './pages/edit-franchises/edit-franchises
 import { EditTagsComponent } from './pages/edit-tags/edit-tags.component';
 import { EditLinksComponent } from './pages/edit-links/edit-links.component';
 import { EditArtistsComponent } from './pages/edit-artists/edit-artists.component';
+import { CreateMoodVideoComponent } from './features/moods/create-mood-video/create-mood-video.component';
 
 const routes: Routes = 
 [
@@ -77,19 +70,7 @@ const routes: Routes =
   // Artists
   { path : 'artists', component : LayoutCustomComponent, children :
     [  
-      { path : 'update-artist', component : UpdateArtistComponent, title : 'Flying PAD | Update Artist' },
-      { path : 'update-style', component : UpdateStyleComponent, title : 'Flying PAD | Update Style' },
-
-      { path : 'create-artist', component : CreateArtistComponent, title : 'Flying PAD | Create Artist' },
-      { path : 'create-style', component : CreateStyleComponent, title : 'Flying PAD | Create Style' },
-      { path : 'delete-artist', component : DeleteArtistComponent, title : 'Flying PAD | Delete Artist' },
-      { path : 'delete-style', component : DeleteStyleComponent, title : 'Flying PAD | Delete Style' },
       { path : 'edition', component : EditArtistsComponent, title : 'Flying PAD | Edit Artists' },
-      { path : 'list', component : LayoutArtistsComponent, children :
-        [
-          { path : '', component : ArtistsListComponent, title : 'Flying PAD | Artists' },
-        ]
-      },
     ]
   },
 
@@ -98,10 +79,11 @@ const routes: Routes =
     [
       { path : '', component : MoodsComponent, title : 'Flying PAD | Moods Gallery' },  
       { path : 'mood-details', component : MoodDetailsComponent, title : 'Flying PAD | Mood Details' },
-      { path : 'create-mood-image', component : CreateMoodImageComponent, title : 'Flying PAD | Create Mood(s)' },
       { path : 'multi-tag', component : MoodsMultiTagComponent, title : 'Flying PAD | Mood Selection' },
       { path : 'multi-tag-artists', component : MultiTagArtistsComponent, title : 'Flying PAD | Multi Tag Artists' },
       { path : 'multi-tag-models', component : MultiTagModelsComponent, title : 'Flying PAD | Multi Tag Models' },
+      { path : 'create-mood-image', component : CreateMoodImageComponent, title : 'Flying PAD | Create Mood(s)' },
+      { path : 'create-mood-video', component : CreateMoodVideoComponent, title : 'Flying PAD | Create Mood(s)' },
     ]
   },
 

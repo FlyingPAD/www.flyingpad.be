@@ -4,13 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence;
 
-/// <summary>
-/// Constructor
-/// </summary>
-/// <param name="options"></param>
 public class Context(DbContextOptions<Context> options) : DbContext(options)
 {
-    // Main Tables
     public DbSet<Mood> Moods { get; set; }
     public DbSet<Tag> Tags { get; set; }
     public DbSet<TagCategory> TagCategories { get; set; }
@@ -27,13 +22,13 @@ public class Context(DbContextOptions<Context> options) : DbContext(options)
     public DbSet<Board> Boards { get; set; }
     public DbSet<Book> Books { get; set; }
 
-    // Extension Tables
+    // Extensions
     public DbSet<Document> ExtDocument { get; set; }
     public DbSet<Image> ExtImage { get; set; }
     public DbSet<Video> ExtVideo { get; set; }
     public DbSet<VideoYouTube> ExtVideoYouTube { get; set; }
 
-    // Relation Tables
+    // Relations
     public DbSet<RelationArtistStyle> RArtistStyle { get; set; }
     public DbSet<RelationFranchiseMedia> RFranchiseMedia { get; set; }
     public DbSet<RelationFranchiseModel> RFranchiseModel { get; set; }
@@ -48,14 +43,8 @@ public class Context(DbContextOptions<Context> options) : DbContext(options)
     public DbSet<RelationBookModel> RBookModel { get; set; }
 
 
-    /// <summary>
-    /// Method : On Model Creating
-    /// </summary>
-    /// <param name="modelBuilder"></param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Find all Configurations in Assembly & Apply them to the builder
-
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(Context).Assembly);
 
         // - Artist / Style
@@ -238,19 +227,13 @@ public class Context(DbContextOptions<Context> options) : DbContext(options)
             .WithMany(tag => tag.BookModel)
             .HasForeignKey(relation => relation.ModelId);
 
-        // Post Deployment Script
-
         PostDeployment.AddData(modelBuilder);
     }
 
-    /// <summary>
-    /// Save Changes Async
-    /// </summary>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    // Handles the AutitableEntity Properties on Creation & Modification.
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
-        foreach (var entry in ChangeTracker.Entries<AuditableEntity>()) // Handles the AutitableEntity Properties on Creation & Modification
+        foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
         {
             switch (entry.State)
             {

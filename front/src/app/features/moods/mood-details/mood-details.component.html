@@ -22,7 +22,7 @@
         </div>
     </div>
     <div *ngIf="userService.appUser.role === 2">
-        <div class="item-top box-score" >
+        <div class="item-top details-score" >
             <button (click)="updateMoodScore(-10)">-10</button>
             <button (click)="updateMoodScore(-1)">-1</button>
             <p><b>{{ mood?.score | number : '3.0'}}</b></p>

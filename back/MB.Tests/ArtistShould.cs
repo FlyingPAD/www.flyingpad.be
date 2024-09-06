@@ -9,18 +9,15 @@ public class ArtistShould
     [Trait("Category", "Artist")]
     public void Test()
     {
-        // Arrange
+        // Arrange.
 
+        // Act.
         Artist sut = new()
         {
-            // Act
-
             Name = "# New Artist"
         };
 
-        // Assert
-
+        // Assert.
         Assert.NotNull(sut);
-
     }
 }

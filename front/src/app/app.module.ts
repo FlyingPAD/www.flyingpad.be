@@ -26,7 +26,6 @@ import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circl
 import { DiapasonComponent } from './features/tools/diapason/diapason.component';
 import { FlyingKeysMiniComponent } from './features/tools/flying-keys-mini/flying-keys-mini.component';
 import { TrainerNotesComponent } from './features/tools/trainer-notes/trainer-notes.component';
-import { TagsEditionComponent } from './features/tags/tags-edition/tags-edition.component';
 import { ChordsComponent } from './features/scripts/chords/chords.component';
 import { IntervalsComponent } from './features/scripts/intervals/intervals.component';
 import { IntroComponent } from './features/scripts/intro/intro.component';
@@ -64,14 +63,7 @@ import { MultiTagModelsComponent } from './features/moods/multi-tag-models/multi
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FranchisesEditionComponent } from './features/franchises/franchises-edition/franchises-edition.component';
 import { MediaGalleryComponent } from './features/franchises/media-gallery/media-gallery.component';
-import { ArtistsListComponent } from './features/artists/artists-list/artists-list.component';
 import { CreateArtistComponent } from './features/artists/create-artist/create-artist.component';
-import { CreateStyleComponent } from './features/artists/create-style/create-style.component';
-import { DeleteArtistComponent } from './features/artists/delete-artist/delete-artist.component';
-import { DeleteStyleComponent } from './features/artists/delete-style/delete-style.component';
-import { UpdateArtistComponent } from './features/artists/update-artist/update-artist.component';
-import { UpdateStyleComponent } from './features/artists/update-style/update-style.component';
-import { LayoutArtistsComponent } from './layouts/layout-artists/layout-artists.component';
 import { LinksEditionComponent } from './features/links/links-edition/links-edition.component';
 import { MoodDetailsFlowComponent } from './features/flow/mood-details-flow/mood-details-flow.component';
 import { MoodsGalleryFlowComponent } from './features/flow/moods-gallery-flow/moods-gallery-flow.component';
@@ -126,8 +118,7 @@ import { DeleteModelComponent } from './features/models/delete-model/delete-mode
 import { DeleteTagComponent } from './features/tags/delete-tag/delete-tag.component';
 
 @NgModule({
-  declarations: 
-  [
+  declarations: [
     // Pages.
     HomeComponent,
     DashboardComponent,
@@ -160,18 +151,10 @@ import { DeleteTagComponent } from './features/tags/delete-tag/delete-tag.compon
     FranchisesEditionComponent,
     FranchisesEditionComponent,
     // => Artists
-    LayoutArtistsComponent,
-    ArtistsListComponent,
     CreateArtistComponent,
-    CreateStyleComponent,
-    UpdateArtistComponent,
-    UpdateStyleComponent,
-    DeleteArtistComponent,
-    DeleteStyleComponent,
     // => Layouts
     LayoutEmptyComponent,
     LayoutCustomComponent,
-    LayoutArtistsComponent,
     // => Moods
     MoodDetailsComponent,
     MoodsGalleryComponent,
@@ -185,7 +168,7 @@ import { DeleteTagComponent } from './features/tags/delete-tag/delete-tag.compon
     CreateModelComponent,
     EditModelComponent,
     // => Tags
-    TagsEditionComponent,
+
     // => Scripts
     NotesComponent,
     NotesTradComponent,
@@ -234,6 +217,7 @@ import { DeleteTagComponent } from './features/tags/delete-tag/delete-tag.compon
     AnimRandomDirective,
     AnimGrowDirective,
     AnimSpinDirective,
+    // 
     CreateLinkFormComponent,
     EditionMenuComponent,
     EditionTagsComponent,

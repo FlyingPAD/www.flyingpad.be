@@ -23,7 +23,7 @@
                 <input type="text" formControlName="description" placeholder="{{mood?.description}}">    
             </form>
         </div>
-        <div class="box-score">
+        <div class="flow-score">
             <button (click)="updateMoodScore(-10)">-10</button>
             <button (click)="updateMoodScore(-1)">-1</button>
             <p><b>{{ mood?.score | number : '3.0'}}</b></p>

@@ -5,9 +5,9 @@ namespace MB.API;
 
 public static class ResetDatabase
 {
-    public static async Task ResetDatabaseAsync(this WebApplication app)
+    public static async Task ResetDatabaseAsync(this WebApplication application)
     {
-        using var scope = app.Services.CreateScope();
+        using var scope = application.Services.CreateScope();
 
         try
         {
@@ -19,9 +19,9 @@ public static class ResetDatabase
                 await context.Database.MigrateAsync();
             }
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-            await Console.Out.WriteLineAsync($"Exception : {ex}");
+            await Console.Out.WriteLineAsync($"Error : {exception}");
         }
     }
 }

@@ -8,8 +8,8 @@ namespace MB.Application.Test.Features.Artists.Queries;
 
 public class CountArtistsQueryTest
 {
-    private Mock<IBaseRepository<Artist>> _artistRepositoryMock;
-    private CountArtistsQueryHandler _handler;
+    private readonly Mock<IBaseRepository<Artist>> _artistRepositoryMock;
+    private readonly CountArtistsQueryHandler _handler;
 
     public CountArtistsQueryTest()
     {
@@ -18,22 +18,20 @@ public class CountArtistsQueryTest
     }
 
     [Fact]
+    [Trait("Application", "Artists")]
     public async System.Threading.Tasks.Task Handle_Should_Return_Correct_Count() 
     {
-        // Arrange
-
+        // Arrange.
         var expectedCount = 42;
 
         _artistRepositoryMock.Setup(repo => repo.CountAsync()).ReturnsAsync(expectedCount);
 
         var request = new CountArtistsQuery();
 
-        // Act
-
+        // Act.
         var result = await _handler.Handle(request, new CancellationToken());
 
-        // Assert
-
+        // Assert.
         Assert.True(result.Success);
         Assert.Equal($"Total Artists : {expectedCount}", result.Message);
         Assert.Equal(expectedCount, result.ArtistsCount);

@@ -1,4 +1,4 @@
-﻿using MB.Application.Contracts;
+﻿using MB.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MB.API.Controllers;

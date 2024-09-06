@@ -1,6 +1,6 @@
 ﻿using MB.Domain.Entities;
 
-namespace MB.Application.Contracts;
+namespace MB.Application.Interfaces;
 
 public interface ITokenManager
 {

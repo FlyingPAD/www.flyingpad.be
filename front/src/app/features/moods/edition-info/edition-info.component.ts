@@ -1,9 +1,8 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { MoodFull } from '../../../models/mood';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlowService } from '../../../services/flow.service';
 import { MoodScoreUpdate, MoodUpdateForm } from '../../../models/forms-update';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 
@@ -12,17 +11,17 @@ import { Subscription } from 'rxjs';
   templateUrl: './edition-info.component.html',
   styleUrl: './edition-info.component.scss'
 })
-export class EditionInfoComponent {
+export class EditionInfoComponent implements OnInit {
   #flowService = inject(FlowService)
   #formBuilder = inject(FormBuilder)
   #toastr = inject(ToastrService)
-  #Router = inject(Router)
   @Input() mood! : MoodFull
+  @Output() trigger = new EventEmitter<void>()
   formGroup!: FormGroup
   moodDelete : boolean = false
   subscription : Subscription = new Subscription()
 
-  ngOnInit(){
+  ngOnInit(): void {
     this.formGroup = this.#formBuilder.group
     ({
       name : [this.mood.name, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
@@ -41,12 +40,12 @@ export class EditionInfoComponent {
     this.#flowService.DeleteMood(this.mood.businessId).subscribe({
       next : () => {
         this.#toastr.success('Mood was deleted')
-        this.#Router.navigateByUrl('moods')
+        this.trigger.emit()
       }
     })
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.formGroup.valid) { 
       let form: MoodUpdateForm = {
         moodId : this.mood.businessId,

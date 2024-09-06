@@ -23,7 +23,7 @@
 </div>
 
 @if(triggerMoodEdition){
-    <app-edition-info [mood]="mood" />
+    <app-edition-info [mood]="mood" (trigger)="handleShowGallery()" />
 }
 @if(triggerMoodTagsEdition){
     <app-edition-tags [mood]="mood" />

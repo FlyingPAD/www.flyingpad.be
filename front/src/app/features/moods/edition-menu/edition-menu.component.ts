@@ -11,6 +11,7 @@ export class EditionMenuComponent {
   @Input() mood! : MoodFull
   @Input() environment! : string
   @Output() showDetails = new EventEmitter<void>() 
+  @Output() showGallery = new EventEmitter<void>() 
 
   triggerMoodEdition : boolean = true
   triggerMoodTagsEdition : boolean = false
@@ -42,5 +43,9 @@ export class EditionMenuComponent {
 
   handleShowDetails(){
     this.showDetails.emit()
+  }
+
+  handleShowGallery(){
+    this.showGallery.emit()
   }
 }

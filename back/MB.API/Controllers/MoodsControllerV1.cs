@@ -1,5 +1,6 @@
 ﻿using MB.Application.Features.Moods.Commands.CreateMood;
 using MB.Application.Features.Moods.Commands.CreateMoodImage;
+using MB.Application.Features.Moods.Commands.CreateMoodVideo;
 using MB.Application.Features.Moods.Commands.DeleteMood;
 using MB.Application.Features.Moods.Commands.UpdateMood;
 using MB.Application.Features.Moods.Commands.UpdateMoodScore;
@@ -35,6 +36,11 @@ public class MoodsControllerV1(IMediator mediator) : ControllerBase
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<CreateMoodImageCommandResponse>> CreateMoodImage([FromBody] CreateMoodImageCommand createMoodImageCommand)
         => Ok(await _mediator.Send(createMoodImageCommand));
+
+    [HttpPost("CreateMoodVideo")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    public async Task<ActionResult<CreateMoodVideoCommandResponse>> CreateMoodVideo([FromBody] CreateMoodVideoCommand createMoodVideoCommand)
+    => Ok(await _mediator.Send(createMoodVideoCommand));
 
     [HttpGet("Count")]
     public async Task<ActionResult<CountMoodsQueryResponse>> Count()

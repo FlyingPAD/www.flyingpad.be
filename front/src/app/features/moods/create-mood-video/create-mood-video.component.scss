@@ -1,0 +1,104 @@
+form
+{
+    #file_menu
+    {
+        margin: auto;
+        margin-top: 15px;
+        padding: 15px;
+
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.5);  
+
+        p
+        {
+            color: #6b5240;  
+            margin: 5px;
+            text-align: center;
+
+            input
+            {
+                padding: 5px;
+                font-size: 14px;
+            }
+        }
+    }
+
+    video
+    {
+        display: block;
+        width: 380px;
+        margin: auto;
+        margin-top: 15px; margin-bottom: 15px;
+        border: 1px solid #6b5240;  
+        border-radius: 5px;
+    }
+
+    #mood_info
+    {
+        width: 350px;
+        margin: auto;
+        border: 1px solid #6b5240;  
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.5);  
+        padding: 15px;
+        margin-top: 15px;
+        margin-bottom: 30px;
+
+        h3
+        {
+            color: #6b5240;
+            font-size: 15px;
+        }
+
+        #info_flex
+        {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+
+            p
+            {
+                font-size: 15px;
+                padding: 5px;
+                margin: 0;  
+                
+                input
+                {
+                    width: 250px;
+                    padding: 5px;
+                }
+            }
+        }
+
+        #submit
+        {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+
+            button
+            {       
+                cursor: pointer;
+                width: 115px;    
+                
+                margin-left: 5px;
+                margin-right: 5px;
+
+                border: 1px solid #6b5240;  
+                border-radius: 5px;
+                background-color: rgba(255, 255, 255, 0.5);  
+                padding: 7px;
+    
+                font-size: 14px;
+                color: #6b5240;  
+                letter-spacing: 2px;
+            }
+            button:hover
+            {       
+                background-color: #6b5240; 
+                color: #fff5ee; 
+                transition-duration : 500ms; 
+            }
+        }
+    }
+}

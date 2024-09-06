@@ -1,5 +1,4 @@
 import { BaseResponse } from "./base-response";
-import { MoodLight } from "./mood";
 
 export class Image {
     businessId : number = 0
@@ -30,5 +29,5 @@ export interface GetOneImageDetailsResponse extends BaseResponse {
     image : Image
 }
 export interface CreateMoodImageResponse extends BaseResponse {
-    mood : MoodLight
+    moodId : number
 }

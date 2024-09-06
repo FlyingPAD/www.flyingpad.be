@@ -11,8 +11,8 @@ import { GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, Ge
 import { FranchiseFull, FranchiseLight, GetFranchiseResponse, GetFranchisesByMediaResponse, GetFranchisesByMoodResponse, GetFranchisesResponse, GetMediaResponse, GetMediasListResponse, GetMediasResponse, MediaFull } from '../models/franchise';
 import { BaseResponse } from '../models/base-response';
 import { RelationsMoodTagForm, RelationsMoodArtistForm, RelationsMoodModelForm, RelationsArtistStyleForm, CheckRelationsArtistStyleByArtistResponse, CheckRelationsArtistStyleByStyleResponse } from '../models/relations';
-import { GetOneVideoDetailsResponse } from '../models/mood-video';
-import { GetOneImageDetailsResponse } from '../models/mood-image';
+import { GetOneVideoDetailsResponse, VideoForm } from '../models/mood-video';
+import { CreateMoodImageResponse, GetOneImageDetailsResponse, ImageForm } from '../models/mood-image';
 import { GetOneVideoYoutubeDetailsResponse } from '../models/mood-video-youtube';
 import { ArtistUpdateForm, FranchiseUpdateForm, LinkCategoryUpdateForm, LinkUpdateForm, MediaUpdateForm, ModelUpdateForm, MoodScoreUpdate, MoodUpdateForm, StyleUpdateForm, TagCategoryUpdateForm, TagUpdateForm } from '../models/forms-update';
 import { CreateArtistResponse, CreateLinkResponse, CreateMoodResponse, CreateTagResponse } from '../models/responses-create';
@@ -362,7 +362,7 @@ export class FlowService {
   }
 
   // Create.
-  CreateMood( form : MoodCreateForm ) {
+  public CreateMood( form : MoodCreateForm ) {
     return this.#http.post<CreateMoodResponse>(`${this.#url}Moods/Create`, form).pipe(
       tap(response => { 
         if (response.success) { 
@@ -370,6 +370,25 @@ export class FlowService {
           this.updateMoodId(response.moodId)
         } } ))
   }
+
+  public CreateImage(form : ImageForm) {
+    return this.#http.post<CreateMoodImageResponse>(`${this.#url}Moods/CreateMoodImage`, form).pipe(
+      tap(response => { 
+        if (response.success) { 
+          this.refreshMoods()
+          this.updateMoodId(response.moodId)
+        } } ))
+  }
+
+  public CreateVideo(form : VideoForm) {
+    return this.#http.post<CreateMoodImageResponse>(`${this.#url}Moods/CreateMoodVideo`, form).pipe(
+      tap(response => { 
+        if (response.success) { 
+          this.refreshMoods()
+          this.updateMoodId(response.moodId)
+        } } ))
+  }
+
   public CreateLink( form : LinkCreateForm ) {
     return this.#http.post<CreateLinkResponse>(`${this.#url}Links/Create`, form)
   }
@@ -428,7 +447,6 @@ export class FlowService {
     ).subscribe()
   }
 
-  // Update.
   UpdateMood( form : MoodUpdateForm ) { 
     return this.#http.put<BaseResponse>(`${this.#url}Moods/Update`, form).pipe(tap(response => { if (response.success) this.refreshMoods() } ))
   }
@@ -498,7 +516,7 @@ export class FlowService {
     return this.#http.delete<BaseResponse>(`${this.#url}Users/Delete/${userId}`)
   }
 
-  // Calculate indexes.
+
   private calculateIndexes(moods: MoodLight[], selectedMoodId: number | null) {
     const currentIndex = selectedMoodId !== null ? moods.findIndex(m => m.businessId === selectedMoodId) : -1;
     const previousMoodId = currentIndex > 0 ? moods[currentIndex - 1]?.businessId : moods.length ? moods[moods.length - 1]?.businessId : null;
@@ -506,7 +524,6 @@ export class FlowService {
     return { currentIndex, previousMoodId, nextMoodId };
   }
 
-  // Observable.
   flow$ = combineLatest([
     this.moodsGalleryType$,
     this.mood$,
@@ -624,7 +641,5 @@ export class FlowService {
       moodsByFranchiseIndexes
     }))
   )
-
-  // Signal.
   flow = toSignal(this.flow$)
 }
