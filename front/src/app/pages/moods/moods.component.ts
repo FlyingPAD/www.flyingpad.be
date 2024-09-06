@@ -1,10 +1,7 @@
 import { AfterViewChecked, Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { FlowService } from '../../services/flow.service';
-import { MenuCustomService } from '../../services/menu-custom.service';
 import { MenuDesktopService } from '../../services/menu-desktop.service';
-import { UserService } from '../../services/user.service';
 import { PaginationService } from '../../services/pagination.service';
 import { ViewerService } from '../../services/viewer.service';
 
@@ -15,10 +12,7 @@ import { ViewerService } from '../../services/viewer.service';
 })
 export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   #flowService = inject(FlowService)
-  userService = inject(UserService)
   menuService = inject(MenuDesktopService)
-  menuCustom = inject(MenuCustomService)
-  router = inject(Router)
   paginationService = inject(PaginationService)
   viewerService = inject(ViewerService)
 
@@ -32,11 +26,8 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   showDialog : boolean = false
 
   intervalId : any | undefined = undefined
-  diaporamaSwitch : boolean = false
-
-  topButtonIsActive = false             
-  infoIsActive = false   
-  leftCardIsActive : boolean = false
+           
+  leftCardIsActive : boolean = true
   
   ngOnInit(): void {
     this.getMoodHeight(false)
@@ -54,8 +45,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.diaporamaStop()
   }
 
-  showOff()
-  {
+  showOff(): void {
     this.showGallery = false
     this.showDetails = false
     this.showEdition = false
@@ -191,9 +181,6 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
     })
   }
 
-  infoTrigger(): void {
-    this.infoIsActive = !this.infoIsActive
-  }
   menuTrigger(): void {
     this.menuService.menuRTrigger()
   }
@@ -225,14 +212,10 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.viewerService.getMoodHeight(focusState, window.innerHeight, this.flow()?.mood.height)
   }
 
-  // KEYBOARD CONFIGURATION
   @HostListener('window:keydown', ['$event'])
-  onKeyPress(event: KeyboardEvent) 
-  {
-    if(this.showEdition != true)
-    {
-      switch (event.key) 
-      {
+  onKeyPress(event: KeyboardEvent) {
+    if(this.showEdition != true) {
+      switch (event.key) {
         case 'ArrowLeft':
           this.getPage('previous')
           break
@@ -252,7 +235,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
           // this.toggleFocus()
           break
         case 'Enter':
-          this.infoTrigger()
+          this.leftCardToggle()
           break
         case '+':
           this.menuTrigger()

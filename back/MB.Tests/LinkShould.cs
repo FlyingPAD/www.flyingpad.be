@@ -9,17 +9,15 @@ public class LinkShould
     [Fact]
     public void Test()
     {
-        // Arrange
+        // Arrange.
 
+        // Act.
         Link sut = new()
         {
-            // Act
-
             Name = "# New Link"
         };
 
-        // Assert
-
+        // Assert.
         Assert.NotNull(sut);
 
     }
@@ -27,18 +25,15 @@ public class LinkShould
     [Fact]
     public void Test2()
     {
-        // Arrange
+        // Arrange.
 
+        // Act.
         Link sut = new()
         {
-            // Act
-
             Name = "# New Link"
         };
 
-        // Assert
-
+        // Assert.
         Assert.NotNull(sut);
-
     }
 }

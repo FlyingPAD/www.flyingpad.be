@@ -20,25 +20,37 @@ export class EditTagsComponent {
   elementsPerPage : number = 18
 
   showList : boolean = true
-  showNew : boolean = false
-  showEdit : boolean = false
+  showNewTag : boolean = false
+  showNewCategory : boolean = false
+  showEditTag : boolean = false
+  showEditCategory : boolean = false
 
   triggerReset(): void {
     this.showList = false
-    this.showNew = false
-    this.showEdit = false
+    this.showNewTag = false
+    this.showNewCategory = false
+    this.showEditTag = false
+    this.showEditCategory = false
   }
   triggerShowList(): void {
     this.triggerReset()
     this.showList = true
   }
-  triggerShowNew(): void {
+  triggerShowNewTag(): void {
     this.triggerReset()
-    this.showNew = true
+    this.showNewTag = true
   }
-  triggerShowEdit(): void {
+  triggerShowNewCategory(): void {
     this.triggerReset()
-    this.showEdit = true
+    this.showNewCategory = true
+  }
+  triggerShowEditTag(): void {
+    this.triggerReset()
+    this.showEditTag = true
+  }
+  triggerShowEditCategory(): void {
+    this.triggerReset()
+    this.showEditCategory = true
   }
 
   filterTags(): TagLight[] | undefined {

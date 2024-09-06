@@ -8,8 +8,6 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<Context>
 {
     public Context CreateDbContext(string[] args)
     {
-        // Obtient le répertoire actuel de l'application
-
         var basePath = Directory.GetCurrentDirectory();
         var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
 
@@ -19,8 +17,6 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<Context>
             .AddJsonFile($"appsettings.{environmentName}.json", optional: true)
             .AddEnvironmentVariables()
             .Build();
-
-        // Récupère la chaîne de connexion
 
         var connectionString = configuration.GetConnectionString("DB");
 

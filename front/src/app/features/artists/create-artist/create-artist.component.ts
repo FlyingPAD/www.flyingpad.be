@@ -2,7 +2,6 @@ import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ArtistsStateService } from '../../../services/artists.service';
 import { Subscription } from 'rxjs';
 import { StyleLight } from '../../../models/style';
 import { FlowService } from '../../../services/flow.service';

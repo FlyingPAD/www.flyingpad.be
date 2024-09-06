@@ -1,16 +1,31 @@
 <div class="edition" *ngIf="flow() as flow">
     <div class="edition-selection">
+        @if(flow.tagCategory?.name){
+            <p><b>{{flow.tagCategory?.name}}</b></p>
+        }
+        @else {
+            <p>Select a category.</p>
+        }  
+        <div class="edition-buttons">
+            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
+            <img [class.active]="showNewCategory" src="../../../assets/app_icons/new.png" (click)="triggerShowNewCategory()" />
+            @if(flow.tagCategory?.name){
+                <img [class.active]="showEditCategory" src="../../../assets/app_icons/edit.png" (click)="triggerShowEditCategory()" />
+            }
+        </div>
+    </div>
+
+    <div class="edition-selection">
         @if(flow.tag?.name){
             <p><b>{{flow.tag?.name}}</b></p>
         }
         @else {
-            <p>Please, select a tag from the list.</p>
+            <p>Select a tag.</p>
         }
         <div class="edition-buttons">
-            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
-            <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
+            <img [class.active]="showNewTag" src="../../../assets/app_icons/new.png" (click)="triggerShowNewTag()" />
             @if(flow.tag?.name){
-                <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
+                <img [class.active]="showEditTag" src="../../../assets/app_icons/edit.png" (click)="triggerShowEditTag()" />
                 <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
             }
         </div>
@@ -37,10 +52,10 @@
             </div>   
         </div>
     }
-    @if (showNew) {
+    @if (showNewTag) {
         <app-create-tag [tagCategories]="flow.tagCategories" (trigger)="triggerShowList()" />
     }
-    @if (showEdit) {
+    @if (showEditTag) {
         <app-edit-tag [tag]="flow.tag" [tagCategories]="flow.tagCategories" (showListTrigger)="triggerShowList()" />
     }
     

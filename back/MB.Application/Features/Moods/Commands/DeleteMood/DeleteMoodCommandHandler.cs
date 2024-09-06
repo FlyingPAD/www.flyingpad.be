@@ -1,4 +1,4 @@
-﻿using MB.Application.Contracts;
+﻿using MB.Application.Interfaces;
 using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
@@ -17,7 +17,7 @@ public class DeleteMoodCommandHandler(IMoodRepository moodRepo, IFileService fil
             ?? throw new NotFoundException($"Mood with ID {request.MoodId} was not found.");
 
         await _moodRepo.DeleteMoodRelations(mood.EntityId);
-        await _fileService.DeleteMoodAsync("Content", mood.BusinessId, mood.Extension);
+        await _fileService.DeleteMoodAsync(mood.BusinessId, mood.Extension, mood.Type);
         await _moodRepo.DeleteAsync(mood);
 
         return new BaseResponse

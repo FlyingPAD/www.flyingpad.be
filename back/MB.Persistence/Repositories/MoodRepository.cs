@@ -163,4 +163,92 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
 
         await _context.SaveChangesAsync();
     }
+
+    public async System.Threading.Tasks.Task AddImageSpecificTags(Image image)
+    {
+        List<int> imageSpecificTags = [];
+
+        var tagAllFiles = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "# All Files");
+        if (tagAllFiles != null) imageSpecificTags.Add(tagAllFiles.EntityId);
+
+        var tagImage = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Image");
+        if (tagImage != null) imageSpecificTags.Add(tagImage.EntityId);
+
+        // Handle Extensions.
+        var tagBmp = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".bmp");
+        var tagGif = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".gif");
+        var tagJpeg = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".jpeg");
+        var tagJpg = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".jpg");
+        var tagPng = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".png");
+        var tagWebp = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".webp");
+
+        if (tagBmp != null && image.Extension == "bmp") imageSpecificTags.Add(tagBmp.EntityId);
+        if (tagGif != null && image.Extension == "gif") imageSpecificTags.Add(tagGif.EntityId);
+        if (tagJpeg != null && image.Extension == "jpeg") imageSpecificTags.Add(tagJpeg.EntityId);
+        if (tagJpg != null && image.Extension == "jpg") imageSpecificTags.Add(tagJpg.EntityId);
+        if (tagPng != null && image.Extension == "png") imageSpecificTags.Add(tagPng.EntityId);
+        if (tagWebp != null && image.Extension == "webp") imageSpecificTags.Add(tagWebp.EntityId);
+
+        // Handle Dimensions.
+        var tagSquare = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Square");
+        var tagLandscape = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape");
+        var tagLandscape169 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape (16:9)");
+        var tagPortrait = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait");
+        var tagPortrait169 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait (16:9)");
+
+        if (tagSquare != null && image.Height == image.Width) imageSpecificTags.Add(tagSquare.EntityId);
+        if (tagPortrait != null && image.Height > image.Width) imageSpecificTags.Add(tagPortrait.EntityId);
+        if (tagLandscape != null && image.Height < image.Width) imageSpecificTags.Add(tagLandscape.EntityId);
+        if (tagLandscape169 != null && ((float)image.Height / image.Width) == (16f / 9)) imageSpecificTags.Add(tagLandscape169.EntityId);
+        if (tagPortrait169 != null && ((float)image.Width / image.Height) == (16f / 9)) imageSpecificTags.Add(tagPortrait169.EntityId);
+
+        var relations = imageSpecificTags.Select(tagId => new RelationMoodTag
+        {
+            MoodId = image.EntityId,
+            TagId = tagId
+        }).ToList();
+
+        await _context.RMoodTag.AddRangeAsync(relations);
+        await _context.SaveChangesAsync();
+    }
+
+    public async System.Threading.Tasks.Task AddVideoSpecificTags(Video video)
+    {
+        List<int> videoSpecificTags = [];
+
+        var tagAllFiles = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "# All Files");
+        if (tagAllFiles != null) videoSpecificTags.Add(tagAllFiles.EntityId);
+
+        var tagVideo = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Video");
+        if (tagVideo != null) videoSpecificTags.Add(tagVideo.EntityId);
+
+        // Handle Extensions.
+        var tagMp4 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".mp4");
+        var tagWebm = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".webm");
+
+        if (tagMp4 != null && video.Extension == "mp4") videoSpecificTags.Add(tagMp4.EntityId);
+        if (tagWebm != null && video.Extension == "webm") videoSpecificTags.Add(tagWebm.EntityId);
+
+        // Handle Dimensions.
+        var tagSquare = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Square");
+        var tagLandscape = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape");
+        var tagLandscape169 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape (16:9)");
+        var tagPortrait = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait");
+        var tagPortrait169 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait (16:9)");
+
+        if (tagSquare != null && video.Height == video.Width) videoSpecificTags.Add(tagSquare.EntityId);
+        if (tagPortrait != null && video.Height > video.Width) videoSpecificTags.Add(tagPortrait.EntityId);
+        if (tagLandscape != null && video.Height < video.Width) videoSpecificTags.Add(tagLandscape.EntityId);
+        if (tagLandscape169 != null && ((float)video.Height / video.Width) == (16f / 9)) videoSpecificTags.Add(tagLandscape169.EntityId);
+        if (tagPortrait169 != null && ((float)video.Width / video.Height) == (16f / 9)) videoSpecificTags.Add(tagPortrait169.EntityId);
+
+        var relations = videoSpecificTags.Select(tagId => new RelationMoodTag
+        {
+            MoodId = video.EntityId,
+            TagId = tagId
+        }).ToList();
+
+        await _context.RMoodTag.AddRangeAsync(relations);
+        await _context.SaveChangesAsync();
+    }
 }

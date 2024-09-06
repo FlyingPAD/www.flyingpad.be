@@ -1,5 +1,5 @@
 ﻿using MB.Application;
-using MB.Application.Contracts;
+using MB.Application.Interfaces;
 using MB.Application.Interfaces.Persistence;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Persistence.Repositories;

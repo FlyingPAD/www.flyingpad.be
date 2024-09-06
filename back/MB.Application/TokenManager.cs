@@ -1,4 +1,4 @@
-﻿using MB.Application.Contracts;
+﻿using MB.Application.Interfaces;
 using MB.Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;

@@ -1,4 +1,4 @@
-﻿using MB.Application.Contracts;
+﻿using MB.Application.Interfaces;
 using MB.Application.Interfaces.Persistence;
 using MediatR;
 
