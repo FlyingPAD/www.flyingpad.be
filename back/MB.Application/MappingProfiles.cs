@@ -186,7 +186,6 @@ public class MappingProfiles : Profile
         CreateMap<TagCategory, UpdateTagCategoryCommand>().ReverseMap();
         CreateMap<TagCategory, TagCategoryListVm>().ReverseMap();
         CreateMap<TagCategory, GetTagCategoryByIdVm>().ReverseMap();
-        CreateMap<TagCategory, UpdateTagCategoryDto>().ReverseMap();
         CreateMap<TagCategory, TagCategoryDto>();
 
         // Tasks.

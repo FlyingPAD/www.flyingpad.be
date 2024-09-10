@@ -1,21 +1,23 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+using MB.Application.Interfaces.Persistence;
+using MB.Application.Models;
 using MediatR;
 
 namespace MB.Application.Features.TagCategories.Commands.DeleteTagCategory;
 
-public class DeleteTagCategoryCommandHandler(IBaseRepository<TagCategory> tagCategoryRepository) : IRequestHandler<DeleteTagCategoryCommand, DeleteTagCategoryCommandResponse>
+public class DeleteTagCategoryCommandHandler(ITagCategoryRepository tagCategoryRepository) : IRequestHandler<DeleteTagCategoryCommand, BaseResponse>
 {
-    private readonly IBaseRepository<TagCategory> _tagCategoryRepository = tagCategoryRepository;
+    private readonly ITagCategoryRepository _tagCategoryRepository = tagCategoryRepository;
 
-    public async Task<DeleteTagCategoryCommandResponse> Handle(DeleteTagCategoryCommand request, CancellationToken cancellationToken)
+    public async Task<BaseResponse> Handle(DeleteTagCategoryCommand request, CancellationToken cancellationToken)
     {
-        var tagCategory = await _tagCategoryRepository.GetByBusinessIdAsync(request.Id) ?? throw new NotFoundException($"Tag Category with ID {request.Id} was not found.");
+        var tagCategory = await _tagCategoryRepository.GetByBusinessIdAsync(request.TagCategoryId) 
+            ?? throw new NotFoundException($"Tag Category with ID {request.TagCategoryId} was not found.");
 
+        await _tagCategoryRepository.DeleteTagCategoryTags(tagCategory.EntityId);
         await _tagCategoryRepository.DeleteAsync(tagCategory);
 
-        return new DeleteTagCategoryCommandResponse
+        return new BaseResponse
         {
             Success = true,
             Message = "Success."

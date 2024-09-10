@@ -15,17 +15,19 @@ import { GetOneVideoDetailsResponse, VideoForm } from '../models/mood-video';
 import { CreateMoodImageResponse, GetOneImageDetailsResponse, ImageForm } from '../models/mood-image';
 import { GetOneVideoYoutubeDetailsResponse } from '../models/mood-video-youtube';
 import { ArtistUpdateForm, FranchiseUpdateForm, LinkCategoryUpdateForm, LinkUpdateForm, MediaUpdateForm, ModelUpdateForm, MoodScoreUpdate, MoodUpdateForm, StyleUpdateForm, TagCategoryUpdateForm, TagUpdateForm } from '../models/forms-update';
-import { CreateArtistResponse, CreateLinkResponse, CreateMoodResponse, CreateTagResponse } from '../models/responses-create';
-import { ArtistCreateForm, LinkCreateForm, ModelCreateForm, MoodCreateForm, TagCreateForm } from '../models/forms-create';
+import { CreateArtistResponse, CreateLinkResponse, CreateMoodResponse, CreateTagCategoryResponse, CreateTagResponse } from '../models/responses-create';
+import { ArtistCreateForm, LinkCreateForm, ModelCreateForm, MoodCreateForm, TagCategoryCreateForm, TagCreateForm } from '../models/forms-create';
 import { GetAllTagCategoriesResponse, TagCategoryFull, GetTagCategoryByIdResponse } from '../models/tag-category';
 import { TagsGetFullListResponse, GetTagsCheckBoxesByMoodResponse } from '../models/tags-list';
 import { GetAllStylesResponse, GetStyleByIdResponse, StyleFull } from '../models/style';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FlowService {
   #http = inject(HttpClient)
+  #toastr = inject(ToastrService)
   #url: string = environment.apiBaseUrl + '/api/V1/'
 
   // Subjects.
@@ -404,6 +406,22 @@ export class FlowService {
     )
   }
 
+  CreateTagCategory( form : TagCategoryCreateForm) {
+    return this.#http.post<CreateTagCategoryResponse>(`${this.#url}TagCategories/Create`, form).pipe(
+      tap(response => {
+        if(response.success) {
+          this.updateTagCategoryId(response.tagCategoryId)
+          this.refreshTagCategories()
+          this.refreshMoods()
+          this.#toastr.success(response.message)
+        }
+        else {
+          this.#toastr.error(response.message)
+        }
+      })
+    )
+  }
+
   public CreateArtist(formGroup: ArtistCreateForm): Observable<CreateArtistResponse> {
     let styleIds: number[] = formGroup.styles.filter(style => style.isChecked).map(style => style.businessId)
     let createForm: ArtistCreateForm = { name : formGroup.name, description : formGroup.description, styles : [] }
@@ -451,7 +469,16 @@ export class FlowService {
     return this.#http.put<BaseResponse>(`${this.#url}Moods/Update`, form).pipe(tap(response => { if (response.success) this.refreshMoods() } ))
   }
   UpdateTagCategory( form : TagCategoryUpdateForm ) { 
-    return this.#http.put<BaseResponse>(`${this.#url}TagCategories/Update`, form).pipe(tap(response => { if (response.success) this.updateTagCategoryId(form.tagCategoryId); this.refreshMoods() }))
+    return this.#http.put<BaseResponse>(`${this.#url}TagCategories/Update`, form).pipe(
+      tap(response => { 
+      if (response.success) {
+        this.updateTagCategoryId(form.tagCategoryId)
+        this.refreshTagCategories()
+        this.#toastr.success(response.message)
+      } 
+      else {
+        this.#toastr.error(response.message)
+      } }))
   }
   UpdateTag( form : TagUpdateForm ) { 
     return this.#http.put<BaseResponse>(`${this.#url}Tags/Update`, form).pipe(tap(response => { if (response.success) this.updateTagId(form.tagId); this.updateTagCategoryId(form.tagCategoryId); this.refreshTags(); this.refreshTagCategories(); this.refreshMoods() } ))
@@ -480,14 +507,33 @@ export class FlowService {
 
   // Delete.
   DeleteMood(moodId : number) {
-    return this.#http.delete<BaseResponse>(`${this.#url}Moods/Delete/${moodId}`).pipe(tap(response => { if (response.success) this.refreshMoods() } ))
+    return this.#http.delete<BaseResponse>(`${this.#url}Moods/Delete/${moodId}`).pipe(
+      tap(response => { if (response.success) this.refreshMoods() } ))
   }
   DeleteTag(tagId : number, tagCategoryId : number) {
     return this.#http.delete<BaseResponse>(`${this.#url}Tags/Delete/${tagId}`).pipe(
-      tap(response => { if (response.success) this.updateTagId(null); this.updateTagCategoryId(tagCategoryId); this.refreshTags(); this.refreshTagCategories(); this.refreshMoods() } ))
+      tap(response => { 
+      if (response.success){
+        this.updateTagId(null)
+        this.updateTagCategoryId(tagCategoryId)
+        this.refreshTags()
+        this.refreshTagCategories()
+        this.refreshMoods()
+        this.#toastr.success(response.message)
+      } 
+    else this.#toastr.error(response.message) } ))
   }
   DeleteTagCategory( tagCategoryId : number ) {
-    return this.#http.delete<BaseResponse>(`${this.#url}TagCategories/Delete/${tagCategoryId}`)
+    return this.#http.delete<BaseResponse>(`${this.#url}TagCategories/Delete/${tagCategoryId}`).pipe(
+      tap(response => {
+      if(response.success){
+        this.updateTagId(null)
+        this.updateTagCategoryId(null)
+        this.refreshTags()
+        this.refreshTagCategories()
+        this.#toastr.success(response.message)
+      }
+      else this.#toastr.error(response.message) } ))
   }
   DeleteArtist( artistId : number ) {
     return this.#http.delete<BaseResponse>(`${this.#url}Artists/Delete/${artistId}`)

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { TagFull } from '../../../models/tag';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +12,7 @@ import { TagCategoryLight } from '../../../models/tag-category';
   templateUrl: './edit-tag.component.html',
   styleUrl: './edit-tag.component.scss'
 })
-export class EditTagComponent {
+export class EditTagComponent implements OnInit {
   @Input() tag! : TagFull | undefined
   @Input() tagCategories! : TagCategoryLight[]
   @Output() showListTrigger = new EventEmitter<void>()

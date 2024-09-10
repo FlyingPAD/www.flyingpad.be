@@ -22,7 +22,7 @@ public class CreateTagCategoryCommandHandler(IBaseRepository<TagCategory> tagCat
         {
             Success = true,
             Message = "Success.",
-            BusinessId = tagCategory.BusinessId
+            TagCategoryId = tagCategory.BusinessId
         };
     }
 }

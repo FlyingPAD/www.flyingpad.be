@@ -1,42 +1,33 @@
 ﻿using AutoMapper;
 using MB.Application.Interfaces.Persistence.Common;
+using MB.Application.Models;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.TagCategories.Commands.UpdateTagCategory;
 
-public class UpdateTagCategoryCommandHandler : IRequestHandler<UpdateTagCategoryCommand, UpdateTagCategoryCommandResponse>
+public class UpdateTagCategoryCommandHandler(IMapper mapper, IBaseRepository<TagCategory> tagCategoryRepository) : IRequestHandler<UpdateTagCategoryCommand, BaseResponse>
 {
-    private readonly IMapper _mapper;
-    private readonly IBaseRepository<TagCategory> _tagCategoryRepository;
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<TagCategory> _tagCategoryRepository = tagCategoryRepository;
 
-    public UpdateTagCategoryCommandHandler(IMapper mapper, IBaseRepository<TagCategory> tagCategoryRepository)
+    public async Task<BaseResponse> Handle(UpdateTagCategoryCommand request, CancellationToken cancellationToken)
     {
-        _mapper = mapper;
-        _tagCategoryRepository = tagCategoryRepository;
-    }
-
-    public async Task<UpdateTagCategoryCommandResponse> Handle(UpdateTagCategoryCommand request, CancellationToken cancellationToken)
-    {
-        var tagCategory = await _tagCategoryRepository.GetByBusinessIdAsync(request.Id);
+        var tagCategory = await _tagCategoryRepository.GetByBusinessIdAsync(request.TagCategoryId);
 
         if (tagCategory == null)
         {
-            return new UpdateTagCategoryCommandResponse { Success = false, Message = "TagCategory wasn't found :(" };
+            return new BaseResponse { Success = false, Message = "Tag Category was not found." };
         }
 
-        _mapper.Map(request, tagCategory);
+        tagCategory = _mapper.Map(request, tagCategory);
 
         await _tagCategoryRepository.UpdateAsync(tagCategory);
 
-        var updatedTagCategoryDto = _mapper.Map<UpdateTagCategoryDto>(tagCategory);
-
-        return new UpdateTagCategoryCommandResponse
+        return new BaseResponse
         {
             Success = true,
-            Message = "TagCategory was Updated :)",
-            UpdatedTagCategory = updatedTagCategoryDto
+            Message = "Success.",
         };
     }
-
 }
