@@ -27,7 +27,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   intervalId : any | undefined = undefined
            
-  leftCardIsActive : boolean = true
+  leftCardIsActive : boolean = false
   
   ngOnInit(): void {
     this.getMoodHeight(false)

@@ -66,7 +66,7 @@ export class EditTagsComponent {
     this.#flowService.updateTagId(tag.businessId)
   }
 
-  updateTagCategoryId( tagCategoryId : number | null): void {
+  updateTagCategoryId(tagCategoryId : number | null): void {
     this.paginationService.editTagsCurrentPageReset()
     this.#flowService.updateTagCategoryId(tagCategoryId)
   }

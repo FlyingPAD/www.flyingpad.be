@@ -7,6 +7,7 @@ using MB.Application.Features.TagCategories.Queries.GetTagCategoriesList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using MB.Application.Models;
 
 namespace MB.API.Controllers;
 
@@ -36,11 +37,11 @@ public class TagCategoriesControllerV1(IMediator mediator) : ControllerBase
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<UpdateTagCategoryCommandResponse>> Update([FromBody] UpdateTagCategoryCommand updateTagCategoryCommand)
+    public async Task<ActionResult<BaseResponse>> Update([FromBody] UpdateTagCategoryCommand updateTagCategoryCommand)
         => Ok(await _mediator.Send(updateTagCategoryCommand));
 
     [HttpDelete("Delete/{tagCategoryId}")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<DeleteTagCategoryCommandResponse>> Delete(Guid tagCategoryId)
-        => Ok(await _mediator.Send(new DeleteTagCategoryCommand { Id = tagCategoryId }));
+    public async Task<ActionResult<BaseResponse>> Delete(Guid tagCategoryId)
+        => Ok(await _mediator.Send(new DeleteTagCategoryCommand { TagCategoryId = tagCategoryId }));
 }

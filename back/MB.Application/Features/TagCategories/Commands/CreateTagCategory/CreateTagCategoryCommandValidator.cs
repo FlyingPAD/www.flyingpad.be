@@ -6,7 +6,7 @@ public class CreateTagCategoryCommandValidator : AbstractValidator<CreateTagCate
 {
     public CreateTagCategoryCommandValidator()
     {
-        RuleFor(p => p.Name)
+        RuleFor(request => request.Name)
             .NotEmpty().WithMessage("{PropertyName} is required.")
             .NotNull()
             .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");

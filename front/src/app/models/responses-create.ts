@@ -8,6 +8,10 @@ export interface CreateTagResponse extends BaseResponse {
     tagId : number
 }
 
+export interface CreateTagCategoryResponse extends BaseResponse {
+    tagCategoryId : number
+}
+
 export interface CreateLinkResponse extends BaseResponse {
     linkId : number
 }

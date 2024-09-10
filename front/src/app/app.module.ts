@@ -115,6 +115,8 @@ import { CreateFranchiseComponent } from './features/franchises/create-franchise
 import { EditTagCategoryComponent } from './features/tags/edit-tag-category/edit-tag-category.component';
 import { DeleteModelComponent } from './features/models/delete-model/delete-model.component';
 import { DeleteTagComponent } from './features/tags/delete-tag/delete-tag.component';
+import { CreateTagCategoryComponent } from './features/tags/create-tag-category/create-tag-category.component';
+import { DeleteTagCategoryComponent } from './features/tags/delete-tag-category/delete-tag-category.component';
 
 @NgModule({
   declarations: [
@@ -237,6 +239,8 @@ import { DeleteTagComponent } from './features/tags/delete-tag/delete-tag.compon
     EditTagCategoryComponent,
     DeleteModelComponent,
     DeleteTagComponent,
+    CreateTagCategoryComponent,
+    DeleteTagCategoryComponent,
   ],
   imports: 
   [
