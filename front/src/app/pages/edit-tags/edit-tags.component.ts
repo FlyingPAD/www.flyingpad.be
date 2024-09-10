@@ -17,7 +17,7 @@ export class EditTagsComponent {
   flow = this.#flowService.flow
 
   searchTags : string = ''
-  elementsPerPage : number = 18
+  elementsPerPage : number = 15
 
   showList : boolean = true
   showNewTag : boolean = false

@@ -1,6 +1,5 @@
 <app-button-top />
 <div id="layout-central" *ngIf="flow() as flow">
-
     <div class="mobile"> 
         <div class="tags-gallery" *ngIf="flow.tags.length; else loading">
             <div *ngFor="let list of flow.tagsWithCategories">
@@ -25,7 +24,6 @@
             </div>
         </ng-template>
     </div>
-
     <div class="desktop">
         <div id="tags-wall" *ngIf="flow.tags.length; else loading">
             <div class="tags-box" *ngFor="let category of flow.tagsWithCategories">

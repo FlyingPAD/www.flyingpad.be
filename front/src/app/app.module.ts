@@ -83,7 +83,6 @@ import { MediasComponent } from './pages/medias/medias.component';
 import { LinksComponent } from './pages/links/links.component';
 import { RightColumnListComponent } from './components/right-column-list/right-column-list.component';
 import { ListCentralComponent } from './components/list-central/list-central.component';
-import { LeftCardComponent } from './components/left-card/left-card.component';
 import { ModelDetailsFlowComponent } from './features/flow/model-details-flow/model-details-flow.component';
 import { ArtistDetailsFlowComponent } from './features/flow/artist-details-flow/artist-details-flow.component';
 import { TagDetailsFlowComponent } from './features/flow/tag-details-flow/tag-details-flow.component';
@@ -145,7 +144,6 @@ import { DeleteTagComponent } from './features/tags/delete-tag/delete-tag.compon
     RightColumnComponent,
     RightColumnListComponent,
     ListCentralComponent,
-    LeftCardComponent,
     // => Franchises
     MediaGalleryComponent,
     FranchisesEditionComponent,
