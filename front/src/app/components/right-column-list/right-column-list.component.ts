@@ -8,7 +8,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class RightColumnListComponent {
   @Input() table : any[] | undefined = []
   @Input() currentEntityId : number | null | undefined = undefined
-
   @Output() entityId = new EventEmitter<number | null>()
 
   handleId(entityId : number | null): void {

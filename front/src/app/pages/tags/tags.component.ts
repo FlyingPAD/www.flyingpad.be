@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FlowService } from '../../services/flow.service';
 
 @Component({
@@ -6,31 +6,25 @@ import { FlowService } from '../../services/flow.service';
   templateUrl: './tags.component.html',
   styleUrl: './tags.component.scss'
 })
-export class TagsComponent {
+export class TagsComponent implements OnInit {
   #flowService = inject(FlowService)
-
   flow = this.#flowService.flow
 
-  ngOnInit() : void
-  {
+  ngOnInit(): void {
     window.scrollTo(0, 0)
     const businessIdString = `${this.flow()?.tag?.businessId ?? 'fallbackValue'}`
     this.scrollToStart(businessIdString)
   }
 
-  updateTagId( tagId : number | null)
-  {
+  updateTagId(tagId : number | null) {
     this.#flowService.updateTagId( tagId )
-    // this.#moodsService.updateSelectedGalleryType('tag')
   }
 
-  scrollToStart( elementId : string ) : void 
-  {
+  scrollToStart(elementId : string): void {
     const domElement = document.getElementById( elementId )
 
-    if (domElement) 
-    {
-      domElement.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+    if (domElement) {
+      domElement.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" })
     }
   }
 }
