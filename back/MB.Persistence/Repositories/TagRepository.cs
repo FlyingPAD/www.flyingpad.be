@@ -21,45 +21,49 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
     public async Task<IEnumerable<GetTagsByMoodQueryVm>> GetTagsByMood(int? moodId)
     {
         return await _context.RMoodTag
-            .Where(mt => mt.MoodId == moodId && mt.Tag != null)
-            .Select(mt => new GetTagsByMoodQueryVm
+            .Where(relation => relation.MoodId == moodId && relation.Tag != null)
+            .Select(relation => new GetTagsByMoodQueryVm
             {
-                BusinessId = mt.Tag!.BusinessId,
-                Name = mt.Tag!.Name
+                BusinessId = relation.Tag!.BusinessId,
+                Name = relation.Tag!.Name
             })
-            .OrderBy(t => t.Name)
+            .OrderBy(tag => tag.Name)
             .ToListAsync();
     }
 
     public async Task<IEnumerable<GetTagsCheckBoxesListDto>> GetTagsCheckBoxesByMood(int? moodId)
     {
+        var moodTagsDictionary = await _context.RMoodTag
+            .Where(relation => relation.MoodId == moodId)
+            .ToDictionaryAsync(relation => relation.TagId, relation => true);
+
         var tagCategories = await _context.TagCategories
             .AsNoTracking()
-            .OrderBy(tc => tc.Name)
-            .Select(tc => new
+            .OrderBy(category => category.Name)
+            .Select(category => new
             {
-                tc.BusinessId,
-                tc.Name,
-                Tags = tc.Tags
+                category.BusinessId,
+                category.Name,
+                Tags = category.Tags
                     .OrderBy(tag => tag.Name)
                     .Select(tag => new
                     {
                         tag.BusinessId,
                         tag.Name,
-                        IsChecked = tag.MoodTags != null && tag.MoodTags.Any(mt => mt.MoodId == moodId)
+                        IsChecked = moodTagsDictionary.ContainsKey(tag.EntityId)
                     })
                     .ToList()
             })
             .ToListAsync();
 
-        return tagCategories.Select(tc => new GetTagsCheckBoxesListDto
+        return tagCategories.Select(category => new GetTagsCheckBoxesListDto
         {
             Category = new TagCategoryDto
             {
-                BusinessId = tc.BusinessId,
-                Name = tc.Name
+                BusinessId = category.BusinessId,
+                Name = category.Name
             },
-            TagsCheckBoxes = tc.Tags
+            TagsCheckBoxes = category.Tags
                 .Select(tag => new GetTagsCheckBoxesDto
                 {
                     BusinessId = tag.BusinessId,
@@ -73,12 +77,12 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
     public async Task<IEnumerable<GetTagsFullListQueryVm>> GetTagsFullListAsync()
     {
         return await _context.TagCategories
-            .OrderBy(tc => tc.Name)
-            .Select(tc => new GetTagsFullListQueryVm
+            .OrderBy(category => category.Name)
+            .Select(category => new GetTagsFullListQueryVm
             {
-                Category = new TagCategoryDto { BusinessId = tc.BusinessId, Name = tc.Name },
-                Tags = tc.Tags.OrderBy(t => t.Name)
-                            .Select(t => new TagDto { BusinessId = t.BusinessId, Name = t.Name }).ToList()
+                Category = new TagCategoryDto { BusinessId = category.BusinessId, Name = category.Name },
+                Tags = category.Tags.OrderBy(t => t.Name)
+                            .Select(tag => new TagDto { BusinessId = tag.BusinessId, Name = tag.Name }).ToList()
             })
             .ToListAsync();
     }
@@ -86,9 +90,8 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
     public async Task<Tag?> GetByName(string name)
     {
         return await _context.Set<Tag>()
-                             .SingleOrDefaultAsync(x => x.Name == name);
+                             .SingleOrDefaultAsync(tag => tag.Name == name);
     }
-
 
     public async Task<List<Tag>> GetByCategory(int categoryId)
     {

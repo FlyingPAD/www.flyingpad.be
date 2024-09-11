@@ -14,10 +14,6 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\MB.API\MB.API.csproj" />
 		<ProjectReference Include="..\MB.Application\MB.Application.csproj" />
-		<ProjectReference Include="..\MB.Domain\MB.Domain.csproj" />
-		<ProjectReference Include="..\MB.Infrastructure\MB.Infrastructure.csproj" />
-		<ProjectReference Include="..\MB.Persistence\MB.Persistence.csproj" />
 	</ItemGroup>
 </Project>
