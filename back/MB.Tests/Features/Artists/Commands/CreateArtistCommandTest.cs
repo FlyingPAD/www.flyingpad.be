@@ -6,6 +6,8 @@ using Moq;
 using Xunit;
 using Task = System.Threading.Tasks.Task;
 
+namespace MB.Tests.Features.Artists.Commands;
+
 public class CreateArtistCommandHandlerTests
 {
     private readonly Mock<IMapper> _mapperMock;
@@ -24,8 +26,8 @@ public class CreateArtistCommandHandlerTests
     [Trait("Features", "Artists")]
     public async Task Handle_ShouldCreateArtistSuccessfully()
     {
-        var command = new CreateArtistCommand { Name = "New Artist", Genre = "Pop" };
-        var mappedArtist = new Artist { Name = "New Artist", Genre = "Pop", BusinessId = Guid.NewGuid() };
+        var command = new CreateArtistCommand { Name = "New Artist" };
+        var mappedArtist = new Artist { Name = "New Artist", BusinessId = Guid.NewGuid() };
 
         _mapperMock.Setup(m => m.Map<Artist>(command))
                    .Returns(mappedArtist);
@@ -49,8 +51,8 @@ public class CreateArtistCommandHandlerTests
     [Trait("Features", "Artists")]
     public async Task Handle_ShouldThrowException_WhenRepositoryFails()
     {
-        var command = new CreateArtistCommand { Name = "New Artist", Genre = "Pop" };
-        var mappedArtist = new Artist { Name = "New Artist", Genre = "Pop", BusinessId = Guid.NewGuid() };
+        var command = new CreateArtistCommand { Name = "New Artist" };
+        var mappedArtist = new Artist { Name = "New Artist", BusinessId = Guid.NewGuid() };
 
         _mapperMock.Setup(m => m.Map<Artist>(command))
                    .Returns(mappedArtist);
