@@ -39,15 +39,7 @@ export class UserService
     return user
   }
 
-  public GetOne( userId : number ) : Observable<User> | undefined {
-    return this.#http.get<User>(this.#url + 'Users/' + userId)
-  }
-
   public UpdateOneUser( form : UserUpdateForm ) : Observable<UserUpdateResponse> {
     return this.#http.put<UserUpdateResponse>(this.#url + "Users/Update/", form)
-  }
-  
-  public Delete( userId : number ) : Observable<Boolean> {
-    return this.#http.delete<Boolean>( this.#url + "Users/Update" + userId )
   }
 }

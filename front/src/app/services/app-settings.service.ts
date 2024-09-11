@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AppSettingsService 
-{
+export class AppSettingsService {
   appScreenWidth : number = window.innerWidth     
   appScreenHeight : number = window.innerHeight  
   appDisplayMode : string = this.detectDisplayMode()     
