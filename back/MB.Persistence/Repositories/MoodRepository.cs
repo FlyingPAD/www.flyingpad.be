@@ -1,4 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
@@ -56,18 +57,12 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
 
     public async System.Threading.Tasks.Task UpdateScore(int? entityId, int value)
     {
-        var moodToUpdate = await _context.Moods.FindAsync(entityId);
+        var moodToUpdate = await _context.Moods.FindAsync(entityId)
+            ?? throw new NotFoundException($"Mood with ID {entityId} was not found.");
 
-        if (moodToUpdate != null)
-        {
-            moodToUpdate.Score += value;
-            _context.Entry(moodToUpdate).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-        }
-        else
-        {
-            throw new KeyNotFoundException("Mood not found with the specified ID.");
-        }
+        moodToUpdate.Score += value;
+        _context.Entry(moodToUpdate).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
     }
 
     public async System.Threading.Tasks.Task UpdateTags(int moodId, ICollection<int> tagIds)

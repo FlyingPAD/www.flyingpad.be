@@ -56,7 +56,7 @@ public class FranchisesControllerV1(IMediator mediator) : ControllerBase
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<UpdateFranchiseCommandResponse>> Update([FromBody] UpdateFranchiseCommand updateFranchiseCommand)
+    public async Task<ActionResult<BaseResponse>> Update([FromBody] UpdateFranchiseCommand updateFranchiseCommand)
         => Ok(await _mediator.Send(updateFranchiseCommand));
 
     [HttpDelete("Delete/{franchiseId}")]

@@ -6,6 +6,6 @@ public class UpdateFranchiseCommandValidator : AbstractValidator<UpdateFranchise
 {
     public UpdateFranchiseCommandValidator()
     {
-        RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required.");
+        RuleFor(request => request.Name).NotEmpty().WithMessage("Name is required.");
     }
 }
