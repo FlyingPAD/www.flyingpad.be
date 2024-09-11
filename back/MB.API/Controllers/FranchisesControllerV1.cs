@@ -7,6 +7,7 @@ using MB.Application.Features.Franchises.Queries.GetFranchisesByMedia;
 using MB.Application.Features.Franchises.Queries.GetFranchisesByModel;
 using MB.Application.Features.Franchises.Queries.GetFranchisesByMood;
 using MB.Application.Features.Franchises.Queries.GetFranchisesList;
+using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -60,6 +61,6 @@ public class FranchisesControllerV1(IMediator mediator) : ControllerBase
 
     [HttpDelete("Delete/{franchiseId}")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<DeleteFranchiseCommandResponse>> Delete(Guid franchiseId)
+    public async Task<ActionResult<BaseResponse>> Delete(Guid franchiseId)
         => Ok(await _mediator.Send(new DeleteFranchiseCommand { FranchiseId = franchiseId }));
 }
