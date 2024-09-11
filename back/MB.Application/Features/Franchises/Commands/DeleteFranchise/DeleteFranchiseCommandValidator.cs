@@ -6,8 +6,8 @@ public class DeleteFranchiseCommandValidator : AbstractValidator<DeleteFranchise
 {
     public DeleteFranchiseCommandValidator()
     {
-        RuleFor(x => x.FranchiseId)
-            .NotEmpty().WithMessage("ID is required.")
-            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
+        RuleFor(request => request.FranchiseId)
+            .NotEmpty().WithMessage("Franchise ID is required.")
+            .NotEqual(Guid.Empty).WithMessage("Franchise ID must not be empty.");
     }
 }
