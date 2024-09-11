@@ -6,7 +6,7 @@ using Moq;
 using Xunit;
 using Task = System.Threading.Tasks.Task;
 
-namespace MB.Tests.Features.Artists.Commands;
+namespace MB.Application.Tests.Features.Artists.Commands;
 
 public class CreateArtistCommandHandlerTests
 {

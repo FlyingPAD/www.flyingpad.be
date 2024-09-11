@@ -4,7 +4,7 @@ using MB.Domain.Entities;
 using Moq;
 using Xunit;
 
-namespace MB.Tests.Features.Artists.Queries;
+namespace MB.Application.Tests.Features.Artists.Queries;
 
 public class CountArtistsQueryHandlerTests
 {

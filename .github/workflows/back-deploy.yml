@@ -1,5 +1,3 @@
-# https://github.com/rasmusbuchholdt/simply-web-deploy/blob/main/action.yml
-# https://github.com/aarhusit/deploy?tab=readme-ov-file
 name: Publish, Test, and Migrate to SmarterASP.NET
 
 on:
@@ -15,39 +13,43 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      # Checkout code
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Setup .NET Core SDK
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '8.0.x' # Assurez-vous que cela correspond à votre version cible de .NET
+          dotnet-version: '8.0.x'
 
-      # Install Entity Framework Core CLI
       - name: Install Entity Framework Core CLI
         run: dotnet tool install --global dotnet-ef --version 8.0.1
 
-      # Restore dependencies
       - name: Restore dependencies
         run: dotnet restore ./back/MB.API/MB.API.csproj
 
-      # Run MB.Tests
-      - name: Run MB.Tests
-        run: dotnet test ./back/MB.Tests/MB.Tests.csproj
+      - name: Run API Tests
+        run: dotnet test ./back/MB.API.Tests/MB.API.Tests.csproj
 
-      # Publish .NET project
+      - name: Run Application Tests
+        run: dotnet test ./back/MB.Application.Tests/MB.Application.Tests.csproj
+
+      - name: Run Domain Tests
+        run: dotnet test ./back/MB.Domain.Tests/MB.Domain.Tests.csproj
+
+      - name: Run Infrastructure Tests
+        run: dotnet test ./back/MB.Infrastructure.Tests/MB.Infrastructure.Tests.csproj
+
+      - name: Run Persistence Tests
+        run: dotnet test ./back/MB.Persistence.Tests/MB.Persistence.Tests.csproj
+
       - name: Publish .NET project
         run: dotnet publish ./back/MB.API/MB.API.csproj -c Release -o ./publish
 
-      # Apply EF Core Migrations
       - name: Apply EF Core Migrations
         run: dotnet ef database update --project ./back/MB.Persistence/MB.Persistence.csproj
         env:
           ConnectionStrings__DB: ${{ secrets.PRODUCTION_CONNECTION_STRING }}
 
-      # Deploy to SmarterASP.NET
       - name: Deploy to SmarterASP.NET
         uses: aarhusit/deploy@main
         with:
