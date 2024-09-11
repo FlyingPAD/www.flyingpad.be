@@ -1,42 +1,33 @@
 ﻿using AutoMapper;
 using MB.Application.Interfaces.Persistence.Common;
+using MB.Application.Models;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Franchises.Commands.UpdateFranchise;
 
-public class UpdateFranchiseCommandHandler : IRequestHandler<UpdateFranchiseCommand, UpdateFranchiseCommandResponse>
+public class UpdateFranchiseCommandHandler(IMapper mapper, IBaseRepository<Franchise> franchiseRepository) : IRequestHandler<UpdateFranchiseCommand, BaseResponse>
 {
-    private readonly IMapper _mapper;
-    private readonly IBaseRepository<Franchise> _franchiseRepository;
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<Franchise> _franchiseRepository = franchiseRepository;
 
-    public UpdateFranchiseCommandHandler(IMapper mapper, IBaseRepository<Franchise> franchiseRepository)
-    {
-        _mapper = mapper;
-        _franchiseRepository = franchiseRepository;
-    }
-
-    public async Task<UpdateFranchiseCommandResponse> Handle(UpdateFranchiseCommand request, CancellationToken cancellationToken)
+    public async Task<BaseResponse> Handle(UpdateFranchiseCommand request, CancellationToken cancellationToken)
     {
         var franchise = await _franchiseRepository.GetByBusinessIdAsync(request.Id);
 
         if (franchise == null)
         {
-            return new UpdateFranchiseCommandResponse { Success = false, Message = "Franchise wasn't found :(" };
+            return new BaseResponse { Success = false, Message = "Franchise was not found." };
         }
 
         _mapper.Map(request, franchise);
 
         await _franchiseRepository.UpdateAsync(franchise);
 
-        var updatedFranchiseDto = _mapper.Map<UpdateFranchiseDto>(franchise);
-
-        return new UpdateFranchiseCommandResponse
+        return new BaseResponse
         {
             Success = true,
-            Message = "Franchise was Updated :)",
-            UpdatedFranchise = updatedFranchiseDto
+            Message = "Success.",
         };
     }
-
 }

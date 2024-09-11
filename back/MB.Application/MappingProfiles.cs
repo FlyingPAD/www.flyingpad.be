@@ -104,7 +104,6 @@ public class MappingProfiles : Profile
 
         // Franchises.
         CreateMap<Franchise, UpdateFranchiseCommand>().ReverseMap();
-        CreateMap<Franchise, UpdateFranchiseDto>().ReverseMap();
         CreateMap<Franchise, DeleteFranchiseCommand>().ReverseMap();
         CreateMap<Franchise, GetFranchiseByIdVm>().ReverseMap();
         CreateMap<Franchise, GFLQFranchiseDto>().ReverseMap();
