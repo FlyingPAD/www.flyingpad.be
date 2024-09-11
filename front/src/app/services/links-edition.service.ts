@@ -54,12 +54,6 @@ export class LinksEditionService
     )
   }
 
-  getLinkCategoriesCheckBoxes( linkId : number )
-  {
-    return this.#http.get<GetLinkCategoriesResponse>(`${this.#url}LinkCategories/GetCheckBoxesByLink/${linkId}`)
-  }
-
-  // Flow
   linksEditionFlow$ = combineLatest([
     this.selectedCategoryId$,
     this.linkCategories$,
@@ -89,10 +83,8 @@ export class LinksEditionService
       )
     })
   )
-  // Signal
   linksEditionFlow = toSignal(this.linksEditionFlow$, { initialValue: { links: [], linkCategories: [], categoryDetails: null, link: null } })
 
-  // Create Link
   public CreateLink( form : LinkCreateForm )
   {
     return this.#http.post<CreateLinkResponse>(`${this.#url}Links/Create`, form).pipe(
@@ -100,7 +92,6 @@ export class LinksEditionService
     )
   }
 
-  // Update Link
   public UpdateLink( form : LinkUpdateForm )
   {
     return this.#http.put<BaseResponse>(`${this.#url}Links/Update`, form).pipe(
@@ -111,7 +102,6 @@ export class LinksEditionService
     )
   }
 
-  // Delete Link
   public DeleteLink( linkId : number )
   {
     return this.#http.delete<BaseResponse>(`${this.#url}Links/Delete/` + linkId).pipe(

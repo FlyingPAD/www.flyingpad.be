@@ -3,18 +3,12 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class MenuDesktopService
-{
-  // Properties :
-
+export class MenuDesktopService {
   menuTrigger : boolean = false      // Menu Trigger ON / OFF
   menuLActive : boolean = false      // Panel ON / OFF - Left
   menuRActive : boolean = false      // Panel ON / OFF - Right
   
-  // Methods :
-
-  scrollToStart(elementId: string) : void 
-  {
+  scrollToStart(elementId: string): void {
     const domElement = document.getElementById(elementId)
     if (domElement) 
     {
@@ -22,46 +16,38 @@ export class MenuDesktopService
     }
   }
   
-  menuON() : void 
-  {
+  menuON(): void {
     this.menuTrigger = true
   }
 
-  menuOFF() : void 
-  {
+  menuOFF(): void {
     this.menuTrigger = false
   }
 
-  menuLTrigger() : void 
-  {
+  menuLTrigger(): void {
     this.menuLActive = !this.menuLActive
     this.menuRActive = false
   }
   
-  menuRTrigger() : void 
-  {
+  menuRTrigger(): void {
     this.menuRActive = !this.menuRActive
     this.menuLActive = false
   }
 
-  menuLTriggerFull() : void 
-  {
+  menuLTriggerFull(): void {
     this.menuLActive = !this.menuLActive
   }
   
-  menuRTriggerFull() : void 
-  {
+  menuRTriggerFull(): void {
     this.menuRActive = !this.menuRActive
   }
 
-  allMenuTriggerOn() : void 
-  {
+  allMenuTriggerOn(): void {
     this.menuLActive = true
     this.menuRActive = true
   }
 
-  allMenuTriggerOff() : void 
-  {
+  allMenuTriggerOff(): void {
     this.menuLActive = false
     this.menuRActive = false
   }

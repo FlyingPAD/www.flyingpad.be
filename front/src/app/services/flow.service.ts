@@ -188,14 +188,16 @@ export class FlowService {
   );
 
   tag$ = this.#tagId.pipe(switchMap(tagId => tagId ? this.getTagById(tagId) : of(undefined)), startWith(undefined))
-  tagCategory$ = this.#tagCategoryId.pipe(switchMap(tagCategoryId => tagCategoryId ? this.getTagCategoryById(tagCategoryId) : of(undefined)), startWith(undefined))
+  tagCategory$ = this.#tagCategoryId.pipe(
+    switchMap(tagCategoryId => tagCategoryId ? this.getTagCategoryById(tagCategoryId) : of(undefined)), startWith(undefined))
   model$ = this.#modelId.pipe(switchMap(modelId => modelId ? this.getModelById(modelId) : of(undefined)), startWith(undefined))
   artist$ = this.#artistId.pipe(switchMap(artistId => artistId ? this.getArtistById(artistId) : of(undefined)), startWith(undefined))
   style$ = this.#styleId.pipe(switchMap(styleId => styleId ? this.getStyleById(styleId) : of(undefined)), startWith(undefined))
   franchise$ = this.#franchiseId.pipe(switchMap(franchiseId => franchiseId ? this.getFranchiseById(franchiseId) : of(undefined)), startWith(undefined))
   media$ = this.#mediaId.pipe(switchMap(mediaId => mediaId ? this.getMediaById(mediaId) : of(undefined)), startWith(undefined))
   link$ = this.#linkId.pipe(switchMap(linkId => linkId ? this.getLinkById(linkId) : of(undefined)), startWith(undefined))
-  linkCategory$ = this.#linkCategoryId.pipe(switchMap(linkCategoryId => linkCategoryId ? this.getLinkCategoryById(linkCategoryId) : of(undefined)), startWith(undefined))
+  linkCategory$ = this.#linkCategoryId.pipe(
+    switchMap(linkCategoryId => linkCategoryId ? this.getLinkCategoryById(linkCategoryId) : of(undefined)), startWith(undefined))
    
   moodsByTag$ = combineLatest([this.#tagId, this.#refreshMoods.pipe(startWith(null))])
   .pipe(
@@ -226,11 +228,14 @@ export class FlowService {
     startWith([])
   )
 
-  tagsByCategory$ = this.#tagCategoryId.pipe(switchMap(tagCategoryId => tagCategoryId != null ? this.getTagsByCategory(tagCategoryId) : this.tags$), startWith([]))
-  modelsByFranchise$ = this.#franchiseId.pipe(switchMap(franchiseId => franchiseId != null ? this.getModelsByFranchise(franchiseId) : this.models$), startWith([]))
+  tagsByCategory$ = this.#tagCategoryId.pipe(
+    switchMap(tagCategoryId => tagCategoryId != null ? this.getTagsByCategory(tagCategoryId) : this.tags$), startWith([]))
+  modelsByFranchise$ = this.#franchiseId.pipe(
+    switchMap(franchiseId => franchiseId != null ? this.getModelsByFranchise(franchiseId) : this.models$), startWith([]))
   artistsByStyle$ = this.#styleId.pipe(switchMap(styleId => styleId != null ? this.getArtistsByStyle(styleId) : this.artists$), startWith([]))
   franchisesByMedia$ = this.#mediaId.pipe(switchMap(mediaId => mediaId != null ? this.getFranchisesByMedia(mediaId) : this.franchises$), startWith([]))
-  linksByCategory$ = this.#linkCategoryId.pipe(switchMap(linkCategoryId => linkCategoryId != null ? this.getLinksByCategory(linkCategoryId) : this.links$), startWith([]))
+  linksByCategory$ = this.#linkCategoryId.pipe(
+    switchMap(linkCategoryId => linkCategoryId != null ? this.getLinksByCategory(linkCategoryId) : this.links$), startWith([]))
   
   getMoodById(moodId: number): Observable<MoodFull> {
     return this.#http.get<GetMoodResponse>(`${this.#url}Moods/GetOneDetails/${moodId}`).pipe(map(response => response.mood))
@@ -239,7 +244,8 @@ export class FlowService {
     return this.#http.get<GetTagByIdResponse>(`${this.#url}Tags/GetOneDetails/${tagId}`).pipe(map(response => response.tag))
   }  
   getTagCategoryById(tagCategoryId: number): Observable<TagCategoryFull> {
-    return this.#http.get<GetTagCategoryByIdResponse>(`${this.#url}TagCategories/GetOneDetails/${tagCategoryId}`).pipe(map(response => response.tagCategory))
+    return this.#http.get<GetTagCategoryByIdResponse>(`${this.#url}TagCategories/GetOneDetails/${tagCategoryId}`).pipe(
+      map(response => response.tagCategory))
   }  
   getModelById(modelId: number): Observable<ModelFull> {
     return this.#http.get<GetModelResponse>(`${this.#url}Models/GetOneDetails/${modelId}`).pipe(map(response => response.model))
@@ -260,7 +266,8 @@ export class FlowService {
     return this.#http.get<GetLinkResponse>(`${this.#url}Links/GetOneDetails/${linkId}`).pipe(map(response => response.link))
   }  
   getLinkCategoryById(linkCategoryId: number): Observable<LinkCategoryFull> {
-    return this.#http.get<GetLinkCategoryResponse>(`${this.#url}LinkCategories/GetOneDetails/${linkCategoryId}`).pipe(map(response => response.linkCategory))
+    return this.#http.get<GetLinkCategoryResponse>(`${this.#url}LinkCategories/GetOneDetails/${linkCategoryId}`).pipe(
+      map(response => response.linkCategory))
   }
 
   getMoodsByTag(tagId : number) : Observable<MoodLight[]> {
@@ -466,23 +473,27 @@ export class FlowService {
   }
 
   UpdateMood( form : MoodUpdateForm ) { 
-    return this.#http.put<BaseResponse>(`${this.#url}Moods/Update`, form).pipe(tap(response => { if (response.success) this.refreshMoods() } ))
-  }
+    return this.#http.put<BaseResponse>(`${this.#url}Moods/Update`, form).pipe(tap(response => { if (response.success) this.refreshMoods() } )) }
   UpdateTagCategory( form : TagCategoryUpdateForm ) { 
     return this.#http.put<BaseResponse>(`${this.#url}TagCategories/Update`, form).pipe(
       tap(response => { 
-      if (response.success) {
-        this.updateTagCategoryId(form.tagCategoryId)
-        this.refreshTagCategories()
-        this.#toastr.success(response.message)
-      } 
-      else {
-        this.#toastr.error(response.message)
-      } }))
-  }
+        if (response.success) {
+          this.updateTagCategoryId(form.tagCategoryId)
+          this.refreshTagCategories()
+          this.#toastr.success(response.message)
+        } 
+        else this.#toastr.error(response.message) } )) }
   UpdateTag( form : TagUpdateForm ) { 
-    return this.#http.put<BaseResponse>(`${this.#url}Tags/Update`, form).pipe(tap(response => { if (response.success) this.updateTagId(form.tagId); this.updateTagCategoryId(form.tagCategoryId); this.refreshTags(); this.refreshTagCategories(); this.refreshMoods() } ))
-  }
+    return this.#http.put<BaseResponse>(`${this.#url}Tags/Update`, form).pipe(
+      tap(response => { 
+        if (response.success) {
+          this.updateTagId(form.tagId)
+          this.updateTagCategoryId(form.tagCategoryId)
+          this.refreshTags()
+          this.refreshTagCategories()
+          this.refreshMoods() 
+        }
+        else this.#toastr.error(response.message) } )) }
   UpdateStyle( form : StyleUpdateForm ) { 
     return this.#http.put<BaseResponse>(`${this.#url}Styles/Update`, form).pipe(tap(response => { if (response.success) this.updateStyleId(form.styleId); this.refreshMoods() } ))
   }
@@ -561,7 +572,6 @@ export class FlowService {
   DeleteUser( userId : number ) {
     return this.#http.delete<BaseResponse>(`${this.#url}Users/Delete/${userId}`)
   }
-
 
   private calculateIndexes(moods: MoodLight[], selectedMoodId: number | null) {
     const currentIndex = selectedMoodId !== null ? moods.findIndex(m => m.businessId === selectedMoodId) : -1;
