@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MediatR;
 
@@ -12,19 +13,18 @@ public class GetTagsCheckBoxesByMoodQueryHandler(IMapper mapper, IMoodRepository
 
     public async Task<GetTagsCheckBoxesByMoodQueryResponse> Handle(GetTagsCheckBoxesByMoodQuery request, CancellationToken cancellationToken)
     {
-        int? moodId = await _moodRepository.GetPrimaryIdByBusinessIdAsync(request.MoodId);
+        int moodId = await _moodRepository.GetPrimaryIdByBusinessIdAsync(request.MoodId)
+            ?? throw new NotFoundException("Mood not found.");
 
         var tags = await _tagRepository.GetTagsCheckBoxesByMood(moodId);
 
-        var tagsDto = _mapper.Map<GetTagsCheckBoxesListDto[]>(tags);
+        var tagsDto = _mapper.Map<GetTagsCheckBoxesByMoodQueryDto[]>(tags);
 
-        var response = new GetTagsCheckBoxesByMoodQueryResponse
+        return new GetTagsCheckBoxesByMoodQueryResponse
         {
             Success = true,
-            Message = "Tags CheckBoxes By Mood fetched successfully",
+            Message = "Success.",
             TagsCheckBoxesList = tagsDto
         };
-
-        return response;
     }
 }

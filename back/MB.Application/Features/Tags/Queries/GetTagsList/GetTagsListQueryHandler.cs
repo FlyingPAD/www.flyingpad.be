@@ -12,15 +12,13 @@ public class GetTagsListQueryHandler(IBaseRepository<Tag> tagRepository, IMapper
 
     public async Task<GetTagsListQueryResponse> Handle(GetTagsListQuery request, CancellationToken cancellationToken)
     {
-        var tags = await _tagRepository.GetAllAsync(x => x.Name);
+        var tags = await _tagRepository.GetAllAsync(tag => tag.Name);
 
-        var response = new GetTagsListQueryResponse
+        return new GetTagsListQueryResponse
         {
             Success = true,
-            Message = "Here are the Tags !",
-            Tags = _mapper.Map<List<TagListVm>>(tags)
+            Message = "Success.",
+            Tags = _mapper.Map<List<GetTagsListQueryDto>>(tags)
         };
-
-        return response;
     }
 }

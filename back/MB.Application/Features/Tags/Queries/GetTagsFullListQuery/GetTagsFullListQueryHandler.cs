@@ -13,12 +13,12 @@ public class GetTagsFullListQueryHandler(IMapper mapper, ITagRepository tagRepos
     {
         var categoriesWithTags = await _tagRepository.GetTagsFullListAsync();
 
-        var categoriesWithTagsVm = _mapper.Map<List<GetTagsFullListQueryVm>>(categoriesWithTags);
+        var categoriesWithTagsVm = _mapper.Map<List<GetTagsFullListQueryDto>>(categoriesWithTags);
 
         return new GetTagsFullListQueryResponse
         {
             Success = true,
-            Message = "Tags and their categories retrieved successfully.",
+            Message = "Success.",
             CategoriesWithTags = categoriesWithTagsVm
         };
     }

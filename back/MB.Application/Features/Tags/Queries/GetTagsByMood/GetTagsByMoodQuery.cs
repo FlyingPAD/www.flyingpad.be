@@ -4,5 +4,5 @@ namespace MB.Application.Features.Tags.Queries.GetTagsByMood;
 
 public class GetTagsByMoodQuery : IRequest<GetTagsByMoodQueryResponse>
 {
-    public Guid MoodId { get; set; } = Guid.Empty;
+    public Guid MoodId { get; set; }
 }

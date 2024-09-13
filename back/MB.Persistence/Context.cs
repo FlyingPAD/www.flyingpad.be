@@ -22,13 +22,13 @@ public class Context(DbContextOptions<Context> options) : DbContext(options)
     public DbSet<Board> Boards { get; set; }
     public DbSet<Book> Books { get; set; }
 
-    // Extensions
+    // Extensions.
     public DbSet<Document> ExtDocument { get; set; }
     public DbSet<Image> ExtImage { get; set; }
     public DbSet<Video> ExtVideo { get; set; }
     public DbSet<VideoYouTube> ExtVideoYouTube { get; set; }
 
-    // Relations
+    // Relations.
     public DbSet<RelationArtistStyle> RArtistStyle { get; set; }
     public DbSet<RelationFranchiseMedia> RFranchiseMedia { get; set; }
     public DbSet<RelationFranchiseModel> RFranchiseModel { get; set; }
@@ -46,186 +46,6 @@ public class Context(DbContextOptions<Context> options) : DbContext(options)
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(Context).Assembly);
-
-        // - Artist / Style
-
-        modelBuilder.Entity<RelationArtistStyle>()
-            .HasKey(relation => new { relation.ArtistId, relation.StyleId });
-
-        modelBuilder.Entity<RelationArtistStyle>()
-            .HasOne(relation => relation.Artist)
-            .WithMany(artist => artist.ArtistStyles)
-            .HasForeignKey(relation => relation.ArtistId);
-
-        modelBuilder.Entity<RelationArtistStyle>()
-            .HasOne(relation => relation.Style)
-            .WithMany(style => style.ArtistStyles)
-            .HasForeignKey(relation => relation.StyleId);
-
-        // - Franchise / Media
-
-        modelBuilder.Entity<RelationFranchiseMedia>()
-            .HasKey(relation => new { relation.FranchiseId, relation.MediaId });
-
-        modelBuilder.Entity<RelationFranchiseMedia>()
-            .HasOne(relation => relation.Franchise)
-            .WithMany(franchise => franchise.FranchiseMedias)
-            .HasForeignKey(relation => relation.FranchiseId);
-
-        modelBuilder.Entity<RelationFranchiseMedia>()
-            .HasOne(relation => relation.Media)
-            .WithMany(media => media.FranchiseMedias)
-            .HasForeignKey(relation => relation.MediaId);
-
-        // - Franchise / Model
-
-        modelBuilder.Entity<RelationFranchiseModel>()
-            .HasKey(relation => new { relation.FranchiseId, relation.ModelId });
-
-        modelBuilder.Entity<RelationFranchiseModel>()
-            .HasOne(relation => relation.Franchise)
-            .WithMany(franchise => franchise.FranchiseModels)
-            .HasForeignKey(relation => relation.FranchiseId);
-
-        modelBuilder.Entity<RelationFranchiseModel>()
-            .HasOne(relation => relation.Model)
-            .WithMany(model => model.FranchiseModels)
-            .HasForeignKey(relation => relation.ModelId);
-
-        // - Link / Artist
-
-        modelBuilder.Entity<RelationLinkArtist>()
-            .HasKey(relation => new { relation.LinkId, relation.ArtistId });
-
-        modelBuilder.Entity<RelationLinkArtist>()
-            .HasOne(relation => relation.Link)
-            .WithMany(link => link.LinkArtists)
-            .HasForeignKey(relation => relation.LinkId);
-
-        modelBuilder.Entity<RelationLinkArtist>()
-            .HasOne(relation => relation.Artist)
-            .WithMany(artist => artist.LinkArtists)
-            .HasForeignKey(relation => relation.ArtistId);
-
-        // - Link / Category
-
-        modelBuilder.Entity<RelationLinkCategory>()
-            .HasKey(relation => new { relation.LinkId, relation.LinkCategoryId });
-
-        modelBuilder.Entity<RelationLinkCategory>()
-            .HasOne(relation => relation.Link)
-            .WithMany(link => link.LinkCategories)
-            .HasForeignKey(relation => relation.LinkId);
-
-        modelBuilder.Entity<RelationLinkCategory>()
-            .HasOne(relation => relation.LinkCategory)
-            .WithMany(category => category.RLinkCategories)
-            .HasForeignKey(relation => relation.LinkCategoryId);
-
-        // - Link / Model
-
-        modelBuilder.Entity<RelationLinkModel>()
-            .HasKey(relation => new { relation.LinkId, relation.ModelId });
-
-        modelBuilder.Entity<RelationLinkModel>()
-            .HasOne(relation => relation.Link)
-            .WithMany(link => link.LinkModels)
-            .HasForeignKey(relation => relation.LinkId);
-
-        modelBuilder.Entity<RelationLinkModel>()
-            .HasOne(relation => relation.Model)
-            .WithMany(model => model.LinkModels)
-            .HasForeignKey(relation => relation.ModelId);
-
-        // - Mood / Artist
-
-        modelBuilder.Entity<RelationMoodArtist>()
-            .HasKey(relation => new { relation.MoodId, relation.ArtistId });
-
-        modelBuilder.Entity<RelationMoodArtist>()
-            .HasOne(relation => relation.Mood)
-            .WithMany(mood => mood.MoodArtists)
-            .HasForeignKey(relation => relation.MoodId);
-
-        modelBuilder.Entity<RelationMoodArtist>()
-            .HasOne(relation => relation.Artist)
-            .WithMany(artist => artist.MoodArtists)
-            .HasForeignKey(relation => relation.ArtistId);
-
-        // - Mood / Model
-
-        modelBuilder.Entity<RelationMoodModel>()
-            .HasKey(relation => new { relation.MoodId, relation.ModelId });
-
-        modelBuilder.Entity<RelationMoodModel>()
-            .HasOne(relation => relation.Mood)
-            .WithMany(mood => mood.MoodModels)
-            .HasForeignKey(relation => relation.MoodId);
-
-        modelBuilder.Entity<RelationMoodModel>()
-            .HasOne(relation => relation.Model)
-            .WithMany(model => model.MoodModels)
-            .HasForeignKey(relation => relation.ModelId);
-
-        // - Mood / Franchise
-
-        modelBuilder.Entity<RelationMoodFranchise>()
-            .HasKey(relation => new { relation.MoodId, relation.FranchiseId });
-
-        modelBuilder.Entity<RelationMoodFranchise>()
-            .HasOne(relation => relation.Mood)
-            .WithMany(mood => mood.MoodFranchises)
-            .HasForeignKey(relation => relation.MoodId);
-
-        modelBuilder.Entity<RelationMoodFranchise>()
-            .HasOne(relation => relation.Franchise)
-            .WithMany(franchise => franchise.MoodFranchises)
-            .HasForeignKey(relation => relation.FranchiseId);
-
-        // - Mood / Tag
-
-        modelBuilder.Entity<RelationMoodTag>()
-            .HasKey(relation => new { relation.MoodId, relation.TagId });
-
-        modelBuilder.Entity<RelationMoodTag>()
-            .HasOne(relation => relation.Mood)
-            .WithMany(mood => mood.MoodTags)
-            .HasForeignKey(relation => relation.MoodId);
-
-        modelBuilder.Entity<RelationMoodTag>()
-            .HasOne(relation => relation.Tag)
-            .WithMany(tag => tag.MoodTags)
-            .HasForeignKey(relation => relation.TagId);
-
-        // - Book / Franchise
-
-        modelBuilder.Entity<RelationBookFranchise>()
-            .HasKey(relation => new { relation.BookId, relation.FranchiseId });
-
-        modelBuilder.Entity<RelationBookFranchise>()
-            .HasOne(relation => relation.Book)
-            .WithMany(mood => mood.BookFranchise)
-            .HasForeignKey(relation => relation.BookId);
-
-        modelBuilder.Entity<RelationBookFranchise>()
-            .HasOne(relation => relation.Franchise)
-            .WithMany(tag => tag.BookFranchise)
-            .HasForeignKey(relation => relation.FranchiseId);
-
-        // - Book / Model
-
-        modelBuilder.Entity<RelationBookModel>()
-            .HasKey(relation => new { relation.BookId, relation.ModelId });
-
-        modelBuilder.Entity<RelationBookModel>()
-            .HasOne(relation => relation.Book)
-            .WithMany(mood => mood.BookModel)
-            .HasForeignKey(relation => relation.BookId);
-
-        modelBuilder.Entity<RelationBookModel>()
-            .HasOne(relation => relation.Model)
-            .WithMany(tag => tag.BookModel)
-            .HasForeignKey(relation => relation.ModelId);
 
         PostDeployment.AddData(modelBuilder);
     }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MB.Domain.Entities;
 
-namespace MB.Persistence.Configuration;
+namespace MB.Persistence.Configurations;
 
 public class LinkCategoryConfiguration : IEntityTypeConfiguration<LinkCategory>
 {

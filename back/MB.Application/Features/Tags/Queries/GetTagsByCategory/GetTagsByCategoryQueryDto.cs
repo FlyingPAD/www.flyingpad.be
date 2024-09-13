@@ -1,8 +1,7 @@
-﻿namespace MB.Application.Features.Tags.Queries.GetTagsByCategory
+﻿namespace MB.Application.Features.Tags.Queries.GetTagsByCategory;
+
+public class GetTagsByCategoryQueryDto
 {
-    public class GetTagsByCategoryQueryDto
-    {
-        public Guid BusinessId { get; set; } = Guid.Empty;
-        public string Name { get; set; } = string.Empty;
-    }
+    public Guid BusinessId { get; set; }
+    public string Name { get; set; } = string.Empty;
 }

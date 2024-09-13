@@ -1,4 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence.Common;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
@@ -11,16 +12,23 @@ public class CreateTagCommandHandler(IBaseRepository<Tag> tagRepository, IBaseRe
 
     public async Task<CreateTagCommandResponse> Handle(CreateTagCommand request, CancellationToken cancellationToken)
     {
-        var createTagCommandResponse = new CreateTagCommandResponse();
+        var tagCategoryEntityId = await _tagCategoryRepository.GetPrimaryIdByBusinessIdAsync(request.TagCategoryId)
+            ?? throw new NotFoundException("Tag category not found.");
 
-        var tagCategoryEntityId = await _tagCategoryRepository.GetPrimaryIdByBusinessIdAsync(request.TagCategoryId);
+        var tagToCreate = new Tag
+        {
+            Name = request.Name,
+            Description = request.Description,
+            TagCategoryId = tagCategoryEntityId
+        };
 
-        var tagToCreate = new Tag { Name = request.Name, Description = request.Description, TagCategoryId = (int)tagCategoryEntityId };
         var tag = await _tagRepository.CreateAsync(tagToCreate);
 
-        createTagCommandResponse.BusinessId = tag.BusinessId;
-        createTagCommandResponse.Success = true;
-
-        return createTagCommandResponse;
+        return new CreateTagCommandResponse
+        {
+            BusinessId = tag.BusinessId,
+            Success = true,
+            Message = "Tag created successfully."
+        };
     }
 }

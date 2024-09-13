@@ -1,4 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MediatR;
 
 namespace MB.Application.Features.Tags.Queries.GetTagById;
@@ -9,16 +10,12 @@ public class GetTagByIdQueryHandler(ITagRepository tagRepository) : IRequestHand
 
     public async Task<GetTagByIdQueryResponse> Handle(GetTagByIdQuery request, CancellationToken cancellationToken)
     {
-        var tag = await _tagRepository.GetByBusinessIdAsync(request.TagId);
-
-        if (tag == null)
-        {
-            return new GetTagByIdQueryResponse { Success = false, Message = "Tag was not found." };
-        }
+        var tag = await _tagRepository.GetByBusinessIdAsync(request.TagId)
+            ?? throw new NotFoundException("Tag not found.");
 
         var tagCategoryBusinessId = await _tagRepository.GetTagCategoryBusinessId(tag.TagCategoryId);
 
-        var tagToReturn = new GetTagByIdVm 
+        var tagToReturn = new GetTagByIdQueryDto 
         {
             BusinessId  = tag.BusinessId,
             Name = tag.Name,
@@ -33,7 +30,7 @@ public class GetTagByIdQueryHandler(ITagRepository tagRepository) : IRequestHand
         return new GetTagByIdQueryResponse
         {
             Success = true,
-            Message = "Success",
+            Message = "Success.",
             Tag = tagToReturn
         };
     }
