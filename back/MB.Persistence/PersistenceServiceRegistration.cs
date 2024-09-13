@@ -33,7 +33,6 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IMoodRepository, MoodRepository>();
         services.AddScoped<IStyleRepository, StyleRepository>();
         services.AddScoped<ITagRepository, TagRepository>();
-        services.AddScoped<ITagCategoryRepository, TagCategoryRepository>();
         services.AddScoped<ITaskRepository, TaskRepository>();
         services.AddScoped<ITaskCategoryRepository, TaskCategoryRepository>();
         services.AddScoped<IAuthRepository, AuthRepository>();

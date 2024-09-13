@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace MB.Application.Features.Tags.Queries.GetTagsByCategory
+namespace MB.Application.Features.Tags.Queries.GetTagsByCategory;
+
+public class GetTagsByCategoryQueryValidator : AbstractValidator<GetTagsByCategoryQuery>
 {
-    public class GetTagsByCategoryQueryValidator : AbstractValidator<GetTagsByCategoryQuery>
+    public GetTagsByCategoryQueryValidator()
     {
-        public GetTagsByCategoryQueryValidator()
-        {
-            RuleFor(x => x.CategoryId)
-                .NotEmpty().WithMessage("ID is required.")
-                .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
-        }
+        RuleFor(request => request.CategoryId)
+            .NotEmpty().WithMessage("TagCategoryId is required.")
+            .NotEqual(Guid.Empty).WithMessage("TagCategoryId must not be empty.");
     }
 }

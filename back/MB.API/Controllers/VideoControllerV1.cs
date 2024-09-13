@@ -1,4 +1,4 @@
-﻿using MB.Application.Features.Videos.Queries.GetOneVideoDetailsQuery;
+﻿using MB.Application.Features.Videos.Queries.GetOneVideoDetails;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

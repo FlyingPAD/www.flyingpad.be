@@ -4,14 +4,9 @@ using MediatR;
 
 namespace MB.Application.Features.Tags.Queries.CountTags;
 
-public class CountTagsQueryHandler : IRequestHandler<CountTagsQuery, CountTagsQueryResponse>
+public class CountTagsQueryHandler(IBaseRepository<Tag> tagRepository) : IRequestHandler<CountTagsQuery, CountTagsQueryResponse>
 {
-    private readonly IBaseRepository<Tag> _tagRepository;
-
-    public CountTagsQueryHandler(IBaseRepository<Tag> tagRepository)
-    {
-        _tagRepository = tagRepository;
-    }
+    private readonly IBaseRepository<Tag> _tagRepository = tagRepository;
 
     public async Task<CountTagsQueryResponse> Handle(CountTagsQuery request, CancellationToken cancellationToken)
     {

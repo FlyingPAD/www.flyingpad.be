@@ -12,7 +12,7 @@ public class DeleteTagCommandHandler(ITagRepository tagRepository) : IRequestHan
     public async Task<BaseResponse> Handle(DeleteTagCommand request, CancellationToken cancellationToken)
     {
         var tag = await _tagRepository.GetByBusinessIdAsync(request.TagId)
-            ?? throw new NotFoundException($"Tag with ID {request.TagId} was not found.");
+            ?? throw new NotFoundException($"Tag not found.");
 
         await _tagRepository.DeleteTagRelations(tag.EntityId);
         await _tagRepository.DeleteAsync(tag);
@@ -20,7 +20,7 @@ public class DeleteTagCommandHandler(ITagRepository tagRepository) : IRequestHan
         return new BaseResponse
         {
             Success = true,
-            Message = "Success."
+            Message = "Tag deleted successfully."
         };
     }
 }

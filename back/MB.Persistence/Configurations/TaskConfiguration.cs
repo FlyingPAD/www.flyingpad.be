@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace MB.Persistence.Configuration;
+namespace MB.Persistence.Configurations;
 
 public class TaskConfiguration : IEntityTypeConfiguration<MB.Domain.Entities.Task>
 {

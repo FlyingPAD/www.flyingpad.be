@@ -8,9 +8,9 @@ namespace MB.Application.Interfaces.Persistence;
 
 public interface ITagRepository : IBaseRepository<Tag>
 {
-    Task<IEnumerable<GetTagsFullListQueryVm>> GetTagsFullListAsync();
-    Task<IEnumerable<GetTagsByMoodQueryVm>> GetTagsByMood(int? moodId);
-    Task<IEnumerable<GetTagsCheckBoxesListDto>> GetTagsCheckBoxesByMood(int? moodId);
+    Task<IEnumerable<GetTagsFullListQueryDto>> GetTagsFullListAsync();
+    Task<IEnumerable<GetTagsByMoodQueryDto>> GetTagsByMood(int? moodId);
+    Task<IEnumerable<GetTagsCheckBoxesByMoodQueryDto>> GetTagsCheckBoxesByMood(int? moodId);
     Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> tagIds);
     Task<Tag?> GetByName(string name);
     Task<List<Tag>> GetByCategory(int categoryId);

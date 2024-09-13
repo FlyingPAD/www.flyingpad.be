@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
@@ -14,15 +15,17 @@ public class GetTagsByCategoryQueryHandler(IMapper mapper, ITagRepository tagRep
 
     public async Task<GetTagsByCategoryQueryResponse> Handle(GetTagsByCategoryQuery request, CancellationToken cancellationToken)
     {
-        var categoryId = await _tagCategoryRepository.GetPrimaryIdByBusinessIdAsync(request.CategoryId);
+        var categoryId = await _tagCategoryRepository.GetPrimaryIdByBusinessIdAsync(request.CategoryId)
+            ?? throw new NotFoundException("Tag category not found.");
 
-        var tags = await _tagRepository.GetByCategory((int)categoryId);
+        var tags = await _tagRepository.GetByCategory(categoryId);
 
         var tagsDto = _mapper.Map<List<GetTagsByCategoryQueryDto>>(tags);
 
         return new GetTagsByCategoryQueryResponse
         {
             Success = true,
+            Message = "Success.",
             Tags = tagsDto
         };
     }

@@ -1,12 +1,14 @@
 ﻿using FluentValidation;
 using MB.Application.Exceptions;
-using Microsoft.AspNetCore.Mvc;
+using MB.Application.Models;
 using System.Text.Json;
 
 namespace MB.API.Middlewares;
 
 public class ExceptionsMiddleware(RequestDelegate next)
 {
+    private readonly RequestDelegate _next = next;
+
     private static readonly JsonSerializerOptions _jsonSerializerOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -15,33 +17,23 @@ public class ExceptionsMiddleware(RequestDelegate next)
 
     private readonly bool _isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
 
-    private const string ResourceNotFoundTitle = "Resource not found";
-    private const string ResourceNotFoundDetail = "The requested resource was not found on this server.";
-    private const string ValidationFailedTitle = "Validation Failed";
-    private const string ValidationFailedDetail = "One or more validation errors occurred.";
-    private const string GenericErrorTitle = "An error occurred";
-    private const string GenericErrorDetail = "An unexpected error occurred. Please try again later.";
-
     public async Task Invoke(HttpContext httpContext)
     {
         try
         {
-            await next(httpContext);
+            await _next(httpContext);
         }
         catch (ValidationException exception)
         {
             await HandleValidationExceptionAsync(httpContext, exception);
-            return;
         }
         catch (NotFoundException exception)
         {
             await HandleNotFoundExceptionAsync(httpContext, exception.Message);
-            return;
         }
         catch (Exception exception)
         {
             await HandleExceptionAsync(httpContext, exception);
-            return;
         }
 
         if (!httpContext.Response.HasStarted)
@@ -62,64 +54,52 @@ public class ExceptionsMiddleware(RequestDelegate next)
         }
     }
 
-    private static async Task HandleNotFoundExceptionAsync(HttpContext context, string? message = null)
-    {
-        var detailMessage = message ?? ResourceNotFoundDetail;
-        var problemDetails = CreateProblemDetails(context, StatusCodes.Status404NotFound, ResourceNotFoundTitle, detailMessage);
-        await WriteJsonResponseAsync(context, problemDetails);
-    }
-
     private static async Task HandleValidationExceptionAsync(HttpContext context, ValidationException exception)
     {
         var validationErrors = exception.Errors
-            .GroupBy(validationFailure => validationFailure.PropertyName)
-            .ToDictionary(
-                group => group.Key,
-                group => group.Select(validationFailure => validationFailure.ErrorMessage).ToArray()
-            );
+            .Select(error => error.ErrorMessage)
+            .ToArray();
 
-        var problemDetails = new ValidationProblemDetails
+        var response = new BaseResponse
         {
-            Status = StatusCodes.Status400BadRequest,
-            Title = ValidationFailedTitle,
-            Detail = ValidationFailedDetail,
-            Instance = context.Request.Path,
-            Errors = validationErrors
+            Success = false,
+            Message = "Bad Request.",
+            ValidationErrors = validationErrors
         };
 
-        await WriteJsonResponseAsync(context, problemDetails);
+        context.Response.StatusCode = StatusCodes.Status400BadRequest;
+        await WriteJsonResponseAsync(context, response);
+    }
+
+    private static async Task HandleNotFoundExceptionAsync(HttpContext context, string? message = null)
+    {
+        var response = new BaseResponse
+        {
+            Success = false,
+            Message = message ?? "Not found."
+        };
+
+        context.Response.StatusCode = StatusCodes.Status404NotFound;
+        await WriteJsonResponseAsync(context, response);
     }
 
     private async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        var problemDetails = CreateProblemDetails(context, StatusCodes.Status500InternalServerError, GenericErrorTitle, GenericErrorDetail);
-
-        if (_isDevelopment)
+        var response = new BaseResponse
         {
-            problemDetails.Detail = exception.StackTrace;
-        }
-        else
-        {
-            problemDetails.Detail = exception.Message;
-        }
+            Success = false,
+            Message = _isDevelopment
+                ? exception.StackTrace ?? "Internal Server Error."
+                : "Internal Server Error."
+        };
 
-        await WriteJsonResponseAsync(context, problemDetails);
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        await WriteJsonResponseAsync(context, response);
     }
 
-    private static async Task WriteJsonResponseAsync(HttpContext context, object problemDetails)
+    private static async Task WriteJsonResponseAsync(HttpContext context, BaseResponse response)
     {
         context.Response.ContentType = "application/json";
-        await context.Response.WriteAsync(JsonSerializer.Serialize(problemDetails, _jsonSerializerOptions));
-    }
-
-    private static ProblemDetails CreateProblemDetails(HttpContext context, int statusCode, string title, string detail)
-    {
-        return new ProblemDetails
-        {
-            Status = statusCode,
-            Title = title,
-            Detail = detail,
-            Instance = context.Request.Path
-        };
+        await context.Response.WriteAsync(JsonSerializer.Serialize(response, _jsonSerializerOptions));
     }
 }

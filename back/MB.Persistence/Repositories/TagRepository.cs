@@ -18,11 +18,11 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
                              .ToListAsync();
     }
 
-    public async Task<IEnumerable<GetTagsByMoodQueryVm>> GetTagsByMood(int? moodId)
+    public async Task<IEnumerable<GetTagsByMoodQueryDto>> GetTagsByMood(int? moodId)
     {
         return await _context.RMoodTag
             .Where(relation => relation.MoodId == moodId && relation.Tag != null)
-            .Select(relation => new GetTagsByMoodQueryVm
+            .Select(relation => new GetTagsByMoodQueryDto
             {
                 BusinessId = relation.Tag!.BusinessId,
                 Name = relation.Tag!.Name
@@ -31,7 +31,7 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<GetTagsCheckBoxesListDto>> GetTagsCheckBoxesByMood(int? moodId)
+    public async Task<IEnumerable<GetTagsCheckBoxesByMoodQueryDto>> GetTagsCheckBoxesByMood(int? moodId)
     {
         var moodTagsDictionary = await _context.RMoodTag
             .Where(relation => relation.MoodId == moodId)
@@ -56,7 +56,7 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
             })
             .ToListAsync();
 
-        return tagCategories.Select(category => new GetTagsCheckBoxesListDto
+        return tagCategories.Select(category => new GetTagsCheckBoxesByMoodQueryDto
         {
             Category = new TagCategoryDto
             {
@@ -64,7 +64,7 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
                 Name = category.Name
             },
             TagsCheckBoxes = category.Tags
-                .Select(tag => new GetTagsCheckBoxesDto
+                .Select(tag => new TagsCheckBoxesDto
                 {
                     BusinessId = tag.BusinessId,
                     Name = tag.Name,
@@ -74,11 +74,11 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
         });
     }
 
-    public async Task<IEnumerable<GetTagsFullListQueryVm>> GetTagsFullListAsync()
+    public async Task<IEnumerable<GetTagsFullListQueryDto>> GetTagsFullListAsync()
     {
         return await _context.TagCategories
             .OrderBy(category => category.Name)
-            .Select(category => new GetTagsFullListQueryVm
+            .Select(category => new GetTagsFullListQueryDto
             {
                 Category = new TagCategoryDto { BusinessId = category.BusinessId, Name = category.Name },
                 Tags = category.Tags.OrderBy(t => t.Name)

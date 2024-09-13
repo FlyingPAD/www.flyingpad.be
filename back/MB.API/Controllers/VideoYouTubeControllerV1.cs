@@ -1,4 +1,4 @@
-﻿using MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetailsQuery;
+﻿using MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetails;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

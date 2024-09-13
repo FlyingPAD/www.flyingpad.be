@@ -1,8 +1,7 @@
 ﻿namespace MB.Application.Features.Tags.Queries.GetTagsByMood;
 
-public class GetTagsByMoodQueryVm
+public class GetTagsByMoodQueryDto
 {
-    public Guid BusinessId { get; set; } = Guid.Empty;
+    public Guid BusinessId { get; set; }
     public string Name { get; set; } = string.Empty;
-
 }

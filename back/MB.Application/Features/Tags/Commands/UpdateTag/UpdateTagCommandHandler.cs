@@ -2,6 +2,7 @@
 using MB.Application.Models;
 using MB.Domain.Entities;
 using MediatR;
+using MB.Application.Exceptions;
 
 namespace MB.Application.Features.Tags.Commands.UpdateTag;
 
@@ -12,25 +13,22 @@ public class UpdateTagCommandHandler(IBaseRepository<Tag> tagRepository, IBaseRe
 
     public async Task<BaseResponse> Handle(UpdateTagCommand request, CancellationToken cancellationToken)
     {
-        var tag = await _tagRepository.GetByBusinessIdAsync(request.TagId);
+        var tag = await _tagRepository.GetByBusinessIdAsync(request.TagId)
+                  ?? throw new NotFoundException("Tag not found.");
 
-        if (tag == null)
-        {
-            return new BaseResponse { Success = false, Message = "Tag wasn't found :(" };
-        }
-
-        var tagCategoryEntityId = await _tagCategoryRepository.GetPrimaryIdByBusinessIdAsync(request.TagCategoryId);
+        var tagCategoryEntityId = await _tagCategoryRepository.GetPrimaryIdByBusinessIdAsync(request.TagCategoryId)
+                  ?? throw new NotFoundException("Tag category not found.");
 
         tag.Name = request.Name;
         tag.Description = request.Description;
-        tag.TagCategoryId = (int)tagCategoryEntityId;
+        tag.TagCategoryId = tagCategoryEntityId;
 
         await _tagRepository.UpdateAsync(tag);
 
         return new BaseResponse
         {
             Success = true,
-            Message = "Update Success !",
+            Message = "Tag updated successfully."
         };
     }
 }

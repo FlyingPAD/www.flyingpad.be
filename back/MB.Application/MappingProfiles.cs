@@ -76,8 +76,8 @@ using MB.Application.Features.Users.Commands.DeleteUser;
 using MB.Application.Features.Users.Commands.UpdateUser;
 using MB.Application.Features.Users.Queries.GetUserById;
 using MB.Application.Features.Users.Queries.GetUsersList;
-using MB.Application.Features.Videos.Queries.GetOneVideoDetailsQuery;
-using MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetailsQuery;
+using MB.Application.Features.Videos.Queries.GetOneVideoDetails;
+using MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetails;
 using MB.Domain.Entities;
 
 namespace MB.Application;
@@ -165,19 +165,19 @@ public class MappingProfiles : Profile
         CreateMap<Image, GetOneImageDetailsQueryVm>().ReverseMap();
 
         // Videos.
-        CreateMap<Video, GetOneVideoDetailsQueryVm>().ReverseMap();
+        CreateMap<Video, GetOneVideoDetailsQueryDto>().ReverseMap();
 
         // Videos YouTube.
-        CreateMap<VideoYouTube, GetOneVideoYTDetailsQueryVm>().ReverseMap();
+        CreateMap<VideoYouTube, GetOneVideoYTDetailsQueryDto>().ReverseMap();
 
         // Tags.
         CreateMap<Tag, UpdateTagCommand>().ReverseMap();
         CreateMap<Tag, DeleteTagCommand>().ReverseMap();
         CreateMap<Tag, TagDto>();
-        CreateMap<Tag, TagListVm>().ReverseMap();
-        CreateMap<Tag, GetTagByIdVm>().ReverseMap();
-        CreateMap<Tag, GetTagsByMoodQueryVm>().ReverseMap();
-        CreateMap<Tag, GetTagsCheckBoxesDto>().ReverseMap();
+        CreateMap<Tag, GetTagsListQueryDto>().ReverseMap();
+        CreateMap<Tag, GetTagByIdQueryDto>().ReverseMap();
+        CreateMap<Tag, GetTagsByMoodQueryDto>().ReverseMap();
+        CreateMap<Tag, TagsCheckBoxesDto>().ReverseMap();
         CreateMap<Tag, GetTagsByCategoryQueryDto>().ReverseMap();
 
         // Tag Categories.
