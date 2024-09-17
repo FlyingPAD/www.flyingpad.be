@@ -1,5 +1,21 @@
 <div class="edition" *ngIf="flow() as flow">
     <div class="edition-selection">
+        @if(flow.style?.name){
+            <p><b>{{flow.style?.name}}</b></p>
+        }
+        @else {
+            <p>Select a style.</p>
+        }  
+        <div class="edition-buttons">
+            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
+            <img [class.active]="showNewCategory" src="../../../assets/app_icons/new.png" (click)="triggerShowNewCategory()" />
+            @if(flow.style?.name){
+                <img [class.active]="showEditCategory" src="../../../assets/app_icons/edit.png" (click)="triggerShowEditCategory()" />
+            }
+        </div>
+    </div>
+
+    <div class="edition-selection">
         @if(currentArtist){
             <p><b>{{currentArtist.name}}</b></p>
         }
@@ -7,7 +23,6 @@
             <p>Please, select an artist from the list.</p>
         }
         <div class="edition-buttons">
-            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
             <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
             @if(currentArtist){
                 <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
@@ -40,8 +55,14 @@
     @if (showNew) {
         <app-create-artist (trigger)="triggerShowList()" [styles]="flow.styles" />
     }
+    @if (showNewCategory) {
+        <app-create-style />
+    }
     @if (showEdit) {
         <app-edit-artist [artist]="flow.artist" />
+    }
+    @if (showEditCategory) {
+        <app-edit-style />
     }
     
     <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.artists.length" />

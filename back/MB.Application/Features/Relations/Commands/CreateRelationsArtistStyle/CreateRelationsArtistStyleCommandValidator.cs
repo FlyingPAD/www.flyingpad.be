@@ -6,12 +6,12 @@ public class CreateRelationsArtistStyleCommandValidator : AbstractValidator<Crea
 {
     public CreateRelationsArtistStyleCommandValidator()
     {
-        RuleFor(command => command.ArtistId)
-            .NotEmpty().WithMessage("Artist ID must not be empty.");
+        RuleFor(request => request.ArtistId)
+            .NotEmpty().WithMessage("ArtistId must not be empty.");
 
-        RuleFor(command => command.StyleIds)
-            .NotEmpty().WithMessage("List must not be empty.")
+        RuleFor(request => request.StyleIds)
+            .NotEmpty().WithMessage("Styles list must not be empty.")
             .Must(styleIds => styleIds.All(styleId => styleId != Guid.Empty))
-            .WithMessage("One or more invalid ID(s).");
+            .WithMessage("One or more invalid Id('s).");
     }
 }

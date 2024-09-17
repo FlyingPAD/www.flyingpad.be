@@ -13,4 +13,5 @@ public interface IArtistRepository : IBaseRepository<Artist>
     Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> artistIds);
     Task<IEnumerable<GetArtistCheckBoxesByMoodQueryDto>> GetArtistsCheckBoxesByMood(int moodId);
     System.Threading.Tasks.Task DeleteArtistRelations(int artistId);
+    System.Threading.Tasks.Task UpdateStyles(int artistId, ICollection<int> stylesIds);
 }

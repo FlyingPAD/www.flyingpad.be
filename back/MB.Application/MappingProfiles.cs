@@ -151,7 +151,6 @@ public class MappingProfiles : Profile
         CreateMap<Mood, CreateMoodDto>().ReverseMap();
         CreateMap<Mood, CreateMoodImageCommandResponse>().ReverseMap();
         CreateMap<Mood, UpdateMoodCommand>().ReverseMap();
-        CreateMap<Mood, UpdateMoodDto>().ReverseMap();
         CreateMap<Mood, DeleteMoodCommand>().ReverseMap();
         CreateMap<Mood, MoodListVm>().ReverseMap();
         CreateMap<Mood, GetMoodByIdVm>().ReverseMap();

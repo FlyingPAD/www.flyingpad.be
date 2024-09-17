@@ -54,4 +54,10 @@ export interface LinkCreateForm {
     name : string
     description : string
     url : string
+    linkCategories : number[]
+}
+
+export interface UserCreateForm {
+    firstName : string
+    lastName : string
 }

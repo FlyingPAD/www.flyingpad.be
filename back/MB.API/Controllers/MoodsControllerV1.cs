@@ -76,7 +76,7 @@ public class MoodsControllerV1(IMediator mediator) : ControllerBase
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<UpdateMoodCommandResponse>> Update([FromBody] UpdateMoodCommand updateMoodCommand)
+    public async Task<ActionResult<BaseResponse>> Update([FromBody] UpdateMoodCommand updateMoodCommand)
         => Ok(await _mediator.Send(updateMoodCommand));
 
     [HttpPut("UpdateScore")]

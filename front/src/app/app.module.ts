@@ -64,7 +64,6 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FranchisesEditionComponent } from './features/franchises/franchises-edition/franchises-edition.component';
 import { MediaGalleryComponent } from './features/franchises/media-gallery/media-gallery.component';
 import { CreateArtistComponent } from './features/artists/create-artist/create-artist.component';
-import { LinksEditionComponent } from './features/links/links-edition/links-edition.component';
 import { MoodDetailsFlowComponent } from './features/flow/mood-details-flow/mood-details-flow.component';
 import { MoodsGalleryFlowComponent } from './features/flow/moods-gallery-flow/moods-gallery-flow.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
@@ -92,7 +91,6 @@ import { LinkDetailsFlowComponent } from './features/flow/link-details-flow/link
 import { MediaDetailsFlowComponent } from './features/flow/media-details-flow/media-details-flow.component';
 import { StyleDetailsFlowComponent } from './features/flow/style-details-flow/style-details-flow.component';
 import { TagCategoryDetailsFlowComponent } from './features/flow/tag-category-details-flow/tag-category-details-flow.component';
-import { CreateLinkFormComponent } from './features/links/create-link-form/create-link-form.component';
 import { EditionMenuComponent } from './features/moods/edition-menu/edition-menu.component';
 import { EditionTagsComponent } from './features/moods/edition-tags/edition-tags.component';
 import { EditionArtistsComponent } from './features/moods/edition-artists/edition-artists.component';
@@ -117,13 +115,40 @@ import { DeleteModelComponent } from './features/models/delete-model/delete-mode
 import { DeleteTagComponent } from './features/tags/delete-tag/delete-tag.component';
 import { CreateTagCategoryComponent } from './features/tags/create-tag-category/create-tag-category.component';
 import { DeleteTagCategoryComponent } from './features/tags/delete-tag-category/delete-tag-category.component';
+import { CreateMediaComponent } from './features/franchises/create-media/create-media.component';
+import { EditMediaComponent } from './features/franchises/edit-media/edit-media.component';
+import { DeleteFranchiseComponent } from './features/franchises/delete-franchise/delete-franchise.component';
+import { DeleteMediaComponent } from './features/franchises/delete-media/delete-media.component';
+import { DeleteArtistComponent } from './features/artists/delete-artist/delete-artist.component';
+import { DeleteStyleComponent } from './features/artists/delete-style/delete-style.component';
+import { CreateLinkCategoryComponent } from './features/links/create-link-category/create-link-category.component';
+import { EditLinkCategoryComponent } from './features/links/edit-link-category/edit-link-category.component';
+import { DeleteLinkComponent } from './features/links/delete-link/delete-link.component';
+import { DeleteLinkCategoryComponent } from './features/links/delete-link-category/delete-link-category.component';
+import { CreateStyleComponent } from './features/artists/create-style/create-style.component';
+import { EditStyleComponent } from './features/artists/edit-style/edit-style.component';
 
 @NgModule({
   declarations: [
+    // Layouts.
+    LayoutEmptyComponent,
+    LayoutCustomComponent,
+    // Pipes.
+    FormatDurationPipe,
+    FormatSizePipe,
+    // Directives.
+    AnimRandomDirective,
+    AnimGrowDirective,
+    AnimSpinDirective,
     // Pages.
-    HomeComponent,
     DashboardComponent,
+    HomeComponent,
     AboutComponent,
+    EditTagsComponent,
+    EditModelsComponent,
+    EditArtistsComponent,
+    EditFranchisesComponent,
+    EditLinksComponent,
     MoodsComponent,
     TagsComponent,
     MediasComponent,
@@ -146,30 +171,65 @@ import { DeleteTagCategoryComponent } from './features/tags/delete-tag-category/
     RightColumnComponent,
     RightColumnListComponent,
     ListCentralComponent,
-    // => Franchises
-    MediaGalleryComponent,
-    FranchisesEditionComponent,
-    FranchisesEditionComponent,
-    // => Artists
-    CreateArtistComponent,
-    // => Layouts
-    LayoutEmptyComponent,
-    LayoutCustomComponent,
-    // => Moods
-    MoodDetailsComponent,
-    MoodsGalleryComponent,
+    // => Features :
+    // Moods.
     CreateMoodImageComponent,
     CreateMoodVideoComponent,
+    MoodsGalleryComponent,
+    MoodDetailsComponent,
+    EditionMenuComponent,
+    EditionInfoComponent,
     MoodsMultiTagComponent,
     MultiTagArtistsComponent,
     MultiTagModelsComponent,
     MoodViewerComponent,
-    // => Models
+    // Tags.
+    CreateTagCategoryComponent,
+    CreateTagComponent,
+    EditTagCategoryComponent,
+    EditTagComponent,
+    DeleteTagCategoryComponent,
+    DeleteTagComponent,
+
+    EditionTagsComponent,
+    // Models.
     CreateModelComponent,
     EditModelComponent,
-    // => Tags
+    DeleteModelComponent,
+    
+    EditionModelsComponent,
+    // Artists.
+    CreateArtistComponent,
+    CreateStyleComponent,
+    EditStyleComponent,
+    EditArtistComponent,
+    DeleteStyleComponent,
+    DeleteArtistComponent,
 
-    // => Scripts
+    EditionArtistsComponent,
+    // Franchises.
+    CreateMediaComponent,
+    CreateFranchiseComponent,
+    EditMediaComponent,
+    EditFranchiseComponent,
+    DeleteMediaComponent,
+    DeleteFranchiseComponent,
+
+    MediaGalleryComponent,
+    FranchisesEditionComponent,
+    // Links.
+    CreateLinkCategoryComponent,
+    CreateLinkComponent,
+    EditLinkCategoryComponent,
+    EditLinkComponent,
+    DeleteLinkCategoryComponent,
+    DeleteLinkComponent,
+    // Users.
+    UserDetailsComponent,
+    UserUpdateComponent,
+    UserRegisterComponent,
+    UserLoginErrorComponent,
+    // Scripts.
     NotesComponent,
     NotesTradComponent,
     PulsationComponent,
@@ -185,19 +245,12 @@ import { DeleteTagCategoryComponent } from './features/tags/delete-tag-category/
     NotesExComponent,
     LearnMusicComponent,
     ViewpointComponent,
-    // => Tools
+    // Tools.
     ChordWheelSvgComponent,
     CircleOfFifthsComponent,
     DiapasonComponent,
     FlyingKeysMiniComponent,
     TrainerNotesComponent,
-    // => Users
-    UserDetailsComponent,
-    UserUpdateComponent,
-    UserRegisterComponent,
-    UserLoginErrorComponent,
-    // => Links
-    LinksEditionComponent,
     // => Flow.
     MoodsGalleryFlowComponent,
     MoodDetailsFlowComponent,
@@ -210,37 +263,7 @@ import { DeleteTagCategoryComponent } from './features/tags/delete-tag-category/
     FranchiseDetailsFlowComponent,
     LinkCategoryDetailsFlowComponent,
     LinkDetailsFlowComponent,
-    // Pipes.
-    FormatDurationPipe,
-    FormatSizePipe,
-    // Directives.
-    AnimRandomDirective,
-    AnimGrowDirective,
-    AnimSpinDirective,
     // 
-    CreateLinkFormComponent,
-    EditionMenuComponent,
-    EditionTagsComponent,
-    EditionArtistsComponent,
-    EditionModelsComponent,
-    EditionInfoComponent,
-    EditModelsComponent,
-    EditTagsComponent,
-    EditFranchisesComponent,
-    EditArtistsComponent,
-    EditLinksComponent,
-    EditTagComponent,
-    CreateTagComponent,
-    EditLinkComponent,
-    CreateLinkComponent,
-    EditArtistComponent,
-    EditFranchiseComponent,
-    CreateFranchiseComponent,
-    EditTagCategoryComponent,
-    DeleteModelComponent,
-    DeleteTagComponent,
-    CreateTagCategoryComponent,
-    DeleteTagCategoryComponent,
   ],
   imports: 
   [

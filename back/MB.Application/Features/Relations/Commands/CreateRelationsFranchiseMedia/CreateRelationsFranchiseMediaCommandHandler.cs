@@ -1,4 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
 using MediatR;
 
@@ -11,29 +12,17 @@ public class CreateRelationsFranchiseMediaCommandHandler(IFranchiseRepository fr
 
     public async Task<BaseResponse> Handle(CreateRelationsFranchiseMediaCommand request, CancellationToken cancellationToken)
     {
-        var franchisePrimaryId = await _franchiseRepository.GetPrimaryIdByBusinessIdAsync(request.FranchiseId);
+        var franchiseId = await _franchiseRepository.GetPrimaryIdByBusinessIdAsync(request.FranchiseId)
+            ?? throw new NotFoundException("Franchise not found.");
 
-        if (franchisePrimaryId == null)
+        var mediasIds = await _mediaRepository.GetPrimaryIdsByBusinessIdsAsync(request.MediaIds);
+
+        if (mediasIds.Count != request.MediaIds.Count)
         {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "Franchise was not found."
-            };
+            throw new NotFoundException("One or more medias were not found.");
         }
 
-        var mediasPrimaryIds = await _mediaRepository.GetPrimaryIdsByBusinessIdsAsync(request.MediaIds);
-
-        if (mediasPrimaryIds.Count != request.MediaIds.Count)
-        {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "One or more medias were not found."
-            };
-        }
-
-        await _franchiseRepository.UpdateMedias((int)franchisePrimaryId, mediasPrimaryIds);
+        await _franchiseRepository.UpdateMedias(franchiseId, mediasIds);
 
         return new BaseResponse
         {

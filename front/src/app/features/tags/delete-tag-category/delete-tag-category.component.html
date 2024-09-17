@@ -1,9 +1,15 @@
-<h2>Delete Tag Category</h2>
+<div class="edition-delete">
+    <h1>Delete Tag Category</h1>
+    <hr>
     
-<p>You are about to permanently delete the category" <strong>{{ tagCategory?.name }}</strong> " !</p>
-<p>This action <u>cannot</u> be undone !!</p>
-<p><strong>Attention :</strong> This will also remove all relations of this category.</p>
-
-<p>Are you sure you want to proceed ?</p>
-
-<a (click)="deleteTagCategory()">YES</a>
+    <p>You are about to permanently delete :</p>
+    <p class="entity-name">' {{ tagCategory?.name }} '</p>
+    <p>This action <u>cannot</u> be undone !!</p>
+    <p><span class="span-warning">Attention :</span> This will also remove all associated tags.</p>
+    
+    <p class="p">Are you sure you want to proceed ?</p>
+    
+    <div class="buttons">
+        <div class="button" (click)="deleteTagCategory()">YES</div>
+    </div>
+</div>

@@ -16,16 +16,20 @@ export class EditLinksComponent {
 
   currentLink : LinkLight | undefined = this.flow()?.link
   searchLinks : string = ''
-  elementsPerPage : number = 18
+  elementsPerPage : number = 15
 
   showList : boolean = true
   showNew : boolean = false
+  showNewCategory : boolean = false
   showEdit : boolean = false
+  showEditCategory : boolean = false
 
   triggerReset(): void {
     this.showList = false
     this.showNew = false
+    this.showNewCategory = false
     this.showEdit = false
+    this.showEditCategory = false
   }
   triggerShowList(): void {
     this.triggerReset()
@@ -35,9 +39,17 @@ export class EditLinksComponent {
     this.triggerReset()
     this.showNew = true
   }
+  triggerShowNewCategory(): void {
+    this.triggerReset()
+    this.showNewCategory = true
+  }
   triggerShowEdit(): void {
     this.triggerReset()
     this.showEdit = true
+  }
+  triggerShowEditCategory(): void {
+    this.triggerReset()
+    this.showEditCategory = true
   }
 
   filterLinks(): LinkLight[] | undefined {

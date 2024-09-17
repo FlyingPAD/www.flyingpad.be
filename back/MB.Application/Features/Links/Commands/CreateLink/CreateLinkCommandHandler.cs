@@ -1,12 +1,14 @@
-﻿using MB.Application.Interfaces.Persistence.Common;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Links.Commands.CreateLink;
 
-public class CreateLinkCommandHandler(IBaseRepository<Link> linkRepository) : IRequestHandler<CreateLinkCommand, CreateLinkCommandResponse>
+public class CreateLinkCommandHandler(ILinkRepository linkRepository, ILinkCategoryRepository linkCategoryRepository) : IRequestHandler<CreateLinkCommand, CreateLinkCommandResponse>
 {
-    private readonly IBaseRepository<Link> _linkRepository = linkRepository;
+    private readonly ILinkRepository _linkRepository = linkRepository;
+    private readonly ILinkCategoryRepository _linkCategoryRepository = linkCategoryRepository;
 
     public async Task<CreateLinkCommandResponse> Handle(CreateLinkCommand request, CancellationToken cancellationToken)
     {
@@ -19,10 +21,19 @@ public class CreateLinkCommandHandler(IBaseRepository<Link> linkRepository) : IR
 
         link = await _linkRepository.CreateAsync(link);
 
+        var categoryIds = await _linkCategoryRepository.GetPrimaryIdsByBusinessIdsAsync(request.LinkCategories);
+
+        if (categoryIds.Count != request.LinkCategories.Count)
+        {
+            throw new NotFoundException("One or more categories were not found.");
+        }
+
+        await _linkRepository.UpdateCategories(link.EntityId, categoryIds);
+
         return new CreateLinkCommandResponse
         {
             Success = true,
-            Message = "Success.",
+            Message = "Link created successfully.",
             LinkId = link.BusinessId
         };
     }

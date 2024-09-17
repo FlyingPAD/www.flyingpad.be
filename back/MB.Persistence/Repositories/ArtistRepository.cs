@@ -1,4 +1,5 @@
-﻿using MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
+﻿using MB.Application.Exceptions;
+using MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 using MB.Application.Interfaces.Persistence;
 using MB.Domain.Common;
 using MB.Domain.Entities;
@@ -93,6 +94,30 @@ public class ArtistRepository(Context context) : BaseRepository<Artist>(context)
                                          .ToListAsync();
 
         _context.RArtistStyle.RemoveRange(artistStyles);
+
+        await _context.SaveChangesAsync();
+    }
+
+    public async System.Threading.Tasks.Task UpdateStyles(int artistId, ICollection<int> stylesIds)
+    {
+        var artist = await _context.Artists
+                    .Include(artist => artist.ArtistStyles)
+                    .FirstOrDefaultAsync(artist => artist.EntityId == artistId)
+                    ?? throw new NotFoundException("Artist not found.");
+
+        var existingStylesIds = artist.ArtistStyles?.Select(relation => relation.StyleId).ToList() ?? [];
+
+        var stylesToAdd = stylesIds.Except(existingStylesIds).ToList();
+        var relationsToAdd = stylesToAdd.Select(styleId => new RelationArtistStyle { ArtistId = artistId, StyleId = styleId });
+        _context.RArtistStyle.AddRange(relationsToAdd);
+
+        var stylesToRemove = existingStylesIds.Except(stylesIds).ToList();
+        var relationsToRemove = artist.ArtistStyles?.Where(relation => stylesToRemove.Contains(relation.StyleId)).ToList();
+
+        if (relationsToRemove != null && relationsToRemove.Count != 0)
+        {
+            _context.RArtistStyle.RemoveRange(relationsToRemove);
+        }
 
         await _context.SaveChangesAsync();
     }

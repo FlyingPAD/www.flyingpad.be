@@ -1,4 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
 using MediatR;
 
@@ -11,27 +12,17 @@ public class CreateRelationsModelFranchiseCommandHandler(IModelRepository modelR
 
     public async Task<BaseResponse> Handle(CreateRelationsModelFranchiseCommand request, CancellationToken cancellationToken)
     {
-        var modelPrimaryId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId);
-        if (modelPrimaryId == null)
+        var modelId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId)
+            ?? throw new NotFoundException("Model not found.");
+
+        var franchiseIds = await _franchiseRepository.GetPrimaryIdsByBusinessIdsAsync(request.FranchiseIds);
+
+        if (franchiseIds.Count != request.FranchiseIds.Count)
         {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "Model was not found."
-            };
+            throw new NotFoundException("One or more franchises were not found.");
         }
 
-        var franchisePrimaryIds = await _franchiseRepository.GetPrimaryIdsByBusinessIdsAsync(request.FranchiseIds);
-        if (franchisePrimaryIds.Count != request.FranchiseIds.Count)
-        {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "One or more franchises were not found."
-            };
-        }
-
-        await _modelRepository.UpdateFranchises((int)modelPrimaryId, franchisePrimaryIds);
+        await _modelRepository.UpdateFranchises(modelId, franchiseIds);
 
         return new BaseResponse
         {

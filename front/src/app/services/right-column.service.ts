@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class RightColumnService {
   #rightColumnIsActive = new BehaviorSubject<boolean>(false)
-  rightColumnIsActive$ = this.#rightColumnIsActive.asObservable()
-  updateRightColumnState(isActive : boolean): void {this.#rightColumnIsActive.next(isActive)}
-  rightColumnIsActive = toSignal(this.rightColumnIsActive$)
+  private rightColumnIsActive$ = this.#rightColumnIsActive.asObservable()
+  public updateRightColumnState(isActive : boolean): void {this.#rightColumnIsActive.next(isActive)}
+  public rightColumnIsActive = toSignal(this.rightColumnIsActive$)
 }

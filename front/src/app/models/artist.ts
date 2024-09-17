@@ -55,9 +55,6 @@ export class ArtistsGetPageResponse implements BaseResponse, PaginationResponse 
     artistsPage: ArtistLight[] = []
 }
 
-export interface ArtistDeleteResponse extends BaseResponse {}
-
-export interface GetArtistsCheckBoxesByMoodResponse extends BaseResponse
-{
+export interface GetArtistsCheckBoxesByMoodResponse extends BaseResponse{
    artists : ArtistCheckBox[]
 }
