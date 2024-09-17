@@ -17,9 +17,10 @@
     <button (click)="updateMoodScore(10)">+10</button>
 </div>
 
-<div class="button" (click)="onSubmit()">Submit</div>
-
-<div class="button" (click)="triggerMoodDelete()">Delete Mood</div>
+<div class="buttons">
+    <div class="button" (click)="onSubmit()">Submit</div>
+    <div class="button" (click)="triggerMoodDelete()">Delete Mood</div>
+</div>
 
 @if(moodDelete){
     <div [ngClass]="moodDelete === true ? 'box-delete on-delete' : 'box-delete' " (click)="triggerMoodDelete()">

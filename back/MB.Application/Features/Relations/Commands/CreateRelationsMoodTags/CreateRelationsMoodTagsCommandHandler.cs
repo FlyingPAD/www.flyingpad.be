@@ -1,4 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
 using MediatR;
 
@@ -11,29 +12,17 @@ public class CreateRelationsMoodTagsCommandHandler(IMoodRepository moodRepositor
 
     public async Task<BaseResponse> Handle(CreateRelationsMoodTagsCommand request, CancellationToken cancellationToken)
     {
-        var moodPrimaryId = await _moodRepository.GetPrimaryIdByBusinessIdAsync(request.MoodId);
-
-        if (moodPrimaryId == null)
-        {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "Mood was not found."
-            };
-        }
+        var moodId = await _moodRepository.GetPrimaryIdByBusinessIdAsync(request.MoodId)
+            ?? throw new NotFoundException("Mood not found.");
 
         var tagsPrimaryIds = await _tagRepository.GetPrimaryIdsByBusinessIdsAsync(request.TagIds);
 
         if (tagsPrimaryIds.Count != request.TagIds.Count)
         {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "One or more tags were not found."
-            };
+            throw new NotFoundException("One or more tags were not found.");
         }
 
-        await _moodRepository.UpdateTags((int)moodPrimaryId, tagsPrimaryIds);
+        await _moodRepository.UpdateTags(moodId, tagsPrimaryIds);
 
         return new BaseResponse
         {

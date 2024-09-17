@@ -29,7 +29,7 @@
         </div>   
     </div>
 
-    <app-dialog *ngIf="showFormDialog" (dialog)="handleFormDialog()"><app-create-link-form /></app-dialog>
+    <app-dialog *ngIf="showFormDialog" (dialog)="handleFormDialog()"><app-create-link /></app-dialog>
     
     <app-right-column>
         <app-right-column-list [table]="flow?.linkCategories" (entityId)="updateLinkCategoryId($event)"/>

@@ -1,4 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
 using MediatR;
 
@@ -11,29 +12,17 @@ public class CreateRelationsLinkCategoryCommandHandler(ILinkRepository linkRepos
 
     public async Task<BaseResponse> Handle(CreateRelationsLinkCategoryCommand request, CancellationToken cancellationToken)
     {
-        var linkPrimaryId = await _linkRepository.GetPrimaryIdByBusinessIdAsync(request.LinkId);
+        var linkId = await _linkRepository.GetPrimaryIdByBusinessIdAsync(request.LinkId)
+            ?? throw new NotFoundException("Link not found.");
 
-        if (linkPrimaryId == null)
+        var categoryIds = await _linkCategoryRepository.GetPrimaryIdsByBusinessIdsAsync(request.CategoryIds);
+
+        if (categoryIds.Count != request.CategoryIds.Count)
         {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "Link was not found."
-            };
+            throw new NotFoundException("One or more categories were not found.");
         }
 
-        var categoryPrimaryIds = await _linkCategoryRepository.GetPrimaryIdsByBusinessIdsAsync(request.CategoryIds);
-
-        if (categoryPrimaryIds.Count != request.CategoryIds.Count)
-        {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "One or more categories were not found."
-            };
-        }
-
-        await _linkRepository.UpdateCategories((int)linkPrimaryId, categoryPrimaryIds);
+        await _linkRepository.UpdateCategories(linkId, categoryIds);
 
         return new BaseResponse
         {

@@ -1,33 +1,36 @@
 import { BaseResponse } from "./base-response";
 
 export interface LinkLight {
-    businessId :  number
-    name :        string
+    businessId : number
+    name : string
     description : string
-    url :         string
+    url : string
 }
 export interface LinkFull {
-    businessId :  number
-    name :        string
+    businessId : number
+    name : string
     description : string
-    url :         string
-    created :     Date
-    createdBy :   string
-    modified :    Date
-    modifiedBy :  string
+    url : string
+    created : Date
+    createdBy : string
+    modified : Date
+    modifiedBy : string
 }
 export interface LinkCategoryLight {
     businessId : number
-    name :       string
+    name : string
+}
+export interface LinkCategoryCheckBox extends LinkCategoryLight {
+    isChecked? : boolean
 }
 export interface LinkCategoryFull {
-    businessId :  number
-    name :        string
+    businessId : number
+    name : string
     description : string
-    created :     Date
-    createdBy :   string
-    modified :    Date
-    modifiedBy :  string
+    created : Date
+    createdBy : string
+    modified : Date
+    modifiedBy : string
 }
 
 export interface GetLinkResponse extends BaseResponse {
@@ -42,3 +45,7 @@ export interface GetLinkCategoryResponse extends BaseResponse {
 export interface GetLinkCategoriesResponse extends BaseResponse {
     linkCategories : LinkCategoryLight[]
 }
+
+export interface GetLinkCategoriesCheckBoxesResponse extends BaseResponse{
+    linkCategories : LinkCategoryCheckBox[]
+ }

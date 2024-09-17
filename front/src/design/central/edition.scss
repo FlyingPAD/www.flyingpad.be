@@ -5,12 +5,12 @@
             width: 300px;
 
             margin: auto;
-            margin-top: 20px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 8px;
 
             background-color: rgba(255, 255, 255, 0.7);
             border: 3px solid rgb(107, 82, 64, 0.8);
-            border-radius: 7px;
+            border-radius: 7px 7px 0 0;
 
             text-align: center;
             color: rgb(107, 82, 64, 0.8);
@@ -25,7 +25,7 @@
                 height: 25px;
                 width: 25px;
 
-                padding: 8px;
+                padding: 5px;
 
                 background-color: rgba(255, 255, 255, 0.3);
                 border: 3px solid rgb(107, 82, 64, 0.8);
@@ -36,12 +36,14 @@
                 margin-right: 5px;
                 margin-bottom: 10px;
             }
+
             img:hover:not(.active) {
                 background-color: rgba(255, 255, 255, 0.5);
                 color: #6b5240;
                 transition-duration: 200ms;
                 cursor: pointer;
             }
+
             .active {
                 background-color: rgba(255, 255, 255, 0.7);
                 color: #6b5240;
@@ -81,15 +83,17 @@
 
             z-index: 0;
         }
+
         a:hover:not(.active) {
             background-color: rgb(107, 82, 64, 0.5);
-            color:#fff;
+            color: #fff;
             transition-duration: 500ms;
             cursor: pointer;
         }
+
         .active {
             background-color: rgb(107, 82, 64, 0.7);
-            color:#fff;
+            color: #fff;
         }
     }
 
@@ -149,7 +153,7 @@
                 label {
                     display: block;
                     width: 175px;
-                    color:#6b5240;
+                    color: #6b5240;
                 }
 
                 input {
@@ -189,5 +193,18 @@
         background-color: rgba(192, 192, 192, 0.8);
         color: rgba(102, 102, 102);
         cursor: not-allowed;
+    }
+}
+
+.edition-delete {
+    h1 {
+        text-align : center;
+        color: #6b5240;
+        font-size: 20px;
+    }
+    .entity-name {
+        color: rgb(135, 0, 0);
+        text-align: center;
+        font-weight: bold;
     }
 }

@@ -1,5 +1,7 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
+using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodArtist;
@@ -11,29 +13,17 @@ public class CreateRelationsMoodArtistCommandHandler(IMoodRepository moodReposit
 
     public async Task<BaseResponse> Handle(CreateRelationsMoodArtistCommand request, CancellationToken cancellationToken)
     {
-        var moodPrimaryId = await _moodRepository.GetPrimaryIdByBusinessIdAsync(request.MoodId);
-
-        if (moodPrimaryId == null)
-        {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "Mood was not found."
-            };
-        }
+        var moodId = await _moodRepository.GetPrimaryIdByBusinessIdAsync(request.MoodId)
+            ?? throw new NotFoundException("Mood not found.");
 
         var artistsPrimaryIds = await _artistRepository.GetPrimaryIdsByBusinessIdsAsync(request.ArtistIds);
 
         if (artistsPrimaryIds.Count != request.ArtistIds.Count)
         {
-            return new BaseResponse
-            {
-                Success = false,
-                Message = "One or more artists were not found."
-            };
+            throw new NotFoundException("One or more artists were not found.");
         }
 
-        await _moodRepository.UpdateArtists((int)moodPrimaryId, artistsPrimaryIds);
+        await _moodRepository.UpdateArtists(moodId, artistsPrimaryIds);
 
         return new BaseResponse
         {

@@ -67,3 +67,9 @@ export interface LinkUpdateForm {
     description : string
     url : string
 }
+
+export interface UserUpdateForm {
+    userId : number
+    firstName : string
+    lastName : string
+}

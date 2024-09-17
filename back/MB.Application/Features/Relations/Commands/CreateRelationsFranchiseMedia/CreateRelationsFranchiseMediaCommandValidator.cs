@@ -6,12 +6,12 @@ public class CreateRelationsFranchiseMediaCommandValidator : AbstractValidator<C
 {
     public CreateRelationsFranchiseMediaCommandValidator()
     {
-        RuleFor(command => command.FranchiseId)
-            .NotEmpty().WithMessage("Franchise ID must not be empty.");
+        RuleFor(request => request.FranchiseId)
+            .NotEmpty().WithMessage("FranchiseId must not be empty.");
 
-        RuleFor(command => command.MediaIds)
-            .NotEmpty().WithMessage("List must not be empty.")
+        RuleFor(request => request.MediaIds)
+            .NotEmpty().WithMessage("Medias list must not be empty.")
             .Must(mediaIds => mediaIds.All(mediaId => mediaId != Guid.Empty))
-            .WithMessage("One or more invalid ID(s).");
+            .WithMessage("One or more invalid Id('s).");
     }
 }

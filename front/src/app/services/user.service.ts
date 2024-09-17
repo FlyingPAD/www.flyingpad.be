@@ -13,7 +13,7 @@ export class UserService
   #http = inject(HttpClient)
   #url : string = environment.apiBaseUrl + '/api/V1/'
 
-  appUser = new User()
+  appUser! : User
 
   setDefaultUser() {
     this.appUser = {

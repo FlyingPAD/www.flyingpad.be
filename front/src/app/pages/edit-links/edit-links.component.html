@@ -1,5 +1,21 @@
 <div class="edition" *ngIf="flow() as flow">
     <div class="edition-selection">
+        @if(flow.linkCategory?.name){
+            <p><b>{{flow.linkCategory?.name}}</b></p>
+        }
+        @else {
+            <p>Select a category.</p>
+        }  
+        <div class="edition-buttons">
+            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
+            <img [class.active]="showNewCategory" src="../../../assets/app_icons/new.png" (click)="triggerShowNewCategory()" />
+            @if(flow.linkCategory?.name){
+                <img [class.active]="showEditCategory" src="../../../assets/app_icons/edit.png" (click)="triggerShowEditCategory()" />
+            }
+        </div>
+    </div>
+
+    <div class="edition-selection">
         @if(currentLink){
             <p><b>{{currentLink.name}}</b></p>
         }
@@ -7,7 +23,6 @@
             <p>Please, select a link from the list.</p>
         }
         <div class="edition-buttons">
-            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
             <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
             @if(currentLink){
                 <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
@@ -38,10 +53,16 @@
         </div>
     }
     @if (showNew) {
-        <app-create-link (trigger)="triggerShowList()" />
+        <app-create-link (trigger)="triggerShowList()" [linkCategories]="flow.linkCategories"/>
+    }
+    @if (showNewCategory) {
+        <app-create-link-category [linkCategory]="flow.linkCategory" />
     }
     @if (showEdit) {
         <app-edit-link [link]="flow.link" />
+    }
+    @if (showEditCategory) {
+        <app-edit-link-category [linkCategory]="flow.linkCategory" />
     }
     
     <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.links.length"/>

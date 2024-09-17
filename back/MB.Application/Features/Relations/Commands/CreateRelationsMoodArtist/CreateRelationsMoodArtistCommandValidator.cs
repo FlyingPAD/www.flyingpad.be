@@ -6,12 +6,12 @@ public class CreateRelationsMoodArtistCommandValidator : AbstractValidator<Creat
 {
     public CreateRelationsMoodArtistCommandValidator()
     {
-        RuleFor(command => command.MoodId)
-            .NotEmpty().WithMessage("Mood ID must not be Empty.");
+        RuleFor(request => request.MoodId)
+            .NotEmpty().WithMessage("MoodId must not be Empty.");
 
-        RuleFor(command => command.ArtistIds)
-            .NotEmpty().WithMessage("List must not be empty.")
+        RuleFor(request => request.ArtistIds)
+            .NotEmpty().WithMessage("Artists list must not be empty.")
             .Must(artistIds => artistIds.All(artistId => artistId != Guid.Empty))
-            .WithMessage("One or more invalid ID's.");
+            .WithMessage("One or more invalid Id('s).");
     }
 }

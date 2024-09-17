@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateLinkFormComponent } from './create-link-form.component';
+import { EditMediaComponent } from './edit-media.component';
 
-describe('CreateLinkFormComponent', () => {
-  let component: CreateLinkFormComponent;
-  let fixture: ComponentFixture<CreateLinkFormComponent>;
+describe('EditMediaComponent', () => {
+  let component: EditMediaComponent;
+  let fixture: ComponentFixture<EditMediaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CreateLinkFormComponent]
+      declarations: [EditMediaComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CreateLinkFormComponent);
+    fixture = TestBed.createComponent(EditMediaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

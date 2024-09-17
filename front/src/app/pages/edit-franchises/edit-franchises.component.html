@@ -1,5 +1,21 @@
 <div class="edition" *ngIf="flow() as flow">
     <div class="edition-selection">
+        @if(flow.media?.name){
+            <p><b>{{flow.media?.name}}</b></p>
+        }
+        @else {
+            <p>Select a media.</p>
+        }  
+        <div class="edition-buttons">
+            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
+            <img [class.active]="showNewCategory" src="../../../assets/app_icons/new.png" (click)="triggerShowNewCategory()" />
+            @if(flow.media?.name){
+                <img [class.active]="showEditCategory" src="../../../assets/app_icons/edit.png" (click)="triggerShowEditCategory()" />
+            }
+        </div>
+    </div>
+
+    <div class="edition-selection">
         @if(currentFranchise){
             <p><b>{{currentFranchise.name}}</b></p>
         }
@@ -7,7 +23,6 @@
             <p>Please, select a franchise from the list.</p>
         }
         <div class="edition-buttons">
-            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
             <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
             @if(currentFranchise){
                 <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
@@ -40,8 +55,14 @@
     @if (showNew) {
         <app-create-franchise (trigger)="triggerShowList()" />
     }
+    @if (showNewCategory) {
+        <app-create-media />
+    }
     @if (showEdit) {
         <app-edit-franchise [franchise]="flow.franchise" />
+    }
+    @if (showEditCategory) {
+        <app-edit-media />
     }
     
     <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.franchises.length" />

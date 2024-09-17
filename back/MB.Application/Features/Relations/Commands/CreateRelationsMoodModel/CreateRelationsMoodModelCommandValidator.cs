@@ -6,12 +6,12 @@ public class CreateRelationsMoodModelCommandValidator : AbstractValidator<Create
 {
     public CreateRelationsMoodModelCommandValidator()
     {
-        RuleFor(command => command.MoodId)
-            .NotEmpty().WithMessage("Mood ID must not be Empty.");
+        RuleFor(request => request.MoodId)
+            .NotEmpty().WithMessage("MoodId must not be Empty.");
 
-        RuleFor(command => command.ModelIds)
-            .NotEmpty().WithMessage("List must not be empty.")
+        RuleFor(request => request.ModelIds)
+            .NotEmpty().WithMessage("Models list must not be empty.")
             .Must(modelIds => modelIds.All(modelId => modelId != Guid.Empty))
-            .WithMessage("One or more invalid ID(s).");
+            .WithMessage("One or more invalid Id('s).");
     }
 }

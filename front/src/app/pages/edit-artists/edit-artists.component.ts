@@ -18,28 +18,40 @@ export class EditArtistsComponent {
 
   currentArtist : ArtistLight | undefined = this.flow()?.artist
   searchArtists : string = ''
-  elementsPerPage : number = 18
+  elementsPerPage : number = 15
 
   showList : boolean = true
   showNew : boolean = false
+  showNewCategory : boolean = false
   showEdit : boolean = false
+  showEditCategory : boolean = false
 
-  triggerReset() {
+  triggerReset(): void {
     this.showList = false
     this.showNew = false
+    this.showNewCategory = false
     this.showEdit = false
+    this.showEditCategory = false
   }
-  triggerShowList(): void{
+  triggerShowList(): void {
     this.triggerReset()
     this.showList = true
   }
-  triggerShowNew(): void{
+  triggerShowNew(): void {
     this.triggerReset()
     this.showNew = true
   }
-  triggerShowEdit(): void{
+  triggerShowNewCategory(): void {
+    this.triggerReset()
+    this.showNewCategory = true
+  }
+  triggerShowEdit(): void {
     this.triggerReset()
     this.showEdit = true
+  }
+  triggerShowEditCategory(): void {
+    this.triggerReset()
+    this.showEditCategory = true
   }
 
   filterArtists(): ArtistLight[] | undefined {

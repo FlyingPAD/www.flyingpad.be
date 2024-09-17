@@ -4,26 +4,42 @@ export interface CreateMoodResponse extends BaseResponse {
     moodId : number
 }
 
-export interface CreateTagResponse extends BaseResponse {
-    tagId : number
-}
-
 export interface CreateTagCategoryResponse extends BaseResponse {
     tagCategoryId : number
 }
 
-export interface CreateLinkResponse extends BaseResponse {
-    linkId : number
+export interface CreateTagResponse extends BaseResponse {
+    tagId : number
 }
 
-export interface CreateFranchiseResponse extends BaseResponse {
-    franchiseId : number
+export interface CreateModelResponse extends BaseResponse {
+    modelId : number
+}
+
+export interface CreateStyleResponse extends BaseResponse {
+    styleId : number
 }
 
 export interface CreateArtistResponse extends BaseResponse {
     artistId : number
 }
 
-export interface CreateStyleResponse extends BaseResponse {
-    styleId : number
+export interface CreateMediaResponse extends BaseResponse {
+    mediaId : number
+}
+
+export interface CreateFranchiseResponse extends BaseResponse {
+    franchiseId : number
+}
+
+export interface CreateLinkCategoryResponse extends BaseResponse {
+    linkCategoryId : number
+}
+
+export interface CreateLinkResponse extends BaseResponse {
+    linkId : number
+}
+
+export interface CreateUserResponse extends BaseResponse {
+    userId : number
 }

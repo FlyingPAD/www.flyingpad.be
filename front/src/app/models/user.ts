@@ -1,14 +1,14 @@
 import { BaseResponse } from "./base-response"
 
-export class User {
-    created : Date = new Date
-    modified : Date = new Date
-    businessId : number = 0
-    firstName : string = ''
-    lastName : string = ''
-    email : string = ''
-    birthdate : Date = new Date
-    role : number = 0
+export interface User {
+    created : Date
+    modified : Date
+    businessId : number
+    firstName : string
+    lastName : string
+    email : string
+    birthdate : Date
+    role : number
 }
 
 export interface UserRegisterForm {
