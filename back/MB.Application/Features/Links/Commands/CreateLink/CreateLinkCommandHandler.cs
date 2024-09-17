@@ -33,7 +33,7 @@ public class CreateLinkCommandHandler(ILinkRepository linkRepository, ILinkCateg
         return new CreateLinkCommandResponse
         {
             Success = true,
-            Message = "Link created successfully.",
+            Message = "Creation successful.",
             LinkId = link.BusinessId
         };
     }

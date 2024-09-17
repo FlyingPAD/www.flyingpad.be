@@ -5,6 +5,7 @@ using MB.Application.Features.LinkCategories.Queries.CountLinkCategories;
 using MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckBoxesByLink;
 using MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesList;
 using MB.Application.Features.LinkCategories.Queries.GetLinkCategoryById;
+using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,7 @@ public class LinkCategoriesControllerV1(IMediator mediator) : ControllerBase
 {
     private readonly IMediator _mediator = mediator;
 
-    [HttpPost]
+    [HttpPost("Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<CreateLinkCategoryCommandResponse>> Create([FromBody] CreateLinkCategoryCommand createLinkCategoryCommand)
         => Ok(await _mediator.Send(createLinkCategoryCommand));
@@ -32,7 +33,7 @@ public class LinkCategoriesControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(new GetLinkCategoriesListQuery()));
 
     [HttpGet("GetOneDetails/{linkCategoryId}")]
-    public async Task<ActionResult<GetLinkCategoryByIdQueryResponse>> GetOneDetails( Guid linkCategoryId)
+    public async Task<ActionResult<GetLinkCategoryByIdQueryResponse>> GetOneDetails(Guid linkCategoryId)
         => Ok(await _mediator.Send(new GetLinkCategoryByIdQuery { LinkCategoryId = linkCategoryId }));
 
     [HttpGet("GetCheckBoxesByLink")]
@@ -41,11 +42,11 @@ public class LinkCategoriesControllerV1(IMediator mediator) : ControllerBase
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<UpdateLinkCategoryCommandResponse>> Update([FromBody] UpdateLinkCategoryCommand updateLinkCategoryCommand)
+    public async Task<ActionResult<BaseResponse>> Update([FromBody] UpdateLinkCategoryCommand updateLinkCategoryCommand)
         => Ok(await _mediator.Send(updateLinkCategoryCommand));
 
     [HttpDelete("Delete/{linkCategoryId}")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<DeleteLinkCategoryCommandResponse>> Delete( Guid linkCategoryId )
+    public async Task<ActionResult<BaseResponse>> Delete(Guid linkCategoryId)
         => Ok(await _mediator.Send(new DeleteLinkCategoryCommand { LinkCategoryId = linkCategoryId }));
 }

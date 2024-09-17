@@ -133,7 +133,6 @@ public class MappingProfiles : Profile
         CreateMap<LinkCategory, LinkCategoryListVm>().ReverseMap();
         CreateMap<LinkCategory, GetLinkCategoryByIdVm>().ReverseMap();
         CreateMap<LinkCategory, UpdateLinkCategoryCommand>().ReverseMap();
-        CreateMap<LinkCategory, UpdateLinkCategoryDto>().ReverseMap();
         CreateMap<LinkCategory, DeleteLinkCategoryCommand>().ReverseMap();
 
         // Models.

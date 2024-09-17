@@ -69,8 +69,6 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
           if (response.success) this.trigger.emit()
         }
       })
-    } else {
-      this.#toastr.error('Form is invalid. Please check the fields.')
     }
   }
 }

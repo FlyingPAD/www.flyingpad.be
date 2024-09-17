@@ -1,4 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Common;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
@@ -71,23 +72,27 @@ public class LinkRepository(Context context) : BaseRepository<Link>(context), IL
     public async System.Threading.Tasks.Task UpdateCategories(int linkId, ICollection<int> categoryIds)
     {
         var link = await _context.Links
-                                 .Include(link => link.LinkCategories)
-                                 .FirstOrDefaultAsync(link => link.EntityId == linkId) ?? throw new ArgumentException("No link found with the provided ID.", nameof(linkId));
+                   .Include(link => link.LinkCategories)
+                   .FirstOrDefaultAsync(link => link.EntityId == linkId)
+                   ?? throw new NotFoundException("Link not found.");
 
         var existingCategoryIds = link.LinkCategories?.Select(relation => relation.LinkCategoryId).ToList() ?? [];
 
         var categoriesToAdd = categoryIds.Except(existingCategoryIds).ToList();
-        foreach (var categoryId in categoriesToAdd)
+        var relationsToAdd = categoriesToAdd.Select(categoryId => new RelationLinkCategory
         {
-            _context.RLinkCategory.Add(new RelationLinkCategory { LinkId = linkId, LinkCategoryId = categoryId });
-        }
+            LinkId = linkId,
+            LinkCategoryId = categoryId
+        }).ToList();
+
+        _context.RLinkCategory.AddRange(relationsToAdd);
 
         var categoriesToRemove = existingCategoryIds.Except(categoryIds).ToList();
-        foreach (var categoryId in categoriesToRemove)
+        var relationsToRemove = link.LinkCategories?.Where(relation => categoriesToRemove.Contains(relation.LinkCategoryId)).ToList();
+
+        if (relationsToRemove != null && relationsToRemove.Count != 0)
         {
-            var categoryToRemove = link.LinkCategories?.FirstOrDefault(relation => relation.LinkCategoryId == categoryId);
-            if (categoryToRemove != null)
-                _context.RLinkCategory.Remove(categoryToRemove);
+            _context.RLinkCategory.RemoveRange(relationsToRemove);
         }
 
         await _context.SaveChangesAsync();

@@ -6,6 +6,8 @@ public class UpdateLinkCategoryCommandValidator : AbstractValidator<UpdateLinkCa
 {
     public UpdateLinkCategoryCommandValidator()
     {
-        RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required.");
+        RuleFor(request => request.Name).NotEmpty().WithMessage("Name is required.");
+
+        RuleFor(request => request.Description).NotEmpty().WithMessage("Description is required.");
     }
 }

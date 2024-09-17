@@ -1,9 +1,11 @@
-﻿using MediatR;
+﻿using MB.Application.Models;
+using MediatR;
 
 namespace MB.Application.Features.LinkCategories.Commands.UpdateLinkCategory;
 
-public class UpdateLinkCategoryCommand : IRequest<UpdateLinkCategoryCommandResponse>
+public class UpdateLinkCategoryCommand : IRequest<BaseResponse>
 {
-    public Guid Id { get; set; }
+    public Guid LinkCategoryId { get; set; }
     public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 }

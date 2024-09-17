@@ -56,13 +56,13 @@
         <app-create-link (trigger)="triggerShowList()" [linkCategories]="flow.linkCategories"/>
     }
     @if (showNewCategory) {
-        <app-create-link-category [linkCategory]="flow.linkCategory" />
+        <app-create-link-category (trigger)="triggerShowList()"/>
     }
     @if (showEdit) {
-        <app-edit-link [link]="flow.link" />
+        <app-edit-link />
     }
     @if (showEditCategory) {
-        <app-edit-link-category [linkCategory]="flow.linkCategory" />
+        <app-edit-link-category [linkCategory]="flow.linkCategory" (showListTrigger)="triggerShowList()" />
     }
     
     <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.links.length"/>

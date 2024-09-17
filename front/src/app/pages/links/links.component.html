@@ -1,40 +1,34 @@
 <div *ngIf="flow() as flow">
-
     <div class="top-options">
         <div class="new">
             <img src="../../../../assets/app_icons/icon_links_001.png" />
             <a (click)="openFormDialog()">New Link</a>
-        </div>
-    
+        </div>    
         <div class="filter">
             <input type="text" [(ngModel)]="searchLinks" placeholder="Filter links ...">
         </div>
     </div>
-
-    <div class="selected" *ngIf="flow.link">
-        <img id="favicon" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + flow.link.url + '&sz=96'" />
-        <p>{{ flow.link.name }}</p>
-        <a target="_blank" [href]="flow.link.url">Go</a>
-    </div>
-    
+    @if(flow.link) {
+        <div class="selected">
+            <img id="favicon" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + flow.link.url + '&sz=96'" />
+            <p>{{ flow.link.name }}</p>
+            <a target="_blank" [href]="flow.link.url">Go</a>
+        </div>   
+    }
     <div class="list">
         <div *ngFor="let item of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage }">
             <a (click)="updateLinkId(item.businessId)"> ▸ {{item.name}}</a>
         </div>
-    </div>
-    
+    </div>    
     <div class="pagination-row" *ngIf="flow.linksByCategory.length > elementsPerPage">
         <div id="pagination">
           <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
         </div>   
     </div>
-
-    <app-dialog *ngIf="showFormDialog" (dialog)="handleFormDialog()"><app-create-link /></app-dialog>
-    
+    <app-dialog *ngIf="showFormDialog" (dialog)="handleFormDialog()"><app-create-link /></app-dialog>    
     <app-right-column>
         <app-right-column-list [table]="flow?.linkCategories" (entityId)="updateLinkCategoryId($event)"/>
-    </app-right-column>
-    
+    </app-right-column>    
     <app-dialog *ngIf="showDialog" (dialog)="handleDialog()"><app-dialog-info moodsGalleryType="link" [entity]="flow.linkCategory" [moodsLength]="flow?.linksByCategory?.length"/></app-dialog>     
     <app-bottom-bar moodsGalleryType="link" [entityName]="flow?.linkCategory?.name" [moodsLength]="flow?.linksByCategory?.length" (dialog)="openDialog()"/>
 </div>

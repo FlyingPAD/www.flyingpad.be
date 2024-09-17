@@ -16,7 +16,7 @@ export class EditLinksComponent {
 
   currentLink : LinkLight | undefined = this.flow()?.link
   searchLinks : string = ''
-  elementsPerPage : number = 15
+  elementsPerPage : number = 12
 
   showList : boolean = true
   showNew : boolean = false
