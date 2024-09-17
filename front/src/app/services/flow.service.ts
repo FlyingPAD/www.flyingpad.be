@@ -112,7 +112,8 @@ export class FlowService {
   links$ = this.#refreshLinks.pipe(
     switchMap(() => this.#http.get<GetLinksResponse>(`${this.#url}Links/GetAll`)),
     map(response => response.links))
-  linkCategories$ = this.#http.get<GetLinkCategoriesResponse>(`${this.#url}LinkCategories/GetAll`).pipe(
+  linkCategories$ = this.#refreshLinkCategories.pipe(
+    switchMap( () => this.#http.get<GetLinkCategoriesResponse>(`${this.#url}LinkCategories/GetAll`)),
     map(response => response.linkCategories))
 
   // Get Random Mood

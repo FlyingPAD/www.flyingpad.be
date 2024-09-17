@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit
 {
-  authService = inject(AuthService)
+  authService = inject(AuthenticationService)
   userService = inject(UserService)
   #router = inject(Router)
 

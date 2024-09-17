@@ -1,1 +1,15 @@
-<p>delete-link-category works!</p>
+<div class="edition-delete">
+    <h1>Delete Link Category</h1>
+    <hr>
+    
+    <p>You are about to permanently delete :</p>
+    <p class="entity-name">' {{ linkCategory?.name }} '</p>
+    <p>This action <u>cannot</u> be undone !!</p>
+    <p><span class="span-warning">Attention :</span> This will also remove all associated links.</p>
+    
+    <p class="p">Are you sure you want to proceed ?</p>
+    
+    <div class="buttons">
+        <div class="button" (click)="deleteLinkCategory()">YES</div>
+    </div>
+</div>

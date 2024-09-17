@@ -1,7 +1,7 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { UserService } from './services/user.service';
 import { CustomCookieService } from './services/cookie.service';
-import { AuthService } from './services/auth.service';
+import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
 import { MenuCustomService } from './services/menu-custom.service';
 
@@ -12,7 +12,7 @@ import { MenuCustomService } from './services/menu-custom.service';
 })
 export class AppComponent
 { 
-  #authService = inject(AuthService)
+  #authService = inject(AuthenticationService)
   #userService = inject(UserService)
   #cookieService = inject(CustomCookieService)
   #menuCustomService = inject(MenuCustomService)

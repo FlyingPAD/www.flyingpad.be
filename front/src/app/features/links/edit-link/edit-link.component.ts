@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { LinkFull } from '../../../models/link';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-edit-link',
@@ -7,5 +6,5 @@ import { LinkFull } from '../../../models/link';
   styleUrl: './edit-link.component.scss'
 })
 export class EditLinkComponent {
-  @Input() link! : LinkFull | undefined
+
 }

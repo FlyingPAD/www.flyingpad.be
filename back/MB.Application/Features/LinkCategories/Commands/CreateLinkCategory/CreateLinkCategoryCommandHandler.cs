@@ -21,7 +21,7 @@ public class CreateLinkCategoryCommandHandler(IBaseRepository<LinkCategory> link
         return new CreateLinkCategoryCommandResponse
         {
             Success = true,
-            Message = "Success.",
+            Message = "Creation successful.",
             LinkCategoryId = linkCategory.BusinessId
         };
     }

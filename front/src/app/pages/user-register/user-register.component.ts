@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../services/auth.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-user-register',
@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class UserRegisterComponent 
 {
   #router = inject(Router)
-  #authService = inject(AuthService)
+  #authService = inject(AuthenticationService)
   #toastr = inject(ToastrService)
 
   // Properties :

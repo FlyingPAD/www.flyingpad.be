@@ -13,14 +13,14 @@ public class DeleteLinkCommandHandler(IBaseRepository<Link> linkRepository) : IR
     public async Task<BaseResponse> Handle(DeleteLinkCommand request, CancellationToken cancellationToken)
     {
         var link = await _linkRepository.GetByBusinessIdAsync(request.LinkId) 
-            ?? throw new NotFoundException($"Link with ID {request.LinkId} was not found.");
+            ?? throw new NotFoundException($"Link not found.");
 
         await _linkRepository.DeleteAsync(link);
 
         return new BaseResponse
         {
             Success = true,
-            Message = "Success."
+            Message = "Deletion successful."
         };
     }
 }

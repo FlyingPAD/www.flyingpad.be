@@ -9,8 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './delete-tag-category.component.scss'
 })
 export class DeleteTagCategoryComponent implements OnDestroy {
-  @Input() tagCategory! : TagCategoryFull | undefined
-  @Input() tagCategoryId : number | undefined
+  @Input() tagCategory : TagCategoryFull | undefined = undefined
   @Output() toggleDialog = new EventEmitter<void>()
 
   #flowService = inject(FlowService)
@@ -21,7 +20,7 @@ export class DeleteTagCategoryComponent implements OnDestroy {
     this.subscription.unsubscribe()
   }
   deleteTagCategory(): void {
-    if(this.tagCategory) {
+    if(this.tagCategory != undefined) {
       this.subscription = this.#flowService.DeleteTagCategory(this.tagCategory.businessId).subscribe({
         next : (response) => {
           if(response.success) {

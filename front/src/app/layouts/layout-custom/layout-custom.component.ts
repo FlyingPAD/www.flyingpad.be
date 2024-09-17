@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
-import { AuthService } from '../../services/auth.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { MenuCustomService } from '../../services/menu-custom.service';
 import { UserService } from '../../services/user.service';
 
@@ -13,7 +13,7 @@ import { UserService } from '../../services/user.service';
 })
 export class LayoutCustomComponent 
 {
-  authService = inject(AuthService)
+  authService = inject(AuthenticationService)
   userService = inject(UserService)
   menuCustom = inject(MenuCustomService)
   #formBuilder = inject(FormBuilder)
