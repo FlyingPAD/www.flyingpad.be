@@ -2,6 +2,7 @@
     "title": {
         "back": "Back",
         "delete": "Delete",
+        "update" : "Update",
         "add-image": "Add Image(s)",
         "add-video": "Add Video(s)",
         "full-flow": "Full Flow",
