@@ -1,70 +1,76 @@
-﻿using AutoMapper;
+﻿using MB.Application.Exceptions;
 using MB.Application.Features.Artists.Commands.CreateArtist;
-using MB.Application.Interfaces.Persistence.Common;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using Moq;
 using Xunit;
-using Task = System.Threading.Tasks.Task;
 
-namespace MB.Application.Tests.Features.Artists.Commands;
-
-public class CreateArtistCommandHandlerTests
+namespace MB.Application.Tests.Features.Artists.Commands
 {
-    private readonly Mock<IMapper> _mapperMock;
-    private readonly Mock<IBaseRepository<Artist>> _artistRepositoryMock;
-    private readonly CreateArtistCommandHandler _handler;
-
-    public CreateArtistCommandHandlerTests()
+    public class CreateArtistCommandHandlerTests
     {
-        _mapperMock = new Mock<IMapper>();
-        _artistRepositoryMock = new Mock<IBaseRepository<Artist>>();
+        private readonly Mock<IArtistRepository> _artistRepositoryMock;
+        private readonly Mock<IStyleRepository> _styleRepositoryMock;
+        private readonly CreateArtistCommandHandler _handler;
 
-        _handler = new CreateArtistCommandHandler(_mapperMock.Object, _artistRepositoryMock.Object);
-    }
+        public CreateArtistCommandHandlerTests()
+        {
+            _artistRepositoryMock = new Mock<IArtistRepository>();
+            _styleRepositoryMock = new Mock<IStyleRepository>();
+            _handler = new CreateArtistCommandHandler(_artistRepositoryMock.Object, _styleRepositoryMock.Object);
+        }
 
-    [Fact]
-    [Trait("Features", "Artists")]
-    public async Task Handle_ShouldCreateArtistSuccessfully()
-    {
-        var command = new CreateArtistCommand { Name = "New Artist" };
-        var mappedArtist = new Artist { Name = "New Artist", BusinessId = Guid.NewGuid() };
+        [Fact]
+        public async System.Threading.Tasks.Task Handle_ShouldCreateArtistSuccessfully()
+        {
+            // Arrange
+            var artist = new Artist { EntityId = 1, BusinessId = Guid.NewGuid() };
+            _artistRepositoryMock.Setup(repo => repo.CreateAsync(It.IsAny<Artist>())).ReturnsAsync(artist);
+            _styleRepositoryMock.Setup(repo => repo.GetPrimaryIdsByBusinessIdsAsync(It.IsAny<List<Guid>>()))
+                                .ReturnsAsync([1, 2]);
+            _artistRepositoryMock.Setup(repo => repo.AddArtistStylesAsync(It.IsAny<int>(), It.IsAny<List<int>>()))
+                                 .Returns(System.Threading.Tasks.Task.CompletedTask);
 
-        _mapperMock.Setup(m => m.Map<Artist>(command))
-                   .Returns(mappedArtist);
+            var command = new CreateArtistCommand { Name = "Test Artist", Description = "Description", StyleIds = [Guid.NewGuid(), Guid.NewGuid()] };
 
-        _artistRepositoryMock.Setup(repo => repo.CreateAsync(mappedArtist))
-                             .ReturnsAsync(mappedArtist);
+            // Act
+            var result = await _handler.Handle(command, new CancellationToken());
 
-        var cancellationToken = new CancellationToken();
+            // Assert
+            Assert.True(result.Success);
+            Assert.Equal("Creation successful.", result.Message);
+            Assert.Equal(artist.BusinessId, result.ArtistId);
+        }
 
-        var result = await _handler.Handle(command, cancellationToken);
+        [Fact]
+        public async System.Threading.Tasks.Task Handle_ShouldThrowNotFoundExceptionWhenStyleNotFound()
+        {
+            // Arrange
+            _artistRepositoryMock.Setup(repo => repo.CreateAsync(It.IsAny<Artist>())).ReturnsAsync(new Artist());
+            _styleRepositoryMock.Setup(repo => repo.GetPrimaryIdsByBusinessIdsAsync(It.IsAny<List<Guid>>()))
+                                .ReturnsAsync([1]); // Fewer styles found than requested
 
-        Assert.True(result.Success);
-        Assert.Equal($"The artist '{mappedArtist.Name}' has been successfully created.", result.Message);
-        Assert.Equal(mappedArtist.BusinessId, result.ArtistId);
+            var command = new CreateArtistCommand { Name = "Test Artist", Description = "Description", StyleIds = [Guid.NewGuid(), Guid.NewGuid()] };
 
-        _mapperMock.Verify(m => m.Map<Artist>(command), Times.Once);
-        _artistRepositoryMock.Verify(repo => repo.CreateAsync(mappedArtist), Times.Once);
-    }
+            // Act & Assert
+            await Assert.ThrowsAsync<NotFoundException>(() => _handler.Handle(command, new CancellationToken()));
+        }
 
-    [Fact]
-    [Trait("Features", "Artists")]
-    public async Task Handle_ShouldThrowException_WhenRepositoryFails()
-    {
-        var command = new CreateArtistCommand { Name = "New Artist" };
-        var mappedArtist = new Artist { Name = "New Artist", BusinessId = Guid.NewGuid() };
+        [Fact]
+        public async System.Threading.Tasks.Task Handle_ShouldThrowExceptionWhenAddingStylesFails()
+        {
+            // Arrange
+            var artist = new Artist { EntityId = 1 };
+            _artistRepositoryMock.Setup(repo => repo.CreateAsync(It.IsAny<Artist>())).ReturnsAsync(artist);
+            _styleRepositoryMock.Setup(repo => repo.GetPrimaryIdsByBusinessIdsAsync(It.IsAny<List<Guid>>()))
+                                .ReturnsAsync([1, 2]);
+            _artistRepositoryMock.Setup(repo => repo.AddArtistStylesAsync(It.IsAny<int>(), It.IsAny<List<int>>()))
+                                 .ThrowsAsync(new Exception("Failed to add styles"));
 
-        _mapperMock.Setup(m => m.Map<Artist>(command))
-                   .Returns(mappedArtist);
+            var command = new CreateArtistCommand { Name = "Test Artist", Description = "Description", StyleIds = [Guid.NewGuid(), Guid.NewGuid()] };
 
-        _artistRepositoryMock.Setup(repo => repo.CreateAsync(mappedArtist))
-                             .ThrowsAsync(new Exception("Repository failure"));
-
-        var cancellationToken = new CancellationToken();
-
-        await Assert.ThrowsAsync<Exception>(() => _handler.Handle(command, cancellationToken));
-
-        _mapperMock.Verify(m => m.Map<Artist>(command), Times.Once);
-        _artistRepositoryMock.Verify(repo => repo.CreateAsync(mappedArtist), Times.Once);
+            // Act & Assert
+            await Assert.ThrowsAsync<Exception>(() => _handler.Handle(command, new CancellationToken()));
+        }
     }
 }
