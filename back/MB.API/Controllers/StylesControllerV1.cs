@@ -2,9 +2,9 @@
 using MB.Application.Features.Styles.Commands.DeleteStyle;
 using MB.Application.Features.Styles.Commands.UpdateStyle;
 using MB.Application.Features.Styles.Queries.CountStyles;
+using MB.Application.Features.Styles.Queries.GetAllStyles;
 using MB.Application.Features.Styles.Queries.GetStyleById;
-using MB.Application.Features.Styles.Queries.GetStylesCheck;
-using MB.Application.Features.Styles.Queries.GetStylesList;
+using MB.Application.Features.Styles.Queries.GetStylesCheckBoxesByArtist;
 using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -28,16 +28,16 @@ public class StylesControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(new CountStylesQuery()));
 
     [HttpGet("GetAll")]
-    public async Task<ActionResult<GetStylesListQueryResponse>> GetAll()
-        => Ok(await _mediator.Send(new GetStylesListQuery()));
+    public async Task<ActionResult<GetAllStylesQueryResponse>> GetAll()
+        => Ok(await _mediator.Send(new GetAllStylesQuery()));
 
     [HttpGet("GetOneDetails/{styleId}")]
-    public async Task<ActionResult<GetStyleByIdQuery>> GetOneDetails(Guid styleId)
-        => Ok(await _mediator.Send(new GetStyleByIdQuery { Id = styleId }));
+    public async Task<ActionResult<GetStyleByIdQuery>> GetById(Guid styleId)
+        => Ok(await _mediator.Send(new GetStyleByIdQuery { StyleId = styleId }));
 
-    [HttpGet("Check/{artistId}")]
-    public async Task<ActionResult<GetStylesCheckQueryResponse>> ToCheck(Guid artistId)
-        => Ok(await _mediator.Send(new GetStylesCheckQuery { ArtistId = artistId }));
+    [HttpGet("GetCheckBoxesByArtist/{artistId}")]
+    public async Task<ActionResult<GetStylesCheckBoxesByArtistQueryResponse>> ToCheck(Guid artistId)
+        => Ok(await _mediator.Send(new GetStylesCheckBoxesByArtistQuery { ArtistId = artistId }));
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]

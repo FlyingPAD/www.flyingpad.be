@@ -16,43 +16,40 @@ export class EditModelsComponent {
 
   flow = this.#flowService.flow
 
-  currentModel : ModelLight | undefined = this.flow()?.model
-  searchModels : string = ''
-  elementsPerPage : number = 18
+  searchModels: string = ''
+  elementsPerPage: number = 18
 
-  showList : boolean = true
-  showNew : boolean = false
-  showEdit : boolean = false
+  showList: boolean = true
+  showNew: boolean = false
+  showEdit: boolean = false
 
-  triggerReset() {
+  triggerReset(): void {
     this.showList = false
     this.showNew = false
     this.showEdit = false
   }
-  triggerShowList(): void{
+  triggerShowList(): void {
     this.triggerReset()
     this.showList = true
   }
-  triggerShowNew(): void{
+  triggerShowNew(): void {
     this.triggerReset()
     this.showNew = true
   }
-  triggerShowEdit(): void{
+  triggerShowEdit(): void {
     this.triggerReset()
     this.showEdit = true
   }
 
   filterModels(): ModelLight[] | undefined {
-    return this.flow()?.modelsByFranchise.filter(model => model.pseudonym.toLowerCase().includes(this.searchModels.toLowerCase()))
+    return this.flow()?.models.filter(model => model.pseudonym.toLowerCase().includes(this.searchModels.toLowerCase()))
   }
 
-  go():void {
-    this.#flowService.updateMoodsGalleryType('model')
+  go(): void {
     this.#router.navigateByUrl('/moods')
   }
 
-  setModel(model : ModelLight): void {
-    this.currentModel = model
+  setModel(model: ModelLight): void {
     this.#flowService.updateModelId(model.businessId)
   }
 }

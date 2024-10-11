@@ -1,7 +1,7 @@
 <div class="edition" *ngIf="flow() as flow">
     <div class="edition-selection">
-        @if(currentModel){
-            <p><b>{{currentModel.pseudonym}}</b></p>
+        @if(flow?.model) {
+            <p><b>{{flow?.model?.pseudonym}}</b></p>
         }
         @else {
             <p>Please, select a model from the list.</p>
@@ -9,7 +9,7 @@
         <div class="edition-buttons">
             <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
             <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
-            @if(currentModel){
+            @if(flow?.model){
                 <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
                 <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
             }
@@ -23,7 +23,7 @@
         
         <div class="edition-list">
             <div *ngFor="let model of filterModels() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: paginationService.editModelsCurrentPage}">
-                <a [class.active]="model.pseudonym === currentModel?.pseudonym" (click)="setModel(model)"> ▸ {{model.pseudonym}}</a>
+                <a [class.active]="model.pseudonym === flow?.model?.pseudonym" (click)="setModel(model)"> ▸ {{model.pseudonym}}</a>
             </div>
         </div>
         
@@ -34,7 +34,7 @@
         </div>
     }
     @if (showNew) {
-        <app-create-model (trigger)="triggerShowList()" />
+        <app-create-model [franchises]="flow.franchises" (trigger)="triggerShowList()" />
     }
     @if (showEdit) {
         <app-edit-model [model]="flow.model" (showListTrigger)="triggerShowList()" />

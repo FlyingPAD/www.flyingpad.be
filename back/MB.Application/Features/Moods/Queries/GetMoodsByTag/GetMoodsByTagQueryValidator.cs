@@ -6,8 +6,8 @@ public class GetMoodsByTagQueryValidator : AbstractValidator<GetMoodsByTagQuery>
 {
     public GetMoodsByTagQueryValidator()
     {
-        RuleFor(x => x.TagId)
-            .NotEmpty().WithMessage("ID is required.")
-            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
+        RuleFor(request => request.TagId)
+            .NotEmpty().WithMessage("TagId is required.")
+            .NotEqual(Guid.Empty).WithMessage("TagId must not be empty.");
     }
 }

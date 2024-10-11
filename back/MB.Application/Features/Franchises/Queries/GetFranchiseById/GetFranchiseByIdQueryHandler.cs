@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
@@ -12,18 +13,14 @@ public class GetFranchiseByIdQueryHandler(IMapper mapper, IBaseRepository<Franch
 
     public async Task<GetFranchiseByIdQueryResponse> Handle(GetFranchiseByIdQuery request, CancellationToken cancellationToken)
     {
-        var franchise = await _franchiseRepository.GetByBusinessIdAsync(request.BusinessId);
-
-        if (franchise == null)
-        {
-            return new GetFranchiseByIdQueryResponse { Success = false, Message = "Franchise wasn't found :(" };
-        }
+        var franchise = await _franchiseRepository.GetByBusinessIdAsync(request.FranchiseId)
+            ?? throw new NotFoundException("Franchise not found.");
 
         return new GetFranchiseByIdQueryResponse
         {
             Success = true,
-            Message = "Franchise was found :)",
-            Franchise = _mapper.Map<GetFranchiseByIdVm>(franchise)
+            Message = $"{franchise.Name}.",
+            Franchise = _mapper.Map<GetFranchiseByIdQueryDto>(franchise)
         };
     }
 }

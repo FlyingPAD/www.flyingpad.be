@@ -1,8 +1,10 @@
-﻿using MediatR;
+﻿using MB.Application.Models;
+using MediatR;
 
 namespace MB.Application.Features.Moods.Commands.CreateMood;
 
 public class CreateMoodCommand : IRequest<CreateMoodCommandResponse>
 {
     public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 }

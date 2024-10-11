@@ -4,24 +4,19 @@ using MediatR;
 
 namespace MB.Application.Features.Styles.Queries.CountStyles;
 
-public class CountStylesQueryHandler : IRequestHandler<CountStylesQuery, CountStylesQueryResponse>
+public class CountStylesQueryHandler(IBaseRepository<Style> styleRepository) : IRequestHandler<CountStylesQuery, CountStylesQueryResponse>
 {
-    private readonly IBaseRepository<Style> _styleRepository;
-
-    public CountStylesQueryHandler(IBaseRepository<Style> styleRepository)
-    {
-        _styleRepository = styleRepository;
-    }
+    private readonly IBaseRepository<Style> _styleRepository = styleRepository;
 
     public async Task<CountStylesQueryResponse> Handle(CountStylesQuery request, CancellationToken cancellationToken)
     {
-        var stylesCount = await _styleRepository.CountAsync();
+        var totalStyles = await _styleRepository.CountAsync();
 
         return new CountStylesQueryResponse
         {
             Success = true,
-            Message = $"Total Styles : {stylesCount}",
-            StylesCount = stylesCount
+            Message = "Styles count completed.",
+            TotalStyles = totalStyles
         };
     }
 }

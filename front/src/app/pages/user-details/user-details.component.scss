@@ -1,55 +1,50 @@
-#profile
-{
+.profile {
     width: 350px;
     margin: auto;
 
     margin-top: 25px;
 
-    padding-top: 15px; padding-bottom: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 
     border: 1px solid #6b5240;
-    border-radius: 5px; 
+    border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.708);
 
-    .flex
-    {
+    .flex {
         display: flex;
         justify-content: space-between;
 
         background-color: rgba(107, 82, 64, 0.15);
-        border-radius: 5px;
+        border-radius: 10px;
 
-        margin-left: 15px; margin-right: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
         margin-bottom: 15px;
 
-        padding-left: 15px; padding-right: 15px;
-        padding: 10px;
+        padding: 15px;
 
-        p
-        {
+        p {
             margin: 0;
             color: #6b5240;
             font-size: 15px;
 
-            a:hover
-            {
+            a:hover {
                 text-decoration: underline;
             }
         }
     }
-    .flex_created
-    {
+
+    .flex_created {
         margin: 30px;
         margin-top: 15px;
         margin-bottom: 0;
 
-        .box_created
-        {
+        .box_created {
             display: flex;
-            justify-content:space-between;
-    
-            p
-            {
+            justify-content: space-between;
+
+            p {
                 margin: 0;
                 margin-bottom: 5px;
                 text-align: center;
@@ -58,4 +53,4 @@
             }
         }
     }
-} 
+}

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MediatR;
 
@@ -12,26 +13,16 @@ public class GetFranchisesByModelQueryHandler(IMapper mapper, IFranchiseReposito
 
     public async Task<GetFranchisesByModelQueryResponse> Handle(GetFranchisesByModelQuery request, CancellationToken cancellationToken)
     {
-        var modelEntityId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId);
+        var modelId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId)
+            ?? throw new NotFoundException("Model not found.");
 
-        if (!modelEntityId.HasValue)
-        {
-            return new GetFranchisesByModelQueryResponse
-            {
-                Success = false,
-                Message = "Franchise was not found."
-            };
-        }
+        var franchises = await _franchiseRepository.GetFranchisesByModels([modelId]);
 
-        var franchises = await _franchiseRepository.GetFranchisesByModels(new List<int> { modelEntityId.Value });
-
-        var response = new GetFranchisesByModelQueryResponse
+        return new GetFranchisesByModelQueryResponse
         {
             Success = true,
-            Message = "Franchises retrieved successfully",
-            FranchisesByModel = _mapper.Map<List<GetFranchisesByModelQueryVm>>(franchises)
+            Message = "Franchises by model.",
+            FranchisesByModel = _mapper.Map<List<GetFranchisesByModelQueryDto>>(franchises)
         };
-
-        return response;
     }
 }

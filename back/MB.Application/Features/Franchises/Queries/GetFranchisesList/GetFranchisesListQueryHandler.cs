@@ -42,13 +42,11 @@ public class GetFranchisesListQueryHandler(IBaseRepository<Media> mediaRepositor
             mediasListDto.Add(mediaDto);
         }
 
-        var response = new GetFranchisesListQueryResponse
+        return new GetFranchisesListQueryResponse
         {
             Success = true,
-            Message = "Here are the Franchises !",
-            Medias = mediasListDto
+            Message = "Media full list was loaded.",
+            Media = mediasListDto
         };
-
-        return response;
     }
 }

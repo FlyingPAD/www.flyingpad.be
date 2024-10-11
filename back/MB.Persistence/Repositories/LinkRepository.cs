@@ -1,5 +1,4 @@
-﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Interfaces.Persistence;
 using MB.Domain.Common;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
@@ -69,32 +68,46 @@ public class LinkRepository(Context context) : BaseRepository<Link>(context), IL
         return response;
     }
 
-    public async System.Threading.Tasks.Task UpdateCategories(int linkId, ICollection<int> categoryIds)
+    public async Task<Link?> GetLinkWithCategoriesAsync(int linkId)
     {
-        var link = await _context.Links
-                   .Include(link => link.LinkCategories)
-                   .FirstOrDefaultAsync(link => link.EntityId == linkId)
-                   ?? throw new NotFoundException("Link not found.");
+        return await _context.Links
+            .Include(link => link.LinkCategories)
+            .FirstOrDefaultAsync(link => link.EntityId == linkId);
+    }
 
-        var existingCategoryIds = link.LinkCategories?.Select(relation => relation.LinkCategoryId).ToList() ?? [];
+    public async System.Threading.Tasks.Task RemoveLinkCategoriesAsync(Link link)
+    {
+        _context.RLinkCategory.RemoveRange(link.LinkCategories ?? []);
+        await _context.SaveChangesAsync();
+    }
 
-        var categoriesToAdd = categoryIds.Except(existingCategoryIds).ToList();
-        var relationsToAdd = categoriesToAdd.Select(categoryId => new RelationLinkCategory
+    public async System.Threading.Tasks.Task AddLinkCategoriesAsync(int linkId, IEnumerable<int> categoryIds)
+    {
+        var relationsToAdd = categoryIds.Select(categoryId => new RelationLinkCategory
         {
             LinkId = linkId,
             LinkCategoryId = categoryId
         }).ToList();
 
         _context.RLinkCategory.AddRange(relationsToAdd);
-
-        var categoriesToRemove = existingCategoryIds.Except(categoryIds).ToList();
-        var relationsToRemove = link.LinkCategories?.Where(relation => categoriesToRemove.Contains(relation.LinkCategoryId)).ToList();
-
-        if (relationsToRemove != null && relationsToRemove.Count != 0)
-        {
-            _context.RLinkCategory.RemoveRange(relationsToRemove);
-        }
-
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<IEnumerable<Link>> GetLinksByModel(int modelId)
+    {
+        return await _context.Links
+            .Where(link => link.LinkModels != null && link.LinkModels
+            .Any(relation => relation.ModelId == modelId))
+            .OrderBy(link => link.Name)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Link>> GetLinksByArtist(int artistId)
+    {
+        return await _context.Links
+            .Where(link => link.LinkArtists != null && link.LinkArtists
+            .Any(relation => relation.ArtistId == artistId))
+            .OrderBy(link => link.Name)
+            .ToListAsync();
     }
 }

@@ -1,12 +1,14 @@
-﻿using MB.Application.Interfaces.Persistence.Common;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Franchises.Commands.CreateFranchise;
 
-public class CreateFranchiseCommandHandler(IBaseRepository<Franchise> franchiseRepository) : IRequestHandler<CreateFranchiseCommand, CreateFranchiseCommandResponse>
+public class CreateFranchiseCommandHandler(IFranchiseRepository franchiseRepository, IMediaRepository mediaRepository) : IRequestHandler<CreateFranchiseCommand, CreateFranchiseCommandResponse>
 {
-    private readonly IBaseRepository<Franchise> _franchiseRepository = franchiseRepository;
+    private readonly IFranchiseRepository _franchiseRepository = franchiseRepository;
+    private readonly IMediaRepository _mediaRepository = mediaRepository;
 
     public async Task<CreateFranchiseCommandResponse> Handle(CreateFranchiseCommand request, CancellationToken cancellationToken)
     {
@@ -18,10 +20,19 @@ public class CreateFranchiseCommandHandler(IBaseRepository<Franchise> franchiseR
 
         franchise = await _franchiseRepository.CreateAsync(franchise);
 
+        var mediaIds = await _mediaRepository.GetPrimaryIdsByBusinessIdsAsync(request.MediaIds);
+
+        if (mediaIds.Count != request.MediaIds.Count)
+        {
+            throw new NotFoundException("One or more media were not found.");
+        }
+
+        await _franchiseRepository.AddMediaAsync(franchise.EntityId, mediaIds);
+
         return new CreateFranchiseCommandResponse
         {
             Success = true,
-            Message = "Success.",
+            Message = "Franchise was created.",
             FranchiseId = franchise.BusinessId
         };
     }

@@ -16,7 +16,6 @@ export class EditFranchisesComponent {
 
   flow = this.#flowService.flow
 
-  currentFranchise : FranchiseLight | undefined = this.flow()?.franchise
   searchFranchises : string = ''
   elementsPerPage : number = 15
 
@@ -55,20 +54,19 @@ export class EditFranchisesComponent {
   }
 
   filterFranchises(): FranchiseLight[] | undefined {
-    return this.flow()?.franchisesByMedia.filter(franchise => franchise.name.toLowerCase().includes(this.searchFranchises.toLowerCase()))
+    return this.flow()?.franchisesByMedium.filter(franchise => franchise.name.toLowerCase().includes(this.searchFranchises.toLowerCase()))
   }
 
   go():void {
-    this.#flowService.updateMoodsGalleryType('franchise')
     this.#router.navigateByUrl('/moods')
   }
 
   setFranchise(franchise : FranchiseLight): void {
-    this.currentFranchise = franchise
     this.#flowService.updateFranchiseId(franchise.businessId)
   }
 
   updateMediaId(mediaId : number | null): void {
-    this.#flowService.updateMediaId(mediaId)
+    this.paginationService.editFranchisesCurrentPageReset()
+    this.#flowService.updateMediumId(mediaId)
   }
 }

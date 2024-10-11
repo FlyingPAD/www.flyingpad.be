@@ -6,8 +6,8 @@ public class GetModelByIdQueryValidator : AbstractValidator<GetModelByIdQuery>
 {
     public GetModelByIdQueryValidator()
     {
-        RuleFor(x => x.ModelId)
-            .NotEmpty().WithMessage("ID is required.")
-            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
+        RuleFor(request => request.ModelId)
+            .NotEmpty().WithMessage("ModelId is required.")
+            .NotEqual(Guid.Empty).WithMessage("ModelId must not be empty.");
     }
 }

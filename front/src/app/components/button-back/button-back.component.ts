@@ -6,12 +6,10 @@ import { Location } from '@angular/common';
   templateUrl: './button-back.component.html',
   styleUrls: ['./button-back.component.scss']
 })
-export class ButtonBackComponent 
-{
+export class ButtonBackComponent {
   #location = inject(Location)
 
-  goBack() : void 
-  {
+  goBack(): void {
     this.#location.back()
   }
 }

@@ -48,4 +48,4 @@ export interface GetLinkCategoriesResponse extends BaseResponse {
 
 export interface GetLinkCategoriesCheckBoxesResponse extends BaseResponse{
     linkCategories : LinkCategoryCheckBox[]
- }
+}

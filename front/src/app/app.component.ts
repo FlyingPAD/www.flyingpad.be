@@ -1,46 +1,41 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
 import { CustomCookieService } from './services/cookie.service';
 import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
 import { MenuCustomService } from './services/menu-custom.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent
-{ 
+export class AppComponent implements OnInit {
   #authService = inject(AuthenticationService)
   #userService = inject(UserService)
   #cookieService = inject(CustomCookieService)
   #menuCustomService = inject(MenuCustomService)
+  #translate = inject(TranslateService)
+
   router = inject(Router)
 
-  ngOnInit() : void
-  {
-    // Token Check @ Startup / Refresh ( F5 )
+  ngOnInit(): void {
+    this.#translate.setDefaultLang('fr')
     let token = this.#cookieService.retrieveToken()
 
-    if(token)
-    {
+    if (token) {
       this.#userService.setSpecificUser(token)
       this.#authService.acceptConnection()
     }
-    else
-    {
+    else {
       this.#userService.setDefaultUser()
     }
   }
 
-  // KEYBOARD CONFIGURATION
   @HostListener('window:keydown', ['$event'])
-  onKeyPress( event : KeyboardEvent ) 
-  {
-    console.log(event.key)
-    switch (event.key) 
-    {
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
       case 'Escape':
         this.router.navigateByUrl('/')
         break

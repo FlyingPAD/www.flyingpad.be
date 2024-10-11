@@ -28,7 +28,7 @@ public class UpdateTagCommandHandler(IBaseRepository<Tag> tagRepository, IBaseRe
         return new BaseResponse
         {
             Success = true,
-            Message = "Tag updated successfully."
+            Message = "Tag was updated."
         };
     }
 }

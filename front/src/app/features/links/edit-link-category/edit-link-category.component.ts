@@ -28,11 +28,9 @@ export class EditLinkCategoryComponent implements OnInit, OnDestroy{
       description: [this.linkCategory?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
     })
   }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }
-
 
   openDeleteDialog(): void {
     this.isDeleteDialogOpen = true
@@ -53,11 +51,8 @@ export class EditLinkCategoryComponent implements OnInit, OnDestroy{
     }
 
     if(this.editFormGroup.valid) {
-      this.subscription = this.#flowService.UpdateLinkCategory(form).subscribe({
-        next : (response) => {
-          if(response.success) this.showListTrigger.emit()
-        }
-      })
+      this.subscription = this.#flowService.UpdateLinkCategory(form).subscribe((response) => {
+        if(response.success) this.showListTrigger.emit() })
     }
   }
 }

@@ -4,5 +4,5 @@ namespace MB.Application.Features.Links.Queries.GetLinkById;
 
 public class GetLinkByIdQueryResponse : BaseResponse
 {
-    public GetLinkByIdVm Link { get; set; } = new GetLinkByIdVm();
+    public GetLinkByIdQueryDto Link { get; set; } = new();
 }

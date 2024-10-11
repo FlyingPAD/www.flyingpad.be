@@ -10,13 +10,11 @@ public class CountArtistsQueryHandler(IBaseRepository<Artist> artistRepository) 
 
     public async Task<CountArtistsQueryResponse> Handle(CountArtistsQuery request, CancellationToken cancellationToken)
     {
-        var artistsCount = await _artistRepository.CountAsync();
-
         return new CountArtistsQueryResponse
         {
             Success = true,
-            Message = $"Total Artists : {artistsCount}",
-            ArtistsCount = artistsCount
+            Message = "Artists count completed.",
+            TotalArtists = await _artistRepository.CountAsync()
         };
     }
 }

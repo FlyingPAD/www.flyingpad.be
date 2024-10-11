@@ -12,15 +12,18 @@ import { RelationsMoodModelForm } from '../../../models/relations';
   styleUrl: './edition-models.component.scss'
 })
 export class EditionModelsComponent implements OnInit, OnDestroy {
+  @Input() mood! : MoodFull
+
   #flowService = inject(FlowService)
   #toastr = inject(ToastrService)
-  @Input() mood! : MoodFull
 
   input : string = ''
 
   subscription = new Subscription()
   subscriptionRelations = new Subscription()
+
   models! : ModelCheckBox[]
+
 
   ngOnInit(): void {
     this.subscription = this.#flowService.getModelsCheckBoxByMood(this.mood.businessId).subscribe({
@@ -29,11 +32,11 @@ export class EditionModelsComponent implements OnInit, OnDestroy {
       }
     })
   }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
     this.subscriptionRelations.unsubscribe()
   }
+
   filterModels() {
     return this.models.filter(model => model.pseudonym.toLowerCase().includes(this.input.toLowerCase()))
   }
@@ -45,18 +48,10 @@ export class EditionModelsComponent implements OnInit, OnDestroy {
     }    
   
     if (rmmForm.modelIds.length === 0) {
-      this.#toastr.error('No Models selected. Please select at least one model.')
+      this.#toastr.error('No Models selected.')
       return
     }
   
-    this.subscriptionRelations = this.#flowService.InsertRMM(rmmForm).subscribe({
-      next : () => {
-        this.#toastr.success('Update Successfull !')
-      },
-      error: (error) => {
-        this.#toastr.error('Failed to update Models. Please try again.')
-        console.error('Error updating Models:', error)
-      }
-    })
+    this.subscriptionRelations = this.#flowService.InsertRMM(rmmForm).subscribe()
   }
 }

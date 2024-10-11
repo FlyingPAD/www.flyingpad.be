@@ -3,9 +3,10 @@ using MB.Application.Features.Franchises.Commands.DeleteFranchise;
 using MB.Application.Features.Franchises.Commands.UpdateFranchise;
 using MB.Application.Features.Franchises.Queries.CountFranchises;
 using MB.Application.Features.Franchises.Queries.GetFranchiseById;
-using MB.Application.Features.Franchises.Queries.GetFranchisesByMedia;
+using MB.Application.Features.Franchises.Queries.GetFranchisesByMedium;
 using MB.Application.Features.Franchises.Queries.GetFranchisesByModel;
 using MB.Application.Features.Franchises.Queries.GetFranchisesByMood;
+using MB.Application.Features.Franchises.Queries.GetFranchisesCheckBoxesByModel;
 using MB.Application.Features.Franchises.Queries.GetFranchisesList;
 using MB.Application.Models;
 using MediatR;
@@ -35,20 +36,24 @@ public class FranchisesControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(new GetAllFranchisesQuery()));
 
     [HttpGet("GetOneDetails/{businessId}")]
-    public async Task<ActionResult<GetFranchiseByIdQueryResponse>> GetOne(Guid businessId)
-        => Ok(await _mediator.Send(new GetFranchiseByIdQuery { BusinessId = businessId }));
+    public async Task<ActionResult<GetFranchiseByIdQueryResponse>> GetById(Guid businessId)
+        => Ok(await _mediator.Send(new GetFranchiseByIdQuery { FranchiseId = businessId }));
 
-    [HttpGet("GetByMood/{businessId}")]
-    public async Task<ActionResult<GetFranchisesByMoodQueryResponse>> GetByMood(Guid businessId)
-        => Ok(await _mediator.Send(new GetFranchisesByMoodQuery { BusinessId = businessId }));
+    [HttpGet("GetByMood/{moodId}")]
+    public async Task<ActionResult<GetFranchisesByMoodQueryResponse>> GetByMood(Guid moodId)
+        => Ok(await _mediator.Send(new GetFranchisesByMoodQuery { MoodId = moodId }));
 
     [HttpGet("GetByModel/{modelId}")]
     public async Task<ActionResult<GetFranchisesByModelQueryResponse>> GetByModel(Guid modelId)
         => Ok(await _mediator.Send(new GetFranchisesByModelQuery { ModelId = modelId }));
 
-    [HttpGet("GetByMedia/{mediaId}")]
-    public async Task<ActionResult<GetFranchisesByMediaQueryResponse>> GetByMedia(Guid mediaId)
-        => Ok(await _mediator.Send(new GetFranchisesByMediaQuery { MediaId = mediaId }));
+    [HttpGet("GetByMedium/{mediumId}")]
+    public async Task<ActionResult<GetFranchisesByMediumQueryResponse>> GetByMedium(Guid mediumId)
+        => Ok(await _mediator.Send(new GetFranchisesByMediumQuery { MediumId = mediumId }));
+
+    [HttpGet("GetCheckBoxesByModel/{modelId}")]
+    public async Task<ActionResult<GetFranchisesCheckBoxesByModelQueryResponse>> GetCheckBoxesByModel(Guid modelId)
+        => Ok(await _mediator.Send(new GetFranchisesCheckBoxesByModelQuery { ModelId = modelId }));
 
     [HttpGet("GetFranchisesList")]
     public async Task<ActionResult<GetFranchisesListQueryResponse>> GetFranchisesList()

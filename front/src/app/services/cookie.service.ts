@@ -4,17 +4,16 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
-export class CustomCookieService 
-{
+export class CustomCookieService {
   #cookieService = inject(CookieService)
 
-  storeToken( token: string ): void {
-    this.#cookieService.set('authToken', token, 
-    { 
-      secure: true, 
-      path: '/', 
-      sameSite: 'Strict' 
-    })
+  storeToken(token: string): void {
+    this.#cookieService.set('authToken', token,
+      {
+        secure: true,
+        path: '/',
+        sameSite: 'Strict'
+      })
   }
 
   retrieveToken(): string | null {

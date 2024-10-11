@@ -6,9 +6,14 @@ public class CreateFranchiseCommandValidator : AbstractValidator<CreateFranchise
 {
     public CreateFranchiseCommandValidator()
     {
-        RuleFor(p => p.Name)
-            .NotEmpty().WithMessage("{PropertyName} is required.")
+        RuleFor(request => request.Name)
             .NotNull()
-            .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+            .NotEmpty().WithMessage("Name is required.")
+            .MaximumLength(30).WithMessage("Name must not exceed 30 characters.");
+
+        RuleFor(request => request.Description)
+            .NotNull()
+            .NotEmpty().WithMessage("Name is required.")
+            .MaximumLength(100).WithMessage("Name must not exceed 100 characters.");
     }
 }

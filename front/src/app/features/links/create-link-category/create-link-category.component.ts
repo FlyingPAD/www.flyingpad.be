@@ -15,7 +15,7 @@ export class CreateLinkCategoryComponent {
   #flowService = inject(FlowService)
   #formBuilder = inject(FormBuilder)
 
-  createFormGroup : FormGroup = this.#formBuilder.group({
+  formGroup : FormGroup = this.#formBuilder.group({
     name : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     description : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
@@ -24,15 +24,13 @@ export class CreateLinkCategoryComponent {
 
   onSubmit(): void {
     let form : LinkCategoryCreateForm = {
-      name : this.createFormGroup.value.name,
-      description : this.createFormGroup.value.description,
+      name : this.formGroup.value.name,
+      description : this.formGroup.value.description,
     }
 
-    if(this.createFormGroup.valid) {
-      this.subscription = this.#flowService.CreateLinkCategory(form).subscribe({
-        next : (response) => {
-          if(response.success) this.trigger.emit()
-        }
+    if(this.formGroup.valid) {
+      this.subscription = this.#flowService.CreateLinkCategory(form).subscribe((response) => {
+        if(response.success) this.trigger.emit() 
       })
     }
   }

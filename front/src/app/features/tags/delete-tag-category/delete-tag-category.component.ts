@@ -21,13 +21,8 @@ export class DeleteTagCategoryComponent implements OnDestroy {
   }
   deleteTagCategory(): void {
     if(this.tagCategory != undefined) {
-      this.subscription = this.#flowService.DeleteTagCategory(this.tagCategory.businessId).subscribe({
-        next : (response) => {
-          if(response.success) {
-            this.toggleDialog.emit()
-          }
-        }
-      })
+      this.subscription = this.#flowService.DeleteTagCategory(this.tagCategory.businessId).subscribe(
+        (response) => { if(response.success) this.toggleDialog.emit() })
     }
   }
 }

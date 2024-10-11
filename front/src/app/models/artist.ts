@@ -8,6 +8,7 @@ export interface ArtistLight {
 export interface ArtistFull {
     businessId : number
     name : string
+    description : string
     created : Date
     createdBy : string
     modified : Date

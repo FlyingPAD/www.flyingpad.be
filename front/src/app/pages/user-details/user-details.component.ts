@@ -7,7 +7,6 @@ import { UserService } from '../../services/user.service';
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.scss']
 })
-export class UserDetailsComponent
-{
+export class UserDetailsComponent {
   userService = inject(UserService)
 }

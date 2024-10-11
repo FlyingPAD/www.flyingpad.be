@@ -13,8 +13,8 @@ import { TagCategoryLight } from '../../../models/tag-category';
   styleUrl: './edit-tag.component.scss'
 })
 export class EditTagComponent implements OnInit {
-  @Input() tag! : TagFull | undefined
-  @Input() tagCategories! : TagCategoryLight[]
+  @Input() tag : TagFull | undefined = undefined
+  @Input() tagCategories : TagCategoryLight[] = []
   @Output() showListTrigger = new EventEmitter<void>()
 
   #flowService = inject(FlowService)
@@ -31,7 +31,7 @@ export class EditTagComponent implements OnInit {
       name: [this.tag?.name, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       description: [this.tag?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       tagCategoryId: [this.tag?.tagCategoryId, Validators.required]
-    });
+    })
   }
 
   openDeleteDialog(): void {
@@ -45,7 +45,7 @@ export class EditTagComponent implements OnInit {
     this.showListTrigger.emit()
   }
 
-  onSubmit() : void {
+  onSubmit(): void {
     let form : TagUpdateForm = {
       tagId : this.tag? this.tag.businessId : 0,
       name : this.editFormGroup.value.name,

@@ -13,15 +13,14 @@ public class GetModelByIdQueryHandler(IMapper mapper, IBaseRepository<Model> mod
 
     public async Task<GetModelByIdQueryResponse> Handle(GetModelByIdQuery request, CancellationToken cancellationToken)
     {
-        var model = await _modelRepository.GetByBusinessIdAsync(request.ModelId) ?? throw new NotFoundException($"Model with ID {request.ModelId} was not found.");
-
-        var modelDto = _mapper.Map<GetModelByIdVm>(model);
+        var model = await _modelRepository.GetByBusinessIdAsync(request.ModelId) 
+            ?? throw new NotFoundException("Model not found.");
 
         return new GetModelByIdQueryResponse
         {
             Success = true,
-            Message = "Model successfully requested.",
-            Model = modelDto
+            Message = $"{model.Pseudonym}.",
+            Model = _mapper.Map<GetModelByIdQueryDto>(model)
         };
     }
 }

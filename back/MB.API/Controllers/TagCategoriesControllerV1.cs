@@ -3,11 +3,11 @@ using MB.Application.Features.TagCategories.Commands.DeleteTagCategory;
 using MB.Application.Features.TagCategories.Commands.UpdateTagCategory;
 using MB.Application.Features.TagCategories.Queries.CountTagCategories;
 using MB.Application.Features.TagCategories.Queries.GetTagCategoryById;
-using MB.Application.Features.TagCategories.Queries.GetTagCategoriesList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using MB.Application.Models;
+using MB.Application.Features.TagCategories.Queries.GetAllTagCategories;
 
 namespace MB.API.Controllers;
 
@@ -28,12 +28,12 @@ public class TagCategoriesControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(new CountTagCategoriesQuery()));
 
     [HttpGet("GetAll")]
-    public async Task<ActionResult<GetTagCategoriesListQueryResponse>> GetAll()
-        => Ok(await _mediator.Send(new GetTagCategoriesListQuery()));
+    public async Task<ActionResult<GetAllTagCategoriesQueryResponse>> GetAll()
+        => Ok(await _mediator.Send(new GetAllTagCategoriesQuery()));
 
     [HttpGet("GetOneDetails/{categoryId}")]
     public async Task<ActionResult<GetTagCategoryByIdQuery>> GetById(Guid categoryId)
-        => Ok(await _mediator.Send(new GetTagCategoryByIdQuery { Id = categoryId }));
+        => Ok(await _mediator.Send(new GetTagCategoryByIdQuery { TagCategoryId = categoryId }));
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]

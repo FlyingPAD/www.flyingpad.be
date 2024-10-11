@@ -113,7 +113,7 @@
                 <p>Medias</p>
             </div>
             <div class="card-info">
-                <p>( {{ flow()?.medias?.length || '0' }} )</p>
+                <p>( {{ flow()?.media?.length || '0' }} )</p>
             </div>
         </div>
 
@@ -123,7 +123,7 @@
                 <p>Franchises By Media</p>
             </div>
             <div class="card-info">
-                <p>( {{ flow()?.franchisesByMedia?.length || '0' }} )</p>
+                <p>( {{ flow()?.franchisesByMedium?.length || '0' }} )</p>
             </div>
         </div>
 
@@ -206,9 +206,9 @@
     <div *ngIf="showArtistsByStyle"><app-list-flow property="name" [list]="flow()?.artistsByStyle" (itemId)="updateArtistId($event)" /></div>
     <div *ngIf="showModels"><app-list-flow property="pseudonym" [list]="flow()?.models" (itemId)="updateModelId($event)" /></div>
     <div *ngIf="showModelsByFranchise"><app-list-flow property="pseudonym" [list]="flow()?.modelsByFranchise" (itemId)="updateModelId($event)" /></div>
-    <div *ngIf="showMedias"><app-list-flow property="name" [list]="flow()?.medias" (itemId)="updateMediaId($event)" /></div>
+    <div *ngIf="showMedias"><app-list-flow property="name" [list]="flow()?.media" (itemId)="updateMediaId($event)" /></div>
     <div *ngIf="showFranchises"><app-list-flow property="name" [list]="flow()?.franchises" (itemId)="updateFranchiseId($event)" /></div>
-    <div *ngIf="showFranchisesByMedia"><app-list-flow property="name" [list]="flow()?.franchisesByMedia" (itemId)="updateFranchiseId($event)" /></div>
+    <div *ngIf="showFranchisesByMedia"><app-list-flow property="name" [list]="flow()?.franchisesByMedium" (itemId)="updateFranchiseId($event)" /></div>
     <div *ngIf="showLinkCategories"><app-list-flow property="name" [list]="flow()?.linkCategories" (itemId)="updateLinkCategoryId($event)" /></div>
     <div *ngIf="showLinks"><app-list-flow property="name" [list]="flow()?.links" (itemId)="updateLinkId($event)" /></div>
     <div *ngIf="showLinksByCategory"><app-list-flow property="name" [list]="flow()?.linksByCategory" (itemId)="updateLinkId($event)" /></div>
@@ -247,7 +247,7 @@
     </div>
 
     <div *ngIf="showMedia">
-        <app-media-details-flow [media]="flow()?.media" />
+        <app-media-details-flow [medium]="flow()?.medium" />
     </div>
 
     <div *ngIf="showFranchise">
@@ -329,7 +329,7 @@
                 <p>Media</p>
             </div>
             <div class="card-info">
-                <p>( {{flow()?.media?.name || 'Media'}} )</p>
+                <p>( {{flow()?.medium?.name || 'Medium'}} )</p>
             </div>
         </div>
 

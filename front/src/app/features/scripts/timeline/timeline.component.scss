@@ -1,0 +1,26 @@
+.timeline-container {
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+.timeline-scrollable {
+    overflow-x: scroll;
+    margin-top: 10px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+svg {
+    text:hover {
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    circle {
+        cursor: pointer;
+    }
+
+    rect {
+        cursor: pointer;
+    }
+}

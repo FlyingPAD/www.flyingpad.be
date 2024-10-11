@@ -6,12 +6,12 @@ public class UpdateArtistCommandValidator : AbstractValidator<UpdateArtistComman
 {
     public UpdateArtistCommandValidator()
     {
-        RuleFor(request => request.BusinessId)
-            .NotEmpty().WithMessage("ID is required.")
-            .Must(id => id != Guid.Empty).WithMessage("ID must be a valid GUID.");
+        RuleFor(request => request.ArtistId)
+            .NotEmpty().WithMessage("ArtistId is required.")
+            .Must(id => id != Guid.Empty).WithMessage("ArtistId must be a valid GUID.");
 
         RuleFor(request => request.Name)
             .NotEmpty().WithMessage("Name is required.")
-            .Length(2, 100).WithMessage("Name must be between 2 and 100 characters.");
+            .Length(2, 30).WithMessage("Name must be between 2 and 30 characters.");
     }
 }

@@ -1,4 +1,4 @@
-﻿using MB.Application.Interfaces;
+﻿using MB.Application.Interfaces.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using System.Net;
 using System.Net.Mail;

@@ -46,7 +46,7 @@
             <app-right-column-list [table]="flow.tagCategories" [currentEntityId]="flow.tagCategory?.businessId" (entityId)="updateTagCategoryId($event)" />
         </app-right-column>
         
-        <div class="pagination-row" *ngIf="flow.tags.length > elementsPerPage">
+        <div class="pagination-row" *ngIf="flow.tagsByCategory.length > elementsPerPage">
             <div id="pagination">
               <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editTagsCurrentPage = $event"></pagination-controls>
             </div>   
@@ -55,15 +55,15 @@
     @if (showNewTag) {
         <app-create-tag [tagCategories]="flow.tagCategories" (trigger)="triggerShowList()" />
     }
-    @if (showEditTag) {
-        <app-edit-tag [tag]="flow.tag" [tagCategories]="flow.tagCategories" (showListTrigger)="triggerShowList()" />
-    }
     @if (showNewCategory) {
         <app-create-tag-category (trigger)="triggerShowList()" />
+    }
+    @if (showEditTag) {
+        <app-edit-tag [tag]="flow.tag" [tagCategories]="flow.tagCategories" (showListTrigger)="triggerShowList()" />
     }
     @if (showEditCategory) {
         <app-edit-tag-category [tagCategory]="flow.tagCategory" (showListTrigger)="triggerShowList()" />
     }
     
-    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.tags.length"/>
+    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.tagsByCategory.length"/>
 </div>

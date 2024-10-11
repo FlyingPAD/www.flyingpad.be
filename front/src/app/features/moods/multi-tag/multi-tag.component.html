@@ -1,0 +1,43 @@
+<div *ngIf="flow() as flow">
+    <div id="layout-central">
+        <div *ngIf="flow.moods.length; else loading">
+            <div [ngClass]="menuService.menuRActive === true ? 'gallery menu-open' : 'gallery' ">
+                <div *ngFor="let mood of moods | paginate : { itemsPerPage : moodsPerPage, currentPage : paginationService.moodsByTagCurrentPage}">
+                    <section>
+                        <div *ngIf="mood.type == 1">           
+                            <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" 
+                            [class.active]="checkIfSelected(mood.businessId)"
+                            (click)="selectionToggle(mood.businessId)" />
+                        </div>
+                        <div *ngIf="mood.type == 2">
+                            <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
+                            [class.active]="checkIfSelected(mood.businessId)"
+                            (click)="selectionToggle(mood.businessId)" />        
+                        </div>
+                        <div *ngIf="mood.type == 3">
+                            <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
+                            [class.active]="checkIfSelected(mood.businessId)"
+                            (click)="selectionToggle(mood.businessId)" />       
+                        </div>
+                        <div *ngIf="mood.type == 4">
+                            <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
+                            [class.active]="checkIfSelected(mood.businessId)"
+                            (click)="selectionToggle(mood.businessId)" />
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <ng-template #loading>
+            <div class="loading">
+                <p>Loading ...</p>
+                <img src="../../../../assets/app_icons/spinner.gif" />
+            </div>
+        </ng-template>
+    </div>
+    <div class="pagination-row" *ngIf="moods.length > moodsPerPage">
+        <div id="pagination">
+            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.moodsByTagCurrentPage = $event"></pagination-controls>
+        </div>   
+    </div>
+</div>

@@ -115,15 +115,4 @@ public class TagRepository(Context context) : BaseRepository<Tag>(context), ITag
             return tagCategory.BusinessId;
         }
     }
-
-    public async System.Threading.Tasks.Task DeleteTagRelations(int tagId)
-    {
-        var moodTagRelations = await _context.RMoodTag
-                                .Where(relation => relation.TagId == tagId)
-                                .ToListAsync();
-
-        _context.RMoodTag.RemoveRange(moodTagRelations);
-
-        await _context.SaveChangesAsync();
-    }
 }

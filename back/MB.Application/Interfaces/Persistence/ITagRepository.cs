@@ -15,5 +15,4 @@ public interface ITagRepository : IBaseRepository<Tag>
     Task<Tag?> GetByName(string name);
     Task<List<Tag>> GetByCategory(int categoryId);
     Task<Guid> GetTagCategoryBusinessId(int tagCategoryId);
-    System.Threading.Tasks.Task DeleteTagRelations(int tagId);
 }

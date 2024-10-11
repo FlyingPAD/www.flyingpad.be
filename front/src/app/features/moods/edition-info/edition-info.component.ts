@@ -3,7 +3,6 @@ import { MoodFull } from '../../../models/mood';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlowService } from '../../../services/flow.service';
 import { MoodScoreUpdate, MoodUpdateForm } from '../../../models/forms-update';
-import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,9 +13,8 @@ import { Subscription } from 'rxjs';
 export class EditionInfoComponent implements OnInit {
   #flowService = inject(FlowService)
   #formBuilder = inject(FormBuilder)
-  #toastr = inject(ToastrService)
   @Input() mood! : MoodFull
-  @Output() trigger = new EventEmitter<void>()
+  @Output() triggerGallery = new EventEmitter<void>()
   formGroup!: FormGroup
   moodDelete : boolean = false
   subscription : Subscription = new Subscription()
@@ -29,20 +27,16 @@ export class EditionInfoComponent implements OnInit {
     })
   }
   updateMoodScore(scoreValue : number): void {
-    let form : MoodScoreUpdate = {businessId : this.mood.businessId, value : scoreValue} 
-    this.#flowService.updateScore(form);
+    let form : MoodScoreUpdate = {moodId : this.mood.businessId, value : scoreValue} 
+    this.#flowService.updateScore(form)
   }
 
   triggerMoodDelete(): void {
     this.moodDelete = !this.moodDelete
   }
-  deleteMood() {
-    this.#flowService.DeleteMood(this.mood.businessId).subscribe({
-      next : () => {
-        this.#toastr.success('Mood was deleted')
-        this.trigger.emit()
-      }
-    })
+  deleteMood(): void {
+    this.#flowService.DeleteMood(this.mood.businessId).subscribe(
+      (response) => { if(response.success) this.triggerGallery.emit()})
   }
 
   onSubmit(): void {
@@ -53,15 +47,7 @@ export class EditionInfoComponent implements OnInit {
         description : this.formGroup.value.description
       }
   
-      this.subscription = this.#flowService.UpdateMood(form).subscribe({
-        next: () => {
-          this.#toastr.success('Update Successfull !')
-        },
-        error: (error) => {
-          this.#toastr.error('Mood update failed ...')
-          console.error('Error updating mood:', error)
-        }
-      })
+      this.subscription = this.#flowService.UpdateMood(form).subscribe()
     }
   }
 }

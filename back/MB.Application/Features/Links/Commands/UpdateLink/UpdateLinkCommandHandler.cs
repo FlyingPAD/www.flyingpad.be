@@ -12,27 +12,33 @@ public class UpdateLinkCommandHandler(ILinkRepository linkRepository, ILinkCateg
 
     public async Task<BaseResponse> Handle(UpdateLinkCommand request, CancellationToken cancellationToken)
     {
-        var link = await _linkRepository.GetByBusinessIdAsync(request.BusinessId)
-            ?? throw new DirectoryNotFoundException("Link not found.");
+        var linkId = await _linkRepository.GetPrimaryIdByBusinessIdAsync(request.LinkId)
+            ?? throw new NotFoundException("Link not found.");
+
+        var link = await _linkRepository.GetLinkWithCategoriesAsync(linkId)
+            ?? throw new NotFoundException("Link not found.");
 
         link.Name = request.Name;
         link.Description = request.Description;
         link.Url = request.Url;
+
         await _linkRepository.UpdateAsync(link);
 
-        var categoryIds = await _linkCategoryRepository.GetPrimaryIdsByBusinessIdsAsync(request.LinkCategories);
+        await _linkRepository.RemoveLinkCategoriesAsync(link);
 
-        if (categoryIds.Count != request.LinkCategories.Count)
+        var categoryIds = await _linkCategoryRepository.GetPrimaryIdsByBusinessIdsAsync(request.LinkCategoryIds);
+
+        if (categoryIds.Count != request.LinkCategoryIds.Count)
         {
             throw new NotFoundException("One or more categories were not found.");
         }
 
-        await _linkRepository.UpdateCategories(link.EntityId, categoryIds);
+        await _linkRepository.AddLinkCategoriesAsync(linkId, categoryIds);
 
         return new BaseResponse
         {
             Success = true,
-            Message = "Update successful."
+            Message = "Link was updated."
         };
     }
 }

@@ -4,18 +4,15 @@
     <input type="text" formControlName="name" placeholder="Full Name">
     <input type="text" formControlName="description" placeholder="Description">
     <input type="text" formControlName="url" placeholder="http://www.example.com">
-    
     <div class="checkboxes" formArrayName="linkCategories">
-      <div *ngFor="let linkCategoryControl of linkCategoriesArray.controls; let i = index" [formGroupName]="i">
+      <div *ngFor="let category of linkCategoriesArray.controls; let i = index" [formGroupName]="i">
         <div class="combo">
-          <label [for]="linkCategoryControl.get('name')?.value">{{ linkCategoryControl.get('name')?.value }}</label>
-          <input type="checkbox" [id]="linkCategoryControl.get('name')?.value" formControlName="isChecked">
+          <label [for]="category.get('name')?.value">{{ category.get('name')?.value }}</label>
+          <input type="checkbox" formControlName="isChecked">
         </div>
       </div>
     </div>
-  </form>
-  
+  </form>  
   <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="onSubmit()">Submit</a>
 </div>
-
-<div class="spacer150"></div>
+<div class="spacer-150"></div>

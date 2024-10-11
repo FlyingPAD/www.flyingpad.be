@@ -1,1 +1,8 @@
-<p>create-style works!</p>
+<div class="edition"> 
+    <h2 class="h2">Create new style.</h2>
+    <form [formGroup]="formGroup">
+        <input type="text" formControlName="name" placeholder="Name">
+        <input type="text" formControlName="description" placeholder="Description">   
+    </form>
+    <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="onSubmit()">Submit</a>
+</div>

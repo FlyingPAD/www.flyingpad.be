@@ -2,10 +2,12 @@
 using MB.Application.Features.Links.Commands.DeleteLink;
 using MB.Application.Features.Links.Commands.UpdateLink;
 using MB.Application.Features.Links.Queries.CountLinks;
+using MB.Application.Features.Links.Queries.GetAllLinks;
 using MB.Application.Features.Links.Queries.GetLinkById;
+using MB.Application.Features.Links.Queries.GetLinksByArtist;
+using MB.Application.Features.Links.Queries.GetLinksByCategory;
+using MB.Application.Features.Links.Queries.GetLinksByModel;
 using MB.Application.Features.Links.Queries.GetLinksContainingAbc;
-using MB.Application.Features.Links.Queries.GetLinksList;
-using MB.Application.Features.Links.Queries.GetLinksListByCategory;
 using MB.Application.Features.Links.Queries.GetPageLinksContainingAbc;
 using MB.Application.Models;
 using MediatR;
@@ -31,16 +33,24 @@ public class LinksControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(new CountLinksQuery()));
 
     [HttpGet("GetAll")]
-    public async Task<ActionResult<GetLinksListQueryResponse>> GetAll()
-        => Ok(await _mediator.Send(new GetLinksListQuery()));
+    public async Task<ActionResult<GetAllLinksQueryResponse>> GetAll()
+        => Ok(await _mediator.Send(new GetAllLinksQuery()));
 
     [HttpGet("GetOneDetails/{linkId}")]
     public async Task<ActionResult<GetLinkByIdQuery>> GetOneDetails( Guid linkId)
         => Ok(await _mediator.Send(new GetLinkByIdQuery { LinkId = linkId }));
 
     [HttpGet("GetByCategory/{linkCategoryId}")]
-    public async Task<ActionResult<GetLinksListByCategoryQueryResponse>> GetByCategory(Guid linkCategoryId)
-        => Ok(await _mediator.Send(new GetLinksListByCategoryQuery { LinkCategoryId = linkCategoryId }));
+    public async Task<ActionResult<GetLinksByCategoryQueryResponse>> GetByCategory(Guid linkCategoryId)
+        => Ok(await _mediator.Send(new GetLinksByCategoryQuery { LinkCategoryId = linkCategoryId }));
+
+    [HttpGet("GetByArtist/{artistId}")]
+    public async Task<ActionResult<GetLinksByArtistQueryResponse>> GetByArtist(Guid artistId)
+    => Ok(await _mediator.Send(new GetLinksByArtistQuery { ArtistId = artistId }));
+
+    [HttpGet("GetByModel/{modelId}")]
+    public async Task<ActionResult<GetLinksByModelQueryResponse>> GetByModel(Guid modelId)
+    => Ok(await _mediator.Send(new GetLinksByModelQuery { ModelId = modelId }));
 
     [HttpGet("GetContaining/{abc}")]
     public async Task<ActionResult<GetLinksContainingAbcQueryResponse>> GetContaining(string? abc)

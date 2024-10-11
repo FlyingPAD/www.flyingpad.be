@@ -1,4 +1,4 @@
-<h1>Related Tags ( {{ relatedTags?.length }} )</h1>
+<p class="p">Related Tags ( {{ relatedTags?.length }} )</p>
 <div class="list-categories">
     <div *ngFor="let tag of relatedTags">
         <div><a [class.active]="tag.businessId === currentTagId" (click)="handleTagId(tag.businessId)"> ▸ {{tag.name}}</a></div>

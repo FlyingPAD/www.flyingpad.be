@@ -4,5 +4,5 @@ namespace MB.Application.Features.Artists.Commands.CreateArtist;
 
 public class CreateArtistCommandResponse : BaseResponse
 {
-    public Guid ArtistId { get; set; } = Guid.Empty;
+    public Guid ArtistId { get; set; }
 }

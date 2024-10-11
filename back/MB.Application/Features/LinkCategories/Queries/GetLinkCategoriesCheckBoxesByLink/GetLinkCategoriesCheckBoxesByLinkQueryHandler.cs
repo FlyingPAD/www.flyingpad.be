@@ -13,15 +13,15 @@ namespace MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckB
 
         public async Task<GetLinkCategoriesCheckBoxesByLinkQueryResponse> Handle(GetLinkCategoriesCheckBoxesByLinkQuery request, CancellationToken cancellationToken)
         {
-            int linkEntityId = await _linkRepo.GetPrimaryIdByBusinessIdAsync(request.LinkId)
+            int linkId = await _linkRepo.GetPrimaryIdByBusinessIdAsync(request.LinkId)
                 ?? throw new NotFoundException("Link not found.");
 
-            var categories = await _linkCategoryRepo.GetCheckBoxesByLink(linkEntityId);
+            var categories = await _linkCategoryRepo.GetCheckBoxesByLink(linkId);
 
             return new GetLinkCategoriesCheckBoxesByLinkQueryResponse
             {
                 Success = true,
-                Message = "Sucess.",
+                Message = "Link checkboxes loaded.",
                 LinkCategories = _mapper.Map<GetLinkCategoriesCheckBoxesByLinkQueryDto[]>(categories)
             };
         }

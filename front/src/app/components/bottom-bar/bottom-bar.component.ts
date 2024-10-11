@@ -28,6 +28,8 @@ export class BottomBarComponent {
   @Output() isFocused = new EventEmitter<boolean>(false)
   @Output() edition = new EventEmitter<void>()
   @Output() showDetails = new EventEmitter<void>()
+  @Output() showMultiTag = new EventEmitter<void>()
+
   
   topButtonIsActive : boolean = false
   diaporamaIsActive : boolean = false
@@ -46,6 +48,7 @@ export class BottomBarComponent {
   handleLeftCard(): void {this.leftCard.emit()}
   handleToggleFocus(): void {this.isFocused.emit(this.focusIsActive ? false : true); this.focusIsActive = this.focusIsActive ? false : true}
   handleShowDetails(): void {this.showDetails.emit()}
+  handleShowMultiTag(): void {this.showMultiTag.emit()}
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(): void {

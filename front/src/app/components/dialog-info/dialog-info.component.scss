@@ -3,13 +3,7 @@ h1 {
     text-align: center;
     color: #6b5240;
     letter-spacing: 2px;
-    text-shadow: 0px 3px 3px rgba(0,0,0,0.3);
-}
-
-p {
-    font-size: 14px;
-    text-align: center;
-    color: #6b5240;
+    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
 .flex {
@@ -19,20 +13,19 @@ p {
     background-color: rgba(107, 82, 64, 0.15);
     border-radius: 5px;
 
-    margin-left: 15px; margin-right: 15px;
-    margin-top: 5px; margin-bottom: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 
-    padding-left: 15px; padding-right: 15px;
-    padding: 10px;
+    padding: 15px;
 
-    p
-    {
+    p {
         margin: 0;
         color: #6b5240;
-        font-size: 13px;
+        font-size: 14px;
 
-        a:hover
-        {
+        a:hover {
             text-decoration: underline;
         }
     }
@@ -40,15 +33,14 @@ p {
 
 .flex_created {
     margin-top: 10px;
-    margin-left: 30px; margin-right: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
 
-    .box_created
-    {
+    .box_created {
         display: flex;
-        justify-content:space-between;
+        justify-content: space-between;
 
-        p
-        {
+        p {
             margin: 2px;
             text-align: center;
             color: rgba(107, 82, 64, 0.8);

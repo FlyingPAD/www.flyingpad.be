@@ -1,67 +1,39 @@
-<div class="display-info">
-  <div class="info-group">
-    <p><b>Display Mode</b> : </p>
-    <p>{{appSettings.appDisplayMode}}</p>
+<h1 class="h1">{{ 'title.dashboard' | translate }}</h1>
+
+<div class="row-white">
+  <div class="buttons">
+    <app-button-back />
   </div>
-  <div class="info-group">
-    <p><b>Window Size</b> :</p>
-    <p>{{appSettings.appScreenWidth}} x {{appSettings.appScreenHeight}} pixels</p>
-  </div>
-</div>
-<div class="row-white">
-  <h2 class="h2">Navigation</h2>
-</div>
-<div class="dashboard">
-  <a routerLink="/medias"><img src="../../../../assets/app_icons/icon_franchises_001.png" />
-    <p>Medias</p>
-  </a>
-  <a routerLink="/moods"><img src="../../../../assets/app_icons/icon_moods_001.png" />
-    <p>Moods</p>
-  </a>
-  <a routerLink="/tags"><img src="../../../../assets/app_icons/icon_tags_001.png" />
-    <p>Tags</p>
-  </a>
-  <a routerLink="/scripts"><img src="../../../../assets/app_icons/icon_scripts_001.png" />
-    <p>Scripts</p>
-  </a>
-  <a routerLink="/tools"><img src="../../../../assets/app_icons/icon_tools_001.png" />
-    <p>Tools</p>
-  </a>
-  <a routerLink="/links"><img src="../../../../assets/app_icons/icon_links_001.png" />
-    <p>Links</p>
-  </a>
-</div>
-<div class="row-white">
-  <h2 class="h2">Edition ( C.R.U.D. )</h2>
-</div>
-<div class="dashboard">
-  <a routerLink="/tags/edition"><img src="../../../../assets/app_icons/icon_tags_001.png" />
-    <p>Tags</p>
-  </a>
-  <a routerLink="/franchises/edition"><img src="../../../../assets/app_icons/icon_franchise_001.png" />
-    <p>Franchises</p>
-  </a>
-  <a routerLink="/artists/edition"><img src="../../../../assets/app_icons/artist.png" />
-    <p>Artists</p>
-  </a>
-  <a routerLink="/models/edition"><img src="../../../../assets/app_icons/icon_model_001.png" />
-    <p>Models</p>
-  </a>
-  <a routerLink="/links/edition"><img src="../../../../assets/app_icons/icon_links_001.png" />
-    <p>Links</p>
-  </a>
-</div>
-<div class="row-white">
-  <h2 class="h2">Controls</h2>
 </div>
 <div class="dashboard">
   <a routerLink="/moods/create-mood-image"><img src="../../../../assets/app_icons/icon_mood_001.png" />
-    <p>Images</p>
+    <p>{{ 'title.add-image' | translate }}</p>
   </a>
   <a routerLink="/moods/create-mood-video"><img src="../../../../assets/app_icons/icon_mood_001.png" />
-    <p>Video</p>
+    <p>{{ 'title.add-video' | translate }}</p>
   </a>
   <a routerLink="/flow"><img src="../../../../assets/app_icons/icon_moods_001.png" />
-    <p>Full Flow</p>
+    <p>{{ 'title.full-flow' | translate }}</p>
   </a>
 </div>
+
+<app-right-column>
+  <p class="p">Edition ( C.R.U.D. )</p>
+  <div class="content">
+    <a routerLink="/tags/edition"><img src="../../../../assets/app_icons/icon_tags_001.png" />
+      <p>Tags</p>
+    </a>
+    <a routerLink="/franchises/edition"><img src="../../../../assets/app_icons/icon_franchise_001.png" />
+      <p>Franchises</p>
+    </a>
+    <a routerLink="/artists/edition"><img src="../../../../assets/app_icons/artist.png" />
+      <p>{{ 'title.artists' | translate }}</p>
+    </a>
+    <a routerLink="/models/edition"><img src="../../../../assets/app_icons/icon_model_001.png" />
+      <p>{{ 'title.models' | translate }}</p>
+    </a>
+    <a routerLink="/links/edition"><img src="../../../../assets/app_icons/icon_links_001.png" />
+      <p>{{ 'title.links' | translate }}</p>
+    </a>
+  </div>
+</app-right-column>

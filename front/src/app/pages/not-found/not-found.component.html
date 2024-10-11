@@ -1,11 +1,12 @@
-<h2 class="h2">404 Error</h2>
+<h2 class="h2">{{ 'title.404' | translate }}</h2>
 
 <div class="row-white">
-    <div class="menu-flex">
+    <div class="buttons">
         <app-button-back />
+        <div class="button" routerLink="/home">{{ 'title.home' | translate }}</div>
     </div>
 </div>
 
 <br>
 
-<p class="p">Page wasn't found ...</p>
+<p class="p">{{ 'message.404' | translate }}</p>

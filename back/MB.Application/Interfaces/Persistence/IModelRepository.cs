@@ -11,5 +11,7 @@ public interface IModelRepository : IBaseRepository<Model>
     Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> modelIds);
     Task<IEnumerable<GetModelCheckBoxesByMoodQueryDto>> GetModelsCheckBoxesByMood(int moodId);
     System.Threading.Tasks.Task UpdateFranchises(int modelId, ICollection<int> franchiseIds);
-    System.Threading.Tasks.Task DeleteModelRelations(int modelId);
+    System.Threading.Tasks.Task AddFranchisesAsync(int modelId, IEnumerable<int> franchisesIds);
+    System.Threading.Tasks.Task RemoveFranchisesAsync(Model model);
+    Task<Model?> GetModelWithFranchisesAsync(int modelId);
 }

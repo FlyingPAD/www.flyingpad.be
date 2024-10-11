@@ -6,8 +6,8 @@ public class GetLinkByIdQueryValidator : AbstractValidator<GetLinkByIdQuery>
 {
     public GetLinkByIdQueryValidator()
     {
-        RuleFor(x => x.LinkId)
-            .NotEmpty().WithMessage("ID is required.")
-            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
+        RuleFor(request => request.LinkId)
+            .NotEmpty().WithMessage("LinkId is required.")
+            .NotEqual(Guid.Empty).WithMessage("LinkId must not be empty.");
     }
 }

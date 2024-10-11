@@ -12,15 +12,13 @@ public class GetAllFranchisesQueryHandler(IBaseRepository<Franchise> franchiseRe
 
     public async Task<GetAllFranchisesQueryResponse> Handle(GetAllFranchisesQuery request, CancellationToken cancellationToken)
     {
-        var franchises = await _franchiseRepository.GetAllAsync();
+        var franchises = await _franchiseRepository.GetAllAsync(franchise => franchise.Name);
 
-        var response = new GetAllFranchisesQueryResponse
+        return new GetAllFranchisesQueryResponse
         {
             Success = true,
-            Message = "Success.",
-            Franchises = _mapper.Map<List<GetAllFranchisesQueryVm>>(franchises)
+            Message = "All franchises.",
+            Franchises = _mapper.Map<List<GetAllFranchisesQueryDto>>(franchises)
         };
-
-        return response;
     }
 }

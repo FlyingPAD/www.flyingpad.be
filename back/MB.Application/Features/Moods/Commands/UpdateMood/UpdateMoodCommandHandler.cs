@@ -24,7 +24,7 @@ public class UpdateMoodCommandHandler(IMapper mapper, IBaseRepository<Mood> mood
         return new BaseResponse
         {
             Success = true,
-            Message = "Mood successfully updated.",
+            Message = "Mood update successful.",
         };
     }
 }

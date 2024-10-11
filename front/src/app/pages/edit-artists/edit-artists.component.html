@@ -16,15 +16,15 @@
     </div>
 
     <div class="edition-selection">
-        @if(currentArtist){
-            <p><b>{{currentArtist.name}}</b></p>
+        @if(flow.artist){
+            <p><b>{{flow.artist.name}}</b></p>
         }
         @else {
             <p>Please, select an artist from the list.</p>
         }
         <div class="edition-buttons">
             <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
-            @if(currentArtist){
+            @if(flow.artist){
                 <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
                 <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
             }
@@ -38,15 +38,15 @@
         
         <div class="edition-list">
             <div *ngFor="let artist of filterArtists() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: paginationService.editArtistsCurrentPage}">
-                <a [class.active]="artist.name === currentArtist?.name" (click)="setArtist(artist)"> ▸ {{artist.name}}</a>
+                <a [class.active]="artist.name === flow.artist?.name" (click)="setArtist(artist)"> ▸ {{artist.name}}</a>
             </div>
         </div>
 
         <app-right-column>
-            <app-right-column-list [table]="flow.styles" (entityId)="updateStyleId($event)" />
+            <app-right-column-list [table]="flow.styles" [currentEntityId]="flow.style?.businessId" (entityId)="updateStyleId($event)" />
         </app-right-column>
         
-        <div class="pagination-row" *ngIf="flow.artists.length > elementsPerPage">
+        <div class="pagination-row" *ngIf="flow.artistsByStyle.length > elementsPerPage">
             <div id="pagination">
               <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editArtistsCurrentPage = $event"></pagination-controls>
             </div>   
@@ -56,14 +56,14 @@
         <app-create-artist (trigger)="triggerShowList()" [styles]="flow.styles" />
     }
     @if (showNewCategory) {
-        <app-create-style />
+        <app-create-style (trigger)="triggerShowList() "/>
     }
     @if (showEdit) {
-        <app-edit-artist [artist]="flow.artist" />
+        <app-edit-artist [artist]="flow.artist" (trigger)="triggerShowList()"/>
     }
     @if (showEditCategory) {
-        <app-edit-style />
+        <app-edit-style [style]="flow.style" (trigger)="triggerShowList()" />
     }
     
-    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.artists.length" />
+    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.artistsByStyle.length" />
 </div>

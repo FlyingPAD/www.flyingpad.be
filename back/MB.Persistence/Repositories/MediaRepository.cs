@@ -1,4 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Features.Medias.Queries;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
@@ -13,5 +14,21 @@ public class MediaRepository(Context context) : BaseRepository<Media>(context), 
                              .Where(media => businessIds.Contains(media.BusinessId))
                              .Select(media => media.EntityId)
                              .ToListAsync();
+    }
+
+    public async Task<IEnumerable<GetMediaCheckBoxesByFranchiseQueryDto>> GetCheckBoxesByFranchise(int franchiseId)
+    {
+        var media = await _context.Medias
+            .Select(media => new GetMediaCheckBoxesByFranchiseQueryDto
+            {
+                BusinessId = media.BusinessId,
+                Name = media.Name,
+                IsChecked = media.FranchiseMedias != null && media.FranchiseMedias
+                    .Any(relation => relation.FranchiseId == franchiseId)
+            })
+            .OrderBy(media => media.Name)
+            .ToListAsync();
+
+        return media;
     }
 }

@@ -6,8 +6,8 @@ public class DeleteLinkCategoryCommandValidator : AbstractValidator<DeleteLinkCa
 {
     public DeleteLinkCategoryCommandValidator()
     {
-        RuleFor(x => x.LinkCategoryId)
-            .NotEmpty().WithMessage("ID is required.")
-            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
+        RuleFor(request => request.LinkCategoryId)
+            .NotEmpty().WithMessage("LinkCategoryId is required.")
+            .NotEqual(Guid.Empty).WithMessage("LinkCategoryId must not be empty.");
     }
 }

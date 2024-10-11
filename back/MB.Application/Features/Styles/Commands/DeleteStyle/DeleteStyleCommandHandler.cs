@@ -12,15 +12,14 @@ public class DeleteStyleCommandHandler(IStyleRepository styleRepository) : IRequ
     public async Task<BaseResponse> Handle(DeleteStyleCommand request, CancellationToken cancellationToken)
     {
         var style = await _styleRepository.GetByBusinessIdAsync(request.StyleId)
-            ?? throw new NotFoundException($"Style with ID {request.StyleId} was not found.");
+            ?? throw new NotFoundException("Style not found.");
 
-        await _styleRepository.DeleteStyleRelations(style.EntityId);
         await _styleRepository.DeleteAsync(style);
 
         return new BaseResponse
         {
             Success = true,
-            Message = "Success."
+            Message = "Deletion successful."
         };
     }
 }

@@ -9,4 +9,5 @@ public class CreateModelCommand : IRequest<CreateModelCommandResponse>
     public string LastName { get; set; } = string.Empty;
     public string Gender { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
+    public List<Guid> FranchisesIds { get; set; } = [];
 }

@@ -10,13 +10,11 @@ public class CountTagsQueryHandler(IBaseRepository<Tag> tagRepository) : IReques
 
     public async Task<CountTagsQueryResponse> Handle(CountTagsQuery request, CancellationToken cancellationToken)
     {
-        var tagsCount = await _tagRepository.CountAsync();
-
         return new CountTagsQueryResponse
         {
             Success = true,
-            Message = $"Total Tags : {tagsCount}",
-            TagsCount = tagsCount
+            Message = "Tags count completed.",
+            TotalTags = await _tagRepository.CountAsync()
         };
     }
 }

@@ -21,7 +21,7 @@ public class GetTagsByMoodQueryHandler(IMapper mapper, IMoodRepository moodRepos
         return new GetTagsByMoodQueryResponse
         {
             Success = true,
-            Message = "Success.",
+            Message = "Tags by mood.",
             TagsByMood = _mapper.Map<List<GetTagsByMoodQueryDto>>(tags)
         };
     }

@@ -31,8 +31,7 @@ export class CreateMoodImageComponent implements OnDestroy {
   }
 
   onFileSelect(event : any) {
-    for (let i = 0; i < event.target.files.length; i++) 
-    {
+    for (let i = 0; i < event.target.files.length; i++) {
       const file = event.target.files[i]
   
       const reader = new FileReader()
@@ -45,7 +44,7 @@ export class CreateMoodImageComponent implements OnDestroy {
         || file.name.slice(file.name.lastIndexOf('.') + 1) === 'png' && file.size < 50000000
         || file.name.slice(file.name.lastIndexOf('.') + 1) === 'webp' && file.size < 50000000) {
           const image: ImageForm = {
-            title: '...',
+            name: '...',
             description: '...',
             type: 1,
             size: file.size,
@@ -65,7 +64,7 @@ export class CreateMoodImageComponent implements OnDestroy {
             this.images.push(image)
   
             let form = this.#builder.group({
-              title: [image.title],
+              name: [image.name],
               description: [image.description],
               type: [image.type],
               size: [image.size],
@@ -88,22 +87,16 @@ export class CreateMoodImageComponent implements OnDestroy {
   dropFile(fileName: string): void {
     const index = this.images.findIndex(image => image.sourceFile === fileName)
 
-    if (index !== -1) 
-    {
+    if (index !== -1) {
       this.images.splice(index, 1)
       this.forms.splice(index, 1)
     }
   }
 
   onSubmit(): void {
-    for (let i = 0; i < this.forms.length; i++) 
-    {
-      this.#flowService.CreateImage( this.forms[i].value ).subscribe({
-        error : (e) => console.error(e),
-        complete : () => {
-          this.#router.navigateByUrl('/moods')
-        }
-      })   
+    for (let i = 0; i < this.forms.length; i++) {
+      this.#flowService.CreateImage( this.forms[i].value ).subscribe()   
     }
+    this.#router.navigateByUrl('/moods')
   }
 }

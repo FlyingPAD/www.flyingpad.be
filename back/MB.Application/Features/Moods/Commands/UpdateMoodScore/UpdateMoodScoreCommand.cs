@@ -1,9 +1,10 @@
-﻿using MediatR;
+﻿using MB.Application.Models;
+using MediatR;
 
 namespace MB.Application.Features.Moods.Commands.UpdateMoodScore;
 
-public class UpdateMoodScoreCommand : IRequest<UpdateMoodScoreCommandResponse>
+public class UpdateMoodScoreCommand : IRequest<BaseResponse>
 {
-    public Guid BusinessId { get; set; } = Guid.Empty;
-    public int Value { get; set; } = 0;
+    public Guid MoodId { get; set; }
+    public int Value { get; set; }
 }

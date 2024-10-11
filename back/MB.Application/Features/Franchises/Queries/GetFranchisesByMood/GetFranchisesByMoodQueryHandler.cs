@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MediatR;
 
@@ -13,27 +14,20 @@ public class GetFranchisesByMoodQueryHandler(IMapper mapper, IFranchiseRepositor
 
     public async Task<GetFranchisesByMoodQueryResponse> Handle(GetFranchisesByMoodQuery request, CancellationToken cancellationToken)
     {
-        var moodEntityId = await _moodRepository.GetPrimaryIdByBusinessIdAsync(request.BusinessId);
-        if (!moodEntityId.HasValue)
-        {
-            return new GetFranchisesByMoodQueryResponse
-            {
-                Success = false,
-                Message = "Mood not found"
-            };
-        }
+        var moodId = await _moodRepository.GetPrimaryIdByBusinessIdAsync(request.MoodId)
+            ?? throw new NotFoundException("Mood not found.");
 
-        var models = await _modelRepository.GetModelsByMood(moodEntityId.Value);
+        var models = await _modelRepository.GetModelsByMood(moodId);
+
         var modelIds = models.Select(model => model.EntityId).ToList();
+
         var franchises = await _franchiseRepository.GetFranchisesByModels(modelIds);
 
-        var response = new GetFranchisesByMoodQueryResponse
+        return new GetFranchisesByMoodQueryResponse
         {
             Success = true,
-            Message = "Franchises retrieved successfully",
-            FranchisesByMood = _mapper.Map<List<GetFranchisesByMoodQueryVm>>(franchises)
+            Message = "Franchises by mood.",
+            FranchisesByMood = _mapper.Map<List<GetFranchisesByMoodQueryDto>>(franchises)
         };
-
-        return response;
     }
 }

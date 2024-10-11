@@ -12,8 +12,8 @@ public class UpdateStyleCommandHandler(IBaseRepository<Style> styleRepository) :
 
     public async Task<BaseResponse> Handle(UpdateStyleCommand request, CancellationToken cancellationToken)
     {
-        var style = await _styleRepository.GetByBusinessIdAsync(request.BusinessId)
-            ?? throw new NotFoundException($"Style with ID {request.BusinessId} was not found.");
+        var style = await _styleRepository.GetByBusinessIdAsync(request.StyleId)
+            ?? throw new NotFoundException("Style not found.");
 
         style.Name = request.Name;
         style.Description = request.Description;
@@ -23,7 +23,7 @@ public class UpdateStyleCommandHandler(IBaseRepository<Style> styleRepository) :
         return new BaseResponse
         {
             Success = true,
-            Message = "Success."
+            Message = "Update successful."
         };
     }
 }

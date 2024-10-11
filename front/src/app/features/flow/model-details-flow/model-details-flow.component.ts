@@ -36,7 +36,8 @@ export class ModelDetailsFlowComponent {
        firstName : this.formGroup.value.firstName,
        lastName : this.formGroup.value.lastName,
        gender : this.formGroup.value.gender,
-       description : this.formGroup.value.description
+       description : this.formGroup.value.description,
+       franchisesIds: []
       }
       this.#flowService.UpdateModel(form).subscribe({
         next: () => {

@@ -6,9 +6,19 @@ public class CreateArtistCommandValidator : AbstractValidator<CreateArtistComman
 {
     public CreateArtistCommandValidator()
     {
-        RuleFor(p => p.Name)
-            .NotEmpty().WithMessage("{PropertyName} is required.")
+        RuleFor(request => request.Name)
+            .NotEmpty().WithMessage("Name is required.")
             .NotNull()
-            .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+            .MaximumLength(30).WithMessage("Name must not exceed 30 characters.");
+
+        RuleFor(request => request.Description)
+            .NotEmpty().WithMessage("Description is required.")
+            .NotNull()
+            .MaximumLength(75).WithMessage("Description must not exceed 75 characters.");
+
+        RuleFor(request => request.StyleIds)
+            .NotNull().WithMessage("At least one style must be selected.")
+            .NotEmpty().WithMessage("StyleIds must contain at least one element.")
+            .ForEach(styleId => styleId.NotEqual(Guid.Empty).WithMessage("Invalid style identifier."));
     }
 }

@@ -1,196 +1,17 @@
-<!-- Left Menu -->
-<div class="menu-left" [ngClass]="menuCustom.menuCustomOn === true ? 'menu-on' : 'menu-off'">
-    <div class="menu-grid">
-        <!-- Section Left -->
-        <div class="grid-section-left">
-            <!-- Menu Trigger -->
-            <div class="trigger">
-                <img [class.img-active]="menuCustom.menuCustomOn === true" 
-                src="../../../../assets/app_icons/icon_hamburger_001.png" 
-                (click)="menuCustom.triggerMenuCustom()" />
-            </div>
-            <img class="logo" src="../../../../assets/app_logos/fp_logo_03.png">
-        </div>
-    </div>
-    <div class="scroll">
-        <div class="menu-elements">
-            <!-- User ( Not Connected ) -->
-            <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
-                <a routerLink="/home" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_home_001.png" />
-                    <p>Home</p>
-                </a>
-                <a routerLink="/about" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_about_001.png" />
-                    <p>About</p>
-                </a>
-                <a routerLink="/moods" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_moods_001.png" />
-                    <p>Moods</p>
-                </a>
-                <a routerLink="/tags" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_tags_001.png" />
-                    <p>Tags</p>
-                </a>
-                <a routerLink="/scripts" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
-                    <p>Scripts</p>
-                </a>
-                <a routerLink="/tools" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
-                    <p>Tools</p>
-                </a>
-                <a routerLink="/links" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_links_001.png" />
-                    <p>Links</p>
-                </a>
-            </div>
-            <!-- User ( Connected ) -->
-            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
-                <a routerLink="/home" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_home_001.png" />
-                    <p>Home</p>
-                </a>
-                <a routerLink="/about" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_about_001.png" />
-                    <p>About</p>
-                </a>
-                <a routerLink="/moods" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_moods_001.png" />
-                    <p>Moods</p>
-                </a>
-                <a routerLink="/tags" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_tags_001.png" />
-                    <p>Tags</p>
-                </a>
-                <a routerLink="/scripts" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
-                    <p>Scripts</p>
-                </a>
-                <a routerLink="/tools" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
-                    <p>Tools</p>
-                </a>
-                <a routerLink="/links" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_links_001.png" />
-                    <p>Links</p>
-                </a>
-            </div>
-            <!-- Administrator -->
-            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
-                <a routerLink="/dashboard" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_home_001.png" />
-                    <p>Dashboard</p>
-                </a>
-                <a routerLink="/medias" routerLinkActive="active" 
-                    [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_franchises_001.png" />
-                    <p>Medias</p>
-                </a>
-                <a routerLink="/moods" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact: true}" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_moods_001.png" />
-                    <p>Moods</p>
-                </a>
-                <a routerLink="/tags" routerLinkActive="active" (click)="menuTrigger()"
-                    [routerLinkActiveOptions]="{exact: true}">
-                    <img src="../../../../assets/app_icons/icon_tags_001.png" />
-                    <p>Tags</p>
-                </a>
-                <a routerLink="/scripts" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_scripts_001.png" />
-                    <p>Scripts</p>
-                </a>
-                <a routerLink="/tools" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_tools_001.png" />
-                    <p>Tools</p>
-                </a>
-                <a routerLink="/links" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_links_001.png" />
-                    <p>Links</p>
-                </a> 
-            </div>
-            <!-- User ( Not Connected ) -->
-            <div *ngIf="userService.appUser.role !== 1 && userService.appUser.role !== 2">
-                <a class="user" routerLink="/register" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/icon_artists_001.png" />
-                    <p>{{userService.appUser.firstName}}</p>
-                </a>
-            </div>
-            <!-- User ( Connected ) -->
-            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 1">
-                <a class="user" routerLink="/users/user-details" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/mood.png" />
-                    <p>{{userService.appUser.firstName}}</p>
-                </a>          
-            </div>
-            <!-- Administrator -->
-            <div *ngIf="authService.isConnectedSub && userService.appUser.role === 2">
-                <a class="user" routerLink="/users/user-details" routerLinkActive="active" (click)="menuTrigger()">
-                    <img src="../../../../assets/app_icons/mood.png" />
-                    <p>{{userService.appUser.firstName}}</p>
-                </a>        
-            </div>
-        </div>
-        <div class="menu-footer">
-            <p>© {{currentYear}} <a routerLink="/about" (click)="menuTrigger()">Flying PAD</a>
-        </div>
-    </div>
-</div>
+<app-menu-hidden [isMenuON]="menuCustom.menuCustomOn" [userIsConnected]="authService.isConnectedSub | async" [userRole]="userService.appUser.role"
+    (menuTriggerEmitter)="menuTrigger()" (menuTriggerCustomEmitter)="menuCustom.triggerMenuCustom()" />
 
-<!-- Overlay -->
-<div class="overlay" 
-    [class.overlay-enabled]="menuCustom.menuCustomOn === true && overlayTrigger === true" 
-    [class.overlay-disabled]="menuCustom.menuCustomOn === false && overlayTrigger === false" 
-    (click)="menuTrigger()">
-</div>
+<app-overlay [isOverlayOn]="overlayTrigger" [isMenuOn]="menuCustom.menuCustomOn" (emitter)="menuTrigger()" />
 
-<!-- Header -->
-<header>
-    <div class="header-grid">
-        <!-- Section Left -->
-        <div class="grid-section-left">
-            <!-- Menu Trigger -->
-            <div class="trigger">
-                <img [class.img-active]="menuCustom.menuCustomOn === true" 
-                src="../../../../assets/app_icons/icon_hamburger_001.png" 
-                (click)="menuCustom.triggerMenuCustom()" />
-            </div>
-            <img class="logo" src="../../../../assets/app_logos/fp_logo_03.png">
-        </div>
-        <!-- Section Middle -->
-        <div class="grid-section-middle">
-            <!-- <p>Search</p> -->
-        </div>
-        <!-- Section Right -->
-        <div class="grid-section-right">
-            <!-- Login -->
-            <div class="login" *ngIf="!(authService.isConnectedSub | async)">
-                <a (click)="loginTriggerMethod()">
-                    <img [class.img-active]="menuCustom.menuCustomOn === true" 
-                    src="../../../../assets/app_icons/login.png" />
-                </a>
-            </div>
-            <!-- Logout -->
-            <div class="login" *ngIf="authService.isConnectedSub | async">
-                <a (click)="logout()">
-                    <img [class.img-active]="menuCustom.menuCustomOn === true" 
-                    src="../../../../assets/app_icons/logout.png" />
-                </a>
-            </div>
-        </div>
-    </div>
-</header>
+<app-header [isMenuON]="menuCustom.menuCustomOn" [userIsConnected]="authService.isConnectedSub | async" 
+    (menuTriggerEmitter)="menuCustom.triggerMenuCustom()" (loginTriggerEmitter)="loginTriggerMethod()" (logoutTriggerEmitter)="logout()" />
 
-<!-- Page Content ( Router Outlet )-->
 <div class="content"><router-outlet /></div>
 
 <!-- Login Modal -->
 <div class="modal" [class.on]="loginTrigger === true" *ngIf="loginTrigger === true">
-    <!-- Form -->
     <h1>Login</h1>
     <form [formGroup]="formGroup">
-        <!-- Email Field -->
         <div>
             <input type="email" id="in_email" formControlName="email" placeholder="example@domain.com">
             <div *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.errors">
@@ -205,7 +26,6 @@
                 </p>
             </div>
         </div>
-        <!-- Password Field -->
         <div>
             <input type="password" id="in_password" formControlName="password" placeholder="●●●●●●●●">
             <div *ngIf="formGroup.get('password')?.touched && formGroup.get('password')?.errors">
@@ -217,7 +37,6 @@
                 </p>
             </div>
         </div>
-        <!-- Submit Button -->
         <div class="modal-buttons">
             <span *ngIf="formGroup.invalid">Sign in</span>
             <a (click)="onLogin()" *ngIf="formGroup.valid">Sign in</a>

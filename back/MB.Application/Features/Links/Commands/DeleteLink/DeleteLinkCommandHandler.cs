@@ -20,7 +20,7 @@ public class DeleteLinkCommandHandler(IBaseRepository<Link> linkRepository) : IR
         return new BaseResponse
         {
             Success = true,
-            Message = "Deletion successful."
+            Message = "Link was deleted."
         };
     }
 }

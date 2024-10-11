@@ -6,9 +6,9 @@ public class CreateMoodCommandValidator : AbstractValidator<CreateMoodCommand>
 {
     public CreateMoodCommandValidator()
     {
-        RuleFor(p => p.Name)
-            .NotEmpty().WithMessage("{PropertyName} is required.")
+        RuleFor(request => request.Name)
+            .NotEmpty().WithMessage("Name is required.")
             .NotNull()
-            .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+            .MaximumLength(30).WithMessage("Name must not exceed 30 characters.");
     }
 }

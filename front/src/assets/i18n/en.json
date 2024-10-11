@@ -1,0 +1,34 @@
+{
+    "title": {
+        "back": "Back",
+        "delete": "Delete",
+        "add-image": "Add Image(s)",
+        "add-video": "Add Video(s)",
+        "full-flow": "Full Flow",
+        "display-mode": "Display Mode",
+        "window-size": "Window Size",
+        "full-screen": "Full Screen",
+        "language": "Language",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "desktop": "Desktop",
+        "mobile": "Mobile",
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "tools": "Tools",
+        "links": "Links",
+        "artists": "Artists",
+        "models": "Models",
+        "my-account": "My Account",
+        "404": "404 Error"
+    },
+    "message": {
+        "404": "Page was not found.",
+        "my-account" : "Edit your account, your settings, and more.",
+        "not-found": "Page was not found.",
+        "settings": "Edit your navigation settings - prefered language, themes.",
+        "text1": "Beyond the rules and genre codes ...",
+        "text2": "Take your musical flight!",
+        "follow_me": "Follow me on social media"
+    }
+}

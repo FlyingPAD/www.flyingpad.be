@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
@@ -12,20 +13,14 @@ public class GetLinkByIdQueryHandler(IMapper mapper, IBaseRepository<Link> linkR
 
     public async Task<GetLinkByIdQueryResponse> Handle(GetLinkByIdQuery request, CancellationToken cancellationToken)
     {
-        var link = await _linkRepository.GetByBusinessIdAsync(request.LinkId);
-
-        if (link == null)
-        {
-            return new GetLinkByIdQueryResponse { Success = false, Message = "Link wasn't found :(" };
-        }
-
-        var linkVm = _mapper.Map<GetLinkByIdVm>(link);
+        var link = await _linkRepository.GetByBusinessIdAsync(request.LinkId)
+            ?? throw new NotFoundException("Link not found.");
 
         return new GetLinkByIdQueryResponse
         {
             Success = true,
-            Message = "Link was found :)",
-            Link = linkVm
+            Message = $"{link.Name}.",
+            Link = _mapper.Map<GetLinkByIdQueryDto>(link)
         };
     }
 }

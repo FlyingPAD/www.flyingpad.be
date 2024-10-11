@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
@@ -14,17 +15,16 @@ public class GetArtistsByMoodQueryHandler(IMapper mapper, IBaseRepository<Mood> 
 
     public async Task<GetArtistsByMoodQueryResponse> Handle(GetArtistsByMoodQuery request, CancellationToken cancellationToken)
     {
-        int? moodId = await _moodRepo.GetPrimaryIdByBusinessIdAsync(request.BusinessId);
+        int moodId = await _moodRepo.GetPrimaryIdByBusinessIdAsync(request.MoodId)
+            ?? throw new NotFoundException("Mood not found.");
 
         var artists = await _artistRepo.GetArtistsByMood(moodId);
 
-        var response = new GetArtistsByMoodQueryResponse
+        return new GetArtistsByMoodQueryResponse
         {
             Success = true,
-            Message = "Artists By Mood",
-            ArtistsByMood = _mapper.Map<List<GetArtistsByMoodQueryVm>>(artists)
+            Message = "Artists by mood.",
+            ArtistsByMood = _mapper.Map<List<GetArtistsByMoodQueryDto>>(artists)
         };
-
-        return response;
     }
 }

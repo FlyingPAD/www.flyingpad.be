@@ -1,14 +1,13 @@
-﻿using Azure;
-using MB.Application.Features.Tags.Commands.CreateTag;
+﻿using MB.Application.Features.Tags.Commands.CreateTag;
 using MB.Application.Features.Tags.Commands.DeleteTag;
 using MB.Application.Features.Tags.Commands.UpdateTag;
 using MB.Application.Features.Tags.Queries.CountTags;
+using MB.Application.Features.Tags.Queries.GetAllTags;
 using MB.Application.Features.Tags.Queries.GetTagById;
 using MB.Application.Features.Tags.Queries.GetTagsByCategory;
 using MB.Application.Features.Tags.Queries.GetTagsByMood;
 using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
-using MB.Application.Features.Tags.Queries.GetTagsList;
 using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -33,11 +32,11 @@ public class TagsControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(new CountTagsQuery()));
 
     [HttpGet("GetAll")]
-    public async Task<ActionResult<GetTagsListQueryResponse>> GetAll()
-        => Ok(await _mediator.Send(new GetTagsListQuery()));
+    public async Task<ActionResult<GetAllTagsQueryResponse>> GetAll()
+        => Ok(await _mediator.Send(new GetAllTagsQuery()));
 
     [HttpGet("GetOneDetails/{tagId}")]
-    public async Task<ActionResult<GetTagByIdQueryResponse>> GetOneDetails( Guid tagId)
+    public async Task<ActionResult<GetTagByIdQueryResponse>> GetById( Guid tagId)
         => Ok(await _mediator.Send(new GetTagByIdQuery { TagId = tagId }));
 
     [HttpGet("GetTagsList")]

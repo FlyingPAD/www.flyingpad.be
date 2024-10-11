@@ -3,10 +3,26 @@
         @if(flow.moodsGalleryType === 'all') {
             <app-moods-gallery [moods]="flow.moods" (moodId)="updateMoodId($event)" />
             <app-dialog *ngIf="showDialog" (dialog)="handleDialog()">
-                <app-dialog-info [moodsLength]="flow.moods.length"/>
+                <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moods.length" />
             </app-dialog>        
             <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moods.length" 
-            (topButton)="toTop()" (dialog)="openDialog()" />
+            (topButton)="toTop()" (dialog)="openDialog()" (showMultiTag)="showMultiTagON() "/>
+        }
+        @if(flow.moodsGalleryType === 'tag') {
+            <app-moods-gallery [moods]="flow.moodsByTag" (moodId)="updateMoodId($event)" />
+            <app-dialog *ngIf="showDialog" (dialog)="handleDialog()">
+                <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.tag" [moodsLength]="flow.moodsByTag.length"/>
+            </app-dialog>  
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.tag?.name" 
+            [moodsLength]="flow.moodsByTag.length" (topButton)="toTop()" (dialog)="openDialog()" (showMultiTag)="showMultiTagON()"/>
+        }
+        @if(flow.moodsGalleryType === 'model') {
+            <app-moods-gallery [moods]="flow.moodsByModel" (moodId)="updateMoodId($event)" />
+            <app-dialog *ngIf="showDialog" (dialog)="handleDialog()">
+                <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.model" [moodsLength]="flow.moodsByModel.length"/>
+            </app-dialog>
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.model?.pseudonym" 
+            [moodsLength]="flow.moodsByModel.length" (topButton)="toTop()" (dialog)="openDialog()" (showMultiTag)="showMultiTagON()"/>
         }
         @if(flow.moodsGalleryType === 'artist') {
             <app-moods-gallery [moods]="flow.moodsByArtist" (moodId)="updateMoodId($event)" />
@@ -15,29 +31,15 @@
                 [moodsLength]="flow.moodsByArtist.length"/>
             </app-dialog>
             <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.artist?.name" 
-            [moodsLength]="flow.moodsByArtist.length" (topButton)="toTop()" (dialog)="openDialog()"/>
-        }
-        @if(flow.moodsGalleryType === 'model') {
-            <app-moods-gallery [moods]="flow.moodsByModel" (moodId)="updateMoodId($event)" />
-            <app-dialog *ngIf="showDialog" (dialog)="handleDialog()"><app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" 
-                [entity]="flow.model" [moodsLength]="flow.moodsByModel.length"/></app-dialog>
-            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.model?.pseudonym" 
-            [moodsLength]="flow.moodsByModel.length" (topButton)="toTop()" (dialog)="openDialog()"/>
-        }
-        @if(flow.moodsGalleryType === 'tag') {
-            <app-moods-gallery [moods]="flow.moodsByTag" (moodId)="updateMoodId($event)" />
-            <app-dialog *ngIf="showDialog" (dialog)="handleDialog()"><app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" 
-                [entity]="flow.tag" [moodsLength]="flow.moodsByTag.length"/></app-dialog>  
-            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.tag?.name" 
-            [moodsLength]="flow.moodsByTag.length" (topButton)="toTop()" (dialog)="openDialog()"/>
+            [moodsLength]="flow.moodsByArtist.length" (topButton)="toTop()" (dialog)="openDialog()" (showMultiTag)="showMultiTagON()" />
         }
         @if(flow.moodsGalleryType === 'franchise') {
             <app-moods-gallery [moods]="flow.moodsByFranchise" (moodId)="updateMoodId($event)" />
-            <app-dialog *ngIf="showDialog" (dialog)="handleDialog()"><app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" 
-                [entity]="flow.franchise" [moodsLength]="flow.moodsByFranchise.length"/>
+            <app-dialog *ngIf="showDialog" (dialog)="handleDialog()">
+                <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.franchise" [moodsLength]="flow.moodsByFranchise.length"/>
             </app-dialog>  
             <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.franchise?.name" 
-            [moodsLength]="flow.moodsByFranchise.length" (topButton)="toTop()" (dialog)="openDialog()"/>
+            [moodsLength]="flow.moodsByFranchise.length" (topButton)="toTop()" (dialog)="openDialog()" (showMultiTag)="showMultiTagON()"/>
         }
         <app-right-column>
             <app-column-full [tags]="flow.tagsWithCategories" [currentTagId]="flow.tag?.businessId" (tagId)="updateTagId($event)" />
@@ -65,13 +67,13 @@
             (back)="showGalleryON()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" 
             (leftCard)="leftCardToggle()" (isFocused)="getMoodHeight($event)" (edition)="showEditionON()"/>
         }
-        @if(flow.moodsGalleryType === 'artist') {
+        @if(flow.moodsGalleryType === 'tag') {
             <app-bottom-bar 
-            moodsGalleryType="details" [moodsLength]="flow.moodsByArtist.length" [currentIndex]="flow.moodsByArtistIndexes.currentIndex" 
+            moodsGalleryType="details" [moodsLength]="flow.moodsByTag.length" [currentIndex]="flow.moodsByTagIndexes.currentIndex" 
             [moodType]="flow.mood.type"
             (topButton)="toTop()" (dialog)="openDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
             (back)="showGalleryON()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" 
-            (leftCard)="leftCardToggle()" (isFocused)="getMoodHeight($event)" (edition)="showEditionON()"/>   
+            (leftCard)="leftCardToggle()" (isFocused)="getMoodHeight($event)" (edition)="showEditionON()"/>
         }
         @if(flow.moodsGalleryType === 'model') {
             <app-bottom-bar 
@@ -81,13 +83,13 @@
             (back)="showGalleryON()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" 
             (leftCard)="leftCardToggle()" (isFocused)="getMoodHeight($event)" (edition)="showEditionON()"/> 
         }
-        @if(flow.moodsGalleryType === 'tag') {
+        @if(flow.moodsGalleryType === 'artist') {
             <app-bottom-bar 
-            moodsGalleryType="details" [moodsLength]="flow.moodsByTag.length" [currentIndex]="flow.moodsByTagIndexes.currentIndex" 
+            moodsGalleryType="details" [moodsLength]="flow.moodsByArtist.length" [currentIndex]="flow.moodsByArtistIndexes.currentIndex" 
             [moodType]="flow.mood.type"
             (topButton)="toTop()" (dialog)="openDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
             (back)="showGalleryON()" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" 
-            (leftCard)="leftCardToggle()" (isFocused)="getMoodHeight($event)" (edition)="showEditionON()"/>
+            (leftCard)="leftCardToggle()" (isFocused)="getMoodHeight($event)" (edition)="showEditionON()"/>   
         }
         @if(flow.moodsGalleryType === 'franchise') {
             <app-bottom-bar 
@@ -101,5 +103,33 @@
 
     @if(showEdition) {
         <app-edition-menu [mood]="flow.mood" [environment]="environment" (showDetails)="showDetailsON()" (showGallery)="showGalleryON()"/>
+    }
+
+    @if(showMultiTag) {
+        @if(flow.moodsGalleryType === 'all') {
+            <app-multi-tag [moods]="flow.moods" />
+            <app-bottom-bar moodsGalleryType="multi-tag" [moodsLength]="flow.moods.length" 
+                (back)="showGalleryON()" />
+        }
+        @if(flow.moodsGalleryType === 'tag') {
+            <app-multi-tag [moods]="flow.moodsByTag" />
+            <app-bottom-bar [entityName]="flow.tag?.name" [moodsLength]="flow.moodsByTag.length" moodsGalleryType="multi-tag" 
+                (back)="showGalleryON()" />
+        }
+        @if(flow.moodsGalleryType === 'model') {
+            <app-multi-tag [moods]="flow.moodsByModel" />
+            <app-bottom-bar [entityName]="flow.model?.pseudonym" [moodsLength]="flow.moodsByModel.length" moodsGalleryType="multi-tag" 
+                (back)="showGalleryON()" />
+        }
+        @if(flow.moodsGalleryType === 'artist') {
+            <app-multi-tag [moods]="flow.moodsByArtist" />
+            <app-bottom-bar [entityName]="flow.artist?.name" [moodsLength]="flow.moodsByArtist.length" moodsGalleryType="multi-tag" 
+                (back)="showGalleryON()" />
+        }
+        @if(flow.moodsGalleryType === 'franchise') {
+            <app-multi-tag [moods]="flow.moodsByFranchise" />
+            <app-bottom-bar [entityName]="flow.franchise?.name" [moodsLength]="flow.moodsByFranchise.length" moodsGalleryType="multi-tag" 
+                (back)="showGalleryON()" />
+        }
     }
 </div>

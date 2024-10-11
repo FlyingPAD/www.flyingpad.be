@@ -23,6 +23,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   showGallery : boolean = true
   showDetails : boolean = false
   showEdition : boolean = false
+  showMultiTag : boolean = false
   showDialog : boolean = false
 
   intervalId : any | undefined = undefined
@@ -49,6 +50,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.showGallery = false
     this.showDetails = false
     this.showEdition = false
+    this.showMultiTag = false
   }
 
   showGalleryON(): void {
@@ -64,6 +66,11 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   showEditionON(): void {
     this.showOff()
     this.showEdition = true
+  }
+
+  showMultiTagON(): void {
+    this.showOff()
+    this.showMultiTag = true
   }
 
   pageReset(): void {

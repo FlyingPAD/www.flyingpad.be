@@ -5,5 +5,5 @@ namespace MB.Application.Features.Artists.Commands.DeleteArtist;
 
 public class DeleteArtistCommand : IRequest<BaseResponse>
 {
-    public Guid BusinessId { get; set; }
+    public Guid ArtistId { get; set; }
 }

@@ -134,7 +134,7 @@ export class FlowComponent
     this.flowService.updateFranchiseId(franchiseId); this.showFranchise = true
   }
   updateMediaId(mediaId: number): void {
-    this.flowService.updateMediaId(mediaId); this.showMedia = true
+    this.flowService.updateMediumId(mediaId); this.showMedia = true
   }
   updateLinkCategoryId(linkCategoryId: number): void {
     this.flowService.updateLinkCategoryId(linkCategoryId); this.showLinkCategory = true

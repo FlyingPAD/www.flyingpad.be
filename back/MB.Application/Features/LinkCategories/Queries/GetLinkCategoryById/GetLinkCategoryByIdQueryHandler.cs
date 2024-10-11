@@ -1,37 +1,26 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.LinkCategories.Queries.GetLinkCategoryById;
 
-public class GetLinkCategoryByIdQueryHandler : IRequestHandler<GetLinkCategoryByIdQuery, GetLinkCategoryByIdQueryResponse>
+public class GetLinkCategoryByIdQueryHandler(IMapper mapper, IBaseRepository<LinkCategory> linkCategoryRepository) : IRequestHandler<GetLinkCategoryByIdQuery, GetLinkCategoryByIdQueryResponse>
 {
-    private readonly IMapper _mapper;
-    private IBaseRepository<LinkCategory> _linkCategoryRepository;
-
-    public GetLinkCategoryByIdQueryHandler(IMapper mapper, IBaseRepository<LinkCategory> linkCategoryRepository)
-    {
-        _mapper = mapper;
-        _linkCategoryRepository = linkCategoryRepository;
-    }
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<LinkCategory> _linkCategoryRepository = linkCategoryRepository;
 
     public async Task<GetLinkCategoryByIdQueryResponse> Handle(GetLinkCategoryByIdQuery request, CancellationToken cancellationToken)
     {
-        var linkCategory = await _linkCategoryRepository.GetByBusinessIdAsync(request.LinkCategoryId);
-
-        if (linkCategory == null)
-        {
-            return new GetLinkCategoryByIdQueryResponse { Success = false, Message = "LinkCategory wasn't found :(" };
-        }
-
-        var linkCategoryVm = _mapper.Map<GetLinkCategoryByIdVm>(linkCategory);
+        var linkCategory = await _linkCategoryRepository.GetByBusinessIdAsync(request.LinkCategoryId)
+            ?? throw new NotFoundException("Link category not found.");
 
         return new GetLinkCategoryByIdQueryResponse
         {
             Success = true,
-            Message = "LinkCategory was found :)",
-            LinkCategory = linkCategoryVm
+            Message = $"{linkCategory.Name}.",
+            LinkCategory = _mapper.Map<GetLinkCategoryByIdQueryDto>(linkCategory)
         };
     }
 }

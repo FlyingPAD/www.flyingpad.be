@@ -20,7 +20,7 @@ public class DeleteLinkCategoryCommandHandler(IBaseRepository<LinkCategory> link
         return new BaseResponse
         {
             Success = true,
-            Message = "Deletion successful."
+            Message = "Link category was deleted."
         };
     }
 }

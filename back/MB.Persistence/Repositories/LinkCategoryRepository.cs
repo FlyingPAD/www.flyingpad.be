@@ -11,22 +11,23 @@ public class LinkCategoryRepository(Context context) : BaseRepository<LinkCatego
     public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
     {
         return await _context.LinkCategories
-                             .Where(category => businessIds.Contains(category.BusinessId))
-                             .Select(category => category.EntityId)
-                             .ToListAsync();
+                    .Where(category => businessIds.Contains(category.BusinessId))
+                    .Select(category => category.EntityId)
+                    .ToListAsync();
     }
 
     public async Task<IEnumerable<GetLinkCategoriesCheckBoxesByLinkQueryDto>> GetCheckBoxesByLink(int linkId)
     {
         var categories = await _context.LinkCategories
-                                   .Select(category => new GetLinkCategoriesCheckBoxesByLinkQueryDto
-                                   {
-                                       BusinessId = category.BusinessId,
-                                       Name = category.Name,
-                                       IsChecked = category.RLinkCategories != null && category.RLinkCategories.Any(relation => relation.LinkId == linkId)
-                                   })
-                                   .OrderBy(artist => artist.Name)
-                                   .ToListAsync();
+            .Select(category => new GetLinkCategoriesCheckBoxesByLinkQueryDto
+            {
+                BusinessId = category.BusinessId,
+                Name = category.Name,
+                IsChecked = category.RLinkCategories != null && category.RLinkCategories
+                    .Any(relation => relation.LinkId == linkId)
+            })
+            .OrderBy(category => category.Name)
+            .ToListAsync();
 
         return categories;
     }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MediatR;
 
@@ -12,17 +13,16 @@ public class GetMoodsByTagQueryHandler(IMapper mapper, IMoodRepository moodRepos
 
     public async Task<GetMoodsByTagQueryResponse> Handle(GetMoodsByTagQuery request, CancellationToken cancellationToken)
     {
-        int? tagId = await _tagRepository.GetPrimaryIdByBusinessIdAsync(request.TagId);
+        int tagId = await _tagRepository.GetPrimaryIdByBusinessIdAsync(request.TagId)
+            ?? throw new NotFoundException("Tag not found.");
 
         var moods = await _moodRepository.GetMoodsByTag(tagId);
 
-        var response = new GetMoodsByTagQueryResponse
+        return new GetMoodsByTagQueryResponse
         {
             Success = true,
-            Message = "Moods By Tag",
-            Moods = _mapper.Map<List<GetMoodsByTagQueryVm>>(moods)
+            Message = "Moods by tag.",
+            Moods = _mapper.Map<List<GetMoodsByTagQueryDto>>(moods)
         };
-
-        return response;
     }
 }

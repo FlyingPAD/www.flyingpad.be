@@ -14,12 +14,15 @@ public class GetTaskDetailsQueryHandler(IBaseRepository<MB.Domain.Entities.Task>
 
     public async Task<TaskDetailsVm> Handle(GetTaskDetailsQuery request, CancellationToken cancellationToken)
     {
-        var task = await _taskRepository.GetByBusinessIdAsync(request.Id) ?? throw new InvalidOperationException("La tâche spécifiée est introuvable.");
+        var task = await _taskRepository.GetByBusinessIdAsync(request.Id) 
+            ?? throw new InvalidOperationException("La tâche spécifiée est introuvable.");
+
         var taskDetailsDto = _mapper.Map<TaskDetailsVm>(task);
 
         if (task.TaskCategory != null)
         {
             var taskCategory = await _taskCategoryRepository.GetByBusinessIdAsync(task.TaskCategory.BusinessId);
+
             if (taskCategory != null)
             {
                 var taskCategoryDto = _mapper.Map<TaskCategoryDto>(taskCategory);

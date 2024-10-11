@@ -1,5 +1,4 @@
-.bar 
-{
+.bar {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -14,8 +13,7 @@
     justify-content: center;
     align-items: center;
 
-    a, span 
-    {
+    a, span {
         margin: 3px;
         background-color: rgba(255, 255, 255, 0.7);
         border-radius: 5px;
@@ -25,8 +23,7 @@
         justify-content: center;
         align-items: center;
 
-        img 
-        {
+        img {
             margin: 0;
             height: 25px;
             width: 25px;
@@ -35,60 +32,58 @@
             transition: transform 0.5s ease;
             transform-origin: center;
 
-            &.rotate 
-            {
+            &.rotate {
                 animation: rotateImage 0.5s forwards;
             }
 
-            &.rotate-back 
-            {
+            &.rotate-back {
                 animation: rotateImageBack 0.5s forwards;
             }
         }
 
-        .position 
-        {
+        .position {
             margin: 0;
             height: 25px;
             font-size: 14px;
             line-height: 25px;
             color: var(--colorMain);
             padding: 5px;
-            padding-left: 3px; padding-right: 3px;
+            padding-left: 3px;
+            padding-right: 3px;
         }
     }
-    a:hover 
-    {
+    a:hover {
         border: 1px solid var(--colorMain);
         cursor: pointer;
     }
-    .active
-    {
+
+    .active {
         border: 1px solid var(--colorMain);
     }
-    span
-    {
+
+    span {
         border: 1px solid grey;
         background-color: rgb(189, 189, 189, 0.8);
         cursor: not-allowed;
     }
-    .tweak
-    {
-        padding-left: 5px; padding-right: 5px;
+
+    .tweak {
+        padding-left: 5px;
+        padding-right: 5px;
     }
-    .tweak:hover
-    {
+
+    .tweak:hover {
         border: 1px solid rgba(0, 0, 0, 0.15);
         cursor: default;
     }
-    .toggle
-    {
+
+    .toggle {
         display: flex;
     }
 
     @media screen and (max-width: 1150px) {
         .toggle {
             display: none
-        }   
+        }
     }
 }

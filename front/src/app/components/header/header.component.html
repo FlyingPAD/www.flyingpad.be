@@ -1,0 +1,31 @@
+<header>
+    <div class="header-grid">
+        <div class="grid-section-left">
+            <div class="trigger">
+                <img [class.img-active]="isMenuON" src="../../../../assets/app_icons/icon_hamburger_001.png" (click)="handleMenuTrigger()" />
+            </div>
+            <img class="logo" src="../../../../assets/app_logos/fp_logo_03.png">
+        </div>
+        <div class="grid-section-middle">
+            <!-- <p class="responsive">Search</p> -->
+        </div>
+        <div class="grid-section-right">
+            @if(userIsConnected) {
+                <!-- Logout -->
+                <div class="login">
+                    <a (click)="handleLogoutTrigger()">
+                        <img [class.img-active]="isMenuON" src="../../../../assets/app_icons/logout.png" />
+                    </a>
+                </div>
+            }
+            @else {
+                <!-- Login -->
+                <div class="login">
+                    <a (click)="handleLoginTrigger()">
+                        <img [class.img-active]="isMenuON" src="../../../../assets/app_icons/login.png" />
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</header>

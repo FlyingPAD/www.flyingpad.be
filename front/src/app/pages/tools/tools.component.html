@@ -1,10 +1,37 @@
-<div class="tools-icons">
-    <a [class.active]="showCircleofFifths" (click)="toggleCircleofFifths()"><img src="../../../../assets/app_icons/circle_fifths.png"></a>
-    <a [class.active]="showChordWheel" (click)="toggleChordWheel()"><img src="../../../../assets/app_icons/chord_wheel.png"></a>
-    <a [class.active]="showDiapason" (click)="toggleDiapason()"><img src="../../../../assets/app_icons/diapason.svg"></a>
-    <a [class.active]="showMiniKeys" (click)="toggleMiniKeys()"><img src="../../../../assets/app_icons/keys-mini.svg"></a>
-    <a [class.active]="showTrainer" (click)="toggleTrainer()"><img src="../../../../assets/app_icons/trainer-notes.png"></a>
-</div>
+<app-right-column>
+    <div class="tools-icons">
+        <div class="icon">
+            <a [class.active]="showCircleofFifths" (click)="toggleCircleofFifths()">
+                <img src="../../../../assets/app_icons/circle_fifths.png">
+            </a>
+            <span>Circle of Fifths</span>
+        </div>
+        <div class="icon">
+            <a [class.active]="showChordWheel" (click)="toggleChordWheel()">
+                <img src="../../../../assets/app_icons/chord_wheel.png">
+            </a>
+            <span>Chord Wheel</span>
+        </div>
+        <div class="icon">
+            <a [class.active]="showDiapason" (click)="toggleDiapason()">
+                <img src="../../../../assets/app_icons/diapason.svg">
+            </a>
+            <span>Diapason</span>
+        </div>
+        <div class="icon">
+            <a [class.active]="showMiniKeys" (click)="toggleMiniKeys()">
+                <img src="../../../../assets/app_icons/keys-mini.svg">
+            </a>
+            <span>Keyboard</span>
+        </div>
+        <div class="icon">
+            <a [class.active]="showTrainer" (click)="toggleTrainer()">
+                <img src="../../../../assets/app_icons/trainer-notes.png">
+            </a>
+            <span>Notes Trainer</span>
+        </div>
+    </div>
+</app-right-column>
 
 <app-circle-of-fifths *ngIf="showCircleofFifths" />
 <app-chord-wheel-svg *ngIf="showChordWheel" />

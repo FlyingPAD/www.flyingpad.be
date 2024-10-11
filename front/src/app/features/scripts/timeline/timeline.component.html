@@ -1,0 +1,57 @@
+<h1 class="h1">Ligne du Temps</h1>
+<div *ngFor="let timeline of timelines">
+    <br>
+    <div class="buttons">
+        <div class="button" (click)="zoomOut()">Zoom Out</div>
+        <div class="button" (click)="goToSelectedYear()">{{ timeline.selectedyear }}</div>
+        <div class="button" (click)="zoomIn()">Zoom In</div>
+    </div>
+    <br />
+    <div #timelineContainer class="timeline-scrollable">
+        <svg [attr.width]="timeline.timelineWidth" height="300" [attr.viewBox]="getViewBox(timeline)">
+            <line x1="0" y1="150" [attr.x2]="timeline.timelineWidth" y2="150" stroke="black" stroke-width="5" />
+
+            <!-- Graduations -->
+            <g *ngFor="let graduation of timeline.generateGraduations(timeline.zoomLevels[timeline.currentZoomLevel])">
+                <line [attr.x1]="graduation.position" y1="130" [attr.x2]="graduation.position" y2="170"
+                    stroke="black" />
+                <text [attr.x]="graduation.position" y="190" text-anchor="middle" font-size="17"
+                    (click)="setSelectedYear(graduation.label)">
+                    {{ graduation.label }}
+                </text>
+            </g>
+
+            <!-- Events -->
+            <g *ngFor="let event of timeline.generateEventPositions(timeline.zoomLevels[timeline.currentZoomLevel])">
+                <app-dialog *ngIf="event.isActive">{{event.description}}</app-dialog>
+                <polygon [attr.points]="getTrianglePoints(event.position, 
+                        140 
+                        - (event.displayLevel === 1 ? 10
+                        : event.displayLevel === 2 ? 60 
+                        : event.displayLevel === 3 ? 105
+                        : 0), 13)" fill="white" stroke="black" stroke-width="2" (click)="event.toggle()" />
+                <text *ngIf="event.isActive" [attr.x]="event.position" [attr.y]="120 
+                        - (event.displayLevel === 1 ? 5 
+                        : event.displayLevel === 2 ? 55 
+                        : event.displayLevel === 3 ? 100
+                        : 0)" text-anchor="middle" font-size="15" fill="black">
+                    {{ event.name }}
+                </text>
+            </g>
+
+            <!-- Periods -->
+            <g *ngFor="let period of timeline.generatePeriodPositions(timeline.zoomLevels[timeline.currentZoomLevel])">
+                <rect [attr.x]="period.startPosition" [attr.y]="period.displayLevel === 1 ? 200 : 
+                               period.displayLevel === 2 ? 240 : 
+                               period.displayLevel === 3 ? 260 : 220" [attr.width]="period.width" height="20"
+                    [attr.fill]="period.color" fill-opacity="0.5" stroke="black" stroke-width="1" rx="5" ry="5"
+                    (click)="period.toggle()" />
+                <text *ngIf="period.isActive" [attr.x]="period.startPosition + period.width / 2" [attr.y]="period.displayLevel === 1 ? 235 : 
+                                period.displayLevel === 2 ? 275 : 
+                                period.displayLevel === 3 ? 295 : 255" text-anchor="middle" font-size="15">
+                    {{ period.name }}
+                </text>
+            </g>
+        </svg>
+    </div>
+</div>

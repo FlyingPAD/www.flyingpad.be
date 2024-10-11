@@ -11,16 +11,15 @@ public class DeleteArtistCommandHandler(IArtistRepository artistRepository) : IR
 
     public async Task<BaseResponse> Handle(DeleteArtistCommand request, CancellationToken cancellationToken)
     {
-        var artist = await _artistRepository.GetByBusinessIdAsync(request.BusinessId)
-            ?? throw new NotFoundException($"Artist with ID {request.BusinessId} was not found.");
+        var artist = await _artistRepository.GetByBusinessIdAsync(request.ArtistId)
+            ?? throw new NotFoundException($"Artist not found.");
 
-        await _artistRepository.DeleteArtistRelations(artist.EntityId);
         await _artistRepository.DeleteAsync(artist);
 
         return new BaseResponse
         {
             Success = true,
-            Message = "Success."
+            Message = "Deletion successful."
         };
     }
 }

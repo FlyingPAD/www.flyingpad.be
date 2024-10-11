@@ -24,7 +24,7 @@ public class UpdateLinkCategoryCommandHandler(IMapper mapper, IBaseRepository<Li
         return new BaseResponse
         {
             Success = true,
-            Message = "Update succesful.",
+            Message = "Link category was updated.",
         };
     }
 }

@@ -31,6 +31,7 @@ export class FranchiseDetailsFlowComponent {
        franchiseId : this.franchise?.businessId,
        name : this.formGroup.value.name,
        description : this.formGroup.value.description,
+       mediaIds : []
       }
       this.#flowService.UpdateFranchise(form).subscribe({
         next: () => {

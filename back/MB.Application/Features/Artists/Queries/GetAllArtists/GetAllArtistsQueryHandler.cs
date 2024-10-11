@@ -13,13 +13,12 @@ public class GetAllArtistsQueryHandler(IBaseRepository<Artist> artistRepository,
     public async Task<GetAllArtistsQueryResponse> Handle(GetAllArtistsQuery request, CancellationToken cancellationToken)
     {
         var artists = await _artistRepository.GetAllAsync(artist => artist.Name);
-        var response = new GetAllArtistsQueryResponse
+
+        return new GetAllArtistsQueryResponse
         {
             Success = true,
-            Message = "Success.",
+            Message = "All artists.",
             Artists = _mapper.Map<List<GetAllArtistsQueryDto>>(artists)
         };
-
-        return response;
     }
 }

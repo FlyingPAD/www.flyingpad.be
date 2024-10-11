@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
@@ -12,21 +13,14 @@ public class GetArtistByIdQueryHandler(IMapper mapper, IBaseRepository<Artist> a
 
     public async Task<GetArtistByIdQueryResponse> Handle(GetArtistByIdQuery request, CancellationToken cancellationToken)
     {
-        var response = new GetArtistByIdQueryResponse();
-        var artist = await _artistRepository.GetByBusinessIdAsync(request.ArtistId);
+        var artist = await _artistRepository.GetByBusinessIdAsync(request.ArtistId)
+            ?? throw new NotFoundException("Artist not found.");
 
-        if (artist == null)
+        return new GetArtistByIdQueryResponse()
         {
-            response.Success = false;
-            response.Message = "Artist was not found.";
-
-            return response;
-        }
-
-        response.Success = true;
-        response.Message = $"Artist : {artist.Name}";
-        response.Artist = _mapper.Map<GetArtistByIdQueryDto>(artist);
-
-        return response;
+            Success = true,
+            Message = $"{artist.Name}.",
+            Artist = _mapper.Map<GetArtistByIdQueryDto>(artist)
+        };
     }
 }

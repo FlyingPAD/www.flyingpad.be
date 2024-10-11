@@ -1,9 +1,12 @@
-<h2>Delete Model</h2>
-    
-<p>You are about to permanently delete the model " <strong>{{ model?.pseudonym }}</strong> " !</p>
-<p>This action <u>cannot</u> be undone !!</p>
-<p><strong>Attention :</strong> This will also remove all relations of this model.</p>
-
-<p>Are you sure you want to proceed ?</p>
-
-<a (click)="deleteModel()">YES</a>
+<h3 class="dialog-h3">Delete model</h3>
+<hr class="dialog-hr">    
+<p class="p">You are about to permanently delete :</p>
+<p class="dialog-entity-name">' {{ model?.pseudonym }} '</p>
+<p class="p">This action <u>cannot</u> be undone !</p>
+<hr class="dialog-hr">    
+<p><span class="span-warning">Attention :</span> This will also remove all associated relations.</p>    
+<hr class="dialog-hr">    
+<p class="p">Are you sure you want to proceed ?</p>    
+<div class="buttons">
+    <div class="button" (click)="deleteModel()">YES</div>
+</div>
