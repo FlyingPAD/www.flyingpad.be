@@ -22,12 +22,14 @@
         </div>
     </div>
     <div *ngIf="userService.appUser.role === 2">
-        <div class="item-top details-score" >
+        <div class="item-top details-score">
+            <button (click)="updateMoodScore(-50)">-50</button>
             <button (click)="updateMoodScore(-10)">-10</button>
             <button (click)="updateMoodScore(-1)">-1</button>
             <p><b>{{ mood?.score | number : '3.0'}}</b></p>
             <button (click)="updateMoodScore(1)">+1</button>
             <button (click)="updateMoodScore(10)">+10</button>
+            <button (click)="updateMoodScore(50)">+50</button>
         </div>
     </div>
     <div *ngIf="mood?.type === 1 ">
@@ -47,7 +49,11 @@
             <p><b>Width</b></p>
             <p>{{ typeCheck(mood).width }} pixels</p>
         </div>
+        <div class="item-middle flex">
+            <p><b>Ratio</b></p>
+            <p>{{ typeCheck(mood).width | formatRatio:typeCheck(mood).height }}</p>
         </div>
+    </div>
     <div *ngIf="mood?.type === 2 ">
         <div class="item-top flex">
             <p><b>Size</b></p>
@@ -64,6 +70,10 @@
         <div class="item-middle flex">
             <p><b>Width</b></p>
             <p>{{typeCheck(mood).width}} pixels</p>
+        </div>
+        <div class="item-middle flex">
+            <p><b>Ratio</b></p>
+            <p>{{ typeCheck(mood).width | formatRatio:typeCheck(mood).height }}</p>
         </div>
         <div class="item-middle flex">
             <p><b>Duration</b></p>

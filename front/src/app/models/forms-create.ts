@@ -1,5 +1,3 @@
-import { StyleLight } from "./style"
-
 export interface MoodCreateForm {
     name : string
     description : string
@@ -22,6 +20,7 @@ export interface ModelCreateForm {
     lastName : string
     gender : string
     description : string
+    franchisesIds : number[]
 }
 
 export interface StyleCreateForm {
@@ -32,10 +31,10 @@ export interface StyleCreateForm {
 export interface ArtistCreateForm {
     name : string
     description : string
-    styles : StyleLight[]
+    styleIds : number[]
 }
 
-export interface MediaCreateForm {
+export interface MediumCreateForm {
     name : string
     description : string
 }
@@ -43,6 +42,7 @@ export interface MediaCreateForm {
 export interface FranchiseCreateForm {
     name : string
     description : string
+    mediaIds : number[]
 }
 
 export interface LinkCategoryCreateForm {
@@ -54,7 +54,7 @@ export interface LinkCreateForm {
     name : string
     description : string
     url : string
-    linkCategories : number[]
+    linkCategoryIds : number[]
 }
 
 export interface UserCreateForm {

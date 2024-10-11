@@ -21,19 +21,19 @@ public class CreateLinkCommandHandler(ILinkRepository linkRepository, ILinkCateg
 
         link = await _linkRepository.CreateAsync(link);
 
-        var categoryIds = await _linkCategoryRepository.GetPrimaryIdsByBusinessIdsAsync(request.LinkCategories);
+        var categoryIds = await _linkCategoryRepository.GetPrimaryIdsByBusinessIdsAsync(request.LinkCategoryIds);
 
-        if (categoryIds.Count != request.LinkCategories.Count)
+        if (categoryIds.Count != request.LinkCategoryIds.Count)
         {
             throw new NotFoundException("One or more categories were not found.");
         }
 
-        await _linkRepository.UpdateCategories(link.EntityId, categoryIds);
+        await _linkRepository.AddLinkCategoriesAsync(link.EntityId, categoryIds);
 
         return new CreateLinkCommandResponse
         {
             Success = true,
-            Message = "Creation successful.",
+            Message = "Link was created.",
             LinkId = link.BusinessId
         };
     }

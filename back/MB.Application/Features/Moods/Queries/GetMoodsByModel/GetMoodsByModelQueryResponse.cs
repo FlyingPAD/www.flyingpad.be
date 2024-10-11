@@ -4,5 +4,5 @@ namespace MB.Application.Features.Moods.Queries.GetMoodsByModel;
 
 public class GetMoodsByModelQueryResponse : BaseResponse
 {
-    public List<GetMoodsByModelQueryVm> Moods { get; set; } = [];
+    public List<GetMoodsByModelQueryDto> Moods { get; set; } = [];
 }

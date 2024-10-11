@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Application.Models;
 using MB.Domain.Entities;
@@ -13,12 +14,8 @@ public class UpdateTagCategoryCommandHandler(IMapper mapper, IBaseRepository<Tag
 
     public async Task<BaseResponse> Handle(UpdateTagCategoryCommand request, CancellationToken cancellationToken)
     {
-        var tagCategory = await _tagCategoryRepository.GetByBusinessIdAsync(request.TagCategoryId);
-
-        if (tagCategory == null)
-        {
-            return new BaseResponse { Success = false, Message = "Tag Category was not found." };
-        }
+        var tagCategory = await _tagCategoryRepository.GetByBusinessIdAsync(request.TagCategoryId)
+            ?? throw new NotFoundException("Tag category not found.");
 
         tagCategory = _mapper.Map(request, tagCategory);
 
@@ -27,7 +24,7 @@ public class UpdateTagCategoryCommandHandler(IMapper mapper, IBaseRepository<Tag
         return new BaseResponse
         {
             Success = true,
-            Message = "Success.",
+            Message = "Tag category was updated."
         };
     }
 }

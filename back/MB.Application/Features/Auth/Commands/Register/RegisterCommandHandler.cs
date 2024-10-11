@@ -17,7 +17,7 @@ public class RegisterCommandHandler(IAuthRepository authRepository, ITokenManage
             return new RegisterCommandResponse(null)
             {
                 Success = false,
-                Message = "Un utilisateur avec cet email existe déjà."
+                Message = "Email already exists."
             };
         }
 
@@ -40,7 +40,7 @@ public class RegisterCommandHandler(IAuthRepository authRepository, ITokenManage
         return new RegisterCommandResponse(token)
         {
             Success = true,
-            Message = "Enregistrement réussi."
+            Message = "Your account was created."
         };
     }
 }

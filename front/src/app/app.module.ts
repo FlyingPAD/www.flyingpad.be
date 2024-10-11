@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 
 import { NgModule } from '@angular/core';
@@ -57,12 +57,9 @@ import { FormatSizePipe } from './pipes/format-size.pipe';
 import { CreateMoodImageComponent } from './features/moods/create-mood-image/create-mood-image.component';
 import { CreateMoodVideoComponent } from './features/moods/create-mood-video/create-mood-video.component';
 import { MoodsGalleryComponent } from './features/moods/moods-gallery/moods-gallery.component';
-import { MoodsMultiTagComponent } from './features/moods/moods-multi-tag/moods-multi-tag.component';
 import { MultiTagArtistsComponent } from './features/moods/multi-tag-artists/multi-tag-artists.component';
 import { MultiTagModelsComponent } from './features/moods/multi-tag-models/multi-tag-models.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { FranchisesEditionComponent } from './features/franchises/franchises-edition/franchises-edition.component';
-import { MediaGalleryComponent } from './features/franchises/media-gallery/media-gallery.component';
 import { CreateArtistComponent } from './features/artists/create-artist/create-artist.component';
 import { MoodDetailsFlowComponent } from './features/flow/mood-details-flow/mood-details-flow.component';
 import { MoodsGalleryFlowComponent } from './features/flow/moods-gallery-flow/moods-gallery-flow.component';
@@ -115,10 +112,7 @@ import { DeleteModelComponent } from './features/models/delete-model/delete-mode
 import { DeleteTagComponent } from './features/tags/delete-tag/delete-tag.component';
 import { CreateTagCategoryComponent } from './features/tags/create-tag-category/create-tag-category.component';
 import { DeleteTagCategoryComponent } from './features/tags/delete-tag-category/delete-tag-category.component';
-import { CreateMediaComponent } from './features/franchises/create-media/create-media.component';
-import { EditMediaComponent } from './features/franchises/edit-media/edit-media.component';
 import { DeleteFranchiseComponent } from './features/franchises/delete-franchise/delete-franchise.component';
-import { DeleteMediaComponent } from './features/franchises/delete-media/delete-media.component';
 import { DeleteArtistComponent } from './features/artists/delete-artist/delete-artist.component';
 import { DeleteStyleComponent } from './features/artists/delete-style/delete-style.component';
 import { CreateLinkCategoryComponent } from './features/links/create-link-category/create-link-category.component';
@@ -127,12 +121,32 @@ import { DeleteLinkComponent } from './features/links/delete-link/delete-link.co
 import { DeleteLinkCategoryComponent } from './features/links/delete-link-category/delete-link-category.component';
 import { CreateStyleComponent } from './features/artists/create-style/create-style.component';
 import { EditStyleComponent } from './features/artists/edit-style/edit-style.component';
+import { CreateMediumComponent } from './features/franchises/create-medium/create-medium.component';
+import { DeleteMediumComponent } from './features/franchises/delete-medium/delete-medium.component';
+import { EditMediumComponent } from './features/franchises/edit-medium/edit-medium.component';
+import { MultiTagComponent } from './features/moods/multi-tag/multi-tag.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HiddenMenuWithFooterComponent } from './layouts/hidden-menu-with-footer/hidden-menu-with-footer.component';
+import { MenuHiddenComponent } from './components/menu-hidden/menu-hidden.component';
+import { HeaderComponent } from './components/header/header.component';
+import { OverlayComponent } from './components/overlay/overlay.component';
+import { MediumGalleryComponent } from './pages/medium-gallery/medium-gallery.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { FormatRatioPipe } from './pipes/format-ratio.pipe';
+import { TimelineComponent } from './features/scripts/timeline/timeline.component';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
     // Layouts.
     LayoutEmptyComponent,
     LayoutCustomComponent,
+    HiddenMenuWithFooterComponent,
     // Pipes.
     FormatDurationPipe,
     FormatSizePipe,
@@ -152,6 +166,7 @@ import { EditStyleComponent } from './features/artists/edit-style/edit-style.com
     MoodsComponent,
     TagsComponent,
     MediasComponent,
+    MediumGalleryComponent,
     ScriptsComponent,
     ToolsComponent,
     FlowComponent,
@@ -171,6 +186,10 @@ import { EditStyleComponent } from './features/artists/edit-style/edit-style.com
     RightColumnComponent,
     RightColumnListComponent,
     ListCentralComponent,
+    MenuHiddenComponent,
+    HeaderComponent,
+    FooterComponent,
+    OverlayComponent,
     // => Features :
     // Moods.
     CreateMoodImageComponent,
@@ -179,10 +198,10 @@ import { EditStyleComponent } from './features/artists/edit-style/edit-style.com
     MoodDetailsComponent,
     EditionMenuComponent,
     EditionInfoComponent,
-    MoodsMultiTagComponent,
+    MoodViewerComponent,
     MultiTagArtistsComponent,
     MultiTagModelsComponent,
-    MoodViewerComponent,
+    MultiTagComponent,
     // Tags.
     CreateTagCategoryComponent,
     CreateTagComponent,
@@ -190,13 +209,11 @@ import { EditStyleComponent } from './features/artists/edit-style/edit-style.com
     EditTagComponent,
     DeleteTagCategoryComponent,
     DeleteTagComponent,
-
     EditionTagsComponent,
     // Models.
     CreateModelComponent,
     EditModelComponent,
-    DeleteModelComponent,
-    
+    DeleteModelComponent,    
     EditionModelsComponent,
     // Artists.
     CreateArtistComponent,
@@ -205,18 +222,14 @@ import { EditStyleComponent } from './features/artists/edit-style/edit-style.com
     EditArtistComponent,
     DeleteStyleComponent,
     DeleteArtistComponent,
-
     EditionArtistsComponent,
     // Franchises.
-    CreateMediaComponent,
+    CreateMediumComponent,
     CreateFranchiseComponent,
-    EditMediaComponent,
+    EditMediumComponent,
     EditFranchiseComponent,
-    DeleteMediaComponent,
+    DeleteMediumComponent,
     DeleteFranchiseComponent,
-
-    MediaGalleryComponent,
-    FranchisesEditionComponent,
     // Links.
     CreateLinkCategoryComponent,
     CreateLinkComponent,
@@ -245,6 +258,7 @@ import { EditStyleComponent } from './features/artists/edit-style/edit-style.com
     NotesExComponent,
     LearnMusicComponent,
     ViewpointComponent,
+    TimelineComponent,
     // Tools.
     ChordWheelSvgComponent,
     CircleOfFifthsComponent,
@@ -263,10 +277,11 @@ import { EditStyleComponent } from './features/artists/edit-style/edit-style.com
     FranchiseDetailsFlowComponent,
     LinkCategoryDetailsFlowComponent,
     LinkDetailsFlowComponent,
-    // 
+    MyAccountComponent,
+    SettingsComponent,
+    FormatRatioPipe,
   ],
-  imports: 
-  [
+  imports: [
     // --- CORE :
     BrowserModule,
     AppRoutingModule,
@@ -277,21 +292,29 @@ import { EditStyleComponent } from './features/artists/edit-style/edit-style.com
 
     // Toastr Configuration :    
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right',  // Position of the toastr notifications on the screen
-      timeOut: 3000,                        // Duration in milliseconds for which toastr will be displayed (3 seconds)
-      progressBar: true,                    // Whether to show a progress bar indicating time remaining
-      closeButton: true,                    // Whether to display a close button on the toastr
-      preventDuplicates: true,              // Whether to prevent duplicate toastr from appearing
-      tapToDismiss: true,                   // Whether to allow dismissing toastr by clicking on it
-      newestOnTop: true,                    // Whether new toastr should appear on top of the older ones
-      easeTime: 500,                        // Duration of slide-in/out animation in milliseconds
-      enableHtml: true                      // Whether HTML content is allowed in toastr messages
+      positionClass: 'toast-bottom-right',  // Position des notifications toastr
+      timeOut: 1500,                        // Désactive l'autodismiss (0 = infini)
+      extendedTimeOut: 0,                   // Désactive le timeout au survol (hover)
+      progressBar: true,                    // Affiche une barre de progression
+      closeButton: true,                    // Affiche un bouton de fermeture
+      preventDuplicates: false,             // Autorise les duplications
+      tapToDismiss: true,                   // Permet la fermeture en cliquant dessus
+      newestOnTop: true,                    // Les nouveaux toasts apparaissent en haut
+      easeTime: 750,                        // Désactive l'animation
+      enableHtml: true                      // Autorise le contenu HTML
     }),
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: 
   [

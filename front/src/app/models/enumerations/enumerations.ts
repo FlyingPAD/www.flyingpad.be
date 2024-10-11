@@ -5,3 +5,10 @@ export enum ActivePane {
     Tags = 'tags',
     Franchises = 'franchises'
   }
+
+  export enum GalleryType {
+    Model = 'Model',
+    Style = 'Style',
+    Artist = 'Artist',
+    Franchise = 'Franchise',
+  }

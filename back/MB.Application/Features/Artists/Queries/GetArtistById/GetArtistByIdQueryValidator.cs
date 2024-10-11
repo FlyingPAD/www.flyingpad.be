@@ -6,8 +6,8 @@ public class GetArtistByIdQueryValidator : AbstractValidator<GetArtistByIdQuery>
 {
     public GetArtistByIdQueryValidator()
     {
-        RuleFor(x => x.ArtistId)
-            .NotEmpty().WithMessage("ID is required.")
-            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
+        RuleFor(request => request.ArtistId)
+            .NotEmpty().WithMessage("ArtistId is required.")
+            .NotEqual(Guid.Empty).WithMessage("ArtistId must not be empty.");
     }
 }

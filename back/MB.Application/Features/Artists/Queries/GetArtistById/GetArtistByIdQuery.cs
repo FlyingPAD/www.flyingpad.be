@@ -6,4 +6,3 @@ public class GetArtistByIdQuery : IRequest<GetArtistByIdQueryResponse>
 {
     public Guid ArtistId { get; set; }
 }
-

@@ -25,7 +25,7 @@ public class GetTagsByCategoryQueryHandler(IMapper mapper, ITagRepository tagRep
         return new GetTagsByCategoryQueryResponse
         {
             Success = true,
-            Message = "Success.",
+            Message = "Tags by category.",
             Tags = tagsDto
         };
     }

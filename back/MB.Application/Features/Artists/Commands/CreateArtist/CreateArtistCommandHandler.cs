@@ -1,24 +1,38 @@
-﻿using AutoMapper;
-using MB.Application.Interfaces.Persistence.Common;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Artists.Commands.CreateArtist;
 
-public class CreateArtistCommandHandler(IMapper mapper, IBaseRepository<Artist> artistRepository) : IRequestHandler<CreateArtistCommand, CreateArtistCommandResponse>
+public class CreateArtistCommandHandler(IArtistRepository artistRepository, IStyleRepository styleRepository) : IRequestHandler<CreateArtistCommand, CreateArtistCommandResponse>
 {
-    private readonly IMapper _mapper = mapper;
-    private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
+    private readonly IArtistRepository _artistRepository = artistRepository;
+    private readonly IStyleRepository _styleRepository = styleRepository;
 
     public async Task<CreateArtistCommandResponse> Handle(CreateArtistCommand request, CancellationToken cancellationToken)
     {
-        var artist = _mapper.Map<Artist>(request);
+        var artist = new Artist
+        {
+            Name = request.Name,
+            Description = request.Description,
+        };
+
         artist = await _artistRepository.CreateAsync(artist);
+
+        var styleIds = await _styleRepository.GetPrimaryIdsByBusinessIdsAsync(request.StyleIds);
+
+        if (styleIds.Count != request.StyleIds.Count)
+        {
+            throw new NotFoundException("One or more style(s) not found.");
+        }
+
+        await _artistRepository.AddArtistStylesAsync(artist.EntityId, styleIds);
 
         return new CreateArtistCommandResponse
         {
             Success = true,
-            Message = $"The artist '{artist.Name}' has been successfully created.",
+            Message = "Creation successful.",
             ArtistId = artist.BusinessId
         };
     }

@@ -11,43 +11,37 @@ import { UserService } from '../../services/user.service';
   templateUrl: './layout-custom.component.html',
   styleUrl: './layout-custom.component.scss'
 })
-export class LayoutCustomComponent 
-{
+export class LayoutCustomComponent {
   authService = inject(AuthenticationService)
   userService = inject(UserService)
   menuCustom = inject(MenuCustomService)
   #formBuilder = inject(FormBuilder)
-  #router = inject(Router)  
-  
-  loginTrigger : boolean = false
-  overlayTrigger : boolean = false
-  currentYear : number = new Date().getFullYear()
+  #router = inject(Router)
 
-  formGroup : FormGroup = this.#formBuilder
-  .group({
-    email: ['', [Validators.required, Validators.email, Validators.maxLength(384)]],
-    password: ['', [Validators.required, Validators.minLength(8)]]
-  })
+  loginTrigger: boolean = false
+  overlayTrigger: boolean = false
+  currentYear: number = new Date().getFullYear()
 
-  loginTriggerMethod() : void
-  {
+  formGroup: FormGroup = this.#formBuilder
+    .group({
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(384)]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
+    })
+
+  loginTriggerMethod(): void {
     this.loginTrigger = !this.loginTrigger
     this.overlayTrigger = !this.overlayTrigger
   }
 
-  onLogin() : void 
-  {
-    if (this.formGroup.valid) 
-    {
+  onLogin(): void {
+    if (this.formGroup.valid) {
       this.authService.login(this.formGroup.value).subscribe({
-        next: (data) => 
-        {
-          let user : User = this.userService.setSpecificUser(data.token)
-          this.authService.acceptConnection()  
+        next: (data) => {
+          let user: User = this.userService.setSpecificUser(data.token)
+          this.authService.acceptConnection()
           // this.#redirectBasedOnUserRole(user.role)
         },
-        error: (error) => 
-        {
+        error: (error) => {
           this.#router.navigateByUrl('authentication/login-error')
           console.error("Login attempt failed.", error)
         }
@@ -57,30 +51,27 @@ export class LayoutCustomComponent
     this.overlayTrigger = false
   }
 
-  #redirectBasedOnUserRole( role : number ) : void 
-  {
-    switch (role) 
-    {
+  #redirectBasedOnUserRole(role: number): void {
+    switch (role) {
       case 1:
-        this.#router.navigateByUrl('/home')       
+        this.#router.navigateByUrl('/home')
         break;
       case 2:
-        this.#router.navigateByUrl('/dashboard')  
+        this.#router.navigateByUrl('/dashboard')
         break;
       default:
-        this.#router.navigateByUrl('/home')       
+        this.#router.navigateByUrl('/home')
         break;
     }
   }
 
-  logout() : void 
-  {
+  logout(): void {
     this.authService.logout()
     this.userService.setDefaultUser()
+    this.#router.navigateByUrl('/home')
   }
 
-  menuTrigger() : void
-  {
+  menuTrigger(): void {
     this.menuCustom.MenuCustomOff()
   }
 }

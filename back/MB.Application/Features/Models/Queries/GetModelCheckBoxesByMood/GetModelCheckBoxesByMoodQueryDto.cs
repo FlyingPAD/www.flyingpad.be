@@ -2,7 +2,7 @@
 
 public class GetModelCheckBoxesByMoodQueryDto
 {
-    public Guid BusinessId { get; set; } = Guid.Empty;
-    public string Pseudonym { get; set; } = "";
-    public bool IsChecked { get; set; } = false; 
+    public Guid BusinessId { get; set; }
+    public string Pseudonym { get; set; } = string.Empty;
+    public bool IsChecked { get; set; }
 }

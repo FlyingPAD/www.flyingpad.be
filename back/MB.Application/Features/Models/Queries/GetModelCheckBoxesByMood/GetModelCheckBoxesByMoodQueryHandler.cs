@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
@@ -14,26 +15,16 @@ public class GetModelCheckBoxesByMoodQueryHandler(IMapper mapper, IBaseRepositor
 
     public async Task<GetModelCheckBoxesByMoodQueryResponse> Handle(GetModelCheckBoxesByMoodQuery request, CancellationToken cancellationToken)
     {
-        int? moodEntityId = await _moodRepo.GetPrimaryIdByBusinessIdAsync(request.MoodId);
+        int moodId = await _moodRepo.GetPrimaryIdByBusinessIdAsync(request.MoodId)
+            ?? throw new NotFoundException("Mood not found.");
 
-        if (!moodEntityId.HasValue)
-        {
-            return new GetModelCheckBoxesByMoodQueryResponse
-            {
-                Success = false,
-                Message = "No mood found with the given ID"
-            };
-        }
+        var models = await _modelRepo.GetModelsCheckBoxesByMood(moodId);
 
-        var models = await _modelRepo.GetModelsCheckBoxesByMood(moodEntityId.Value);
-
-        var response = new GetModelCheckBoxesByMoodQueryResponse
+        return new GetModelCheckBoxesByMoodQueryResponse
         {
             Success = true,
-            Message = "Models retrieved based on mood",
+            Message = "Related models.",
             Models = _mapper.Map<IEnumerable<GetModelCheckBoxesByMoodQueryDto>>(models)
         };
-
-        return response;
     }
 }

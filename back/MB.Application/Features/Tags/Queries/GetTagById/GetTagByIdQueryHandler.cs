@@ -30,7 +30,7 @@ public class GetTagByIdQueryHandler(ITagRepository tagRepository) : IRequestHand
         return new GetTagByIdQueryResponse
         {
             Success = true,
-            Message = "Success.",
+            Message = $"{tag.Name}.",
             Tag = tagToReturn
         };
     }

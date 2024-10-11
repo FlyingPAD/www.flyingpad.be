@@ -1,0 +1,53 @@
+<h2 class="h2">Settings</h2>
+<div class="row-white">
+    <div class="buttons">
+        <app-button-back />
+    </div>
+</div>
+<p class="p">{{ 'message.settings' | translate }}</p>
+<div class="settings-table">
+    <div class="row">
+        <div class="row-title">
+            <p><b>{{ 'title.display-mode' | translate }}</b> : </p>
+        </div>
+        <div class="row-value">
+            @if(appSettings.appDisplayMode === 'Desktop') {
+                {{ 'title.desktop' | translate }}
+            }
+            @if(appSettings.appDisplayMode === 'Mobile') {
+                {{ 'title.mobile' | translate }}
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-title">
+            <p><b>{{ 'title.window-size' | translate }}</b> :</p>
+        </div>
+        <div class="row-value">
+            <p>{{appSettings.appScreenWidth}} x {{appSettings.appScreenHeight}} pixels</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-title">
+            <p><b>{{ 'title.full-screen' | translate }}</b> :</p>
+        </div>
+        <div class="row-value">
+            <div (click)="toggleFullScreen()">
+                @if (appSettings.isFullscreen) {
+                    {{ 'title.enabled' | translate }}
+                }
+                @if (!appSettings.isFullscreen) {
+                    {{ 'title.disabled' | translate }}
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-title">
+            <p><b>{{ 'title.language' | translate }}</b> :</p>
+        </div>
+        <div class="row-value">
+            <div><span (click)="switchLanguage('fr')">Français</span> | <span (click)="switchLanguage('en')">English</span></div>
+        </div>
+    </div>
+</div>

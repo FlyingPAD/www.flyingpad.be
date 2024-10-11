@@ -1,1 +1,17 @@
-<p>create-franchise works!</p>
+<div class="edition">
+    <h2 class="h2">Create new franchise</h2>
+    <form [formGroup]="formGroup">
+      <input type="text" formControlName="name" placeholder="Name">
+      <input type="text" formControlName="description" placeholder="Description">
+      <div class="checkboxes" formArrayName="media">
+        <div *ngFor="let medium of mediaArray.controls; let i = index" [formGroupName]="i">
+          <div class="combo">
+            <label [for]="medium.get('name')?.value">{{ medium.get('name')?.value }}</label>
+            <input type="checkbox" formControlName="isChecked">
+          </div>
+        </div>
+      </div>
+    </form>  
+    <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="onSubmit()">Submit</a>
+  </div>
+  <div class="spacer-150"></div>

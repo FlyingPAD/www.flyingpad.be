@@ -62,11 +62,75 @@ body {
     padding: 0;
 }
 
-.spacer150 {
-    height: 150px;
+hr {
+    color: rgb(107, 82, 64, 0.5);
 }
 
 .span-warning {
     color: rgb(135, 0, 0);
     font-weight: bold;
+}
+
+.row-white {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+
+// Filters
+.filter {
+    display: flex;
+    justify-content: center;
+
+    input {
+        padding: 10px;
+        margin: 8px;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 200px;
+    }
+
+    input:focus {
+        outline: none;
+        border: 2px solid #413429;
+    }
+}
+
+// Spacers.
+.spacer-75 {
+    height: 75px;
+}
+.spacer-150 {
+    height: 150px;
+}
+
+// Dialog.
+.dialog-h3 {
+    margin-top: 10px;
+    text-align: center;
+    color: #6b5240;
+}
+
+.dialog-entity-name {
+    margin: 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    text-align: center;
+    color: rgb(135, 0, 0);
+    font-weight: bold;
+}
+.dialog-hr {
+    color: rgb(107, 82, 64, 0.1);
+}
+
+// Break Points ( Media Queries ).
+.responsive {
+    display: flow-root;
+}
+@media (max-width: 1150px) {
+    .responsive {
+        display: none;
+    }
 }

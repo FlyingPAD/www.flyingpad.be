@@ -35,14 +35,15 @@ public class ModelRepository(Context context) : BaseRepository<Model>(context), 
     public async Task<IEnumerable<GetModelCheckBoxesByMoodQueryDto>> GetModelsCheckBoxesByMood(int moodId)
     {
         var models = await _context.Models
-                                   .Select(model => new GetModelCheckBoxesByMoodQueryDto
-                                   {
-                                       BusinessId = model.BusinessId,
-                                       Pseudonym = model.Pseudonym,
-                                       IsChecked = model.MoodModels != null && model.MoodModels.Any(mm => mm.MoodId == moodId)
-                                   })
-                                   .OrderBy(model => model.Pseudonym)
-                                   .ToListAsync();
+            .Select(model => new GetModelCheckBoxesByMoodQueryDto
+            {
+                BusinessId = model.BusinessId,
+                Pseudonym = model.Pseudonym,
+                IsChecked = model.MoodModels != null && model.MoodModels
+                    .Any(mm => mm.MoodId == moodId)
+            })
+            .OrderBy(model => model.Pseudonym)
+            .ToListAsync();
 
         return models;
     }
@@ -72,22 +73,28 @@ public class ModelRepository(Context context) : BaseRepository<Model>(context), 
         await _context.SaveChangesAsync();
     }
 
-    public async System.Threading.Tasks.Task DeleteModelRelations(int modelId)
+    public async Task<Model?> GetModelWithFranchisesAsync(int modelId)
     {
-        var moodModelRelations = await _context.RMoodModel
-                                .Where(relation => relation.ModelId == modelId)
-                                .ToListAsync();
-        var modelFranchiseRelations = await _context.RFranchiseModel
-                                .Where(relation => relation.ModelId == modelId)
-                                .ToListAsync();
-        var modelLinksRelations = await _context.RLinkModel
-                                .Where(relation => relation.ModelId == modelId)
-                                .ToListAsync();
+        return await _context.Models
+            .Include(model => model.FranchiseModels)
+            .FirstOrDefaultAsync(model => model.EntityId == modelId);
+    }
 
-        _context.RMoodModel.RemoveRange(moodModelRelations);
-        _context.RFranchiseModel.RemoveRange(modelFranchiseRelations);
-        _context.RLinkModel.RemoveRange(modelLinksRelations);
+    public async System.Threading.Tasks.Task AddFranchisesAsync(int modelId, IEnumerable<int> franchisesIds)
+    {
+        var relations = franchisesIds.Select(franchiseId => new RelationFranchiseModel
+        {
+            ModelId = modelId,
+            FranchiseId = franchiseId
+        }).ToList();
 
+        _context.RFranchiseModel.AddRange(relations);
+        await _context.SaveChangesAsync();
+    }
+
+    public async System.Threading.Tasks.Task RemoveFranchisesAsync(Model model)
+    {
+        _context.RFranchiseModel.RemoveRange(model.FranchiseModels ?? []);
         await _context.SaveChangesAsync();
     }
 }

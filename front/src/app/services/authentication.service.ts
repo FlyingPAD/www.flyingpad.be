@@ -20,10 +20,10 @@ export class AuthenticationService {
 
   #url = environment.apiBaseUrl + '/api/V1/'
 
-  #isConnected = new BehaviorSubject<Boolean>(false)
+  #isConnected = new BehaviorSubject<boolean>(false)
   public acceptConnection(): void { this.#isConnected.next(true) }
   public closeConnection(): void { this.#isConnected.next(false) }
-  isConnectedSub: Observable<Boolean> = this.#isConnected.asObservable()
+  isConnectedSub: Observable<boolean> = this.#isConnected.asObservable()
 
   public register(form: UserRegisterForm): Observable<RegisterCommandResponse> {
     return this.#http.post<RegisterCommandResponse>(`${this.#url}Auth/Register`, form).pipe(
@@ -53,6 +53,6 @@ export class AuthenticationService {
     this.#cookieService.removeToken()
     this.#userService.setDefaultUser()
     this.closeConnection()  
-    this.#toastr.success('You have been logged out.')
+    this.#toastr.success('See you soon.')
   }
 }

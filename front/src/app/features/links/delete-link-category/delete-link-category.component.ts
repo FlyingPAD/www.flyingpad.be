@@ -19,15 +19,10 @@ export class DeleteLinkCategoryComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }
-  deleteLinkCategory(): void {
+  delete(): void {
     if(this.linkCategory != undefined) {
-      this.subscription = this.#flowService.DeleteLinkCategory(this.linkCategory.businessId).subscribe({
-        next : (response) => {
-          if(response.success) {
-            this.toggleDialog.emit()
-          }
-        }
-      })
+      this.subscription = this.#flowService.DeleteLinkCategory(this.linkCategory.businessId).subscribe(
+        (response) => { if(response.success) this.toggleDialog.emit() })
     }
   }
 }

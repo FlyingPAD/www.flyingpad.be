@@ -1,1 +1,27 @@
-<p>edit-artist works!</p>
+<div class="edition">
+    <h2 class="h2">Edit current artist</h2>
+    <form [formGroup]="formGroup">
+      <input type="text" formControlName="name" placeholder="Name">
+      <input type="text" formControlName="description" placeholder="Description">
+      
+      <div class="checkboxes" formArrayName="styles">
+        <div *ngFor="let style of stylesArray.controls; let i = index" [formGroupName]="i">
+          <div class="combo">
+            <label [for]="style.get('name')?.value">{{ style.get('name')?.value }}</label>
+            <input type="checkbox" [id]="style.get('name')?.value" formControlName="isChecked">
+          </div>
+        </div>
+      </div>
+    </form>
+    
+    <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="onSubmit()">Submit</a>
+    <a class="edition-button" (click)="openDeleteDialog()">Delete</a>
+  </div>
+  
+  <div class="spacer150"></div>
+
+  @if(isDeleteDialogOpen) {
+    <app-dialog (dialog)="closeDeleteDialog()">
+        <app-delete-artist [artist]="artist" (toggleDialog)="closeDeleteDialogEmit()" />
+    </app-dialog>
+}

@@ -6,8 +6,18 @@ public class UpdateLinkCategoryCommandValidator : AbstractValidator<UpdateLinkCa
 {
     public UpdateLinkCategoryCommandValidator()
     {
-        RuleFor(request => request.Name).NotEmpty().WithMessage("Name is required.");
+        RuleFor(request => request.LinkCategoryId)
+            .NotEmpty().WithMessage("LinkCategoryId is required.")
+            .NotEqual(Guid.Empty).WithMessage("LinkCategoryId must not be empty.");
 
-        RuleFor(request => request.Description).NotEmpty().WithMessage("Description is required.");
+        RuleFor(request => request.Name)
+            .NotEmpty().WithMessage("Name is required.")
+            .NotNull()
+            .MaximumLength(30).WithMessage("Name must not exceed 30 characters.");
+
+        RuleFor(request => request.Description)
+            .NotEmpty().WithMessage("Description is required.")
+            .NotNull()
+            .MaximumLength(100).WithMessage("Description must not exceed 100 characters.");
     }
 }

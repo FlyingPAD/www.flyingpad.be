@@ -7,7 +7,7 @@ public class DeleteTagCategoryCommandValidator : AbstractValidator<DeleteTagCate
     public DeleteTagCategoryCommandValidator()
     {
         RuleFor(request => request.TagCategoryId)
-            .NotEmpty().WithMessage("ID is required.")
-            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
+            .NotEmpty().WithMessage("TagCategoryId is required.")
+            .NotEqual(Guid.Empty).WithMessage("TagCategoryId must not be empty.");
     }
 }

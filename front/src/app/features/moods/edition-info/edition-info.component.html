@@ -1,14 +1,11 @@
 <h2>Title & Description</h2>
-
 <div class="mood-update-form">  
     <form [formGroup]="formGroup">
         <input class="form-item" type="text" formControlName="name" placeholder="{{mood.name}}">
         <input class="form-item" type="text" formControlName="description" placeholder="{{mood.description}}">    
     </form>
 </div>
-
 <h2>Score</h2>
-
 <div class="score" >
     <button (click)="updateMoodScore(-10)">-10</button>
     <button (click)="updateMoodScore(-1)">-1</button>
@@ -16,20 +13,24 @@
     <button (click)="updateMoodScore(1)">+1</button>
     <button (click)="updateMoodScore(10)">+10</button>
 </div>
-
 <div class="buttons">
     <div class="button" (click)="onSubmit()">Submit</div>
     <div class="button" (click)="triggerMoodDelete()">Delete Mood</div>
 </div>
-
+<div class="spacer-150"></div>
 @if(moodDelete){
-    <div [ngClass]="moodDelete === true ? 'box-delete on-delete' : 'box-delete' " (click)="triggerMoodDelete()">
-        <h1>Warning !!</h1>
-        <br>
-        <p>This will delete mood & all associations permanently</p>
-        <br>
-        <p>Are you sure ?</p>
-        <br>
-        <span (click)="deleteMood()">Delete</span>
-    </div>
+    <app-dialog (dialog)="triggerMoodDelete()">
+        <h3 class="dialog-h3">Delete mood</h3>
+        <hr class="dialog-hr">    
+        <p class="p">You are about to permanently delete :</p>
+        <p class="dialog-entity-name">' {{ mood.name }} '</p>
+        <p class="p">This action <u>cannot</u> be undone !</p>
+        <hr class="dialog-hr">
+        <p><span class="span-warning">Warning :</span> This will also remove all associated relations.</p>  
+        <hr class="dialog-hr">  
+        <p class="p">Are you sure you want to proceed ?</p>    
+        <div class="buttons">
+            <div class="button" (click)="deleteMood()">Delete</div>
+        </div>
+    </app-dialog>
 }

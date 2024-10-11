@@ -1,37 +1,47 @@
-﻿using AutoMapper;
-using MB.Application.Interfaces.Persistence.Common;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
-using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Models.Commands.UpdateModel;
 
-public class UpdateModelCommandHandler(IMapper mapper, IBaseRepository<Model> modelRepository) : IRequestHandler<UpdateModelCommand, BaseResponse>
+public class UpdateModelCommandHandler(IModelRepository modelRepository, IFranchiseRepository franchiseRepository) : IRequestHandler<UpdateModelCommand, BaseResponse>
 {
-    private readonly IMapper _mapper = mapper;
-    private readonly IBaseRepository<Model> _modelRepository = modelRepository;
+    private readonly IModelRepository _modelRepository = modelRepository;
+    private readonly IFranchiseRepository _franchiseRepository = franchiseRepository;
 
     public async Task<BaseResponse> Handle(UpdateModelCommand request, CancellationToken cancellationToken)
     {
-        var model = await _modelRepository.GetByBusinessIdAsync(request.ModelId);
+        var modelId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId)
+            ?? throw new NotFoundException("Model not found.");
 
-        if (model == null)
-        {
-            return new BaseResponse 
-            { 
-                Success = false, 
-                Message = "Model was not found." 
-            };
-        }
+        var model = await _modelRepository.GetModelWithFranchisesAsync(modelId)
+            ?? throw new NotFoundException("Model not found.");
 
-        _mapper.Map(request, model);
+        model.Pseudonym = request.Pseudonym;
+        model.FirstName = request.FirstName;
+        model.LastName = request.LastName;
+        model.Gender = request.Gender;
+        model.Description = request.Description;
+
 
         await _modelRepository.UpdateAsync(model);
+
+        await _modelRepository.RemoveFranchisesAsync(model);
+
+        var franchisesIds = await _franchiseRepository.GetPrimaryIdsByBusinessIdsAsync(request.FranchisesIds);
+
+        if (franchisesIds.Count != request.FranchisesIds.Count)
+        {
+            throw new NotFoundException("One or more franchises were not found.");
+        }
+
+        await _modelRepository.AddFranchisesAsync(modelId, franchisesIds);
 
         return new BaseResponse
         {
             Success = true,
-            Message = "Model successfully updated."
+            Message = "Model was updated."
         };
     }
 }

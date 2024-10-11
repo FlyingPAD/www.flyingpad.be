@@ -4,18 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MenuDesktopService {
-  menuTrigger : boolean = false      // Menu Trigger ON / OFF
-  menuLActive : boolean = false      // Panel ON / OFF - Left
-  menuRActive : boolean = false      // Panel ON / OFF - Right
-  
+  menuTrigger: boolean = false
+  menuLActive: boolean = false
+  menuRActive: boolean = false
+
   scrollToStart(elementId: string): void {
     const domElement = document.getElementById(elementId)
-    if (domElement) 
-    {
+    if (domElement) {
       domElement.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
     }
   }
-  
+
   menuON(): void {
     this.menuTrigger = true
   }
@@ -28,7 +27,7 @@ export class MenuDesktopService {
     this.menuLActive = !this.menuLActive
     this.menuRActive = false
   }
-  
+
   menuRTrigger(): void {
     this.menuRActive = !this.menuRActive
     this.menuLActive = false
@@ -37,7 +36,7 @@ export class MenuDesktopService {
   menuLTriggerFull(): void {
     this.menuLActive = !this.menuLActive
   }
-  
+
   menuRTriggerFull(): void {
     this.menuRActive = !this.menuRActive
   }

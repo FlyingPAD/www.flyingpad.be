@@ -1,0 +1,34 @@
+{
+  "title": {
+    "back": "Retour",
+    "delete": "Supprimer",
+    "add-image": "Ajouter Image(s)",
+    "add-video": "Ajouter Vidéo(s)",
+    "full-flow": "Flux Complet",
+    "display-mode": "Mode d'Affichage",
+    "window-size": "Taille de l'Écran",
+    "full-screen": "Plein Écran",
+    "language": "Langue",
+    "enabled": "Activé",
+    "disabled": "Désactivé",
+    "desktop": "Bureau",
+    "mobile": "Mobile",
+    "home": "Accueil",
+    "dashboard": "Tableau de Bord",
+    "tools": "Outils",
+    "links": "Liens",
+    "artists": "Artistes",
+    "models": "Modèles",
+    "my-account": "Mon Compte",
+    "404": "Erreur 404"
+  },
+  "message": {
+    "404": "La page n'a pas été trouvée",
+    "my-account" : "Editez votre compte, vos paramètres, et plus.",
+    "not-found": "Page was not found.",
+    "settings": "Éditez vos paramètres de navigation - langues, thèmes.",
+    "text1": "Au delà des règles et des codes de genre ...",
+    "text2": "Prenez votre envol musical !",
+    "follow_me": "Suivez-moi sur les réseaux"
+  }
+}

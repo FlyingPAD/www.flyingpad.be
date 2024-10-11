@@ -23,7 +23,7 @@ public class GetTagsCheckBoxesByMoodQueryHandler(IMapper mapper, IMoodRepository
         return new GetTagsCheckBoxesByMoodQueryResponse
         {
             Success = true,
-            Message = "Success.",
+            Message = "Related tags.",
             TagsCheckBoxesList = tagsDto
         };
     }

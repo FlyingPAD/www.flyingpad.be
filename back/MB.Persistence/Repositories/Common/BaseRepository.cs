@@ -34,13 +34,13 @@ public class BaseRepository<T>(Context context) : IBaseRepository<T> where T : c
     public async Task<T?> GetByBusinessIdAsync(Guid id)
     {
         return await _context.Set<T>().OfType<AuditableEntity>()
-                                      .SingleOrDefaultAsync(x => x.BusinessId == id) as T;
+                                      .SingleOrDefaultAsync(entity => entity.BusinessId == id) as T;
     }
 
     public async Task<int?> GetPrimaryIdByBusinessIdAsync(Guid? id)
     {
         var entity = await _context.Set<T>().OfType<AuditableEntity>()
-                                        .SingleOrDefaultAsync(x => x.BusinessId == id);
+                                        .SingleOrDefaultAsync(entity => entity.BusinessId == id);
         return entity?.EntityId ?? null;
     }
 
@@ -59,7 +59,7 @@ public class BaseRepository<T>(Context context) : IBaseRepository<T> where T : c
     public async Task DeleteMultipleAsync(IEnumerable<Guid> entityGuids)
     {
         var entitiesToDelete = await _context.Set<AuditableEntity>()
-            .Where(e => entityGuids.Contains(e.BusinessId))
+            .Where(entity => entityGuids.Contains(entity.BusinessId))
             .ToListAsync();
 
         _context.Set<AuditableEntity>().RemoveRange(entitiesToDelete);

@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FlowService } from '../../services/flow.service';
+import { PaginationService } from '../../services/pagination.service';
+import { LinkLight } from '../../models/link';
 
 @Component({
   selector: 'app-links',
@@ -7,39 +9,32 @@ import { FlowService } from '../../services/flow.service';
   styleUrl: './links.component.scss'
 })
 export class LinksComponent {
+
   #flowService = inject(FlowService)
+  paginationService = inject(PaginationService)
 
   flow = this.#flowService.flow
 
-  elementsPerPage : number = 17
-  currentPage : number = 1
-  showDialog : boolean = false
-  showFormDialog : boolean = false
-
   searchLinks : string = ''
-  filterLinks() {
-    return this.flow()?.linksByCategory.filter(m => m.name.toLowerCase().includes(this.searchLinks.toLowerCase()))
+  elementsPerPage : number = 12
+
+
+  filterLinks(): LinkLight[] | undefined {
+    return this.flow()?.linksByCategory.filter(link => link.name.toLowerCase().includes(this.searchLinks.toLowerCase()))
   }
-  updateLinkCategoryId(linkCategoryId: number | null): void {
-    this.#flowService.updateLinkCategoryId(linkCategoryId)
-    this.pageReset()
+
+  go(): void {
+    if(this.flow()?.link) {
+      window.open(this.flow()?.link?.url, '_blank')
+    }
   }
-  updateLinkId(linkId: number): void {
-    this.#flowService.updateLinkId(linkId)
+
+  setLink(link : LinkLight): void {
+    this.#flowService.updateLinkId(link.businessId)
   }
-  handleFormDialog() {
-    this.showFormDialog = false
-  }
-  openFormDialog() {
-    this.showFormDialog = !this.showFormDialog
-  }
-  handleDialog() {
-    this.showDialog = false
-  }
-  openDialog() {
-    this.showDialog = !this.showDialog
-  }
-  pageReset() {
-    this.currentPage = 1
+
+  updateLinkCategoryId(categoryId : number | null): void {
+    this.paginationService.editLinksCurrentPageReset()
+    this.#flowService.updateLinkCategoryId(categoryId)
   }
 }

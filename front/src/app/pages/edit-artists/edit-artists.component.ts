@@ -16,7 +16,6 @@ export class EditArtistsComponent {
 
   flow = this.#flowService.flow
 
-  currentArtist : ArtistLight | undefined = this.flow()?.artist
   searchArtists : string = ''
   elementsPerPage : number = 15
 
@@ -59,16 +58,15 @@ export class EditArtistsComponent {
   }
 
   go():void {
-    this.#flowService.updateMoodsGalleryType('artist')
     this.#router.navigateByUrl('/moods')
   }
 
   setArtist(artist : ArtistLight): void {
-    this.currentArtist = artist
     this.#flowService.updateArtistId(artist.businessId)
   }
 
   updateStyleId(styleId : number | null): void {
+    this.paginationService.editModelsCurrentPageReset()
     this.#flowService.updateStyleId(styleId)
   }
 }

@@ -24,8 +24,8 @@ export interface CreateArtistResponse extends BaseResponse {
     artistId : number
 }
 
-export interface CreateMediaResponse extends BaseResponse {
-    mediaId : number
+export interface CreateMediumResponse extends BaseResponse {
+    mediumId : number
 }
 
 export interface CreateFranchiseResponse extends BaseResponse {

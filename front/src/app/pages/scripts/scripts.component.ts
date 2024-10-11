@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './scripts.component.scss'
 })
 export class ScriptsComponent {
-  currentScript: string = '';
+  currentScript: string = 'introduction'
 
-  selectScript(scriptName: string) {
-    this.currentScript = scriptName;
+  selectScript(scriptName: string): void {
+    this.currentScript = scriptName
   }
 }

@@ -2,11 +2,11 @@
 using MB.Application.Features.Models.Commands.DeleteModel;
 using MB.Application.Features.Models.Commands.UpdateModel;
 using MB.Application.Features.Models.Queries.CountModels;
+using MB.Application.Features.Models.Queries.GetAllModels;
 using MB.Application.Features.Models.Queries.GetModelById;
 using MB.Application.Features.Models.Queries.GetModelCheckBoxesByMood;
 using MB.Application.Features.Models.Queries.GetModelsByFranchise;
 using MB.Application.Features.Models.Queries.GetModelsByMood;
-using MB.Application.Features.Models.Queries.GetModelsList;
 using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -31,8 +31,8 @@ public class ModelsControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(new CountModelsQuery()));
 
     [HttpGet("GetAll")]
-    public async Task<ActionResult<GetModelsListQueryResponse>> GetAll()
-        => Ok(await _mediator.Send(new GetModelsListQuery()));
+    public async Task<ActionResult<GetAllModelsQueryResponse>> GetAll()
+        => Ok(await _mediator.Send(new GetAllModelsQuery()));
 
     [HttpGet("GetOneDetails/{modelId}")]
     public async Task<IActionResult> GetOneDetails(Guid modelId)

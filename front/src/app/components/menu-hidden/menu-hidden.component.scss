@@ -1,0 +1,134 @@
+.menu-on {
+    left: 0;
+    transition-duration: 200ms;
+}
+
+.menu-off {
+    left: -500px;
+    transition-duration: 200ms;
+}
+
+.menu-left {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 225px;
+    padding-left: 1%;
+    padding-right: 1%;
+
+    pointer-events: auto;
+
+    background-color: rgba(255, 253, 251, 0.9);
+    backdrop-filter: blur(3px);
+    border-bottom: 1px solid #6b5240;
+    box-shadow: 0 3px 6px 0px rgba(80, 42, 14, 0.3);
+
+    z-index: 25;
+
+    .menu-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        justify-content: space-between;
+        align-items: center;
+
+
+        .grid-section-left {
+            justify-self: start;
+            display: flex;
+            align-items: center;
+
+            .trigger {
+                img {
+                    width: 15px;
+                    height: 15px;
+                    background-color: rgba(255, 255, 255, 0.7);
+                    border-radius: 5px;
+                    border: 1px solid rgba(0, 0, 0, 0.15);
+                    padding: 10px;
+                    margin: 10px;
+                }
+
+                img:hover {
+                    border: 1px solid #6b5240;
+                    background-color: rgba(255, 255, 255);
+                    transition-duration: 500ms;
+                    cursor: pointer;
+                }
+
+                .img-active {
+                    border: 1px solid #6b5240;
+                }
+            }
+
+            .logo {
+                height: 35px;
+            }
+        }
+    }
+
+    .scroll {
+        overflow-y: hidden;
+        scrollbar-width: thin;
+        scrollbar-color: rgb(107, 82, 64, 0.7) #f1f1f1;
+
+        .menu-elements {
+            padding-top: 25px;
+
+            a {
+                display: flex;
+                align-items: center;
+
+                text-decoration: none;
+                color: var(--colorMain);
+
+                margin-bottom: 5px;
+
+                img {
+                    margin-left: 10px;
+                    height: 30px;
+                    width: 30px;
+                }
+
+                p {
+                    margin-left: 25px;
+                    font-size: 14px;
+                }
+            }
+
+            a:hover {
+                background-color: white;
+                border-radius: 10px;
+            }
+
+            .active {
+                background-color: rgb(255, 255, 255, 0.7);
+                border-radius: 10px;
+            }
+
+            .user {
+                margin-top: 25px;
+            }
+        }
+
+        .menu-footer {
+            padding-top: 25px;
+            margin-bottom: 75px;
+
+            p {
+                margin-left: 10px;
+                font-size: 13px;
+                color: #6b5240;
+            }
+
+            a {
+                color: #49382c;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

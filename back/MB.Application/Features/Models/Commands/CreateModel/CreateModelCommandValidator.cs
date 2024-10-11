@@ -6,14 +6,14 @@ public class CreateModelCommandValidator : AbstractValidator<CreateModelCommand>
 {
     public CreateModelCommandValidator()
     {
-        RuleFor(p => p.FirstName)
-            .NotEmpty().WithMessage("{PropertyName} is required.")
+        RuleFor(request => request.FirstName)
+            .NotEmpty().WithMessage("FirstName is required.")
             .NotNull()
-            .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+            .MaximumLength(50).WithMessage("FirstName must not exceed 50 characters.");
 
-        RuleFor(p => p.LastName)
-            .NotEmpty().WithMessage("{PropertyName} is required.")
+        RuleFor(request => request.LastName)
+            .NotEmpty().WithMessage("LastName is required.")
             .NotNull()
-            .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+            .MaximumLength(50).WithMessage("LastName must not exceed 50 characters.");
     }
 }

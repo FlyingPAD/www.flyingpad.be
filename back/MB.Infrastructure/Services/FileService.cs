@@ -1,4 +1,4 @@
-﻿using MB.Application.Interfaces;
+﻿using MB.Application.Interfaces.Infrastructure;
 using System.Diagnostics;
 
 namespace MB.Infrastructure.Services

@@ -1,37 +1,26 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Styles.Queries.GetStyleById;
 
-public class GetStyleByIdQueryHandler : IRequestHandler<GetStyleByIdQuery, GetStyleByIdQueryResponse>
+public class GetStyleByIdQueryHandler(IMapper mapper, IBaseRepository<Style> styleRepository) : IRequestHandler<GetStyleByIdQuery, GetStyleByIdQueryResponse>
 {
-    private readonly IMapper _mapper;
-    private IBaseRepository<Style> _styleRepository;
-
-    public GetStyleByIdQueryHandler(IMapper mapper, IBaseRepository<Style> styleRepository)
-    {
-        _mapper = mapper;
-        _styleRepository = styleRepository;
-    }
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<Style> _styleRepository = styleRepository;
 
     public async Task<GetStyleByIdQueryResponse> Handle(GetStyleByIdQuery request, CancellationToken cancellationToken)
     {
-        var style = await _styleRepository.GetByBusinessIdAsync(request.Id);
-
-        if (style == null)
-        {
-            return new GetStyleByIdQueryResponse { Success = false, Message = "Style wasn't found :(" };
-        }
-
-        var styleDto = _mapper.Map<GetStyleByIdVm>(style);
+        var style = await _styleRepository.GetByBusinessIdAsync(request.StyleId)
+            ?? throw new NotFoundException("Style not found.");
 
         return new GetStyleByIdQueryResponse
         {
             Success = true,
-            Message = "Style was found :)",
-            Style = styleDto
+            Message = $"{style.Name}.",
+            Style = _mapper.Map<GetStyleByIdQueryDto>(style)
         };
     }
 }

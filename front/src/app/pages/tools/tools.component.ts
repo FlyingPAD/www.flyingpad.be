@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './tools.component.scss'
 })
 export class ToolsComponent {
-  showCircleofFifths: boolean = false
+  showCircleofFifths: boolean = true
   showChordWheel: boolean = false
   showDiapason: boolean = false
   showMiniKeys: boolean = false

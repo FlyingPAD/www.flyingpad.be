@@ -57,7 +57,7 @@ export class MoodDetailsComponent {
   }
 
   updateMoodScore(scoreValue : number): void {
-    let form : MoodScoreUpdate = {businessId : this.mood.businessId, value : scoreValue} 
+    let form : MoodScoreUpdate = {moodId : this.mood.businessId, value : scoreValue} 
     this.#flowService.updateScore(form);
   }
 }

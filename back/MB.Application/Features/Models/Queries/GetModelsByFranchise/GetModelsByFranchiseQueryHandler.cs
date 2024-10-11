@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
@@ -14,17 +15,16 @@ public class GetModelsByFranchiseQueryHandler(IMapper mapper, IBaseRepository<Fr
 
     public async Task<GetModelsByFranchiseQueryResponse> Handle(GetModelsByFranchiseQuery request, CancellationToken cancellationToken)
     {
-        int? franchiseId = await _franchiseRepo.GetPrimaryIdByBusinessIdAsync(request.FranchiseId);
+        int franchiseId = await _franchiseRepo.GetPrimaryIdByBusinessIdAsync(request.FranchiseId)
+            ?? throw new NotFoundException("Franchise not found.");
 
         var models = await _modelRepo.GetModelsByFranchise(franchiseId);
 
-        var response = new GetModelsByFranchiseQueryResponse
+        return new GetModelsByFranchiseQueryResponse
         {
             Success = true,
-            Message = "Models By Franchise",
-            ModelsByFranchise = _mapper.Map<List<GetModelsByFranchiseQueryVm>>(models)
+            Message = "Models by franchise.",
+            ModelsByFranchise = _mapper.Map<List<GetModelsByFranchiseQueryDto>>(models)
         };
-
-        return response;
     }
 }

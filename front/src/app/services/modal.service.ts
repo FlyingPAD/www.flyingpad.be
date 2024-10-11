@@ -3,12 +3,10 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ModalService 
-{
-  modal : boolean = false
+export class ModalService {
+  modal: boolean = false
 
-  modalTrigger()
-  {
+  modalTrigger() {
     this.modal = !this.modal
   }
 }

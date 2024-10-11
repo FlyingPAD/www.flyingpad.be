@@ -2,8 +2,8 @@
 using MB.Application.Features.LinkCategories.Commands.DeleteLinkCategory;
 using MB.Application.Features.LinkCategories.Commands.UpdateLinkCategory;
 using MB.Application.Features.LinkCategories.Queries.CountLinkCategories;
+using MB.Application.Features.LinkCategories.Queries.GetAllLinkCategories;
 using MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckBoxesByLink;
-using MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesList;
 using MB.Application.Features.LinkCategories.Queries.GetLinkCategoryById;
 using MB.Application.Models;
 using MediatR;
@@ -29,14 +29,14 @@ public class LinkCategoriesControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(new CountLinkCategoriesQuery()));
 
     [HttpGet("GetAll")]
-    public async Task<ActionResult<GetLinkCategoriesListQueryResponse>> GetAll()
-        => Ok(await _mediator.Send(new GetLinkCategoriesListQuery()));
+    public async Task<ActionResult<GetAllLinkCategoriesQueryResponse>> GetAll()
+        => Ok(await _mediator.Send(new GetAllLinkCategoriesQuery()));
 
     [HttpGet("GetOneDetails/{linkCategoryId}")]
-    public async Task<ActionResult<GetLinkCategoryByIdQueryResponse>> GetOneDetails(Guid linkCategoryId)
+    public async Task<ActionResult<GetLinkCategoryByIdQueryResponse>> GetById(Guid linkCategoryId)
         => Ok(await _mediator.Send(new GetLinkCategoryByIdQuery { LinkCategoryId = linkCategoryId }));
 
-    [HttpGet("GetCheckBoxesByLink")]
+    [HttpGet("GetCheckBoxesByLink/{linkId}")]
     public async Task<ActionResult<GetLinkCategoriesCheckBoxesByLinkQueryResponse>> GetCheckBoxesByLink(Guid linkId)
         => Ok(await _mediator.Send(new GetLinkCategoriesCheckBoxesByLinkQuery { LinkId = linkId }));
 

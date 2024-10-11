@@ -1,4 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Features.Franchises.Queries.GetFranchisesCheckBoxesByModel;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ public class FranchiseRepository(Context context) : BaseRepository<Franchise>(co
 {
     public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
     {
-        return await _context.Artists
+        return await _context.Franchises
                              .Where(franchise => businessIds.Contains(franchise.BusinessId))
                              .Select(franchise => franchise.EntityId)
                              .ToListAsync();
@@ -34,28 +35,44 @@ public class FranchiseRepository(Context context) : BaseRepository<Franchise>(co
         return franchises ?? [];
     }
 
-    public async System.Threading.Tasks.Task UpdateMedias(int franchiseId, ICollection<int> mediasIds)
+    public async Task<Franchise?> GetFranchiseWithMediaAsync(int franchiseId)
     {
-        var franchise = await _context.Franchises
-                                 .Include(franchise => franchise.FranchiseMedias)
-                                 .FirstOrDefaultAsync(franchise => franchise.EntityId == franchiseId) ?? throw new ArgumentException("No franchise found with the provided ID.", nameof(franchiseId));
+        return await _context.Franchises
+            .Include(franchise => franchise.FranchiseMedias)
+            .FirstOrDefaultAsync(franchise => franchise.EntityId == franchiseId);
+    }
 
-        var existingMediasIds = franchise.FranchiseMedias?.Select(relation => relation.MediaId).ToList() ?? [];
-
-        var mediasToAdd = mediasIds.Except(existingMediasIds).ToList();
-        foreach (var mediaId in mediasToAdd)
-        {
-            _context.RFranchiseMedia.Add(new RelationFranchiseMedia { FranchiseId = franchiseId, MediaId = mediaId });
-        }
-
-        var mediasToRemove = existingMediasIds.Except(mediasIds).ToList();
-        foreach (var mediaId in mediasToRemove)
-        {
-            var mediaToRemove = franchise.FranchiseMedias?.FirstOrDefault(relation => relation.MediaId == mediaId);
-            if (mediaToRemove != null)
-                _context.RFranchiseMedia.Remove(mediaToRemove);
-        }
-
+    public async System.Threading.Tasks.Task RemoveMediaAsync(Franchise franchise)
+    {
+        _context.RFranchiseMedia.RemoveRange(franchise.FranchiseMedias ?? []);
         await _context.SaveChangesAsync();
+    }
+
+    public async System.Threading.Tasks.Task AddMediaAsync(int franchiseId, IEnumerable<int> mediaIds)
+    {
+        var relationsToAdd = mediaIds.Select(mediumId => new RelationFranchiseMedia
+        {
+            FranchiseId = franchiseId,
+            MediaId = mediumId
+        }).ToList();
+
+        _context.RFranchiseMedia.AddRange(relationsToAdd);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<IEnumerable<GetFranchisesCheckBoxesByModelQueryDto>> GetCheckBoxesByModel(int modelId)
+    {
+        var franchises = await _context.Franchises
+            .Select(franchise => new GetFranchisesCheckBoxesByModelQueryDto
+            {
+                BusinessId = franchise.BusinessId,
+                Name = franchise.Name,
+                IsChecked = franchise.FranchiseModels != null && franchise.FranchiseModels
+                    .Any(relation => relation.ModelId == modelId)
+            })
+            .OrderBy(franchise => franchise.Name)
+            .ToListAsync();
+
+        return franchises;
     }
 }

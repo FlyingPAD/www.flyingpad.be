@@ -26,4 +26,8 @@
         cursor: pointer;
         transition-duration: 500ms;
     }
+    .button-active {
+        background-color: rgb(255, 255, 255);
+        color: #6b5240;
+    }
 }

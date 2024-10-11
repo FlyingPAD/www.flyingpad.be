@@ -1,17 +1,14 @@
-#layout-central
-{
-    #form_cat_flex
-    {
+#layout-central {
+    #form_cat_flex {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
 
-        color : #6b5240;
-        text-align : left;	
+        color: #6b5240;
+        text-align: left;
         font-size: 15px;
 
-        .form_cat_box
-        {
+        .form_cat_box {
             overflow-y: scroll;
 
             width: 250px;
@@ -24,20 +21,17 @@
             border-radius: 10px;
             background-color: rgba(255, 255, 255, 0.4);
 
-            .duo
-            {
+            .duo {
                 display: flex;
                 align-items: center;
                 margin-bottom: 5px;
 
-                input
-                {
+                input {
                     height: 20px;
                     width: 20px;
                 }
-        
-                label
-                {
+
+                label {
                     margin-left: 15px;
                 }
             }

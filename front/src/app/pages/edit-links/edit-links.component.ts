@@ -14,7 +14,6 @@ export class EditLinksComponent {
 
   flow = this.#flowService.flow
 
-  currentLink : LinkLight | undefined = this.flow()?.link
   searchLinks : string = ''
   elementsPerPage : number = 12
 
@@ -57,17 +56,17 @@ export class EditLinksComponent {
   }
 
   go(): void {
-    if(this.currentLink) {
-      window.open(this.currentLink.url, '_blank')
+    if(this.flow()?.link) {
+      window.open(this.flow()?.link?.url, '_blank')
     }
   }
 
   setLink(link : LinkLight): void {
-    this.currentLink = link
     this.#flowService.updateLinkId(link.businessId)
   }
 
   updateLinkCategoryId(categoryId : number | null): void {
-      this.#flowService.updateLinkCategoryId(categoryId)
+    this.paginationService.editLinksCurrentPageReset()
+    this.#flowService.updateLinkCategoryId(categoryId)
   }
 }

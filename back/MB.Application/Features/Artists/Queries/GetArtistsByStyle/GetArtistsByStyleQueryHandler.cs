@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MediatR;
 
@@ -12,17 +13,16 @@ public class GetArtistsByStyleQueryHandler(IMapper mapper, IArtistRepository art
 
     public async Task<GetArtistsByStyleQueryResponse> Handle(GetArtistsByStyleQuery request, CancellationToken cancellationToken)
     {
-        int? styleId = await _styleRepository.GetPrimaryIdByBusinessIdAsync(request.BusinessId);
+        int styleId = await _styleRepository.GetPrimaryIdByBusinessIdAsync(request.StyleId)
+            ?? throw new NotFoundException("Style not found.");
 
         var artists = await _artistRepository.GetArtistsByStyle(styleId);
 
-        var response = new GetArtistsByStyleQueryResponse
+        return new GetArtistsByStyleQueryResponse
         {
             Success = true,
-            Message = "Artists",
-            Artists = _mapper.Map<List<GetArtistsByStyleVm>>(artists)
+            Message = "Artists by style.",
+            Artists = _mapper.Map<List<GetArtistsByStyleQueryDto>>(artists)
         };
-
-        return response;
     }
 }

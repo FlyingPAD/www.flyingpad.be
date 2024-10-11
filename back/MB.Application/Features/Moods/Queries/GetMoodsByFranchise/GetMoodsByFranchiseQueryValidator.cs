@@ -6,8 +6,8 @@ public class GetMoodsByFranchiseQueryValidator : AbstractValidator<GetMoodsByFra
 {
     public GetMoodsByFranchiseQueryValidator()
     {
-        RuleFor(x => x.FranchiseId)
-            .NotEmpty().WithMessage("ID is required.")
-            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
+        RuleFor(request => request.FranchiseId)
+            .NotEmpty().WithMessage("FranchiseId is required.")
+            .NotEqual(Guid.Empty).WithMessage("FranchiseId must not be empty.");
     }
 }

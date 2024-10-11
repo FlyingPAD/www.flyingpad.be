@@ -1,26 +1,26 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Common;
 using MB.Application.Models;
+using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Models.Commands.DeleteModel;
 
-public class DeleteModelCommandHandler(IModelRepository modelRepository) : IRequestHandler<DeleteModelCommand, BaseResponse>
+public class DeleteModelCommandHandler(IBaseRepository<Model> modelRepository) : IRequestHandler<DeleteModelCommand, BaseResponse>
 {
-    private readonly IModelRepository _modelRepository = modelRepository;
+    private readonly IBaseRepository<Model> _modelRepository = modelRepository;
 
     public async Task<BaseResponse> Handle(DeleteModelCommand request, CancellationToken cancellationToken)
     {
         var model = await _modelRepository.GetByBusinessIdAsync(request.ModelId)
-            ?? throw new NotFoundException($"Model with ID {request.ModelId} was not found.");
+            ?? throw new NotFoundException("Model not found.");
 
-        await _modelRepository.DeleteModelRelations(model.EntityId);
         await _modelRepository.DeleteAsync(model);
 
         return new BaseResponse
         {
             Success = true,
-            Message = "Model successfully deleted."
+            Message = "Model was deleted."
         };
     }
 }

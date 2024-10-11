@@ -1,4 +1,4 @@
-﻿using MB.Application.Interfaces;
+﻿using MB.Application.Interfaces.Infrastructure;
 using MB.Application.Interfaces.Persistence;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
@@ -37,7 +37,7 @@ public class CreateMoodVideoCommandHandler(
         {
             MoodId = createdVideo.BusinessId,
             Success = true,
-            Message = "Success."
+            Message = "Video created successfully."
         };
 
         return response;

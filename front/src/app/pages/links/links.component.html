@@ -1,34 +1,47 @@
-<div *ngIf="flow() as flow">
-    <div class="top-options">
-        <div class="new">
-            <img src="../../../../assets/app_icons/icon_links_001.png" />
-            <a (click)="openFormDialog()">New Link</a>
-        </div>    
-        <div class="filter">
-            <input type="text" [(ngModel)]="searchLinks" placeholder="Filter links ...">
+<div class="edition" *ngIf="flow() as flow">
+    <div class="edition-selection">
+        @if(flow.linkCategory?.name){
+            <p><b>{{flow.linkCategory?.name}}</b></p>
+        }
+        @else {
+            <p>Select a category.</p>
+        }  
+    </div>
+
+    <div class="edition-selection">
+        @if(flow.link){
+            <p><b>{{flow.link.name}}</b></p>
+        }
+        @else {
+            <p>Please, select a link from the list.</p>
+        }
+        <div class="edition-buttons">
+            <img class="active" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + flow.link?.url + '&sz=96'" />
+            @if(flow.link){
+                <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
+            }
         </div>
     </div>
-    @if(flow.link) {
-        <div class="selected">
-            <img id="favicon" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + flow.link.url + '&sz=96'" />
-            <p>{{ flow.link.name }}</p>
-            <a target="_blank" [href]="flow.link.url">Go</a>
-        </div>   
-    }
-    <div class="list">
-        <div *ngFor="let item of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage }">
-            <a (click)="updateLinkId(item.businessId)"> ▸ {{item.name}}</a>
+
+    <div class="filter">
+        <input type="text" [(ngModel)]="searchLinks" placeholder="Filter links ...">
+    </div>
+    
+    <div class="edition-list">
+        <div *ngFor="let link of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: paginationService.editLinksCurrentPage}">
+            <a [class.active]="link.name === flow.link?.name" (click)="setLink(link)"> ▸ {{link.name}}</a>
         </div>
-    </div>    
+    </div>
+
+    <app-right-column>
+        <app-right-column-list [table]="flow.linkCategories" [currentEntityId]="flow.linkCategory?.businessId" (entityId)="updateLinkCategoryId($event)" />
+    </app-right-column>
+    
     <div class="pagination-row" *ngIf="flow.linksByCategory.length > elementsPerPage">
         <div id="pagination">
-          <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
+            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editLinksCurrentPage = $event"></pagination-controls>
         </div>   
     </div>
-    <app-dialog *ngIf="showFormDialog" (dialog)="handleFormDialog()"><app-create-link /></app-dialog>    
-    <app-right-column>
-        <app-right-column-list [table]="flow?.linkCategories" (entityId)="updateLinkCategoryId($event)"/>
-    </app-right-column>    
-    <app-dialog *ngIf="showDialog" (dialog)="handleDialog()"><app-dialog-info moodsGalleryType="link" [entity]="flow.linkCategory" [moodsLength]="flow?.linksByCategory?.length"/></app-dialog>     
-    <app-bottom-bar moodsGalleryType="link" [entityName]="flow?.linkCategory?.name" [moodsLength]="flow?.linksByCategory?.length" (dialog)="openDialog()"/>
+    
+    <app-bottom-bar moodsGalleryType="link" [entityName]="flow.linkCategory?.name" [moodsLength]="flow.linksByCategory.length" />
 </div>

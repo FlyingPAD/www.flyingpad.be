@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MediatR;
 
@@ -12,17 +13,16 @@ public class GetMoodsByModelQueryHandler(IMapper mapper, IMoodRepository moodRep
 
     public async Task<GetMoodsByModelQueryResponse> Handle(GetMoodsByModelQuery request, CancellationToken cancellationToken)
     {
-        int? modelId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId);
+        int modelId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId)
+            ?? throw new NotFoundException("Model not found.");
 
         var moods = await _moodRepository.GetMoodsByModel(modelId);
 
-        var response = new GetMoodsByModelQueryResponse
+        return new GetMoodsByModelQueryResponse
         {
             Success = true,
-            Message = "Moods By Model",
-            Moods = _mapper.Map<List<GetMoodsByModelQueryVm>>(moods)
+            Message = "Moods by model.",
+            Moods = _mapper.Map<List<GetMoodsByModelQueryDto>>(moods)
         };
-
-        return response;
     }
 }

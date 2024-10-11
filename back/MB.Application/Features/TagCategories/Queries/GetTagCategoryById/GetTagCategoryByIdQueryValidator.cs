@@ -6,8 +6,8 @@ public class GetTagCategoryByIdQueryValidator : AbstractValidator<GetTagCategory
 {
     public GetTagCategoryByIdQueryValidator()
     {
-        RuleFor(x => x.Id)
-            .NotEmpty().WithMessage("ID is required.")
-            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
+        RuleFor(request => request.TagCategoryId)
+            .NotEmpty().WithMessage("TagCategoryId is required.")
+            .NotEqual(Guid.Empty).WithMessage("TagCategoryId must not be empty.");
     }
 }

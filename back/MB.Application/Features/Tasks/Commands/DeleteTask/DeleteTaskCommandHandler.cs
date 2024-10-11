@@ -10,7 +10,8 @@ public class DeleteTaskCommandHandler(IBaseRepository<Domain.Entities.Task> task
 
     public async Task<DeleteTaskCommandResponse> Handle(DeleteTaskCommand request, CancellationToken cancellationToken)
     {
-        var task = await _taskRepository.GetByBusinessIdAsync(request.Id) ?? throw new NotFoundException($"Task with ID {request.Id} was not found.");
+        var task = await _taskRepository.GetByBusinessIdAsync(request.Id) 
+            ?? throw new NotFoundException($"Task not found.");
 
         await _taskRepository.DeleteAsync(task);
 

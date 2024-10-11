@@ -28,7 +28,7 @@ public class CreateTagCommandHandler(IBaseRepository<Tag> tagRepository, IBaseRe
         {
             BusinessId = tag.BusinessId,
             Success = true,
-            Message = "Tag created successfully."
+            Message = $"{tag.Name} was created."
         };
     }
 }

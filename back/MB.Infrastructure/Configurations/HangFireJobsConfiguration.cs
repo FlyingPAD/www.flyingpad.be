@@ -1,5 +1,5 @@
 ﻿using Hangfire;
-using MB.Application.Interfaces;
+using MB.Application.Interfaces.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MB.Infrastructure.Configurations;

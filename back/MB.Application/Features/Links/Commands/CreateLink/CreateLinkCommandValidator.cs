@@ -14,6 +14,6 @@ public class CreateLinkCommandValidator : AbstractValidator<CreateLinkCommand>
         RuleFor(request => request.Description)
             .NotEmpty().WithMessage("Description is required.")
             .NotNull()
-            .MaximumLength(30).WithMessage("Name must not exceed 30 characters.");
+            .MaximumLength(100).WithMessage("Name must not exceed 100 characters.");
     }
 }

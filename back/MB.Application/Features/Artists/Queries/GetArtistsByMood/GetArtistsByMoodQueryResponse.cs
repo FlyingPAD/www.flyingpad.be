@@ -4,5 +4,5 @@ namespace MB.Application.Features.Artists.Queries.GetArtistsByMood;
 
 public class GetArtistsByMoodQueryResponse : BaseResponse
 {
-    public List<GetArtistsByMoodQueryVm> ArtistsByMood { get; set; } = [];
+    public List<GetArtistsByMoodQueryDto> ArtistsByMood { get; set; } = [];
 }

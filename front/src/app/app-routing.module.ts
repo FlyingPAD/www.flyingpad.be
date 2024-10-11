@@ -26,11 +26,9 @@ import { PulsationComponent } from './features/scripts/pulsation/pulsation.compo
 import { ScalesComponent } from './features/scripts/scales/scales.component';
 import { ViewpointComponent } from './features/scripts/viewpoint/viewpoint.component';
 import { CreateMoodImageComponent } from './features/moods/create-mood-image/create-mood-image.component';
-import { MoodsMultiTagComponent } from './features/moods/moods-multi-tag/moods-multi-tag.component';
 import { MultiTagArtistsComponent } from './features/moods/multi-tag-artists/multi-tag-artists.component';
 import { MultiTagModelsComponent } from './features/moods/multi-tag-models/multi-tag-models.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { MediaGalleryComponent } from './features/franchises/media-gallery/media-gallery.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
 import { TagsComponent } from './pages/tags/tags.component';
 import { ScriptsComponent } from './pages/scripts/scripts.component';
@@ -44,14 +42,18 @@ import { EditTagsComponent } from './pages/edit-tags/edit-tags.component';
 import { EditLinksComponent } from './pages/edit-links/edit-links.component';
 import { EditArtistsComponent } from './pages/edit-artists/edit-artists.component';
 import { CreateMoodVideoComponent } from './features/moods/create-mood-video/create-mood-video.component';
+import { HiddenMenuWithFooterComponent } from './layouts/hidden-menu-with-footer/hidden-menu-with-footer.component';
+import { MediumGalleryComponent } from './pages/medium-gallery/medium-gallery.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 const routes: Routes = 
 [
+  // Layout : Header & Hidden Menu
   { path : '', component : LayoutCustomComponent, children :
     [
       { path : '', pathMatch : 'full', redirectTo : 'home'},
       { path : 'home', component : HomeComponent, title : 'Flying PAD | Home' },
-      { path : 'about', component : AboutComponent, title : 'Flying PAD | About' },
       { path : 'not-found', component : NotFoundComponent, title : 'Flying PAD | Not Found' },
       { path : 'login-error', component : UserLoginErrorComponent, title : 'Flying PAD | Login Error' },
       { path : 'register', component : UserRegisterComponent, title : 'Flying PAD | Register' },
@@ -59,6 +61,16 @@ const routes: Routes =
       { path : 'dashboard', component : DashboardComponent, title : 'Flying PAD | Dashboard' },
     ]
   },
+
+    // Layout : Header, Hidden Menu & Footer
+    { path : '', component : HiddenMenuWithFooterComponent, children :
+      [
+        { path : 'about', component : AboutComponent, title : 'Flying PAD | About' },
+        { path : 'medium-gallery', component : MediumGalleryComponent, title : 'Flying PAD | Medium Gallery' },
+        { path : 'my-account', component : MyAccountComponent, title : 'Flying PAD | My Account' },
+        { path : 'settings', component : SettingsComponent, title : 'Flying PAD | Settings' },
+      ]
+    },
 
   // Empty Layout ( for testing purpose )
   { path : '', component : LayoutEmptyComponent, children :
@@ -79,7 +91,6 @@ const routes: Routes =
     [
       { path : '', component : MoodsComponent, title : 'Flying PAD | Moods Gallery' },  
       { path : 'mood-details', component : MoodDetailsComponent, title : 'Flying PAD | Mood Details' },
-      { path : 'multi-tag', component : MoodsMultiTagComponent, title : 'Flying PAD | Mood Selection' },
       { path : 'multi-tag-artists', component : MultiTagArtistsComponent, title : 'Flying PAD | Multi Tag Artists' },
       { path : 'multi-tag-models', component : MultiTagModelsComponent, title : 'Flying PAD | Multi Tag Models' },
       { path : 'create-mood-image', component : CreateMoodImageComponent, title : 'Flying PAD | Create Mood(s)' },
@@ -90,7 +101,6 @@ const routes: Routes =
   // Franchises
   { path : 'franchises', component : LayoutCustomComponent, children :
     [
-      { path : 'media-gallery', component : MediaGalleryComponent, title : 'Flying PAD | Media Gallery' },
       { path : 'edition', component : EditFranchisesComponent, title : 'Flying PAD | Edit Franchises' },
     ]
   },

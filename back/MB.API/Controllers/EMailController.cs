@@ -1,4 +1,4 @@
-﻿using MB.Application.Interfaces;
+﻿using MB.Application.Interfaces.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MB.API.Controllers;

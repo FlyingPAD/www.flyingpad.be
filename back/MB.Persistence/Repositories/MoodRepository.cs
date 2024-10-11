@@ -140,25 +140,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         await _context.SaveChangesAsync();
     }
 
-    public async System.Threading.Tasks.Task DeleteMoodRelations(int moodId)
-    {
-        var relationsMoodTag = await _context.RMoodTag
-                                 .Where(relation => relation.MoodId == moodId)
-                                 .ToListAsync();
-        var relationsMoodArtist = await _context.RMoodArtist
-                                 .Where(relation => relation.MoodId == moodId)
-                                 .ToListAsync();
-        var relationsMoodModel = await _context.RMoodModel
-                                 .Where(relation => relation.MoodId == moodId)
-                                 .ToListAsync();
-
-        _context.RMoodTag.RemoveRange(relationsMoodTag);
-        _context.RMoodArtist.RemoveRange(relationsMoodArtist);
-        _context.RMoodModel.RemoveRange(relationsMoodModel);
-
-        await _context.SaveChangesAsync();
-    }
-
     public async System.Threading.Tasks.Task AddImageSpecificTags(Image image)
     {
         List<int> imageSpecificTags = [];
@@ -185,17 +166,50 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         if (tagWebp != null && image.Extension == "webp") imageSpecificTags.Add(tagWebp.EntityId);
 
         // Handle Dimensions.
-        var tagSquare = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Square");
-        var tagLandscape = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape");
-        var tagLandscape169 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape (16:9)");
-        var tagPortrait = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait");
-        var tagPortrait169 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait (16:9)");
-
+        var tagSquare = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Square ( 1:1 )");
         if (tagSquare != null && image.Height == image.Width) imageSpecificTags.Add(tagSquare.EntityId);
-        if (tagPortrait != null && image.Height > image.Width) imageSpecificTags.Add(tagPortrait.EntityId);
+
+        // Landscape ratios
+        var tagLandscape = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape");
+        var tagLandscape169 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 16:9 )");
+        var tagLandscape21 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 2:1 )");
+        var tagLandscape32 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 3:2 )");
+        var tagLandscape43 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 4:3 )");
+        var tagLandscape54 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 5:4 )");
+        var tagLandscape65 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 6:5 )");
+        var tagLandscape75 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 7:5 )");
+        var tagLandscape87 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 8:7 )");
+
         if (tagLandscape != null && image.Height < image.Width) imageSpecificTags.Add(tagLandscape.EntityId);
-        if (tagLandscape169 != null && ((float)image.Height / image.Width) == (16f / 9)) imageSpecificTags.Add(tagLandscape169.EntityId);
-        if (tagPortrait169 != null && ((float)image.Width / image.Height) == (16f / 9)) imageSpecificTags.Add(tagPortrait169.EntityId);
+        if (tagLandscape169 != null && image.Width * 9 == image.Height * 16) imageSpecificTags.Add(tagLandscape169.EntityId);
+        if (tagLandscape21 != null && image.Width * 1 == image.Height * 2) imageSpecificTags.Add(tagLandscape21.EntityId);
+        if (tagLandscape32 != null && image.Width * 2 == image.Height * 3) imageSpecificTags.Add(tagLandscape32.EntityId);
+        if (tagLandscape43 != null && image.Width * 3 == image.Height * 4) imageSpecificTags.Add(tagLandscape43.EntityId);
+        if (tagLandscape54 != null && image.Width * 4 == image.Height * 5) imageSpecificTags.Add(tagLandscape54.EntityId);
+        if (tagLandscape65 != null && image.Width * 5 == image.Height * 6) imageSpecificTags.Add(tagLandscape65.EntityId);
+        if (tagLandscape75 != null && image.Width * 5 == image.Height * 7) imageSpecificTags.Add(tagLandscape75.EntityId);
+        if (tagLandscape87 != null && image.Width * 7 == image.Height * 8) imageSpecificTags.Add(tagLandscape87.EntityId);
+
+        // Portrait ratios
+        var tagPortrait = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait");
+        var tagPortrait169 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 9:16 )");
+        var tagPortrait21 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 1:2 )");
+        var tagPortrait32 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 2:3 )");
+        var tagPortrait43 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 3:4 )");
+        var tagPortrait54 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 4:5 )");
+        var tagPortrait65 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 5:6 )");
+        var tagPortrait75 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 5:7 )");
+        var tagPortrait87 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 7:8 )");
+
+        if (tagPortrait != null && image.Height > image.Width) imageSpecificTags.Add(tagPortrait.EntityId);
+        if (tagPortrait169 != null && image.Height * 9 == image.Width * 16) imageSpecificTags.Add(tagPortrait169.EntityId);
+        if (tagPortrait21 != null && image.Height * 1 == image.Width * 2) imageSpecificTags.Add(tagPortrait21.EntityId);
+        if (tagPortrait32 != null && image.Height * 2 == image.Width * 3) imageSpecificTags.Add(tagPortrait32.EntityId);
+        if (tagPortrait43 != null && image.Height * 3 == image.Width * 4) imageSpecificTags.Add(tagPortrait43.EntityId);
+        if (tagPortrait54 != null && image.Height * 4 == image.Width * 5) imageSpecificTags.Add(tagPortrait54.EntityId);
+        if (tagPortrait75 != null && image.Height * 5 == image.Width * 7) imageSpecificTags.Add(tagPortrait75.EntityId);
+        if (tagPortrait65 != null && image.Height * 5 == image.Width * 6) imageSpecificTags.Add(tagPortrait65.EntityId);
+        if (tagPortrait87 != null && image.Height * 7 == image.Width * 8) imageSpecificTags.Add(tagPortrait87.EntityId);
 
         var relations = imageSpecificTags.Select(tagId => new RelationMoodTag
         {
@@ -225,17 +239,50 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         if (tagWebm != null && video.Extension == "webm") videoSpecificTags.Add(tagWebm.EntityId);
 
         // Handle Dimensions.
-        var tagSquare = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Square");
-        var tagLandscape = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape");
-        var tagLandscape169 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape (16:9)");
-        var tagPortrait = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait");
-        var tagPortrait169 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait (16:9)");
-
+        var tagSquare = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Square ( 1:1 )");
         if (tagSquare != null && video.Height == video.Width) videoSpecificTags.Add(tagSquare.EntityId);
-        if (tagPortrait != null && video.Height > video.Width) videoSpecificTags.Add(tagPortrait.EntityId);
+
+        // Landscape ratios
+        var tagLandscape = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape");
+        var tagLandscape169 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 16:9 )");
+        var tagLandscape21 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 2:1 )");
+        var tagLandscape32 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 3:2 )");
+        var tagLandscape43 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 4:3 )");
+        var tagLandscape54 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 5:4 )");
+        var tagLandscape65 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 6:5 )");
+        var tagLandscape75 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 7:5 )");
+        var tagLandscape87 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Landscape ( 8:7 )");
+
         if (tagLandscape != null && video.Height < video.Width) videoSpecificTags.Add(tagLandscape.EntityId);
-        if (tagLandscape169 != null && ((float)video.Height / video.Width) == (16f / 9)) videoSpecificTags.Add(tagLandscape169.EntityId);
-        if (tagPortrait169 != null && ((float)video.Width / video.Height) == (16f / 9)) videoSpecificTags.Add(tagPortrait169.EntityId);
+        if (tagLandscape169 != null && video.Width * 9 == video.Height * 16) videoSpecificTags.Add(tagLandscape169.EntityId);
+        if (tagLandscape21 != null && video.Width * 1 == video.Height * 2) videoSpecificTags.Add(tagLandscape21.EntityId);
+        if (tagLandscape32 != null && video.Width * 2 == video.Height * 3) videoSpecificTags.Add(tagLandscape32.EntityId);
+        if (tagLandscape43 != null && video.Width * 3 == video.Height * 4) videoSpecificTags.Add(tagLandscape43.EntityId);
+        if (tagLandscape54 != null && video.Width * 4 == video.Height * 5) videoSpecificTags.Add(tagLandscape54.EntityId);
+        if (tagLandscape65 != null && video.Width * 5 == video.Height * 6) videoSpecificTags.Add(tagLandscape65.EntityId);
+        if (tagLandscape75 != null && video.Width * 5 == video.Height * 7) videoSpecificTags.Add(tagLandscape75.EntityId);
+        if (tagLandscape87 != null && video.Width * 7 == video.Height * 8) videoSpecificTags.Add(tagLandscape87.EntityId);
+
+        // Portrait ratios
+        var tagPortrait = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait");
+        var tagPortrait169 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 9:16 )");
+        var tagPortrait21 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 1:2 )");
+        var tagPortrait32 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 2:3 )");
+        var tagPortrait43 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 3:4 )");
+        var tagPortrait54 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 4:5 )");
+        var tagPortrait65 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 5:6 )");
+        var tagPortrait75 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 5:7 )");
+        var tagPortrait87 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Portrait ( 7:8 )");
+
+        if (tagPortrait != null && video.Height > video.Width) videoSpecificTags.Add(tagPortrait.EntityId);
+        if (tagPortrait169 != null && video.Height * 9 == video.Width * 16) videoSpecificTags.Add(tagPortrait169.EntityId);
+        if (tagPortrait21 != null && video.Height * 1 == video.Width * 2) videoSpecificTags.Add(tagPortrait21.EntityId);
+        if (tagPortrait32 != null && video.Height * 2 == video.Width * 3) videoSpecificTags.Add(tagPortrait32.EntityId);
+        if (tagPortrait43 != null && video.Height * 3 == video.Width * 4) videoSpecificTags.Add(tagPortrait43.EntityId);
+        if (tagPortrait54 != null && video.Height * 4 == video.Width * 5) videoSpecificTags.Add(tagPortrait54.EntityId);
+        if (tagPortrait65 != null && video.Height * 5 == video.Width * 6) videoSpecificTags.Add(tagPortrait65.EntityId);
+        if (tagPortrait75 != null && video.Height * 5 == video.Width * 7) videoSpecificTags.Add(tagPortrait75.EntityId);
+        if (tagPortrait87 != null && video.Height * 7 == video.Width * 8) videoSpecificTags.Add(tagPortrait87.EntityId);
 
         var relations = videoSpecificTags.Select(tagId => new RelationMoodTag
         {

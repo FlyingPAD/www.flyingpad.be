@@ -1,12 +1,14 @@
-﻿using MB.Application.Interfaces.Persistence.Common;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Models.Commands.CreateModel;
 
-public class CreateModelCommandHandler(IBaseRepository<Model> modelRepository) : IRequestHandler<CreateModelCommand, CreateModelCommandResponse>
+public class CreateModelCommandHandler(IModelRepository modelRepository, IFranchiseRepository franchiseRepository) : IRequestHandler<CreateModelCommand, CreateModelCommandResponse>
 {
-    private readonly IBaseRepository<Model> _modelRepository = modelRepository;
+    private readonly IModelRepository _modelRepository = modelRepository;
+    private readonly IFranchiseRepository _franchiseRepository = franchiseRepository;
 
     public async Task<CreateModelCommandResponse> Handle(CreateModelCommand request, CancellationToken cancellationToken)
     {
@@ -21,10 +23,19 @@ public class CreateModelCommandHandler(IBaseRepository<Model> modelRepository) :
 
         model = await _modelRepository.CreateAsync(model);
 
+        var franchisesIds = await _franchiseRepository.GetPrimaryIdsByBusinessIdsAsync(request.FranchisesIds);
+
+        if (franchisesIds.Count != request.FranchisesIds.Count)
+        {
+            throw new NotFoundException("One or more franchises were not found.");
+        }
+
+        await _modelRepository.AddFranchisesAsync(model.EntityId, franchisesIds);
+
         return new CreateModelCommandResponse
         {
             Success = true,
-            Message = "Success.",
+            Message = "Model was created.",
             ModelId = model.BusinessId
         };
     }

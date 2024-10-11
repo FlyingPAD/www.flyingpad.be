@@ -6,8 +6,8 @@ public class GetStyleByIdQueryValidator : AbstractValidator<GetStyleByIdQuery>
 {
     public GetStyleByIdQueryValidator()
     {
-        RuleFor(x => x.Id)
-            .NotEmpty().WithMessage("ID is required.")
-            .NotEqual(Guid.Empty).WithMessage("ID must not be empty.");
+        RuleFor(request => request.StyleId)
+            .NotEmpty().WithMessage("StyleId is required.")
+            .NotEqual(Guid.Empty).WithMessage("StyleId must not be empty.");
     }
 }

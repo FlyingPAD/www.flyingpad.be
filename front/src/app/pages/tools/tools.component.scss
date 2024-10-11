@@ -1,59 +1,61 @@
-.tools-icons
-{
-    display: flex;
-    justify-content: center;
-    overflow-x: scroll;
-
-    a
-    {
+.tools-icons {
+    .icon {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
 
-        height: 150px;
-        min-width: 150px;
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-        background-color: rgb(107, 82, 64, 0.4);
-        border: 3px solid grey;
-        
-        border-radius: 10px;
-        box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
+            height: 120px;
+            min-width: 120px;
 
-        margin: 15px;
+            background-color: rgb(107, 82, 64, 0.4);
+            border: 3px solid grey;
 
-        img
-        {
-            height: 85%;
-            opacity: 0.5;
+            border-radius: 10px;
+            box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
+
+            margin: 15px;
+
+            img {
+                height: 85%;
+                opacity: 0.5;
+            }
         }
-    }
-    a:hover:not(.active)
-    {
-        background-color: rgb(107, 82, 64, 0.1);
-        border: 3px solid var(--colorMain);
-        transition-duration: 300ms;
-        cursor: pointer;
-        img
-        {
-            opacity: 1;
+
+        a:hover:not(.active) {
+            background-color: rgb(107, 82, 64, 0.1);
+            border: 3px solid var(--colorMain);
             transition-duration: 300ms;
+            cursor: pointer;
+
+            img {
+                opacity: 1;
+                transition-duration: 300ms;
+            }
         }
-    }
-    .active
-    {
-        background-color: rgb(107, 82, 64, 0.1);
-        border: 3px solid var(--colorMain);
-        img
-        {
-            opacity: 1;
+
+        .active {
+            background-color: rgb(107, 82, 64, 0.1);
+            border: 3px solid var(--colorMain);
+
+            img {
+                opacity: 1;
+            }
+        }
+
+        span {
+            margin-bottom: 15px;
         }
     }
 }
 
-@media (max-width: 900px) 
-{ 
-    .tools-icons
-    {
-        justify-content:left;
+@media (max-width: 900px) {
+    .tools-icons {
+        justify-content: left;
     }
 }

@@ -21,8 +21,8 @@ public class CreateStyleCommandHandler(IBaseRepository<Style> styleRepository) :
         return new CreateStyleCommandResponse
         {
             Success = true,
-            Message = "Success.",
-            BusinessId = style.BusinessId
+            Message = "Creation successful.",
+            StyleId = style.BusinessId
         };
     }
 }

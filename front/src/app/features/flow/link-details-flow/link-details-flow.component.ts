@@ -32,7 +32,8 @@ export class LinkDetailsFlowComponent {
        linkId : this.link?.businessId,
        name : this.formGroup.value.name,
        description : this.formGroup.value.description,
-       url : this.formGroup.value.url
+       url : this.formGroup.value.url,
+       linkCategoryIds: []
       }
       this.#flowService.UpdateLink(form).subscribe({
         next: () => {

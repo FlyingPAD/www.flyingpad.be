@@ -1,44 +1,41 @@
-<div id="layout-central">
-    <h2>User Profile</h2>
-
-    <div class="row-white">
-        <div class="menu-flex">
-            <a routerLink="/users/user-update">Update</a>
+<h2 class="h2">Account Settings</h2>
+<div class="row-white">
+    <div class="buttons">
+        <app-button-back />
+    </div>
+</div>
+<p class="p">Edit your account settings – name, email, password, address.</p>
+<div class="profile">
+    <div class="flex">
+        <p><b>First name</b> : </p>
+        <p>{{userService.appUser.firstName}}</p>
+    </div>   
+    <div class="flex">
+        <p><b>Last name</b> : </p>
+        <p>{{userService.appUser.lastName}}</p>
+    </div>
+    <div class="flex">
+        <p><b>Email</b> : </p>
+        <p>{{userService.appUser.email}}</p>
+    </div>  
+    <div class="flex">
+        <p><b>Birthdate</b> : </p>
+        <p>{{userService.appUser.birthdate  | date : 'MMMM d, y'}}</p>
+    </div>  
+    <div class="flex_created">
+        <div class="box_created">
+            <p>Created :</p>
+            <p>{{userService.appUser.created | date : 'MMMM d, y | HH:mm'}}</p>
+        </div>
+        <div class="box_created">
+            <p>Modified :</p>
+            <p>{{userService.appUser.modified | date : 'MMMM d, y | HH:mm'}}</p>
         </div>
     </div>
-    
-    <div id="profile">
-        <div class="flex">
-            <p><b>First name</b> : </p>
-            <p>{{userService.appUser.firstName}}</p>
-        </div>   
-        <div class="flex">
-            <p><b>Last name</b> : </p>
-            <p>{{userService.appUser.lastName}}</p>
-        </div>
-        <div class="flex">
-            <p><b>Email</b> : </p>
-            <p>{{userService.appUser.email}}</p>
-        </div>  
-        <div class="flex">
-            <p><b>Birthdate</b> : </p>
-            <p>{{userService.appUser.birthdate  | date : 'MMMM d, y'}}</p>
-        </div>  
-        <div class="flex_created">
-            <div class="box_created">
-                <p>Created :</p>
-                <p>{{userService.appUser.created | date : 'MMMM d, y | HH:mm'}}</p>
-            </div>
-            <div class="box_created">
-                <p>Modified :</p>
-                <p>{{userService.appUser.modified | date : 'MMMM d, y | HH:mm'}}</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="row-white">
-        <div class="menu-flex">
-            <a routerLink="/users/delete-user/{{userService.appUser.businessId}}">Delete your account</a>
-        </div>
+</div>
+<div class="row-white">
+    <div class="buttons">
+        <div class="button" routerLink="/users/user-update">Update</div>
+        <div class="button" routerLink="/users/delete-user/{{userService.appUser.businessId}}">Delete</div>
     </div>
 </div>

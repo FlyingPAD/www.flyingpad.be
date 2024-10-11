@@ -1,4 +1,4 @@
-﻿using MB.Application.Interfaces;
+﻿using MB.Application.Interfaces.Infrastructure;
 using MB.Application.Interfaces.Persistence;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
@@ -36,7 +36,7 @@ public class CreateMoodImageCommandHandler(
         {
             MoodId = createdImage.BusinessId,
             Success = true,
-            Message = "Success."
+            Message = "Image created successfully."
         };
 
         return response;

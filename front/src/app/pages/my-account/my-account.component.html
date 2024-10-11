@@ -1,0 +1,16 @@
+<h1 class="h1">{{ 'title.my-account' | translate }}</h1>
+<p class="p">{{ 'message.my-account' | translate }}</p>
+<div class="my-account">
+    <div class="option">
+        <img src="../../../assets/app_icons/icon_model_001.png" (click)="goTo('/users/user-details')" />
+        <h2 class="h2">Account Settings</h2>
+        <p>Edit your account settings – name, email, password, address.</p>
+        <p><a (click)="goTo('/users/user-details')">Account Settings → </a></p>
+    </div>
+    <div class="option">
+        <img src="../../../assets/app_icons/toggle.png" (click)="goTo('/settings')" />
+        <h2 class="h2">Settings</h2>
+        <p>Edit your navigation settings – prefered language, themes. </p>
+        <p><a (click)="goTo('/settings')">Settings → </a></p>
+    </div>
+</div>

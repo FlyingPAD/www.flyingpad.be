@@ -1,11 +1,20 @@
 <div class="edition">
     <h2 class="h2">Create new model.</h2>
-    <form [formGroup]="createFormGroup">
+    <form [formGroup]="formGroup">
         <input type="text" formControlName="pseudonym" placeholder="Pseudonym">
         <input type="text" formControlName="firstName" placeholder="First Name">
         <input type="text" formControlName="lastName" placeholder="Last Name">
         <input type="text" formControlName="gender" placeholder="Gender">
         <input type="text" formControlName="description" placeholder="Description">
+        <div class="checkboxes" formArrayName="franchises">
+            <div *ngFor="let franchise of franchisesArray.controls; let i = index" [formGroupName]="i">
+              <div class="combo">
+                <label [for]="franchise.get('name')?.value">{{ franchise.get('name')?.value }}</label>
+                <input type="checkbox" formControlName="isChecked">
+              </div>
+            </div>
+          </div>
     </form>
-    <a class="edition-button" [class.edition-button-disabled]="createFormGroup.invalid" (click)="onSubmit()">Submit</a>
+    <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="onSubmit()">Submit</a>
 </div>
+<div class="spacer-150"></div>

@@ -1,0 +1,53 @@
+.my-account {
+    margin-top: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .option {
+        border-radius: 15px;
+
+        width: 300px;
+
+        margin: 35px;
+
+        img {
+            display: block;
+            margin: auto;
+            width: 100px;
+            height: 100px;
+        }
+        img:hover {
+            cursor: pointer;
+        }
+
+        h1 {
+            margin: 15px;
+
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            color: var(--colorMain);
+        }
+
+        p {
+            padding: 5px;
+            text-align: center;
+            font-size: 17px;
+            color: var(--colorMain);
+        }
+
+        a {
+            text-align: center;
+            font-size: 17px;
+            color: #2e1e13;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}

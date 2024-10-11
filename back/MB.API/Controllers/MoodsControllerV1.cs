@@ -6,13 +6,13 @@ using MB.Application.Features.Moods.Commands.UpdateMood;
 using MB.Application.Features.Moods.Commands.UpdateMoodScore;
 using MB.Application.Features.Moods.Queries;
 using MB.Application.Features.Moods.Queries.CountMoods;
+using MB.Application.Features.Moods.Queries.GetAllMoods;
 using MB.Application.Features.Moods.Queries.GetMoodById;
 using MB.Application.Features.Moods.Queries.GetMoodsByArtist;
 using MB.Application.Features.Moods.Queries.GetMoodsByFranchise;
 using MB.Application.Features.Moods.Queries.GetMoodsByModel;
 using MB.Application.Features.Moods.Queries.GetMoodsByTag;
-using MB.Application.Features.Moods.Queries.GetMoodsList;
-using MB.Application.Features.Moods.Queries.GetRandomMoodQuery;
+using MB.Application.Features.Moods.Queries.GetRandomMood;
 using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -34,12 +34,12 @@ public class MoodsControllerV1(IMediator mediator) : ControllerBase
 
     [HttpPost("CreateMoodImage")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<CreateMoodImageCommandResponse>> CreateMoodImage([FromBody] CreateMoodImageCommand createMoodImageCommand)
+    public async Task<ActionResult<CreateMoodImageCommandResponse>> CreateImage([FromBody] CreateMoodImageCommand createMoodImageCommand)
         => Ok(await _mediator.Send(createMoodImageCommand));
 
     [HttpPost("CreateMoodVideo")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<CreateMoodVideoCommandResponse>> CreateMoodVideo([FromBody] CreateMoodVideoCommand createMoodVideoCommand)
+    public async Task<ActionResult<CreateMoodVideoCommandResponse>> CreateVideo([FromBody] CreateMoodVideoCommand createMoodVideoCommand)
     => Ok(await _mediator.Send(createMoodVideoCommand));
 
     [HttpGet("Count")]
@@ -47,8 +47,8 @@ public class MoodsControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(new CountMoodsQuery()));
 
     [HttpGet("GetAll")]
-    public async Task<ActionResult<GetMoodsListQueryResponse>> GetAll()
-        => Ok(await _mediator.Send(new GetMoodsListQuery()));
+    public async Task<ActionResult<GetAllMoodsQueryResponse>> GetAll()
+        => Ok(await _mediator.Send(new GetAllMoodsQuery()));
 
     [HttpGet("GetOneDetailsRandom")]
     public async Task<ActionResult<GetRandomMoodQueryResponse>> GetOneDetailsRandom()
@@ -56,7 +56,7 @@ public class MoodsControllerV1(IMediator mediator) : ControllerBase
 
     [HttpGet("GetOneDetails/{moodId}")]
     public async Task<ActionResult<GetMoodByIdQueryResponse>> GetOneDetails(Guid moodId)
-        => Ok(await _mediator.Send(new GetMoodByIdQuery { Id = moodId }));
+        => Ok(await _mediator.Send(new GetMoodByIdQuery { MoodId = moodId }));
 
     [HttpGet("GetByTag/{tagId}")]
     public async Task<ActionResult<GetMoodsByTagQueryResponse>> GetByTag(Guid tagId)
@@ -76,16 +76,16 @@ public class MoodsControllerV1(IMediator mediator) : ControllerBase
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<BaseResponse>> Update([FromBody] UpdateMoodCommand updateMoodCommand)
-        => Ok(await _mediator.Send(updateMoodCommand));
+    public async Task<ActionResult<BaseResponse>> Update([FromBody] UpdateMoodCommand command)
+        => Ok(await _mediator.Send(command));
 
     [HttpPut("UpdateScore")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<UpdateMoodScoreCommandResponse>> UpdateScore([FromBody] UpdateMoodScoreCommand command )
+    public async Task<ActionResult<BaseResponse>> UpdateScore([FromBody] UpdateMoodScoreCommand command)
         => Ok(await _mediator.Send(command));
 
     [HttpDelete("Delete/{moodId}")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<BaseResponse>> Delete( Guid moodId )
+    public async Task<ActionResult<BaseResponse>> Delete(Guid moodId)
         => Ok(await _mediator.Send(new DeleteMoodCommand { MoodId = moodId }));
 }

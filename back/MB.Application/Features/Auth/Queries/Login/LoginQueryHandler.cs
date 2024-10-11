@@ -1,4 +1,5 @@
-﻿using MB.Application.Interfaces;
+﻿using MB.Application.Exceptions;
+using MB.Application.Interfaces;
 using MB.Application.Interfaces.Persistence;
 using MediatR;
 
@@ -11,23 +12,15 @@ public class LoginQueryHandler(IAuthRepository authRepository, ITokenManager tok
 
     public async Task<LoginQueryResponse> Handle(LoginQuery request, CancellationToken cancellationToken)
     {
-        var user = await _authRepository.LoginAsync(request.Email, request.Password);
-
-        if (user == null)
-        {
-            return new LoginQueryResponse(null)
-            {
-                Success = false,
-                Message = "Invalid credentials."
-            };
-        }
+        var user = await _authRepository.LoginAsync(request.Email, request.Password)
+            ?? throw new NotFoundException("Invalid credentials.");
 
         var token = _tokenManager.GenerateToken(user);
 
         return new LoginQueryResponse(token)
         {
             Success = true,
-            Message = "Authentication successful."
+            Message = "Welcome."
         };
     }
 }

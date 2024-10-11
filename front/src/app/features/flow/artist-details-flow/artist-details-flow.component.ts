@@ -30,6 +30,7 @@ export class ArtistDetailsFlowComponent {
        artistId : this.artist?.businessId,
        name : this.formGroup.value.name,
        description : this.formGroup.value.description,
+       styleIds : []
       }
       this.#flowService.UpdateArtist(form).subscribe({
         next: () => {

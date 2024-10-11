@@ -13,14 +13,14 @@ public class DeleteFranchiseCommandHandler(IBaseRepository<Franchise> franchiseR
     public async Task<BaseResponse> Handle(DeleteFranchiseCommand request, CancellationToken cancellationToken)
     {
         var franchise = await _franchiseRepository.GetByBusinessIdAsync(request.FranchiseId) 
-                ?? throw new NotFoundException($"Franchise with ID {request.FranchiseId} was not found.");
+                ?? throw new NotFoundException("Franchise not found.");
 
         await _franchiseRepository.DeleteAsync(franchise);
 
         return new BaseResponse
         {
             Success = true,
-            Message = "Success."
+            Message = "Franchise was deleted."
         };
     }
 }

@@ -58,11 +58,11 @@ export class EditTagsComponent {
   }
 
   go():void {
-    this.#flowService.updateMoodsGalleryType('tag')
     this.#router.navigateByUrl('/moods')
   }
 
   setTag(tag : TagLight): void {
+
     this.#flowService.updateTagId(tag.businessId)
   }
 

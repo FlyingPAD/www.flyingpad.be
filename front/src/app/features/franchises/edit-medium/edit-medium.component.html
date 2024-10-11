@@ -1,0 +1,15 @@
+<div class="edition"> 
+    <h2 class="h2">Edit current medium.</h2>
+    <form [formGroup]="editFormGroup">
+        <input type="text" formControlName="name">
+        <input type="text" formControlName="description">     
+    </form>
+    <a class="edition-button" [class.edition-button-disabled]="editFormGroup.invalid" (click)="onSubmit()">Submit</a>
+    <a class="edition-button" (click)="openDeleteDialog()">Delete</a>
+</div>
+
+@if(isDeleteDialogOpen) {
+    <app-dialog (dialog)="closeDeleteDialog()">
+        <app-delete-medium [medium]="medium" (toggleDialog)="closeDeleteDialogEmit()" />
+    </app-dialog>
+}

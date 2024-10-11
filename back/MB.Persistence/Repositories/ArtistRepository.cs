@@ -1,5 +1,4 @@
-﻿using MB.Application.Exceptions;
-using MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
+﻿using MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 using MB.Application.Interfaces.Persistence;
 using MB.Domain.Common;
 using MB.Domain.Entities;
@@ -25,10 +24,12 @@ public class ArtistRepository(Context context) : BaseRepository<Artist>(context)
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<Artist>> GetArtistsByStyle(int? styleId)
+    public async Task<IEnumerable<Artist>> GetArtistsByStyle(int styleId)
     {
         return await _context.Artists
-            .Where(artist => artist.ArtistStyles != null && artist.ArtistStyles.Any(relation => relation.StyleId == styleId))
+            .Where(artist => artist.ArtistStyles != null && artist.ArtistStyles
+            .Any(relation => relation.StyleId == styleId))
+            .OrderBy(artist => artist.Name)
             .ToListAsync();
     }
 
@@ -98,27 +99,28 @@ public class ArtistRepository(Context context) : BaseRepository<Artist>(context)
         await _context.SaveChangesAsync();
     }
 
-    public async System.Threading.Tasks.Task UpdateStyles(int artistId, ICollection<int> stylesIds)
+    public async Task<Artist?> GetArtistWithStylesAsync(int artistId)
     {
-        var artist = await _context.Artists
-                    .Include(artist => artist.ArtistStyles)
-                    .FirstOrDefaultAsync(artist => artist.EntityId == artistId)
-                    ?? throw new NotFoundException("Artist not found.");
+        return await _context.Artists
+            .Include(artist => artist.ArtistStyles)
+            .FirstOrDefaultAsync(artist => artist.EntityId == artistId);
+    }
 
-        var existingStylesIds = artist.ArtistStyles?.Select(relation => relation.StyleId).ToList() ?? [];
+    public async System.Threading.Tasks.Task RemoveArtistStylesAsync(Artist artist)
+    {
+        _context.RArtistStyle.RemoveRange(artist.ArtistStyles ?? []);
+        await _context.SaveChangesAsync();
+    }
 
-        var stylesToAdd = stylesIds.Except(existingStylesIds).ToList();
-        var relationsToAdd = stylesToAdd.Select(styleId => new RelationArtistStyle { ArtistId = artistId, StyleId = styleId });
-        _context.RArtistStyle.AddRange(relationsToAdd);
-
-        var stylesToRemove = existingStylesIds.Except(stylesIds).ToList();
-        var relationsToRemove = artist.ArtistStyles?.Where(relation => stylesToRemove.Contains(relation.StyleId)).ToList();
-
-        if (relationsToRemove != null && relationsToRemove.Count != 0)
+    public async System.Threading.Tasks.Task AddArtistStylesAsync(int artistId, IEnumerable<int> styleIds)
+    {
+        var relationsToAdd = styleIds.Select(styleId => new RelationArtistStyle
         {
-            _context.RArtistStyle.RemoveRange(relationsToRemove);
-        }
+            ArtistId = artistId,
+            StyleId = styleId
+        }).ToList();
 
+        _context.RArtistStyle.AddRange(relationsToAdd);
         await _context.SaveChangesAsync();
     }
 }

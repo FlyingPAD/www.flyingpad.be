@@ -3,6 +3,7 @@ using MB.Domain.Entities;
 using MediatR;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Application.Interfaces.Persistence;
+using MB.Application.Exceptions;
 
 namespace MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 
@@ -14,26 +15,16 @@ public class GetArtistCheckBoxesByMoodQueryHandler(IMapper mapper, IBaseReposito
 
     public async Task<GetArtistCheckBoxesByMoodQueryResponse> Handle(GetArtistCheckBoxesByMoodQuery request, CancellationToken cancellationToken)
     {
-        int? moodEntityId = await _moodRepo.GetPrimaryIdByBusinessIdAsync(request.MoodId);
+        int moodId = await _moodRepo.GetPrimaryIdByBusinessIdAsync(request.MoodId)
+            ?? throw new NotFoundException("Mood not found.");
 
-        if (!moodEntityId.HasValue)
-        {
-            return new GetArtistCheckBoxesByMoodQueryResponse
-            {
-                Success = false,
-                Message = "No mood found with the given ID"
-            };
-        }
+        var artists = await _artistRepo.GetArtistsCheckBoxesByMood(moodId);
 
-        var artists = await _artistRepo.GetArtistsCheckBoxesByMood(moodEntityId.Value);
-
-        var response = new GetArtistCheckBoxesByMoodQueryResponse
+        return new GetArtistCheckBoxesByMoodQueryResponse
         {
             Success = true,
-            Message = "Artists retrieved based on mood",
+            Message = "Related artists.",
             Artists = _mapper.Map<IEnumerable<GetArtistCheckBoxesByMoodQueryDto>>(artists)
         };
-
-        return response;
     }
 }

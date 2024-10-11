@@ -4,5 +4,5 @@ namespace MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 
 public class GetArtistCheckBoxesByMoodQuery : IRequest<GetArtistCheckBoxesByMoodQueryResponse>
 {
-    public Guid MoodId { get; set; } = Guid.Empty;
+    public Guid MoodId { get; set; }
 }

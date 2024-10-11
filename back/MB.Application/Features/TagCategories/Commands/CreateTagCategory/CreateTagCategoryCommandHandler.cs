@@ -21,7 +21,7 @@ public class CreateTagCategoryCommandHandler(IBaseRepository<TagCategory> tagCat
         return new CreateTagCategoryCommandResponse
         {
             Success = true,
-            Message = "Success.",
+            Message = $"{tagCategory.Name} was created.",
             TagCategoryId = tagCategory.BusinessId
         };
     }
