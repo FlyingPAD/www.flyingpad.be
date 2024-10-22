@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { MediumFull } from '../../../models/franchise';
+import { MediumFull } from '../../../interfaces/franchise';
 import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { MediumUpdateForm } from '../../../models/forms-update';
+import { MediumUpdateForm } from '../../../interfaces/forms-update';
 
 @Component({
   selector: 'app-edit-medium',

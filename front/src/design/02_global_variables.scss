@@ -1,29 +1,148 @@
-:root {
-    --mobile: 450px;
-    --tablet-small: 768px;
-    --tablet: 992px;
-    --desktop: 1024px;
+:root {   
+    --texture001: url('../assets/backgrounds/back-default.jpg');
+    --colorBackground: #fff;
 
-    --colorMain: #6b5240;
-    --colorGreen: green;
-    --colorOrange: orange;
-    --colorRed: red;
-    --colorWhite: white;
+    --colorMain: rgb(107, 82, 64, 1);
+    --colorMainOpacity1: rgb(107, 82, 64, 0.1);
+    --colorMainOpacity2: rgb(107, 82, 64, 0.2);
+    --colorMainOpacity3: rgb(107, 82, 64, 0.3);
+    --colorMainOpacity4: rgb(107, 82, 64, 0.4);
+    --colorMainOpacity5: rgb(107, 82, 64, 0.5);
+    --colorMainOpacity6: rgb(107, 82, 64, 0.6);
+    --colorMainOpacity7: rgb(107, 82, 64, 0.7);
+    --colorMainOpacity8: rgb(107, 82, 64, 0.8);
+    --colorMainOpacity9: rgb(107, 82, 64, 0.9);
 
+    --colorWhite : #fff;
+    --colorWhiteOpacity1 : rgba(255, 255, 255, 0.1);
+    --colorWhiteOpacity2 : rgba(255, 255, 255, 0.2);
+    --colorWhiteOpacity3 : rgba(255, 255, 255, 0.3);
+    --colorWhiteOpacity4 : rgba(255, 255, 255, 0.4);
+    --colorWhiteOpacity5 : rgba(255, 255, 255, 0.5);
+    --colorWhiteOpacity6 : rgba(255, 255, 255, 0.6);
+    --colorWhiteOpacity7 : rgba(255, 255, 255, 0.7);
+    --colorWhiteOpacity8 : rgba(255, 255, 255, 0.8);
+    --colorWhiteOpacity9 : rgba(255, 255, 255, 0.9);
+
+    --colorFooter: rgb(55, 55, 55);
     --fontFamily: 'Open Sans', sans-serif;
+}
 
-    $sizeH1 : 17px;
-    $sizeH2 : 16px;
-    $sizeH3 : 15px;
+.dark {
+    --texture001: url(../assets/backgrounds/back-dark.jpg);
+    --colorBackground: #fff;
 
-    --logoFull: url(../assets/app_logos/fp_logo_01.png);
-    --logoSmall: url(../assets/app_logos/fp_logo_02.png);
+    --colorMain: #40526b;
+    --colorMainOpacity1: rgba(64, 82, 107, 0.1);
+    --colorMainOpacity2: rgba(64, 82, 107, 0.2);
+    --colorMainOpacity3: rgba(64, 82, 107, 0.3);
+    --colorMainOpacity4: rgba(64, 82, 107, 0.4);
+    --colorMainOpacity5: rgba(64, 82, 107, 0.5);
+    --colorMainOpacity6: rgba(64, 82, 107, 0.6);
+    --colorMainOpacity7: rgba(64, 82, 107, 0.7);
+    --colorMainOpacity8: rgba(64, 82, 107, 0.8);
+    --colorMainOpacity9: rgba(64, 82, 107, 0.9);
+    
+    --colorFooter: #40526b;
+    --fontFamily: 'Open Sans', sans-serif;
+}
 
-    --hamburger: url(../assets/app_icons/icon_hamburger_001.png);
-    --hamburgerLeft: url(../assets/app_icons/icon_hamburger_left_001.png);
-    --hamburgerRight: url(../assets/app_icons/icon_hamburger_right_001.png);
+.blue {
+    --texture001: url(../assets/backgrounds/back-blue.jpg);
+    --colorBackground: #fff;
 
-    --texture001: url(../assets/app_backgrounds/texture_001.jpg);
+    --colorMain: #40526b;
+    --colorMainOpacity1: rgba(64, 82, 107, 0.1);
+    --colorMainOpacity2: rgba(64, 82, 107, 0.2);
+    --colorMainOpacity3: rgba(64, 82, 107, 0.3);
+    --colorMainOpacity4: rgba(64, 82, 107, 0.4);
+    --colorMainOpacity5: rgba(64, 82, 107, 0.5);
+    --colorMainOpacity6: rgba(64, 82, 107, 0.6);
+    --colorMainOpacity7: rgba(64, 82, 107, 0.7);
+    --colorMainOpacity8: rgba(64, 82, 107, 0.8);
+    --colorMainOpacity9: rgba(64, 82, 107, 0.9);
 
-    --border: 1px;
+    --colorFooter: #40526b;
+    --fontFamily: 'Open Sans', sans-serif;
+}
+
+.pink {
+    --texture001: url(../assets/backgrounds/back-pink.jpg);
+    --colorBackground: #fff;
+
+    --colorMain: #5f4c56;
+    --colorMainOpacity1: rgba(95, 76, 86, 0.1);
+    --colorMainOpacity2: rgba(95, 76, 86, 0.2);
+    --colorMainOpacity3: rgba(95, 76, 86, 0.3);
+    --colorMainOpacity4: rgba(95, 76, 86, 0.4);
+    --colorMainOpacity5: rgba(95, 76, 86, 0.5);
+    --colorMainOpacity6: rgba(95, 76, 86, 0.6);
+    --colorMainOpacity7: rgba(95, 76, 86, 0.7);
+    --colorMainOpacity8: rgba(95, 76, 86, 0.8);
+    --colorMainOpacity9: rgba(95, 76, 86, 0.9);
+
+    --colorFooter: rgb(122, 48, 83);
+    --fontFamily: 'Open Sans', sans-serif;
+}
+
+.green {
+    --texture001: url(../assets/backgrounds/back-green.jpg);
+    --colorBackground: #e8f5e9;
+    --colorBackgroundOpacity5: rgba(232, 245, 233, 0.5);
+
+    --colorMain: #3a613b;
+    --colorMainOpacity1: rgba(58, 97, 59, 0.1);
+    --colorMainOpacity2: rgba(58, 97, 59, 0.2);
+    --colorMainOpacity3: rgba(58, 97, 59, 0.3);
+    --colorMainOpacity4: rgba(58, 97, 59, 0.4);
+    --colorMainOpacity5: rgba(58, 97, 59, 0.5);
+    --colorMainOpacity6: rgba(58, 97, 59, 0.6);
+    --colorMainOpacity7: rgba(58, 97, 59, 0.7);
+    --colorMainOpacity8: rgba(58, 97, 59, 0.8);
+    --colorMainOpacity9: rgba(58, 97, 59, 0.9);
+
+    --colorWhite: #fff;
+    --colorWhiteOpacity1: rgba(255, 255, 255, 0.1);
+    --colorWhiteOpacity2: rgba(255, 255, 255, 0.2);
+    --colorWhiteOpacity3: rgba(255, 255, 255, 0.3);
+    --colorWhiteOpacity4: rgba(255, 255, 255, 0.4);
+    --colorWhiteOpacity5: rgba(255, 255, 255, 0.5);
+    --colorWhiteOpacity6: rgba(255, 255, 255, 0.6);
+    --colorWhiteOpacity7: rgba(255, 255, 255, 0.7);
+    --colorWhiteOpacity8: rgba(255, 255, 255, 0.8);
+    --colorWhiteOpacity9: rgba(255, 255, 255, 0.9);
+
+    --colorFooter: #405e40;
+    --fontFamily: 'Open Sans', sans-serif;
+}
+
+.orange {
+    --texture001: url(../assets/backgrounds/back-orange.jpg);
+    --colorBackground: #fbe9e7;
+    --colorBackgroundOpacity5: rgba(251, 233, 231, 0.5);
+    
+    --colorMain: #9f5f00;
+    --colorMainOpacity1: rgba(159, 95, 0, 0.1);
+    --colorMainOpacity2: rgba(159, 95, 0, 0.2);
+    --colorMainOpacity3: rgba(159, 95, 0, 0.3);
+    --colorMainOpacity4: rgba(159, 95, 0, 0.4);
+    --colorMainOpacity5: rgba(159, 95, 0, 0.5);
+    --colorMainOpacity6: rgba(159, 95, 0, 0.6);
+    --colorMainOpacity7: rgba(159, 95, 0, 0.7);
+    --colorMainOpacity8: rgba(159, 95, 0, 0.8);
+    --colorMainOpacity9: rgba(159, 95, 0, 0.9);
+
+    --colorWhite: #fff;
+    --colorWhiteOpacity1: rgba(255, 255, 255, 0.1);
+    --colorWhiteOpacity2: rgba(255, 255, 255, 0.2);
+    --colorWhiteOpacity3: rgba(255, 255, 255, 0.3);
+    --colorWhiteOpacity4: rgba(255, 255, 255, 0.4);
+    --colorWhiteOpacity5: rgba(255, 255, 255, 0.5);
+    --colorWhiteOpacity6: rgba(255, 255, 255, 0.6);
+    --colorWhiteOpacity7: rgba(255, 255, 255, 0.7);
+    --colorWhiteOpacity8: rgba(255, 255, 255, 0.8);
+    --colorWhiteOpacity9: rgba(255, 255, 255, 0.9);
+
+    --colorFooter: #825e41;
+    --fontFamily: 'Open Sans', sans-serif;
 }

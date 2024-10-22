@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { ArtistFull } from '../../../models/artist';
+import { ArtistFull } from '../../../interfaces/artist';
 import { FlowService } from '../../../services/flow.service';
 import { Subscription } from 'rxjs';
 

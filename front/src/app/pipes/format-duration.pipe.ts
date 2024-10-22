@@ -1,22 +1,40 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core'
+import { TranslateService } from '@ngx-translate/core'
 
 @Pipe({
-  name: 'formatDuration'
+  name: 'formatDuration',
+  pure: true
 })
-export class FormatDurationPipe implements PipeTransform 
-{
-  transform(seconds : number) : string {
+export class FormatDurationPipe implements PipeTransform {
+  private translate = inject(TranslateService)
+
+  transform(seconds: number): string {
+    const singularPlurals = {
+      second: this.translate.instant('title.second'),
+      seconds: this.translate.instant('title.seconds'),
+      minute: this.translate.instant('title.minute'),
+      minutes: this.translate.instant('title.minutes'),
+      hour: this.translate.instant('title.hour'),
+      hours: this.translate.instant('title.hours')
+    }
+
     if (seconds < 60) {
-      return seconds.toFixed(0) + " seconds"
+      const unit = seconds === 1 ? singularPlurals.second : singularPlurals.seconds
+      return `${seconds.toFixed(0)} ${unit}`
+    } 
+
+    if (seconds >= 60 && seconds < 3600) {
+      const minutes = (seconds / 60).toFixed(0)
+      const unit = minutes === '1' ? singularPlurals.minute : singularPlurals.minutes
+      return `${minutes} ${unit}`
+    } 
+
+    if (seconds >= 3600 && seconds < 216000) {
+      const hours = ((seconds / 60) / 60).toFixed(0)
+      const unit = hours === '1' ? singularPlurals.hour : singularPlurals.hours
+      return `${hours} ${unit}`
     }
-    if (seconds > 60 && seconds < 3600) {
-      return (seconds / 60).toFixed(0) + " minutes"
-    }
-    if (seconds > 3600 && seconds < 216000) {
-      return ((seconds / 60) / 60).toFixed(0) + " hours"
-    }
-    else {
-      return seconds.toFixed(0)
-    }
+
+    return seconds.toFixed(0)
   }
 }

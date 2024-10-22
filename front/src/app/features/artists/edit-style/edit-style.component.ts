@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { StyleFull } from '../../../models/style';
+import { StyleFull } from '../../../interfaces/style';
 import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { StyleUpdateForm } from '../../../models/forms-update';
+import { StyleUpdateForm } from '../../../interfaces/forms-update';
 
 @Component({
   selector: 'app-edit-style',

@@ -1,7 +1,7 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { AudioService } from '../../../services/audio.service';
 import { KeyStation } from '../../../models/music-tools/key-station';
-import { Note } from '../../../models/music-tools/note';
+import { Note } from '../../../interfaces/music-tools/note';
 import { KeysService } from '../../../services/keys.service';
 import { Router } from '@angular/router';
 
@@ -10,74 +10,68 @@ import { Router } from '@angular/router';
   templateUrl: './flying-keys-mini.component.html',
   styleUrl: './flying-keys-mini.component.scss'
 })
-export class FlyingKeysMiniComponent 
-{
+export class FlyingKeysMiniComponent {
   #audioService = inject(AudioService)
   keysService = inject(KeysService)
   #router = inject(Router)
 
-  // Station
+  keyStation: KeyStation = new KeyStation(this.#audioService, this.keysService)
+  currentVolume: number = 0.5
+  showNotes: boolean = true
 
-  keyStation :       KeyStation   = new KeyStation(this.#audioService, this.keysService)
-  currentVolume :    number       = 0.5
-  showNotes :        boolean      = true
+  CKeyPressed: boolean = false
+  CSharpKeyPressed: boolean = false
+  DKeyPressed: boolean = false
+  DSharpKeyPressed: boolean = false
+  EKeyPressed: boolean = false
+  FKeyPressed: boolean = false
+  FSharpKeyPressed: boolean = false
+  GKeyPressed: boolean = false
+  GSharpKeyPressed: boolean = false
+  AKeyPressed: boolean = false
+  ASharpKeyPressed: boolean = false
+  BKeyPressed: boolean = false
 
-  CKeyPressed :      boolean  = false
-  CSharpKeyPressed : boolean  = false
-  DKeyPressed :      boolean  = false
-  DSharpKeyPressed : boolean  = false
-  EKeyPressed :      boolean  = false
-  FKeyPressed :      boolean  = false
-  FSharpKeyPressed : boolean  = false
-  GKeyPressed :      boolean  = false
-  GSharpKeyPressed : boolean  = false
-  AKeyPressed :      boolean  = false
-  ASharpKeyPressed : boolean  = false
-  BKeyPressed :      boolean  = false
-  
-  playNote( keyStation : KeyStation, note : Note, durationInSeconds : number )
-  {
+  playNote(keyStation: KeyStation, note: Note, durationInSeconds: number): void {
     keyStation.playNote(note, durationInSeconds, this.currentVolume)
   }
 
-  triggerShowNotesMaster()
-  {
+  triggerShowNotesMaster(): void {
     this.showNotes = !this.showNotes
   }
 
-  triggerShowNotes(station : KeyStation)
-  {
+  triggerShowNotes(station: KeyStation): void {
     station.showNotes = !station.showNotes
   }
-  triggerShowNotesFr(station : KeyStation)
-  {
+  triggerShowNotesFr(station: KeyStation): void {
     station.showNotesFr = !station.showNotesFr
   }
-  triggerShowEnharmony(station : KeyStation)
-  {
+  triggerShowEnharmony(station: KeyStation): void {
     station.showEnharmony = !station.showEnharmony
   }
-  triggerShowFrequencies(station : KeyStation)
-  {
+  triggerShowFrequencies(station: KeyStation): void {
     station.showFrequency = !station.showFrequency
   }
 
-  volumeUp()
-  {
-    if(this.currentVolume >= 1) this.currentVolume = 1
+  volumeUp(): void {
+    if (this.currentVolume >= 1) this.currentVolume = 1
     else this.currentVolume += 0.1
   }
-  volumeDown()
-  {
-    if(this.currentVolume <= 0) this.currentVolume = 0
+  volumeDown(): void {
+    if (this.currentVolume <= 0) this.currentVolume = 0
     else this.currentVolume -= 0.1
   }
 
+  lightKey(note: Note): void {
+    note.pressed = true
+    setTimeout(() => {
+      note.pressed = false
+    }, 75)
+  }
+
   @HostListener('window:keydown', ['$event'])
-  onKeyPress(event: KeyboardEvent) 
-  {
-    switch (event.code) 
-    {
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.code) {
       case 'Backspace':
         this.#router.navigateByUrl('/tools')
         break
@@ -139,14 +133,5 @@ export class FlyingKeysMiniComponent
         this.playNote(this.keyStation, this.keyStation.notes[11], 0.5)
         break
     }
-  }
-
-  lightKey(note : Note) 
-  { 
-    note.pressed = true
-    setTimeout(() => 
-    { 
-      note.pressed = false 
-    }, 75) 
   }
 }

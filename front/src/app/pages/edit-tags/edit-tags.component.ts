@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { TagLight } from '../../models/tag';
+import { TagLight } from '../../interfaces/tag';
 import { Router } from '@angular/router';
 import { FlowService } from '../../services/flow.service';
 import { PaginationService } from '../../services/pagination.service';
+import { ImageUrlService } from '../../services/image-url.service';
 
 @Component({
   selector: 'app-edit-tags',
@@ -13,6 +14,7 @@ export class EditTagsComponent {
   #flowService = inject(FlowService)
   #router = inject(Router)
   paginationService = inject(PaginationService)
+  #imageURLService = inject(ImageUrlService)
 
   flow = this.#flowService.flow
 
@@ -69,5 +71,9 @@ export class EditTagsComponent {
   updateTagCategoryId(tagCategoryId : number | null): void {
     this.paginationService.editTagsCurrentPageReset()
     this.#flowService.updateTagCategoryId(tagCategoryId)
+  }
+
+  public getImageUrl(folderName: string, imageName: string, imageExtension: string): string {
+    return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
   }
 }

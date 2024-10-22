@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { TagCategoryCreateForm } from '../../../models/forms-create';
+import { TagCategoryCreateForm } from '../../../interfaces/forms-create';
 
 @Component({
   selector: 'app-create-tag-category',

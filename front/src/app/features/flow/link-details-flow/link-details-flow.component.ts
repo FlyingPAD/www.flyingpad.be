@@ -1,9 +1,9 @@
 import { Component, inject, Input } from '@angular/core';
-import { LinkFull } from '../../../models/link';
+import { LinkFull } from '../../../interfaces/link';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { FlowService } from '../../../services/flow.service';
-import { LinkUpdateForm } from '../../../models/forms-update';
+import { LinkUpdateForm } from '../../../interfaces/forms-update';
 
 @Component({
   selector: 'app-link-details-flow',

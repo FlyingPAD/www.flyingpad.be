@@ -1,5 +1,6 @@
 import { Component, EventEmitter, HostListener, inject, Input, Output } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { ImageUrlService } from '../../services/image-url.service';
 
 @Component({
   selector: 'app-bottom-bar',
@@ -7,6 +8,7 @@ import { UserService } from '../../services/user.service';
   styleUrl: './bottom-bar.component.scss'
 })
 export class BottomBarComponent {
+  #imageURLService = inject(ImageUrlService)
   userService = inject(UserService)
 
   @Input() entityName : string | undefined = undefined
@@ -55,5 +57,10 @@ export class BottomBarComponent {
     const threshold = 100
     const currentScrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
     this.topButtonIsActive = currentScrollPosition > threshold
+  }
+
+  public getImageURL(folderName: string, ImageName: string, ImageExtension: string): string {
+ 
+    return this.#imageURLService.getImageURL(folderName, ImageName, ImageExtension)
   }
 }

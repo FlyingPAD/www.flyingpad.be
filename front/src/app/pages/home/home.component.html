@@ -1,9 +1,7 @@
-<div id="layout-central">
-  <div id="logo">
-    <img src="../../../../../assets/app_logos/fp_logo_01.png">
-  </div>
-  <div class="row-white">
-    <p class="p">Every second matters !</p>
-    <a class="button-big" routerLink="/moods">Let's get in the mood ...</a>
-  </div>
+<div id="logo">
+  <img [src]="getImageURL('images-logo', 'logo-1', 'png')" />
+</div>
+<div class="row-white">
+  <p class="p">Every second matters !</p>
+  <a class="button-big" routerLink="/moods">Let's get in the mood ...</a>
 </div>

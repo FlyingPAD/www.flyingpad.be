@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { LinkCategoryFull } from '../../../models/link';
+import { LinkCategoryFull } from '../../../interfaces/link';
 import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { LinkCategoryUpdateForm } from '../../../models/forms-update';
+import { LinkCategoryUpdateForm } from '../../../interfaces/forms-update';
 
 @Component({
   selector: 'app-edit-link-category',

@@ -1,24 +1,56 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html {
-    overflow-y: scroll;             
-    scrollbar-color: rgb(107, 82, 64, 0.7) #f1f1f1;    
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-color: var(--colorMainOpacity7) #f1f1f1;
 
-    overflow-x: hidden;     
-
-    // Disable User Selection
-        /* Firefox */
-        -moz-user-select: none;     
-        /* Chrome, Safari, Opéra since version 15 */    
-        -webkit-user-select: none;     
-        /* Internet explorer since version 10 & Edge */ 
-        -ms-user-select: none;   
-        /* Standard Property */       
-        user-select: none;              
-}  
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
 
 body {
-    font-family: var(--fontFamily);                
-    background-image: var(--texture001);      
-    max-width: 100vw;                                   
+    max-width: 100vw;
+    height: 100%;
+    background-color: var(--colorBackground);
+    font-family: var(--fontFamily);
+    box-sizing: border-box;
+    transition: background-color 1s ease, color 1s ease;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--texture001) repeat top left;
+    opacity: 1;
+    z-index: -1;
+    transition: opacity 1s ease;
+}
+
+body.fade-background::before {
+    opacity: 0;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    box-sizing: border-box;
+    z-index: 1;
 }
 
 .h1 {
@@ -31,8 +63,8 @@ body {
     text-align: center;
     letter-spacing: 1px;
 
-    color: #6b5240;
-    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+    color: var(--colorMain);
+    text-shadow: 0px 3px 3px var(--colorMainOpacity2);
 }
 
 .h2 {
@@ -45,8 +77,8 @@ body {
     text-align: center;
     letter-spacing: 1px;
 
-    color: #6b5240;
-    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.222);
+    color: var(--colorMain);
+    text-shadow: 0px 3px 3px var(--colorMainOpacity2);
 }
 
 .p {
@@ -54,7 +86,7 @@ body {
     margin-top: 15px;
     margin-bottom: 15px;
 
-    color: #6b5240;
+    color: var(--colorMain);
     text-align: center;
 }
 
@@ -63,7 +95,7 @@ body {
 }
 
 hr {
-    color: rgb(107, 82, 64, 0.5);
+    color: var(--colorMainOpacity5);
 }
 
 .span-warning {
@@ -74,9 +106,9 @@ hr {
 .row-white {
     margin-top: 15px;
     padding: 15px;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: var(--colorWhiteOpacity4);
+    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 }
-
 
 // Filters
 .filter {
@@ -93,7 +125,7 @@ hr {
 
     input:focus {
         outline: none;
-        border: 2px solid #413429;
+        border: 2px solid var(--colorMain);
     }
 }
 
@@ -109,7 +141,11 @@ hr {
 .dialog-h3 {
     margin-top: 10px;
     text-align: center;
-    color: #6b5240;
+    color: var(--colorMain);
+}
+
+.dialog-p {
+    color: var(--colorMain);
 }
 
 .dialog-entity-name {
@@ -118,11 +154,12 @@ hr {
     margin-bottom: 15px;
 
     text-align: center;
-    color: rgb(135, 0, 0);
+    color: var(--colorMainOpacity7);
     font-weight: bold;
 }
 .dialog-hr {
-    color: rgb(107, 82, 64, 0.1);
+    color: var(--colorMainOpacity1);
+    margin-bottom: 15px;
 }
 
 // Break Points ( Media Queries ).
@@ -132,5 +169,31 @@ hr {
 @media (max-width: 1150px) {
     .responsive {
         display: none;
+    }
+}
+
+// Pagination.
+.pagination-row {
+    position: fixed;
+    bottom: 65px;
+    width: 100vw;
+    
+    background-color: rgba(255, 253, 251, 0.8);
+    backdrop-filter: blur(3px);
+    border-top: 1px solid var(--colorMain);
+
+    display: flex;
+    justify-content: center;
+}
+.pagination { 
+    pagination-controls {
+        position: relative;
+        left: -30px;
+        text-align: center;
+    }
+
+    .ngx-pagination .current {
+        background: var(--colorMain);
+        border-radius: 5px;
     }
 }

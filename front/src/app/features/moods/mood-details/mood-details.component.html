@@ -1,93 +1,99 @@
-<div [ngClass]="infoIsActive === true ? 'info' : 'info off' ">
-    <h1 *ngIf="mood?.name !== '...' ">{{ mood?.name }}</h1>
-    <p *ngIf="mood?.description !== '...' ">{{mood?.description}}</p>
-    <div *ngIf="userService.appUser.role === 2">
-        <p class="box-title">Starring</p>
-        <div class="list_categories">
-            <div *ngFor="let model of models">
-                <a (click)="updateModelId(model.businessId)"> ▸ {{model.pseudonym}}</a>
-            </div>
-        </div>
-        <p class="box-title">From</p>
-        <div class="list_categories">
-            <div *ngFor="let franchise of franchises">
-                <a (click)="updateFranchiseId(franchise.businessId)"> ▸ {{franchise.name}}</a>
-            </div>
-        </div>
-        <p class="box-title">Art By</p>
-        <div class="list_categories">
-            <div *ngFor="let artist of artists">
-                <a (click)="updateArtistId(artist.businessId)"> ▸ {{artist.name}}</a>
-            </div>
+<div class="info" [ngClass]="infoIsActive === true ? 'info-on' : 'info-off'">
+    @if(mood?.name !== '...' && mood?.name !== '') {
+    <div class="mood-title">{{ mood?.name }}</div>
+    }
+    @if(mood?.description !== '...' && mood?.description !== '') {
+    <div class="mood-description">{{ mood?.description }}</div>
+    }
+
+    @if((mood?.name && mood?.name !== '...' && mood?.name !== '') ||
+    (mood?.description && mood?.description !== '...' && mood?.description !== '')) {
+    <hr class="dialog-hr">
+    }
+
+    @if(userService.appUser.role === 2) {
+    @if(models && models.length > 0) {
+    <p class="box-title">{{ 'title.starring' | translate }}</p>
+    <div class="list_categories">
+        <div *ngFor="let model of models">
+            <a (click)="updateModelId(model.businessId)"> ▸ {{model.pseudonym}}</a>
         </div>
     </div>
-    <div *ngIf="userService.appUser.role === 2">
-        <div class="item-top details-score">
-            <button (click)="updateMoodScore(-50)">-50</button>
-            <button (click)="updateMoodScore(-10)">-10</button>
-            <button (click)="updateMoodScore(-1)">-1</button>
-            <p><b>{{ mood?.score | number : '3.0'}}</b></p>
-            <button (click)="updateMoodScore(1)">+1</button>
-            <button (click)="updateMoodScore(10)">+10</button>
-            <button (click)="updateMoodScore(50)">+50</button>
+    }
+
+    @if(franchises && franchises.length > 0) {
+    <p class="box-title">{{ 'title.from' | translate }}</p>
+    <div class="list_categories">
+        <div *ngFor="let franchise of franchises">
+            <a (click)="updateFranchiseId(franchise.businessId)"> ▸ {{franchise.name}}</a>
         </div>
     </div>
-    <div *ngIf="mood?.type === 1 ">
-        <div class="item-top flex">
-            <p><b>Size</b></p>
-            <p>{{ typeCheck(mood).size | formatSize:2 }}</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Extension</b></p>
-            <p>*.{{ typeCheck(mood).extension }}</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Height</b></p>
-            <p>{{ typeCheck(mood).height }} pixels</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Width</b></p>
-            <p>{{ typeCheck(mood).width }} pixels</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Ratio</b></p>
-            <p>{{ typeCheck(mood).width | formatRatio:typeCheck(mood).height }}</p>
+    }
+
+    @if(artists && artists.length > 0) {
+    <p class="box-title">{{ 'title.art-by' | translate }}</p>
+    <div class="list_categories">
+        <div *ngFor="let artist of artists">
+            <a (click)="updateArtistId(artist.businessId)"> ▸ {{artist.name}}</a>
         </div>
     </div>
-    <div *ngIf="mood?.type === 2 ">
-        <div class="item-top flex">
-            <p><b>Size</b></p>
-            <p>{{ typeCheck(mood).size | formatSize:2 }}</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Extension</b></p>
-            <p>*.{{ typeCheck(mood).extension }}</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Height</b></p>
-            <p>{{typeCheck(mood).height}} pixels</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Width</b></p>
-            <p>{{typeCheck(mood).width}} pixels</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Ratio</b></p>
-            <p>{{ typeCheck(mood).width | formatRatio:typeCheck(mood).height }}</p>
-        </div>
-        <div class="item-middle flex">
-            <p><b>Duration</b></p>
-            <p>{{typeCheck(mood).duration | formatDuration }}</p>
-        </div>
+    }
+
+    <div class="details-score">
+        <button (click)="updateMoodScore(-50)">-50</button>
+        <button (click)="updateMoodScore(-10)">-10</button>
+        <button (click)="updateMoodScore(-1)">-1</button>
+        <button (click)="updateMoodScore(1)">+1</button>
+        <button (click)="updateMoodScore(10)">+10</button>
+        <button (click)="updateMoodScore(50)">+50</button>
     </div>
+
+    <div class="flex">
+        <p><b>Score</b></p>
+        <p>{{ mood?.score | number : '3.0'}}</p>
+    </div>
+    }
+
+    <div class="flex">
+        <p><b>{{ 'title.size' | translate }}</b></p>
+        <p>{{ typeCheck(mood).size | formatSize:2 }}</p>
+    </div>
+
+    <div class="flex">
+        <p><b>Extension</b></p>
+        <p>*.{{ typeCheck(mood).extension }}</p>
+    </div>
+
+    @if(mood?.type === 1 || mood?.type === 2) {
+    <div class="flex">
+        <p><b>{{ 'title.height' | translate }}</b></p>
+        <p>{{ typeCheck(mood).height }} pixels</p>
+    </div>
+    <div class="flex">
+        <p><b>{{ 'title.width' | translate }}</b></p>
+        <p>{{ typeCheck(mood).width }} pixels</p>
+    </div>
+    <div class="flex">
+        <p><b>Ratio</b></p>
+        <p>{{ typeCheck(mood).width | formatRatio:typeCheck(mood).height }}</p>
+    </div>
+    }
+
+    @if(mood?.type === 2) {
+    <div class="flex">
+        <p><b>{{ 'title.duration' | translate }}</b></p>
+        <p>{{typeCheck(mood).duration | formatDuration }}</p>
+    </div>
+    }
+
     <div class="flex_created">
         <div class="box_created">
-            <p>Created :</p>
-            <p>{{ mood?.created | date : 'MMMM d, y | HH:mm' }}</p>
+            <p>{{ 'title.created' | translate }}</p>
+            <p>{{ mood?.created | localizedDate }}</p>
         </div>
         <div class="box_created">
-            <p>Modified :</p>
-            <p>{{ mood?.modified | date : 'MMMM d, y | HH:mm' }}</p>
+            <p>{{ 'title.modified' | translate }}</p>
+            <p>{{ mood?.modified | localizedDate }}</p>
         </div>
     </div>
 </div>

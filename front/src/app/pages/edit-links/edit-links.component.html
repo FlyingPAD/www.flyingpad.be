@@ -7,14 +7,13 @@
             <p>Select a category.</p>
         }  
         <div class="edition-buttons">
-            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
-            <img [class.active]="showNewCategory" src="../../../assets/app_icons/new.png" (click)="triggerShowNewCategory()" />
+            <img [class.active]="showList" [src]="getImageUrl('icons-edition', 'list', 'png')" (click)="triggerShowList()" />
+            <img [class.active]="showNewCategory" [src]="getImageUrl('icons-edition', 'new', 'png')" (click)="triggerShowNewCategory()" />
             @if(flow.linkCategory?.name){
-                <img [class.active]="showEditCategory" src="../../../assets/app_icons/edit.png" (click)="triggerShowEditCategory()" />
+                <img [class.active]="showEditCategory" [src]="getImageUrl('icons-edition', 'edit', 'png')" (click)="triggerShowEditCategory()" />
             }
         </div>
     </div>
-
     <div class="edition-selection">
         @if(flow.link){
             <p><b>{{flow.link.name}}</b></p>
@@ -24,14 +23,13 @@
         }
         <div class="edition-buttons">
             <img class="active" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + flow.link?.url + '&sz=96'" />
-            <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
+            <img [class.active]="showNew" [src]="getImageUrl('icons-edition', 'new', 'png')" (click)="triggerShowNew()" />
             @if(flow.link){
-                <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
-                <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
+                <img [class.active]="showEdit" [src]="getImageUrl('icons-edition', 'edit', 'png')" (click)="triggerShowEdit()" />
+                <img [src]="getImageUrl('icons-edition', 'arrow', 'png')" (click)="go()" />
             }
         </div>
     </div>
-
     @if (showList) {
         <div class="filter">
             <input type="text" [(ngModel)]="searchLinks" placeholder="Filter links ...">
@@ -48,7 +46,7 @@
         </app-right-column>
         
         <div class="pagination-row" *ngIf="flow.linksByCategory.length > elementsPerPage">
-            <div id="pagination">
+            <div class="pagination">
               <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editLinksCurrentPage = $event"></pagination-controls>
             </div>   
         </div>
@@ -65,6 +63,6 @@
     @if (showEditCategory) {
         <app-edit-link-category [linkCategory]="flow.linkCategory" (showListTrigger)="triggerShowList()" />
     }
-    
     <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.linksByCategory.length"/>
 </div>
+<div class="spacer-150"></div>

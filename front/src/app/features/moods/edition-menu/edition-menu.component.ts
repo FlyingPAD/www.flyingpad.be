@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MoodFull } from '../../../models/mood';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { MoodFull } from '../../../interfaces/mood';
+import { ImageUrlService } from '../../../services/image-url.service';
 
 @Component({
   selector: 'app-edition-menu',
@@ -7,7 +8,7 @@ import { MoodFull } from '../../../models/mood';
   styleUrl: './edition-menu.component.scss'
 })
 export class EditionMenuComponent {
-
+  #imageURLService = inject(ImageUrlService)
   @Input() mood! : MoodFull
   @Input() environment! : string
   @Output() showDetails = new EventEmitter<void>() 
@@ -47,5 +48,9 @@ export class EditionMenuComponent {
 
   handleShowGallery(){
     this.showGallery.emit()
+  }
+
+  public getImageURL(folderName: string, imageName: string, imageExtension: string): string {
+    return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
   }
 }

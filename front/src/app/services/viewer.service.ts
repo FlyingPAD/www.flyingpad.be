@@ -13,7 +13,7 @@ export class ViewerService {
 
   getMoodHeight(state: boolean, windowHeight: number, moodHeight: number): void {
     let MOODHEIGHTMIN: number = windowHeight -64
-    let MOODHEIGHTMAX: number = 2000
+    let MOODHEIGHTMAX: number = 2500
 
     if(state) {
       if(moodHeight < MOODHEIGHTMAX) {

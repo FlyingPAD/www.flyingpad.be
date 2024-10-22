@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
-import { TagCategoryFull } from '../../../models/tag-category';
+import { TagCategoryFull } from '../../../interfaces/tag-category';
 import { FlowService } from '../../../services/flow.service';
 import { Subscription } from 'rxjs';
 

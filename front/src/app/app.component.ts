@@ -4,7 +4,10 @@ import { CustomCookieService } from './services/cookie.service';
 import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
 import { MenuCustomService } from './services/menu-custom.service';
-import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from './services/language.service';
+import { DisplayService } from './services/display.service';
+import { FullScreenService } from './services/full-screen.service';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -12,16 +15,17 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
+  #languageService = inject(LanguageService)
+  #displayService = inject(DisplayService)
+  #fullScreenService = inject(FullScreenService)
+  #themeService = inject(ThemeService)
   #authService = inject(AuthenticationService)
   #userService = inject(UserService)
   #cookieService = inject(CustomCookieService)
   #menuCustomService = inject(MenuCustomService)
-  #translate = inject(TranslateService)
-
   router = inject(Router)
 
   ngOnInit(): void {
-    this.#translate.setDefaultLang('fr')
     let token = this.#cookieService.retrieveToken()
 
     if (token) {

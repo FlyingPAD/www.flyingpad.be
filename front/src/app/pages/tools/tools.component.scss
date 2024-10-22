@@ -1,4 +1,11 @@
 .tools-icons {
+    background-color: var(--colorWhiteOpacity5);
+    border-radius: 5px;
+    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+    margin: 15px;
+    padding: 15px;
+
     .icon {
         display: flex;
         flex-direction: column;
@@ -10,16 +17,16 @@
             justify-content: center;
             align-items: center;
 
-            height: 120px;
-            min-width: 120px;
+            height: 85px;
+            min-width: 85px;
 
-            background-color: rgb(107, 82, 64, 0.4);
+            background-color: var(--colorMainOpacity4);
             border: 3px solid grey;
 
             border-radius: 10px;
-            box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
+            box-shadow: 0 3px 4px 0px var(--colorMainOpacity3);
 
-            margin: 15px;
+            margin: 15px; margin-bottom: 10px;
 
             img {
                 height: 85%;
@@ -28,7 +35,7 @@
         }
 
         a:hover:not(.active) {
-            background-color: rgb(107, 82, 64, 0.1);
+            background-color: var(--colorMainOpacity1);
             border: 3px solid var(--colorMain);
             transition-duration: 300ms;
             cursor: pointer;
@@ -40,7 +47,7 @@
         }
 
         .active {
-            background-color: rgb(107, 82, 64, 0.1);
+            background-color: var(--colorMainOpacity1);
             border: 3px solid var(--colorMain);
 
             img {

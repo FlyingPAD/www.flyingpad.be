@@ -8,15 +8,15 @@
     min-width: 250px;
     max-width: 250px;
 
-    border-right: 3px solid #6b5240;
+    border-right: 3px solid var(--colorMain);
 
     ul {
         margin: 0;
         padding: 0;
 
         li {
-            color: #6b5240;
-            border-bottom: 2px solid #6b5240;
+            color: var(--colorMain);
+            border-bottom: 2px solid var(--colorMain);
             padding: 5px;
         }
 
@@ -33,7 +33,7 @@
         display: flex;
         justify-content: center;
 
-        border-bottom: 2px solid #6b5240;
+        border-bottom: 2px solid var(--colorMain);
 
         div {
             width: 90px;
@@ -41,8 +41,7 @@
             display: flex;
             justify-content: center;
 
-            border-right: 3px solid #6b5240;
-
+            border-right: 3px solid var(--colorMain);
             img {
                 height: 50px;
                 width: 50px;
@@ -65,14 +64,14 @@
     }
 
     form {
-        border-bottom: 2px solid #6b5240;
+        border-bottom: 2px solid var(--colorMain);
 
         width: 100%;
 
         input {
             width: calc(100% - 20px);
             padding: 8px;
-            color: #6b5240;
+            color: var(--colorMain);
             font-size: 14px;
         }
 
@@ -84,8 +83,8 @@
     .mood-view {
         img {
             width: 100%;
-            border-top: 3px solid #6b5240;
-            border-bottom: 3px solid #6b5240;
+            border-top: 3px solid var(--colorMain);
+            border-bottom: 3px solid var(--colorMain);
         }
     }
 
@@ -184,7 +183,7 @@
 
         p {
             margin: 0;
-            color: #6b5240;
+            color: var(--colorMain);
             font-size: 13px;
 
             a:hover {
@@ -194,7 +193,7 @@
     }
 
     .flex:last-child {
-        border-bottom: 3px solid #6b5240;
+        border-bottom: 3px solid var(--colorMain);
     }
 
     .flex_created {

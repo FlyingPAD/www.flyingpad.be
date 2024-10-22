@@ -10,11 +10,11 @@
         <p class="p">{{entity.description}}</p>
         <hr class="dialog-hr">
         <div class="flex">
-            <p><b>First Name</b></p>
+            <p><b>{{ 'title.first-name' | translate }}</b></p>
             <p>{{entity.firstName}}</p>
         </div>
         <div class="flex">
-            <p><b>Last Name</b></p>
+            <p><b>{{ 'title.last-name' | translate }}</b></p>
             <p>{{entity.lastName}}</p>
         </div>
         <div class="flex">
@@ -33,12 +33,12 @@
     }
     <div class="flex_created">
         <div class="box_created">
-            <p>Created :</p>
-            <p>{{entity.created | date : 'MMMM d, y | HH:mm' }}</p>
+            <p>{{ 'title.created' | translate }}</p>
+            <p>{{entity.created | localizedDate }}</p>
         </div>
         <div class="box_created">
-            <p>Modified :</p>
-            <p>{{entity.modified | date : 'MMMM d, y | HH:mm' }}</p>
+            <p>{{ 'title.modified' | translate }}</p>
+            <p>{{entity.modified | localizedDate }}</p>
         </div>
     </div>  
 }

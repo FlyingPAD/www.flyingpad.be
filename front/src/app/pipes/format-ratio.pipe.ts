@@ -5,16 +5,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FormatRatioPipe implements PipeTransform {
   transform(width: number, height: number): string {
-    if (!width || !height) return '';
+    if (!width || !height) return ''
 
-    const gcd = this.greatestCommonDivisor(width, height);
-    const simplifiedWidth = width / gcd;
-    const simplifiedHeight = height / gcd;
+    const gcd = this.greatestCommonDivisor(width, height)
+    const simplifiedWidth = width / gcd
+    const simplifiedHeight = height / gcd
 
-    return `${simplifiedWidth} : ${simplifiedHeight}`;
+    return `${simplifiedWidth} : ${simplifiedHeight}`
   }
 
   private greatestCommonDivisor(a: number, b: number): number {
-    return b === 0 ? a : this.greatestCommonDivisor(b, a % b);
+    return b === 0 ? a : this.greatestCommonDivisor(b, a % b)
   }
 }

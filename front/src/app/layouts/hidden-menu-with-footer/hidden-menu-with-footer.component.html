@@ -13,9 +13,9 @@
     <app-footer />
 </div>
 
-<!-- Login Modal -->
-<div class="modal" [class.on]="loginTrigger === true" *ngIf="loginTrigger === true">
-    <h1>Login</h1>
+<app-dialog *ngIf="loginTrigger" (dialog)="loginTriggerMethod()">
+    <h3 class="dialog-h3">{{ 'title.login' | translate }}</h3>
+    <hr class="dialog-hr">
     <form [formGroup]="formGroup">
         <div>
             <input type="email" id="in_email" formControlName="email" placeholder="example@domain.com">
@@ -42,10 +42,10 @@
                 </p>
             </div>
         </div>
-        <div class="modal-buttons">
-            <span *ngIf="formGroup.invalid">Sign in</span>
-            <a (click)="onLogin()" *ngIf="formGroup.valid">Sign in</a>
-            <a (click)="loginTriggerMethod()">Cancel</a>
-        </div>  
     </form> 
-</div>
+    <hr class="dialog-hr">
+    <div class="buttons">
+        <div class="button button-disabled" *ngIf="formGroup.invalid">{{ 'title.sign-in' | translate }}</div>
+        <div class="button" (click)="onLogin()" *ngIf="formGroup.valid">{{ 'title.sign-in' | translate }}</div>
+    </div>  
+</app-dialog>

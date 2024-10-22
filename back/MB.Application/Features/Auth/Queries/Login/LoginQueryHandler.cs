@@ -20,7 +20,7 @@ public class LoginQueryHandler(IAuthRepository authRepository, ITokenManager tok
         return new LoginQueryResponse(token)
         {
             Success = true,
-            Message = "Welcome."
+            Message = "Login successful."
         };
     }
 }

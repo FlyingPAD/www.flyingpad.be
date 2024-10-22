@@ -4,7 +4,7 @@ import { FlowService } from '../../../services/flow.service';
 import { MenuDesktopService } from '../../../services/menu-desktop.service';
 import { MultiTagService } from '../../../services/multi-tag.service';
 import { PaginationService } from '../../../services/pagination.service';
-import { MoodLight } from '../../../models/mood';
+import { MoodLight } from '../../../interfaces/mood';
 
 @Component({
   selector: 'app-multi-tag',

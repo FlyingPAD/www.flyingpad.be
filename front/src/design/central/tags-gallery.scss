@@ -6,7 +6,7 @@
         width: 300px;
         margin: auto;
 
-        background-color: rgba(107, 82, 64, 0.2);
+        background-color: var(--colorMainOpacity2);
         border-radius: 5px;
 
         padding: 5px;
@@ -20,7 +20,7 @@
             font-size: 13px;
             font-weight: bold;
             letter-spacing: 1px;
-            color: #3d2d21;
+            color: var(--colorMain);
         }
 
         .flex {
@@ -35,25 +35,25 @@
                 margin-bottom: 5px;
                 padding: 8px;
 
-                background-color: rgba(255, 255, 255, 0.7);
-                border: 1px solid #6b5240;
+                background-color: var(--colorWhiteOpacity7);
+                border: 1px solid var(--colorMain);
                 border-radius: 5px;
 
                 font-size: 14px;
                 text-decoration: none;
-                color: #6b5240;
+                color: var(--colorMain);
             }
 
             a:hover {
-                background-color: #92715a;
-                color: #ffffff;
+                background-color: var(--colorMain);
+                color: var(--colorMain);
                 transition-duration: 500ms;
                 cursor: pointer;
             }
 
             .active {
-                background-color: #92715a;
-                color: #ffffff;
+                background-color: var(--colorMain);
+                color: var(--colorWhite);
                 transition-duration: 500ms;
             }
         }
@@ -78,11 +78,11 @@
         padding-top: 10px;
         padding-bottom: 10px;
 
-        border: 1px solid #9d9188a8;
+        border: 1px solid var(--colorMainOpacity2);
         border-radius: 10px;
 
-        background-color: rgba(255, 255, 255, 0.3);
-        box-shadow: 0px 2px 4px rgba(73, 26, 6, 0.3);
+        background-color: var(--colorWhiteOpacity5);
+        box-shadow: 0px 2px 4px var(--colorMainOpacity2);
         opacity: 0.9;
 
         .box-category {
@@ -95,7 +95,7 @@
                 font-size: 14px;
                 color: var(--colorMain);
                 text-align: left;
-                text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+                text-shadow: 0px 2px 2px var(--colorMainOpacity2);
                 font-weight: bold;
                 text-indent: 5px;
             }
@@ -104,7 +104,7 @@
         .overflow {
             overflow-y: scroll;
             scrollbar-width: thin;
-            scrollbar-color: rgb(107, 82, 64, 0.7) #f1f1f1;
+            scrollbar-color: var(--colorMainOpacity7) #f1f1f1;
             height: 117px;
 
             p {
@@ -151,8 +151,8 @@
                     width: 14px;
                     height: 14px;
                     margin-right: 5px;
-                    background-color: #fff;
-                    border: 1px solid #9d9188a8;
+                    background-color: var(--colorWhite);
+                    border: 1px solid var(--colorMainOpacity2);
                     border-radius: 3px;
                 }
 
@@ -172,7 +172,7 @@
     }
 
     .tags-box:hover {
-        background-color: rgb(255, 255, 255);
+        background-color: var(--colorWhite);
         border: 1px solid var(--colorMain);
         transition-duration: 300ms;
         opacity: 1;

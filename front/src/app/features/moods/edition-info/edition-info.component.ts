@@ -1,8 +1,8 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { MoodFull } from '../../../models/mood';
+import { MoodFull } from '../../../interfaces/mood';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlowService } from '../../../services/flow.service';
-import { MoodScoreUpdate, MoodUpdateForm } from '../../../models/forms-update';
+import { MoodScoreUpdate, MoodUpdateForm } from '../../../interfaces/forms-update';
 import { Subscription } from 'rxjs';
 
 @Component({

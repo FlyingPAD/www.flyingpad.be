@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { TagFull } from '../../../models/tag';
+import { TagFull } from '../../../interfaces/tag';
 import { FlowService } from '../../../services/flow.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';

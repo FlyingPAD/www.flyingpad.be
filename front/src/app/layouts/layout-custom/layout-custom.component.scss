@@ -115,3 +115,32 @@ header {
         }
     }
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+
+    input {
+        width: 200px;
+        padding: 8px;
+        margin: 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        color: var(--colorMain)
+    }
+
+    input:focus {
+        outline: none;
+        border: 2px solid var(--colorMain)
+    }
+
+    .error {
+        margin: 0;
+        padding: 0;
+        color: #791c00;
+        font-size: 13px;
+    }
+}

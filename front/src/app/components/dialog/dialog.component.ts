@@ -8,7 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class DialogComponent {
   @Output() dialog = new EventEmitter<void>()
 
-  handleDialog(): void {
+  public handleDialog(): void {
     this.dialog.emit()
   }
 }

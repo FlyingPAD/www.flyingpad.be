@@ -1,22 +1,18 @@
-<h2 class="h2">Settings</h2>
+<h1 class="h1">{{ 'title.settings' | translate }}</h1>
 <div class="row-white">
     <div class="buttons">
-        <app-button-back />
+        <app-button-back></app-button-back>
     </div>
 </div>
-<p class="p">{{ 'message.settings' | translate }}</p>
+<p class="p">{{ 'message.settings-short' | translate }}</p>
 <div class="settings-table">
     <div class="row">
         <div class="row-title">
-            <p><b>{{ 'title.display-mode' | translate }}</b> : </p>
+            <p><b>{{ 'title.display-mode' | translate }}</b> :</p>
         </div>
         <div class="row-value">
-            @if(appSettings.appDisplayMode === 'Desktop') {
-                {{ 'title.desktop' | translate }}
-            }
-            @if(appSettings.appDisplayMode === 'Mobile') {
-                {{ 'title.mobile' | translate }}
-            }
+            <p *ngIf="displayInfos().mode === 'Desktop'">{{ 'title.desktop' | translate }}</p>
+            <p *ngIf="displayInfos().mode === 'Mobile'">{{ 'title.mobile' | translate }}</p>
         </div>
     </div>
     <div class="row">
@@ -24,7 +20,23 @@
             <p><b>{{ 'title.window-size' | translate }}</b> :</p>
         </div>
         <div class="row-value">
-            <p>{{appSettings.appScreenWidth}} x {{appSettings.appScreenHeight}} pixels</p>
+            <p>{{ displayInfos().width }} x {{ displayInfos().height }} pixels</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-title">
+            <p><b>Orientation</b> :</p>
+        </div>
+        <div class="row-value">
+            @if(displayInfos().orientation === 'Landscape') {
+            <p>{{ 'title.landscape' | translate }}</p>
+            }
+            @if(displayInfos().orientation === 'Portrait') {
+            <p>Portrait</p>
+            }
+            @if(displayInfos().orientation === 'Square') {
+            <p>{{ 'title.square' | translate }}</p>
+            }
         </div>
     </div>
     <div class="row">
@@ -33,12 +45,8 @@
         </div>
         <div class="row-value">
             <div (click)="toggleFullScreen()">
-                @if (appSettings.isFullscreen) {
-                    {{ 'title.enabled' | translate }}
-                }
-                @if (!appSettings.isFullscreen) {
-                    {{ 'title.disabled' | translate }}
-                }
+                <span *ngIf="isFullScreen() === true">{{ 'title.disable' | translate }}</span>
+                <span *ngIf="isFullScreen() === false">{{ 'title.enable' | translate }}</span>
             </div>
         </div>
     </div>
@@ -47,7 +55,24 @@
             <p><b>{{ 'title.language' | translate }}</b> :</p>
         </div>
         <div class="row-value">
-            <div><span (click)="switchLanguage('fr')">Français</span> | <span (click)="switchLanguage('en')">English</span></div>
+            <div>
+                <span [class.span-active]="currentLanguage() === 'fr'" (click)="switchLanguage('fr')">Français</span>
+                <span [class.span-active]="currentLanguage() === 'en'" (click)="switchLanguage('en')">English</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-title">
+            <p><b>{{ 'title.theme' | translate }}</b> :</p>
+        </div>
+        <div class="row-value">
+            <select id="themeSelect" [ngModel]="currentThemeKey()" (ngModelChange)="changeTheme($event)">
+                <option *ngFor="let themeKey of themeKeys" [ngValue]="themeKey">{{ themeKey }}</option>
+            </select>
         </div>
     </div>
 </div>
+<div class="buttons">
+    <div class="button" (click)="factorySettings()">{{ 'title.defaults' | translate }}</div>
+</div>
+<div class="spacer-75"></div>

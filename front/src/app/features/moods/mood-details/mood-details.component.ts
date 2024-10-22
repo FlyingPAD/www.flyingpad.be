@@ -1,14 +1,14 @@
 import { Component, inject, Input, EventEmitter, Output } from "@angular/core"
-import { Video } from "../../../models/mood-video"
-import { Image } from "../../../models/mood-image"
-import { VideoYouTube } from "../../../models/mood-video-youtube"
+import { Video } from "../../../interfaces/mood-video"
+import { Image } from "../../../interfaces/mood-image"
+import { VideoYouTube } from "../../../interfaces/mood-video-youtube"
 import { UserService } from "../../../services/user.service"
-import { ArtistLight } from "../../../models/artist"
-import { FranchiseLight } from "../../../models/franchise"
-import { ModelLight } from "../../../models/model"
-import { TagLight } from "../../../models/tag"
+import { ArtistLight } from "../../../interfaces/artist"
+import { FranchiseLight } from "../../../interfaces/franchise"
+import { ModelLight } from "../../../interfaces/model"
+import { TagLight } from "../../../interfaces/tag"
 import { FlowService } from "../../../services/flow.service"
-import { MoodScoreUpdate } from "../../../models/forms-update"
+import { MoodScoreUpdate } from "../../../interfaces/forms-update"
 
 @Component({
   selector: 'app-mood-details',
@@ -29,7 +29,6 @@ export class MoodDetailsComponent {
   @Output() artistId = new EventEmitter<number>()
   @Output() tagId = new EventEmitter<number>()
   @Output() franchiseId = new EventEmitter<number>()
-
 
   updateArtistId(artistId: number): void {
     this.artistId.emit(artistId)
@@ -58,6 +57,6 @@ export class MoodDetailsComponent {
 
   updateMoodScore(scoreValue : number): void {
     let form : MoodScoreUpdate = {moodId : this.mood.businessId, value : scoreValue} 
-    this.#flowService.updateScore(form);
+    this.#flowService.updateScore(form)
   }
 }

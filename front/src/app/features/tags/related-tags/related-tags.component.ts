@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TagLight } from '../../../models/tag';
+import { TagLight } from '../../../interfaces/tag';
 
 @Component({
   selector: 'app-related-tags',

@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
-import { FranchiseFull } from '../../../models/franchise';
-import { FranchiseUpdateForm } from '../../../models/forms-update';
+import { FranchiseFull } from '../../../interfaces/franchise';
+import { FranchiseUpdateForm } from '../../../interfaces/forms-update';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { FlowService } from '../../../services/flow.service';

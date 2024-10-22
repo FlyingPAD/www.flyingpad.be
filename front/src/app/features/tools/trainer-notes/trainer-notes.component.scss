@@ -1,5 +1,4 @@
-.trainer
-{
+.trainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,8 +12,7 @@
     backdrop-filter: blur(3px);
     box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
 
-    .trainer-container
-    {
+    .trainer-container {
         position: relative;
 
         width: 500px;
@@ -24,8 +22,7 @@
         justify-content: center;
         align-items: center;
 
-        img
-        {
+        img {
             position: absolute;
 
             top: 0;
@@ -37,66 +34,103 @@
             transition: top 0.5s ease;
             pointer-events: none;
         }
-    
+
         // .row-1 { top: 7% }
-        .row0 { top: 6.5% }
-        .row1 { top: -2.3%; }
-        .row2 { top: -6%; }
-        .row3 { top: -12.6%; }
-        .row4 { top: -18.4%; }
-        .row5 { top: -24.8%; }
-        .row6 { top: -31%; }
-        .row7 { top: -37.2%; }
-        .row8 { top: -43.4%; }
-        .row9 { top: -49.6%; }
-        .row10 { top: -55.8%; }
-        .row11 { top: -62%; }
-        .row12 { top: -68.2%; }
-        .row13 { top: -74.4%; }
-        .row14 { top: -80.6%; }
+        .row0 {
+            top: 6.5%
+        }
+
+        .row1 {
+            top: -2.3%;
+        }
+
+        .row2 {
+            top: -6%;
+        }
+
+        .row3 {
+            top: -12.6%;
+        }
+
+        .row4 {
+            top: -18.4%;
+        }
+
+        .row5 {
+            top: -24.8%;
+        }
+
+        .row6 {
+            top: -31%;
+        }
+
+        .row7 {
+            top: -37.2%;
+        }
+
+        .row8 {
+            top: -43.4%;
+        }
+
+        .row9 {
+            top: -49.6%;
+        }
+
+        .row10 {
+            top: -55.8%;
+        }
+
+        .row11 {
+            top: -62%;
+        }
+
+        .row12 {
+            top: -68.2%;
+        }
+
+        .row13 {
+            top: -74.4%;
+        }
+
+        .row14 {
+            top: -80.6%;
+        }
     }
 }
 
-@media screen and (max-width : 950px) 
-{
-    .trainer
-    {   
+@media screen and (max-width : 950px) {
+    .trainer {
         width: 90%;
 
-        .trainer-container
-        {  
+        .trainer-container {
             width: 300px;
             height: 300px;
         }
     }
 }
 
-h1
-{
+h1 {
     text-align: center;
     color: var(--colorMain);
     font-size: 18px;
     font-weight: normal;
-    text-shadow: 0px 3px 3px rgba(0,0,0,0.3);
+    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
     letter-spacing: 2px;
 }
 
-p
-{
+p {
     text-align: center;
     color: rgb(68, 0, 0);
     font-size: 15px;
-    text-shadow: 0px 3px 3px rgba(0,0,0,0.3);
-    letter-spacing: 2px;  
+    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
 }
 
-.trainer-buttons
-{
+.trainer-buttons {
     display: flex;
     justify-content: center;
 
-    a
-    {
+    a {
         display: block;
 
         width: 75px;
@@ -114,38 +148,36 @@ p
         color: white;
         text-align: center;
     }
-    a:hover
-    {
+
+    a:hover {
         background-color: white;
         color: var(--colorMain);
         cursor: pointer;
         transition-duration: 500ms;
     }
-    .active
-    {
+
+    .active {
         background-color: white;
         color: var(--colorMain);
     }
-    .start
-    {
+
+    .start {
         width: 110px;
         padding: 15px;
         border-radius: 5px;
     }
 }
 
-.notes
-{
+.notes {
     width: 400px;
-    margin: auto;    
+    margin: auto;
     margin-top: 15px;
 
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 
-    a
-    {
+    a {
         display: block;
 
         width: 50px;
@@ -160,8 +192,8 @@ p
         color: white;
         text-align: center;
     }
-    a:hover
-    {
+
+    a:hover {
         background-color: white;
         color: var(--colorMain);
         cursor: pointer;
@@ -169,12 +201,7 @@ p
     }
 }
 
-.result
-{
+.result {
     height: 50px;
     width: 50px;
-}
-
-.bottom-space {
-    height: 150px;
 }

@@ -1,10 +1,10 @@
 import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ModelCheckBox } from '../../../models/model';
-import { MoodFull } from '../../../models/mood';
+import { ModelCheckBox } from '../../../interfaces/model';
+import { MoodFull } from '../../../interfaces/mood';
 import { FlowService } from '../../../services/flow.service';
 import { ToastrService } from 'ngx-toastr';
-import { RelationsMoodModelForm } from '../../../models/relations';
+import { RelationsMoodModelForm } from '../../../interfaces/relations';
 
 @Component({
   selector: 'app-edition-models',

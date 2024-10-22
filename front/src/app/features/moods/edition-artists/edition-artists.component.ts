@@ -1,9 +1,9 @@
 import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
-import { MoodFull } from '../../../models/mood';
-import { ArtistCheckBox } from '../../../models/artist';
+import { MoodFull } from '../../../interfaces/mood';
+import { ArtistCheckBox } from '../../../interfaces/artist';
 import { FlowService } from '../../../services/flow.service';
 import { Subscription } from 'rxjs';
-import { RelationsMoodArtistForm } from '../../../models/relations';
+import { RelationsMoodArtistForm } from '../../../interfaces/relations';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

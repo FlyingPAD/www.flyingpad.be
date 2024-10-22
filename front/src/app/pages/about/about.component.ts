@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ImageUrlService } from '../../services/image-url.service';
 
 @Component({
   selector: 'app-about',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
+  #imageURLService = inject(ImageUrlService)
 
+  public getImageURL(folderName: string, imageName: string, imageExtension: string): string {
+    return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
+  }
 }

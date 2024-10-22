@@ -18,8 +18,8 @@
         font-size: 17px;
         color: var(--colorMain);
 
-        background-color: rgba(255, 255, 255, 0.4);
-        border: 1px solid #6b5240;
+        background-color: var(--colorWhiteOpacity4);
+        border: 2px solid var(--colorMain);
         border-radius: 15px;
 
         span {
@@ -35,14 +35,14 @@
         }
     }
 
-    a:hover {
-        background-color: rgba(255, 255, 255, 0.9);
+    a:not(.active):hover {
+        background-color: var(--colorWhiteOpacity7);
         transition-duration: 500ms;
         cursor: pointer;
     }
 
     .active {
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: var(--colorWhite);
     }
 }
 
@@ -59,8 +59,8 @@
     margin-top: 25px;
     margin-bottom: 15px;
     
-    background-color: white;
-    border: 1px solid #6b5240;
+    background-color: var(--colorWhite);
+    border: 1px solid var(--colorMain);
     border-radius: 5px;
 
     padding: 15px;

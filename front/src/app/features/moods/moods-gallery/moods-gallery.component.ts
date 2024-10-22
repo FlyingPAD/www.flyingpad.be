@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { PaginationService } from '../../../services/pagination.service';
 import { FlowService } from '../../../services/flow.service';
-import { MoodLight } from '../../../models/mood';
+import { MoodLight } from '../../../interfaces/mood';
 import { RightColumnService } from '../../../services/right-column.service';
 
 @Component({

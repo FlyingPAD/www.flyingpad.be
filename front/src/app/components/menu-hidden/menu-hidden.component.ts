@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ImageUrlService } from '../../services/image-url.service';
 
 @Component({
   selector: 'app-menu-hidden',
@@ -6,6 +7,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './menu-hidden.component.scss'
 })
 export class MenuHiddenComponent {  
+  #imageURLService = inject(ImageUrlService)
+
   @Input() isMenuON : boolean = false
   @Input() userIsConnected : boolean | null = false
   @Input() userRole : number = 0
@@ -19,5 +22,9 @@ export class MenuHiddenComponent {
   }
   public handleMenuCustomTrigger(): void {
     this.menuTriggerCustomEmitter.emit()
+  }
+
+  public getImageURL(folderName: string, imageName: string, imageExtension: string): string { 
+    return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
   }
 }

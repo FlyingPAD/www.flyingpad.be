@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { LinkLight } from '../../models/link';
+import { LinkLight } from '../../interfaces/link';
 import { FlowService } from '../../services/flow.service';
 import { PaginationService } from '../../services/pagination.service';
+import { ImageUrlService } from '../../services/image-url.service';
 
 @Component({
   selector: 'app-edit-links',
@@ -11,6 +12,7 @@ import { PaginationService } from '../../services/pagination.service';
 export class EditLinksComponent {
   #flowService = inject(FlowService)
   paginationService = inject(PaginationService)
+  #imageURLService = inject(ImageUrlService)
 
   flow = this.#flowService.flow
 
@@ -68,5 +70,9 @@ export class EditLinksComponent {
   updateLinkCategoryId(categoryId : number | null): void {
     this.paginationService.editLinksCurrentPageReset()
     this.#flowService.updateLinkCategoryId(categoryId)
+  }
+
+  public getImageUrl(folderName: string, imageName: string, imageExtension: string): string {
+    return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
   }
 }

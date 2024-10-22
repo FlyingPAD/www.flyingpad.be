@@ -1,113 +1,119 @@
-<h1 *ngIf="gameStart === false">Select your Clef</h1>
-<h1 *ngIf="gameStart === true">Score : {{ score | number : '3.0' }}<span *ngIf="timer > 0"> | Timer : {{ timer | number : '2.0'}}</span></h1>
+@if(gameStart === false) { <h1>Select your Clef</h1> }
+
+@if(gameStart === true) { 
+    <h1>Score : {{ score | number : '3.0' }} <span *ngIf="timer > 0"> | Timer : {{ timer | number : '2.0'}}</span></h1>
+}
 
 <div class="trainer">
-    <div class="trainer-container" *ngIf="gameEnd === false">
-        <img src="../../../../assets/app_tools/trainer-notes-back.png" />
-        <img *ngIf="gameStart && randomNote.alteration === true" 
-        src="../../../../assets/app_tools/sharp.png" 
-        [ngClass]="'row' + randomNote.row" />
-        <img *ngIf="gameStart && randomNote.extension === true" 
-        src="../../../../assets/app_tools/extension.png" 
-        [ngClass]="'row' + randomNote.row" />
-        <img *ngIf="gameStart && randomNote.doubleUp === true" 
-        src="../../../../assets/app_tools/extension.png" 
-        [ngClass]="'row' + (randomNote.row - 2)" />
-        <img *ngIf="gameStart && randomNote.doubleUp === false" 
-        src="../../../../assets/app_tools/extension.png" 
-        [ngClass]="'row' + (randomNote.row + 2)" />
-        <img *ngIf="gameStart" 
-        src="../../../../assets/app_tools/note.png" 
-        [ngClass]="'row' + randomNote.row" />
-        <img src="../../../../assets/app_tools/clef-treble.png" *ngIf="clefTreble === true"/>
-        <img src="../../../../assets/app_tools/clef-bass.png" *ngIf="clefBass === true"/>
-        <img src="../../../../assets/app_tools/clef-alto.png" *ngIf="clefAlto === true"/>
-    </div>
-    <div class="trainer-container" *ngIf="gameEnd === true && score > 10">
-        <img src="../../../../assets/app_tools/winner.gif" />
-    </div>
-    <div class="trainer-container" *ngIf="gameEnd === true && score <= 10">
-        <img src="../../../../assets/app_tools/game-over.png" />
-    </div>
+    @if(gameEnd === false) {
+        <div class="trainer-container">
+            <img src="../../../../assets/app_tools/trainer-notes-back.png" />
+            
+            <img *ngIf="gameStart && randomNote.alteration === true" src="../../../../assets/app_tools/sharp.png"
+                [ngClass]="'row' + randomNote.row" />
+            <img *ngIf="gameStart && randomNote.extension === true" src="../../../../assets/app_tools/extension.png"
+                [ngClass]="'row' + randomNote.row" />
+            <img *ngIf="gameStart && randomNote.doubleUp === true" src="../../../../assets/app_tools/extension.png"
+                [ngClass]="'row' + (randomNote.row - 2)" />
+            <img *ngIf="gameStart && randomNote.doubleUp === false" src="../../../../assets/app_tools/extension.png"
+                [ngClass]="'row' + (randomNote.row + 2)" />
+                
+            <img *ngIf="gameStart" src="../../../../assets/app_tools/note.png" [ngClass]="'row' + randomNote.row" />
+
+            <img src="../../../../assets/app_tools/clef-treble.png" *ngIf="clefTreble === true" />
+            <img src="../../../../assets/app_tools/clef-bass.png" *ngIf="clefBass === true" />
+            <img src="../../../../assets/app_tools/clef-alto.png" *ngIf="clefAlto === true" />
+        </div>
+    }
+    @if(gameEnd === true && score > 10) {
+        <div class="trainer-container"><img src="../../../../assets/app_tools/winner.gif" /></div>
+    }
+    @if(gameEnd === true && score <= 10) { 
+        <div class="trainer-container"><img src="../../../../assets/app_tools/game-over.png" /></div>
+    }
 </div>
-<div class="trainer-buttons" *ngIf="gameStart === false">
-    <a [class.active]="clefBass" (click)="clefBassTrigger()">Bass</a>
-    <a [class.active]="clefAlto" (click)="clefAltoTrigger()">Alto</a>
-    <a [class.active]="clefTreble" (click)="clefTrebleTrigger()">Treble</a>
-</div>
+
+@if(gameStart === false) {
+    <div class="trainer-buttons">
+        <a [class.active]="clefBass" (click)="clefBassTrigger()">Bass</a>
+        <a [class.active]="clefAlto" (click)="clefAltoTrigger()">Alto</a>
+        <a [class.active]="clefTreble" (click)="clefTrebleTrigger()">Treble</a>
+    </div>
+}
+
 <p>{{ message }}</p>
-<h1 *ngIf="gameEnd === true">Total Run : {{run | number : '2.0'}} seconds</h1>
 
-<div class="trainer-buttons" *ngIf="gameStart === false">
-    <a class="start" (click)="scoreBoardTrigger()">SCORE BOARD</a>
-    <a class="start" (click)="start()">START GAME</a>
-</div>
+@if(gameEnd === true) {
+    <h1>Total Run : {{run | number : '2.0'}} seconds</h1>
+}
 
-<div class="notes" *ngIf="gameStart === true && gameEnd === false">
-    <div *ngFor="let note of notesREF">
-        <a (click)="updateUserNote(note)">{{note.name}}</a>
+@if(gameStart === false) {
+    <div class="trainer-buttons">
+        <a class="start" (click)="scoreBoardTrigger()">SCORE BOARD</a>
+        <a class="start" (click)="start()">START GAME</a>
     </div>
-</div>
+}
 
-<div class="trainer-buttons" *ngIf="gameEnd === true">
-    <a class="start" (click)="getName()">SAVE SCORE</a>
-    <a class="start" (click)="reset()">NEW GAME</a>
-</div>
+@if(gameStart === true && gameEnd === false) {
+    <div class="notes">
+        <div *ngFor="let note of notesREF">
+            <a (click)="updateUserNote(note)">{{note.name}}</a>
+        </div>
+    </div>
+}
 
-<div class="bottom-space"></div>
+@if(gameEnd === true) {
+    <div class="trainer-buttons">
+        <a class="start" (click)="getName()">SAVE SCORE</a>
+        <a class="start" (click)="reset()">NEW GAME</a>
+    </div>
+}
 
-<div class="bottom-bar-larger" *ngIf="gameStart === false || gameEnd === true">
-    <a><img appAnimGrow src="../../../../assets/app_icons/logout.png" (click)="reset()" /></a>
-    <a><img appAnimSpin src="../../../../assets/app_icons/icon_info_001.png" (click)="infoTrigger()" /></a>
-</div>
+<div class="spacer-150"></div>
 
-<!-- Rules ( Info ) -->
-<div class="modal" [class.on]="info === true">
-    <h1>Rules</h1>
-    <h4>Score as much as you can before time's up !</h4>
-    <hr>
-    <h3> ▸ <u>For each correct answer</u> :</h3>
-    <h4> - Timer + 1 second</h4>
-    <h4> - Score + 5</h4>
-    <h3> ▸ <u>For each wrong answer</u> :</h3>
-    <h4> - Timer - 2 seconds</h4>
-    <h4> - Score - 6</h4>
-</div>
+@if(gameStart === false || gameEnd === true) {
+    <app-bottom-bar-larger [contentType]="'notes-trainer'" (reset)="reset()" (info)="infoTrigger()" />
+}
 
-<!-- Rules ( Info ) -->
-<div class="modal" [class.on]="scoreboard === true">
-    <div *ngIf="naming === true">
+@if(info === true) {
+    <app-dialog (dialog)="infoTrigger()">
+        <h3 class="dialog-h3">{{ 'title.rules' | translate }}</h3>
+        <hr class="dialog-hr">
+        <p class="dialog-p">Score as much as you can before time's up !</p>
+        <h3> ▸ <u>For each correct answer</u> :</h3>
+        <h4> - Timer + 1 second</h4>
+        <h4> - Score + 5</h4>
+        <h3> ▸ <u>For each wrong answer</u> :</h3>
+        <h4> - Timer - 2 seconds</h4>
+        <h4> - Score - 6</h4>
+    </app-dialog>
+}
+
+@if(scoreboard === true) {
+    <app-dialog (dialog)="scoreBoardTrigger()">
+        @if(naming === true) {
         <form>
             <input type="text" [(ngModel)]="playerName" name="playerName" />
         </form>
-        <div class="modal-buttons">
-            <a (click)="saveGame()">SAVE</a>
-        </div>
-    </div>
-    <div *ngIf="naming === false">
-        <h1>Score Board</h1>
-        <hr>
-        <div *ngFor="let result of gameResults">
-            <div class="line">
-                <h5> ▸ {{ result.playerName }}</h5>
-                <h5><b>{{ result.clef }}</b> | {{ result.duration | number : '3.0' }} sec. | <b>{{ result.score | number : '3.0' }}</b> | {{ result.timestamp | date:'dd/MM/yyyy | HH:mm:ss' }}</h5>
+        <div class="modal-buttons"><a (click)="saveGame()">SAVE</a></div>
+        }
+        @if(naming === false) {
+            <h3 class="dialog-h3">Score Board</h3>
+            <hr class="dialog-hr">
+            <div *ngFor="let result of gameResults">
+                <div class="line">
+                    <h5> ▸ {{ result.playerName }}</h5>
+                    <h5>
+                        <b>{{ result.clef }}</b> | {{ result.duration | number : '3.0' }} sec. |
+                        <b>{{ result.score | number : '3.0' }}</b> |
+                        {{ result.timestamp | localizedDate }}
+                    </h5>
+                </div>
             </div>
-        </div>
-        <hr *ngIf="gameResults.length">
-        <div class="modal-buttons">
-            <a (click)="resetStorage()">RESET</a>
-        </div>
-    </div>
-</div>
-  
-<!-- Overlay -->
-<div class="overlay" 
-    [class.overlay-enabled]="info === true" 
-    [class.overlay-disabled]="info === false" 
-    (click)="infoTrigger()">
-</div>
-<div class="overlay" 
-    [class.overlay-enabled]="scoreboard === true" 
-    [class.overlay-disabled]="scoreboard === false" 
-    (click)="scoreBoardTrigger()">
-</div>
+            @if(gameResults.length) {
+                <hr class="dialog-hr">
+                <div class="modal-buttons"><a (click)="resetStorage()">RESET</a></div>
+            }
+        }
+    </app-dialog>
+}

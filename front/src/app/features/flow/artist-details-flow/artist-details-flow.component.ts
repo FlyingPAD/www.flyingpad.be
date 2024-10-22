@@ -1,8 +1,8 @@
 import { Component, inject, Input } from '@angular/core';
-import { ArtistFull } from '../../../models/artist';
+import { ArtistFull } from '../../../interfaces/artist';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ArtistUpdateForm } from '../../../models/forms-update';
+import { ArtistUpdateForm } from '../../../interfaces/forms-update';
 import { FlowService } from '../../../services/flow.service';
 
 @Component({

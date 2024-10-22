@@ -1,11 +1,11 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { TagFull } from '../../../models/tag';
+import { TagFull } from '../../../interfaces/tag';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { TagUpdateForm } from '../../../models/forms-update';
+import { TagUpdateForm } from '../../../interfaces/forms-update';
 import { FlowService } from '../../../services/flow.service';
-import { TagCategoryLight } from '../../../models/tag-category';
+import { TagCategoryLight } from '../../../interfaces/tag-category';
 
 @Component({
   selector: 'app-edit-tag',

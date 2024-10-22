@@ -1,6 +1,6 @@
 footer {
     height: 150px;
-    background-color: rgb(55, 55, 55);
+    background-color: var(--colorFooter);
 
     display: flex;
     justify-content: center;
@@ -8,6 +8,6 @@ footer {
 
     p {
         font-size: 15px;
-        color: rgb(238, 238, 238);
+        color: var(--colorWhiteOpacity8)
     }
 }

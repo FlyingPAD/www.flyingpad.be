@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { StyleCreateForm } from '../../../models/forms-create';
+import { StyleCreateForm } from '../../../interfaces/forms-create';
 
 @Component({
   selector: 'app-create-style',

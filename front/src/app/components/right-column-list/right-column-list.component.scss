@@ -1,20 +1,25 @@
-.list {   
-
+.list {
+    margin: 15px;
     padding: 15px;
+
+    background-color: var(--colorWhiteOpacity5);
+    border: 1px solid var(--colorMain);
+    border-radius: 5px;
+    box-shadow: 0 3px 6px 0px var(--colorMainOpacity2);
 
     a {
         display: block;
 
-        margin: 3px;
-        padding: 5px;
+        margin: 8px;
+        padding: 8px;
 
-        background-color: white;
-        border: 1px solid #6b5240;
+        background-color: var(--colorWhiteOpacity8);
+        border: 1px solid #ffffff00;
         border-radius: 5px;
-        
-        color: #6b5240;
+
+        color: var(--colorMain);
         text-decoration: none;
-        font-size: 14px;
+        font-size: 13px;
         line-height: 20px;
 
         white-space: nowrap;
@@ -25,15 +30,19 @@
         /* Ajoute les points de suspension à la fin du texte */
 
         z-index: 0;
-    }
-    a:hover:not(.active) {
-        background-color: rgb(107, 82, 64, 0.5);
-        color:#fff;
         transition-duration: 500ms;
+    }
+
+    a:hover:not(.active) {
+        background-color: var(--colorMainOpacity5);
+        border: 1px solid var(--colorMain);
+        color: var(--colorWhite);        
         cursor: pointer;
     }
+
     .active {
-        background-color: rgb(107, 82, 64, 0.7);
-        color:#fff;
+        background-color: var(--colorMain);
+        border: 1px solid var(--colorMain);
+        color: var(--colorWhite);
     }
 }

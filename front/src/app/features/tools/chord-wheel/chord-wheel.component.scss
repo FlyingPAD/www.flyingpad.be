@@ -1,0 +1,27 @@
+.wheel-container {
+    position: relative;
+    height: 500px;
+    width: 500px;
+    margin: auto;
+    margin-top: 15px;
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        border-radius: 300px;
+    }
+}
+
+.wheel {
+    transition: transform 0.5s ease-out;
+}
+
+@media (max-width: 600px) {
+    .wheel-container {
+        width: 100%;
+        min-height: 450px;
+    }
+}

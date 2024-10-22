@@ -1,62 +1,67 @@
 .column-trigger {
-    position: fixed;
-    top: 50%;
-    right: 0;
-    height: 200px;
-    width: 75px;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 18;
-    transition: right 500ms ease;
-  
+  position: fixed;
+  top: 50%;
+  right: 0;
+
+  height: 200px;
+  width: 75px;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 18;
+  transition: right 500ms ease;
+
+  .trigger-arrow {
+    height: 125px;
+    width: 5px;
+    background-color: var(--colorMainOpacity5);
+    border-radius: 3px;
+    transition: background-color 500ms ease;
+  }
+
+  &:hover {
+    cursor: pointer;
+
     .trigger-arrow {
-      height: 125px;
-      width: 5px;
-      background-color: rgba(107, 82, 64, 0.5);
-      border-radius: 3px;
-      transition: background-color 500ms ease;
-    }
-  
-    &:hover {
-      cursor: pointer;
-  
-      .trigger-arrow {
-        background-color: rgb(60, 45, 34);
-      }
+      background-color: var(--colorMain);
     }
   }
-  
-  .column-trigger-on {
-    right: 285px;
+}
+
+.column-trigger-on {
+  right: 285px;
+}
+
+@media screen and (max-width: 1150px) {
+  .column-trigger {
+    width: 30px;
   }
-  
-  @media screen and (max-width: 1150px) {
-    .column-trigger {
-      width: 30px;
-    }
+}
+
+.right-column {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  width: 285px;
+  height: 100%;
+
+  overflow-y: scroll;
+  scrollbar-color: var(--colorMainOpacity7) #f1f1f1;
+
+  background-color: var(--colorMainOpacity5);
+  backdrop-filter: blur(3px);
+  border-left: 3px solid var(--colorMain);
+  z-index: 17;
+  margin-top: 2px;
+
+  transition: right 500ms ease, opacity 500ms ease;
+
+  &.right-column-off {
+    right: -310px;
+    opacity: 0;
   }
-  
-  .right-column {
-    width: 285px;
-    height: 100%;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: rgb(107, 82, 64, 0.7) #f1f1f1;
-    border-left: 1px solid #6b5240;
-    background-color: rgba(255, 253, 251, 0.95);
-    backdrop-filter: blur(3px);
-    z-index: 17;
-    margin-top: 2px;
-    position: fixed;
-    top: 0;
-    right: 0;
-    transition: right 500ms ease, opacity 500ms ease;
-    
-    &.right-column-off {
-      right: -310px;
-      opacity: 0;
-    }
-  }
-  
+}

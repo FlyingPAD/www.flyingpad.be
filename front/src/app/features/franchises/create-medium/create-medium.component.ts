@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { MediumCreateForm } from '../../../models/forms-create';
+import { MediumCreateForm } from '../../../interfaces/forms-create';
 import { FlowService } from '../../../services/flow.service';
 
 @Component({

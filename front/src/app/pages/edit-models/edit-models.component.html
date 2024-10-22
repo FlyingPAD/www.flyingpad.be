@@ -7,15 +7,14 @@
             <p>Please, select a model from the list.</p>
         }
         <div class="edition-buttons">
-            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
-            <img [class.active]="showNew" src="../../../assets/app_icons/new.png" (click)="triggerShowNew()" />
+            <img [class.active]="showList" [src]="getImageUrl('icons-edition', 'list', 'png')" (click)="triggerShowList()" />
+            <img [class.active]="showNew" [src]="getImageUrl('icons-edition', 'new', 'png')" (click)="triggerShowNew()" />
             @if(flow?.model){
-                <img [class.active]="showEdit" src="../../../assets/app_icons/edit.png" (click)="triggerShowEdit()" />
-                <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
+                <img [class.active]="showEdit" [src]="getImageUrl('icons-edition', 'edit', 'png')" (click)="triggerShowEdit()" />
+                <img [src]="getImageUrl('icons-edition', 'arrow', 'png')" (click)="go()" />
             }
         </div>
     </div>
-
     @if (showList) {
         <div class="filter">
             <input type="text" [(ngModel)]="searchModels" placeholder="Filter models ...">
@@ -28,7 +27,7 @@
         </div>
         
         <div class="pagination-row" *ngIf="flow.models.length > elementsPerPage">
-            <div id="pagination">
+            <div class="pagination">
               <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editModelsCurrentPage = $event"></pagination-controls>
             </div>   
         </div>
@@ -39,6 +38,6 @@
     @if (showEdit) {
         <app-edit-model [model]="flow.model" (showListTrigger)="triggerShowList()" />
     }
-    
     <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.models.length" />
 </div>
+<div class="spacer-150"></div>
