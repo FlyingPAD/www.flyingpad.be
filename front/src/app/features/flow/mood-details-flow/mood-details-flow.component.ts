@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { MoodFull } from '../../../models/mood';
+import { MoodFull } from '../../../interfaces/mood';
 import { FlowService } from '../../../services/flow.service';
-import { Image } from '../../../models/mood-image';
-import { Video } from '../../../models/mood-video';
-import { VideoYouTube } from '../../../models/mood-video-youtube';
+import { Image } from '../../../interfaces/mood-image';
+import { Video } from '../../../interfaces/mood-video';
+import { VideoYouTube } from '../../../interfaces/mood-video-youtube';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ArtistLight } from '../../../models/artist';
-import { ModelLight } from '../../../models/model';
-import { TagLight } from '../../../models/tag';
-import { FranchiseLight } from '../../../models/franchise';
-import { ActivePane } from '../../../models/enumerations/enumerations';
-import { MoodScoreUpdate, MoodUpdateForm } from '../../../models/forms-update';
+import { ArtistLight } from '../../../interfaces/artist';
+import { ModelLight } from '../../../interfaces/model';
+import { TagLight } from '../../../interfaces/tag';
+import { FranchiseLight } from '../../../interfaces/franchise';
+import { ActivePane } from '../../../enumerations/enumerations';
+import { MoodScoreUpdate, MoodUpdateForm } from '../../../interfaces/forms-update';
 
 @Component({
   selector: 'app-mood-details-flow',

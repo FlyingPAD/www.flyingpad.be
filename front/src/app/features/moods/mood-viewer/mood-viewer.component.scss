@@ -9,8 +9,8 @@
 
         #mood_content {
             img {
-                box-shadow: 0 6px 12px 0px #502a0e;
-                transition: height 500ms ease-out, box-shadow 500ms ease-out;
+                box-shadow: 0 6px 12px 0px var(--colorMainOpacity5);
+                transition: height 500ms ease-out, width 500ms ease-out, box-shadow 500ms ease-out;
             }
         }
 
@@ -19,7 +19,7 @@
         }
 
         #page_previous:hover {
-            background-color: rgba(80, 42, 14, 0.1);
+            background-color: var(--colorMainOpacity2);
             animation: fadeInBackground 2s forwards;
 
         }
@@ -29,17 +29,17 @@
         }
 
         #page_next:hover {
-            background-color: rgba(80, 42, 14, 0.1);
+            background-color: var(--colorMainOpacity2);
             animation: fadeInBackground 2s forwards;
         }
 
         @keyframes fadeInBackground {
             from {
-                background-color: rgba(80, 42, 14, 0.1);
+                background-color: var(--colorMainOpacity2);
             }
 
             to {
-                background-color: rgba(80, 42, 14, 0);
+                background-color: rgba(255, 255, 255, 0);
             }
         }
 
@@ -69,7 +69,8 @@
                 margin-left: 10px;
                 margin-right: 10px;
                 text-shadow: none;
-                background-color: rgba(255, 255, 255, 0.5);
+                background-color: var(--colorWhiteOpacity5);
+                height: 35px;
                 opacity: 0.7;
                 font-size: 15px;
             }
@@ -82,7 +83,7 @@
                     color: var(--colorMain);
                     padding: 2px;
                     text-shadow: none;
-                    background-color: rgba(255, 255, 255, 0.5);
+                    background-color: var(--colorWhiteOpacity5);
                     height: 35px;
                     width: 35px;
                     opacity: 0.7;
@@ -114,8 +115,8 @@
 
 #viewer:hover #mood_content {
     img {
-        box-shadow: 0 6px 12px 0px #502a0e00;
-        transition: height 500ms ease-out, box-shadow 500ms ease-out;
+        box-shadow: 0 6px 12px 0px var(--colorMainOpacity5);
+        transition: height 500ms ease-out, width 500ms ease-out, box-shadow 500ms ease-out;
     }
 }
 

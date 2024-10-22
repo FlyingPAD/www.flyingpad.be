@@ -1,12 +1,10 @@
-.flow
-{
+.flow {
     height: 100vh;
     width: 100vw;
 
     display: flex;
 
-    .flow-toolbar
-    {
+    .flow-toolbar {
         position: fixed;
 
         height: 75px;
@@ -14,36 +12,32 @@
         overflow-x: scroll;
 
         display: flex;
-        
+
         padding: 5px;
 
         background-color: rgb(255, 255, 255, 0.85);
 
-        .toolbar-card
-        {
-            background-color: rgb(107, 82, 64, 0.7);
-            border: 2px solid #6b5240;
+        .toolbar-card {
+            background-color: var(--colorMainOpacity7);
+            border: 2px solid var(--colorMain);
             border-radius: 5px;
 
-            .card-title
-            {
+            .card-title {
                 display: flex;
                 justify-content: start;
                 align-items: center;
 
                 margin: 0;
                 padding: 0;
-                
+
                 height: 35px;
 
-                p
-                {
+                p {
                     color: white;
                     font-size: 14px;
                 }
 
-                img
-                {
+                img {
                     height: 25px;
                     width: 25px;
                     margin-left: 10px;
@@ -51,74 +45,65 @@
                 }
             }
 
-            .card-info
-            {
-                margin-left: 20px; margin-top: -15px;
+            .card-info {
+                margin-left: 20px;
+                margin-top: -15px;
                 padding: 0;
 
-                p
-                {
+                p {
                     color: white;
                     font-size: 12px;
                 }
             }
         }
-        .toolbar-card:hover:not(.active)
-        {
+
+        .toolbar-card:hover:not(.active) {
             background-color: rgba(255, 146, 146, 0.1);
             cursor: pointer;
             transition-duration: 500ms;
 
-            .card-title
-            {
-                p
-                {
-                    color: #6b5240;
+            .card-title {
+                p {
+                    color: var(--colorMain);
                     transition-duration: 500ms;
                 }
             }
-            .card-info
-            {
-                p
-                {
-                    color: #6b5240;
+
+            .card-info {
+                p {
+                    color: var(--colorMain);
                     transition-duration: 500ms;
                 }
             }
         }
-        .active
-        {
+
+        .active {
             background-color: rgba(255, 255, 255, 0.5);
-            color: #6b5240;
+            color: var(--colorMain);
 
-            .card-title
-            {
-                p
-                {
-                    color: #6b5240;
+            .card-title {
+                p {
+                    color: var(--colorMain);
                 }
             }
-            .card-info
-            {
-                p
-                {
-                    color: #6b5240;
+
+            .card-info {
+                p {
+                    color: var(--colorMain);
                     transition-duration: 500ms;
                 }
             }
         }
 
-        a
-        {
+        a {
             text-decoration: none;
         }
 
-        .count
-        {
+        .count {
             display: flex;
             justify-content: space-between;
             background-color: rgb(107, 82, 64, 0.7);
-            border: 2px solid #6b5240;
+            border: 2px solid var(--colorMain);
             border-radius: 5px;
             box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
 
@@ -131,40 +116,38 @@
             color: #fff;
             font-size: 13px;
         }
-        .count:hover
-        {
+
+        .count:hover {
             background-color: rgba(255, 255, 255, 0.5);
-            color: #6b5240;
+            color: var(--colorMain);
             transition-duration: 650ms;
             cursor: pointer;
         }
-        .active
-        {
+
+        .active {
             background-color: rgba(255, 255, 255, 0.5);
-            color: #6b5240;
-            transition-duration: 650ms;  
+            color: var(--colorMain);
+            transition-duration: 650ms;
         }
     }
-    .toolbar-top
-    {
+
+    .toolbar-top {
         top: 0;
         left: 0;
-        border-bottom: 3px solid #6b5240;
+        border-bottom: 3px solid var(--colorMain);
 
-        .toolbar-card
-        {
+        .toolbar-card {
             min-width: 195px;
         }
     }
-    .toolbar-bottom
-    {
+
+    .toolbar-bottom {
         bottom: 0;
         left: 0;
-        border-top: 3px solid #6b5240;
+        border-top: 3px solid var(--colorMain);
 
-        .toolbar-card
-        {
-            min-width: 185px;  
+        .toolbar-card {
+            min-width: 185px;
         }
     }
 }

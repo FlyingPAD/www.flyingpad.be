@@ -7,27 +7,34 @@
         display: block;
         width: 100px;
     
-        background-color: #6b5240;
-        border: 1px solid #6b5240;
+        background-color: var(--colorMain);
+        border: 1px solid var(--colorMain);
         border-radius: 5px;
-        box-shadow: 0px 2px 4px rgba(73, 26, 6, 0.3);
+        box-shadow: 0px 2px 4px var(--colorMainOpacity2);
         
         padding: 8px;
         margin: 8px;
     
         text-align: center;
         letter-spacing: 1px;
-        color: #ffffff;
+        color: var(--colorWhite);
         font-size: 14px;
     }
-    .button:hover {
-        background-color: rgb(255, 255, 255);
-        color: #6b5240;
+    .button:hover:not(.button-disabled) {
+        background-color: var(--colorWhite);
+        color: var(--colorMain);
         cursor: pointer;
         transition-duration: 500ms;
     }
     .button-active {
-        background-color: rgb(255, 255, 255);
-        color: #6b5240;
+        background-color: var(--colorWhite);
+        color: var(--colorMain);
+    }
+    .button-disabled {
+        background-color: rgb(112, 112, 112);
+        border: 1px solid rgb(72, 72, 72);
+        box-shadow: 0px 2px 4px rgb(112, 112, 112);
+        color: var(--colorWhiteOpacity8);
+        cursor: not-allowed;
     }
 }

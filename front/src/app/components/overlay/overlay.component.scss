@@ -1,0 +1,25 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    
+    background-color: var(--colorMainOpacity5);
+    backdrop-filter: blur(3px);
+
+    transition: opacity 500ms, transform 500ms;
+    z-index: 19;
+    will-change: opacity, transform;
+}
+
+.overlay-enabled {
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.overlay-enabled:hover {
+    cursor: pointer;
+}
+
+.overlay-disabled {
+    opacity: 0;
+    pointer-events: none;
+}

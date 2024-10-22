@@ -7,7 +7,7 @@
         font-size: 20px;
         color: var(--colorMain);
         letter-spacing: 1px;
-        text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+        text-shadow: 0px 3px 3px var(--colorMainOpacity2);
     }
 
     h2:hover {
@@ -21,15 +21,15 @@
         flex-wrap: wrap;
         margin-top: 25px;
         border-bottom: 3px solid var(--colorMain);
-        box-shadow: 0px 4px 4px rgba(73, 26, 6, 0.3);
+        box-shadow: 0px 4px 4px var(--colorMainOpacity2);
         margin-bottom: 25px;
 
         .franchise {
             width: 175px;
 
-            border: 1px solid rgba(107, 82, 64, 0.3);
-            background-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0px 2px 4px rgba(73, 26, 6, 0.3);
+            border: 1px solid var(--colorMainOpacity3);
+            background-color: var(--colorWhiteOpacity5);
+            box-shadow: 0px 2px 4px var(--colorMainOpacity2);
             border-radius: 10px;
             margin: 5px;
 
@@ -41,7 +41,7 @@
                 height: 215px;
                 overflow: scroll;
                 scrollbar-width: thin;
-                scrollbar-color: rgb(107, 82, 64, 0.7) #f1f1f1;
+                scrollbar-color: var(--colorMainOpacity7) #f1f1f1;
                 overflow-x: hidden;
             }
 
@@ -93,8 +93,8 @@
         }
 
         .franchise:hover {
-            background-color: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgb(107, 82, 64, 0.6);
+            background-color: var(--colorWhiteOpacity5);
+            border: 1px solid var(--colorMainOpacity6);
             transition-duration: 500ms;
         }
     }

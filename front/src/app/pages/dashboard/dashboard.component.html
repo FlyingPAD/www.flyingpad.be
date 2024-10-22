@@ -1,38 +1,43 @@
 <h1 class="h1">{{ 'title.dashboard' | translate }}</h1>
-
 <div class="row-white">
   <div class="buttons">
     <app-button-back />
   </div>
 </div>
 <div class="dashboard">
-  <a routerLink="/moods/create-mood-image"><img src="../../../../assets/app_icons/icon_mood_001.png" />
+  <a routerLink="/moods/create-mood-image">
+    <img [src]="getImageURL('icons-dashboard', 'mood', 'png')" />
     <p>{{ 'title.add-image' | translate }}</p>
   </a>
-  <a routerLink="/moods/create-mood-video"><img src="../../../../assets/app_icons/icon_mood_001.png" />
+  <a routerLink="/moods/create-mood-video">
+    <img [src]="getImageURL('icons-dashboard', 'mood', 'png')" />
     <p>{{ 'title.add-video' | translate }}</p>
   </a>
-  <a routerLink="/flow"><img src="../../../../assets/app_icons/icon_moods_001.png" />
+  <a routerLink="/flow">
+    <img [src]="getImageURL('icons-dashboard', 'flow', 'png')" />
     <p>{{ 'title.full-flow' | translate }}</p>
   </a>
 </div>
-
 <app-right-column>
-  <p class="p">Edition ( C.R.U.D. )</p>
-  <div class="content">
-    <a routerLink="/tags/edition"><img src="../../../../assets/app_icons/icon_tags_001.png" />
+  <div class="column-content">
+    <a routerLink="/tags/edition">
+      <img [src]="getImageURL('icons-dashboard', 'tags', 'png')" />
       <p>Tags</p>
     </a>
-    <a routerLink="/franchises/edition"><img src="../../../../assets/app_icons/icon_franchise_001.png" />
+    <a routerLink="/franchises/edition">
+      <img [src]="getImageURL('icons-dashboard', 'franchises', 'png')" />
       <p>Franchises</p>
     </a>
-    <a routerLink="/artists/edition"><img src="../../../../assets/app_icons/artist.png" />
+    <a routerLink="/artists/edition">
+      <img [src]="getImageURL('icons-dashboard', 'artists', 'png')" />
       <p>{{ 'title.artists' | translate }}</p>
     </a>
-    <a routerLink="/models/edition"><img src="../../../../assets/app_icons/icon_model_001.png" />
+    <a routerLink="/models/edition">
+      <img [src]="getImageURL('icons-dashboard', 'models', 'png')" />
       <p>{{ 'title.models' | translate }}</p>
     </a>
-    <a routerLink="/links/edition"><img src="../../../../assets/app_icons/icon_links_001.png" />
+    <a routerLink="/links/edition">
+      <img [src]="getImageURL('icons-dashboard', 'links', 'png')" />
       <p>{{ 'title.links' | translate }}</p>
     </a>
   </div>

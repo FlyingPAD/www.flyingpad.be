@@ -1,19 +1,19 @@
 <div class="edition-menu">
     <a (click)="triggerMoodEditionButton()" [class.active]="triggerMoodEdition === true">
         <span>INFO</span>
-        <img src="../../../../assets/icons-edit-mood-menu/mood.png" />
+        <img [src]="getImageURL('icons-edit-mood-menu', 'mood', 'png')" />
     </a>
     <a (click)="triggerMoodTagsEditionButton()" [class.active]="triggerMoodTagsEdition === true">
         <span>TAGS</span>
-        <img src="../../../../assets/icons-edit-mood-menu/tag.png" />
+        <img [src]="getImageURL('icons-edit-mood-menu', 'tag', 'png')" />
     </a>
     <a (click)="triggerMoodModelsEditionButton()" [class.active]="triggerMoodModelsEdition === true">
-        <span>MODELS</span>
-        <img src="../../../../assets/icons-edit-mood-menu/model.png" />
+        <span>{{ 'title.models' | translate | uppercase }}</span>
+        <img [src]="getImageURL('icons-edit-mood-menu', 'model', 'png')" />
     </a>
     <a (click)="triggerMoodArtistsEditionButton()" [class.active]="triggerMoodArtistsEdition === true">
-        <span>ARTISTS</span>
-        <img src="../../../../assets/icons-edit-mood-menu/artist.png" />
+        <span>{{ 'title.artists' | translate | uppercase }}</span>
+        <img [src]="getImageURL('icons-edit-mood-menu', 'artist', 'png')" />
     </a>
 </div>
 

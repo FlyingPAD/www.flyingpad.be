@@ -2,7 +2,6 @@
     <ng-content />
     <hr>
     <div class="buttons">
-        <div class="button" (click)="handleDialog()">Close</div>
+        <div class="button" (click)="handleDialog()">{{ 'title.close' | translate }}</div>
     </div>
 </div>
-<div class="dialog-overlay"></div>

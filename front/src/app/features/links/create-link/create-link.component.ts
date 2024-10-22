@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { LinkCreateForm } from '../../../models/forms-create';
+import { LinkCreateForm } from '../../../interfaces/forms-create';
 import { FlowService } from '../../../services/flow.service';
-import { LinkCategoryCheckBox } from '../../../models/link';
+import { LinkCategoryCheckBox } from '../../../interfaces/link';
 
 @Component({
   selector: 'app-create-link',

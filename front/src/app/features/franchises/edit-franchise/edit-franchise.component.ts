@@ -1,8 +1,8 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { FranchiseFull, MediumCheckBox } from '../../../models/franchise';
+import { FranchiseFull, MediumCheckBox } from '../../../interfaces/franchise';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlowService } from '../../../services/flow.service';
-import { FranchiseUpdateForm } from '../../../models/forms-update';
+import { FranchiseUpdateForm } from '../../../interfaces/forms-update';
 
 @Component({
   selector: 'app-edit-franchise',

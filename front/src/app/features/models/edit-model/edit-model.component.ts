@@ -1,10 +1,10 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { ModelFull } from '../../../models/model';
+import { ModelFull } from '../../../interfaces/model';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { ModelUpdateForm } from '../../../models/forms-update';
+import { ModelUpdateForm } from '../../../interfaces/forms-update';
 import { FlowService } from '../../../services/flow.service';
-import { FranchiseCheckBox } from '../../../models/franchise';
+import { FranchiseCheckBox } from '../../../interfaces/franchise';
 
 @Component({
   selector: 'app-edit-model',

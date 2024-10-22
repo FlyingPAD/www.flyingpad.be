@@ -1,7 +1,7 @@
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { TokenInterceptor } from './interceptor/token.interceptor';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
-import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrModule } from 'ngx-toastr';
-import { ErrorInterceptor } from './interceptor/error.interceptor';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { FlowComponent } from './pages/flow/flow.component';
 import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -21,7 +21,6 @@ import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.compon
 import { LayoutCustomComponent } from './layouts/layout-custom/layout-custom.component';
 import { UserUpdateComponent } from './pages/user-update/user-update.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
-import { ChordWheelSvgComponent } from './features/tools/chord-wheel-svg/chord-wheel-svg.component';
 import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circle-of-fifths.component';
 import { DiapasonComponent } from './features/tools/diapason/diapason.component';
 import { FlyingKeysMiniComponent } from './features/tools/flying-keys-mini/flying-keys-mini.component';
@@ -137,6 +136,11 @@ import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { FormatRatioPipe } from './pipes/format-ratio.pipe';
 import { TimelineComponent } from './features/scripts/timeline/timeline.component';
+import { LocalizedDatePipe } from './pipes/localized-date.pipe';
+import { GuitarTunerComponent } from './features/tools/guitar-tuner/guitar-tuner.component';
+import { ChordWheelComponent } from './features/tools/chord-wheel/chord-wheel.component';
+import { BottomBarLargerComponent } from './components/bottom-bar-larger/bottom-bar-larger.component';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -150,6 +154,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     // Pipes.
     FormatDurationPipe,
     FormatSizePipe,
+    FormatRatioPipe,
+    LocalizedDatePipe,
     // Directives.
     AnimRandomDirective,
     AnimGrowDirective,
@@ -172,6 +178,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FlowComponent,
     LinksComponent,
     NotFoundComponent,
+    MyAccountComponent,
+    SettingsComponent,
     // Components.
     AppComponent,
     ListFlowComponent,
@@ -182,6 +190,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RelatedTagsComponent,
     ColumnFullComponent,
     BottomBarComponent,
+    BottomBarLargerComponent,
     DialogInfoComponent,
     RightColumnComponent,
     RightColumnListComponent,
@@ -260,11 +269,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     ViewpointComponent,
     TimelineComponent,
     // Tools.
-    ChordWheelSvgComponent,
+    ChordWheelComponent,
     CircleOfFifthsComponent,
     DiapasonComponent,
     FlyingKeysMiniComponent,
     TrainerNotesComponent,
+    GuitarTunerComponent,
     // => Flow.
     MoodsGalleryFlowComponent,
     MoodDetailsFlowComponent,
@@ -276,10 +286,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MediaDetailsFlowComponent,
     FranchiseDetailsFlowComponent,
     LinkCategoryDetailsFlowComponent,
-    LinkDetailsFlowComponent,
-    MyAccountComponent,
-    SettingsComponent,
-    FormatRatioPipe,
+    LinkDetailsFlowComponent
   ],
   imports: [
     // --- CORE :
@@ -316,9 +323,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: 
-  [
-    [CookieService],              
+  providers: [
+    [CookieService],           
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],

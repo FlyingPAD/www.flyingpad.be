@@ -1,9 +1,9 @@
 import { Component, inject, Input } from '@angular/core';
-import { MediumFull } from '../../../models/franchise';
+import { MediumFull } from '../../../interfaces/franchise';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { FlowService } from '../../../services/flow.service';
-import { MediumUpdateForm } from '../../../models/forms-update';
+import { MediumUpdateForm } from '../../../interfaces/forms-update';
 
 @Component({
   selector: 'app-media-details-flow',

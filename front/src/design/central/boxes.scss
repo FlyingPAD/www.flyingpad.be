@@ -43,7 +43,7 @@
 
     background-color: rgba(255, 253, 251, 0.8);
     backdrop-filter: blur(3px);
-    border-bottom: 1px solid #6b5240;
+    border-bottom: 1px solid var(--colorMain);
     box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
 
     font-size: 15px;
@@ -79,7 +79,7 @@
     div {
         height: 160px;
         background-color: white;
-        border: 1px solid #6b5240;
+        border: 1px solid var(--colorMain);
         border-radius: 5px;
 
         padding: 15px;
@@ -107,10 +107,10 @@
         overflow-y: scroll;
         margin: 10px;
         padding: 10px;
-        border: 1px solid #6b5240;
+        border: 1px solid var(--colorMain);
         border-radius: 5px;
         background-color: rgba(255, 255, 255, 0.269);
-        color: #6b5240;
+        color: var(--colorMain);
 
         h3 {
             padding: 0;
@@ -144,7 +144,7 @@
     padding-top: 10px;
     padding-bottom: 10px;
 
-    background-color: rgba(107, 82, 64, 0.2);
+    background-color: var(--colorMainOpacity2);
     border-radius: 5px;
 
     p {
@@ -164,7 +164,7 @@
         width: 65px;
         height: 30px;
 
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: var(--colorWhiteOpacity5);
         border: 1px solid var(--colorMain);
         border-radius: 5px;
         color: var(--colorMain);
@@ -178,7 +178,7 @@
 
     button:hover {
         background-color: var(--colorMain);
-        color: rgba(255, 255, 255, 0.5);
+        color: var(--colorWhiteOpacity5);
 
         transition-duration: 300ms;
         cursor: pointer;
@@ -233,15 +233,15 @@
         button {
             width: 100px;
             border: 2px solid #413429;
-            background-color: #6b5240;
+            background-color: var(--colorMain);
             text-align: center;
             letter-spacing: 1px;
-            color: #ffffff;
+            color: var(--colorWhite);
         }
 
         button:hover {
-            background-color: rgb(255, 255, 255);
-            color: #6b5240;
+            background-color: var(--colorWhite);
+            color: var(--colorMain);
             cursor: pointer;
             transition-duration: 500ms;
         }
@@ -263,7 +263,7 @@
         justify-content: center;
         flex-wrap: wrap;
 
-        color: #6b5240;
+        color: var(--colorMain);
         text-align: left;
         font-size: 14px;
 
@@ -276,7 +276,7 @@
             margin: 15px;
             padding: 25px;
 
-            border: 1px solid #6b5240;
+            border: 1px solid var(--colorMain);
             border-radius: 10px;
             background-color: rgba(255, 255, 255, 0.4);
 
@@ -302,15 +302,15 @@
     margin-bottom: 150px;
 
     span {
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: var(--colorWhiteOpacity5);
         border: 1px solid black;
         border-radius: 5px;
         padding: 10px;
     }
 
     span:hover {
-        background-color: rgba(107, 82, 64, 0.7);
-        color: white;
+        background-color: var(--colorMainOpacity7);
+        color: var(--colorWhite);
         transition-duration: 500ms;
         cursor: pointer;
     }
@@ -350,8 +350,8 @@
     }
 
     span:hover {
-        background-color: rgba(107, 82, 64, 0.7);
-        color: #fff;
+        background-color: var(--colorMainOpacity7);
+        color: var(--colorWhite);
         transition-duration: 500ms;
         cursor: pointer;
     }

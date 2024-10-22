@@ -5,17 +5,23 @@
         <input class="form-item" type="text" formControlName="description" placeholder="{{mood.description}}">    
     </form>
 </div>
-<h2>Score</h2>
-<div class="score" >
-    <button (click)="updateMoodScore(-10)">-10</button>
-    <button (click)="updateMoodScore(-1)">-1</button>
-    <p><b>{{ mood.score | number : '3.0'}}</b></p>
-    <button (click)="updateMoodScore(1)">+1</button>
-    <button (click)="updateMoodScore(10)">+10</button>
+<div class="row-white">
+    <h2>Score</h2>
+    <div class="score" >
+        <button (click)="updateMoodScore(-100)">-100</button>
+        <button (click)="updateMoodScore(-50)">-50</button>
+        <button (click)="updateMoodScore(-10)">-10</button>
+        <button (click)="updateMoodScore(-1)">-1</button>
+        <p><b>{{ mood.score | number : '3.0'}}</b></p>
+        <button (click)="updateMoodScore(1)">+1</button>
+        <button (click)="updateMoodScore(10)">+10</button>
+        <button (click)="updateMoodScore(50)">+50</button>
+        <button (click)="updateMoodScore(100)">+100</button>
+    </div>
 </div>
 <div class="buttons">
-    <div class="button" (click)="onSubmit()">Submit</div>
-    <div class="button" (click)="triggerMoodDelete()">Delete Mood</div>
+    <div class="button" (click)="onSubmit()">{{ 'title.submit' | translate }}</div>
+    <div class="button" (click)="triggerMoodDelete()">{{ 'title.delete' | translate }}</div>
 </div>
 <div class="spacer-150"></div>
 @if(moodDelete){

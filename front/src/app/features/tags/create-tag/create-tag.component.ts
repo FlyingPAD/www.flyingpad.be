@@ -3,8 +3,8 @@ import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { TagCreateForm } from '../../../models/forms-create';
-import { TagCategoryLight } from '../../../models/tag-category';
+import { TagCreateForm } from '../../../interfaces/forms-create';
+import { TagCategoryLight } from '../../../interfaces/tag-category';
 
 @Component({
   selector: 'app-create-tag',

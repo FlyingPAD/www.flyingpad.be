@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { TagCategoryFull } from '../../../models/tag-category';
+import { TagCategoryFull } from '../../../interfaces/tag-category';
 import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { TagCategoryUpdateForm } from '../../../models/forms-update';
+import { TagCategoryUpdateForm } from '../../../interfaces/forms-update';
 
 @Component({
   selector: 'app-edit-tag-category',

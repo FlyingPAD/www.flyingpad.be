@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
-import { LinkCategoryFull } from '../../../models/link';
+import { LinkCategoryFull } from '../../../interfaces/link';
 import { FlowService } from '../../../services/flow.service';
 import { Subscription } from 'rxjs';
 

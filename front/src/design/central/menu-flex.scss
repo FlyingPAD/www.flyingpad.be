@@ -9,9 +9,9 @@
         margin: 10px;
         padding: 9px;
 
-        border: 1px solid #6b5240;
+        border: 1px solid var(--colorMain);
         border-radius: 5px;
-        background-color: #6b5240;
+        background-color: var(--colorMain);
 
         font-size: 14px;
         text-align: center;
@@ -22,7 +22,7 @@
 
     a:hover {
         background-color: rgb(255, 255, 255);
-        color: #6b5240;
+        color: var(--colorMain);
         transition-duration: 500ms;
         cursor: pointer;
     }
@@ -33,7 +33,7 @@
         margin: 10px;
         padding: 9px;
 
-        border: 1px solid #6b5240;
+        border: 1px solid var(--colorMain);
         border-radius: 5px;
         background-color: rgb(192, 192, 192);
 

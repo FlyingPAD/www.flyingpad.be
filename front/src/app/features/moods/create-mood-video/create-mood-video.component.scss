@@ -1,103 +1,92 @@
-form
-{
-    #file_menu
-    {
+form {
+    #file_menu {
         margin: auto;
         margin-top: 15px;
         padding: 15px;
 
         border-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.5);  
+        background-color: var(--colorWhiteOpacity5);
 
-        p
-        {
-            color: #6b5240;  
+        p {
+            color: var(--colorMain);
             margin: 5px;
             text-align: center;
 
-            input
-            {
+            input {
                 padding: 5px;
                 font-size: 14px;
             }
         }
     }
 
-    video
-    {
+    video {
         display: block;
         width: 380px;
         margin: auto;
-        margin-top: 15px; margin-bottom: 15px;
-        border: 1px solid #6b5240;  
+        margin-top: 15px;
+        margin-bottom: 15px;
+        border: 1px solid var(--colorMain);
         border-radius: 5px;
     }
 
-    #mood_info
-    {
+    #mood_info {
         width: 350px;
         margin: auto;
-        border: 1px solid #6b5240;  
+        border: 1px solid var(--colorMain);
         border-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.5);  
+        background-color: var(--colorWhiteOpacity5);
         padding: 15px;
         margin-top: 15px;
         margin-bottom: 30px;
 
-        h3
-        {
-            color: #6b5240;
+        h3 {
+            color: var(--colorMain);
             font-size: 15px;
         }
 
-        #info_flex
-        {
+        #info_flex {
             display: flex;
             justify-content: space-between;
             margin-bottom: 5px;
 
-            p
-            {
+            p {
                 font-size: 15px;
                 padding: 5px;
-                margin: 0;  
-                
-                input
-                {
+                margin: 0;
+
+                input {
                     width: 250px;
                     padding: 5px;
                 }
             }
         }
 
-        #submit
-        {
+        #submit {
             display: flex;
             justify-content: center;
             margin-top: 15px;
 
-            button
-            {       
+            button {
                 cursor: pointer;
-                width: 115px;    
-                
+                width: 115px;
+
                 margin-left: 5px;
                 margin-right: 5px;
 
-                border: 1px solid #6b5240;  
+                border: 1px solid var(--colorMain);
                 border-radius: 5px;
-                background-color: rgba(255, 255, 255, 0.5);  
+                background-color: var(--colorWhiteOpacity5);
                 padding: 7px;
-    
+
                 font-size: 14px;
-                color: #6b5240;  
+                color: var(--colorMain);
                 letter-spacing: 2px;
             }
-            button:hover
-            {       
-                background-color: #6b5240; 
-                color: #fff5ee; 
-                transition-duration : 500ms; 
+
+            button:hover {
+                background-color: var(--colorMain);
+                color: var(--colorWhiteOpacity5);
+                transition-duration: 500ms;
             }
         }
     }

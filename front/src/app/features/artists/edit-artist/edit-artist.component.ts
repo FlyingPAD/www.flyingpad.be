@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { ArtistFull } from '../../../models/artist';
+import { ArtistFull } from '../../../interfaces/artist';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlowService } from '../../../services/flow.service';
-import { StyleLight } from '../../../models/style';
-import { ArtistUpdateForm } from '../../../models/forms-update';
+import { StyleLight } from '../../../interfaces/style';
+import { ArtistUpdateForm } from '../../../interfaces/forms-update';
 
 @Component({
   selector: 'app-edit-artist',

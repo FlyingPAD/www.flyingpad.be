@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { MediumCheckBox } from '../../../models/franchise';
+import { MediumCheckBox } from '../../../interfaces/franchise';
 import { FlowService } from '../../../services/flow.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { FranchiseCreateForm } from '../../../models/forms-create';
+import { FranchiseCreateForm } from '../../../interfaces/forms-create';
 
 @Component({
   selector: 'app-create-franchise',

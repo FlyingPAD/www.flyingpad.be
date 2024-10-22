@@ -1,10 +1,10 @@
 import { Component, OnDestroy, inject } from '@angular/core';
 import { MultiTagService } from '../../../services/multi-tag.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { RelationsMoodArtistForm } from '../../../models/relations';
+import { RelationsMoodArtistForm } from '../../../interfaces/relations';
 import { Router } from '@angular/router';
 import { FlowService } from '../../../services/flow.service';
-import { ArtistCheckBox } from '../../../models/artist';
+import { ArtistCheckBox } from '../../../interfaces/artist';
 
 @Component({
   selector: 'app-multi-tag-artists',

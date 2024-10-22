@@ -1,6 +1,6 @@
 <div class="column-trigger" [class.column-trigger-on]="rightColumnIsActive" (click)="menuTrigger()">
-    <div class="trigger-arrow"></div>
-  </div>
-  <div class="right-column" [ngClass]="rightColumnIsActive ? 'right-column-on' : 'right-column-off'">
-    <ng-content></ng-content>
-  </div>
+  <div class="trigger-arrow"></div>
+</div>
+<div class="right-column" [ngClass]="rightColumnIsActive ? 'right-column-on' : 'right-column-off'">
+  <ng-content></ng-content>
+</div>

@@ -1,5 +1,5 @@
 <div id="logo">
-    <img src="../../../../../assets/app_logos/fp_logo_01.png">
+    <img [src]="getImageURL('images-logo', 'logo-1', 'png')" />
 </div>
 <div class="row-white">
     <p class="p">{{ 'message.text1' | translate }}</p>
@@ -9,25 +9,25 @@
 <div class="box-social">
     <div class="social">
         <a target="_blank" href="https://www.facebook.com/FlyingPAD">
-            <img class="icon-social" src="../../../../assets/app_icons/social/facebook_01.png" />
+            <img class="icon-social" [src]="getImageURL('icons-social', 'facebook', 'png')" />
         </a>
         <p class="p">Facebook</p>
     </div>
     <div class="social">
         <a target="_blank" href="https://www.instagram.com/tony_van_langenhove/">
-            <img class="icon-social" src="../../../../assets/app_icons/social/instagram.png" />
+            <img class="icon-social" [src]="getImageURL('icons-social', 'instagram', 'png')" />
         </a>
         <p class="p">Instagram</p>
     </div>
     <div class="social">
         <a target="_blank" href="https://www.youtube.com/@flyingpad">
-            <img class="icon-social" src="../../../../assets/app_icons/social/youtube.png" />
+            <img class="icon-social" [src]="getImageURL('icons-social', 'youtube', 'png')" />
         </a>
         <p class="p">YouTube</p>
     </div>
     <div class="social">
         <a target="_blank" href="https://soundcloud.com/flyingpad">
-            <img class="icon-social" src="../../../../assets/app_icons/social/soundcloud.png" />
+            <img class="icon-social" [src]="getImageURL('icons-social', 'soundcloud', 'png')" />
         </a>
         <p class="p">Soundcloud</p>
     </div>

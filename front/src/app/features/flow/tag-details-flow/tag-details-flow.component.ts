@@ -1,8 +1,8 @@
 import { Component, inject, Input } from '@angular/core';
-import { TagUpdateForm } from '../../../models/forms-update';
+import { TagUpdateForm } from '../../../interfaces/forms-update';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { TagFull } from '../../../models/tag';
+import { TagFull } from '../../../interfaces/tag';
 import { FlowService } from '../../../services/flow.service';
 
 @Component({

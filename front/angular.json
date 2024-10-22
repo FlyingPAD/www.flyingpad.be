@@ -43,7 +43,6 @@
 
               "src/design/central/animations.scss",
 
-              "src/design/central/bottom-bar-larger.scss",
               "src/design/central/scripts.scss",
               "src/design/central/flow-cards.scss",
               "src/design/central/buttons.scss",
@@ -55,12 +54,9 @@
               "src/design/central/gallery.scss",
               "src/design/central/list.scss",
               "src/design/central/menu-flex.scss",
-              "src/design/central/modal.scss",
-              "src/design/central/overlay.scss",
               "src/design/central/tags-gallery.scss",
 
-              "./node_modules/ngx-toastr/toastr.css",
-              "node_modules/vis-timeline/styles/vis-timeline-graph2d.min.css"
+              "./node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -138,7 +134,6 @@
 
               "src/design/central/animations.scss",
 
-              "src/design/central/bottom-bar-larger.scss",
               "src/design/central/scripts.scss",
               "src/design/central/flow-cards.scss",
               "src/design/central/buttons.scss",
@@ -150,12 +145,9 @@
               "src/design/central/gallery.scss",
               "src/design/central/list.scss",
               "src/design/central/menu-flex.scss",
-              "src/design/central/modal.scss",
-              "src/design/central/overlay.scss",
               "src/design/central/tags-gallery.scss",
 
-              "./node_modules/ngx-toastr/toastr.css",
-              "node_modules/vis-timeline/styles/vis-timeline-graph2d.min.css"
+              "./node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           }

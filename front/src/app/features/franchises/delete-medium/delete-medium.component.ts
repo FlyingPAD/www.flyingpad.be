@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { MediumFull } from '../../../models/franchise';
+import { MediumFull } from '../../../interfaces/franchise';
 import { FlowService } from '../../../services/flow.service';
 import { Subscription } from 'rxjs';
 

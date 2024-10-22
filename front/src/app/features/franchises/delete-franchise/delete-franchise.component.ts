@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
-import { FranchiseFull } from '../../../models/franchise';
+import { FranchiseFull } from '../../../interfaces/franchise';
 import { FlowService } from '../../../services/flow.service';
 import { Subscription } from 'rxjs';
 

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { FlowService } from '../../../services/flow.service';
-import { LinkCategoryCheckBox, LinkFull } from '../../../models/link';
-import { LinkUpdateForm } from '../../../models/forms-update';
+import { LinkCategoryCheckBox, LinkFull } from '../../../interfaces/link';
+import { LinkUpdateForm } from '../../../interfaces/forms-update';
 
 @Component({
   selector: 'app-edit-link',

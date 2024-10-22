@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MoodLight } from '../../../models/mood';
+import { MoodLight } from '../../../interfaces/mood';
 import { environment } from '../../../../environments/environment';
 
 @Component({

@@ -1,6 +1,6 @@
 <div *ngIf="flow() as flow">
     <div id="layout-central">
-        <h1>{{ flow.medium?.name }}</h1>
+        <h1 class="h1">{{ flow.medium?.name }}</h1>
         <div class="franchises">
             <div *ngFor="let franchise of flow.franchisesByMedium">
                 <a routerLink="/moods"
@@ -9,6 +9,6 @@
             </div>
         </div>
     </div>
-
     <app-bottom-bar [entityName]="flow?.medium?.name" [moodsLength]="flow.franchisesByMedium.length"/>
 </div>
+<div class="spacer-75"></div>

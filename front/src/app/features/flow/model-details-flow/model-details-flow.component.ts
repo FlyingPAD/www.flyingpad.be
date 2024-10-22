@@ -1,9 +1,9 @@
 import { Component, inject, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModelFull } from '../../../models/model';
+import { ModelFull } from '../../../interfaces/model';
 import { FlowService } from '../../../services/flow.service';
 import { ToastrService } from 'ngx-toastr';
-import { ModelUpdateForm } from '../../../models/forms-update';
+import { ModelUpdateForm } from '../../../interfaces/forms-update';
 
 @Component({
   selector: 'app-model-details-flow',

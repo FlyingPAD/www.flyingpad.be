@@ -1,10 +1,10 @@
 import { Component, HostListener, inject, Input, OnDestroy, OnInit } from '@angular/core';
-import { TagsCheckBoxesList } from '../../../models/tags-list';
+import { TagsCheckBoxesList } from '../../../interfaces/tags-list';
 import { FlowService } from '../../../services/flow.service';
 import { ToastrService } from 'ngx-toastr';
-import { MoodFull } from '../../../models/mood';
+import { MoodFull } from '../../../interfaces/mood';
 import { Subscription } from 'rxjs';
-import { RelationsMoodTagForm } from '../../../models/relations';
+import { RelationsMoodTagForm } from '../../../interfaces/relations';
 
 @Component({
   selector: 'app-edition-tags',

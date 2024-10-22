@@ -29,7 +29,7 @@
         </div>
     </ng-template>
     <div class="pagination-row" *ngIf="moods && moods.length > moodsPerPage">
-        <div id="pagination">
+        <div class="pagination">
             <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.moodsByTagCurrentPage = $event"></pagination-controls>
         </div>   
     </div>

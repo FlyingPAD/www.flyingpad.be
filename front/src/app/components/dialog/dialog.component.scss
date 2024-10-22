@@ -1,32 +1,24 @@
 .dialog {
   display: block;
+  width: 315px;
+  
   position: fixed;
-  z-index: 1000;
   left: 50%;
   top: 50%;
+  
   transform: translate(-50%, -50%);
+  
   padding: 20px;
-  width: 315px;
-
+  
   background-color: rgb(255, 255, 255, 0.9);
-  border: 3px solid #6b5240;
-  backdrop-filter: blur(3px);
+  border: 5px solid var(--colorMain);
   border-radius: 15px;
+  backdrop-filter: blur(3px);
   box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
 
+  z-index: 1000;
+  
   hr {
     margin-top: 20px;
   }
-}
-
-.dialog-overlay {
-  position: fixed;
-  inset: 0;
-
-  background-color: rgba(107, 82, 64, 0.5);
-  backdrop-filter: blur(3px);
-
-  transition: opacity 500ms, transform 500ms;
-  z-index: 20;
-  will-change: opacity, transform;
 }

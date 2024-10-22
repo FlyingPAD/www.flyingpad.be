@@ -1,9 +1,9 @@
 import { Component, inject, Input } from '@angular/core';
-import { StyleUpdateForm } from '../../../models/forms-update';
+import { StyleUpdateForm } from '../../../interfaces/forms-update';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { FlowService } from '../../../services/flow.service';
-import { StyleFull } from '../../../models/style';
+import { StyleFull } from '../../../interfaces/style';
 
 @Component({
   selector: 'app-style-details-flow',

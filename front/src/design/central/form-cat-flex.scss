@@ -4,7 +4,7 @@
         justify-content: center;
         flex-wrap: wrap;
 
-        color: #6b5240;
+        color: var(--colorMain);
         text-align: left;
         font-size: 15px;
 
@@ -17,7 +17,7 @@
             margin: 15px;
             padding: 25px;
 
-            border: 1px solid #6b5240;
+            border: 1px solid var(--colorMain);
             border-radius: 10px;
             background-color: rgba(255, 255, 255, 0.4);
 

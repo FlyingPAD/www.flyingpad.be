@@ -1,0 +1,5 @@
+<div class="wheel-container">
+  <img #wheel class="wheel" src="../../../../assets/app_tools/wheel.png" />
+  <img src="../../../../assets/app_tools/wheel_focus.png" />
+</div>
+<app-bottom-bar-larger [contentType]="'chord-wheel'" (rotation)="rotateImage($event)" (random)="randomPosition()" />

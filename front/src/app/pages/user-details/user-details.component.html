@@ -1,41 +1,42 @@
-<h2 class="h2">Account Settings</h2>
+<h1 class="h1">{{ 'title.account-settings' | translate }}</h1>
 <div class="row-white">
     <div class="buttons">
         <app-button-back />
     </div>
 </div>
-<p class="p">Edit your account settings – name, email, password, address.</p>
+<p class="p">{{ 'message.account-settings' | translate }}</p>
 <div class="profile">
     <div class="flex">
-        <p><b>First name</b> : </p>
+        <p><b>{{ 'title.first-name' | translate }}</b></p>
         <p>{{userService.appUser.firstName}}</p>
-    </div>   
+    </div>
     <div class="flex">
-        <p><b>Last name</b> : </p>
+        <p><b>{{ 'title.last-name' | translate }}</b></p>
         <p>{{userService.appUser.lastName}}</p>
     </div>
     <div class="flex">
-        <p><b>Email</b> : </p>
+        <p><b>{{ 'title.email' | translate }}</b></p>
         <p>{{userService.appUser.email}}</p>
-    </div>  
+    </div>
     <div class="flex">
-        <p><b>Birthdate</b> : </p>
-        <p>{{userService.appUser.birthdate  | date : 'MMMM d, y'}}</p>
-    </div>  
+        <p><b>{{ 'title.birthdate' | translate }}</b></p>
+        <p>{{ userService.appUser.birthdate | localizedDate:undefined:false }}</p>
+    </div>
     <div class="flex_created">
         <div class="box_created">
-            <p>Created :</p>
-            <p>{{userService.appUser.created | date : 'MMMM d, y | HH:mm'}}</p>
+            <p>{{ 'title.created' | translate }}</p>
+            <p>{{ userService.appUser.created | localizedDate }}</p>
         </div>
         <div class="box_created">
-            <p>Modified :</p>
-            <p>{{userService.appUser.modified | date : 'MMMM d, y | HH:mm'}}</p>
+            <p>{{ 'title.modified' | translate }}</p>
+            <p>{{ userService.appUser.modified | localizedDate }}</p>
         </div>
     </div>
 </div>
 <div class="row-white">
     <div class="buttons">
-        <div class="button" routerLink="/users/user-update">Update</div>
-        <div class="button" routerLink="/users/delete-user/{{userService.appUser.businessId}}">Delete</div>
+        <div class="button" routerLink="/users/delete-user/{{userService.appUser.businessId}}">{{ 'title.delete' | translate }}</div>
+        <div class="button" routerLink="/users/user-update">{{ 'title.modify' | translate }}</div>
     </div>
 </div>
+<div class="spacer-75"></div>

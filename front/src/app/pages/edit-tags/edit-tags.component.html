@@ -7,14 +7,13 @@
             <p>Select a category.</p>
         }  
         <div class="edition-buttons">
-            <img [class.active]="showList" src="../../../assets/app_icons/icon_scripts_001.png" (click)="triggerShowList()" />
-            <img [class.active]="showNewCategory" src="../../../assets/app_icons/new.png" (click)="triggerShowNewCategory()" />
+            <img [class.active]="showList" [src]="getImageUrl('icons-edition', 'list', 'png')" (click)="triggerShowList()" />
+            <img [class.active]="showNewCategory" [src]="getImageUrl('icons-edition', 'new', 'png')" (click)="triggerShowNewCategory()" />
             @if(flow.tagCategory?.name){
-                <img [class.active]="showEditCategory" src="../../../assets/app_icons/edit.png" (click)="triggerShowEditCategory()" />
+                <img [class.active]="showEditCategory" [src]="getImageUrl('icons-edition', 'edit', 'png')" (click)="triggerShowEditCategory()" />
             }
         </div>
     </div>
-
     <div class="edition-selection">
         @if(flow.tag?.name){
             <p><b>{{flow.tag?.name}}</b></p>
@@ -23,14 +22,13 @@
             <p>Select a tag.</p>
         }
         <div class="edition-buttons">
-            <img [class.active]="showNewTag" src="../../../assets/app_icons/new.png" (click)="triggerShowNewTag()" />
+            <img [class.active]="showNewTag" [src]="getImageUrl('icons-edition', 'new', 'png')" (click)="triggerShowNewTag()" />
             @if(flow.tag?.name){
-                <img [class.active]="showEditTag" src="../../../assets/app_icons/edit.png" (click)="triggerShowEditTag()" />
-                <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
+                <img [class.active]="showEditTag" [src]="getImageUrl('icons-edition', 'edit', 'png')" (click)="triggerShowEditTag()" />
+                <img [src]="getImageUrl('icons-edition', 'arrow', 'png')" (click)="go()" />
             }
         </div>
     </div>
-
     @if (showList) {
         <div class="filter">
             <input type="text" [(ngModel)]="searchTags" placeholder="Filter tags ...">
@@ -47,7 +45,7 @@
         </app-right-column>
         
         <div class="pagination-row" *ngIf="flow.tagsByCategory.length > elementsPerPage">
-            <div id="pagination">
+            <div class="pagination">
               <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editTagsCurrentPage = $event"></pagination-controls>
             </div>   
         </div>
@@ -64,6 +62,6 @@
     @if (showEditCategory) {
         <app-edit-tag-category [tagCategory]="flow.tagCategory" (showListTrigger)="triggerShowList()" />
     }
-    
     <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.tagsByCategory.length"/>
 </div>
+<div class="spacer-150"></div>

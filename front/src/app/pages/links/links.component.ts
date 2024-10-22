@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FlowService } from '../../services/flow.service';
 import { PaginationService } from '../../services/pagination.service';
-import { LinkLight } from '../../models/link';
+import { LinkLight } from '../../interfaces/link';
 
 @Component({
   selector: 'app-links',
@@ -9,7 +9,6 @@ import { LinkLight } from '../../models/link';
   styleUrl: './links.component.scss'
 })
 export class LinksComponent {
-
   #flowService = inject(FlowService)
   paginationService = inject(PaginationService)
 

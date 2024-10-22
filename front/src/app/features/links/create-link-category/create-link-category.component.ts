@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { LinkCategoryCreateForm } from '../../../models/forms-create';
+import { LinkCategoryCreateForm } from '../../../interfaces/forms-create';
 
 @Component({
   selector: 'app-create-link-category',

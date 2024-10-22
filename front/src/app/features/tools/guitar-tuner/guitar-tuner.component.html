@@ -1,0 +1,39 @@
+<div class="guitar-tuner">
+    <div class="settings">
+        <div class="option">
+            <p>Instrument</p>
+            <select>
+                <option value="Guitar ( 6 strings )">Guitar ( 6 strings )</option>
+            </select>
+        </div>
+        <div class="option">
+            <p>Tuning</p>
+            <select (change)="onTuningChange($event)">
+                <option value="standard">Standard</option>
+                <option value="dropC">Drop C</option>
+                <option value="dropD">Drop D</option>
+                <option value="DADADD">DADADD</option>
+                <option value="DADADF#">DADADF#</option>
+                <option value="DADADA">DADADA</option>
+            </select>
+        </div>
+    </div>
+    <div class="display">
+        <p><b>{{ frequencyDifference | number : '3.2' }}</b> Hz</p>
+    </div>
+</div>
+<div class="guitar-head">
+    <img src="../../../../assets/guitar-tuner/guitar-head.png" alt="Guitar Head" />
+    <div class="note e2" (click)="playNote(currentTuning[0].name!)"
+        [class.highlight]="targetNote?.name === currentTuning[0].name">{{ currentTuning[0].name }}</div>
+    <div class="note a2" (click)="playNote(currentTuning[1].name!)"
+        [class.highlight]="targetNote?.name === currentTuning[1].name">{{ currentTuning[1].name }}</div>
+    <div class="note d3" (click)="playNote(currentTuning[2].name!)"
+        [class.highlight]="targetNote?.name === currentTuning[2].name">{{ currentTuning[2].name }}</div>
+    <div class="note g3" (click)="playNote(currentTuning[3].name!)"
+        [class.highlight]="targetNote?.name === currentTuning[3].name">{{ currentTuning[3].name }}</div>
+    <div class="note b3" (click)="playNote(currentTuning[4].name!)"
+        [class.highlight]="targetNote?.name === currentTuning[4].name">{{ currentTuning[4].name }}</div>
+    <div class="note e4" (click)="playNote(currentTuning[5].name!)"
+        [class.highlight]="targetNote?.name === currentTuning[5].name">{{ currentTuning[5].name }}</div>
+</div>

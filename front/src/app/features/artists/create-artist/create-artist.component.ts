@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { StyleLight } from '../../../models/style';
+import { StyleLight } from '../../../interfaces/style';
 import { FlowService } from '../../../services/flow.service';
-import { ArtistCreateForm } from '../../../models/forms-create';
+import { ArtistCreateForm } from '../../../interfaces/forms-create';
 
 @Component({
   selector: 'app-create-artist',
