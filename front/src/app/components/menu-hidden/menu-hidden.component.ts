@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { ImageUrlService } from '../../services/image-url.service';
+import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-menu-hidden',

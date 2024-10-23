@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { TagLight } from '../../interfaces/tag';
 import { Router } from '@angular/router';
 import { FlowService } from '../../services/flow.service';
-import { PaginationService } from '../../services/pagination.service';
-import { ImageUrlService } from '../../services/image-url.service';
+import { PaginationService } from '../../services/display/pagination.service';
+import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-edit-tags',
@@ -19,7 +19,7 @@ export class EditTagsComponent {
   flow = this.#flowService.flow
 
   searchTags : string = ''
-  elementsPerPage : number = 15
+  elementsPerPage : number = 12
 
   showList : boolean = true
   showNewTag : boolean = false

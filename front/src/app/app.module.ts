@@ -140,6 +140,9 @@ import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 import { GuitarTunerComponent } from './features/tools/guitar-tuner/guitar-tuner.component';
 import { ChordWheelComponent } from './features/tools/chord-wheel/chord-wheel.component';
 import { BottomBarLargerComponent } from './components/bottom-bar-larger/bottom-bar-larger.component';
+import { GdprComponent } from './components/gdpr/gdpr.component';
+import { StandardLayoutComponent } from './layouts/standard-layout/standard-layout.component';
+import { LeftColumnComponent } from './components/left-column/left-column.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -286,7 +289,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     MediaDetailsFlowComponent,
     FranchiseDetailsFlowComponent,
     LinkCategoryDetailsFlowComponent,
-    LinkDetailsFlowComponent
+    LinkDetailsFlowComponent,
+    GdprComponent,
+    StandardLayoutComponent,
+    LeftColumnComponent
   ],
   imports: [
     // --- CORE :

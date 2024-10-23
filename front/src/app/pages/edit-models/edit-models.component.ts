@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FlowService } from '../../services/flow.service';
 import { Router } from '@angular/router';
 import { ModelLight } from '../../interfaces/model';
-import { PaginationService } from '../../services/pagination.service';
-import { ImageUrlService } from '../../services/image-url.service';
+import { PaginationService } from '../../services/display/pagination.service';
+import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-edit-models',
@@ -19,7 +19,7 @@ export class EditModelsComponent {
   flow = this.#flowService.flow
 
   searchModels: string = ''
-  elementsPerPage: number = 18
+  elementsPerPage: number = 12
 
   showList: boolean = true
   showNew: boolean = false

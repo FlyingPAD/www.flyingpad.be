@@ -58,7 +58,9 @@
     "rules" : "Règles du Jeu",
     "landscape" : "Paysage",
     "square" : "Carré ( 1:1 )",
-    "theme" : "Thème"
+    "theme" : "Thème",
+    "accept" : "Accepter",
+    "decline" : "Refuser"
   },
   "message": {
     "404": "La page n'a pas été trouvée.",
@@ -70,6 +72,7 @@
     "text2": "Prenez votre envol musical !",
     "follow_me": "Suivez-moi sur les réseaux",
     "account-settings" : "Éditez vos paramètres de compte - nom, courriel, mot de passe, adresse.",
-    "account-closed" : "Les inscriptions sont fermées pour le moment, revenez plus tard."
+    "account-closed" : "Les inscriptions sont fermées pour le moment, revenez plus tard.",
+    "gdpr" : "Ce site web utilise des cookies."
   }
 }

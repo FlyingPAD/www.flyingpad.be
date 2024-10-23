@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { FlowService } from '../../../services/flow.service';
-import { MenuDesktopService } from '../../../services/menu-desktop.service';
+import { MenuDesktopService } from '../../../services/display/menu-desktop.service';
 import { MultiTagService } from '../../../services/multi-tag.service';
-import { PaginationService } from '../../../services/pagination.service';
+import { PaginationService } from '../../../services/display/pagination.service';
 import { MoodLight } from '../../../interfaces/mood';
 
 @Component({

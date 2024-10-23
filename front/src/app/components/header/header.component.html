@@ -11,22 +11,15 @@
             <!-- <p class="responsive">Search</p> -->
         </div>
         <div class="grid-section-right">
-            @if(userIsConnected) {
-            <!-- Logout -->
-            <div class="login">
-                <a (click)="handleLogoutTrigger()">
-                    <img [class.img-active]="isMenuON" [src]="getImageURL('icons-header', 'logout', 'png')" />
-                </a>
+            <div class="icons">
+                <img [class.img-active]="isMenuON" [src]="getImageURL('icons-header', 'toggle', 'png')" routerLink="/settings" />
+                @if(userIsConnected) {
+                <img [class.img-active]="isMenuON" [src]="getImageURL('icons-header', 'logout', 'png')" (click)="handleLogoutTrigger()">
+                }
+                @else {
+                <img [class.img-active]="isMenuON" [src]="getImageURL('icons-header', 'login', 'png')" (click)="handleLoginTrigger()" />
+                }
             </div>
-            }
-            @else {
-            <!-- Login -->
-            <div class="login">
-                <a (click)="handleLoginTrigger()">
-                    <img [class.img-active]="isMenuON" [src]="getImageURL('icons-header', 'login', 'png')" />
-                </a>
-            </div>
-            }
         </div>
     </div>
 </header>

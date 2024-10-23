@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ImageUrlService } from '../../services/image-url.service';
+import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-about',

@@ -1,5 +1,5 @@
-import { AudioService } from "../../services/audio.service";
-import { KeysService } from "../../services/keys.service";
+import { AudioService } from "../../services/audio/audio.service";
+import { KeysService } from "../../services/audio/keys.service";
 import { Key } from "./key";
 import { Note } from "../../interfaces/music-tools/note";
 

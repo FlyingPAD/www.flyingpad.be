@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { PaginationService } from '../../../services/pagination.service';
+import { PaginationService } from '../../../services/display/pagination.service';
 import { FlowService } from '../../../services/flow.service';
 import { MoodLight } from '../../../interfaces/mood';
-import { RightColumnService } from '../../../services/right-column.service';
+import { RightColumnService } from '../../../services/display/right-column.service';
 
 @Component({
   selector: 'app-moods-gallery',
@@ -28,10 +28,10 @@ export class MoodsGalleryComponent
 
   menuTrigger(): void {
     if(this.rightColumnIsActive()) {
-      this.rightColumnService.updateRightColumnState(false)
+      this.rightColumnService.disableRightColumn()
     }
     else {
-      this.rightColumnService.updateRightColumnState(true)
+      this.rightColumnService.enableRightColumn()
     }
   }
 

@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FlowService } from '../../services/flow.service';
 import { Router } from '@angular/router';
-import { PaginationService } from '../../services/pagination.service';
+import { PaginationService } from '../../services/display/pagination.service';
 import { ArtistLight } from '../../interfaces/artist';
-import { ImageUrlService } from '../../services/image-url.service';
+import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-edit-artists',
@@ -19,7 +19,7 @@ export class EditArtistsComponent {
   flow = this.#flowService.flow
 
   searchArtists : string = ''
-  elementsPerPage : number = 15
+  elementsPerPage : number = 12
 
   showList : boolean = true
   showNew : boolean = false

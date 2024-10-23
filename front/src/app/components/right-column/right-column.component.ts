@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RightColumnService } from '../../services/right-column.service';
+import { RightColumnService } from '../../services/display/right-column.service';
 
 @Component({
   selector: 'app-right-column',
@@ -7,14 +7,11 @@ import { RightColumnService } from '../../services/right-column.service';
   styleUrl: './right-column.component.scss'
 })
 export class RightColumnComponent {
-  rightColumnService = inject(RightColumnService);
-  rightColumnIsActive : boolean | undefined = false
+  #rightColumnService = inject(RightColumnService)
 
-  constructor() {
-    this.rightColumnIsActive = this.rightColumnService.rightColumnIsActive();
-  }
+  rightColumnIsActive = this.#rightColumnService.rightColumnIsActive
+
   menuTrigger(): void {
-    this.rightColumnService.updateRightColumnState(!this.rightColumnIsActive);
-    this.rightColumnIsActive = this.rightColumnService.rightColumnIsActive();
+    this.#rightColumnService.toggleRightColumn()
   }
 }

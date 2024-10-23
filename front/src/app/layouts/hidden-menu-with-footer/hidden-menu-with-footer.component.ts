@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../interfaces/user';
-import { AuthenticationService } from '../../services/authentication.service';
-import { MenuCustomService } from '../../services/menu-custom.service';
+import { AuthenticationService } from '../../services/system/authentication.service';
+import { MenuCustomService } from '../../services/display/menu-custom.service';
 import { UserService } from '../../services/user.service';
 
 @Component({

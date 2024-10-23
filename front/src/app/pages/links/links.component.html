@@ -1,4 +1,4 @@
-<div *ngIf="flow() as flow">
+<div *ngIf="signal() as flow">
     @if(flow.linkCategory?.name){
         <h1 class="h1">{{flow.linkCategory?.name}}</h1>
     }
@@ -36,12 +36,12 @@
             <app-right-column-list [table]="flow.linkCategories" [currentEntityId]="flow.linkCategory?.businessId" (entityId)="updateLinkCategoryId($event)" />
         </app-right-column>
         
-        <div class="pagination-row" *ngIf="flow.linksByCategory.length > elementsPerPage">
+        <div class="pagination-row" *ngIf="flow.links.length > elementsPerPage">
             <div class="pagination">
                 <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editLinksCurrentPage = $event"></pagination-controls>
             </div>   
         </div>
         
-        <app-bottom-bar moodsGalleryType="link" [entityName]="flow.linkCategory?.name" [moodsLength]="flow.linksByCategory.length" />
+        <app-bottom-bar moodsGalleryType="link" [entityName]="flow.linkCategory?.name" [moodsLength]="flow.links.length" />
     </div>
 </div>

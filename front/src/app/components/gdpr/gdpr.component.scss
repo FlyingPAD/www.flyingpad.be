@@ -1,0 +1,57 @@
+.gdpr-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    width: 100vw;
+
+    display: flex;
+    justify-content: flex-end;
+
+    z-index: 999;
+
+    .gdpr {
+        width: 350px;
+        margin: 50px;
+    
+        background-color: var(--colorWhiteOpacity7);
+        border: 3px solid var(--colorMain);
+        border-radius: 5px;
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+        padding: 25px;
+
+        animation: slideUp 0.5s ease-out forwards;
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideDown {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+    }
+    
+    .slide-down {
+        animation: slideDown 0.5s ease-in forwards;
+    }
+}
+
+@media (max-width: 800px) {
+    .gdpr-container {
+        justify-content: center;
+    }
+}

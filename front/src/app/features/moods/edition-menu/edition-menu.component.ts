@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MoodFull } from '../../../interfaces/mood';
-import { ImageUrlService } from '../../../services/image-url.service';
+import { ImageUrlService } from '../../../services/display/image-url.service';
 
 @Component({
   selector: 'app-edition-menu',

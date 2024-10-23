@@ -1,5 +1,5 @@
 import { Component, HostListener, inject, OnInit, ViewChild, ElementRef } from '@angular/core'
-import { TimelineService } from '../../../services/timeline.service'
+import { TimelineService } from '../../../services/display/timeline.service'
 import { Timeline } from '../../../models/music-tools/timeline'
 
 @Component({

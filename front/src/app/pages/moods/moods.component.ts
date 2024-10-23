@@ -1,9 +1,9 @@
 import { AfterViewChecked, Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { FlowService } from '../../services/flow.service';
-import { MenuDesktopService } from '../../services/menu-desktop.service';
-import { PaginationService } from '../../services/pagination.service';
-import { ViewerService } from '../../services/viewer.service';
+import { MenuDesktopService } from '../../services/display/menu-desktop.service';
+import { PaginationService } from '../../services/display/pagination.service';
+import { ViewerService } from '../../services/display/viewer.service';
 
 @Component({
   selector: 'app-moods',
