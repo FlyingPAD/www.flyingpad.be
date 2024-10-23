@@ -8,7 +8,7 @@
 <div class="settings-table">
     <div class="row">
         <div class="row-title">
-            <p><b>{{ 'title.display-mode' | translate }}</b> :</p>
+            <p><b>{{ 'title.display-mode' | translate }}</b></p>
         </div>
         <div class="row-value">
             <p *ngIf="displayInfos().mode === 'Desktop'">{{ 'title.desktop' | translate }}</p>
@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="row-title">
-            <p><b>{{ 'title.window-size' | translate }}</b> :</p>
+            <p><b>{{ 'title.window-size' | translate }}</b></p>
         </div>
         <div class="row-value">
             <p>{{ displayInfos().width }} x {{ displayInfos().height }} pixels</p>
@@ -25,7 +25,7 @@
     </div>
     <div class="row">
         <div class="row-title">
-            <p><b>Orientation</b> :</p>
+            <p><b>Orientation</b></p>
         </div>
         <div class="row-value">
             @if(displayInfos().orientation === 'Landscape') {
@@ -41,7 +41,7 @@
     </div>
     <div class="row">
         <div class="row-title">
-            <p><b>{{ 'title.full-screen' | translate }}</b> :</p>
+            <p><b>{{ 'title.full-screen' | translate }}</b></p>
         </div>
         <div class="row-value">
             <div (click)="toggleFullScreen()">
@@ -52,7 +52,7 @@
     </div>
     <div class="row">
         <div class="row-title">
-            <p><b>{{ 'title.language' | translate }}</b> :</p>
+            <p><b>{{ 'title.language' | translate }}</b></p>
         </div>
         <div class="row-value">
             <div>
@@ -63,7 +63,7 @@
     </div>
     <div class="row">
         <div class="row-title">
-            <p><b>{{ 'title.theme' | translate }}</b> :</p>
+            <p><b>{{ 'title.theme' | translate }}</b></p>
         </div>
         <div class="row-value">
             <select id="themeSelect" [ngModel]="currentThemeKey()" (ngModelChange)="changeTheme($event)">

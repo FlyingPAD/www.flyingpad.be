@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { ImageUrlService } from '../../services/image-url.service';
+import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-home',

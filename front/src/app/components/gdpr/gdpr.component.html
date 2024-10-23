@@ -1,0 +1,9 @@
+<div class="gdpr-container">
+    <div class="gdpr" [ngClass]="{'slide-down': hideAnimation}">
+        <p class="p">{{ 'message.gdpr' | translate }}</p>
+        <div class="buttons">
+            <div class="button" (click)="setStatus(true)">{{ 'title.accept' | translate }}</div>
+            <div class="button" (click)="setStatus(false)">{{ 'title.decline' | translate }}</div>
+        </div>
+    </div>
+</div>

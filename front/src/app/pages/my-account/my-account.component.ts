@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { AuthenticationService } from '../../services/authentication.service';
-import { ImageUrlService } from '../../services/image-url.service';
+import { AuthenticationService } from '../../services/system/authentication.service';
+import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-my-account',

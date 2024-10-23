@@ -24,13 +24,34 @@
     --colorWhiteOpacity8 : rgba(255, 255, 255, 0.8);
     --colorWhiteOpacity9 : rgba(255, 255, 255, 0.9);
 
+    --colorBlack : #000;
+    --colorBlackOpacity1 : rgba(0, 0, 0, 0.1);
+    --colorBlackOpacity2 : rgba(0, 0, 0, 0.2);
+    --colorBlackOpacity3 : rgba(0, 0, 0, 0.3);
+    --colorBlackOpacity4 : rgba(0, 0, 0, 0.4);
+    --colorBlackOpacity5 : rgba(0, 0, 0, 0.5);
+    --colorBlackOpacity6 : rgba(0, 0, 0, 0.6);
+    --colorBlackOpacity7 : rgba(0, 0, 0, 0.7);
+    --colorBlackOpacity8 : rgba(0, 0, 0, 0.8);
+    --colorBlackOpacity9 : rgba(0, 0, 0, 0.9);
+
+    --colorShadow: rgb(107, 82, 64, 1);
+    --colorShadowOpacity1: rgb(107, 82, 64, 0.1);
+    --colorShadowOpacity2: rgb(107, 82, 64, 0.2);
+    --colorShadowOpacity3: rgb(107, 82, 64, 0.3);
+    --colorShadowOpacity4: rgb(107, 82, 64, 0.4);
+    --colorShadowOpacity5: rgb(107, 82, 64, 0.5);
+    --colorShadowOpacity6: rgb(107, 82, 64, 0.6);
+    --colorShadowOpacity7: rgb(107, 82, 64, 0.7);
+    --colorShadowOpacity8: rgb(107, 82, 64, 0.8);
+    --colorShadowOpacity9: rgb(107, 82, 64, 0.9);
+
     --colorFooter: rgb(55, 55, 55);
     --fontFamily: 'Open Sans', sans-serif;
 }
 
 .dark {
     --texture001: url(../assets/backgrounds/back-dark.jpg);
-    --colorBackground: #fff;
 
     --colorMain: #40526b;
     --colorMainOpacity1: rgba(64, 82, 107, 0.1);
@@ -44,12 +65,10 @@
     --colorMainOpacity9: rgba(64, 82, 107, 0.9);
     
     --colorFooter: #40526b;
-    --fontFamily: 'Open Sans', sans-serif;
 }
 
 .blue {
     --texture001: url(../assets/backgrounds/back-blue.jpg);
-    --colorBackground: #fff;
 
     --colorMain: #40526b;
     --colorMainOpacity1: rgba(64, 82, 107, 0.1);
@@ -63,12 +82,10 @@
     --colorMainOpacity9: rgba(64, 82, 107, 0.9);
 
     --colorFooter: #40526b;
-    --fontFamily: 'Open Sans', sans-serif;
 }
 
 .pink {
     --texture001: url(../assets/backgrounds/back-pink.jpg);
-    --colorBackground: #fff;
 
     --colorMain: #5f4c56;
     --colorMainOpacity1: rgba(95, 76, 86, 0.1);
@@ -82,13 +99,10 @@
     --colorMainOpacity9: rgba(95, 76, 86, 0.9);
 
     --colorFooter: rgb(122, 48, 83);
-    --fontFamily: 'Open Sans', sans-serif;
 }
 
 .green {
     --texture001: url(../assets/backgrounds/back-green.jpg);
-    --colorBackground: #e8f5e9;
-    --colorBackgroundOpacity5: rgba(232, 245, 233, 0.5);
 
     --colorMain: #3a613b;
     --colorMainOpacity1: rgba(58, 97, 59, 0.1);
@@ -101,25 +115,11 @@
     --colorMainOpacity8: rgba(58, 97, 59, 0.8);
     --colorMainOpacity9: rgba(58, 97, 59, 0.9);
 
-    --colorWhite: #fff;
-    --colorWhiteOpacity1: rgba(255, 255, 255, 0.1);
-    --colorWhiteOpacity2: rgba(255, 255, 255, 0.2);
-    --colorWhiteOpacity3: rgba(255, 255, 255, 0.3);
-    --colorWhiteOpacity4: rgba(255, 255, 255, 0.4);
-    --colorWhiteOpacity5: rgba(255, 255, 255, 0.5);
-    --colorWhiteOpacity6: rgba(255, 255, 255, 0.6);
-    --colorWhiteOpacity7: rgba(255, 255, 255, 0.7);
-    --colorWhiteOpacity8: rgba(255, 255, 255, 0.8);
-    --colorWhiteOpacity9: rgba(255, 255, 255, 0.9);
-
     --colorFooter: #405e40;
-    --fontFamily: 'Open Sans', sans-serif;
 }
 
 .orange {
     --texture001: url(../assets/backgrounds/back-orange.jpg);
-    --colorBackground: #fbe9e7;
-    --colorBackgroundOpacity5: rgba(251, 233, 231, 0.5);
     
     --colorMain: #9f5f00;
     --colorMainOpacity1: rgba(159, 95, 0, 0.1);
@@ -132,17 +132,5 @@
     --colorMainOpacity8: rgba(159, 95, 0, 0.8);
     --colorMainOpacity9: rgba(159, 95, 0, 0.9);
 
-    --colorWhite: #fff;
-    --colorWhiteOpacity1: rgba(255, 255, 255, 0.1);
-    --colorWhiteOpacity2: rgba(255, 255, 255, 0.2);
-    --colorWhiteOpacity3: rgba(255, 255, 255, 0.3);
-    --colorWhiteOpacity4: rgba(255, 255, 255, 0.4);
-    --colorWhiteOpacity5: rgba(255, 255, 255, 0.5);
-    --colorWhiteOpacity6: rgba(255, 255, 255, 0.6);
-    --colorWhiteOpacity7: rgba(255, 255, 255, 0.7);
-    --colorWhiteOpacity8: rgba(255, 255, 255, 0.8);
-    --colorWhiteOpacity9: rgba(255, 255, 255, 0.9);
-
     --colorFooter: #825e41;
-    --fontFamily: 'Open Sans', sans-serif;
 }

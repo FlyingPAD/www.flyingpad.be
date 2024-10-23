@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
-import { CustomCookieService } from './services/cookie.service';
-import { AuthenticationService } from './services/authentication.service';
-import { MenuCustomService } from './services/menu-custom.service';
+import { CustomCookieService } from './services/system/cookie.service';
+import { AuthenticationService } from './services/system/authentication.service';
+import { MenuCustomService } from './services/display/menu-custom.service';
 
 // Mock des services utilisés dans AppComponent
 class MockUserService {

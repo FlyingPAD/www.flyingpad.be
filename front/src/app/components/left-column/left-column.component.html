@@ -1,0 +1,82 @@
+<div class="left-column">
+    <div class="menu-grid">
+        <div class="grid-section-left">
+            <div class="trigger">
+                <img [class.img-active]="isMenuON === true" [src]="getImageURL('icons-main-menu', 'hamburger', 'png')"
+                    (click)="handleMenuCustomTrigger()" />
+            </div>
+            <img class="logo" [src]="getImageURL('images-logo', 'logo-3', 'png')" />
+        </div>
+    </div>
+    <div class="scroll">
+        <div class="menu-elements">
+            <div class="top">
+                @if(userIsConnected && userRole === 2) {
+                <a routerLink="/dashboard" routerLinkActive="active" (click)="handleMenuTrigger()">
+                    <img [src]="getImageURL('icons-main-menu', 'home', 'png')" />
+                    <p>{{ 'title.dashboard' | translate }}</p>
+                </a>
+                }
+                @if(userRole !== 1 && userRole !== 2) {
+                    <a routerLink="/home" routerLinkActive="active" (click)="handleMenuTrigger()">
+                        <img [src]="getImageURL('icons-main-menu', 'home', 'png')" />
+                        <p>{{ 'title.home' | translate }}</p>
+                    </a>
+                    <a routerLink="/about" routerLinkActive="active" (click)="handleMenuTrigger()">
+                        <img [src]="getImageURL('icons-main-menu', 'about', 'png')" />
+                        <p>{{ 'title.about' | translate }}</p>
+                    </a>
+                }
+                <a routerLink="/medias" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    (click)="handleMenuTrigger()">
+                    <img [src]="getImageURL('icons-main-menu', 'media', 'png')" />
+                    <p>Media</p>
+                </a>
+                <a routerLink="/moods" routerLinkActive="active" (click)="handleMenuTrigger()">
+                    <img [src]="getImageURL('icons-main-menu', 'moods', 'png')" />
+                    <p>Moods</p>
+                </a>
+                <a routerLink="/tags" routerLinkActive="active" (click)="handleMenuTrigger()">
+                    <img [src]="getImageURL('icons-main-menu', 'tags', 'png')" />
+                    <p>Tags</p>
+                </a>
+                <a routerLink="/scripts" routerLinkActive="active" (click)="handleMenuTrigger()">
+                    <img [src]="getImageURL('icons-main-menu', 'scripts', 'png')" />
+                    <p>Scripts</p>
+                </a>
+                <a routerLink="/tools" routerLinkActive="active" (click)="handleMenuTrigger()">
+                    <img [src]="getImageURL('icons-main-menu', 'tools', 'png')" />
+                    <p>{{ 'title.tools' | translate }}</p>
+                </a>
+                <a routerLink="/links" routerLinkActive="active" (click)="handleMenuTrigger()">
+                    <img [src]="getImageURL('icons-main-menu', 'links', 'png')" />
+                    <p>{{ 'title.links' | translate }}</p>
+                </a>
+            </div>
+            <div class="bottom">
+                <!-- User ( Not Connected ) -->
+                @if(userRole !== 1 && userRole !== 2) {
+                <a class="user" routerLink="/my-account" routerLinkActive="active" (click)="handleMenuTrigger()">
+                    <img [src]="getImageURL('icons-main-menu', 'model', 'png')" />
+                    <p>{{ 'title.my-account' | translate }}</p>
+                </a>
+                }
+                <!-- User ( Connected ) -->
+                @if(userIsConnected && userRole === 1 || userRole === 2) {
+                <a class="user" routerLink="/my-account" routerLinkActive="active" (click)="handleMenuTrigger()">
+                    <img [src]="getImageURL('icons-main-menu', 'mood', 'png')" />
+                    <p>{{ 'title.my-account' | translate }}</p>
+                </a>
+                }
+                <hr class="dialog-hr">
+                <div class="bottom-menu">
+                    <div class="version">v.0.7</div>
+                </div>
+                <hr class="dialog-hr">
+                <div class="menu-footer">
+                    <p>© {{currentYear}} <a routerLink="/about" (click)="handleMenuTrigger()">Flying PAD</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

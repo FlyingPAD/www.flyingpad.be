@@ -3,9 +3,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
-import { StorageProperties } from '../enumerations/storage-properties';
-import { SupportedLanguages } from '../enumerations/supported-languages';
-import { StorageService } from './storage.service';
+import { StorageProperties } from '../../enumerations/storage-properties';
+import { SupportedLanguages } from '../../enumerations/supported-languages';
+import { StorageService } from '../system/storage.service';
 
 @Injectable({
   providedIn: 'root'

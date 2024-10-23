@@ -58,7 +58,9 @@
         "rules" : "Game Rules",
         "landscape" : "Landscape",
         "square" : "Square ( 1:1 )",
-        "theme" : "Theme"
+        "theme" : "Theme",
+        "accept" : "Accept",
+        "decline" : "Decline"
     },
     "message": {
         "404": "Page was not found.",
@@ -70,6 +72,7 @@
         "text2": "Take your musical flight!",
         "follow_me": "Follow me on social media",
         "account-settings" : "Edit your account settings - name, email, password, address.",
-        "account-closed" : "Registration are closed for now ... Please come back later."
+        "account-closed" : "Registration are closed for now ... Please come back later.",
+        "gdpr" : "This website uses cookies."
     }
 }

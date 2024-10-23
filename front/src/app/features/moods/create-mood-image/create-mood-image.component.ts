@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MenuDesktopService } from '../../../services/menu-desktop.service';
+import { MenuDesktopService } from '../../../services/display/menu-desktop.service';
 import { ImageForm } from '../../../interfaces/mood-image';
 import { FlowService } from '../../../services/flow.service';
 

@@ -1,13 +1,15 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
-import { CustomCookieService } from './services/cookie.service';
-import { AuthenticationService } from './services/authentication.service';
+import { CustomCookieService } from './services/system/cookie.service';
+import { AuthenticationService } from './services/system/authentication.service';
 import { Router } from '@angular/router';
-import { MenuCustomService } from './services/menu-custom.service';
-import { LanguageService } from './services/language.service';
-import { DisplayService } from './services/display.service';
-import { FullScreenService } from './services/full-screen.service';
-import { ThemeService } from './services/theme.service';
+import { MenuCustomService } from './services/display/menu-custom.service';
+import { LanguageService } from './services/display/language.service';
+import { DisplayService } from './services/display/display.service';
+import { FullScreenService } from './services/display/full-screen.service';
+import { ThemeService } from './services/display/theme.service';
+import { GdprService } from './services/system/gdpr.service';
+import { RightColumnService } from './services/display/right-column.service';
 
 @Component({
   selector: 'app-root',
@@ -17,13 +19,19 @@ import { ThemeService } from './services/theme.service';
 export class AppComponent implements OnInit {
   #languageService = inject(LanguageService)
   #displayService = inject(DisplayService)
+  #rightColumnService = inject(RightColumnService)
   #fullScreenService = inject(FullScreenService)
   #themeService = inject(ThemeService)
+  #gdprService = inject(GdprService)
   #authService = inject(AuthenticationService)
   #userService = inject(UserService)
   #cookieService = inject(CustomCookieService)
   #menuCustomService = inject(MenuCustomService)
   router = inject(Router)
+
+  gdprStatus = this.#gdprService.currentStatus
+
+  displayInfo = this.#displayService.displayInfo
 
   ngOnInit(): void {
     let token = this.#cookieService.retrieveToken()
@@ -34,6 +42,12 @@ export class AppComponent implements OnInit {
     }
     else {
       this.#userService.setDefaultUser()
+    }
+
+    if(this.displayInfo().mode === 'Desktop') {
+      this.#rightColumnService.enableRightColumn()
+    } else {
+      this.#rightColumnService.disableRightColumn()
     }
   }
 

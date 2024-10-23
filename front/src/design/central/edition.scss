@@ -62,7 +62,7 @@
 
         width: 340px;
         margin: auto;
-        margin-top: 20px;
+        margin-top: 5px;
 
         a {
             display: block;
@@ -204,8 +204,8 @@
     }
 
     .edition-button-disabled {
-        background-color: var(--colorMainOpacity8);
-        color: var(--colorMain);
+        background-color: rgb(79, 79, 79);
+        color: var(--colorWhiteOpacity7);
         cursor: not-allowed;
     }
 }

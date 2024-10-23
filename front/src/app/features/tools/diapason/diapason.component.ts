@@ -1,5 +1,5 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { AudioService } from '../../../services/audio.service';
+import { AudioService } from '../../../services/audio/audio.service';
 
 @Component({
   selector: 'app-diapason',

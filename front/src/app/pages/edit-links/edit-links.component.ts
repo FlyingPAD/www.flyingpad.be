@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { LinkLight } from '../../interfaces/link';
 import { FlowService } from '../../services/flow.service';
-import { PaginationService } from '../../services/pagination.service';
-import { ImageUrlService } from '../../services/image-url.service';
+import { PaginationService } from '../../services/display/pagination.service';
+import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-edit-links',

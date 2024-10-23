@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FlowService } from '../../services/flow.service';
-import { PaginationService } from '../../services/pagination.service';
+import { PaginationService } from '../../services/display/pagination.service';
 import { LinkLight } from '../../interfaces/link';
+import { LinkService } from '../../services/link.service';
 
 @Component({
   selector: 'app-links',
@@ -9,31 +10,31 @@ import { LinkLight } from '../../interfaces/link';
   styleUrl: './links.component.scss'
 })
 export class LinksComponent {
-  #flowService = inject(FlowService)
+  #linkService = inject(LinkService)
   paginationService = inject(PaginationService)
 
-  flow = this.#flowService.flow
+  signal = this.#linkService.linkFlow
 
   searchLinks : string = ''
   elementsPerPage : number = 12
 
 
   filterLinks(): LinkLight[] | undefined {
-    return this.flow()?.linksByCategory.filter(link => link.name.toLowerCase().includes(this.searchLinks.toLowerCase()))
+    return this.signal()?.links.filter(link => link.name.toLowerCase().includes(this.searchLinks.toLowerCase()))
   }
 
   go(): void {
-    if(this.flow()?.link) {
-      window.open(this.flow()?.link?.url, '_blank')
+    if(this.signal()?.link) {
+      window.open(this.signal()?.link?.url, '_blank')
     }
   }
 
   setLink(link : LinkLight): void {
-    this.#flowService.updateLinkId(link.businessId)
+    this.#linkService.updateLinkId(link.businessId)
   }
 
   updateLinkCategoryId(categoryId : number | null): void {
     this.paginationService.editLinksCurrentPageReset()
-    this.#flowService.updateLinkCategoryId(categoryId)
+    this.#linkService.updateLinkCategoryId(categoryId)
   }
 }

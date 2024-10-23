@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { AudioService } from '../../../services/audio.service';
-import { StorageService } from '../../../services/storage.service';
+import { AudioService } from '../../../services/audio/audio.service';
+import { StorageService } from '../../../services/system/storage.service';
 
 export class Note {
   name: string = ''
