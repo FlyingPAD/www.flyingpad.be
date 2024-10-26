@@ -62,7 +62,7 @@
 
         width: 340px;
         margin: auto;
-        margin-top: 5px;
+        margin-top: 15px;
 
         a {
             display: block;
@@ -87,7 +87,7 @@
             /* Ajoute les points de suspension à la fin du texte */
     
             z-index: 0;
-            transition-duration: 500ms;
+            transition-duration: 350ms;
         }
     
         a:hover:not(.active) {
@@ -200,7 +200,7 @@
         border: 2px solid var(--colorMain);
         color: var(--colorMain);
         cursor: pointer;
-        transition-duration: 500ms;
+        transition-duration: 350ms;
     }
 
     .edition-button-disabled {

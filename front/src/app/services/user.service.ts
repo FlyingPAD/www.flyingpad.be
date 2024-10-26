@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User, UserUpdateForm, UserUpdateResponse } from '../interfaces/user';
 import { jwtDecode } from 'jwt-decode';
 import { environment } from '../../environments/environment';
+import { Player } from '../models/player';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class UserService {
   #url: string = environment.apiBaseUrl + '/api/V1/'
 
   appUser!: User
+
+  player : Player = new Player()
 
   setDefaultUser() {
     this.appUser = {

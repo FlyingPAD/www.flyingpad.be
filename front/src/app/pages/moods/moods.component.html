@@ -5,7 +5,7 @@
             <app-dialog *ngIf="showDialog" (dialog)="handleDialog()">
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moods.length" />
             </app-dialog>  
-            <app-overlay [isOverlayOn]="showDialog" [isMenuOn]="showDialog" />
+            <app-overlay [isOverlayOn]="showDialog" />
             <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moods.length" 
             (topButton)="toTop()" (dialog)="openDialog()" (showMultiTag)="showMultiTagON() "/>
         }
@@ -14,7 +14,7 @@
             <app-dialog *ngIf="showDialog" (dialog)="handleDialog()">
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.tag" [moodsLength]="flow.moodsByTag.length"/>
             </app-dialog>  
-            <app-overlay [isOverlayOn]="showDialog" [isMenuOn]="showDialog" />
+            <app-overlay [isOverlayOn]="showDialog" />
             <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.tag?.name" 
             [moodsLength]="flow.moodsByTag.length" (topButton)="toTop()" (dialog)="openDialog()" (showMultiTag)="showMultiTagON()"/>
         }
@@ -23,7 +23,7 @@
             <app-dialog *ngIf="showDialog" (dialog)="handleDialog()">
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.model" [moodsLength]="flow.moodsByModel.length"/>
             </app-dialog>
-            <app-overlay [isOverlayOn]="showDialog" [isMenuOn]="showDialog" />
+            <app-overlay [isOverlayOn]="showDialog" />
             <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.model?.pseudonym" 
             [moodsLength]="flow.moodsByModel.length" (topButton)="toTop()" (dialog)="openDialog()" (showMultiTag)="showMultiTagON()"/>
         }
@@ -33,7 +33,7 @@
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.artist" 
                 [moodsLength]="flow.moodsByArtist.length"/>
             </app-dialog>
-            <app-overlay [isOverlayOn]="showDialog" [isMenuOn]="showDialog" />
+            <app-overlay [isOverlayOn]="showDialog" />
             <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.artist?.name" 
             [moodsLength]="flow.moodsByArtist.length" (topButton)="toTop()" (dialog)="openDialog()" (showMultiTag)="showMultiTagON()" />
         }
@@ -42,7 +42,7 @@
             <app-dialog *ngIf="showDialog" (dialog)="handleDialog()">
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.franchise" [moodsLength]="flow.moodsByFranchise.length"/>
             </app-dialog>  
-            <app-overlay [isOverlayOn]="showDialog" [isMenuOn]="showDialog" />
+            <app-overlay [isOverlayOn]="showDialog" />
             <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.franchise?.name" 
             [moodsLength]="flow.moodsByFranchise.length" (topButton)="toTop()" (dialog)="openDialog()" (showMultiTag)="showMultiTagON()"/>
         }

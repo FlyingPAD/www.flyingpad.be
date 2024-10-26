@@ -1,0 +1,13 @@
+<div class="language-menu" [class]="isMenuOn ? 'on' : 'off'">
+    <div *ngFor="let language of supportedLanguages">
+        <div class="language" [class.active]="currentLanguage() === language" (click)="switchLanguage(language)">
+            <img [src]="getImageURL('icons-flags', language, 'png')" />
+            @if(language === 'fr') {
+                <span>{{ 'title.french' | translate}}</span>
+            }
+            @if(language === 'en') {
+                <span>{{ 'title.english' | translate}}</span>
+            }
+        </div>
+    </div>
+</div>

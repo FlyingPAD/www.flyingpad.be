@@ -1,0 +1,204 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--colorWhiteOpacity9);
+    backdrop-filter: blur(3px);
+    border-bottom: 1px solid var(--colorMain);
+    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+    z-index: 15;
+
+    section {
+        margin: 7px;
+    }
+
+    .left {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: 35px;
+    }
+    .right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 35px;
+    }
+    @media (max-width: 800px) {
+        .left {
+            margin-left: 10px;
+        }
+        .right {
+            margin-right: 10px;
+        }
+    }
+
+    .logo-mini {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 35px;
+        margin: 5px;
+
+        img {
+            height: 92%;
+        }
+    }
+    @media (min-width: 800px) {
+        .logo-mini {
+            display: none;
+        }
+    }
+
+    .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 33px;
+        width: 33px;
+
+        margin: 5px;
+
+        border: 2px solid var(--colorMainOpacity2);
+        border-radius: 3px;
+        box-shadow: 0 2px 5px 0 var(--colorMainOpacity2);
+
+        transition-duration: 200ms;
+
+        img {
+            height: 50%;
+            width: 50%;
+        }
+    }
+    .icon:hover {
+        border: 2px solid var(--colorMain);
+        cursor: pointer;
+    }
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 35px;
+        margin: 5px;
+
+        img {
+            height: 92%;
+        }
+    }
+    @media (max-width: 800px) {
+        .logo {
+            display: none;
+        }
+    }
+    .languages {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 30px;
+        margin: 5px;
+
+        padding-left: 10px;
+        padding-right: 10px;
+
+        border: 2px solid var(--colorMainOpacity2);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px 0 var(--colorMainOpacity2);
+
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        color: var(--colorMainOpacity8);
+
+        transition-duration: 200ms;
+
+        img {
+            height: 50%;
+            border: 1px solid var(--colorMainOpacity2);
+            border-radius: 3px;
+            margin-right: 8px;
+        }
+    }
+    .languages:hover {
+        border: 2px solid var(--colorMainOpacity7);
+        color: var(--colorMain);
+        cursor: pointer;
+    }
+    .active {
+        border: 2px solid var(--colorMainOpacity7);
+    }
+    @media (max-width: 800px) {
+        .languages {
+            display: none;
+        }
+    }
+    .sign-up {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 30px;
+        margin: 5px;
+
+        padding-left: 10px;
+        padding-right: 10px;
+
+        background-color: var(--colorMainOpacity7);
+        border: 2px solid var(--colorMainOpacity2);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px 0 var(--colorMainOpacity2);
+
+        color: var(--colorWhite);
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 1px;
+
+        transition-duration: 200ms;
+    }
+    .sign-up:hover {
+        background-color: var(--colorWhiteOpacity8);
+        border: 2px solid var(--colorMain);
+        color: var(--colorMain);
+        cursor: pointer;
+    }
+    .log-in {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 30px;
+        margin: 5px;
+
+        padding-left: 10px;
+        padding-right: 10px;
+
+        background-color: var(--colorWhiteOpacity8);
+        border: 2px solid var(--colorMainOpacity2);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px 0 var(--colorMainOpacity2);
+
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        color: var(--colorMain);
+
+        transition-duration: 200ms;
+    }
+    .log-in:hover {
+        background-color: var(--colorMain);
+        border: 2px solid var(--colorMain);
+        color: var(--colorWhite);
+        cursor: pointer;
+    }
+}

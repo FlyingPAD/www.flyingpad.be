@@ -52,7 +52,9 @@
         "all-items" : "All Items",
         "about" : "About",
         "cancel" : "Cancel",
-        "login" : "Login",
+        "sign-up" : "Sign up",
+        "log-in" : "Log in",
+        "login" : "Log in",
         "logout" : "Logout",
         "sign-in" : "Sign in",
         "rules" : "Game Rules",
@@ -60,7 +62,9 @@
         "square" : "Square ( 1:1 )",
         "theme" : "Theme",
         "accept" : "Accept",
-        "decline" : "Decline"
+        "decline" : "Decline",
+        "french" : "French",
+        "english" : "English"
     },
     "message": {
         "404": "Page was not found.",
@@ -73,6 +77,10 @@
         "follow_me": "Follow me on social media",
         "account-settings" : "Edit your account settings - name, email, password, address.",
         "account-closed" : "Registration are closed for now ... Please come back later.",
-        "gdpr" : "This website uses cookies."
+        "gdpr" : "This website uses cookies.",
+        "home-quote" : "Every second matters ...",
+        "home-cta" : "Let's get to work !",
+        "sign-up" : "You don't have an account ?",
+        "log-in" : "Already have an account ?"
     }
 }

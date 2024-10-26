@@ -1,0 +1,70 @@
+<div class="log-in">
+    <div class="left">
+        <div class="close-button" routerLink="/home" [class]="closeButtonIsOn ? 'on' : 'off' ">
+            <img src="../../../assets/app_icons/new.png" />
+        </div>
+        <div class="languages" (click)="languageMenuToggle()" [class.active]="isLanguageMenuON">
+            <img [src]="getImageURL('icons-flags', currentLanguage(), 'png')" />
+            <span>{{ currentLanguage() === 'fr' ? 'Français' : 'English' }}</span>
+        </div>
+        <app-language-menu-home [isMenuOn]="isLanguageMenuON" (menuToggle)="languageMenuToggle()" />
+        <div class="login-form">
+            <img class="logo" [src]="getImageURL('images-logo', 'logo-3', 'png')" />
+            <div class="menu">
+                <a routerLink="/sign-up" routerLinkActive="active">{{ 'title.sign-up' | translate }}</a>
+                <a routerLink="/log-in" routerLinkActive="active">{{ 'title.log-in' | translate }}</a>
+            </div>
+            <form [formGroup]="formGroup">
+                <div>
+                    <input type="email" id="in_email" formControlName="email" placeholder="example@domain.com">
+                    <div *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.errors">
+                        <p class="error" *ngIf="formGroup.get('email')?.errors?.['required']">
+                            Email is required.
+                        </p>
+                        <p class="error" *ngIf="formGroup.get('email')?.errors?.['email']">
+                            Please enter a valid email address.
+                        </p>
+                        <p class="error" *ngIf="formGroup.get('email')?.errors?.['maxLength']">
+                            The email must not exceed 384 characters.
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <input type="password" id="in_password" formControlName="password" placeholder="●●●●●●●●">
+                    <div *ngIf="formGroup.get('password')?.touched && formGroup.get('password')?.errors">
+                        <p class="error" *ngIf="formGroup.get('password')?.errors?.['required']">
+                            A password is required.
+                        </p>
+                        <p class="error" *ngIf="formGroup.get('password')?.errors?.['minLength']">
+                            The password must be at least 8 characters long.
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="buttons">
+                    <div class="button button-disabled" *ngIf="formGroup.invalid">{{ 'title.sign-in' | translate }}</div>
+                    <div class="button" (click)="onLogin()" *ngIf="formGroup.valid">{{ 'title.sign-in' | translate }}</div>
+                </div>
+            </form>
+            <div class="message">
+                <p routerLink="/sign-up">{{ 'message.sign-up' | translate }} <span>{{ 'title.sign-up' | translate }}.</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        @if(flow()?.mood?.type === 1) {
+            @if (flow()?.mood?.height === flow()?.mood?.width) {
+            <img class="mood-square"
+              src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+            }
+            @if (flow()?.mood?.height > flow()?.mood?.width) {
+            <img class="mood-portrait"
+              src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+            }
+            @if (flow()?.mood?.height < flow()?.mood?.width) {
+            <img class="mood-landscape"
+              src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+            }
+          }
+    </div>
+</div>

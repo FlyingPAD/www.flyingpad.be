@@ -1,10 +1,9 @@
-<h1 class="h1">{{ 'title.settings' | translate }}</h1>
-<div class="row-white">
-    <div class="buttons">
-        <app-button-back></app-button-back>
+<div class="top">
+    <h1 class="h1">{{ 'title.settings' | translate }}</h1>
+    <div class="row-white">
+        <p class="p">{{ 'message.settings-short' | translate }}</p>
     </div>
 </div>
-<p class="p">{{ 'message.settings-short' | translate }}</p>
 <div class="settings-table">
     <div class="row">
         <div class="row-title">
@@ -74,5 +73,6 @@
 </div>
 <div class="buttons">
     <div class="button" (click)="factorySettings()">{{ 'title.defaults' | translate }}</div>
+    <app-button-back></app-button-back>
 </div>
 <div class="spacer-75"></div>

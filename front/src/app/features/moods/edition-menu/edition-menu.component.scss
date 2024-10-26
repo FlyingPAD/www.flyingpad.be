@@ -21,10 +21,11 @@
         background-color: var(--colorWhiteOpacity4);
         border: 2px solid var(--colorMain);
         border-radius: 15px;
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
         span {
             position: absolute;
-            top: 73px;
+            top: 77px;
             font-size: 12px;
             font-weight: bold;
         }

@@ -8,6 +8,7 @@ import { LoginQueryResponse, RegisterCommandResponse } from '../../interfaces/au
 import { environment } from '../../../environments/environment';
 import { CustomCookieService } from './cookie.service';
 import { UserService } from '../user.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AuthenticationService {
   #isConnected = new BehaviorSubject<boolean>(false)
   public acceptConnection(): void { this.#isConnected.next(true) }
   public closeConnection(): void { this.#isConnected.next(false) }
-  isConnectedSub: Observable<boolean> = this.#isConnected.asObservable()
+  isConnected = toSignal(this.#isConnected)
 
   public register(form: UserRegisterForm): Observable<RegisterCommandResponse> {
     return this.#http.post<RegisterCommandResponse>(`${this.#url}Auth/Register`, form).pipe(

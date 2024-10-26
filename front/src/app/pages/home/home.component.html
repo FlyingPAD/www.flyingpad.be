@@ -1,7 +1,25 @@
-<div id="logo">
-  <img [src]="getImageURL('images-logo', 'logo-1', 'png')" />
-</div>
-<div class="row-white">
-  <p class="p">Every second matters !</p>
-  <a class="button-big" routerLink="/moods">Let's get in the mood ...</a>
+<div class="home">
+  <div class="left">
+    <img class="logo" [src]="getImageURL('images-logo', 'logo-1', 'png')" />
+    <div class="cta">
+      <p class="p">{{ 'message.home-quote' | translate }}</p>
+      <a class="button-big" routerLink="/moods">{{ 'message.home-cta' | translate }}</a>
+    </div>
+  </div>
+  <div class="right">
+    @if(flow()?.mood?.type === 1) {
+      @if (flow()?.mood?.height === flow()?.mood?.width) {
+      <img class="mood-square"
+        src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+      }
+      @if (flow()?.mood?.height > flow()?.mood?.width) {
+      <img class="mood-portrait"
+        src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+      }
+      @if (flow()?.mood?.height < flow()?.mood?.width) {
+      <img class="mood-landscape"
+        src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+      }
+    }
+  </div>
 </div>

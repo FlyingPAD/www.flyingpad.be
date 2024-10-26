@@ -18,7 +18,6 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UserLoginErrorComponent } from './pages/user-login-error/user-login-error.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
-import { LayoutCustomComponent } from './layouts/layout-custom/layout-custom.component';
 import { UserUpdateComponent } from './pages/user-update/user-update.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circle-of-fifths.component';
@@ -127,9 +126,6 @@ import { MultiTagComponent } from './features/moods/multi-tag/multi-tag.componen
 import { FooterComponent } from './components/footer/footer.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HiddenMenuWithFooterComponent } from './layouts/hidden-menu-with-footer/hidden-menu-with-footer.component';
-import { MenuHiddenComponent } from './components/menu-hidden/menu-hidden.component';
-import { HeaderComponent } from './components/header/header.component';
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { MediumGalleryComponent } from './pages/medium-gallery/medium-gallery.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
@@ -141,8 +137,17 @@ import { GuitarTunerComponent } from './features/tools/guitar-tuner/guitar-tuner
 import { ChordWheelComponent } from './features/tools/chord-wheel/chord-wheel.component';
 import { BottomBarLargerComponent } from './components/bottom-bar-larger/bottom-bar-larger.component';
 import { GdprComponent } from './components/gdpr/gdpr.component';
-import { StandardLayoutComponent } from './layouts/standard-layout/standard-layout.component';
 import { LeftColumnComponent } from './components/left-column/left-column.component';
+import { HeaderHomeComponent } from './components/header-home/header-home.component';
+import { LayoutHomeComponent } from './layouts/layout-home/layout-home.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { LogInComponent } from './pages/log-in/log-in.component';
+import { LayoutMoodsComponent } from './layouts/layout-moods/layout-moods.component';
+import { HeaderMoodsComponent } from './components/header-moods/header-moods.component';
+import { LanguageMenuHeaderComponent } from './components/language-menu-header/language-menu-header.component';
+import { LayoutToolsComponent } from './layouts/layout-tools/layout-tools.component';
+import { LanguageMenuHomeComponent } from './components/language-menu-home/language-menu-home.component';
+import { AnimRotation360Directive } from './directives/anim-rotation-360.directive';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -152,8 +157,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     // Layouts.
     LayoutEmptyComponent,
-    LayoutCustomComponent,
-    HiddenMenuWithFooterComponent,
+    LayoutHomeComponent,
+    LayoutMoodsComponent,
+    LayoutToolsComponent,
     // Pipes.
     FormatDurationPipe,
     FormatSizePipe,
@@ -163,6 +169,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AnimRandomDirective,
     AnimGrowDirective,
     AnimSpinDirective,
+    AnimRotation360Directive,
     // Pages.
     DashboardComponent,
     HomeComponent,
@@ -183,6 +190,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotFoundComponent,
     MyAccountComponent,
     SettingsComponent,
+    SignUpComponent,
+    LogInComponent,
     // Components.
     AppComponent,
     ListFlowComponent,
@@ -198,10 +207,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     RightColumnComponent,
     RightColumnListComponent,
     ListCentralComponent,
-    MenuHiddenComponent,
-    HeaderComponent,
     FooterComponent,
     OverlayComponent,
+    GdprComponent,
+    LeftColumnComponent,
+    HeaderHomeComponent,
+    HeaderMoodsComponent,
+    LanguageMenuHeaderComponent,
+    LanguageMenuHomeComponent,
     // => Features :
     // Moods.
     CreateMoodImageComponent,
@@ -289,10 +302,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MediaDetailsFlowComponent,
     FranchiseDetailsFlowComponent,
     LinkCategoryDetailsFlowComponent,
-    LinkDetailsFlowComponent,
-    GdprComponent,
-    StandardLayoutComponent,
-    LeftColumnComponent
+    LinkDetailsFlowComponent
   ],
   imports: [
     // --- CORE :
