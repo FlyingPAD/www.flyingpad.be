@@ -9,12 +9,18 @@
     <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2">
         <img [src]="getImageURL('icons-bottom-bar','edit', 'png')" />
     </a>
-    <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true">
+    <a routerLink="/settings">
+        <img [src]="getImageURL('icons-bottom-bar','settings', 'png')" />
+    </a>
+    @if(topButtonIsActive) {
+    <a (click)="handleTopButton()">
         <img [src]="getImageURL('icons-bottom-bar','arrow-up', 'png')" />
     </a>
-    <span *ngIf="topButtonIsActive === false">
+    } @else {
+    <span>
         <img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
     </span>
+    }
     }
     @if(moodsGalleryType === 'artist') {
     <a class="tweak" *ngIf="entityName">
@@ -43,6 +49,9 @@
         <img [src]="getImageURL('icons-bottom-bar','google-img', 'png')" />
     </a>
     }
+    <a routerLink="/settings">
+        <img [src]="getImageURL('icons-bottom-bar','settings', 'png')" />
+    </a>
     }
     @if(moodsGalleryType === 'model') {
     <a class="tweak" *ngIf="entityName">
@@ -57,12 +66,6 @@
     <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2">
         <img [src]="getImageURL('icons-bottom-bar','edit', 'png')" />
     </a>
-    <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true">
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up', 'png')" />
-    </a>
-    <span *ngIf="topButtonIsActive === false">
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
-    </span>
     @if(entityName != '# Unrelated Model' && entityName != '# Unknown Model') {
     <a target="_blank" href="https://www.google.com/search?q={{entityName}}">
         <img [src]="getImageURL('icons-bottom-bar','google', 'png')" />
@@ -71,11 +74,20 @@
         <img [src]="getImageURL('icons-bottom-bar','google-img', 'png')" />
     </a>
     }
+    <a routerLink="/settings">
+        <img [src]="getImageURL('icons-bottom-bar','settings', 'png')" />
+    </a>
+    @if(topButtonIsActive) {
+    <a (click)="handleTopButton()">
+        <img [src]="getImageURL('icons-bottom-bar','arrow-up', 'png')" />
+    </a>
+    } @else {
+    <span>
+        <img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
+    </span>
+    }
     }
     @if(moodsGalleryType === 'tag') {
-    <a class="tweak" *ngIf="entityName">
-        <div class="position"><b>{{entityName}}</b></div>
-    </a>
     <a class="tweak">
         <div class="position">{{moodsLength | number : '4.0'}}</div>
     </a>
@@ -85,11 +97,18 @@
     <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2">
         <img [src]="getImageURL('icons-bottom-bar','edit', 'png')" />
     </a>
-    <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true">
+    <a routerLink="/settings">
+        <img [src]="getImageURL('icons-bottom-bar','settings', 'png')" />
+    </a>
+    @if(topButtonIsActive) {
+    <a (click)="handleTopButton()">
         <img [src]="getImageURL('icons-bottom-bar','arrow-up', 'png')" />
     </a>
-    <span *ngIf="topButtonIsActive === false"><img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
+    } @else {
+    <span>
+        <img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
     </span>
+    }
     }
     @if(moodsGalleryType === 'franchise') {
     <a class="tweak" *ngIf="entityName">
@@ -104,12 +123,6 @@
     <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2">
         <img [src]="getImageURL('icons-bottom-bar','edit', 'png')" />
     </a>
-    <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true">
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up', 'png')" />
-    </a>
-    <span *ngIf="topButtonIsActive === false">
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
-    </span>
     @if(entityName != '# Unrelated Franchise') {
     <a target="_blank" href="https://www.google.com/search?q={{entityName}}">
         <img [src]="getImageURL('icons-bottom-bar','google', 'png')" />
@@ -117,6 +130,18 @@
     <a target="_blank" href="https://images.google.com/images?q={{entityName}}">
         <img [src]="getImageURL('icons-bottom-bar','google-img', 'png')" />
     </a>
+    }
+    <a routerLink="/settings">
+        <img [src]="getImageURL('icons-bottom-bar','settings', 'png')" />
+    </a>
+    @if(topButtonIsActive) {
+    <a (click)="handleTopButton()">
+        <img [src]="getImageURL('icons-bottom-bar','arrow-up', 'png')" />
+    </a>
+    } @else {
+    <span>
+        <img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
+    </span>
     }
     }
     @if(moodsGalleryType === 'details') {
@@ -148,7 +173,8 @@
         <img appAnimGrow [src]="getImageURL('icons-bottom-bar','edit', 'png')" />
     </a>
     <a class="toggle" (click)="handleToggleFocus()" *ngIf="moodType === 1">
-        <img [ngClass]="{'rotate': focusIsActive, 'rotate-back': !focusIsActive}" [src]="getImageURL('icons-bottom-bar','toggle', 'png')" />
+        <img [ngClass]="{'rotate': focusIsActive, 'rotate-back': !focusIsActive}"
+            [src]="getImageURL('icons-bottom-bar','toggle', 'png')" />
     </a>
     <span class="toggle" *ngIf="moodType !== 1">
         <img [src]="getImageURL('icons-bottom-bar','toggle-no', 'png')" />

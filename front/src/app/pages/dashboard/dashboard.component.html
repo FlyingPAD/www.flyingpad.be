@@ -4,6 +4,9 @@
     <app-button-back />
   </div>
 </div>
+<div class="user-info">
+  <p>Hello {{ user.firstName }}, your current level is {{ player.level }}.</p>
+</div>
 <div class="dashboard">
   <a routerLink="/moods/create-mood-image">
     <img [src]="getImageURL('icons-dashboard', 'mood', 'png')" />

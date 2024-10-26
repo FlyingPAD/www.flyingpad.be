@@ -53,6 +53,24 @@
     }
 }
 
+.animate-rotate {
+    animation: rotationAnimation 1s forwards;
+}
+
+@keyframes rotationAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: scale(360deg);
+    }
+}
+
 
 @keyframes rotateImage {
     from {

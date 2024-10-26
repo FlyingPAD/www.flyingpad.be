@@ -7,7 +7,7 @@
     "add-video": "Ajouter Vidéo(s)",
     "full-flow": "Flux Complet",
     "display-mode": "Mode d'Affichage",
-    "window-size": "Taille de l'Écran",
+    "window-size": "Taille de la Fenêtre",
     "full-screen": "Plein Écran",
     "language": "Langue",
     "enabled": "Activé",
@@ -52,6 +52,8 @@
     "all-items" : "Tous les éléments",
     "about" : "À Propos",
     "cancel" : "Annuler",
+    "sign-up" : "S'inscrire",
+    "log-in" : "Se connecter",
     "login" : "Connectez-vous",
     "logout" : "Déconnexion",
     "sign-in" : "Connexion",
@@ -60,19 +62,25 @@
     "square" : "Carré ( 1:1 )",
     "theme" : "Thème",
     "accept" : "Accepter",
-    "decline" : "Refuser"
+    "decline" : "Refuser",
+    "french" : "Français",
+    "english" : "Anglais"
   },
   "message": {
     "404": "La page n'a pas été trouvée.",
     "my-account" : "Editez votre compte, vos paramètres, et plus.",
     "not-found": "Page was not found.",
-    "settings-short": "Éditez vos paramètres de navigation.",
+    "settings-short": "Ajustez vos paramètres de navigation.",
     "settings-long": "Éditez vos paramètres de navigation - langues, thèmes.",
     "text1": "Au delà des règles et des codes de genre ...",
     "text2": "Prenez votre envol musical !",
     "follow_me": "Suivez-moi sur les réseaux",
     "account-settings" : "Éditez vos paramètres de compte - nom, courriel, mot de passe, adresse.",
     "account-closed" : "Les inscriptions sont fermées pour le moment, revenez plus tard.",
-    "gdpr" : "Ce site web utilise des cookies."
+    "gdpr" : "Ce site web utilise des cookies.",
+    "home-quote" : "Chaque seconde compte ...",
+    "home-cta" : "Mettons-nous au travail !",
+    "sign-up" : "Vous n'avez pas de compte ?",
+    "log-in" : "Vous avez déjà un compte ?"
   }
 }

@@ -10,16 +10,18 @@ import { ImageUrlService } from '../../services/display/image-url.service';
   styleUrl: './my-account.component.scss'
 })
 export class MyAccountComponent {
-  authService = inject(AuthenticationService)
-  userService = inject(UserService)
-  imageUrlService = inject(ImageUrlService)
+  #authService = inject(AuthenticationService)
   #router = inject(Router)
+  #imageUrlService = inject(ImageUrlService)
+  userService = inject(UserService)
 
-  goTo(url : string): void {
+  public isConnected = this.#authService.isConnected
+
+  public goTo(url : string): void {
     this.#router.navigateByUrl(url)
   }
 
-  getImageURL(folderName: string, imageName: string, imageExtension: string): string {
-    return this.imageUrlService.getImageURL(folderName, imageName, imageExtension)
+  public getImageURL(folderName: string, imageName: string, imageExtension: string): string {
+    return this.#imageUrlService.getImageURL(folderName, imageName, imageExtension)
   }
 }

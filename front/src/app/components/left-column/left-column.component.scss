@@ -1,128 +1,183 @@
+.on {
+    left: 0;
+    opacity: 1;
+}
+
+.off {
+    left: -500px;
+    opacity: 0;
+}
+
 .left-column {
     position: fixed;
     top: 0;
-    height: 100vh;
-    width: 225px;
-    padding-left: 1%;
-    padding-right: 1%;
 
-    pointer-events: auto;
+    height: 100%;
+    width: 285px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: baseline;
 
     background-color: var(--colorWhiteOpacity9);
     backdrop-filter: blur(3px);
-    border-right: 3px solid var(--colorMain);
-    box-shadow: 0 3px 6px 0px var(--colorMainOpacity2);
+    border-right: 1px solid var(--colorMain);
+    box-shadow: 3 0 1px 0px var(--colorMainOpacity2);
 
-    z-index: 25;
+    z-index: 35;
+    transition-duration: 250ms;
 
-    .menu-grid {
+    .top {
         width: 100%;
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
-        justify-content: space-between;
-        align-items: center;
+        margin: 7px;
+        margin-left: 0;
 
-        .grid-section-left {
-            justify-self: start;
+        .header {
             display: flex;
+            justify-content: flex-start;
             align-items: center;
+            margin-left: 35px;
 
-            .trigger {
+            .icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                height: 33px;
+                width: 33px;
+
+                margin: 5px;
+
+                border: 2px solid var(--colorMainOpacity2);
+                border-radius: 3px;
+                box-shadow: 0 2px 5px 0 var(--colorMainOpacity2);
+
+                transition-duration: 200ms;
+
                 img {
-                    width: 15px;
-                    height: 15px;
-                    background-color: var(--colorWhiteOpacity7);
-                    border-radius: 3px;
-                    border: 2px solid var(--colorMainOpacity2);
-                    padding: 10px;
-                    margin: 10px;
+                    height: 50%;
+                    width: 50%;
                 }
+            }
+            .icon:hover {
+                border: 2px solid var(--colorMain);
+                cursor: pointer;
+            }
+            .active {
+                border: 2px solid var(--colorMain);
+            }
 
-                img:hover {
-                    border: 2px solid var(--colorMain);
-                    background-color: var(--colorWhite);
-                    transition-duration: 500ms;
-                    cursor: pointer;
+            .logo-mini {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                height: 35px;
+                margin: 5px;
+
+                img {
+                    height: 92%;
                 }
-
-                .img-active {
-                    border: 2px solid var(--colorMain);
+            }
+            @media (min-width: 800px) {
+                .logo-mini {
+                    display: none;
                 }
             }
 
             .logo {
-                height: 33px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                height: 35px;
+                margin: 5px;
+
+                img {
+                    height: 92%;
+                }
+            }
+            @media (max-width: 800px) {
+                .logo {
+                    display: none;
+                }
+            }
+        }
+
+        @media (max-width: 800px) {
+            .header {
+                margin-left: 10px;
             }
         }
     }
 
-    .scroll {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
+    .menu-elements {
+        margin: 25px;
 
-        overflow-y: hidden;
-        scrollbar-width: thin;
-        scrollbar-color: var(--colorMainOpacity7) #f1f1f1;
+        a {
+            display: flex;
+            align-items: center;
 
-        .menu-elements {
-            padding-top: 25px;
-            height: calc(100vh - 100px);
+            margin-bottom: 5px;
 
-            display:flex;
-            flex-direction: column;
-            justify-content: space-between;
+            background-color: var(--colorWhiteOpacity3);
+            border: 2px solid var(--colorMainOpacity1);
+            border-radius: 5px;
 
-            a {
-                display: flex;
-                align-items: center;
+            text-decoration: none;
+            color: var(--colorMain);
 
-                text-decoration: none;
-                color: var(--colorMain);
+            transition-duration: 250ms;
 
-                margin-bottom: 5px;
-
-                transition-duration: 350ms;
-
-                img {
-                    margin-left: 10px;
-                    height: 30px;
-                    width: 30px;
-                }
-
-                p {
-                    margin-left: 25px;
-                    font-size: 14px;
-                }
+            img {
+                margin-left: 15px;
+                height: 25px;
+                width: 25px;
             }
 
-            a:hover {
-                background-color: var(--colorWhite);
-                border-radius: 10px;
+            p {
+                margin-left: 15px;
+                font-size: 14px;
             }
+        }
 
-            .active {
-                background-color: var(--colorWhiteOpacity7);
-                border-radius: 10px;
-            }
+        a:hover:not(.active) {
+            background-color: var(--colorWhiteOpacity7);
+            border: 2px solid var(--colorMainOpacity5);
+        }
 
-            .user {
-                margin-top: 25px;
-            }
+        .active {
+            background-color: var(--colorWhite);
+            border: 2px solid var(--colorMain);
+            cursor: initial;
+        }
+    }
+
+    .bottom {
+        width: 100%;
+        margin: 7px;
+        margin-left: 0;
+
+        hr {
+            width: 90%;
         }
 
         .bottom-menu {
             font-size: 12px;
             color: var(--colorMain);
             margin-bottom: 15px;
+            margin-left: 25px;
         }
-
+    
         .menu-footer {
+            margin-bottom: 100px;
+    
             p {
-                margin-left: 10px;
+                margin-left: 25px;
                 font-size: 13px;
                 color: var(--colorMain);
-
+    
                 a {
                     display: inline;
                     color: var(--colorMainOpacity9);

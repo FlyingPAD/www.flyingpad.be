@@ -1,0 +1,41 @@
+<div class="log-in">
+    <div class="left">
+        <div class="close-button" routerLink="/home" [class]="closeButtonIsOn ? 'on' : 'off' ">
+            <img src="../../../assets/app_icons/new.png" />
+        </div>
+        <div class="languages" (click)="languageMenuToggle()" [class.active]="isLanguageMenuON">
+            <img [src]="getImageURL('icons-flags', currentLanguage(), 'png')" />
+            <span>{{ currentLanguage() === 'fr' ? 'Français' : 'English' }}</span>
+        </div>
+        <app-language-menu-home [isMenuOn]="isLanguageMenuON" (menuToggle)="languageMenuToggle()" />
+        <div class="login-form">
+            <img class="logo" [src]="getImageURL('images-logo', 'logo-3', 'png')" />
+            <div class="menu">
+                <a routerLink="/sign-up" routerLinkActive="active">{{ 'title.sign-up' | translate }}</a>
+                <a routerLink="/log-in" routerLinkActive="active">{{ 'title.log-in' | translate }}</a>
+            </div>
+            <form>
+                <p>{{ 'message.account-closed' | translate }}</p>
+            </form>
+            <div class="message">
+                <p routerLink="/log-in">{{ 'message.log-in' | translate }} <span>{{ 'title.log-in' | translate }}.</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        @if(flow()?.mood?.type === 1) {
+            @if (flow()?.mood?.height === flow()?.mood?.width) {
+            <img class="mood-square"
+              src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+            }
+            @if (flow()?.mood?.height > flow()?.mood?.width) {
+            <img class="mood-portrait"
+              src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+            }
+            @if (flow()?.mood?.height < flow()?.mood?.width) {
+            <img class="mood-landscape"
+              src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+            }
+          }
+    </div>
+</div>

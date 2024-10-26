@@ -1,9 +1,7 @@
 .gdpr-container {
     position: fixed;
     bottom: 0;
-    left: 0;
-
-    width: 100vw;
+    right: 0;
 
     display: flex;
     justify-content: flex-end;
@@ -14,9 +12,10 @@
         width: 350px;
         margin: 50px;
     
-        background-color: var(--colorWhiteOpacity7);
+        background-color: var(--colorWhiteOpacity9);
         border: 3px solid var(--colorMain);
         border-radius: 5px;
+        backdrop-filter: blur(3px);
         box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
         padding: 25px;
 

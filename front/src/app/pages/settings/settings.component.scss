@@ -1,7 +1,10 @@
-.settings-table {
-    border: 1px solid var(--colorMain);
+.top {
+    padding-top: 1px;
+}
 
+.settings-table {    
     background-color: var(--colorMainOpacity1);
+    border: 3px solid var(--colorMain);
     border-radius: 5px;
     backdrop-filter: blur(3px);
     box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
@@ -9,6 +12,7 @@
     max-width: 525px;
     margin: auto;
     margin-bottom: 15px;
+    margin-top: 25px;
 
     padding: 5px;
 
@@ -49,7 +53,7 @@
             display: inline-block;
             width: 75px;
             background-color: var(--colorMainOpacity1);
-            border: 1px solid var(--colorMain);
+            border: 2px solid var(--colorMain);
             border-radius: 5px;
             padding: 7px;
             margin-right: 10px;
@@ -72,7 +76,7 @@
             padding: 7px;
 
             background-color: var(--colorMainOpacity1);
-            border: 1px solid var(--colorMain);
+            border: 2px solid var(--colorMain);
             border-radius: 5px;
 
             color: var(--colorMain);

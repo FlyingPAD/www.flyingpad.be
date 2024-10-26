@@ -13,7 +13,7 @@
             <p>{{ 'message.account-closed' | translate }}</p>
         </div>
     }
-    @if(authService.isConnectedSub && userService.appUser.role === 1 || userService.appUser.role === 2) {
+    @if(isConnected() && userService.appUser.role === 1 || userService.appUser.role === 2) {
         <div class="option">
             <img [src]="getImageURL('icons-my-account', 'user', 'png')" (click)="goTo('/users/user-details')" />
             <h2 class="h2">{{ 'title.account-settings' | translate }}</h2>

@@ -1,5 +1,4 @@
 <div class="overlay" 
-    [class.overlay-enabled]="isMenuOn === true && isOverlayOn === true" 
-    [class.overlay-disabled]="isMenuOn === false && isOverlayOn === false" 
-    (click)="handleEmitter()">
+    [class]="isOverlayOn === true ? 'on' : 'off' " 
+    (click)="handleToggle()">
 </div>

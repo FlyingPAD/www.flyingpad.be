@@ -1,0 +1,10 @@
+<app-header-moods (menuToggle)="toggleLeftMenu()" />
+
+<app-left-column [isUserConnected]="isUserConnected()" [isLeftMenuOn]="isLeftMenuOn()" 
+(menuToggle)="toggleLeftMenu()" (logout)="logout()" />
+
+<app-overlay [isOverlayOn]="isLeftMenuOn()" (toggle)="toggleLeftMenu()" />
+
+<main>
+    <router-outlet />
+</main>

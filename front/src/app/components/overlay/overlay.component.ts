@@ -6,11 +6,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './overlay.component.scss'
 })
 export class OverlayComponent {
-  @Input() isOverlayOn: boolean = false
-  @Input() isMenuOn: boolean = false
-  @Output() emitter = new EventEmitter()
+  @Input() isOverlayOn: boolean | undefined = false
+  @Output() toggle = new EventEmitter()
 
-  handleEmitter(): void {
-    this.emitter.emit()
+  handleToggle(): void {
+    this.toggle.emit()
   }
 }

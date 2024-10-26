@@ -30,7 +30,6 @@ export class AppComponent implements OnInit {
   router = inject(Router)
 
   gdprStatus = this.#gdprService.currentStatus
-
   displayInfo = this.#displayService.displayInfo
 
   ngOnInit(): void {
