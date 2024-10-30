@@ -25,7 +25,8 @@
             background-color: var(--colorWhiteOpacity5);
             box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
             padding-top: 25px;
-            padding-bottom: 50px;
+            padding-bottom: 25px;
+            margin-bottom: 15px;
 
             .button-big {
                 display: block;
@@ -60,7 +61,6 @@
             justify-content: center;
             flex-wrap: wrap;
 
-            margin-top: 15px;
             margin-bottom: 15px;
 
             .social {

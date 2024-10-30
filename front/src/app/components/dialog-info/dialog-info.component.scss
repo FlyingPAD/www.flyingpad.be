@@ -3,7 +3,11 @@ h1 {
     text-align: center;
     color: var(--colorMain);
     letter-spacing: 2px;
-    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+    text-shadow: 0px 3px 3px var(--colorMainOpacity2);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .flex {
@@ -24,6 +28,10 @@ h1 {
         margin: 0;
         color: var(--colorMain);
         font-size: 14px;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         a:hover {
             text-decoration: underline;

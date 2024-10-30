@@ -17,7 +17,7 @@ import { TagsComponent } from './pages/tags/tags.component';
 import { ScriptsComponent } from './pages/scripts/scripts.component';
 import { ToolsComponent } from './pages/tools/tools.component';
 import { MoodsComponent } from './pages/moods/moods.component';
-import { MediasComponent } from './pages/medias/medias.component';
+import { MediaComponent } from './pages/media/media.component';
 import { LinksComponent } from './pages/links/links.component';
 import { EditModelsComponent } from './pages/edit-models/edit-models.component';
 import { EditFranchisesComponent } from './pages/edit-franchises/edit-franchises.component';
@@ -53,10 +53,10 @@ const routes: Routes = [
       { path: 'moods/create-mood-image', component: CreateMoodImageComponent, title: 'Flying PAD | Create Mood(s)' },
       { path: 'moods/create-mood-video', component: CreateMoodVideoComponent, title: 'Flying PAD | Create Mood(s)' },
       { path: 'tags', component: TagsComponent, title: 'Flying PAD | Tags Gallery' },
-      { path: 'medias', component: MediasComponent, title: 'Flying PAD | Media' },
+      { path: 'media', component: MediaComponent, title: 'Flying PAD | Media' },
       { path: 'not-found', component: NotFoundComponent, title: 'Flying PAD | Not Found' },
       { path: 'login-error', component: UserLoginErrorComponent, title: 'Flying PAD | Login Error' },
-      { path: 'register', component: UserRegisterComponent, title: 'Flying PAD | Register' },   
+      { path: 'register', component: UserRegisterComponent, title: 'Flying PAD | Register' },
       { path: 'medium-gallery', component: MediumGalleryComponent, title: 'Flying PAD | Medium Gallery' },
     ]
   },

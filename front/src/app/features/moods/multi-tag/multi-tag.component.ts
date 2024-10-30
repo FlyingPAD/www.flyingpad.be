@@ -1,8 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { FlowService } from '../../../services/flow.service';
-import { MenuDesktopService } from '../../../services/display/menu-desktop.service';
-import { MultiTagService } from '../../../services/multi-tag.service';
+import { MultiTagService } from '../../../services/features/multi-tag.service';
 import { PaginationService } from '../../../services/display/pagination.service';
 import { MoodLight } from '../../../interfaces/mood';
 
@@ -13,9 +12,7 @@ import { MoodLight } from '../../../interfaces/mood';
 })
 export class MultiTagComponent {
   @Input() moods : MoodLight[] = []
-  @Output() trigger = new EventEmitter() 
   #flowService = inject(FlowService)
-  menuService = inject(MenuDesktopService)
   multiTagService = inject(MultiTagService)
   paginationService = inject(PaginationService)
 

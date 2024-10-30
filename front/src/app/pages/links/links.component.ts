@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FlowService } from '../../services/flow.service';
 import { PaginationService } from '../../services/display/pagination.service';
 import { LinkLight } from '../../interfaces/link';
-import { LinkService } from '../../services/link.service';
+import { LinkService } from '../../services/features/link.service';
 
 @Component({
   selector: 'app-links',

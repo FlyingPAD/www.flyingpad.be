@@ -1,36 +1,35 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { ArtistCheckBox, GetAllArtistsResponse } from '../interfaces/artist';
+import { environment } from '../../../environments/environment';
+import { ArtistCheckBox, GetAllArtistsResponse } from '../../interfaces/artist';
 import { map, Observable } from 'rxjs';
-import { GetModelsByMoodResponse, ModelCheckBox } from '../interfaces/model';
+import { GetModelsByMoodResponse, ModelCheckBox } from '../../interfaces/model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MultiTagService 
-{
+export class MultiTagService {
   #http = inject(HttpClient)
-  #url : string = environment.apiBaseUrl + '/api/V1/'
-  selectedMoods : number[] = []
+  #url: string = environment.apiBaseUrl + '/api/V1/'
+  selectedMoods: number[] = []
 
-  selectionToggle(moodId : number): void {
+  selectionToggle(moodId: number): void {
     let index = this.selectedMoods.findIndex(x => x === moodId)
-  
+
     if (index === -1) {
       this.selectedMoods.push(moodId)
-    } 
+    }
     else {
       this.selectedMoods.splice(index, 1)
     }
   }
-  
-  checkIfSelected(moodId : number): boolean {
+
+  checkIfSelected(moodId: number): boolean {
     let index = this.selectedMoods.findIndex(x => x === moodId)
-  
+
     if (index === -1) {
       return false
-    } 
+    }
     else {
       return true
     }

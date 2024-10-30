@@ -1,7 +1,7 @@
 <div *ngIf="flow() as flow">
     <div id="layout-central">
         <div *ngIf="flow.moods.length; else loading">
-            <div [ngClass]="menuService.menuRActive === true ? 'gallery menu-open' : 'gallery' ">
+            <div class="gallery">
                 <div *ngFor="let mood of moods | paginate : { itemsPerPage : moodsPerPage, currentPage : paginationService.moodsByTagCurrentPage}">
                     <section>
                         <div *ngIf="mood.type == 1">           

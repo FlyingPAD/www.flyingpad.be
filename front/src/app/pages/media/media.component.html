@@ -1,5 +1,6 @@
 <app-button-top />
-<div class="page">
+<div class="media-spacer"></div>
+<div class="media">
     <div *ngFor="let media of flow()?.franchisesWithMedia">
         @if(media.franchises.length != 0) {
             <h2 (click)="updateMediaId(media.businessId)">{{media.name}}</h2>

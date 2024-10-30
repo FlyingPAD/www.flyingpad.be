@@ -1,7 +1,6 @@
-import { Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MenuDesktopService } from '../../../services/display/menu-desktop.service';
 import { ImageForm } from '../../../interfaces/mood-image';
 import { FlowService } from '../../../services/flow.service';
 
@@ -10,11 +9,10 @@ import { FlowService } from '../../../services/flow.service';
   templateUrl: './create-mood-image.component.html',
   styleUrl: './create-mood-image.component.scss'
 })
-export class CreateMoodImageComponent implements OnDestroy {
+export class CreateMoodImageComponent {
   #flowService = inject(FlowService)
   #builder = inject(FormBuilder)
   #router = inject(Router)
-  menuService = inject(MenuDesktopService)
 
   images : ImageForm[] = []
   forms : FormGroup[] = []
@@ -23,9 +21,6 @@ export class CreateMoodImageComponent implements OnDestroy {
 
   @ViewChild('originalInput') originalInput!: ElementRef<HTMLInputElement>
 
-  ngOnDestroy(): void {
-    this.menuService.allMenuTriggerOn()
-  }
   onClickHack(): void {
     this.originalInput?.nativeElement.click()
   }
