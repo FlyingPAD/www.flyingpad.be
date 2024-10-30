@@ -14,7 +14,7 @@
         <div class="menu-elements">
             @if(isUserConnected) {
                 <a routerLink="/dashboard" routerLinkActive="active">
-                    <img [src]="getImageURL('icons-main-menu', 'home', 'png')" />
+                    <img [src]="getImageURL('icons-main-menu', 'model', 'png')" />
                     <p>{{ 'title.dashboard' | translate }}</p>
                 </a>
             }
@@ -47,7 +47,7 @@
                 <p>Tags</p>
             </a>
             @if(isUserConnected) {
-                <a routerLink="/medias" routerLinkActive="active" (click)="handleMenuToggle()">
+                <a routerLink="/media" routerLinkActive="active" (click)="handleMenuToggle()">
                     <img [src]="getImageURL('icons-main-menu', 'media', 'png')" />
                     <p>Media</p>
                 </a>
@@ -63,7 +63,7 @@
                 </a>
             }
             @if(!isUserConnected) {
-                <a routerLink="/log-in">
+                <a routerLink="/log-in" (click)="handleMenuToggle()">
                     <img [src]="getImageURL('icons-main-menu', 'model', 'png')" />
                     <p>{{ 'title.log-in' | translate }}</p>
                 </a>
@@ -79,7 +79,7 @@
         </div>
         <hr class="dialog-hr">
         <div class="menu-footer">
-            <p>© {{currentYear}} <a routerLink="/about">Flying PAD</a></p>
+            <p>© {{currentYear}} <a routerLink="/about" (click)="handleMenuToggle()">Flying PAD</a></p>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ViewerService } from './viewer.service';
+import { ViewerService } from '../display/viewer.service';
 
 describe('ViewerService', () => {
   let service: ViewerService;

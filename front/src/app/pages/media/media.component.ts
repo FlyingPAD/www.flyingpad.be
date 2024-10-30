@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { FlowService } from '../../services/flow.service';
 
 @Component({
-  selector: 'app-medias',
-  templateUrl: './medias.component.html',
-  styleUrl: './medias.component.scss'
+  selector: 'app-media',
+  templateUrl: './media.component.html',
+  styleUrl: './media.component.scss'
 })
-export class MediasComponent {
+export class MediaComponent {
   #flowService = inject(FlowService)
   #router = inject(Router)
   flow = this.#flowService.flow

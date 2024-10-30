@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { AuthenticationService } from '../../services/system/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({

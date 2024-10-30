@@ -73,7 +73,7 @@ import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component
 import { DialogInfoComponent } from './components/dialog-info/dialog-info.component';
 import { RightColumnComponent } from './components/right-column/right-column.component';
 import { MoodViewerComponent } from './features/moods/mood-viewer/mood-viewer.component';
-import { MediasComponent } from './pages/medias/medias.component';
+import { MediaComponent } from './pages/media/media.component';
 import { LinksComponent } from './pages/links/links.component';
 import { RightColumnListComponent } from './components/right-column-list/right-column-list.component';
 import { ListCentralComponent } from './components/list-central/list-central.component';
@@ -181,7 +181,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditLinksComponent,
     MoodsComponent,
     TagsComponent,
-    MediasComponent,
+    MediaComponent,
     MediumGalleryComponent,
     ScriptsComponent,
     ToolsComponent,

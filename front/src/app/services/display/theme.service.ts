@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject } from 'rxjs';
 import { StorageProperties } from '../../enumerations/storage-properties';
-import { StorageService } from '../system/storage.service';
+import { StorageService } from '../storage.service';
 import { Theme } from '../../enumerations/themes';
 
 @Injectable({

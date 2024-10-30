@@ -4,7 +4,7 @@ import { FlowService } from '../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../interfaces/user';
-import { AuthenticationService } from '../../services/system/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
 import { ImageUrlService } from '../../services/display/image-url.service';
 import { LanguageService } from '../../services/display/language.service';

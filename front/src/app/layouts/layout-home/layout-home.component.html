@@ -1,8 +1,8 @@
-<app-header-home (toggleMenu)="toggleLeftMenu()" />
+<app-header-home (menuToggle)="toggleLeftMenu()" />
 
-<app-left-column [isUserConnected]="isUserConnected()" [isLeftMenuOn]="isLeftMenuOn()" 
-(menuToggle)="toggleLeftMenu()" (logout)="logout()" />
+<app-left-column [isLeftMenuOn]="isLeftMenuOn()"  [isUserConnected]="isUserConnected()" 
+    (menuToggle)="closeLeftMenu()" (logout)="logout()" />
 
-<app-overlay [isOverlayOn]="isLeftMenuOn()" (toggle)="toggleLeftMenu()" />
+<app-overlay [isOverlayOn]="isLeftMenuOn()" (toggle)="closeLeftMenu()" />
 
 <router-outlet />

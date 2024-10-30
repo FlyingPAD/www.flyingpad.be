@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { GdprService } from '../../services/system/gdpr.service';
+import { GdprService } from '../../services/gdpr.service';
 
 @Component({
   selector: 'app-gdpr',

@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { StorageProperties } from '../../enumerations/storage-properties';
 import { SupportedLanguages } from '../../enumerations/supported-languages';
-import { StorageService } from '../system/storage.service';
+import { StorageService } from '../storage.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,9 @@
 import { AfterViewChecked, Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { FlowService } from '../../services/flow.service';
-import { MenuDesktopService } from '../../services/display/menu-desktop.service';
 import { PaginationService } from '../../services/display/pagination.service';
-import { ViewerService } from '../../services/display/viewer.service';
+import { ViewerService } from '../../services/features/viewer.service';
+import { MenuService } from '../../services/display/menu.service';
 
 @Component({
   selector: 'app-moods',
@@ -12,7 +12,7 @@ import { ViewerService } from '../../services/display/viewer.service';
 })
 export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   #flowService = inject(FlowService)
-  menuService = inject(MenuDesktopService)
+  #menuService = inject(MenuService)
   paginationService = inject(PaginationService)
   viewerService = inject(ViewerService)
 
@@ -189,7 +189,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   menuTrigger(): void {
-    this.menuService.menuRTrigger()
+    this.#menuService.toggleRightMenu()
   }
   leftCardToggle(): void {
     this.leftCardIsActive = !this.leftCardIsActive

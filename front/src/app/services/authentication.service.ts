@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { UserRegisterForm, UserLoginForm } from '../../interfaces/user';
+import { UserRegisterForm, UserLoginForm } from '../interfaces/user';
 import { ToastrService } from 'ngx-toastr';
-import { LoginQueryResponse, RegisterCommandResponse } from '../../interfaces/authentication';
-import { environment } from '../../../environments/environment';
+import { LoginQueryResponse, RegisterCommandResponse } from '../interfaces/authentication';
+import { environment } from '../../environments/environment';
 import { CustomCookieService } from './cookie.service';
-import { UserService } from '../user.service';
+import { UserService } from './user.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({

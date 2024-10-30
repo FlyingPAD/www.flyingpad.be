@@ -1,4 +1,16 @@
-<app-left-column [isLeftMenuOn]="true" (menuToggle)="toggleLeftMenu()" 
-    [isUserConnected]="isConnected()" (logout)="logout()" />
+@if(displayInfos().mode === "Desktop") {
+    <app-left-column [isLeftMenuOn]="true"  [isUserConnected]="isUserConnected()" 
+    (menuToggle)="closeLeftMenu()" (logout)="logout()" />
+    <router-outlet />
+}
+@if(displayInfos().mode === "Mobile") {
+    <app-header-moods (menuToggle)="toggleLeftMenu()" />
 
-<router-outlet />
+    <app-left-column [isLeftMenuOn]="isLeftMenuOn()"  [isUserConnected]="isUserConnected()" 
+        (menuToggle)="closeLeftMenu()" (logout)="logout()" />
+    
+    <app-overlay [isOverlayOn]="isLeftMenuOn()" (toggle)="closeLeftMenu()" />
+    <main>
+        <router-outlet />
+    </main>
+}

@@ -1,15 +1,14 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
-import { CustomCookieService } from './services/system/cookie.service';
-import { AuthenticationService } from './services/system/authentication.service';
+import { CustomCookieService } from './services/cookie.service';
+import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
-import { MenuCustomService } from './services/display/menu-custom.service';
 import { LanguageService } from './services/display/language.service';
 import { DisplayService } from './services/display/display.service';
 import { FullScreenService } from './services/display/full-screen.service';
 import { ThemeService } from './services/display/theme.service';
-import { GdprService } from './services/system/gdpr.service';
-import { RightColumnService } from './services/display/right-column.service';
+import { GdprService } from './services/gdpr.service';
+import { MenuService } from './services/display/menu.service';
 
 @Component({
   selector: 'app-root',
@@ -17,17 +16,16 @@ import { RightColumnService } from './services/display/right-column.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  #languageService = inject(LanguageService)
   #displayService = inject(DisplayService)
-  #rightColumnService = inject(RightColumnService)
   #fullScreenService = inject(FullScreenService)
   #themeService = inject(ThemeService)
+  #languageService = inject(LanguageService)
+  #menuService = inject(MenuService)
   #gdprService = inject(GdprService)
   #authService = inject(AuthenticationService)
   #userService = inject(UserService)
   #cookieService = inject(CustomCookieService)
-  #menuCustomService = inject(MenuCustomService)
-  router = inject(Router)
+  #router = inject(Router)
 
   gdprStatus = this.#gdprService.currentStatus
   displayInfo = this.#displayService.displayInfo
@@ -44,9 +42,9 @@ export class AppComponent implements OnInit {
     }
 
     if(this.displayInfo().mode === 'Desktop') {
-      this.#rightColumnService.enableRightColumn()
+      this.#menuService.openRightMenu()
     } else {
-      this.#rightColumnService.disableRightColumn()
+      this.#menuService.closeRightMenu()
     }
   }
 
@@ -54,10 +52,10 @@ export class AppComponent implements OnInit {
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Escape':
-        this.router.navigateByUrl('/')
+        this.#router.navigateByUrl('/')
         break
       case 'F1':
-        this.#menuCustomService.triggerMenuCustom()
+        this.#menuService.toggleLeftMenu()
         break
       // case '1':
       //   this.router.navigateByUrl('/moods')

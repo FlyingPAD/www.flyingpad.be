@@ -8,7 +8,7 @@ import { LanguageService } from '../../services/display/language.service';
   styleUrl: './header-home.component.scss'
 })
 export class HeaderHomeComponent {
-  @Output() toggleMenu = new EventEmitter<void>()
+  @Output() menuToggle = new EventEmitter<void>()
 
   #languageService = inject(LanguageService)
   #imageUrlService = inject(ImageUrlService)
@@ -18,7 +18,7 @@ export class HeaderHomeComponent {
   isLanguageMenuON : boolean = false
 
   public handleMenuToggle(): void {
-    this.toggleMenu.emit()
+    this.menuToggle.emit()
   }
 
   public toggleLanguageMenu(): void {

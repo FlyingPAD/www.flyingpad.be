@@ -3,7 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { PaginationService } from '../../../services/display/pagination.service';
 import { FlowService } from '../../../services/flow.service';
 import { MoodLight } from '../../../interfaces/mood';
-import { RightColumnService } from '../../../services/display/right-column.service';
+import { MenuService } from '../../../services/display/menu.service';
 
 @Component({
   selector: 'app-moods-gallery',
@@ -13,7 +13,7 @@ import { RightColumnService } from '../../../services/display/right-column.servi
 export class MoodsGalleryComponent 
 {
   #flowService = inject(FlowService)
-  rightColumnService = inject(RightColumnService)
+  #menuService = inject(MenuService)
   paginationService = inject(PaginationService)
 
   @Input() moods : MoodLight[] | undefined = undefined
@@ -22,16 +22,16 @@ export class MoodsGalleryComponent
   environment = environment.apiBaseUrl
 
   flow = this.#flowService.flow
-  rightColumnIsActive = this.rightColumnService.rightColumnIsActive
+  isRightMenuOn = this.#menuService.isRightMenuOn
 
   moodsPerPage:  number = 36      
 
   menuTrigger(): void {
-    if(this.rightColumnIsActive()) {
-      this.rightColumnService.disableRightColumn()
+    if(this.isRightMenuOn()) {
+      this.#menuService.closeRightMenu()
     }
     else {
-      this.rightColumnService.enableRightColumn()
+      this.#menuService.openRightMenu()
     }
   }
 

@@ -9,6 +9,9 @@ export class MenuService {
   #isLeftMenuOn = new BehaviorSubject<boolean>(false)
   public isLeftMenuOn = toSignal(this.#isLeftMenuOn)
 
+  #isRightMenuOn = new BehaviorSubject<boolean>(false)
+  public isRightMenuOn = toSignal(this.#isRightMenuOn)
+
   public toggleLeftMenu(): void {
     this.#isLeftMenuOn.next(!this.#isLeftMenuOn.value)
   }
@@ -17,5 +20,15 @@ export class MenuService {
   }
   public closeLeftMenu(): void {
     this.#isLeftMenuOn.next(false)
+  }
+
+  public toggleRightMenu(): void {
+    this.#isRightMenuOn.next(!this.#isRightMenuOn.value)
+  }
+  public openRightMenu(): void {
+    this.#isRightMenuOn.next(true)
+  }
+  public closeRightMenu(): void {
+    this.#isRightMenuOn.next(false)
   }
 }
