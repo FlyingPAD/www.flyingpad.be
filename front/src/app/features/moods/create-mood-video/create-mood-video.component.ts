@@ -15,9 +15,9 @@ export class CreateMoodVideoComponent {
  
     form : FormGroup = this.#formBuilder.group({ title: [''] })
     
-    name! : string
-    extension! : string
-    size! : number
+    public name! : string
+    public extension! : string
+    public size! : number
     
     url! : string
   
