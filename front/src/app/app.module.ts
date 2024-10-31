@@ -19,7 +19,6 @@ import { UserLoginErrorComponent } from './pages/user-login-error/user-login-err
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
 import { UserUpdateComponent } from './pages/user-update/user-update.component';
-import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circle-of-fifths.component';
 import { DiapasonComponent } from './features/tools/diapason/diapason.component';
 import { FlyingKeysMiniComponent } from './features/tools/flying-keys-mini/flying-keys-mini.component';
@@ -128,7 +127,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { MediumGalleryComponent } from './pages/medium-gallery/medium-gallery.component';
-import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { FormatRatioPipe } from './pipes/format-ratio.pipe';
 import { TimelineComponent } from './features/scripts/timeline/timeline.component';
@@ -148,6 +146,7 @@ import { LanguageMenuHeaderComponent } from './components/language-menu-header/l
 import { LayoutToolsComponent } from './layouts/layout-tools/layout-tools.component';
 import { LanguageMenuHomeComponent } from './components/language-menu-home/language-menu-home.component';
 import { AnimRotation360Directive } from './directives/anim-rotation-360.directive';
+import { LayoutAboutComponent } from './layouts/layout-about/layout-about.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -188,7 +187,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     FlowComponent,
     LinksComponent,
     NotFoundComponent,
-    MyAccountComponent,
     SettingsComponent,
     SignUpComponent,
     LogInComponent,
@@ -263,7 +261,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     DeleteLinkCategoryComponent,
     DeleteLinkComponent,
     // Users.
-    UserDetailsComponent,
     UserUpdateComponent,
     UserRegisterComponent,
     UserLoginErrorComponent,
@@ -302,7 +299,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MediaDetailsFlowComponent,
     FranchiseDetailsFlowComponent,
     LinkCategoryDetailsFlowComponent,
-    LinkDetailsFlowComponent
+    LinkDetailsFlowComponent,
+    LayoutAboutComponent
   ],
   imports: [
     // --- CORE :

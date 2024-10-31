@@ -82,6 +82,7 @@
       <p><b>{{ 'title.email' | translate }}</b></p>
       <p>{{user.email}}</p>
     </div>
+    <hr class="dialog-hr">
     <div class="flex">
       <p><b>{{ 'title.first-name' | translate }}</b></p>
       <p>{{user.firstName}}</p>
@@ -105,11 +106,9 @@
       </div>
     </div>
     <hr>
-    <div class="row-white">
-      <div class="buttons">
-        <div class="button" routerLink="/users/delete-user/{{user.businessId}}">{{ 'title.delete' | translate }}</div>
-        <div class="button" routerLink="/users/user-update">{{ 'title.modify' | translate }}</div>
-      </div>
+    <div class="buttons">
+      <div class="button" routerLink="/users/delete-user/{{user.businessId}}">{{ 'title.delete' | translate }}</div>
+      <div class="button" routerLink="/users/user-update">{{ 'title.modify' | translate }}</div>
     </div>
   </div>
   }

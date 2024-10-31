@@ -5,6 +5,7 @@ import { User } from '../../interfaces/user';
 import { Player } from '../../models/player';
 import { FlowService } from '../../services/flow.service';
 import { environment } from '../../../environments/environment';
+import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,7 @@ export class DashboardComponent {
   #imageURLService = inject(ImageUrlService)
   #userService = inject(UserService)
   #flowService = inject(FlowService)
+  dashboardService = inject(DashboardService)
 
   environment : string = environment.apiBaseUrl
   
@@ -22,27 +24,28 @@ export class DashboardComponent {
   user : User = this.#userService.appUser
   player : Player = this.#userService.player
 
-  public isStatusMenuOn : boolean = true
-  public isEditionMenuOn : boolean = false
-  public isMyAccountMenuOn : boolean = false
+  public isStatusMenuOn : boolean = this.dashboardService.isStatusMenuOn
+  public isEditionMenuOn : boolean = this.dashboardService.isEditionMenuOn
+  public isMyAccountMenuOn : boolean = this.dashboardService.isMyAccountMenuOn
 
-  private closeAllMenus(): void {
-    this.isMyAccountMenuOn = false
-    this.isEditionMenuOn = false
-    this.isStatusMenuOn = false
+  private syncMenuStates(): void {
+    this.isStatusMenuOn = this.dashboardService.isStatusMenuOn
+    this.isEditionMenuOn = this.dashboardService.isEditionMenuOn
+    this.isMyAccountMenuOn = this.dashboardService.isMyAccountMenuOn
   }
-  public openStatusMenu(): void {
-    this.closeAllMenus()
-    this.isStatusMenuOn = true
+    public openStatusMenu(): void {
+    this.dashboardService.openStatusMenu()
+    this.syncMenuStates()
   }
   public openEditionMenu(): void {
-    this.closeAllMenus()
-    this.isEditionMenuOn = true
+    this.dashboardService.openEditionMenu()
+    this.syncMenuStates()
   }
   public openMyAccountMenu(): void {
-    this.closeAllMenus()
-    this.isMyAccountMenuOn = true
+    this.dashboardService.openMyAccountMenu()
+    this.syncMenuStates()
   }
+
   public getImageURL(folderName: string, imageName: string, imageExtension: string): string {
     return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
   }

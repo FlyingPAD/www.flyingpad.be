@@ -3,7 +3,7 @@
 }
 
 .settings-table {    
-    background-color: var(--colorMainOpacity1);
+    background-color: var(--colorMainOpacity5);
     border: 3px solid var(--colorMain);
     border-radius: 5px;
     backdrop-filter: blur(3px);
@@ -25,11 +25,11 @@
         padding: 20px;
         padding-top: 5px;
         padding-bottom: 5px;
-        border: 2px solid var(--colorMain);
+        border: 2px solid var(--colorMainOpacity7);
         border-radius: 5px;
 
-        background-color: var(--colorWhiteOpacity5);
-        color: var(--colorMain);
+        background-color: var(--colorWhiteOpacity7);
+        color: var(--colorMainOpacity9);
 
         .row-title {
             width: 300px;
@@ -68,7 +68,7 @@
         }
 
         .span-active {
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.7);
         }
 
         select {
