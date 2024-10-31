@@ -1,7 +1,9 @@
 .gdpr-container {
     position: fixed;
     bottom: 0;
-    right: 0;
+    left: 0;
+
+    width: 100%;
 
     display: flex;
     justify-content: flex-end;
@@ -52,5 +54,9 @@
 @media (max-width: 800px) {
     .gdpr-container {
         justify-content: center;
+        .gdpr {
+            margin: 0;
+            margin-bottom: 50px;
+        }
     }
 }
