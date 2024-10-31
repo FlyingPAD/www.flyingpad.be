@@ -149,7 +149,8 @@ import { AnimRotation360Directive } from './directives/anim-rotation-360.directi
 import { LayoutAboutComponent } from './layouts/layout-about/layout-about.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  let version : string = '1.0.0'
+  return new TranslateHttpLoader(http, './assets/i18n/', `.json?v=${version}`)
 }
 
 export function appInitializerFactory(translate: TranslateService) {
@@ -313,26 +314,21 @@ export function appInitializerFactory(translate: TranslateService) {
     LayoutAboutComponent
   ],
   imports: [
-    // --- CORE :
     BrowserModule,
     AppRoutingModule,
-
-    // --- NATIVE :
-    HttpClientModule,                       // Manual Import
-    BrowserAnimationsModule,                // Enables Animations ( Required for Toastr )
-
-    // Toastr Configuration :    
+    HttpClientModule,
+    BrowserAnimationsModule, 
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right',  // Position des notifications toastr
-      timeOut: 1500,                        // Désactive l'autodismiss (0 = infini)
-      extendedTimeOut: 0,                   // Désactive le timeout au survol (hover)
-      progressBar: true,                    // Affiche une barre de progression
-      closeButton: true,                    // Affiche un bouton de fermeture
-      preventDuplicates: false,             // Autorise les duplications
-      tapToDismiss: true,                   // Permet la fermeture en cliquant dessus
-      newestOnTop: true,                    // Les nouveaux toasts apparaissent en haut
-      easeTime: 750,                        // Désactive l'animation
-      enableHtml: true                      // Autorise le contenu HTML
+      positionClass: 'toast-bottom-right',
+      timeOut: 1500,
+      extendedTimeOut: 0,
+      progressBar: true,
+      closeButton: true,
+      preventDuplicates: false,
+      tapToDismiss: true,
+      newestOnTop: true,
+      easeTime: 750,
+      enableHtml: true
     }),
     CommonModule,
     RouterModule,
