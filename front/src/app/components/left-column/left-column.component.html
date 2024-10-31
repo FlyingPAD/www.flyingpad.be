@@ -13,7 +13,7 @@
         </div>
         <div class="menu-elements">
             @if(isUserConnected) {
-                <a routerLink="/dashboard" routerLinkActive="active">
+                <a routerLink="/dashboard" routerLinkActive="active" (click)="handleMenuMobile()">
                     <img [src]="getImageURL('icons-main-menu', 'model', 'png')" />
                     <p>{{ 'title.dashboard' | translate }}</p>
                 </a>
@@ -24,16 +24,16 @@
                     <p>{{ 'title.home' | translate }}</p>
                 </a>
             }
-            <a routerLink="/scripts" routerLinkActive="active">
+            <a routerLink="/scripts" routerLinkActive="active" (click)="handleMenuMobile()">
                 <img [src]="getImageURL('icons-main-menu', 'scripts', 'png')" />
                 <p>Scripts</p>
             </a>
-            <a routerLink="/tools" routerLinkActive="active">
+            <a routerLink="/tools" routerLinkActive="active" (click)="handleMenuMobile()">
                 <img [src]="getImageURL('icons-main-menu', 'tools', 'png')" />
                 <p>{{ 'title.tools' | translate }}</p>
             </a>
             @if(!isUserConnected) {
-                <a routerLink="/links" routerLinkActive="active">
+                <a routerLink="/links" routerLinkActive="active" (click)="handleMenuMobile()">
                     <img [src]="getImageURL('icons-main-menu', 'links', 'png')" />
                     <p>{{ 'title.links' | translate }}</p>
                 </a>
@@ -68,7 +68,7 @@
                     <p>{{ 'title.log-in' | translate }}</p>
                 </a>
             }
-            <a routerLink="/settings">
+            <a routerLink="/settings" (click)="handleMenuMobile()">
                 <img [src]="getImageURL('icons-main-menu', 'settings', 'png')" />
                 <p>{{ 'title.settings' | translate }}</p>
             </a>

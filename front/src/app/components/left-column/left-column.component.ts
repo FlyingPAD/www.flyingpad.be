@@ -1,6 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { ImageUrlService } from '../../services/display/image-url.service';
 import { LanguageService } from '../../services/display/language.service';
+import { DisplayService } from '../../services/display/display.service';
 
 @Component({
   selector: 'app-left-column',
@@ -10,7 +11,10 @@ import { LanguageService } from '../../services/display/language.service';
 export class LeftColumnComponent {
   #languageService = inject(LanguageService)
   #imageUrlService = inject(ImageUrlService)
-  currentLanguage = this.#languageService.currentLanguage
+  #displayService = inject(DisplayService)
+
+  public currentLanguage = this.#languageService.currentLanguage
+  public displayInfo = this.#displayService.displayInfo
 
   isLanguageMenuON : boolean = false
 
@@ -30,6 +34,11 @@ export class LeftColumnComponent {
     this.menuToggle.emit()
   }
 
+  public handleMenuMobile(): void {
+    if(this.displayInfo().mode === 'Mobile') {
+      this.handleMenuToggle()
+    }
+  }
   public handleLogout(): void {
     this.logout.emit()
   }
