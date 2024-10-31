@@ -17,8 +17,9 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
   #flowService = inject(FlowService)
   #builder = inject(FormBuilder)
 
-  subscription = new Subscription()
-  formGroup!: FormGroup
+  private subscription = new Subscription()
+  
+  public formGroup!: FormGroup
 
   get linkCategoriesArray(): FormArray {
     return this.formGroup.get('linkCategories') as FormArray
@@ -47,7 +48,7 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
     })
   }
   
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.formGroup.valid) {
       let categories = this.linkCategoriesArray?.value
 
