@@ -1,7 +1,7 @@
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
-import { NgModule } from '@angular/core'
+import { APP_INITIALIZER, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -123,7 +123,7 @@ import { DeleteMediumComponent } from './features/franchises/delete-medium/delet
 import { EditMediumComponent } from './features/franchises/edit-medium/edit-medium.component';
 import { MultiTagComponent } from './features/moods/multi-tag/multi-tag.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { MediumGalleryComponent } from './pages/medium-gallery/medium-gallery.component';
@@ -150,6 +150,16 @@ import { LayoutAboutComponent } from './layouts/layout-about/layout-about.compon
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+export function appInitializerFactory(translate: TranslateService) {
+  return () => new Promise<void>((resolve) => {
+    translate.setDefaultLang('fr')
+    translate.use('fr').subscribe({
+      next: () => resolve(),
+      error: () => resolve()
+    })
+  })
 }
 
 @NgModule({
@@ -338,6 +348,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
+    { provide: APP_INITIALIZER, useFactory: appInitializerFactory, deps: [TranslateService], multi: true },
     [CookieService],           
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
