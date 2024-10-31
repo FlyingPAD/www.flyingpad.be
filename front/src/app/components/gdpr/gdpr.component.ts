@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { GdprService } from '../../services/gdpr.service';
+import { LanguageService } from '../../services/display/language.service';
 
 @Component({
   selector: 'app-gdpr',
@@ -7,6 +8,7 @@ import { GdprService } from '../../services/gdpr.service';
   styleUrl: './gdpr.component.scss'
 })
 export class GdprComponent {
+  #languageService = inject(LanguageService)
   #gdprService = inject(GdprService)
   hideAnimation = false
 

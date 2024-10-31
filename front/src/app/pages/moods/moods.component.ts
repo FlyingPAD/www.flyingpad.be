@@ -26,9 +26,10 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   showMultiTag : boolean = false
   showDialog : boolean = false
 
+  leftCardIsActive : boolean = false
+
   intervalId : any | undefined = undefined
            
-  leftCardIsActive : boolean = false
   
   ngOnInit(): void {
     this.getMoodHeight(false)
@@ -134,43 +135,31 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   getRandomMood(): void {
     this.#flowService.updateMoodId(null)
-    this.showGallery = false
-    this.showDetails = true
-    this.showEdition = false
+    this.showDetailsON()
   }
 
   updateMoodId(moodId: number | null): void {
     this.#flowService.updateMoodId(moodId)
-    this.showGallery = false
-    this.showDetails = true
-    this.showEdition = false
+    this.showDetailsON()
   }
   updateArtistId(artistId: number | null): void {
     this.#flowService.updateArtistId(artistId)
-    this.showGallery = true
-    this.showDetails = false
-    this.showEdition = false
+    this.showGalleryON()
     this.pageReset()
   }
   updateModelId(modelId: number | null): void {
     this.#flowService.updateModelId(modelId)
-    this.showGallery = true
-    this.showDetails = false
-    this.showEdition = false
+    this.showGalleryON()
     this.pageReset()
   }
   updateTagId(tagId: number): void {
     this.#flowService.updateTagId(tagId)
-    this.showGallery = true
-    this.showDetails = false
-    this.showEdition = false
+    this.showGalleryON()
     this.pageReset()
   }
   updateFranchiseId(franchiseId: number | null): void {
     this.#flowService.updateFranchiseId(franchiseId)
-    this.showGallery = true
-    this.showDetails = false
-    this.showEdition = false
+    this.showGalleryON()
     this.pageReset()
   }
 

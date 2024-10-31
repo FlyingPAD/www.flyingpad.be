@@ -154,7 +154,8 @@
             display: flex;
             justify-content: space-between;
 
-            background-color: var(--colorWhiteOpacity5);
+            background-color: var(--colorWhiteOpacity7);
+            border-radius: 5px;
 
             padding: 15px;
             margin-bottom: 15px;
@@ -163,6 +164,7 @@
                 margin: 0;
                 color: var(--colorMain);
                 font-size: 14px;
+                letter-spacing: 1px;
 
                 a:hover {
                     text-decoration: underline;

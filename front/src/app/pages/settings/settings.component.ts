@@ -22,33 +22,30 @@ export class SettingsComponent {
   currentTheme = this.#themeService.currentTheme
   Theme = Theme
 
-  // Récupérer la liste des clés de thèmes
   get themeKeys(): (keyof typeof Theme)[] {
     return Object.keys(this.Theme) as Array<keyof typeof Theme>;
   }
 
-  // Retourne la clé du thème actuellement sélectionné
-  currentThemeKey(): keyof typeof Theme {
+  public currentThemeKey(): keyof typeof Theme {
     return Object.keys(this.Theme).find(
       key => this.Theme[key as keyof typeof Theme] === this.currentTheme()
     ) as keyof typeof Theme
   }
 
-  // Méthode pour changer le thème en fonction de la sélection
-  changeTheme(selectedThemeKey: keyof typeof Theme): void {
+  public changeTheme(selectedThemeKey: keyof typeof Theme): void {
     const selectedTheme = this.Theme[selectedThemeKey];
     this.#themeService.setTheme(selectedTheme);
   }
 
-  switchLanguage(language: string): void {
+  public switchLanguage(language: string): void {
     this.#languageService.setLanguage(language);
   }
 
-  toggleFullScreen(): void {
+  public toggleFullScreen(): void {
     this.#fullScreenService.toggleFullscreen();
   }
 
-  async factorySettings(): Promise<void> {
+  public async factorySettings(): Promise<void> {
     await this.#fullScreenService.exitFullscreen();
     this.#languageService.resetLanguage();
     this.#themeService.setDefaultTheme();

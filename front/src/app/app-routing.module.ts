@@ -7,7 +7,6 @@ import { UserLoginErrorComponent } from './pages/user-login-error/user-login-err
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { FlowComponent } from './pages/flow/flow.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
-import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { UserUpdateComponent } from './pages/user-update/user-update.component';
 import { CreateMoodImageComponent } from './features/moods/create-mood-image/create-mood-image.component';
 import { MultiTagArtistsComponent } from './features/moods/multi-tag-artists/multi-tag-artists.component';
@@ -26,13 +25,13 @@ import { EditLinksComponent } from './pages/edit-links/edit-links.component';
 import { EditArtistsComponent } from './pages/edit-artists/edit-artists.component';
 import { CreateMoodVideoComponent } from './features/moods/create-mood-video/create-mood-video.component';
 import { MediumGalleryComponent } from './pages/medium-gallery/medium-gallery.component';
-import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { LayoutHomeComponent } from './layouts/layout-home/layout-home.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
 import { LayoutMoodsComponent } from './layouts/layout-moods/layout-moods.component';
 import { LayoutToolsComponent } from './layouts/layout-tools/layout-tools.component';
+import { LayoutAboutComponent } from './layouts/layout-about/layout-about.component';
 
 const routes: Routes = [
   // Layout ' Home '.
@@ -40,6 +39,12 @@ const routes: Routes = [
     path: '', component: LayoutHomeComponent, children: [
       { path: '', pathMatch: 'full', redirectTo: 'home' },
       { path: 'home', component: HomeComponent, title: 'Flying PAD | Home' },
+    ]
+  },
+
+  // Layout ' About '.
+  {
+    path: '', component: LayoutAboutComponent, children: [
       { path: 'about', component: AboutComponent, title: 'Flying PAD | About' },
     ]
   },
@@ -74,8 +79,6 @@ const routes: Routes = [
       { path: 'models/edition', component: EditModelsComponent, title: 'Flying PAD | Edit Models' },
       { path: 'franchises/edition', component: EditFranchisesComponent, title: 'Flying PAD | Edit Franchises' },
       { path: 'settings', component: SettingsComponent, title: 'Flying PAD | Settings' },
-      { path: 'my-account', component: MyAccountComponent, title: 'Flying PAD | My Account' },
-      { path: 'users/user-details', component: UserDetailsComponent, title: 'Flying PAD | User Details' },
       { path: 'users/user-update', component: UserUpdateComponent, title: 'Flying PAD | Update User' },
     ]
   },
