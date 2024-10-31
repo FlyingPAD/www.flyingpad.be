@@ -64,7 +64,8 @@
         "accept" : "Accept",
         "decline" : "Decline",
         "french" : "French",
-        "english" : "English"
+        "english" : "English",
+        "version" : "Version"
     },
     "message": {
         "404": "Page was not found.",
