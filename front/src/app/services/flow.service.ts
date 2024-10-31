@@ -85,85 +85,73 @@ export class FlowService {
     startWith(null),
     switchMap(() => this.#http.get<GetMoodsResponse>(`${this.#url}Moods/GetAll`)),
     tap(response => {
-      if (response.success) this.#toastr.success(response.message)
-      else this.#toastr.error(response.message)
+      if (!response.success) this.#toastr.error(response.message)
     }),
     map(response => response.moods))
   tags$ = this.#refreshTags.pipe(
     switchMap(() => this.#http.get<GetAllTagsResponse>(`${this.#url}Tags/GetAll`)),
     tap(response => {
-      if (response.success) this.#toastr.success(response.message)
-      else this.#toastr.error(response.message)
+      if (!response.success) this.#toastr.error(response.message)
     }),
     map(response => response.tags))
   tagCategories$ = this.#refreshTagCategories.pipe(
     switchMap(() => this.#http.get<GetAllTagCategoriesResponse>(`${this.#url}TagCategories/GetAll`)),
     tap(response => {
-      if (response.success) this.#toastr.success(response.message)
-      else this.#toastr.error(response.message)
+      if (!response.success) this.#toastr.error(response.message)
     }),
     map(response => response.tagCategories))
   tagsWithCategories$ = this.#refreshTags.pipe(
     switchMap(() => this.#http.get<TagsGetFullListResponse>(this.#url + 'Tags/GetTagsList')),
     tap(response => {
-      if (response.success) this.#toastr.success(response.message)
-      else this.#toastr.error(response.message)
+      if (!response.success) this.#toastr.error(response.message)
     }),
     map(response => response.categoriesWithTags))
   artists$ = this.#refreshArtists.pipe(
     switchMap(() => this.#http.get<GetAllArtistsResponse>(`${this.#url}Artists/GetAll`)),
     tap(response => {
-      if (response.success) this.#toastr.success(response.message)
-      else this.#toastr.error(response.message)
+      if (!response.success) this.#toastr.error(response.message)
     }),
     map(response => response.artists))
   styles$ = this.#refreshStyles.pipe(
     switchMap(() => this.#http.get<GetAllStylesResponse>(`${this.#url}Styles/GetAll`)),
     tap(response => {
-      if (response.success) this.#toastr.success(response.message)
-      else this.#toastr.error(response.message)
+      if (!response.success) this.#toastr.error(response.message)
     }),
     map(response => response.styles))
   models$ = this.#refreshModels.pipe(
     switchMap(() => this.#http.get<GetAllModelsResponse>(`${this.#url}Models/GetAll`)),
     tap(response => {
-      if (response.success) this.#toastr.success(response.message)
-      else this.#toastr.error(response.message)
+      if (!response.success) this.#toastr.error(response.message)
     }),
     map(response => response.models))
   franchises$ = this.#refreshFranchises.pipe(
     switchMap(() => this.#http.get<GetAllFranchisesResponse>(`${this.#url}Franchises/GetAll`)),
     tap(response => {
-      if (response.success) this.#toastr.success(response.message)
-      else this.#toastr.error(response.message)
+      if (!response.success) this.#toastr.error(response.message)
     }),
     map(response => response.franchises))
   franchisesWithMedia$ = this.#refreshFranchises.pipe(
     switchMap(() => this.#http.get<GetMediumListResponse>(this.#url + 'Franchises/GetFranchisesList')),
     tap(response => {
-      if (response.success) this.#toastr.success(response.message)
-      else this.#toastr.error(response.message)
+      if (!response.success) this.#toastr.error(response.message)
     }),
     map(response => response.media))
   media$ = this.#refreshMedia.pipe(
     switchMap(() => this.#http.get<GetAllMediaResponse>(`${this.#url}Media/GetAll`)),
     tap(response => {
-      if (response.success) this.#toastr.success(response.message)
-      else this.#toastr.error(response.message)
+      if (!response.success) this.#toastr.error(response.message)
     }),
     map(response => response.media))
   links$ = this.#refreshLinks.pipe(
     switchMap(() => this.#http.get<GetLinksResponse>(`${this.#url}Links/GetAll`)),
     tap(response => {
-      if (response.success) this.#toastr.success(response.message)
-      else this.#toastr.error(response.message)
+      if (!response.success) this.#toastr.error(response.message)
     }),
     map(response => response.links))
   linkCategories$ = this.#refreshLinkCategories.pipe(
     switchMap(() => this.#http.get<GetLinkCategoriesResponse>(`${this.#url}LinkCategories/GetAll`)),
     tap(response => {
-      if (response.success) this.#toastr.success(response.message)
-      else this.#toastr.error(response.message)
+      if (!response.success) this.#toastr.error(response.message)
     }),
     map(response => response.linkCategories))
 
@@ -173,7 +161,6 @@ export class FlowService {
       tap(response => {
         if (response.success) {
           this.updateMoodId(response.mood.businessId)
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }),
@@ -319,80 +306,70 @@ export class FlowService {
   public getMoodById(moodId: number): Observable<MoodFull> {
     return this.#http.get<GetMoodResponse>(`${this.#url}Moods/GetOneDetails/${moodId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.mood))
   }
   public getTagById(tagId: number): Observable<TagFull> {
     return this.#http.get<GetTagByIdResponse>(`${this.#url}Tags/GetOneDetails/${tagId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.tag))
   }
   public getTagCategoryById(tagCategoryId: number): Observable<TagCategoryFull> {
     return this.#http.get<GetTagCategoryByIdResponse>(`${this.#url}TagCategories/GetOneDetails/${tagCategoryId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.tagCategory))
   }
   public getModelById(modelId: number): Observable<ModelFull> {
     return this.#http.get<GetModelResponse>(`${this.#url}Models/GetOneDetails/${modelId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.model))
   }
   public getArtistById(artistId: number): Observable<ArtistFull> {
     return this.#http.get<GetArtistByIdResponse>(`${this.#url}Artists/GetOneDetails/${artistId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.artist))
   }
   public getStyleById(styleId: number): Observable<StyleFull> {
     return this.#http.get<GetStyleByIdResponse>(`${this.#url}Styles/GetOneDetails/${styleId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.style))
   }
   public getFranchiseById(franchiseId: number): Observable<FranchiseFull> {
     return this.#http.get<GetFranchiseByIdResponse>(`${this.#url}Franchises/GetOneDetails/${franchiseId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.franchise))
   }
   public getMediumById(mediumId: number): Observable<MediumFull> {
     return this.#http.get<GetMediumByIdResponse>(`${this.#url}Media/GetOneDetails/${mediumId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.medium))
   }
   public getLinkById(linkId: number): Observable<LinkFull> {
     return this.#http.get<GetLinkResponse>(`${this.#url}Links/GetOneDetails/${linkId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.link))
   }
   public getLinkCategoryById(linkCategoryId: number): Observable<LinkCategoryFull> {
     return this.#http.get<GetLinkCategoryResponse>(`${this.#url}LinkCategories/GetOneDetails/${linkCategoryId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.linkCategory))
   }
@@ -400,72 +377,63 @@ export class FlowService {
   public getMoodsByTag(tagId: number): Observable<MoodLight[]> {
     return this.#http.get<GetMoodsResponse>(`${this.#url}Moods/GetByTag/${tagId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.moods))
   }
   public getMoodsByModel(modelId: number): Observable<MoodLight[]> {
     return this.#http.get<GetMoodsResponse>(`${this.#url}Moods/GetByModel/${modelId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.moods))
   }
   public getMoodsByArtist(artistId: number): Observable<MoodLight[]> {
     return this.#http.get<GetMoodsResponse>(`${this.#url}Moods/GetByArtist/${artistId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.moods))
   }
   public getMoodsByFranchise(franchiseId: number): Observable<MoodLight[]> {
     return this.#http.get<GetMoodsResponse>(`${this.#url}Moods/GetByFranchise/${franchiseId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.moods))
   }
   public getTagsByCategory(tagCategoryId: number): Observable<TagLight[]> {
     return this.#http.get<GetTagsByCategoryResponse>(`${this.#url}Tags/GetByCategory/${tagCategoryId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.tags))
   }
   public getModelsByFranchise(franchiseId: number): Observable<ModelLight[]> {
     return this.#http.get<GetAllModelsResponse>(`${this.#url}Models/GetByFranchise/${franchiseId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.models))
   }
   public getArtistsByStyle(styleId: number): Observable<ArtistLight[]> {
     return this.#http.get<GetArtistsByStyleResponse>(`${this.#url}Artists/GetByStyle/${styleId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.artists))
   }
   public getFranchisesByMedium(mediumId: number): Observable<FranchiseLight[]> {
     return this.#http.get<GetFranchisesByMediumResponse>(`${this.#url}Franchises/GetByMedium/${mediumId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.franchises))
   }
   public getLinksByCategory(linkCategoryId: number): Observable<LinkLight[]> {
     return this.#http.get<GetLinksResponse>(`${this.#url}Links/GetByCategory/${linkCategoryId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.links))
   }
@@ -474,24 +442,21 @@ export class FlowService {
   public getImage(businessId: number) {
     return this.#http.get<GetOneImageDetailsResponse>(`${this.#url}Images/GetOneDetails/${businessId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.image))
   }
   public getVideo(businessId: number) {
     return this.#http.get<GetOneVideoDetailsResponse>(`${this.#url}Videos/GetOneDetails/${businessId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.video))
   }
   public getVideoYoutube(businessId: number) {
     return this.#http.get<GetOneVideoYoutubeDetailsResponse>(`${this.#url}VideosYouTube/GetOneDetails/${businessId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.videoYouTube))
   }
@@ -500,32 +465,28 @@ export class FlowService {
   public getModelsByMood(businessId: number) {
     return this.#http.get<GetAllModelsResponse>(`${this.#url}Models/GetByMood/${businessId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.models))
   }
   public getFranchisesByMood(moodId: number) {
     return this.#http.get<GetFranchisesByMoodResponse>(`${this.#url}Franchises/GetByMood/${moodId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.franchisesByMood))
   }
   public getArtistsByMood(moodId: number) {
     return this.#http.get<GetArtistsByMoodResponse>(`${this.#url}Artists/GetByMood/${moodId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.artistsByMood))
   }
   public getTagsByMood(moodId: number) {
     return this.#http.get<GetTagsByMoodResponse>(`${this.#url}Tags/GetByMood/${moodId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.tagsByMood))
   }
@@ -533,56 +494,49 @@ export class FlowService {
   public getTagsCheckBoxByMood(moodId: number) {
     return this.#http.get<GetTagsCheckBoxesByMoodResponse>(`${this.#url}Tags/GetCheckBoxesByMood/${moodId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.tagsCheckBoxesList))
   }
   public getModelsCheckBoxByMood(moodId: number) {
     return this.#http.get<GetModelsCheckBoxesByMoodResponse>(`${this.#url}Models/GetCheckBoxesByMood/${moodId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.models))
   }
   public getStylesCheckBoxesByArtist(artistId: number) {
     return this.#http.get<GetStylesCheckBoxesByArtistResponse>(`${this.#url}Styles/GetCheckBoxesByArtist/${artistId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.styles))
   }
   public getArtistsCheckBoxByMood(moodId: number) {
     return this.#http.get<GetArtistsCheckBoxesByMoodResponse>(`${this.#url}Artists/GetCheckBoxesByMood/${moodId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.artists))
   }
   public getMediaCheckBoxesByFranchise(franchiseId: number) {
     return this.#http.get<GetMediaCheckBoxesByFranchiseResponse>(`${this.#url}Media/GetCheckBoxesByFranchise/${franchiseId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.media))
   }
   public getFranchisesCheckBoxesByModel(modelId: number) {
     return this.#http.get<GetFranchisesCheckBoxesByModelResponse>(`${this.#url}Franchises/GetCheckBoxesByModel/${modelId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.franchises))
   }
   public getLinkCategoriesCheckBoxes(linkId: number) {
     return this.#http.get<GetLinkCategoriesCheckBoxesResponse>(`${this.#url}LinkCategories/GetCheckBoxesByLink/${linkId}`).pipe(
       tap(response => {
-        if (response.success) this.#toastr.success(response.message)
-        else this.#toastr.error(response.message)
+        if (!response.success) this.#toastr.error(response.message)
       }),
       map(response => response.linkCategories))
   }
@@ -593,7 +547,6 @@ export class FlowService {
       tap((response) => {
         if (response.success) {
           this.updateMoodId(rmtForm.moodId)
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -604,7 +557,6 @@ export class FlowService {
         if (response.success) {
           this.updateMoodId(rmaForm.moodId)
           this.refreshMoods()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -615,7 +567,6 @@ export class FlowService {
         if (response.success) {
           this.updateMoodId(rmmForm.moodId)
           this.refreshMoods()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -636,7 +587,6 @@ export class FlowService {
         if (response.success) {
           this.refreshMoods()
           this.updateMoodId(response.moodId)
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -646,7 +596,6 @@ export class FlowService {
       tap(response => {
         if (response.success) {
           this.refreshMoods()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -657,7 +606,6 @@ export class FlowService {
         if (response.success) {
           this.refreshMoods()
           this.updateMoodId(response.moodId)
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -669,7 +617,6 @@ export class FlowService {
           this.updateTagCategoryId(response.tagCategoryId)
           this.refreshTagCategories()
           this.refreshMoods()
-          this.#toastr.success(response.message)
         }
         else {
           this.#toastr.error(response.message)
@@ -694,7 +641,6 @@ export class FlowService {
         if (response.success) {
           this.updateModelId(response.modelId)
           this.refreshModels()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -705,7 +651,6 @@ export class FlowService {
         if (response.success) {
           this.updateStyleId(response.styleId)
           this.refreshStyles()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -717,7 +662,6 @@ export class FlowService {
           this.updateArtistId(response.artistId)
           this.refreshArtists()
           this.updateStyleId(form.styleIds[0])
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       })
@@ -729,7 +673,6 @@ export class FlowService {
         if (response.success) {
           this.updateMediumId(response.mediumId)
           this.refreshMedia()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -741,7 +684,6 @@ export class FlowService {
           this.updateFranchiseId(response.franchiseId)
           this.refreshFranchises()
           this.updateMediumId(form.mediaIds[0])
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -752,7 +694,6 @@ export class FlowService {
         if (response.success) {
           this.updateLinkCategoryId(response.linkCategoryId)
           this.refreshLinkCategories()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       })
@@ -765,7 +706,6 @@ export class FlowService {
           this.updateLinkId(response.linkId)
           this.refreshLinks()
           this.updateLinkCategoryId(form.linkCategoryIds[0])
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       })
@@ -777,7 +717,6 @@ export class FlowService {
         if (response.success) {
           this.updateUserId(response.userId)
           this.refreshUsers()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       })
@@ -790,7 +729,6 @@ export class FlowService {
       tap(response => {
         if (response.success) {
           this.refreshMoods()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -812,7 +750,6 @@ export class FlowService {
         if (response.success) {
           this.updateTagCategoryId(form.tagCategoryId)
           this.refreshTagCategories()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -836,7 +773,6 @@ export class FlowService {
         if (response.success) {
           this.updateModelId(form.modelId)
           this.refreshModels()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -847,7 +783,6 @@ export class FlowService {
         if (response.success) {
           this.updateStyleId(form.styleId)
           this.refreshStyles()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -859,7 +794,6 @@ export class FlowService {
           this.updateArtistId(form.artistId)
           this.refreshArtists()
           this.updateStyleId(form.styleIds[0])
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -870,7 +804,6 @@ export class FlowService {
         if (response.success) {
           this.updateMediumId(form.mediumId)
           this.refreshMedia()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -882,7 +815,6 @@ export class FlowService {
           this.updateFranchiseId(form.franchiseId)
           this.refreshFranchises()
           this.updateMediumId(form.mediaIds[0])
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -893,7 +825,6 @@ export class FlowService {
         if (response.success) {
           this.updateLinkCategoryId(form.linkCategoryId)
           this.refreshLinkCategories()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -906,7 +837,6 @@ export class FlowService {
           this.refreshLinks()
           this.updateLinkCategoryId(form.linkCategoryIds[0])
           this.refreshLinkCategories()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -917,7 +847,6 @@ export class FlowService {
         if (response.success) {
           this.updateUserId(form.userId)
           this.refreshUsers()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -930,7 +859,6 @@ export class FlowService {
         if (response.success) {
           this.updateMoodId(null)
           this.refreshMoods()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -943,7 +871,6 @@ export class FlowService {
           this.updateTagCategoryId(null)
           this.refreshTags()
           this.refreshTagCategories()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -957,7 +884,6 @@ export class FlowService {
           this.updateTagCategoryId(tagCategoryId)
           this.refreshTagCategories()
           this.refreshMoods()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -968,7 +894,6 @@ export class FlowService {
         if (response.success) {
           this.updateModelId(null)
           this.refreshModels()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -979,7 +904,6 @@ export class FlowService {
         if (response.success) {
           this.updateStyleId(null)
           this.refreshStyles()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -990,7 +914,6 @@ export class FlowService {
         if (response.success) {
           this.updateArtistId(null)
           this.refreshArtists()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -1001,7 +924,6 @@ export class FlowService {
         if (response.success) {
           this.updateMediumId(null)
           this.refreshMedia()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -1012,7 +934,6 @@ export class FlowService {
         if (response.success) {
           this.updateFranchiseId(null)
           this.refreshFranchises()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -1023,7 +944,6 @@ export class FlowService {
         if (response.success) {
           this.updateLinkCategoryId(null)
           this.refreshLinkCategories()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -1034,7 +954,6 @@ export class FlowService {
         if (response.success) {
           this.updateLinkId(null)
           this.refreshLinks()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -1045,7 +964,6 @@ export class FlowService {
         if (response.success) {
           this.updateUserId(null)
           this.refreshUsers()
-          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
