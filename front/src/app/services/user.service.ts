@@ -22,6 +22,7 @@ export class UserService {
       businessId: 0,
       created: new Date(),
       modified: new Date(),
+      pseudonym: 'Default User',
       firstName: 'User',
       lastName: '',
       birthdate: new Date(),

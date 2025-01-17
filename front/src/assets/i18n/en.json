@@ -20,7 +20,7 @@
         "links": "Links",
         "artists": "Artists",
         "models": "Models",
-        "my-account": "My Account",
+        "my-account": "Account",
         "404": "404 Error",
         "settings" : "Settings",
         "account-settings" : "Account Settings",
@@ -65,7 +65,10 @@
         "decline" : "Decline",
         "french" : "French",
         "english" : "English",
-        "version" : "Version"
+        "version" : "Version",
+        "pseudonym" : "Pseudonym",
+        "subscription" : "Subscription",
+        "achievements" : "Achievements"
     },
     "message": {
         "404": "Page was not found.",

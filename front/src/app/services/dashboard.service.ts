@@ -1,28 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
-  public isStatusMenuOn : boolean = true
-  public isEditionMenuOn : boolean = false
-  public isMyAccountMenuOn : boolean = false
-
-  private closeAllMenus(): void {
-    this.isMyAccountMenuOn = false
-    this.isEditionMenuOn = false
-    this.isStatusMenuOn = false
-  }
-  public openStatusMenu(): void {
-    this.closeAllMenus()
-    this.isStatusMenuOn = true
-  }
-  public openEditionMenu(): void {
-    this.closeAllMenus()
-    this.isEditionMenuOn = true
-  }
-  public openMyAccountMenu(): void {
-    this.closeAllMenus()
-    this.isMyAccountMenuOn = true
+  private dashboardMenuState$ = new BehaviorSubject<string>('status')
+  public dashboardMenuState = toSignal(this.dashboardMenuState$) as Signal<string>
+  public updateMenuState(menuState : string): void {
+    this.dashboardMenuState$.next(menuState)
   }
 }

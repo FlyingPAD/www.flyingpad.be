@@ -5,7 +5,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UserLoginErrorComponent } from './pages/user-login-error/user-login-error.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
-import { FlowComponent } from './pages/flow/flow.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
 import { UserUpdateComponent } from './pages/user-update/user-update.component';
 import { CreateMoodImageComponent } from './features/moods/create-mood-image/create-mood-image.component';
@@ -86,7 +85,6 @@ const routes: Routes = [
   // Empty Layout
   {
     path: '', component: LayoutEmptyComponent, children: [
-      { path: 'flow', component: FlowComponent, title: 'Flying PAD | Flow' },
       { path: 'log-in', component: LogInComponent, title: 'Flying PAD | Log in' },
       { path: 'sign-up', component: SignUpComponent, title: 'Flying PAD | Sign up' },
     ]

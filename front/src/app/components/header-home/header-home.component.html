@@ -1,8 +1,8 @@
 <app-language-menu-header [isMenuOn]="isLanguageMenuON" (menuToggle)="toggleLanguageMenu()" />
 <header>
     <section class="left">
-        <div class="icon" (click)="handleMenuToggle()">
-            <img [src]="getImageURL('icons-main-menu', 'hamburger', 'png')" />
+        <div class="hamburger" (click)="handleMenuToggle()">
+            <app-icon-hamburger size="23px" />
         </div>
         <div class="logo-mini">
             <img [src]="getImageURL('images-logo', 'logo-2', 'png')" />

@@ -198,7 +198,7 @@ public class MappingProfiles : Profile
 
         // Users.
         CreateMap<User, UserListVm>().ReverseMap();
-        CreateMap<User, GetUserByIdVm>().ReverseMap();
+        CreateMap<User, GetUserByIdQueryDto>().ReverseMap();
         CreateMap<User, UpdateUserDto>().ReverseMap();
         CreateMap<User, UpdateUserCommand>().ReverseMap();
         CreateMap<User, DeleteUserCommand>().ReverseMap();

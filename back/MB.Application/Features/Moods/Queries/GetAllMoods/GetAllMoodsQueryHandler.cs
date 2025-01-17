@@ -12,7 +12,7 @@ public class GetAllMoodsQueryHandler(IBaseRepository<Mood> moodRepository, IMapp
 
     public async Task<GetAllMoodsQueryResponse> Handle(GetAllMoodsQuery request, CancellationToken cancellationToken)
     {
-        var moods = await _moodRepository.GetAllAsync(mood => mood.Score, false);
+        var moods = await _moodRepository.GetAllAsync(shuffle: true);
 
         return new GetAllMoodsQueryResponse
         {

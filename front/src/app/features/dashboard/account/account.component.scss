@@ -1,0 +1,53 @@
+.profile {
+    padding: 25px;
+
+    max-width: 450px;
+    margin: auto;
+    margin-top: 25px;
+
+    border: 3px solid var(--colorMain);
+    border-radius: 5px;
+    background-color: var(--colorMainOpacity2);
+
+
+    .flex {
+        display: flex;
+        justify-content: space-between;
+
+        background-color: var(--colorWhiteOpacity7);
+        border-radius: 5px;
+
+        padding: 15px;
+        margin-bottom: 15px;
+
+        p {
+            margin: 0;
+            color: var(--colorMain);
+            font-size: 14px;
+            letter-spacing: 1px;
+
+            a:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .flex_created {
+        margin: 30px;
+        margin-top: 15px;
+        margin-bottom: 0;
+
+        .box_created {
+            display: flex;
+            justify-content: space-between;
+
+            p {
+                margin: 0;
+                margin-bottom: 5px;
+                text-align: center;
+                color: var(--colorMainOpacity8);
+                font-size: 13px;
+            }
+        }
+    }
+}

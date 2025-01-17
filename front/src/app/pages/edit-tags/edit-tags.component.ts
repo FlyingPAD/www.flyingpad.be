@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FlowService } from '../../services/flow.service';
 import { PaginationService } from '../../services/display/pagination.service';
 import { ImageUrlService } from '../../services/display/image-url.service';
+import { MoodsService } from '../../services/moods.service';
 
 @Component({
   selector: 'app-edit-tags',
@@ -15,11 +16,12 @@ export class EditTagsComponent {
   #router = inject(Router)
   paginationService = inject(PaginationService)
   #imageURLService = inject(ImageUrlService)
+  #moodsService = inject(MoodsService)
 
   flow = this.#flowService.flow
 
   searchTags : string = ''
-  elementsPerPage : number = 12
+  elementsPerPage : number = 11
 
   showList : boolean = true
   showNewTag : boolean = false
@@ -60,11 +62,11 @@ export class EditTagsComponent {
   }
 
   go():void {
+    this.#moodsService.updateMoodMenuState('gallery')
     this.#router.navigateByUrl('/moods')
   }
 
   setTag(tag : TagLight): void {
-
     this.#flowService.updateTagId(tag.businessId)
   }
 

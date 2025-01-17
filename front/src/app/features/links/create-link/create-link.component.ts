@@ -29,7 +29,7 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
     this.formGroup = this.#builder.group({
       name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-      url: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      url: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(255)]],
       linkCategories: this.#builder.array(
         this.linkCategories.map(category => this.createCategoryFormGroup(category))
       )

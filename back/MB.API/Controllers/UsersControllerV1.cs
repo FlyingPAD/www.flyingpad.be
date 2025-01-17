@@ -32,7 +32,7 @@ public class UsersControllerV1(IMediator mediator) : ControllerBase
 
     [HttpGet("GetOneDetails/{userId}")]
     public async Task<ActionResult<GetUserByIdQuery>> GetOneDetails( Guid userId )
-        => Ok(await _mediator.Send(new GetUserByIdQuery { Id = userId }));
+        => Ok(await _mediator.Send(new GetUserByIdQuery { UserId = userId }));
 
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]

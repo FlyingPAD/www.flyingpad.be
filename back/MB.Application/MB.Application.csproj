@@ -4,6 +4,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Features\Users\Queries\GetUserById\GetUserByIdQueryResponse.cs~RF24afae8.TMP" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\MB.Domain\MB.Domain.csproj" />

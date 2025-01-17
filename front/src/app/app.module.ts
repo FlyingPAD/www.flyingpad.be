@@ -11,7 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
-import { FlowComponent } from './pages/flow/flow.component';
 import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -58,8 +57,6 @@ import { MultiTagArtistsComponent } from './features/moods/multi-tag-artists/mul
 import { MultiTagModelsComponent } from './features/moods/multi-tag-models/multi-tag-models.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CreateArtistComponent } from './features/artists/create-artist/create-artist.component';
-import { MoodDetailsFlowComponent } from './features/flow/mood-details-flow/mood-details-flow.component';
-import { MoodsGalleryFlowComponent } from './features/flow/moods-gallery-flow/moods-gallery-flow.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
 import { ListFlowComponent } from './components/list-flow/list-flow.component';
 import { TagsComponent } from './pages/tags/tags.component';
@@ -76,15 +73,6 @@ import { MediaComponent } from './pages/media/media.component';
 import { LinksComponent } from './pages/links/links.component';
 import { RightColumnListComponent } from './components/right-column-list/right-column-list.component';
 import { ListCentralComponent } from './components/list-central/list-central.component';
-import { ModelDetailsFlowComponent } from './features/flow/model-details-flow/model-details-flow.component';
-import { ArtistDetailsFlowComponent } from './features/flow/artist-details-flow/artist-details-flow.component';
-import { TagDetailsFlowComponent } from './features/flow/tag-details-flow/tag-details-flow.component';
-import { FranchiseDetailsFlowComponent } from './features/flow/franchise-details-flow/franchise-details-flow.component';
-import { LinkCategoryDetailsFlowComponent } from './features/flow/link-category-details-flow/link-category-details-flow.component';
-import { LinkDetailsFlowComponent } from './features/flow/link-details-flow/link-details-flow.component';
-import { MediaDetailsFlowComponent } from './features/flow/media-details-flow/media-details-flow.component';
-import { StyleDetailsFlowComponent } from './features/flow/style-details-flow/style-details-flow.component';
-import { TagCategoryDetailsFlowComponent } from './features/flow/tag-category-details-flow/tag-category-details-flow.component';
 import { EditionMenuComponent } from './features/moods/edition-menu/edition-menu.component';
 import { EditionTagsComponent } from './features/moods/edition-tags/edition-tags.component';
 import { EditionArtistsComponent } from './features/moods/edition-artists/edition-artists.component';
@@ -147,6 +135,40 @@ import { LayoutToolsComponent } from './layouts/layout-tools/layout-tools.compon
 import { LanguageMenuHomeComponent } from './components/language-menu-home/language-menu-home.component';
 import { AnimRotation360Directive } from './directives/anim-rotation-360.directive';
 import { LayoutAboutComponent } from './layouts/layout-about/layout-about.component';
+import { MusicPrinciplesComponent } from './features/scripts/music-principles/music-principles.component';
+import { StatisticsComponent } from './features/dashboard/statistics/statistics.component';
+import { StatusComponent } from './features/dashboard/status/status.component';
+import { AchievementsComponent } from './features/dashboard/achievements/achievements.component';
+import { IconStarComponent } from './icons/icon-star/icon-star.component';
+import { IconEditComponent } from './icons/icon-edit/icon-edit.component';
+import { IconUserComponent } from './icons/icon-user/icon-user.component';
+import { IconMoodComponent } from './icons/icon-mood/icon-mood.component';
+import { IconStatisticsComponent } from './icons/icon-statistics/icon-statistics.component';
+import { IconTagComponent } from './icons/icon-tag/icon-tag.component';
+import { IconLinkComponent } from './icons/icon-link/icon-link.component';
+import { IconDollarComponent } from './icons/icon-dollar/icon-dollar.component';
+import { IconArtistComponent } from './icons/icon-artist/icon-artist.component';
+import { IconModelComponent } from './icons/icon-model/icon-model.component';
+import { DashboardEditionMenuComponent } from './features/dashboard/dashboard-edition-menu/dashboard-edition-menu.component';
+import { AccountComponent } from './features/dashboard/account/account.component';
+import { DashboardMenuComponent } from './features/dashboard/dashboard-menu/dashboard-menu.component';
+import { DashboardHeaderComponent } from './features/dashboard/dashboard-header/dashboard-header.component';
+import { IconCoinComponent } from './icons/icon-coin/icon-coin.component';
+import { IconHomeComponent } from './icons/icon-home/icon-home.component';
+import { IconScriptComponent } from './icons/icon-script/icon-script.component';
+import { IconToolsComponent } from './icons/icon-tools/icon-tools.component';
+import { IconMoodsComponent } from './icons/icon-moods/icon-moods.component';
+import { IconMediaComponent } from './icons/icon-media/icon-media.component';
+import { IconLogoutComponent } from './icons/icon-logout/icon-logout.component';
+import { IconSettingsComponent } from './icons/icon-settings/icon-settings.component';
+import { IconHamburgerComponent } from './icons/icon-hamburger/icon-hamburger.component';
+import { IconArrowComponent } from './icons/icon-arrow/icon-arrow.component';
+import { IconFolderComponent } from './icons/icon-folder/icon-folder.component';
+import { IconQuestionComponent } from './icons/icon-question/icon-question.component';
+import { IconInfoComponent } from './icons/icon-info/icon-info.component';
+import { IconPlayComponent } from './icons/icon-play/icon-play.component';
+import { IconStopComponent } from './icons/icon-stop/icon-stop.component';
+import { IconResetComponent } from './icons/icon-reset/icon-reset.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   let version : string = '1.0.0'
@@ -170,6 +192,7 @@ export function appInitializerFactory(translate: TranslateService) {
     LayoutHomeComponent,
     LayoutMoodsComponent,
     LayoutToolsComponent,
+    LayoutAboutComponent,
     // Pipes.
     FormatDurationPipe,
     FormatSizePipe,
@@ -195,7 +218,6 @@ export function appInitializerFactory(translate: TranslateService) {
     MediumGalleryComponent,
     ScriptsComponent,
     ToolsComponent,
-    FlowComponent,
     LinksComponent,
     NotFoundComponent,
     SettingsComponent,
@@ -225,6 +247,14 @@ export function appInitializerFactory(translate: TranslateService) {
     LanguageMenuHeaderComponent,
     LanguageMenuHomeComponent,
     // => Features :
+    // Dashboard.
+    StatisticsComponent,
+    StatusComponent,
+    AchievementsComponent,
+    DashboardEditionMenuComponent,
+    AccountComponent,
+    DashboardMenuComponent,
+    DashboardHeaderComponent,
     // Moods.
     CreateMoodImageComponent,
     CreateMoodVideoComponent,
@@ -292,6 +322,7 @@ export function appInitializerFactory(translate: TranslateService) {
     LearnMusicComponent,
     ViewpointComponent,
     TimelineComponent,
+    MusicPrinciplesComponent,
     // Tools.
     ChordWheelComponent,
     CircleOfFifthsComponent,
@@ -299,19 +330,33 @@ export function appInitializerFactory(translate: TranslateService) {
     FlyingKeysMiniComponent,
     TrainerNotesComponent,
     GuitarTunerComponent,
-    // => Flow.
-    MoodsGalleryFlowComponent,
-    MoodDetailsFlowComponent,
-    TagCategoryDetailsFlowComponent,
-    TagDetailsFlowComponent,
-    StyleDetailsFlowComponent,
-    ArtistDetailsFlowComponent,
-    ModelDetailsFlowComponent,
-    MediaDetailsFlowComponent,
-    FranchiseDetailsFlowComponent,
-    LinkCategoryDetailsFlowComponent,
-    LinkDetailsFlowComponent,
-    LayoutAboutComponent
+    // SVG Icons.
+    IconStarComponent,
+    IconEditComponent,
+    IconUserComponent,
+    IconMoodComponent,
+    IconStatisticsComponent,
+    IconTagComponent,
+    IconLinkComponent,
+    IconDollarComponent,
+    IconArtistComponent,
+    IconModelComponent,
+    IconCoinComponent,
+    IconHomeComponent,
+    IconScriptComponent,
+    IconToolsComponent,
+    IconMoodsComponent,
+    IconMediaComponent,
+    IconLogoutComponent,
+    IconSettingsComponent,
+    IconHamburgerComponent,
+    IconArrowComponent,
+    IconFolderComponent,
+    IconQuestionComponent,
+    IconInfoComponent,
+    IconPlayComponent,
+    IconStopComponent,
+    IconResetComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@
     align-items: center;
 
     a {
-        position: relative; 
+        position: relative;
 
         margin: 10px;
         padding: 10px;
@@ -25,14 +25,9 @@
 
         span {
             position: absolute;
-            top: 77px;
+            top: 80px;
             font-size: 12px;
             font-weight: bold;
-        }
-
-        img {
-            height: 50px;
-            width: 50px;
         }
     }
 
@@ -50,16 +45,16 @@
 .thumbnail {
     position: sticky;
     top: 75px;
-    
+
     opacity: 0.5;
     z-index: 19;
-    
+
     display: block;
     width: 200px;
     margin: auto;
     margin-top: 25px;
     margin-bottom: 15px;
-    
+
     background-color: var(--colorWhite);
     border: 1px solid var(--colorMain);
     border-radius: 5px;
@@ -71,6 +66,7 @@
         width: 100%;
     }
 }
+
 .thumbnail:hover {
     opacity: 1;
     transition-duration: 500ms;

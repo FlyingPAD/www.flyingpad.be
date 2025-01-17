@@ -1,19 +1,19 @@
 <div class="edition-menu">
     <a (click)="triggerMoodEditionButton()" [class.active]="triggerMoodEdition === true">
         <span>INFO</span>
-        <img [src]="getImageURL('icons-edit-mood-menu', 'mood', 'png')" />
+        <app-icon-mood size="50px" />
     </a>
     <a (click)="triggerMoodTagsEditionButton()" [class.active]="triggerMoodTagsEdition === true">
         <span>TAGS</span>
-        <img [src]="getImageURL('icons-edit-mood-menu', 'tag', 'png')" />
+        <app-icon-tag size="50px" />
     </a>
     <a (click)="triggerMoodModelsEditionButton()" [class.active]="triggerMoodModelsEdition === true">
         <span>{{ 'title.models' | translate | uppercase }}</span>
-        <img [src]="getImageURL('icons-edit-mood-menu', 'model', 'png')" />
+        <app-icon-model size="50px" />
     </a>
     <a (click)="triggerMoodArtistsEditionButton()" [class.active]="triggerMoodArtistsEdition === true">
         <span>{{ 'title.artists' | translate | uppercase }}</span>
-        <img [src]="getImageURL('icons-edit-mood-menu', 'artist', 'png')" />
+        <app-icon-artist size="50px" />
     </a>
 </div>
 

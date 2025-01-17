@@ -1,36 +1,38 @@
-<div id="layout-central">
-    <div *ngIf="moods?.length; else loading">
-        <div [ngClass]="isRightMenuOn() ? 'gallery menu-open' : 'gallery' ">
-            <div *ngFor="let mood of moods || [] | paginate : { itemsPerPage : moodsPerPage, currentPage : paginationService.moodsByTagCurrentPage}">
-                <section>
-                    <div *ngIf="mood.type == 1">           
-                        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" 
+@if(moods?.length) {
+    <div [ngClass]="isRightMenuOn() ? 'gallery menu-open' : 'gallery' ">
+        <div *ngFor="let mood of moods || [] | paginate : { itemsPerPage : moodsPerPage, currentPage : paginationService.moodsByTagCurrentPage}">
+            <section>
+                @if(mood.type == 1) {
+                    <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
                         (click)="handleMoodId(mood.businessId)" />
-                    </div>
-                    <div *ngIf="mood.type == 2">
-                        <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
-                        (click)="handleMoodId(mood.businessId)" />        
-                    </div>
-                    <div *ngIf="mood.type == 3">
-                        <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
-                        (click)="handleMoodId(mood.businessId)" />       
-                    </div>
-                    <div *ngIf="mood.type == 4">
-                        <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
+                }
+                @if(mood.type == 2) {
+                    <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
                         (click)="handleMoodId(mood.businessId)" />
-                    </div>
-                </section>
-            </div>
+                }
+                @if(mood.type == 3) {
+                    <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
+                        (click)="handleMoodId(mood.businessId)" />
+                }
+                @if(mood.type == 4) {
+                    <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
+                        (click)="handleMoodId(mood.businessId)" />
+                }
+            </section>
         </div>
     </div>
-    <ng-template #loading>
-        <div class="loading">
-            <p>No moods found ...</p>
-        </div>
-    </ng-template>
-    <div class="pagination-row" *ngIf="moods && moods.length > moodsPerPage">
+}
+@if(!moods?.length || moods?.length === 0) {
+    <div class="empty-moods">
+        <p>No moods found !</p>
+    </div>
+}
+
+<div class="pagination-row">
+    @if(moods && moods.length > moodsPerPage) {
         <div class="pagination">
-            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.moodsByTagCurrentPage = $event"></pagination-controls>
-        </div>   
-    </div>
+            <pagination-controls previousLabel="" nextLabel="" class="pagination"
+                (pageChange)="paginationService.moodsByTagCurrentPage = $event"></pagination-controls>
+        </div>
+    }
 </div>
