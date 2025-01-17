@@ -16,18 +16,34 @@ public class BaseRepository<T>(Context context) : IBaseRepository<T> where T : c
         return entity;
     }
 
-    public async Task<int> CountAsync()
-    {
-        return await _context.Set<T>().CountAsync();
-    }
-
-    public async Task<IQueryable<T>> GetAllAsync(Expression<Func<T, object>>? orderBy = null, bool ascending = true)
+    public async Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null)
     {
         IQueryable<T> query = _context.Set<T>();
-        if (orderBy != null)
+
+        if (predicate != null)
+        {
+            query = query.Where(predicate);
+        }
+
+        return await query.CountAsync();
+    }
+
+    public async Task<IQueryable<T>> GetAllAsync(
+        Expression<Func<T, object>>? orderBy = null,
+        bool ascending = true,
+        bool shuffle = false)
+    {
+        IQueryable<T> query = _context.Set<T>();
+
+        if (shuffle)
+        {
+            query = query.OrderBy(_ => Guid.NewGuid());
+        }
+        else if (orderBy != null)
         {
             query = ascending ? query.OrderBy(orderBy) : query.OrderByDescending(orderBy);
         }
+
         return await Task.FromResult(query);
     }
 

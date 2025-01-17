@@ -1,5 +1,4 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-button-top',
@@ -7,7 +6,6 @@ import { ImageUrlService } from '../../services/display/image-url.service';
   styleUrl: './button-top.component.scss'
 })
 export class ButtonTopComponent {
-  #imageURLService = inject(ImageUrlService)
   public showButton: boolean = false
 
   @HostListener('window:scroll', ['$event'])
@@ -22,9 +20,5 @@ export class ButtonTopComponent {
       top: 0,
       behavior: 'smooth'
     })
-  }
-
-  public getImageURL(folderName: string, imageName: string, imageExtension: string): string {
-    return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
   }
 }

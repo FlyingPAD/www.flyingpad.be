@@ -26,6 +26,7 @@ header {
         align-items: center;
         margin-left: 35px;
     }
+
     @media (max-width: 800px) {
         .left {
             margin-left: 10px;
@@ -44,13 +45,14 @@ header {
             height: 92%;
         }
     }
+
     @media (min-width: 800px) {
         .logo-mini {
             display: none;
         }
     }
 
-    .icon {
+    .hamburger {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -62,17 +64,16 @@ header {
 
         border: 2px solid var(--colorMainOpacity2);
         border-radius: 3px;
+        box-shadow: 0 2px 5px 0 var(--colorMainOpacity2);
 
-        img {
-            height: 50%;
-            width: 50%;
-        }
-    }
-    .icon:hover {
-        border: 2px solid var(--colorMain);
-        cursor: pointer;
         transition-duration: 200ms;
     }
+
+    .hamburger:hover {
+        border: 2px solid var(--colorMain);
+        cursor: pointer;
+    }
+
     .logo {
         display: flex;
         justify-content: center;
@@ -85,6 +86,7 @@ header {
             height: 92%;
         }
     }
+
     @media (max-width: 800px) {
         .logo {
             display: none;

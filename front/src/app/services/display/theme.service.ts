@@ -58,4 +58,18 @@ export class ThemeService {
   public setDefaultTheme(): void {
     this.setTheme(this.DEFAULT_THEME)
   }
+
+  private themeColorMap: Record<Theme, string> = {
+    [Theme.Default]: '#6b5240', 
+    [Theme.Dark]: '#40526b',
+    [Theme.Blue]: '#40526b',
+    [Theme.Pink]: '#5f4c56',
+    [Theme.Green]: '#3a613b',
+    [Theme.Orange]: '#9f5f00',
+  };
+  
+  public getCurrentColor(): string {
+    const theme = this.#currentTheme.value ?? this.DEFAULT_THEME;
+    return this.themeColorMap[theme] ?? '#000';
+  }
 }

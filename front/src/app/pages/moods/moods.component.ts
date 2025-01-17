@@ -4,6 +4,8 @@ import { FlowService } from '../../services/flow.service';
 import { PaginationService } from '../../services/display/pagination.service';
 import { ViewerService } from '../../services/features/viewer.service';
 import { MenuService } from '../../services/display/menu.service';
+import { DisplayService } from '../../services/display/display.service';
+import { MoodsService } from '../../services/moods.service';
 
 @Component({
   selector: 'app-moods',
@@ -15,21 +17,18 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   #menuService = inject(MenuService)
   paginationService = inject(PaginationService)
   viewerService = inject(ViewerService)
+  displayService = inject(DisplayService)
+  moodsService = inject(MoodsService)
+  public displayInfos = this.displayService.displayInfo
+  public moodMenuState = this.moodsService.moodMenuState
+  public environment = environment.apiBaseUrl
+  public flow = this.#flowService.flow
 
-  environment = environment.apiBaseUrl
-
-  flow = this.#flowService.flow
-
-  showGallery : boolean = true
-  showDetails : boolean = false
-  showEdition : boolean = false
-  showMultiTag : boolean = false
   showDialog : boolean = false
 
-  leftCardIsActive : boolean = false
+  leftCardIsActive : boolean = this.leftCardInit()
 
-  intervalId : any | undefined = undefined
-           
+  intervalId : any | undefined = undefined        
   
   ngOnInit(): void {
     this.getMoodHeight(false)
@@ -47,31 +46,16 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.diaporamaStop()
   }
 
-  showOff(): void {
-    this.showGallery = false
-    this.showDetails = false
-    this.showEdition = false
-    this.showMultiTag = false
+  public updateMoodMenuState(menuState : string): void {
+    this.moodsService.updateMoodMenuState(menuState)
   }
 
-  showGalleryON(): void {
-    this.showOff()
-    this.showGallery = true
-  }
-
-  showDetailsON(): void {
-    this.showOff()
-    this.showDetails = true
-  }
-
-  showEditionON(): void {
-    this.showOff()
-    this.showEdition = true
-  }
-
-  showMultiTagON(): void {
-    this.showOff()
-    this.showMultiTag = true
+  private leftCardInit(): boolean {
+    if(this.displayInfos().mode === 'Mobile') {
+      return false
+    } else {
+      return true
+    }
   }
 
   pageReset(): void {
@@ -135,31 +119,31 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   getRandomMood(): void {
     this.#flowService.updateMoodId(null)
-    this.showDetailsON()
+    this.updateMoodMenuState('details')
   }
 
   updateMoodId(moodId: number | null): void {
     this.#flowService.updateMoodId(moodId)
-    this.showDetailsON()
+    this.updateMoodMenuState('details')
   }
   updateArtistId(artistId: number | null): void {
     this.#flowService.updateArtistId(artistId)
-    this.showGalleryON()
+    this.updateMoodMenuState('gallery')
     this.pageReset()
   }
   updateModelId(modelId: number | null): void {
     this.#flowService.updateModelId(modelId)
-    this.showGalleryON()
+    this.updateMoodMenuState('gallery')
     this.pageReset()
   }
   updateTagId(tagId: number): void {
     this.#flowService.updateTagId(tagId)
-    this.showGalleryON()
+    this.updateMoodMenuState('gallery')
     this.pageReset()
   }
   updateFranchiseId(franchiseId: number | null): void {
     this.#flowService.updateFranchiseId(franchiseId)
-    this.showGalleryON()
+    this.updateMoodMenuState('gallery')
     this.pageReset()
   }
 
@@ -210,7 +194,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) {
-    if(this.showEdition != true) {
+    if(this.moodMenuState() != 'edition') {
       switch (event.key) {
         case 'ArrowLeft':
           this.getPage('previous')
@@ -237,7 +221,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
           this.menuTrigger()
           break
         case 'Backspace':
-          this.showGalleryON()
+          this.updateMoodMenuState('gallery')
           break
       }
     }

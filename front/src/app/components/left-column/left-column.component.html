@@ -1,8 +1,8 @@
 <div class="left-column" [class]="isLeftMenuOn ? 'on' : 'off' ">
     <div class="top">
         <div class="header">
-            <div class="icon" (click)="handleMenuToggle()" [class.active]="isLeftMenuOn">
-                <img [src]="getImageURL('icons-main-menu', 'hamburger', 'png')" />
+            <div class="hamburger" (click)="handleMenuToggle()" [class.active]="isLeftMenuOn">
+                <app-icon-hamburger size="23px" />
             </div>
             <div class="logo-mini">
                 <img [src]="getImageURL('images-logo', 'logo-2', 'png')" />
@@ -14,41 +14,41 @@
         <div class="menu-elements">
             @if(isUserConnected) {
                 <a routerLink="/dashboard" routerLinkActive="active" (click)="handleMenuMobile()">
-                    <img [src]="getImageURL('icons-main-menu', 'model', 'png')" />
+                    <app-icon-user class="svg-icon" size="25px" />
                     <p>{{ 'title.dashboard' | translate }}</p>
                 </a>
             }
             @if(!isUserConnected) {
                 <a routerLink="/home" routerLinkActive="active" (click)="handleMenuToggle()">
-                    <img [src]="getImageURL('icons-main-menu', 'home', 'png')" />
+                    <app-icon-user class="svg-icon" size="25px" />
                     <p>{{ 'title.home' | translate }}</p>
                 </a>
             }
             <a routerLink="/scripts" routerLinkActive="active" (click)="handleMenuMobile()">
-                <img [src]="getImageURL('icons-main-menu', 'scripts', 'png')" />
+                <app-icon-script class="svg-icon" size="25px" />
                 <p>Scripts</p>
             </a>
             <a routerLink="/tools" routerLinkActive="active" (click)="handleMenuMobile()">
-                <img [src]="getImageURL('icons-main-menu', 'tools', 'png')" />
+                <app-icon-tools class="svg-icon" size="25px" />
                 <p>{{ 'title.tools' | translate }}</p>
             </a>
             @if(!isUserConnected) {
                 <a routerLink="/links" routerLinkActive="active" (click)="handleMenuMobile()">
-                    <img [src]="getImageURL('icons-main-menu', 'links', 'png')" />
+                    <app-icon-link class="svg-icon" size="25px" />
                     <p>{{ 'title.links' | translate }}</p>
                 </a>
             }
             <a routerLink="/moods" routerLinkActive="active" (click)="handleMenuToggle()">
-                <img [src]="getImageURL('icons-main-menu', 'moods', 'png')" />
+                <app-icon-mood class="svg-icon" size="25px" />
                 <p>Moods</p>
             </a>
             <a routerLink="/tags" routerLinkActive="active" (click)="handleMenuToggle()">
-                <img [src]="getImageURL('icons-main-menu', 'tags', 'png')" />
+                <app-icon-tag class="svg-icon" size="25px" />
                 <p>Tags</p>
             </a>
             @if(isUserConnected) {
                 <a routerLink="/media" routerLinkActive="active" (click)="handleMenuToggle()">
-                    <img [src]="getImageURL('icons-main-menu', 'media', 'png')" />
+                    <app-icon-media class="svg-icon" size="25px" />
                     <p>Media</p>
                 </a>
             }
@@ -58,18 +58,18 @@
         <div class="menu-elements">
             @if(isUserConnected) {
                 <a (click)="handleLogout()" routerLink="/home" (click)="handleMenuToggle()">
-                    <img [src]="getImageURL('icons-main-menu', 'logout', 'png')" />
+                    <app-icon-logout class="svg-icon" size="25px" />
                     <p>{{ 'title.logout' | translate }}</p>
                 </a>
             }
             @if(!isUserConnected) {
                 <a routerLink="/log-in" (click)="handleMenuToggle()">
-                    <img [src]="getImageURL('icons-main-menu', 'model', 'png')" />
+                    <app-icon-user class="svg-icon" size="25px" />
                     <p>{{ 'title.log-in' | translate }}</p>
                 </a>
             }
-            <a routerLink="/settings" (click)="handleMenuMobile()">
-                <img [src]="getImageURL('icons-main-menu', 'settings', 'png')" />
+            <a routerLink="/settings" routerLinkActive="active" (click)="handleMenuMobile()">
+                <app-icon-settings class="svg-icon" size="25px" />
                 <p>{{ 'title.settings' | translate }}</p>
             </a>
         </div>

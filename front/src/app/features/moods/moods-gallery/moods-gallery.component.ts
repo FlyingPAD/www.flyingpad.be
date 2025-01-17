@@ -1,7 +1,6 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { PaginationService } from '../../../services/display/pagination.service';
-import { FlowService } from '../../../services/flow.service';
 import { MoodLight } from '../../../interfaces/mood';
 import { MenuService } from '../../../services/display/menu.service';
 
@@ -10,32 +9,18 @@ import { MenuService } from '../../../services/display/menu.service';
   templateUrl: './moods-gallery.component.html',
   styleUrl: './moods-gallery.component.scss'
 })
-export class MoodsGalleryComponent 
-{
-  #flowService = inject(FlowService)
+export class MoodsGalleryComponent {
   #menuService = inject(MenuService)
-  paginationService = inject(PaginationService)
+  public paginationService = inject(PaginationService)
 
   @Input() moods : MoodLight[] | undefined = undefined
   @Output() moodId = new EventEmitter<number>()
 
-  environment = environment.apiBaseUrl
+  public environment = environment.apiBaseUrl
+  public isRightMenuOn = this.#menuService.isRightMenuOn
+  public moodsPerPage:  number = 36      
 
-  flow = this.#flowService.flow
-  isRightMenuOn = this.#menuService.isRightMenuOn
-
-  moodsPerPage:  number = 36      
-
-  menuTrigger(): void {
-    if(this.isRightMenuOn()) {
-      this.#menuService.closeRightMenu()
-    }
-    else {
-      this.#menuService.openRightMenu()
-    }
-  }
-
-  handleMoodId(moodId: number): void {
+  public handleMoodId(moodId: number): void {
     this.moodId.emit(moodId)
   }
 }

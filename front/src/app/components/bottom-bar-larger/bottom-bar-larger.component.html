@@ -1,16 +1,16 @@
 <div class="bottom-bar-larger">
     @if(contentType === 'chord-wheel') {
-        <a (click)="handleRotation(30)"><img appAnimGrow [src]="getImageURL('icons-bottom-bar-larger', 'arrow-left', 'png')" /></a>
-        <a (click)="handleRandomRotation()"><img appAnimRandom [src]="getImageURL('icons-bottom-bar-larger', 'random', 'png')" /></a>
-        <a (click)="handleRotation(-30)"><img appAnimGrow [src]="getImageURL('icons-bottom-bar-larger', 'arrow-right', 'png')" /></a>
+        <a (click)="handleRotation(30)"><app-icon-arrow appAnimGrow size="40px" direction="left" /></a>
+        <a (click)="handleRandomRotation()"><app-icon-question appAnimRandom size="40px" /></a>
+        <a (click)="handleRotation(-30)"><app-icon-arrow appAnimGrow size="40px" direction="right" /></a>
     }
     @if(contentType === 'circle-of-fifths') {
-        <a (click)="handleRotateLeft()"><img appAnimGrow [src]="getImageURL('icons-bottom-bar-larger', 'arrow-left', 'png')" /></a>
-        <a (click)="handleRandomRotation()"><img appAnimRandom [src]="getImageURL('icons-bottom-bar-larger', 'random', 'png')" /></a>
-        <a (click)="handleRotateRight()"><img appAnimGrow [src]="getImageURL('icons-bottom-bar-larger', 'arrow-right', 'png')" /></a>
+        <a (click)="handleRotateLeft()"><app-icon-arrow appAnimGrow size="40px" direction="left" /></a>
+        <a (click)="handleRandomRotation()"><app-icon-question appAnimRandom size="40px" /></a>
+        <a (click)="handleRotateRight()"><app-icon-arrow appAnimGrow size="40px" direction="right" /></a>
     }
     @if(contentType === 'notes-trainer') {
-        <a><img appAnimGrow [src]="getImageURL('icons-bottom-bar-larger', 'reset', 'png')" (click)="handleReset()" /></a>
-        <a><img appAnimSpin [src]="getImageURL('icons-bottom-bar-larger', 'info', 'png')" (click)="handleInfo()" /></a>
+        <a (click)="handleReset()"><app-icon-reset appAnimRandom size="40px" /></a>
+        <a (click)="handleInfo()"><app-icon-info appAnimSpin size="40px" /></a>
     }
 </div>

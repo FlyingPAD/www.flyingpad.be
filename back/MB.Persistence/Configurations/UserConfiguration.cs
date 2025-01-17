@@ -13,6 +13,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(entity => entity.EntityId)
             .ValueGeneratedOnAdd();
 
+        builder.Property(entity => entity.Pseudonym)
+            .IsRequired()
+            .HasMaxLength(50);
+
         builder.Property(entity => entity.FirstName)
             .IsRequired()
             .HasMaxLength(50);

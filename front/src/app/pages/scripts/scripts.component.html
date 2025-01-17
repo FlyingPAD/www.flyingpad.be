@@ -15,16 +15,18 @@
     <app-metrics-a *ngSwitchCase="'metricsA'"></app-metrics-a>
     <app-metrics-b *ngSwitchCase="'metricsB'"></app-metrics-b>
     <app-timeline *ngSwitchCase="'timeline'"></app-timeline>
+    <app-music-principles *ngSwitchCase="'music-principles'"></app-music-principles>
 </ng-container>    
 <app-right-column>
     <div class="section-flex">
         <section>
             <h2>INTRODUCTION</h2>
             <p (click)="selectScript('introduction')" [class.active]="currentScript === 'introduction'">▸ Avant de commencer</p>
-            <p (click)="selectScript('timeline')" [class.active]="currentScript === 'timeline'">▸ Ligne du Temps</p>
             <p (click)="selectScript('viewpoint')" [class.active]="currentScript === 'viewpoint'">▸ Point de Vue</p>
+            <p (click)="selectScript('timeline')" [class.active]="currentScript === 'timeline'">▸ Ligne du Temps</p>
             <p (click)="selectScript('notation')" [class.active]="currentScript === 'notation'">▸ La Notation Musicale</p>
             <p (click)="selectScript('pianoReference')" [class.active]="currentScript === 'pianoReference'">▸ La Référence Clavier</p>
+            <p (click)="selectScript('music-principles')" [class.active]="currentScript === 'music-principles'">▸ Principes élémentaires</p>
         </section>
         <section>
             <h2>HARMONIE</h2>

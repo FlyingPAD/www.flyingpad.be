@@ -1,0 +1,28 @@
+<div class="current-mood">
+    @if(flow()?.mood.name && flow()?.mood.name != '...' && flow()?.mood.name != '') {
+    <p>{{ flow()?.mood.name }}</p>
+    }
+    @else {
+    <p>Current Status</p>
+    }
+    @if(flow()?.mood.description && flow()?.mood.description != '...' && flow()?.mood.description != '') {
+    <p>{{ flow()?.mood.description }}</p>
+    }
+    @if(flow()?.mood.type == 1) {
+    <img src="{{environment}}/Content/img_thumbs/{{flow()?.mood.businessId}}.{{flow()?.mood.extension}}" (click)="goToCurrentMood()" />
+    }
+    @if(flow()?.mood.type == 2) {
+    <img class="vid" src="{{environment}}/Content/video_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+    }
+    @if(flow()?.mood.type == 3) {
+    <img src="{{environment}}/Content/txt_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+    }
+    @if(flow()?.mood.type == 4) {
+    <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+    }
+</div>
+<div class="current-tags">
+    @for (tag of flow()?.mood.tags; track $index) {
+        <p (click)="goToCurrentTag(tag.businessId)">{{ tag.name }}</p>
+    }
+</div>

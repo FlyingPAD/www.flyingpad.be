@@ -20,7 +20,7 @@
     "links": "Liens",
     "artists": "Artistes",
     "models": "Modèles",
-    "my-account": "Mon Compte",
+    "my-account": "Compte",
     "404": "Erreur 404",
     "settings" : "Paramètres",
     "account-settings" : "Paramètres de compte",
@@ -65,7 +65,10 @@
     "decline" : "Refuser",
     "french" : "Français",
     "english" : "Anglais",
-    "version" : "Version"
+    "version" : "Version",
+    "pseudonym" : "Pseudonyme",
+    "subscription" : "Inscription",
+    "achievements" : "Succès"
   },
   "message": {
     "404": "La page n'a pas été trouvée.",

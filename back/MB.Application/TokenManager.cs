@@ -27,6 +27,7 @@ public class TokenManager(IConfiguration config) : ITokenManager
             new ("businessId", user.BusinessId.ToString()),
             new ("created", user.Created.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")),
             new ("modified", user.Modified.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")),
+            new ("pseudonym", user.Pseudonym.ToString()),
             new ("firstName", user.FirstName.ToString()),
             new ("lastName", user.LastName.ToString()),
             new ("email", user.Email.ToString()),

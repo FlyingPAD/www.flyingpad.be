@@ -1,116 +1,26 @@
 <div class="dashboard">
-  <div class="dashboard-header">
-    <img src="../../../assets/app_icons/icon_model_001.png" />
-    <p>{{user.firstName}}</p>
-  </div>
-  <div class="dashboard-menu">
-    <div class="menu-element" (click)="openStatusMenu()" [class.active]="isStatusMenuOn">
-      <img [src]="getImageURL('icons-dashboard', 'mood', 'png')" />
-      <p>Status</p>
-    </div>
-    @if(user.role === 2) {
-    <div class="menu-element" (click)="openEditionMenu()" [class.active]="isEditionMenuOn">
-      <img [src]="getImageURL('icons-dashboard', 'edit', 'png')" />
-      <p>Edition</p>
-    </div>
-    }
-    <div class="menu-element" (click)="openMyAccountMenu()" [class.active]="isMyAccountMenuOn">
-      <img [src]="getImageURL('icons-dashboard', 'user', 'png')" />
-      <p>{{ 'title.my-account' | translate }}</p>
-    </div>
-  </div>
+  <app-dashboard-header [user]="user" [player]="player" />
+  <app-dashboard-menu [user]="user" (menuState)="updateMenuState($event)" />
 
-  @if(isStatusMenuOn) {
-  <!-- <p>Current Level : {{ player.level | number : '3.0'}}</p> -->
-  <p>Current focus :</p>
-  <div class="current-mood">
-    @if(flow()?.mood.type == 1) {
-    <img src="{{environment}}/Content/img_thumbs/{{flow()?.mood.businessId}}.{{flow()?.mood.extension}}" />
-    }
-    @if(flow()?.mood.type == 2) {
-    <img class="vid" src="{{environment}}/Content/video_thumbs/{{flow()?.mood.businessId}}.jpg" />
-    }
-    @if(flow()?.mood.type == 3) {
-    <img src="{{environment}}/Content/txt_thumbs/{{flow()?.mood.businessId}}.jpg" />
-    }
-    @if(flow()?.mood.type == 4) {
-    <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{flow()?.mood.businessId}}.jpg" />
-    }
-  </div>
-  <p>{{ flow()?.mood.name }}</p>
-  <p>{{ flow()?.mood.description }}</p>
+  @if(dashboardMenuState() === 'status') {
+  <app-status />
   }
-  @if(isEditionMenuOn) {
-  <div class="edition-menu">
-    <a routerLink="/moods/create-mood-image">
-      <img [src]="getImageURL('icons-dashboard', 'mood', 'png')" />
-      <p>{{ 'title.add-image' | translate }}</p>
-    </a>
-    <a routerLink="/moods/create-mood-video">
-      <img [src]="getImageURL('icons-dashboard', 'mood', 'png')" />
-      <p>{{ 'title.add-video' | translate }}</p>
-    </a>
-    <a routerLink="/flow">
-      <img [src]="getImageURL('icons-dashboard', 'flow', 'png')" />
-      <p>{{ 'title.full-flow' | translate }}</p>
-    </a>
-    <a routerLink="/tags/edition">
-      <img [src]="getImageURL('icons-dashboard', 'tags', 'png')" />
-      <p>Tags</p>
-    </a>
-    <a routerLink="/franchises/edition">
-      <img [src]="getImageURL('icons-dashboard', 'franchises', 'png')" />
-      <p>Franchises</p>
-    </a>
-    <a routerLink="/artists/edition">
-      <img [src]="getImageURL('icons-dashboard', 'artists', 'png')" />
-      <p>{{ 'title.artists' | translate }}</p>
-    </a>
-    <a routerLink="/models/edition">
-      <img [src]="getImageURL('icons-dashboard', 'models', 'png')" />
-      <p>{{ 'title.models' | translate }}</p>
-    </a>
-    <a routerLink="/links/edition">
-      <img [src]="getImageURL('icons-dashboard', 'links', 'png')" />
-      <p>{{ 'title.links' | translate }}</p>
-    </a>
-  </div>
+
+  @if(dashboardMenuState() === 'statistics') {
+  <app-statistics />
   }
-  @if(isMyAccountMenuOn) {
-  <div class="profile">
-    <div class="flex">
-      <p><b>{{ 'title.email' | translate }}</b></p>
-      <p>{{user.email}}</p>
-    </div>
-    <hr class="dialog-hr">
-    <div class="flex">
-      <p><b>{{ 'title.first-name' | translate }}</b></p>
-      <p>{{user.firstName}}</p>
-    </div>
-    <div class="flex">
-      <p><b>{{ 'title.last-name' | translate }}</b></p>
-      <p>{{user.lastName}}</p>
-    </div>
-    <div class="flex">
-      <p><b>{{ 'title.birthdate' | translate }}</b></p>
-      <p>{{ user.birthdate | localizedDate:undefined:false }}</p>
-    </div>
-    <div class="flex_created">
-      <div class="box_created">
-        <p>{{ 'title.created' | translate }}</p>
-        <p>{{ user.created | localizedDate }}</p>
-      </div>
-      <div class="box_created">
-        <p>{{ 'title.modified' | translate }}</p>
-        <p>{{ user.modified | localizedDate }}</p>
-      </div>
-    </div>
-    <hr>
-    <div class="buttons">
-      <div class="button" routerLink="/users/delete-user/{{user.businessId}}">{{ 'title.delete' | translate }}</div>
-      <div class="button" routerLink="/users/user-update">{{ 'title.modify' | translate }}</div>
-    </div>
-  </div>
+
+  @if(dashboardMenuState() === 'edition') {
+  <app-dashboard-edition-menu />
+  }
+
+  @if(dashboardMenuState() === 'account') {
+  <app-account [user]="user" />
+  }
+
+  @if(dashboardMenuState() === 'achievements') {
+  <app-achievements />
   }
 </div>
-<div class="spacer-150"></div>
+
+<div class="spacer-75"></div>

@@ -26,16 +26,19 @@ header {
         align-items: center;
         margin-left: 35px;
     }
+
     .right {
         display: flex;
         justify-content: flex-end;
         align-items: center;
         margin-right: 35px;
     }
+
     @media (max-width: 800px) {
         .left {
             margin-left: 10px;
         }
+
         .right {
             margin-right: 10px;
         }
@@ -53,13 +56,14 @@ header {
             height: 92%;
         }
     }
+
     @media (min-width: 800px) {
         .logo-mini {
             display: none;
         }
     }
 
-    .icon {
+    .hamburger {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -74,16 +78,13 @@ header {
         box-shadow: 0 2px 5px 0 var(--colorMainOpacity2);
 
         transition-duration: 200ms;
-
-        img {
-            height: 50%;
-            width: 50%;
-        }
     }
-    .icon:hover {
+
+    .hamburger:hover {
         border: 2px solid var(--colorMain);
         cursor: pointer;
     }
+
     .logo {
         display: flex;
         justify-content: center;
@@ -96,11 +97,13 @@ header {
             height: 92%;
         }
     }
+
     @media (max-width: 800px) {
         .logo {
             display: none;
         }
     }
+
     .languages {
         display: flex;
         justify-content: center;
@@ -130,19 +133,23 @@ header {
             margin-right: 8px;
         }
     }
+
     .languages:hover {
         border: 2px solid var(--colorMainOpacity7);
         color: var(--colorMain);
         cursor: pointer;
     }
+
     .active {
         border: 2px solid var(--colorMainOpacity7);
     }
+
     @media (max-width: 800px) {
         .languages {
             display: none;
         }
     }
+
     .sign-up {
         display: flex;
         justify-content: center;
@@ -166,12 +173,14 @@ header {
 
         transition-duration: 200ms;
     }
+
     .sign-up:hover {
         background-color: var(--colorWhiteOpacity8);
         border: 2px solid var(--colorMain);
         color: var(--colorMain);
         cursor: pointer;
     }
+
     .log-in {
         display: flex;
         justify-content: center;
@@ -195,6 +204,7 @@ header {
 
         transition-duration: 200ms;
     }
+
     .log-in:hover {
         background-color: var(--colorMain);
         border: 2px solid var(--colorMain);

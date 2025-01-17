@@ -13,8 +13,7 @@ public class GetArtistByIdQueryHandler(IMapper mapper, IBaseRepository<Artist> a
 
     public async Task<GetArtistByIdQueryResponse> Handle(GetArtistByIdQuery request, CancellationToken cancellationToken)
     {
-        var artist = await _artistRepository.GetByBusinessIdAsync(request.ArtistId)
-            ?? throw new NotFoundException("Artist not found.");
+        var artist = await _artistRepository.GetByBusinessIdAsync(request.ArtistId) ?? throw new NotFoundException("Artist not found.");
 
         return new GetArtistByIdQueryResponse()
         {

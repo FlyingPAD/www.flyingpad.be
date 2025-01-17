@@ -1,0 +1,34 @@
+<div class="profile">
+    <div class="flex">
+        <p><b>{{ 'title.pseudonym' | translate }}</b></p>
+        <p>{{user.pseudonym}}</p>
+    </div>
+    <div class="flex">
+        <p><b>{{ 'title.email' | translate }}</b></p>
+        <p>{{user.email}}</p>
+    </div>
+    <hr class="dialog-hr">
+    <div class="flex">
+        <p><b>{{ 'title.first-name' | translate }}</b></p>
+        <p>{{user.firstName}}</p>
+    </div>
+    <div class="flex">
+        <p><b>{{ 'title.last-name' | translate }}</b></p>
+        <p>{{user.lastName}}</p>
+    </div>
+    <div class="flex">
+        <p><b>{{ 'title.birthdate' | translate }}</b></p>
+        <p>{{ user.birthdate | localizedDate:undefined:false }}</p>
+    </div>
+    <div class="flex_created">
+        <div class="box_created">
+            <p>{{ 'title.modified' | translate }}</p>
+            <p>{{ user.modified | localizedDate }}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="buttons">
+        <div class="button" routerLink="/users/delete-user/{{user.businessId}}">{{ 'title.delete' | translate }}</div>
+        <div class="button" routerLink="/users/user-update">{{ 'title.modify' | translate }}</div>
+    </div>
+</div>
