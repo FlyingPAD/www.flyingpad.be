@@ -15,9 +15,9 @@
                 <p>Please, select a link from the list.</p>
             }
             <div class="edition-buttons">
-                <img class="active" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + flow.link?.url + '&sz=96'" />
+                <img class="icon active" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + flow.link?.url + '&sz=96'" />
                 @if(flow.link){
-                    <img src="../../../assets/app_icons/arrow_up.png" (click)="go()" />
+                    <app-icon-go class="icon" size="25px" (click)="go()" />
                 }
             </div>
         </div>

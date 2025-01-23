@@ -6,8 +6,7 @@ import { LinkService } from '../../services/features/link.service';
 
 @Component({
   selector: 'app-links',
-  templateUrl: './links.component.html',
-  styleUrl: './links.component.scss'
+  templateUrl: './links.component.html'
 })
 export class LinksComponent {
   #linkService = inject(LinkService)
