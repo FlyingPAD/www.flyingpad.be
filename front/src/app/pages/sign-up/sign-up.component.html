@@ -1,7 +1,7 @@
 <div class="log-in">
     <div class="left">
         <div class="close-button" routerLink="/home" [class]="closeButtonIsOn ? 'on' : 'off' ">
-            <img src="../../../assets/app_icons/new.png" />
+            <app-icon-plus class=icon size="25px" direction="diagonal" />
         </div>
         <div class="languages" (click)="languageMenuToggle()" [class.active]="isLanguageMenuON">
             <img [src]="getImageURL('icons-flags', currentLanguage(), 'png')" />

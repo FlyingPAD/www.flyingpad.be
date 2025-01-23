@@ -34,11 +34,8 @@
 
             transition-duration: 250ms;
 
-            img {
-                height: 60%;
-                width: 60%;
-
-                transform: rotate(45deg)
+            .icon {
+                margin-top: 3px;
             }
         }
 
@@ -126,7 +123,7 @@
                 margin-top: 20px;
                 margin-bottom: 25px;
 
-                a{
+                a {
                     display: block;
                     width: 115px;
 
@@ -145,11 +142,13 @@
 
                     transition-duration: 200ms;
                 }
+
                 a:hover:not(.active) {
                     background-color: var(--colorMainOpacity7);
                     border: 2px solid var(--colorMainOpacity5);
                     color: var(--colorWhite);
                 }
+
                 .active {
                     background-color: var(--colorMain);
                     border: 1px solid var(--colorMain);
@@ -159,9 +158,6 @@
             }
 
             form {
-                margin-left: 45px;
-                margin-right: 45px;
-
                 background-color: var(--colorWhiteOpacity5);
                 border: 3px solid var(--colorMainOpacity5);
                 border-radius: 5px;
@@ -171,9 +167,6 @@
 
                 hr {
                     margin-top: 25px;
-                }
-                p {
-                    color: var(--colorMain);
                 }
             }
 
@@ -207,6 +200,7 @@
                     cursor: pointer;
                 }
             }
+
             .message:hover {
                 color: var(--colorMain);
             }
