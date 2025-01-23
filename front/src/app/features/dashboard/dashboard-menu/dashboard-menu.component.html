@@ -6,7 +6,7 @@
     <div class="menu-element" (click)="handleDashBoardMenuState('statistics')"
         [class.active]="dashboardMenuState() === 'statistics'">
         <app-icon-statistics size="27px" />
-        <p>Statistics</p>
+        <p>{{ 'title.statistics' | translate }}</p>
     </div>
     @if(user.role === 2) {
     <div class="menu-element" (click)="handleDashBoardMenuState('edition')" [class.active]="dashboardMenuState() === 'edition'">

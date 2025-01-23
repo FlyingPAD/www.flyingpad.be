@@ -3,18 +3,15 @@ import { FlowService } from '../../services/flow.service';
 import { Router } from '@angular/router';
 import { PaginationService } from '../../services/display/pagination.service';
 import { ArtistLight } from '../../interfaces/artist';
-import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-edit-artists',
-  templateUrl: './edit-artists.component.html',
-  styleUrl: './edit-artists.component.scss'
+  templateUrl: './edit-artists.component.html'
 })
 export class EditArtistsComponent {
   #flowService = inject(FlowService)
   #router = inject(Router)
   paginationService = inject(PaginationService)
-  #imageURLService = inject(ImageUrlService)
 
   flow = this.#flowService.flow
 
@@ -70,9 +67,5 @@ export class EditArtistsComponent {
   updateStyleId(styleId : number | null): void {
     this.paginationService.editModelsCurrentPageReset()
     this.#flowService.updateStyleId(styleId)
-  }
-
-  public getImageUrl(folderName: string, imageName: string, imageExtension: string): string {
-    return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
   }
 }

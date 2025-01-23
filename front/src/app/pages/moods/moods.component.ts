@@ -6,6 +6,7 @@ import { ViewerService } from '../../services/features/viewer.service';
 import { MenuService } from '../../services/display/menu.service';
 import { DisplayService } from '../../services/display/display.service';
 import { MoodsService } from '../../services/moods.service';
+import { ButtonTopService } from '../../services/display/button-top.service';
 
 @Component({
   selector: 'app-moods',
@@ -15,6 +16,7 @@ import { MoodsService } from '../../services/moods.service';
 export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   #flowService = inject(FlowService)
   #menuService = inject(MenuService)
+  #buttonTopService = inject(ButtonTopService)
   paginationService = inject(PaginationService)
   viewerService = inject(ViewerService)
   displayService = inject(DisplayService)
@@ -25,12 +27,11 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   public flow = this.#flowService.flow
 
   showDialog : boolean = false
-
   leftCardIsActive : boolean = this.leftCardInit()
-
   intervalId : any | undefined = undefined        
   
   ngOnInit(): void {
+    this.#buttonTopService.setShowButtonTop(false)
     this.getMoodHeight(false)
     window.scrollTo(0, 0)
     const businessIdString = `${this.flow()?.tag?.businessId ?? 'fallbackValue'}`
@@ -43,6 +44,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.#buttonTopService.setShowButtonTop(true)
     this.diaporamaStop()
   }
 
@@ -64,8 +66,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   diaporamaStart(isRandom: boolean): void {
     isRandom ? this.updateMoodId(null) : this.getPage('next')
-    this.intervalId = setInterval(() => 
-    {
+    this.intervalId = setInterval(() => {
       isRandom ? this.updateMoodId(null) : this.getPage('next')
     }, 
     3000)

@@ -22,26 +22,18 @@ export class AuthenticationService {
   #url = environment.apiBaseUrl + '/api/V1/'
 
   #isConnected = new BehaviorSubject<boolean>(false)
-  public acceptConnection(): void { this.#isConnected.next(true) }
-  public closeConnection(): void { this.#isConnected.next(false) }
-  isConnected = toSignal(this.#isConnected)
+  public acceptConnection(): void {
+    this.#isConnected.next(true)
+  }
+  public closeConnection(): void {
+    this.#isConnected.next(false)
+  }
+  public isConnected = toSignal(this.#isConnected)
 
   public register(form: UserRegisterForm): Observable<RegisterCommandResponse> {
     return this.#http.post<RegisterCommandResponse>(`${this.#url}Auth/Register`, form).pipe(
       tap(response => {
-        if(response.success) {
-          this.#cookieService.storeToken(response.token)
-          this.#userService.setSpecificUser(response.token)
-          this.acceptConnection()
-          this.#toastr.success(response.message)
-        }       
-        else this.#toastr.error(response.message)
-      }))
-  }
-  public login(form: UserLoginForm): Observable<LoginQueryResponse> {
-    return this.#http.post<LoginQueryResponse>(`${this.#url}Auth/Login`, form).pipe(
-      tap(response => {
-        if(response.success) {
+        if (response.success) {
           this.#cookieService.storeToken(response.token)
           this.#userService.setSpecificUser(response.token)
           this.acceptConnection()
@@ -50,10 +42,22 @@ export class AuthenticationService {
         else this.#toastr.error(response.message)
       }))
   }
-  logout(): void {
+  public login(form: UserLoginForm): Observable<LoginQueryResponse> {
+    return this.#http.post<LoginQueryResponse>(`${this.#url}Auth/Login`, form).pipe(
+      tap(response => {
+        if (response.success) {
+          this.#cookieService.storeToken(response.token)
+          this.#userService.setSpecificUser(response.token)
+          this.acceptConnection()
+          this.#toastr.success(response.message)
+        }
+        else this.#toastr.error(response.message)
+      }))
+  }
+  public logout(): void {
     this.#cookieService.removeToken()
     this.#userService.setDefaultUser()
-    this.closeConnection()  
+    this.closeConnection()
     this.#toastr.success('See you soon.')
   }
 }

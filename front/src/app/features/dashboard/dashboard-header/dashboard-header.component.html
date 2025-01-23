@@ -1,12 +1,16 @@
 <div class="dashboard-header">
-    <img class="avatar" src="../../../assets/app_icons/mood.png" />
+    <img class="avatar" src="../../../assets/icons-avatars/mood.png" />
     <div>
-        <p class="pseudonym"> ▣ {{user.pseudonym}}</p>
-        <p class="level"> - Level {{ player.level }}</p>
-        <div class="league">
-            <p class="level"> - League : Bronze </p>
-            <app-icon-coin class="badge" size="25px" [colorOuter]="'#cd7f32'" />
+        <h1>{{user.pseudonym}}</h1>
+        <p> - Level {{ user.level }}</p>
+        <p> - Experience {{ user.experience }}</p>
+        <div class="p-flex">
+            <p> - League : Bronze </p>
+            <div class="icon">
+                
+            </div>
         </div>
-        <p><b>{{ 'title.subscription' | translate }}</b> : {{ user.created | localizedDate }}</p>
+        <p class="tweak"><b>{{ 'title.subscription' | translate }}</b> : {{ user.created | localizedDate }}</p>
     </div>
+    <app-icon-coin size="40px" [colorOuter]="'#cd7f32'" />
 </div>

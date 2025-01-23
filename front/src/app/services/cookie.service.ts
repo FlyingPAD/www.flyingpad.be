@@ -7,7 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class CustomCookieService {
   #cookieService = inject(CookieService)
 
-  storeToken(token: string): void {
+  public storeToken(token: string): void {
     this.#cookieService.set('authToken', token,
       {
         secure: true,
@@ -16,11 +16,11 @@ export class CustomCookieService {
       })
   }
 
-  retrieveToken(): string | null {
+  public retrieveToken(): string | null {
     return this.#cookieService.get('authToken')
   }
 
-  removeToken(): void {
+  public removeToken(): void {
     this.#cookieService.delete('authToken', '/', undefined, true, 'Strict')
   }
 }

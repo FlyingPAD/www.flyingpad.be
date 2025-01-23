@@ -31,6 +31,16 @@
         p {
             color: var(--colorMain);
             font-size: 13px;
+            text-align: center;
+        }
+    }
+    .done {
+        border: 3px solid gold;
+        box-shadow: 0 3px 4px 0px goldenrod;
+        background-color: goldenrod;
+
+        p {
+            color: gold;
         }
     }
 }

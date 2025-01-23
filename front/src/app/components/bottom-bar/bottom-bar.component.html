@@ -1,226 +1,109 @@
 <div class="bar">
     @if(moodsGalleryType === 'all') {
-    <a class="tweak">
-        <div class="position">{{moodsLength | number : '4.0'}}</div>
-    </a>
-    @if(userService.appUser.role === 2) {
-        <a (click)="handleShowMultiTag()">
-            <img [src]="getImageURL('icons-bottom-bar','edit', 'png')" />
-        </a>
-    }
-    <a routerLink="/settings">
-        <img [src]="getImageURL('icons-bottom-bar','settings', 'png')" />
-    </a>
-    @if(topButtonIsActive) {
-    <a (click)="handleTopButton()">
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up', 'png')" />
-    </a>
-    } @else {
-    <span>
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
-    </span>
-    }
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
+        @if(userService.appUser.role === 2) {
+            <a (click)="handleShowMultiTag()"><app-icon-edit class="icon" size="25px" /></a>
+        }
+        <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
+        @if(topButtonIsActive) {
+            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+        } @else {
+            <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
+        }
     }
     @if(moodsGalleryType === 'artist') {
-    <a class="tweak" *ngIf="entityName">
-        <div class="position"><b>{{entityName}}</b></div>
-    </a>
-    <a class="tweak">
-        <div class="position">{{moodsLength | number : '4.0'}}</div>
-    </a>
-    <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true">
-        <img appAnimSpin [src]="getImageURL('icons-bottom-bar','info', 'png')" />
-    </a>
-    <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2">
-        <img [src]="getImageURL('icons-bottom-bar','edit', 'png')" />
-    </a>
-    <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true">
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up', 'png')" />
-    </a>
-    <span *ngIf="topButtonIsActive === false">
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
-    </span>
-    @if(entityName != '# Unknown Artist') {
-    <a target="_blank" href="https://www.google.com/search?q={{entityName}}">
-        <img [src]="getImageURL('icons-bottom-bar','google', 'png')" />
-    </a>
-    <a target="_blank" href="https://images.google.com/images?q={{entityName}}">
-        <img [src]="getImageURL('icons-bottom-bar','google-img', 'png')" />
-    </a>
-    }
-    <a routerLink="/settings">
-        <img [src]="getImageURL('icons-bottom-bar','settings', 'png')" />
-    </a>
+        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
+        <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info class="icon" appAnimSpin size="25px" /></a>
+        <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2"><app-icon-edit class="icon" size="25px" /></a>
+        @if(entityName != '# Unknown Artist') {
+            <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><app-icon-google class="icon" size="25px" /></a>
+            <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><app-icon-google-lens class="icon" size="25px" /></a>
+        }
+        <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
+        @if(topButtonIsActive) {
+            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+        } @else {
+            <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
+        }
     }
     @if(moodsGalleryType === 'model') {
-    <a class="tweak" *ngIf="entityName">
-        <div class="position"><b>{{entityName}}</b></div>
-    </a>
-    <a class="tweak">
-        <div class="position">{{moodsLength | number : '4.0'}}</div>
-    </a>
-    <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true">
-        <img appAnimSpin [src]="getImageURL('icons-bottom-bar','info', 'png')" />
-    </a>
-    <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2">
-        <img [src]="getImageURL('icons-bottom-bar','edit', 'png')" />
-    </a>
-    @if(entityName != '# Unrelated Model' && entityName != '# Unknown Model') {
-    <a target="_blank" href="https://www.google.com/search?q={{entityName}}">
-        <img [src]="getImageURL('icons-bottom-bar','google', 'png')" />
-    </a>
-    <a target="_blank" href="https://images.google.com/images?q={{entityName}}">
-        <img [src]="getImageURL('icons-bottom-bar','google-img', 'png')" />
-    </a>
-    }
-    <a routerLink="/settings">
-        <img [src]="getImageURL('icons-bottom-bar','settings', 'png')" />
-    </a>
-    @if(topButtonIsActive) {
-    <a (click)="handleTopButton()">
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up', 'png')" />
-    </a>
-    } @else {
-    <span>
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
-    </span>
-    }
+        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
+        <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info appAnimSpin class="icon" size="25px" /></a>
+        <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2"><app-icon-edit class="icon" size="25px" /></a>
+        @if(entityName != '# Unrelated Model' && entityName != '# Unknown Model') {
+            <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><app-icon-google class="icon" size="25px" /></a>
+            <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><app-icon-google-lens class="icon" size="25px" /></a>
+        }
+        <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
+        @if(topButtonIsActive) {
+            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+        } @else {
+            <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
+        }
     }
     @if(moodsGalleryType === 'tag') {
-    <a class="tweak">
-        <div class="position">{{moodsLength | number : '4.0'}}</div>
-    </a>
-    <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true">
-        <img appAnimSpin [src]="getImageURL('icons-bottom-bar','info', 'png')" />
-    </a>
-    <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2">
-        <img [src]="getImageURL('icons-bottom-bar','edit', 'png')" />
-    </a>
-    <a routerLink="/settings">
-        <img [src]="getImageURL('icons-bottom-bar','settings', 'png')" />
-    </a>
-    @if(topButtonIsActive) {
-    <a (click)="handleTopButton()">
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up', 'png')" />
-    </a>
-    } @else {
-    <span>
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
-    </span>
-    }
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
+        <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info appAnimSpin class="icon" size="25px" /></a>
+        <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2"><app-icon-edit class="icon" size="25px" /></a>
+        <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
+        @if(topButtonIsActive) {
+            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+        } @else {
+            <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
+        }
     }
     @if(moodsGalleryType === 'franchise') {
-    <a class="tweak" *ngIf="entityName">
-        <div class="position"><b>{{entityName}}</b></div>
-    </a>
-    <a class="tweak">
-        <div class="position">{{moodsLength | number : '4.0'}}</div>
-    </a>
-    <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true">
-        <img appAnimSpin [src]="getImageURL('icons-bottom-bar','info', 'png')" />
-    </a>
-    <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2">
-        <img [src]="getImageURL('icons-bottom-bar','edit', 'png')" />
-    </a>
-    @if(entityName != '# Unrelated Franchise') {
-    <a target="_blank" href="https://www.google.com/search?q={{entityName}}">
-        <img [src]="getImageURL('icons-bottom-bar','google', 'png')" />
-    </a>
-    <a target="_blank" href="https://images.google.com/images?q={{entityName}}">
-        <img [src]="getImageURL('icons-bottom-bar','google-img', 'png')" />
-    </a>
-    }
-    <a routerLink="/settings">
-        <img [src]="getImageURL('icons-bottom-bar','settings', 'png')" />
-    </a>
-    @if(topButtonIsActive) {
-    <a (click)="handleTopButton()">
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up', 'png')" />
-    </a>
-    } @else {
-    <span>
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
-    </span>
-    }
+        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
+        <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info appAnimSpin class="icon" size="25px" /></a>
+        <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2"><app-icon-edit class="icon" size="25px" /></a>
+        @if(entityName != '# Unrelated Franchise') {
+            <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><app-icon-google class="icon" size="25px" /></a>
+            <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><app-icon-google-lens class="icon" size="25px" /></a>
+        }
+        <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
+        @if(topButtonIsActive) {
+            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+        } @else {
+            <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
+        }
     }
     @if(moodsGalleryType === 'details') {
-    <a (click)="handleGetIndex('previous')">
-        <img appAnimGrow [src]="getImageURL('icons-bottom-bar','arrow-left', 'png')" />
-    </a>
-    <a class="tweak">
-        <div class="position">{{ currentIndex + 1 | number : '4.0'}} / {{moodsLength | number : '4.0'}}</div>
-    </a>
-    <a (click)="handleGetIndex('next')">
-        <img appAnimGrow [src]="getImageURL('icons-bottom-bar','arrow-right', 'png')" />
-    </a>
-    <a (click)="handleBackToGallery()">
-        <img [src]="getImageURL('icons-bottom-bar','moods', 'png')" />
-    </a>
-    <a class="toggle" *ngIf="!diaporamaIsActive" (click)="handleDiaporamaStart(false)">
-        <img [src]="getImageURL('icons-bottom-bar','play', 'png')" />
-    </a>
-    <a class="toggle" *ngIf="!diaporamaIsActive" (click)="handleDiaporamaStart(true)">
-        <img [src]="getImageURL('icons-bottom-bar','play-random', 'png')" />
-    </a>
-    <a *ngIf="diaporamaIsActive" (click)="handleDiaporamaStop()">
-        <img [src]="getImageURL('icons-bottom-bar','stop', 'png')" />
-    </a>
-    <a (click)="handleLeftCard()">
-        <img appAnimSpin [src]="getImageURL('icons-bottom-bar','info', 'png')" />
-    </a>
-    <a (click)="handleEditButton()" *ngIf="userService.appUser.role === 2">
-        <img appAnimGrow [src]="getImageURL('icons-bottom-bar','edit', 'png')" />
-    </a>
-    <a class="toggle" (click)="handleToggleFocus()" *ngIf="moodType === 1">
-        <img [ngClass]="{'rotate': focusIsActive, 'rotate-back': !focusIsActive}"
-            [src]="getImageURL('icons-bottom-bar','toggle', 'png')" />
-    </a>
-    <span class="toggle" *ngIf="moodType !== 1">
-        <img [src]="getImageURL('icons-bottom-bar','toggle-no', 'png')" />
-    </span>
-    <a class="toggle" (click)="handleOpenMoodInNewTab()">
-        <img [src]="getImageURL('icons-bottom-bar','download', 'png')" />
-    </a>
-    <a (click)="handleRandomMood()">
-        <img appAnimRandom [src]="getImageURL('icons-bottom-bar','random', 'png')" />
-    </a>
+        <a (click)="handleGetIndex('previous')"><app-icon-arrow-short appAnimGrow class="icon" size="25px" direction="left" /></a>
+        <a class="tweak"><div class="position">{{ currentIndex + 1 | number : '4.0'}} / {{moodsLength | number : '4.0'}}</div></a>
+        <a (click)="handleGetIndex('next')"><app-icon-arrow-short appAnimGrow class="icon" size="25px" direction="right" /></a>
+        <a (click)="handleBackToGallery()"><app-icon-moods class="icon" size="25px" /></a>
+        <a class="toggle" *ngIf="!diaporamaIsActive" (click)="handleDiaporamaStart(false)"><app-icon-play class="icon" size="25px" /></a>
+        <a class="toggle" *ngIf="!diaporamaIsActive" (click)="handleDiaporamaStart(true)"><app-icon-play-shuffle class="icon" size="25px" /></a>
+        <a *ngIf="diaporamaIsActive" (click)="handleDiaporamaStop()"><app-icon-stop class="icon" size="25px" /></a>
+        <a (click)="handleLeftCard()"><app-icon-info appAnimSpin class="icon" size="25px" /></a>
+        <a (click)="handleEditButton()" *ngIf="userService.appUser.role === 2"><app-icon-edit class="icon" size="25px" /></a>
+        <a class="toggle" (click)="handleToggleFocus()" *ngIf="moodType === 1"><app-icon-wheel class="icon" [ngClass]="{'rotate': focusIsActive, 'rotate-back': !focusIsActive}" size="25px" /></a>
+        <span class="toggle" *ngIf="moodType !== 1"><app-icon-wheel class="icon" size="25px" color="grey" /></span>
+        <a class="toggle" (click)="handleOpenMoodInNewTab()"><app-icon-open class="icon" size="25px" /></a>
+        <a (click)="handleRandomMood()"><app-icon-question appAnimRandom class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'link') {
-    <a class="tweak" *ngIf="entityName">
-        <div class="position"><b>{{entityName}}</b></div>
-    </a>
-    <a class="tweak">
-        <div class="position">{{moodsLength | number : '4.0'}}</div>
-    </a>
+        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
     }
     @if(moodsGalleryType === 'edition') {
-    <a (click)="handleShowDetails()">
-        <img [src]="getImageURL('icons-bottom-bar','mood', 'png')" />
-    </a>
+        <a (click)="handleShowDetails()"><app-icon-back class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'list-edition'){
-    <a class="tweak">
-        <div class="position">{{moodsLength | number : '4.0'}}</div>
-    </a>
-    <a routerLink="/dashboard">
-        <img [src]="getImageURL('icons-bottom-bar','home', 'png')" />
-    </a>
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
+        <a routerLink="/dashboard"><app-icon-back class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'multi-tag'){
-    <a (click)="handleBackToGallery()">
-        <img appAnimSpin [src]="getImageURL('icons-bottom-bar','moods', 'png')" />
-    </a>
-    <a routerLink="/moods/multi-tag-artists">
-        <img [src]="getImageURL('icons-bottom-bar','artist', 'png')" />
-    </a>
-    <a routerLink="/moods/multi-tag-models">
-        <img [src]="getImageURL('icons-bottom-bar','model', 'png')" />
-    </a>
-    <a (click)="handleTopButton()" *ngIf="topButtonIsActive === true">
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up', 'png')" />
-    </a>
-    <span *ngIf="topButtonIsActive === false">
-        <img [src]="getImageURL('icons-bottom-bar','arrow-up-no', 'png')" />
-    </span>
+        <a (click)="handleBackToGallery()"><app-icon-back class="icon" size="25px" /></a>
+        <a routerLink="/moods/multi-tag-artists"><app-icon-artist class="icon" size="25px" /></a>
+        <a routerLink="/moods/multi-tag-models"><app-icon-model class="icon" size="25px" /></a>
+        @if(topButtonIsActive) {
+            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+        } @else {
+            <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
+        }
     }
 </div>

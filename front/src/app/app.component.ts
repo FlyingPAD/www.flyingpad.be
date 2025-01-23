@@ -9,6 +9,7 @@ import { FullScreenService } from './services/display/full-screen.service';
 import { ThemeService } from './services/display/theme.service';
 import { GdprService } from './services/gdpr.service';
 import { MenuService } from './services/display/menu.service';
+import { ButtonTopService } from './services/display/button-top.service';
 
 @Component({
   selector: 'app-root',
@@ -25,10 +26,12 @@ export class AppComponent implements OnInit {
   #authService = inject(AuthenticationService)
   #userService = inject(UserService)
   #cookieService = inject(CustomCookieService)
+  #buttonTopService = inject(ButtonTopService)
   #router = inject(Router)
 
   gdprStatus = this.#gdprService.currentStatus
   displayInfo = this.#displayService.displayInfo
+  showButtonState = this.#buttonTopService.showButtonTop
 
   ngOnInit(): void {
     let token = this.#cookieService.retrieveToken()

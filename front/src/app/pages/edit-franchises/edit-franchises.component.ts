@@ -3,18 +3,15 @@ import { FlowService } from '../../services/flow.service';
 import { Router } from '@angular/router';
 import { PaginationService } from '../../services/display/pagination.service';
 import { FranchiseLight } from '../../interfaces/franchise';
-import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-edit-franchises',
-  templateUrl: './edit-franchises.component.html',
-  styleUrl: './edit-franchises.component.scss'
+  templateUrl: './edit-franchises.component.html'
 })
 export class EditFranchisesComponent {
   #flowService = inject(FlowService)
   #router = inject(Router)
   paginationService = inject(PaginationService)
-  #imageURLService = inject(ImageUrlService)
 
   flow = this.#flowService.flow
 
@@ -70,9 +67,5 @@ export class EditFranchisesComponent {
   updateMediaId(mediaId : number | null): void {
     this.paginationService.editFranchisesCurrentPageReset()
     this.#flowService.updateMediumId(mediaId)
-  }
-
-  public getImageUrl(folderName: string, imageName: string, imageExtension: string): string {
-    return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
   }
 }

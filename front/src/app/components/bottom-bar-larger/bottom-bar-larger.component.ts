@@ -1,5 +1,4 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-bottom-bar-larger',
@@ -7,7 +6,6 @@ import { ImageUrlService } from '../../services/display/image-url.service';
   styleUrl: './bottom-bar-larger.component.scss'
 })
 export class BottomBarLargerComponent {
-  #imageURLService = inject(ImageUrlService)
   @Input() contentType: string = ''
 
   @Output() rotation = new EventEmitter<number>()
@@ -34,9 +32,5 @@ export class BottomBarLargerComponent {
   }
   public handleInfo(): void {
     this.info.emit()
-  }
-
-  public getImageURL(folderName: string, imageName: string, imageExtension: string): string {
-    return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
   }
 }

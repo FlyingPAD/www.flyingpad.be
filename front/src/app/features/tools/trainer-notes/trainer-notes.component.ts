@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { AudioService } from '../../../services/tools/audio.service';
 import { StorageService } from '../../../services/storage.service';
+import { UserService } from '../../../services/user.service';
+import { Router } from '@angular/router';
+import { DashboardService } from '../../../services/dashboard.service';
 
 export class Note {
   name: string = ''
@@ -27,6 +30,9 @@ export interface GameResult {
 export class TrainerNotesComponent implements OnInit, OnDestroy {
   audioService = inject(AudioService)
   storageService = inject(StorageService)
+  #userService= inject(UserService)
+  #routerService = inject(Router)
+  #dashboardService = inject(DashboardService)
 
   timer: number = 15
   intervalId: any | undefined = undefined
@@ -133,6 +139,42 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
         this.gameEnd = true
         this.message = this.score > 0 ? 'Congratulations !' : '...'
         this.timerStop()
+        this.#userService.updatePlayerExperience(500)
+        if(this.run > 10) {
+          if(this.#userService.appUser.achievements[1].isTrue === false) {
+            this.#dashboardService.updateMenuState('achievements')
+            this.#routerService.navigateByUrl('/')
+            this.#userService.obtainAchievement(1)
+          }
+        }
+        if(this.run > 20) {
+          if(this.#userService.appUser.achievements[2].isTrue === false) {
+            this.#dashboardService.updateMenuState('achievements')
+            this.#routerService.navigateByUrl('/')
+            this.#userService.obtainAchievement(2)
+          }
+        }
+        if(this.run > 30) {
+          if(this.#userService.appUser.achievements[3].isTrue === false) {
+            this.#dashboardService.updateMenuState('achievements')
+            this.#routerService.navigateByUrl('/')
+            this.#userService.obtainAchievement(3)
+          }
+        }
+        if(this.run > 40) {
+          if(this.#userService.appUser.achievements[4].isTrue === false) {
+            this.#dashboardService.updateMenuState('achievements')
+            this.#routerService.navigateByUrl('/')
+            this.#userService.obtainAchievement(4)
+          }
+        }
+        if(this.run > 50) {
+          if(this.#userService.appUser.achievements[5].isTrue === false) {
+            this.#dashboardService.updateMenuState('achievements')
+            this.#routerService.navigateByUrl('/')
+            this.#userService.obtainAchievement(5)
+          }
+        }
       }
     }, 1000)
   }
