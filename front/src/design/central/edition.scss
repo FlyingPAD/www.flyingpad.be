@@ -5,7 +5,7 @@
             width: 300px;
 
             margin: auto;
-            margin-top: 15px;
+            margin-top: 10px;
             padding: 8px;
 
             background-color: var(--colorWhiteOpacity7);
@@ -20,7 +20,7 @@
             display: flex;
             justify-content: center;
 
-            img {
+            .icon {
                 display: block;
                 height: 25px;
                 width: 25px;
@@ -34,10 +34,10 @@
 
                 margin-left: 5px;
                 margin-right: 5px;
-                margin-bottom: 10px;
+                margin-bottom: 5px;
             }
 
-            img:hover:not(.active) {
+            .icon:hover:not(.active) {
                 background-color: var(--colorWhiteOpacity5);
                 color: var(--colorMain);
                 transition-duration: 200ms;
@@ -54,7 +54,7 @@
     .edition-list {
         margin: 15px;
         padding: 15px;
-    
+
         background-color: var(--colorMainOpacity3);
         border: 1px solid var(--colorMain);
         border-radius: 5px;
@@ -66,37 +66,37 @@
 
         a {
             display: block;
-    
+
             margin: 8px;
             padding: 8px;
-    
+
             background-color: var(--colorWhiteOpacity8);
             border: 1px solid #ffffff00;
             border-radius: 5px;
-    
+
             color: var(--colorMain);
             text-decoration: none;
             font-size: 14px;
             line-height: 20px;
-    
+
             white-space: nowrap;
             /* Empêche le texte de passer à la ligne */
             overflow: hidden;
             /* Coupe le texte qui déborde */
             text-overflow: ellipsis;
             /* Ajoute les points de suspension à la fin du texte */
-    
+
             z-index: 0;
             transition-duration: 350ms;
         }
-    
+
         a:hover:not(.active) {
             background-color: var(--colorMainOpacity5);
             border: 1px solid var(--colorMain);
-            color: var(--colorWhite);        
+            color: var(--colorWhite);
             cursor: pointer;
         }
-    
+
         .active {
             background-color: var(--colorMain);
             border: 1px solid var(--colorMain);

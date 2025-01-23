@@ -1,5 +1,5 @@
 <div class="dashboard">
-  <app-dashboard-header [user]="user" [player]="player" />
+  <app-dashboard-header [user]="user" />
   <app-dashboard-menu [user]="user" (menuState)="updateMenuState($event)" />
 
   @if(dashboardMenuState() === 'status') {
@@ -19,7 +19,7 @@
   }
 
   @if(dashboardMenuState() === 'achievements') {
-  <app-achievements />
+  <app-achievements [achievements]="user.achievements" />
   }
 </div>
 

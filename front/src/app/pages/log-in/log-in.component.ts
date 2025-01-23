@@ -76,7 +76,12 @@ export class LogInComponent implements OnInit {
     this.isLanguageMenuON = !this.isLanguageMenuON
   }
 
-  public getImageURL(folderName: string, imageName: string, imageExtension: string): string {
-    return this.#imageUrlService.getImageURL(folderName, imageName, imageExtension)
+  public getImageURL(theme: boolean, folderName: string, imageName: string, imageExtension: string): string {
+    if(theme) {
+      return this.#imageUrlService.getImageURL(folderName, imageName, imageExtension)
+    }
+    else {
+      return this.#imageUrlService.getImageURLNoTheme(folderName, imageName, imageExtension)
+    }
   }
 }

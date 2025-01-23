@@ -163,12 +163,25 @@ import { IconLogoutComponent } from './icons/icon-logout/icon-logout.component';
 import { IconSettingsComponent } from './icons/icon-settings/icon-settings.component';
 import { IconHamburgerComponent } from './icons/icon-hamburger/icon-hamburger.component';
 import { IconArrowComponent } from './icons/icon-arrow/icon-arrow.component';
-import { IconFolderComponent } from './icons/icon-folder/icon-folder.component';
 import { IconQuestionComponent } from './icons/icon-question/icon-question.component';
 import { IconInfoComponent } from './icons/icon-info/icon-info.component';
 import { IconPlayComponent } from './icons/icon-play/icon-play.component';
 import { IconStopComponent } from './icons/icon-stop/icon-stop.component';
 import { IconResetComponent } from './icons/icon-reset/icon-reset.component';
+import { IconPlusComponent } from './icons/icon-plus/icon-plus.component';
+import { IconListComponent } from './icons/icon-list/icon-list.component';
+import { IconGoComponent } from './icons/icon-go/icon-go.component';
+import { IconBackComponent } from './icons/icon-back/icon-back.component';
+import { IconArrowShortComponent } from './icons/icon-arrow-short/icon-arrow-short.component';
+import { IconWheelComponent } from './icons/icon-wheel/icon-wheel.component';
+import { IconOpenComponent } from './icons/icon-open/icon-open.component';
+import { IconGoogleComponent } from './icons/icon-google/icon-google.component';
+import { IconGoogleLensComponent } from './icons/icon-google-lens/icon-google-lens.component';
+import { IconPlayShuffleComponent } from './icons/icon-play-shuffle/icon-play-shuffle.component';
+import { LogoFacebookComponent } from './icons/logo-facebook/logo-facebook.component';
+import { LogoInstagramComponent } from './icons/logo-instagram/logo-instagram.component';
+import { LogoYoutubeComponent } from './icons/logo-youtube/logo-youtube.component';
+import { LogoSoundcloudComponent } from './icons/logo-soundcloud/logo-soundcloud.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   let version : string = '1.0.0'
@@ -351,12 +364,25 @@ export function appInitializerFactory(translate: TranslateService) {
     IconSettingsComponent,
     IconHamburgerComponent,
     IconArrowComponent,
-    IconFolderComponent,
     IconQuestionComponent,
     IconInfoComponent,
     IconPlayComponent,
     IconStopComponent,
     IconResetComponent,
+    IconPlusComponent,
+    IconListComponent,
+    IconGoComponent,
+    IconBackComponent,
+    IconArrowShortComponent,
+    IconWheelComponent,
+    IconOpenComponent,
+    IconGoogleComponent,
+    IconGoogleLensComponent,
+    IconPlayShuffleComponent,
+    LogoFacebookComponent,
+    LogoInstagramComponent,
+    LogoYoutubeComponent,
+    LogoSoundcloudComponent
   ],
   imports: [
     BrowserModule,

@@ -5,15 +5,15 @@
             <app-icon-hamburger size="23px" />
         </div>
         <div class="logo-mini">
-            <img [src]="getImageURL('images-logo', 'logo-2', 'png')" />
+            <img [src]="getImageURL(true, 'images-logo', 'logo-2', 'png')" />
         </div>
         <div class="logo">
-            <img [src]="getImageURL('images-logo', 'logo-3', 'png')" />
+            <img [src]="getImageURL(true, 'images-logo', 'logo-3', 'png')" />
         </div>
     </section>
     <section class="right">
         <div class="languages" (click)="toggleLanguageMenu()" [class.active]="isLanguageMenuON">
-            <img [src]="getImageURL('icons-flags', currentLanguage(), 'png')" />
+            <img [src]="getImageURL(false, 'icons-flags', currentLanguage(), 'png')" />
             <span>{{ currentLanguage() === 'fr' ? 'Français' : 'English' }}</span>
         </div>
         <div class="sign-up" routerLink="/sign-up">

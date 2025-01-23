@@ -24,6 +24,6 @@ export class LanguageMenuHomeComponent {
   }
 
   public getImageURL(folderName: string, imageName: string, imageExtension: string): string {
-    return this.#imageUrlService.getImageURL(folderName, imageName, imageExtension)
+    return this.#imageUrlService.getImageURLNoTheme(folderName, imageName, imageExtension)
   }
 }

@@ -68,7 +68,8 @@
     "version" : "Version",
     "pseudonym" : "Pseudonyme",
     "subscription" : "Inscription",
-    "achievements" : "Succès"
+    "achievements" : "Succès",
+    "statistics" : "Statistiques"
   },
   "message": {
     "404": "La page n'a pas été trouvée.",

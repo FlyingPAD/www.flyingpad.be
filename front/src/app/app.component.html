@@ -3,3 +3,7 @@
 @if(gdprStatus() === undefined) {
     <app-gdpr />
 }
+
+@if(showButtonState()) {
+    <app-button-top />
+}

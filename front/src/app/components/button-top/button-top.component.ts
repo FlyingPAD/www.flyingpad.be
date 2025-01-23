@@ -1,4 +1,5 @@
 import { Component, HostListener, inject } from '@angular/core';
+import { ButtonTopService } from '../../services/display/button-top.service';
 
 @Component({
   selector: 'app-button-top',
@@ -6,19 +7,19 @@ import { Component, HostListener, inject } from '@angular/core';
   styleUrl: './button-top.component.scss'
 })
 export class ButtonTopComponent {
-  public showButton: boolean = false
-
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(): void {
-    let threshold = 100
-    let currentScrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
-    this.showButton = currentScrollPosition > threshold
-  }
-
+  #buttonTopService  = inject(ButtonTopService)
+  public topButtonisActive = this.#buttonTopService.topButtonisActive
   public toTop(): void {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     })
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    const threshold = 100;
+    const currentScrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    this.#buttonTopService .updateTopButtonState(currentScrollPosition > threshold);
   }
 }

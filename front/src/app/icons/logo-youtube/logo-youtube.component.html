@@ -1,0 +1,40 @@
+<svg
+  [style.width]="size"
+  [style.height]="size"
+  viewBox="0 0 400 400"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient
+      id="backgroundGradient"
+      gradientUnits="userSpaceOnUse"
+      x1="0"
+      y1="199"
+      x2="400"
+      y2="199"
+      gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 1 0)"
+    >
+      <stop offset="0" [attr.stop-color]="gradientStart" />
+      <stop offset="1" [attr.stop-color]="gradientEnd" />
+    </linearGradient>
+  </defs>
+  <g id="Background">
+    <rect fill="url(#backgroundGradient)" width="400" height="400" />
+  </g>
+  <g id="Logo">
+    <path
+      id="The_Sharpness"
+      opacity="0.12"
+      d="M170.6,159.9l63.9,42.7l9-4.6L170.6,159.9z"
+    />
+    <g id="Lozenge">
+      <g>
+        <path [attr.fill]="logoColor" d="M332.2,146.1c0,0-2.6-18.6-10.7-26.8c-10.2-10.8-21.8-10.8-27-11.4c-37.8-2.7-94.4-2.7-94.4-2.7H200
+          c0,0-56.6,0-94.4,2.7c-5.3,0.6-16.8,0.7-27,11.4c-8.1,8.2-10.7,26.8-10.7,26.8s-2.7,21.8-2.7,43.7v20.5c0,21.8,2.7,43.7,2.7,43.7
+          s2.6,18.6,10.7,26.8c10.3,10.8,23.7,10.4,29.7,11.5c21.6,2.1,91.7,2.7,91.7,2.7s56.7-0.1,94.5-2.8c5.3-0.6,16.8-0.7,27-11.4
+          c8.1-8.2,10.7-26.8,10.7-26.8s2.7-21.8,2.7-43.7v-20.5C334.9,167.9,332.2,146.1,332.2,146.1z M172.1,235v-75.8l72.9,38L172.1,235
+          z"/>
+      </g>
+    </g>
+  </g>
+</svg>

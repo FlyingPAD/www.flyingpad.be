@@ -3,19 +3,16 @@ import { TagLight } from '../../interfaces/tag';
 import { Router } from '@angular/router';
 import { FlowService } from '../../services/flow.service';
 import { PaginationService } from '../../services/display/pagination.service';
-import { ImageUrlService } from '../../services/display/image-url.service';
 import { MoodsService } from '../../services/moods.service';
 
 @Component({
   selector: 'app-edit-tags',
-  templateUrl: './edit-tags.component.html',
-  styleUrl: './edit-tags.component.scss'
+  templateUrl: './edit-tags.component.html'
 })
 export class EditTagsComponent {
   #flowService = inject(FlowService)
   #router = inject(Router)
   paginationService = inject(PaginationService)
-  #imageURLService = inject(ImageUrlService)
   #moodsService = inject(MoodsService)
 
   flow = this.#flowService.flow
@@ -24,33 +21,33 @@ export class EditTagsComponent {
   elementsPerPage : number = 11
 
   showList : boolean = true
-  showNewTag : boolean = false
+  showNew : boolean = false
   showNewCategory : boolean = false
-  showEditTag : boolean = false
+  showEdit : boolean = false
   showEditCategory : boolean = false
 
   triggerReset(): void {
     this.showList = false
-    this.showNewTag = false
+    this.showNew = false
     this.showNewCategory = false
-    this.showEditTag = false
+    this.showEdit = false
     this.showEditCategory = false
   }
   triggerShowList(): void {
     this.triggerReset()
     this.showList = true
   }
-  triggerShowNewTag(): void {
+  triggerShowNew(): void {
     this.triggerReset()
-    this.showNewTag = true
+    this.showNew = true
   }
   triggerShowNewCategory(): void {
     this.triggerReset()
     this.showNewCategory = true
   }
-  triggerShowEditTag(): void {
+  triggerShowEdit(): void {
     this.triggerReset()
-    this.showEditTag = true
+    this.showEdit = true
   }
   triggerShowEditCategory(): void {
     this.triggerReset()
@@ -73,9 +70,5 @@ export class EditTagsComponent {
   updateTagCategoryId(tagCategoryId : number | null): void {
     this.paginationService.editTagsCurrentPageReset()
     this.#flowService.updateTagCategoryId(tagCategoryId)
-  }
-
-  public getImageUrl(folderName: string, imageName: string, imageExtension: string): string {
-    return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
   }
 }

@@ -14,4 +14,8 @@ export class ImageUrlService {
 
     return `assets/${folderName}/${theme}/${imageName}.${imageExtension}`
   }
+
+  public getImageURLNoTheme(folderName: string, imageName: string, imageExtension: string): string {
+    return `assets/${folderName}/${imageName}.${imageExtension}`
+  }
 }

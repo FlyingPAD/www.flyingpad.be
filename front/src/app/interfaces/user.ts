@@ -1,3 +1,4 @@
+import { Achievement } from "./achievement"
 import { BaseResponse } from "./base-response"
 
 export interface User {
@@ -10,6 +11,9 @@ export interface User {
     email: string
     birthdate: Date
     role: number
+    level: number
+    experience: number
+    achievements: Achievement[]
 }
 
 export interface UserRegisterForm {
@@ -31,7 +35,7 @@ export interface UserUpdateForm {
     businessId: number
     pseudonym: string
     firstName: string
-    lastName: string;
+    lastName: string
     birthdate: Date
 }
 

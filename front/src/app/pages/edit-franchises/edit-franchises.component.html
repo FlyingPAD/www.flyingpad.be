@@ -7,10 +7,10 @@
             <p>Select a medium.</p>
         }  
         <div class="edition-buttons">
-            <img [class.active]="showList" [src]="getImageUrl('icons-edition', 'list', 'png')" (click)="triggerShowList()" />
-            <img [class.active]="showNewCategory" [src]="getImageUrl('icons-edition', 'new', 'png')" (click)="triggerShowNewCategory()" />
+            <app-icon-list class="icon" [class.active]="showList" size="25px" (click)="triggerShowList()" />
+            <app-icon-plus class="icon" [class.active]="showNewCategory" size="25px" (click)="triggerShowNewCategory()" />
             @if(flow.medium?.name){
-                <img [class.active]="showEditCategory" [src]="getImageUrl('icons-edition', 'edit', 'png')" (click)="triggerShowEditCategory()" />
+                <app-icon-edit class="icon" [class.active]="showEditCategory" size="25px" (click)="triggerShowEditCategory()" />
             }
         </div>
     </div>
@@ -22,10 +22,10 @@
             <p>Please, select a franchise from the list.</p>
         }
         <div class="edition-buttons">
-            <img [class.active]="showNew" [src]="getImageUrl('icons-edition', 'new', 'png')" (click)="triggerShowNew()" />
+            <app-icon-plus class="icon" [class.active]="showNew" size="25px" (click)="triggerShowNew()" />
             @if(flow.franchise){
-                <img [class.active]="showEdit" [src]="getImageUrl('icons-edition', 'edit', 'png')" (click)="triggerShowEdit()" />
-                <img [src]="getImageUrl('icons-edition', 'arrow', 'png')" (click)="go()" />
+                <app-icon-edit class="icon" [class.active]="showEdit" size="25px" (click)="triggerShowEdit()" />
+                <app-icon-go class="icon" size="25px" (click)="go()" />
             }
         </div>
     </div>
@@ -46,7 +46,7 @@
         
         <div class="pagination-row" *ngIf="flow.franchisesByMedium.length > elementsPerPage">
             <div class="pagination">
-              <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editFranchisesCurrentPage = $event"></pagination-controls>
+              <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editFranchisesCurrentPage = $event" />
             </div>   
         </div>
     }

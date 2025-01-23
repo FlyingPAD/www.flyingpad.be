@@ -3,18 +3,15 @@ import { FlowService } from '../../services/flow.service';
 import { Router } from '@angular/router';
 import { ModelLight } from '../../interfaces/model';
 import { PaginationService } from '../../services/display/pagination.service';
-import { ImageUrlService } from '../../services/display/image-url.service';
 
 @Component({
   selector: 'app-edit-models',
-  templateUrl: './edit-models.component.html',
-  styleUrl: './edit-models.component.scss'
+  templateUrl: './edit-models.component.html'
 })
 export class EditModelsComponent {
   #flowService = inject(FlowService)
   #router = inject(Router)
   paginationService = inject(PaginationService)
-  #imageURLService = inject(ImageUrlService)
 
   flow = this.#flowService.flow
 
@@ -53,9 +50,5 @@ export class EditModelsComponent {
 
   setModel(model: ModelLight): void {
     this.#flowService.updateModelId(model.businessId)
-  }
-
-  public getImageUrl(folderName: string, imageName: string, imageExtension: string): string {
-    return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
   }
 }

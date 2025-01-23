@@ -7,10 +7,10 @@
             <p>Select a category.</p>
         }  
         <div class="edition-buttons">
-            <img [class.active]="showList" [src]="getImageUrl('icons-edition', 'list', 'png')" (click)="triggerShowList()" />
-            <img [class.active]="showNewCategory" [src]="getImageUrl('icons-edition', 'new', 'png')" (click)="triggerShowNewCategory()" />
+            <app-icon-list class="icon" [class.active]="showList" size="25px" (click)="triggerShowList()" />
+            <app-icon-plus class="icon" [class.active]="showNewCategory" size="25px" (click)="triggerShowNewCategory()" />
             @if(flow.tagCategory?.name){
-                <img [class.active]="showEditCategory" [src]="getImageUrl('icons-edition', 'edit', 'png')" (click)="triggerShowEditCategory()" />
+                <app-icon-edit class="icon" [class.active]="showEditCategory" size="25px" (click)="triggerShowEditCategory()" />
             }
         </div>
     </div>
@@ -22,10 +22,10 @@
             <p>Select a tag.</p>
         }
         <div class="edition-buttons">
-            <img [class.active]="showNewTag" [src]="getImageUrl('icons-edition', 'new', 'png')" (click)="triggerShowNewTag()" />
+            <app-icon-plus class="icon" [class.active]="showNew" size="25px" (click)="triggerShowNew()" />
             @if(flow.tag?.name){
-                <img [class.active]="showEditTag" [src]="getImageUrl('icons-edition', 'edit', 'png')" (click)="triggerShowEditTag()" />
-                <img [src]="getImageUrl('icons-edition', 'arrow', 'png')" (click)="go()" />
+                <app-icon-edit class="icon" [class.active]="showEdit" size="25px" (click)="triggerShowEdit()" />
+                <app-icon-go class="icon" size="25px" (click)="go()" />
             }
         </div>
     </div>
@@ -46,17 +46,17 @@
         
         <div class="pagination-row" *ngIf="flow.tagsByCategory.length > elementsPerPage">
             <div class="pagination">
-              <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editTagsCurrentPage = $event"></pagination-controls>
+              <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editTagsCurrentPage = $event" />
             </div>   
         </div>
     }
-    @if (showNewTag) {
+    @if (showNew) {
         <app-create-tag [tagCategories]="flow.tagCategories" (trigger)="triggerShowList()" />
     }
     @if (showNewCategory) {
         <app-create-tag-category (trigger)="triggerShowList()" />
     }
-    @if (showEditTag) {
+    @if (showEdit) {
         <app-edit-tag [tag]="flow.tag" [tagCategories]="flow.tagCategories" (showListTrigger)="triggerShowList()" />
     }
     @if (showEditCategory) {
