@@ -14,6 +14,12 @@ export class ButtonTopService {
     this.#topButtonisActiveSubject.next(state)
   }
   public setShowButtonTop(state: boolean): void {
-    this.#showButtonTopSubject.next(state)
+    if(state) {
+      this.#showButtonTopSubject.next(state)
+    }
+    else {
+      this.#showButtonTopSubject.next(state)
+      this.updateTopButtonState(false)
+    }
   }
 }
