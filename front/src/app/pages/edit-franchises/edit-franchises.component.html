@@ -1,67 +1,73 @@
 <div class="edition" *ngIf="flow() as flow">
     <div class="edition-selection">
         @if(flow.medium?.name){
-            <p><b>{{flow.medium?.name}}</b></p>
+        <p><b>{{flow.medium?.name}}</b></p>
         }
         @else {
-            <p>Select a medium.</p>
-        }  
+        <p>Select a medium.</p>
+        }
         <div class="edition-buttons">
             <app-icon-list class="icon" [class.active]="showList" size="25px" (click)="triggerShowList()" />
-            <app-icon-plus class="icon" [class.active]="showNewCategory" size="25px" (click)="triggerShowNewCategory()" />
+            <app-icon-plus class="icon" [class.active]="showNewCategory" size="25px"
+                (click)="triggerShowNewCategory()" />
             @if(flow.medium?.name){
-                <app-icon-edit class="icon" [class.active]="showEditCategory" size="25px" (click)="triggerShowEditCategory()" />
+            <app-icon-edit class="icon" [class.active]="showEditCategory" size="25px"
+                (click)="triggerShowEditCategory()" />
             }
         </div>
     </div>
     <div class="edition-selection">
         @if(flow.franchise){
-            <p><b>{{flow.franchise.name}}</b></p>
+        <p><b>{{flow.franchise.name}}</b></p>
         }
         @else {
-            <p>Please, select a franchise from the list.</p>
+        <p>Please, select a franchise from the list.</p>
         }
         <div class="edition-buttons">
             <app-icon-plus class="icon" [class.active]="showNew" size="25px" (click)="triggerShowNew()" />
             @if(flow.franchise){
-                <app-icon-edit class="icon" [class.active]="showEdit" size="25px" (click)="triggerShowEdit()" />
-                <app-icon-go class="icon" size="25px" (click)="go()" />
+            <app-icon-edit class="icon" [class.active]="showEdit" size="25px" (click)="triggerShowEdit()" />
+            <app-icon-go class="icon" size="25px" (click)="go()" />
             }
         </div>
     </div>
     @if (showList) {
-        <div class="filter">
-            <input type="text" [(ngModel)]="searchFranchises" placeholder="Filter franchises ...">
-        </div>
-        
-        <div class="edition-list">
-            <div *ngFor="let franchise of filterFranchises() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: paginationService.editFranchisesCurrentPage}">
-                <a [class.active]="franchise.name === flow.franchise?.name" (click)="setFranchise(franchise)"> ▸ {{franchise.name}}</a>
-            </div>
-        </div>
+    <div class="filter">
+        <input type="text" [(ngModel)]="searchFranchises" placeholder="Filter franchises ...">
+    </div>
 
-        <app-right-column>
-            <app-right-column-list [table]="flow.media" [currentEntityId]="flow.medium?.businessId" (entityId)="updateMediaId($event)" />
-        </app-right-column>
-        
-        <div class="pagination-row" *ngIf="flow.franchisesByMedium.length > elementsPerPage">
-            <div class="pagination">
-              <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editFranchisesCurrentPage = $event" />
-            </div>   
+    <div class="edition-list">
+        <div
+            *ngFor="let franchise of filterFranchises() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage()}">
+            <a [class.active]="franchise.name === flow.franchise?.name" (click)="setFranchise(franchise)"> ▸
+                {{franchise.name}}</a>
         </div>
+    </div>
+
+    <app-right-column>
+        <app-right-column-list [table]="flow.media" [currentEntityId]="flow.medium?.businessId"
+            (entityId)="updateMediaId($event)" />
+    </app-right-column>
+
+    <div class="pagination-row" *ngIf="flow.franchisesByMedium.length > elementsPerPage">
+        <div class="pagination">
+            <pagination-controls previousLabel="" nextLabel="" class="pagination"
+                (pageChange)="updateCurrentPage($event)" />
+        </div>
+    </div>
     }
     @if (showNew) {
-        <app-create-franchise [media]="flow.media" (trigger)="triggerShowList()" />
+    <app-create-franchise [media]="flow.media" (trigger)="triggerShowList()" />
     }
     @if (showNewCategory) {
-        <app-create-medium (trigger)="triggerShowList()" />
+    <app-create-medium (trigger)="triggerShowList()" />
     }
     @if (showEdit) {
-        <app-edit-franchise [franchise]="flow.franchise" (trigger)="triggerShowList()"/>
+    <app-edit-franchise [franchise]="flow.franchise" (trigger)="triggerShowList()" />
     }
     @if (showEditCategory) {
-        <app-edit-medium [medium]="flow.medium" (trigger)="triggerShowList()"/>
+    <app-edit-medium [medium]="flow.medium" (trigger)="triggerShowList()" />
     }
     <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.franchisesByMedium.length" />
 </div>
-<div class="spacer-150"></div>
+<app-spacer height="150px" />

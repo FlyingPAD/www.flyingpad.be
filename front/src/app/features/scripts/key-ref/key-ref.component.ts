@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './key-ref.component.html',
   styleUrls: ['./key-ref.component.scss']
 })
-export class KeyRefComponent
-{
+export class KeyRefComponent {
 
 }

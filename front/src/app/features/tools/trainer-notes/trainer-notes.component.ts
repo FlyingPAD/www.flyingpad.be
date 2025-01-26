@@ -85,6 +85,22 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
     this.timerStop()
   }
 
+  public toggleInfo() {
+    this.info = !this.info
+  }
+  public toggleScoreBoard() {
+    this.scoreboard = !this.scoreboard
+  }
+
+  public handleOverlayToggle(): void {
+    if (this.info) {
+      this.toggleInfo()
+    }
+    if (this.scoreboard) {
+      this.toggleScoreBoard()
+    }
+  }
+
   reset() {
     this.timerStop()
     this.timer = 15
@@ -342,14 +358,6 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
           // { name: 'B', freq: 987.76, row: 14, alteration: false, extension: false, doubleUp : true }
         ]
     }
-  }
-
-  infoTrigger() {
-    this.info = !this.info
-  }
-
-  scoreBoardTrigger() {
-    this.scoreboard = !this.scoreboard
   }
 
   saveGameResult(result: GameResult): void {

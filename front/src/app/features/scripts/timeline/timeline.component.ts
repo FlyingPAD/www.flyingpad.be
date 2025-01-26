@@ -15,7 +15,7 @@ export class TimelineComponent implements OnInit {
   ]
 
   @ViewChild('timelineContainer') timelineContainer!: ElementRef<HTMLDivElement>
-  
+
   private firstFocus: boolean = true // Drapeau pour détecter le premier focus
 
   ngOnInit(): void {
@@ -69,7 +69,7 @@ export class TimelineComponent implements OnInit {
       const container = this.timelineContainer.nativeElement
       const halfWidth = container.clientWidth / 2
       const scrollPosition = Math.max(0, position - halfWidth)
-      
+
       if (this.firstFocus) {
         container.scrollTo({
           left: scrollPosition,

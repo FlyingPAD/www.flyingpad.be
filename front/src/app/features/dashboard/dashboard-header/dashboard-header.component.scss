@@ -19,6 +19,17 @@
         border: 3px solid var(--colorMain);
         border-radius: 10px;
         box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+        .league-icon {
+            position: relative;
+            top: -55px;
+            left: -53px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
 
     h1 {

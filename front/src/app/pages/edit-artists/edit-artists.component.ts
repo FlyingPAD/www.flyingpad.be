@@ -11,61 +11,65 @@ import { ArtistLight } from '../../interfaces/artist';
 export class EditArtistsComponent {
   #flowService = inject(FlowService)
   #router = inject(Router)
-  paginationService = inject(PaginationService)
+  #paginationService = inject(PaginationService)
 
-  flow = this.#flowService.flow
+  public flow = this.#flowService.flow
+  public currentPage = this.#paginationService.editArtistsCurrentPage
+  public searchArtists: string = ''
+  public elementsPerPage: number = 12
+  public showList: boolean = true
+  public showNew: boolean = false
+  public showNewCategory: boolean = false
+  public showEdit: boolean = false
+  public showEditCategory: boolean = false
 
-  searchArtists : string = ''
-  elementsPerPage : number = 12
-
-  showList : boolean = true
-  showNew : boolean = false
-  showNewCategory : boolean = false
-  showEdit : boolean = false
-  showEditCategory : boolean = false
-
-  triggerReset(): void {
+  private triggerReset(): void {
     this.showList = false
     this.showNew = false
     this.showNewCategory = false
     this.showEdit = false
     this.showEditCategory = false
   }
-  triggerShowList(): void {
+  public triggerShowList(): void {
     this.triggerReset()
     this.showList = true
   }
-  triggerShowNew(): void {
+  public triggerShowNew(): void {
     this.triggerReset()
     this.showNew = true
   }
-  triggerShowNewCategory(): void {
+  public triggerShowNewCategory(): void {
     this.triggerReset()
     this.showNewCategory = true
   }
-  triggerShowEdit(): void {
+  public triggerShowEdit(): void {
     this.triggerReset()
     this.showEdit = true
   }
-  triggerShowEditCategory(): void {
+  public triggerShowEditCategory(): void {
     this.triggerReset()
     this.showEditCategory = true
   }
 
-  filterArtists(): ArtistLight[] | undefined {
+  public updateCurrentPage(page: number): void {
+    this.#paginationService.updateEditArtistsCurrentPage(page)
+  }
+
+  public filterArtists(): ArtistLight[] | undefined {
     return this.flow()?.artistsByStyle.filter(artist => artist.name.toLowerCase().includes(this.searchArtists.toLowerCase()))
   }
 
-  go():void {
+  public go(): void {
     this.#router.navigateByUrl('/moods')
   }
 
-  setArtist(artist : ArtistLight): void {
+  public setArtist(artist: ArtistLight): void {
     this.#flowService.updateArtistId(artist.businessId)
+    this.#paginationService.resetArtistGalleryCurrentPage()
   }
 
-  updateStyleId(styleId : number | null): void {
-    this.paginationService.editModelsCurrentPageReset()
+  public updateStyleId(styleId: number | null): void {
+    this.#paginationService.resetEditArtistsCurrentPage()
     this.#flowService.updateStyleId(styleId)
   }
 }

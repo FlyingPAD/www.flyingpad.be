@@ -9,63 +9,66 @@ import { PaginationService } from '../../services/display/pagination.service';
 })
 export class EditLinksComponent {
   #flowService = inject(FlowService)
-  paginationService = inject(PaginationService)
+  #paginationService = inject(PaginationService)
 
-  flow = this.#flowService.flow
+  public flow = this.#flowService.flow
+  public currentPage = this.#paginationService.editLinksCurrentPage
+  public searchLinks : string = ''
+  public elementsPerPage : number = 12
+  public showList : boolean = true
+  public showNew : boolean = false
+  public showNewCategory : boolean = false
+  public showEdit : boolean = false
+  public showEditCategory : boolean = false
 
-  searchLinks : string = ''
-  elementsPerPage : number = 12
-
-  showList : boolean = true
-  showNew : boolean = false
-  showNewCategory : boolean = false
-  showEdit : boolean = false
-  showEditCategory : boolean = false
-
-  triggerReset(): void {
+  private triggerReset(): void {
     this.showList = false
     this.showNew = false
     this.showNewCategory = false
     this.showEdit = false
     this.showEditCategory = false
   }
-  triggerShowList(): void {
+  public triggerShowList(): void {
     this.triggerReset()
     this.showList = true
   }
-  triggerShowNew(): void {
+  public triggerShowNew(): void {
     this.triggerReset()
     this.showNew = true
   }
-  triggerShowNewCategory(): void {
+  public triggerShowNewCategory(): void {
     this.triggerReset()
     this.showNewCategory = true
   }
-  triggerShowEdit(): void {
+  public triggerShowEdit(): void {
     this.triggerReset()
     this.showEdit = true
   }
-  triggerShowEditCategory(): void {
+  public triggerShowEditCategory(): void {
     this.triggerReset()
     this.showEditCategory = true
   }
 
-  filterLinks(): LinkLight[] | undefined {
+  public updateCurrentPage(page: number): void {
+    this.#paginationService.updateEditLinksCurrentPage(page)
+  }
+
+  public filterLinks(): LinkLight[] | undefined {
     return this.flow()?.linksByCategory.filter(link => link.name.toLowerCase().includes(this.searchLinks.toLowerCase()))
   }
 
-  go(): void {
+  public go(): void {
     if(this.flow()?.link) {
       window.open(this.flow()?.link?.url, '_blank')
     }
   }
 
-  setLink(link : LinkLight): void {
+  public setLink(link : LinkLight): void {
     this.#flowService.updateLinkId(link.businessId)
   }
 
-  updateLinkCategoryId(categoryId : number | null): void {
-    this.paginationService.editLinksCurrentPageReset()
+  public updateLinkCategoryId(categoryId : number | null): void {
+    this.#paginationService.resetEditLinksCurrentPage()
     this.#flowService.updateLinkCategoryId(categoryId)
   }
 }

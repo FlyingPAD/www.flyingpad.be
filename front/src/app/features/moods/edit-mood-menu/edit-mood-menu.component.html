@@ -1,0 +1,18 @@
+<div class="edit-mood-menu">
+    <a (click)="handleEditMoodMenuState('info')" [class.active]="editMoodMenuState === 'info' ">
+        <span>INFO</span>
+        <app-icon-mood size="50px" />
+    </a>
+    <a (click)="handleEditMoodMenuState('tags')" [class.active]="editMoodMenuState === 'tags' ">
+        <span>TAGS</span>
+        <app-icon-tag size="50px" />
+    </a>
+    <a (click)="handleEditMoodMenuState('models')" [class.active]="editMoodMenuState === 'models' ">
+        <span>{{ 'title.models' | translate | uppercase }}</span>
+        <app-icon-model size="50px" />
+    </a>
+    <a (click)="handleEditMoodMenuState('artists')" [class.active]="editMoodMenuState === 'artists' ">
+        <span>{{ 'title.artists' | translate | uppercase }}</span>
+        <app-icon-artist size="50px" />
+    </a>
+</div>

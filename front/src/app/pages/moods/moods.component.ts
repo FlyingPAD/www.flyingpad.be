@@ -6,7 +6,6 @@ import { ViewerService } from '../../services/features/viewer.service';
 import { MenuService } from '../../services/display/menu.service';
 import { DisplayService } from '../../services/display/display.service';
 import { MoodsService } from '../../services/moods.service';
-import { ButtonTopService } from '../../services/display/button-top.service';
 
 @Component({
   selector: 'app-moods',
@@ -16,22 +15,20 @@ import { ButtonTopService } from '../../services/display/button-top.service';
 export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   #flowService = inject(FlowService)
   #menuService = inject(MenuService)
-  #buttonTopService = inject(ButtonTopService)
-  paginationService = inject(PaginationService)
+  #paginationService = inject(PaginationService)
   viewerService = inject(ViewerService)
   displayService = inject(DisplayService)
   moodsService = inject(MoodsService)
+
+  private intervalId: any | undefined = undefined
+  public flow = this.#flowService.flow
   public displayInfos = this.displayService.displayInfo
   public moodMenuState = this.moodsService.moodMenuState
   public environment = environment.apiBaseUrl
-  public flow = this.#flowService.flow
+  public showDialog: boolean = false
+  public leftCardIsActive: boolean = this.leftCardInit()
 
-  showDialog : boolean = false
-  leftCardIsActive : boolean = this.leftCardInit()
-  intervalId : any | undefined = undefined        
-  
   ngOnInit(): void {
-    this.#buttonTopService.setShowButtonTop(false)
     this.getMoodHeight(false)
     window.scrollTo(0, 0)
     const businessIdString = `${this.flow()?.tag?.businessId ?? 'fallbackValue'}`
@@ -44,143 +41,136 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.#buttonTopService.setShowButtonTop(true)
     this.diaporamaStop()
   }
 
-  public updateMoodMenuState(menuState : string): void {
-    this.moodsService.updateMoodMenuState(menuState)
-  }
-
   private leftCardInit(): boolean {
-    if(this.displayInfos().mode === 'Mobile') {
+    if (this.displayInfos().mode === 'Mobile') {
       return false
-    } else {
+    } 
+    else {
       return true
     }
   }
 
-  pageReset(): void {
-    this.paginationService.moodsByTagCurrentPageReset()
+  public updateMoodMenuState(menuState: string): void {
+    this.moodsService.updateMoodMenuState(menuState)
   }
 
-  diaporamaStart(isRandom: boolean): void {
+  public diaporamaStart(isRandom: boolean): void {
     isRandom ? this.updateMoodId(null) : this.getPage('next')
     this.intervalId = setInterval(() => {
       isRandom ? this.updateMoodId(null) : this.getPage('next')
-    }, 
-    3000)
-  }  
-  diaporamaStop(): void {
+    },
+      3000)
+  }
+  public diaporamaStop(): void {
     if (this.intervalId !== undefined) {
       clearInterval(this.intervalId)
       this.intervalId = undefined
     }
   }
 
-  getPage(direction: string): void {
+  public getPage(direction: string): void {
     const flow = this.flow()
-    if(!flow) return
+    if (!flow) return
 
-    if(direction === 'previous') {
-      if(this.flow()?.moodsGalleryType === 'all') {
+    if (direction === 'previous') {
+      if (this.flow()?.moodsGalleryType === 'all') {
         this.updateMoodId(flow.moodsIndexes.previousMoodId)
       }
-      if(this.flow()?.moodsGalleryType === 'artist') {
+      if (this.flow()?.moodsGalleryType === 'artist') {
         this.updateMoodId(flow.moodsByArtistIndexes.previousMoodId)
       }
-      if(this.flow()?.moodsGalleryType === 'model') {
+      if (this.flow()?.moodsGalleryType === 'model') {
         this.updateMoodId(flow.moodsByModelIndexes.previousMoodId)
       }
-      if(this.flow()?.moodsGalleryType === 'tag') {
+      if (this.flow()?.moodsGalleryType === 'tag') {
         this.updateMoodId(flow.moodsByTagIndexes.previousMoodId)
       }
-      if(this.flow()?.moodsGalleryType === 'franchise') {
+      if (this.flow()?.moodsGalleryType === 'franchise') {
         this.updateMoodId(flow.moodsByFranchiseIndexes.previousMoodId)
       }
     }
-    if(direction === 'next') {
-      if(this.flow()?.moodsGalleryType === 'all') {
+    if (direction === 'next') {
+      if (this.flow()?.moodsGalleryType === 'all') {
         this.updateMoodId(flow.moodsIndexes.nextMoodId)
       }
-      if(this.flow()?.moodsGalleryType === 'artist') {
+      if (this.flow()?.moodsGalleryType === 'artist') {
         this.updateMoodId(flow.moodsByArtistIndexes.nextMoodId)
       }
-      if(this.flow()?.moodsGalleryType === 'model') {
+      if (this.flow()?.moodsGalleryType === 'model') {
         this.updateMoodId(flow.moodsByModelIndexes.nextMoodId)
       }
-      if(this.flow()?.moodsGalleryType === 'tag') {
+      if (this.flow()?.moodsGalleryType === 'tag') {
         this.updateMoodId(flow.moodsByTagIndexes.nextMoodId)
       }
-      if(this.flow()?.moodsGalleryType === 'franchise') {
+      if (this.flow()?.moodsGalleryType === 'franchise') {
         this.updateMoodId(flow.moodsByFranchiseIndexes.nextMoodId)
       }
     }
   }
 
-  getRandomMood(): void {
+  public getRandomMood(): void {
     this.#flowService.updateMoodId(null)
     this.updateMoodMenuState('details')
   }
 
-  updateMoodId(moodId: number | null): void {
+  public updateMoodId(moodId: number | null): void {
     this.#flowService.updateMoodId(moodId)
     this.updateMoodMenuState('details')
   }
-  updateArtistId(artistId: number | null): void {
+  public updateArtistId(artistId: number | null): void {
     this.#flowService.updateArtistId(artistId)
     this.updateMoodMenuState('gallery')
-    this.pageReset()
+    this.#paginationService.resetArtistGalleryCurrentPage()
   }
-  updateModelId(modelId: number | null): void {
+  public updateModelId(modelId: number | null): void {
     this.#flowService.updateModelId(modelId)
     this.updateMoodMenuState('gallery')
-    this.pageReset()
+    this.#paginationService.resetModelGalleryCurrentPage()
   }
-  updateTagId(tagId: number): void {
+  public updateTagId(tagId: number): void {
     this.#flowService.updateTagId(tagId)
     this.updateMoodMenuState('gallery')
-    this.pageReset()
+    this.#paginationService.resetMoodsByTagCurrentPage()
   }
-  updateFranchiseId(franchiseId: number | null): void {
+  public updateFranchiseId(franchiseId: number | null): void {
     this.#flowService.updateFranchiseId(franchiseId)
     this.updateMoodMenuState('gallery')
-    this.pageReset()
+    this.#paginationService.resetFranchiseGalleryCurrentPage()
   }
 
-  scrollToStart( elementId : string ): void {
-    const domElement = document.getElementById( elementId )
+  public scrollToStart(elementId: string): void {
+    const domElement = document.getElementById(elementId)
     if (domElement) {
       domElement.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
     }
   }
 
-  toTop(): void {
+  public toTop(): void {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     })
   }
 
-  menuTrigger(): void {
+  public menuTrigger(): void {
     this.#menuService.toggleRightMenu()
   }
-  leftCardToggle(): void {
+  public leftCardToggle(): void {
     this.leftCardIsActive = !this.leftCardIsActive
   }
 
-  handleDialog() {
-    this.showDialog = false
-  }
-  openDialog() {
+  public toggleDialog() {
     this.showDialog = !this.showDialog
   }
 
-  openMoodInNewTab() : void {
+  public openMoodInNewTab(): void {
     let downloadLink = ''
     if (this.flow()?.mood.type === 1) {
       downloadLink = `${this.environment}/Content/img/${this.flow()?.mood.businessId}.${this.flow()?.mood.extension}`
-    } 
+    }
     else if (this.flow()?.mood.type === 2) {
       downloadLink = `${this.environment}/Content/video/${this.flow()?.mood.businessId}.${this.flow()?.mood.extension}`
     }
@@ -189,13 +179,13 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
     }
   }
 
-  getMoodHeight(focusState: boolean) {
+  public getMoodHeight(focusState: boolean) {
     this.viewerService.getMoodHeight(focusState, window.innerHeight, this.flow()?.mood.height)
   }
 
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) {
-    if(this.moodMenuState() != 'edition') {
+    if (this.moodMenuState() != 'edition') {
       switch (event.key) {
         case 'ArrowLeft':
           this.getPage('previous')
@@ -204,7 +194,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
           this.getPage('next')
           break
         case ' ':
-          // this.intervalId === undefined ? this.diaporamaStart(false) : this.diaporamaStop()
+          this.intervalId === undefined ? this.diaporamaStart(false) : this.diaporamaStop()
           break
         case 'Shift':
           this.openMoodInNewTab()

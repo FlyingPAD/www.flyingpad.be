@@ -9,13 +9,13 @@ import { UserService } from '../../services/user.service';
 export class BottomBarComponent {
   userService = inject(UserService)
 
-  @Input() entityName : string | undefined = undefined
-  @Input() moodsLength : number | undefined = undefined
-  @Input() infoTriggerIsActive : boolean | undefined = undefined
-  @Input() moodsGalleryType : string = 'all'
-  @Input() currentIndex : number = 0
-  @Input() moodType : number = 0
-  
+  @Input() entityName: string | undefined = undefined
+  @Input() moodsLength: number | undefined = undefined
+  @Input() infoTriggerIsActive: boolean | undefined = undefined
+  @Input() moodsGalleryType: string = 'all'
+  @Input() currentIndex: number = 0
+  @Input() moodType: number = 0
+
   @Output() topButton = new EventEmitter<void>()
   @Output() dialog = new EventEmitter<void>()
   @Output() openMoodInNewTab = new EventEmitter<void>()
@@ -29,26 +29,28 @@ export class BottomBarComponent {
   @Output() edition = new EventEmitter<void>()
   @Output() showDetails = new EventEmitter<void>()
   @Output() showMultiTag = new EventEmitter<void>()
+  @Output() triggerSaveMood = new EventEmitter<void>()
 
-  
-  topButtonIsActive : boolean = false
-  diaporamaIsActive : boolean = false
-  leftCardIsActive : boolean = false
-  focusIsActive : boolean = false
 
-  handleTopButton(): void {this.topButton.emit()}
-  handleDialog(): void {this.dialog.emit()}
-  handleOpenMoodInNewTab(): void {this.openMoodInNewTab.emit()}
-  handleRandomMood(): void {this.randomMood.emit()}
-  handleBackToGallery(): void {this.back.emit()}
-  handleEditButton(): void {this.edition.emit()}
-  handleGetIndex(direction : string): void {this.getIndex.emit(direction)}
-  handleDiaporamaStart(isRandom : boolean): void {this.diaporamaStart.emit(isRandom); this.diaporamaIsActive = true}
-  handleDiaporamaStop(): void {this.diaporamaStop.emit(); this.diaporamaIsActive = false}
-  handleLeftCard(): void {this.leftCard.emit()}
-  handleToggleFocus(): void {this.isFocused.emit(this.focusIsActive ? false : true); this.focusIsActive = this.focusIsActive ? false : true}
-  handleShowDetails(): void {this.showDetails.emit()}
-  handleShowMultiTag(): void {this.showMultiTag.emit()}
+  topButtonIsActive: boolean = false
+  diaporamaIsActive: boolean = false
+  leftCardIsActive: boolean = false
+  focusIsActive: boolean = false
+
+  handleTopButton(): void { this.topButton.emit() }
+  handleDialog(): void { this.dialog.emit() }
+  handleOpenMoodInNewTab(): void { this.openMoodInNewTab.emit() }
+  handleRandomMood(): void { this.randomMood.emit() }
+  handleBackToGallery(): void { this.back.emit() }
+  handleEditButton(): void { this.edition.emit() }
+  handleGetIndex(direction: string): void { this.getIndex.emit(direction) }
+  handleDiaporamaStart(isRandom: boolean): void { this.diaporamaStart.emit(isRandom); this.diaporamaIsActive = true }
+  handleDiaporamaStop(): void { this.diaporamaStop.emit(); this.diaporamaIsActive = false }
+  handleLeftCard(): void { this.leftCard.emit() }
+  handleToggleFocus(): void { this.isFocused.emit(this.focusIsActive ? false : true); this.focusIsActive = this.focusIsActive ? false : true }
+  handleShowDetails(): void { this.showDetails.emit() }
+  handleTriggerSaveMood(): void { this.triggerSaveMood.emit() }
+  handleShowMultiTag(): void { this.showMultiTag.emit() }
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(): void {

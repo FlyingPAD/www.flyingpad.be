@@ -1,7 +1,7 @@
 <div class="edition" *ngIf="flow() as flow">
     <div class="edition-selection">
         @if(flow?.model) {
-            <p><b>{{flow?.model?.pseudonym}}</b></p>
+            <p><b>{{ flow.model?.pseudonym }}</b></p>
         }
         @else {
             <p>Please, select a model from the list.</p>
@@ -9,7 +9,7 @@
         <div class="edition-buttons">
             <app-icon-list class="icon" [class.active]="showList" size="25px" (click)="triggerShowList()" />
             <app-icon-plus class="icon" [class.active]="showNew" size="25px" (click)="triggerShowNew()" />
-            @if(flow?.model){
+            @if(flow?.model) {
                 <app-icon-edit class="icon" [class.active]="showEdit" size="25px" (click)="triggerShowEdit()" />
                 <app-icon-go class="icon" size="25px" (click)="go()" />
             }
@@ -17,19 +17,17 @@
     </div>
     @if (showList) {
         <div class="filter">
-            <input type="text" [(ngModel)]="searchModels" placeholder="Filter models ...">
+            <input type="text" [(ngModel)]="searchModels" (ngModelChange)="handleSearchModelsChange($event)" placeholder="Filter models ..." />
         </div>
-        
         <div class="edition-list">
-            <div *ngFor="let model of filterModels() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: paginationService.editModelsCurrentPage}">
-                <a [class.active]="model.pseudonym === flow?.model?.pseudonym" (click)="setModel(model)"> ▸ {{model.pseudonym}}</a>
+            <div *ngFor="let model of filterModels() | paginate : { itemsPerPage: elementsPerPage, currentPage: currentPage() }">
+                <a [class.active]="model.pseudonym === flow.model?.pseudonym" (click)="setModel(model)"> ▸ {{ model.pseudonym }}</a>
             </div>
         </div>
-        
-        <div class="pagination-row" *ngIf="flow.models.length > elementsPerPage">
+        <div class="pagination-row" *ngIf="filterModels().length > elementsPerPage">
             <div class="pagination">
-              <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editModelsCurrentPage = $event" />
-            </div>   
+                <pagination-controls (pageChange)="onPageChange($event)" previousLabel="" nextLabel="" class="pagination" />
+            </div>
         </div>
     }
     @if (showNew) {
@@ -40,4 +38,4 @@
     }
     <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.models.length" />
 </div>
-<div class="spacer-150"></div>
+<app-spacer height="150px" />

@@ -73,11 +73,6 @@ import { MediaComponent } from './pages/media/media.component';
 import { LinksComponent } from './pages/links/links.component';
 import { RightColumnListComponent } from './components/right-column-list/right-column-list.component';
 import { ListCentralComponent } from './components/list-central/list-central.component';
-import { EditionMenuComponent } from './features/moods/edition-menu/edition-menu.component';
-import { EditionTagsComponent } from './features/moods/edition-tags/edition-tags.component';
-import { EditionArtistsComponent } from './features/moods/edition-artists/edition-artists.component';
-import { EditionModelsComponent } from './features/moods/edition-models/edition-models.component';
-import { EditionInfoComponent } from './features/moods/edition-info/edition-info.component';
 import { EditModelsComponent } from './pages/edit-models/edit-models.component';
 import { EditTagsComponent } from './pages/edit-tags/edit-tags.component';
 import { EditFranchisesComponent } from './pages/edit-franchises/edit-franchises.component';
@@ -182,6 +177,16 @@ import { LogoFacebookComponent } from './icons/logo-facebook/logo-facebook.compo
 import { LogoInstagramComponent } from './icons/logo-instagram/logo-instagram.component';
 import { LogoYoutubeComponent } from './icons/logo-youtube/logo-youtube.component';
 import { LogoSoundcloudComponent } from './icons/logo-soundcloud/logo-soundcloud.component';
+import { EditMoodComponent } from './features/moods/edit-mood/edit-mood.component';
+import { EditMoodMenuComponent } from './features/moods/edit-mood-menu/edit-mood-menu.component';
+import { IconSaveComponent } from './icons/icon-save/icon-save.component';
+import { EditMoodThumbnailComponent } from './features/moods/edit-mood-thumbnail/edit-mood-thumbnail.component';
+import { EditMoodModelsComponent } from './features/moods/edit-mood-models/edit-mood-models.component';
+import { EditMoodArtistsComponent } from './features/moods/edit-mood-artists/edit-mood-artists.component';
+import { EditMoodFormComponent } from './features/moods/edit-mood-form/edit-mood-form.component';
+import { EditMoodTagsComponent } from './features/moods/edit-mood-tags/edit-mood-tags.component';
+import { EditMoodScoreComponent } from './features/moods/edit-mood-score/edit-mood-score.component';
+import { SpacerComponent } from './components/spacer/spacer.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   let version : string = '1.0.0'
@@ -271,10 +276,16 @@ export function appInitializerFactory(translate: TranslateService) {
     // Moods.
     CreateMoodImageComponent,
     CreateMoodVideoComponent,
+    EditMoodComponent,
+    EditMoodMenuComponent,
+    EditMoodThumbnailComponent,
+    EditMoodFormComponent,
+    EditMoodScoreComponent,
+    EditMoodTagsComponent,
+    EditMoodArtistsComponent,
+    EditMoodModelsComponent,
     MoodsGalleryComponent,
     MoodDetailsComponent,
-    EditionMenuComponent,
-    EditionInfoComponent,
     MoodViewerComponent,
     MultiTagArtistsComponent,
     MultiTagModelsComponent,
@@ -286,12 +297,10 @@ export function appInitializerFactory(translate: TranslateService) {
     EditTagComponent,
     DeleteTagCategoryComponent,
     DeleteTagComponent,
-    EditionTagsComponent,
     // Models.
     CreateModelComponent,
     EditModelComponent,
     DeleteModelComponent,    
-    EditionModelsComponent,
     // Artists.
     CreateArtistComponent,
     CreateStyleComponent,
@@ -299,7 +308,6 @@ export function appInitializerFactory(translate: TranslateService) {
     EditArtistComponent,
     DeleteStyleComponent,
     DeleteArtistComponent,
-    EditionArtistsComponent,
     // Franchises.
     CreateMediumComponent,
     CreateFranchiseComponent,
@@ -379,10 +387,12 @@ export function appInitializerFactory(translate: TranslateService) {
     IconGoogleComponent,
     IconGoogleLensComponent,
     IconPlayShuffleComponent,
+    IconSaveComponent,
     LogoFacebookComponent,
     LogoInstagramComponent,
     LogoYoutubeComponent,
-    LogoSoundcloudComponent
+    LogoSoundcloudComponent,
+    SpacerComponent
   ],
   imports: [
     BrowserModule,

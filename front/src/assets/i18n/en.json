@@ -68,8 +68,7 @@
         "version" : "Version",
         "pseudonym" : "Pseudonym",
         "subscription" : "Subscription",
-        "achievements" : "Achievements",
-        "statistics" : "Statistics"
+        "achievements" : "Success"
     },
     "message": {
         "404": "Page was not found.",

@@ -1,11 +1,11 @@
-@if(gameStart === false) { <h1>Select your Clef</h1> }
+@if(!gameStart) { <h1>Select your Clef</h1> }
 
-@if(gameStart === true) { 
+@if(gameStart) { 
     <h1>Score : {{ score | number : '3.0' }} <span *ngIf="timer > 0"> | Timer : {{ timer | number : '2.0'}}</span></h1>
 }
 
 <div class="trainer">
-    @if(gameEnd === false) {
+    @if(!gameEnd) {
         <div class="trainer-container">
             <img src="../../../../assets/app_tools/trainer-notes-back.png" />
             
@@ -25,15 +25,15 @@
             <img src="../../../../assets/app_tools/clef-alto.png" *ngIf="clefAlto === true" />
         </div>
     }
-    @if(gameEnd === true && score > 10) {
+    @if(gameEnd && score > 10) {
         <div class="trainer-container"><img src="../../../../assets/app_tools/winner.gif" /></div>
     }
-    @if(gameEnd === true && score <= 10) { 
+    @if(gameEnd && score <= 10) { 
         <div class="trainer-container"><img src="../../../../assets/app_tools/game-over.png" /></div>
     }
 </div>
 
-@if(gameStart === false) {
+@if(!gameStart) {
     <div class="trainer-buttons">
         <a [class.active]="clefBass" (click)="clefBassTrigger()">Bass</a>
         <a [class.active]="clefAlto" (click)="clefAltoTrigger()">Alto</a>
@@ -43,18 +43,18 @@
 
 <p>{{ message }}</p>
 
-@if(gameEnd === true) {
+@if(gameEnd) {
     <h1>Total Run : {{run | number : '2.0'}} seconds</h1>
 }
 
-@if(gameStart === false) {
+@if(!gameStart) {
     <div class="trainer-buttons">
-        <a class="start" (click)="scoreBoardTrigger()">SCORE BOARD</a>
+        <a class="start" (click)="toggleScoreBoard()">SCORE BOARD</a>
         <a class="start" (click)="start()">START GAME</a>
     </div>
 }
 
-@if(gameStart === true && gameEnd === false) {
+@if(gameStart && !gameEnd) {
     <div class="notes">
         <div *ngFor="let note of notesREF">
             <a (click)="updateUserNote(note)">{{note.name}}</a>
@@ -62,7 +62,7 @@
     </div>
 }
 
-@if(gameEnd === true) {
+@if(gameEnd) {
     <div class="trainer-buttons">
         <a class="start" (click)="getName()">SAVE SCORE</a>
         <a class="start" (click)="reset()">NEW GAME</a>
@@ -71,12 +71,12 @@
 
 <div class="spacer-150"></div>
 
-@if(gameStart === false || gameEnd === true) {
-    <app-bottom-bar-larger [contentType]="'notes-trainer'" (reset)="reset()" (info)="infoTrigger()" />
+@if(!gameStart || gameEnd) {
+    <app-bottom-bar-larger [contentType]="'notes-trainer'" (reset)="reset()" (info)="toggleInfo()" />
 }
 
-@if(info === true) {
-    <app-dialog (dialog)="infoTrigger()">
+@if(info) {
+    <app-dialog (dialog)="toggleInfo()">
         <h3 class="dialog-h3">{{ 'title.rules' | translate }}</h3>
         <hr class="dialog-hr">
         <p class="dialog-p">Score as much as you can before time's up !</p>
@@ -89,9 +89,9 @@
     </app-dialog>
 }
 
-@if(scoreboard === true) {
-    <app-dialog (dialog)="scoreBoardTrigger()">
-        @if(naming === true) {
+@if(scoreboard) {
+    <app-dialog (dialog)="toggleScoreBoard()">
+        @if(naming) {
         <form>
             <input type="text" [(ngModel)]="playerName" name="playerName" />
         </form>
@@ -117,3 +117,5 @@
         }
     </app-dialog>
 }
+
+<app-overlay [isOverlayOn]="info || scoreboard" (toggle)="handleOverlayToggle()" />

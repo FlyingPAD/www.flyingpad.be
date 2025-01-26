@@ -110,7 +110,7 @@ hr {
     box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 }
 
-// Filters
+// Filters & inputs
 .filter {
     display: flex;
     justify-content: center;
@@ -128,13 +128,18 @@ hr {
         border: 2px solid var(--colorMain);
     }
 }
-
-// Spacers.
-.spacer-75 {
-    height: 75px;
-}
-.spacer-150 {
-    height: 150px;
+.form {
+    input {
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 200px;
+    }
+    
+    input:focus {
+        outline: none;
+        border: 2px solid var(--colorMain);
+    }
 }
 
 // Dialog.

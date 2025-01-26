@@ -1,5 +1,5 @@
 .dashboard-menu {
-    padding: 5px;
+    padding: 10px;
 
     display: flex;
     justify-content: center;
@@ -10,17 +10,17 @@
         margin: 5px;
         padding: 5px;
 
-        background-color: var(--colorWhiteOpacity4);
-        border: 2px solid var(--colorMainOpacity2);
-        border-radius: 5px;
-        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
-
-        transition-duration: 250ms;
-
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        background-color: var(--colorWhiteOpacity4);
+        border: 3px solid var(--colorMainOpacity2);
+        border-radius: 5px;
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+        transition-duration: 250ms;
 
         img {
             display: block;
@@ -37,7 +37,7 @@
 
     .menu-element:hover:not(.active) {
         background-color: var(--colorWhiteOpacity7);
-        border: 2px solid var(--colorMainOpacity5);
+        border: 3px solid var(--colorMainOpacity5);
         cursor: pointer;
 
         p {
@@ -47,7 +47,7 @@
 
     .active {
         background-color: var(--colorWhite);
-        border: 2px solid var(--colorMain);
+        border: 3px solid var(--colorMain);
 
         p {
             color: var(--colorMain);

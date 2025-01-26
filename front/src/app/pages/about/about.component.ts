@@ -12,8 +12,8 @@ export class AboutComponent {
   #flowService = inject(FlowService)
   #imageURLService = inject(ImageUrlService)
 
-  flow = this.#flowService.flow
-  environment : string = environment.apiBaseUrl
+  public flow = this.#flowService.flow
+  public environment : string = environment.apiBaseUrl
 
   public getImageURL(folderName: string, imageName: string, imageExtension: string): string { 
     return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
