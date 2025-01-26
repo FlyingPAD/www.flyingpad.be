@@ -1,0 +1,52 @@
+<app-edit-mood-menu [editMoodMenuState]="editMoodMenuState()"
+    (editMoodMenuStateTrigger)="handleEditMoodMenuState($event)" />
+
+@if(editMoodMenuState() === 'info'){
+    <div class="info">
+        <app-edit-mood-thumbnail [mood]="mood" [environment]="environment" />
+        <app-edit-mood-form [formGroup]="formGroup" />
+        <app-edit-mood-score [mood]="mood" />
+    </div>
+    <div class="buttons">
+        <div class="button" (click)="handleEditMoodMenuState('delete')">{{ 'title.delete' | translate }}</div>
+    </div>
+}
+
+@if(editMoodMenuState() === 'tags'){
+    <app-edit-mood-tags [mood]="mood" (tagsSelected)="handleTagsSelected($event)"/>
+}
+
+@if(editMoodMenuState() === 'models'){
+    <div class="models">
+        <app-edit-mood-models [mood]="mood" (modelsSelected)="handleModelsSelected($event)" />
+    </div>
+}
+
+@if(editMoodMenuState() === 'artists'){
+    <div class="artists">
+        <app-edit-mood-artists [mood]="mood" (artistsSelected)="handleArtistsSelected($event)" />
+    </div>
+}
+
+@if(editMoodMenuState() === 'delete'){
+    <app-dialog (dialog)="handleEditMoodMenuState('info')">
+        <h3 class="dialog-h3">Delete mood</h3>
+        <hr class="dialog-hr">
+        <p class="p">You are about to permanently delete :</p>
+        <p class="dialog-entity-name">' {{ mood.name }} '</p>
+        <p class="p">This action <u>cannot</u> be undone !</p>
+        <hr class="dialog-hr">
+        <p><span class="span-warning">Warning :</span> This will also remove all associated relations.</p>
+        <hr class="dialog-hr">
+        <p class="p">Are you sure you want to proceed ?</p>
+        <div class="buttons">
+            <div class="button" (click)="deleteMood()">{{ 'title.delete' | translate }}</div>
+        </div>
+    </app-dialog>
+}
+
+<app-bottom-bar [moodsGalleryType]="'edit-mood'" (showDetails)="handleShowDetails()" (triggerSaveMood)="onSave()" (topButton)="toTop()" />
+
+<app-overlay [isOverlayOn]="handleOverlay()" (toggle)="handleEditMoodMenuState('info')" />
+
+<app-spacer height="150px" />

@@ -2,27 +2,28 @@
     <div id="layout-central">
         <div *ngIf="flow.moods.length; else loading">
             <div class="gallery">
-                <div *ngFor="let mood of moods | paginate : { itemsPerPage : moodsPerPage, currentPage : paginationService.moodsByTagCurrentPage}">
+                <div *ngFor="let mood of moods | paginate : { itemsPerPage : moodsPerPage, currentPage : currentPage()}">
                     <section>
-                        <div *ngIf="mood.type == 1">           
-                            <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" 
-                            [class.active]="checkIfSelected(mood.businessId)"
-                            (click)="selectionToggle(mood.businessId)" />
+                        <div *ngIf="mood.type == 1">
+                            <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
+                                [class.active]="checkIfSelected(mood.businessId)"
+                                (click)="selectionToggle(mood.businessId)" />
                         </div>
                         <div *ngIf="mood.type == 2">
                             <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
-                            [class.active]="checkIfSelected(mood.businessId)"
-                            (click)="selectionToggle(mood.businessId)" />        
+                                [class.active]="checkIfSelected(mood.businessId)"
+                                (click)="selectionToggle(mood.businessId)" />
                         </div>
                         <div *ngIf="mood.type == 3">
                             <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
-                            [class.active]="checkIfSelected(mood.businessId)"
-                            (click)="selectionToggle(mood.businessId)" />       
+                                [class.active]="checkIfSelected(mood.businessId)"
+                                (click)="selectionToggle(mood.businessId)" />
                         </div>
                         <div *ngIf="mood.type == 4">
-                            <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
-                            [class.active]="checkIfSelected(mood.businessId)"
-                            (click)="selectionToggle(mood.businessId)" />
+                            <img class="vid-youtube"
+                                src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
+                                [class.active]="checkIfSelected(mood.businessId)"
+                                (click)="selectionToggle(mood.businessId)" />
                         </div>
                     </section>
                 </div>
@@ -37,7 +38,8 @@
     </div>
     <div class="pagination-row" *ngIf="moods.length > moodsPerPage">
         <div class="pagination">
-            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.moodsByTagCurrentPage = $event"></pagination-controls>
-        </div>   
+            <pagination-controls previousLabel="" nextLabel="" class="pagination"
+                (pageChange)="updateCurrentPage($event)"></pagination-controls>
+        </div>
     </div>
 </div>

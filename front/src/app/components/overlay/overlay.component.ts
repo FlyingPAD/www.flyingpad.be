@@ -9,7 +9,7 @@ export class OverlayComponent {
   @Input() isOverlayOn: boolean | undefined = false
   @Output() toggle = new EventEmitter()
 
-  handleToggle(): void {
+  public handleToggle(): void {
     this.toggle.emit()
   }
 }

@@ -18,3 +18,4 @@
         <app-delete-tag [tag]="tag" [tagCategoryId]="tag?.tagCategoryId" (toggleDialog)="closeDeleteDialogEmit()" />
     </app-dialog>
 }
+<app-overlay [isOverlayOn]="isDeleteDialogOpen" (toggle)="closeDeleteDialog()" />

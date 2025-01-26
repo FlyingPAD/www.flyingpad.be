@@ -1,0 +1,17 @@
+<div class="filter">
+  <input type="text" [(ngModel)]="input" placeholder="Filter artists ..." />
+</div>
+
+<div class="form-container">
+  <div class="form-flex">
+    <div class="form_cat_box">
+      <div *ngFor="let artist of filterArtists()">
+        <div class="duo">
+          <input type="checkbox" [id]="artist.name" [value]="artist.businessId" [checked]="artist.isChecked"
+            (change)="onArtistCheckChange(artist)" />
+          <label [for]="artist.name">{{ artist.name }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

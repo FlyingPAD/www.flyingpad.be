@@ -1,24 +1,25 @@
 <div class="edition">
-    <h2 class="h2">Edit current link</h2>
-    <form [formGroup]="formGroup">
-      <input type="text" formControlName="name" placeholder="Full Name">
-      <input type="text" formControlName="description" placeholder="Description">
-      <input type="text" formControlName="url" placeholder="http://www.example.com">      
-      <div class="checkboxes" formArrayName="linkCategories">
-        <div *ngFor="let linkCategoryControl of linkCategoriesArray.controls; let i = index" [formGroupName]="i">
-          <div class="combo">
-            <label [for]="linkCategoryControl.get('name')?.value">{{ linkCategoryControl.get('name')?.value }}</label>
-            <input type="checkbox" [id]="linkCategoryControl.get('name')?.value" formControlName="isChecked">
-          </div>
+  <h2 class="h2">Edit current link</h2>
+  <form [formGroup]="formGroup">
+    <input type="text" formControlName="name" placeholder="Full Name">
+    <input type="text" formControlName="description" placeholder="Description">
+    <input type="text" formControlName="url" placeholder="http://www.example.com">
+    <div class="checkboxes" formArrayName="linkCategories">
+      <div *ngFor="let linkCategoryControl of linkCategoriesArray.controls; let i = index" [formGroupName]="i">
+        <div class="combo">
+          <label [for]="linkCategoryControl.get('name')?.value">{{ linkCategoryControl.get('name')?.value }}</label>
+          <input type="checkbox" [id]="linkCategoryControl.get('name')?.value" formControlName="isChecked">
         </div>
       </div>
-    </form>    
-    <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="onSubmit()">Submit</a>
-    <a class="edition-button" (click)="openDeleteDialog()">Delete</a>
-  </div>  
-  <div class="spacer-150"></div>
-  @if(isDeleteDialogOpen) {
-    <app-dialog (dialog)="closeDeleteDialog()">
-        <app-delete-link [link]="link" (toggleDialog)="closeDeleteDialogEmit()" />
-    </app-dialog>
+    </div>
+  </form>
+  <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="onSubmit()">Submit</a>
+  <a class="edition-button" (click)="openDeleteDialog()">Delete</a>
+</div>
+<div class="spacer-150"></div>
+@if(isDeleteDialogOpen) {
+<app-dialog (dialog)="closeDeleteDialog()">
+  <app-delete-link [link]="link" (toggleDialog)="closeDeleteDialogEmit()" />
+</app-dialog>
 }
+<app-overlay [isOverlayOn]="isDeleteDialogOpen" (toggle)="closeDeleteDialog()" />

@@ -13,3 +13,4 @@
         <app-delete-link-category [linkCategory]="linkCategory" (toggleDialog)="closeDeleteDialogEmit()" />
     </app-dialog>
 }
+<app-overlay [isOverlayOn]="isDeleteDialogOpen" (toggle)="closeDeleteDialog()" />

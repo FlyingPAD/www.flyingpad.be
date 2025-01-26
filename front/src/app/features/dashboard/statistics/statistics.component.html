@@ -1,23 +1,37 @@
 <div class="statistics">
-  <p>Total Moods : {{ statistics()?.totalMoods }}</p>
-  <p> - Images : {{ statistics()?.totalImages }} ( {{ statistics()?.imagesPercentage | number:'1.2-2' }} % )</p>
-  <p> - Videos : {{ statistics()?.totalVideos }} ( {{ statistics()?.videosPercentage | number:'1.2-2' }} % )</p>
-  <hr>
-  <p>Total Tags : {{ statistics()?.totalTags }}</p>
-  <p>Total TagCategories : {{ statistics()?.totalTagCategories }}</p>
-  <hr>
-  <p>Total Artists : {{ statistics()?.totalArtists }}</p>
-  <p>Total Styles : {{ statistics()?.totalStyles }}</p>
-  <hr>
-  <p>Total Media : {{ statistics()?.totalMedia }}</p>
-  <p>Total Franchises : {{ statistics()?.totalFranchises }}</p>
-  <hr>
-  <p>Total Models : {{ statistics()?.totalModels }}</p>
-  <p> - Males : {{ statistics()?.totalMales }} ( {{ statistics()?.malesPercentage | number:'1.2-2' }} % )</p>
-  <p> - Females : {{ statistics()?.totalFemales }} ( {{ statistics()?.femalesPercentage | number:'1.2-2' }} % )</p>
-  <hr>
-  <p>Total Links : {{ statistics()?.totalLinks }}</p>
-  <p>Total Link Categories : {{ statistics()?.totalLinkCategories }}</p>
-  <hr>
-  <p>Total Users : {{ statistics()?.totalUsers }}</p>
+  <div class="box">
+    <p><b>Total Moods</b> : {{ statistics()?.totalMoods }}</p>
+    <p> - Images : {{ statistics()?.totalImages }} ( {{ statistics()?.imagesPercentage | number:'1.2-2' }} % )</p>
+    <p> - Videos : {{ statistics()?.totalVideos }} ( {{ statistics()?.videosPercentage | number:'1.2-2' }} % )</p>
+  </div>
+  <div class="box">
+    <p><b>Total Tags</b> : {{ statistics()?.totalTags }}</p>
+    <p>Total TagCategories : {{ statistics()?.totalTagCategories }}</p>
+    <p> - </p>
+  </div>
+  <div class="box">
+    <p><b>Total Artists</b> : {{ statistics()?.totalArtists }}</p>
+    <p>Total Styles : {{ statistics()?.totalStyles }}</p>
+    <p> - </p>
+  </div>
+  <div class="box">
+    <p><b>Total Media</b> : {{ statistics()?.totalMedia }}</p>
+    <p>Total Franchises : {{ statistics()?.totalFranchises }}</p>
+    <p> - </p>
+  </div>
+  <div class="box">
+    <p><b>Total Models</b> : {{ statistics()?.totalModels }}</p>
+    <p> - Males : {{ statistics()?.totalMales }} ( {{ statistics()?.malesPercentage | number:'1.2-2' }} % )</p>
+    <p> - Females : {{ statistics()?.totalFemales }} ( {{ statistics()?.femalesPercentage | number:'1.2-2' }} % )</p>
+  </div>
+  <div class="box">
+    <p><b>Total Links</b> : {{ statistics()?.totalLinks }}</p>
+    <p>Total Link Categories : {{ statistics()?.totalLinkCategories }}</p>
+    <p> - </p>
+  </div>
+  <div class="box">
+    <p><b>Total Users</b> : {{ statistics()?.totalUsers }}</p>
+    <p> - </p>
+    <p> - </p>
+  </div>
 </div>

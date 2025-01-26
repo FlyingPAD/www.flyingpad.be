@@ -1,0 +1,24 @@
+<form>
+    <div id="tags-wall">
+        <div *ngFor="let category of tagsList">
+            <div class="tags-box">
+                <div class="box-category">
+                    <p>{{category.category.name}}</p>
+                </div>
+                <div class="overflow">
+                    <div *ngFor="let tag of category.tagsCheckBoxes">
+                        <div>
+                            <label [for]="tag.name">
+                                <span>{{tag.name}}</span>
+                                <input type="checkbox" [id]="tag.name" [checked]="tag.isChecked"
+                                    (change)="onTagCheckChange(tag)" />
+                                <div class="custom-checkbox"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="spacer-150"></div>

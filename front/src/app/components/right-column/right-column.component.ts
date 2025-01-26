@@ -9,9 +9,9 @@ import { MenuService } from '../../services/display/menu.service';
 export class RightColumnComponent {
   #menuService = inject(MenuService)
 
-  rightColumnIsActive = this.#menuService.isRightMenuOn
+  public rightColumnIsActive = this.#menuService.isRightMenuOn
 
-  menuTrigger(): void {
+  public menuTrigger(): void {
     this.#menuService.toggleRightMenu()
   }
 }

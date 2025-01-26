@@ -12,63 +12,67 @@ import { MoodsService } from '../../services/moods.service';
 export class EditTagsComponent {
   #flowService = inject(FlowService)
   #router = inject(Router)
-  paginationService = inject(PaginationService)
+  #paginationService = inject(PaginationService)
   #moodsService = inject(MoodsService)
 
-  flow = this.#flowService.flow
+  public flow = this.#flowService.flow
+  public currentPage = this.#paginationService.editTagsCurrentPage
+  public searchTags : string = ''
+  public elementsPerPage : number = 11
+  public showList : boolean = true
+  public showNew : boolean = false
+  public showNewCategory : boolean = false
+  public showEdit : boolean = false
+  public showEditCategory : boolean = false
 
-  searchTags : string = ''
-  elementsPerPage : number = 11
-
-  showList : boolean = true
-  showNew : boolean = false
-  showNewCategory : boolean = false
-  showEdit : boolean = false
-  showEditCategory : boolean = false
-
-  triggerReset(): void {
+  private triggerReset(): void {
     this.showList = false
     this.showNew = false
     this.showNewCategory = false
     this.showEdit = false
     this.showEditCategory = false
   }
-  triggerShowList(): void {
+  public triggerShowList(): void {
     this.triggerReset()
     this.showList = true
   }
-  triggerShowNew(): void {
+  public triggerShowNew(): void {
     this.triggerReset()
     this.showNew = true
   }
-  triggerShowNewCategory(): void {
+  public triggerShowNewCategory(): void {
     this.triggerReset()
     this.showNewCategory = true
   }
-  triggerShowEdit(): void {
+  public triggerShowEdit(): void {
     this.triggerReset()
     this.showEdit = true
   }
-  triggerShowEditCategory(): void {
+  public triggerShowEditCategory(): void {
     this.triggerReset()
     this.showEditCategory = true
   }
 
-  filterTags(): TagLight[] | undefined {
+  public updateCurrentPage(page: number): void {
+    this.#paginationService.updateEditTagsCurrentPage(page)
+  }
+
+  public filterTags(): TagLight[] | undefined {
     return this.flow()?.tagsByCategory.filter(tag => tag.name.toLowerCase().includes(this.searchTags.toLowerCase()))
   }
 
-  go():void {
+  public go():void {
     this.#moodsService.updateMoodMenuState('gallery')
     this.#router.navigateByUrl('/moods')
   }
 
-  setTag(tag : TagLight): void {
+  public setTag(tag : TagLight): void {
     this.#flowService.updateTagId(tag.businessId)
+    this.#paginationService.resetMoodsByTagCurrentPage()
   }
 
-  updateTagCategoryId(tagCategoryId : number | null): void {
-    this.paginationService.editTagsCurrentPageReset()
+  public updateTagCategoryId(tagCategoryId : number | null): void {
+    this.#paginationService.resetEditTagsCurrentPage()
     this.#flowService.updateTagCategoryId(tagCategoryId)
   }
 }

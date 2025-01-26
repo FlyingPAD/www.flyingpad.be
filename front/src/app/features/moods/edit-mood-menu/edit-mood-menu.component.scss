@@ -1,0 +1,49 @@
+.edit-mood-menu {
+    position: sticky;
+    top: 60px;
+    margin-top: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 5;
+
+    a {
+        position: relative;
+
+        margin: 10px;
+        padding: 10px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 17px;
+        color: var(--colorMain);
+
+        background-color: var(--colorWhiteOpacity4);
+        border: 2px solid var(--colorMainOpacity4);
+        border-radius: 15px;
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+        span {
+            position: absolute;
+            top: 80px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    }
+
+    a:not(.active):hover {
+        background-color: var(--colorWhiteOpacity7);
+        border: 2px solid var(--colorMainOpacity7);
+        transition-duration: 500ms;
+        cursor: pointer;
+    }
+
+    .active {
+        background-color: var(--colorWhite);
+        border: 2px solid var(--colorMain);
+    }
+}

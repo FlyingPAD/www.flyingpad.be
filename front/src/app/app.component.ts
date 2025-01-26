@@ -13,8 +13,7 @@ import { ButtonTopService } from './services/display/button-top.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
   #displayService = inject(DisplayService)
@@ -29,9 +28,9 @@ export class AppComponent implements OnInit {
   #buttonTopService = inject(ButtonTopService)
   #router = inject(Router)
 
-  gdprStatus = this.#gdprService.currentStatus
-  displayInfo = this.#displayService.displayInfo
-  showButtonState = this.#buttonTopService.showButtonTop
+  public gdprStatus = this.#gdprService.currentStatus
+  public displayInfo = this.#displayService.displayInfo
+  public showButtonState = this.#buttonTopService.showButtonTop
 
   ngOnInit(): void {
     let token = this.#cookieService.retrieveToken()

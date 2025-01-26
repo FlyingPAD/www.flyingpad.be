@@ -1,68 +1,74 @@
 <div class="edition" *ngIf="flow() as flow">
     <div class="edition-selection">
         @if(flow.linkCategory?.name){
-            <p><b>{{flow.linkCategory?.name}}</b></p>
+        <p><b>{{flow.linkCategory?.name}}</b></p>
         }
         @else {
-            <p>Select a category.</p>
-        }  
+        <p>Select a category.</p>
+        }
         <div class="edition-buttons">
             <app-icon-list class="icon" [class.active]="showList" size="25px" (click)="triggerShowList()" />
-            <app-icon-plus class="icon" [class.active]="showNewCategory" size="25px" (click)="triggerShowNewCategory()" />
+            <app-icon-plus class="icon" [class.active]="showNewCategory" size="25px"
+                (click)="triggerShowNewCategory()" />
             @if(flow.linkCategory?.name){
-                <app-icon-edit class="icon" [class.active]="showEditCategory" size="25px" (click)="triggerShowEditCategory()" />
+            <app-icon-edit class="icon" [class.active]="showEditCategory" size="25px"
+                (click)="triggerShowEditCategory()" />
             }
         </div>
     </div>
     <div class="edition-selection">
         @if(flow.link){
-            <p><b>{{flow.link.name}}</b></p>
+        <p><b>{{flow.link.name}}</b></p>
         }
         @else {
-            <p>Please, select a link from the list.</p>
+        <p>Please, select a link from the list.</p>
         }
         <div class="edition-buttons">
-            <img class="icon active" [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + flow.link?.url + '&sz=96'" />
+            <img class="icon active"
+                [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + flow.link?.url + '&sz=96'" />
             <app-icon-plus class="icon" [class.active]="showNew" size="25px" (click)="triggerShowNew()" />
             @if(flow.link){
-                <app-icon-edit class="icon" [class.active]="showEdit" size="25px" (click)="triggerShowEdit()" />
-                <app-icon-go class="icon" size="25px" (click)="go()" />
+            <app-icon-edit class="icon" [class.active]="showEdit" size="25px" (click)="triggerShowEdit()" />
+            <app-icon-go class="icon" size="25px" (click)="go()" />
             }
         </div>
     </div>
     @if (showList) {
-        <div class="filter">
-            <input type="text" [(ngModel)]="searchLinks" placeholder="Filter links ...">
-        </div>
-        
-        <div class="edition-list">
-            <div *ngFor="let link of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: paginationService.editLinksCurrentPage}">
-                <a [class.active]="link.name === flow.link?.name" (click)="setLink(link)"> ▸ {{link.name}}</a>
-            </div>
-        </div>
+    <div class="filter">
+        <input type="text" [(ngModel)]="searchLinks" placeholder="Filter links ...">
+    </div>
 
-        <app-right-column>
-            <app-right-column-list [table]="flow.linkCategories" [currentEntityId]="flow.linkCategory?.businessId" (entityId)="updateLinkCategoryId($event)" />
-        </app-right-column>
-        
-        <div class="pagination-row" *ngIf="flow.linksByCategory.length > elementsPerPage">
-            <div class="pagination">
-              <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="paginationService.editLinksCurrentPage = $event" />
-            </div>   
+    <div class="edition-list">
+        <div
+            *ngFor="let link of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage()}">
+            <a [class.active]="link.name === flow.link?.name" (click)="setLink(link)"> ▸ {{link.name}}</a>
         </div>
+    </div>
+
+    <app-right-column>
+        <app-right-column-list [table]="flow.linkCategories" [currentEntityId]="flow.linkCategory?.businessId"
+            (entityId)="updateLinkCategoryId($event)" />
+    </app-right-column>
+
+    <div class="pagination-row" *ngIf="flow.linksByCategory.length > elementsPerPage">
+        <div class="pagination">
+            <pagination-controls previousLabel="" nextLabel="" class="pagination"
+                (pageChange)="updateCurrentPage($event)" />
+        </div>
+    </div>
     }
     @if (showNew) {
-        <app-create-link [linkCategories]="flow.linkCategories" (trigger)="triggerShowList()"/>
+    <app-create-link [linkCategories]="flow.linkCategories" (trigger)="triggerShowList()" />
     }
     @if (showNewCategory) {
-        <app-create-link-category (trigger)="triggerShowList()"/>
+    <app-create-link-category (trigger)="triggerShowList()" />
     }
     @if (showEdit) {
-        <app-edit-link [link]="flow.link" (trigger)="triggerShowList()"/>
+    <app-edit-link [link]="flow.link" (trigger)="triggerShowList()" />
     }
     @if (showEditCategory) {
-        <app-edit-link-category [linkCategory]="flow.linkCategory" (showListTrigger)="triggerShowList()" />
+    <app-edit-link-category [linkCategory]="flow.linkCategory" (showListTrigger)="triggerShowList()" />
     }
-    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.linksByCategory.length"/>
+    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.linksByCategory.length" />
 </div>
-<div class="spacer-150"></div>
+<app-spacer height="150px" />

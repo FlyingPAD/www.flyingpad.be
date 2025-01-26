@@ -1,0 +1,17 @@
+<div class="filter">
+    <input type="text" [(ngModel)]="input" placeholder="Filter models ..." />
+</div>
+
+<div class="form-container">
+    <div class="form-flex">
+        <div class="form_cat_box">
+            <div *ngFor="let model of filterModels()">
+                <div class="duo">
+                    <input type="checkbox" [id]="model.pseudonym" [value]="model.businessId" [checked]="model.isChecked"
+                        (change)="onModelCheckChange(model)" />
+                    <label [for]="model.pseudonym">{{ model.pseudonym }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -89,8 +89,14 @@
         <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
     }
-    @if(moodsGalleryType === 'edition') {
+    @if(moodsGalleryType === 'edit-mood') {
         <a (click)="handleShowDetails()"><app-icon-back class="icon" size="25px" /></a>
+        <a (click)="handleTriggerSaveMood()"><app-icon-save class="icon" size="25px" /></a>
+        @if(topButtonIsActive) {
+            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+        } @else {
+            <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
+        }
     }
     @if(moodsGalleryType === 'list-edition'){
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>

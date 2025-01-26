@@ -16,10 +16,12 @@
         <p><b>{{ 'title.last-name' | translate }}</b></p>
         <p>{{user.lastName}}</p>
     </div>
+    <hr class="dialog-hr">
     <div class="flex">
         <p><b>{{ 'title.birthdate' | translate }}</b></p>
         <p>{{ user.birthdate | localizedDate:undefined:false }}</p>
     </div>
+    <hr class="dialog-hr">
     <div class="flex_created">
         <div class="box_created">
             <p>{{ 'title.modified' | translate }}</p>

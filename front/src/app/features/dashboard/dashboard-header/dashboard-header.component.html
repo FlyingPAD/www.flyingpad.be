@@ -1,5 +1,8 @@
 <div class="dashboard-header">
-    <img class="avatar" src="../../../assets/icons-avatars/mood.png" />
+    <div class="avatar">
+        <img src="../../../assets/icons-avatars/mood.png" />
+        <app-icon-coin class="league-icon" size="30px" [colorOuter]="'#cd7f32'" />
+    </div>
     <div>
         <h1>{{user.pseudonym}}</h1>
         <p> - Level {{ user.level }}</p>
@@ -12,5 +15,4 @@
         </div>
         <p class="tweak"><b>{{ 'title.subscription' | translate }}</b> : {{ user.created | localizedDate }}</p>
     </div>
-    <app-icon-coin size="40px" [colorOuter]="'#cd7f32'" />
 </div>

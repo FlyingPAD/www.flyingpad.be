@@ -547,6 +547,7 @@ export class FlowService {
       tap((response) => {
         if (response.success) {
           this.updateMoodId(rmtForm.moodId)
+          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -557,6 +558,7 @@ export class FlowService {
         if (response.success) {
           this.updateMoodId(rmaForm.moodId)
           this.refreshMoods()
+          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -567,6 +569,7 @@ export class FlowService {
         if (response.success) {
           this.updateMoodId(rmmForm.moodId)
           this.refreshMoods()
+          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))
@@ -729,6 +732,7 @@ export class FlowService {
       tap(response => {
         if (response.success) {
           this.refreshMoods()
+          this.#toastr.success(response.message)
         }
         else this.#toastr.error(response.message)
       }))

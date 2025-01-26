@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { FlowService } from '../../services/flow.service';
-import { Router } from '@angular/router';
-import { ModelLight } from '../../interfaces/model';
-import { PaginationService } from '../../services/display/pagination.service';
+import { Component, inject } from '@angular/core'
+import { FlowService } from '../../services/flow.service'
+import { Router } from '@angular/router'
+import { ModelLight } from '../../interfaces/model'
+import { PaginationService } from '../../services/display/pagination.service'
 
 @Component({
   selector: 'app-edit-models',
@@ -11,44 +11,72 @@ import { PaginationService } from '../../services/display/pagination.service';
 export class EditModelsComponent {
   #flowService = inject(FlowService)
   #router = inject(Router)
-  paginationService = inject(PaginationService)
+  #paginationService = inject(PaginationService)
 
-  flow = this.#flowService.flow
+  public flow = this.#flowService.flow
+  public searchModels = ''
+  public elementsPerPage = 12
+  public showList = true
+  public showNew = false
+  public showEdit = false
 
-  searchModels: string = ''
-  elementsPerPage: number = 12
+  private previousPageNoFilter = 1
 
-  showList: boolean = true
-  showNew: boolean = false
-  showEdit: boolean = false
+  public currentPage() {
+    return this.#paginationService.editModelsCurrentPage()
+  }
 
-  triggerReset(): void {
+  private triggerReset(): void {
     this.showList = false
     this.showNew = false
     this.showEdit = false
   }
-  triggerShowList(): void {
+  public triggerShowList(): void {
     this.triggerReset()
     this.showList = true
   }
-  triggerShowNew(): void {
+  public triggerShowNew(): void {
     this.triggerReset()
     this.showNew = true
   }
-  triggerShowEdit(): void {
+  public triggerShowEdit(): void {
     this.triggerReset()
     this.showEdit = true
   }
 
-  filterModels(): ModelLight[] | undefined {
-    return this.flow()?.models.filter(model => model.pseudonym.toLowerCase().includes(this.searchModels.toLowerCase()))
+  public onPageChange(newPage: number): void {
+    this.#paginationService.updateEditModelsCurrentPage(newPage)
+    if (!this.searchModels.trim()) {
+      this.previousPageNoFilter = newPage
+    }
   }
 
-  go(): void {
+  public updateCurrentPage(page: number): void {
+    this.#paginationService.updateEditModelsCurrentPage(page)
+  }
+
+  public filterModels(): ModelLight[] {
+    const all = this.flow()?.models ?? []
+    return all.filter(m =>
+      m.pseudonym.toLowerCase().includes(this.searchModels.toLowerCase())
+    )
+  }
+
+  public handleSearchModelsChange(newValue: string): void {
+    if (!newValue.trim()) {
+      this.updateCurrentPage(this.previousPageNoFilter)
+    } 
+    else {
+      this.updateCurrentPage(1)
+    }
+  }
+
+  public go(): void {
     this.#router.navigateByUrl('/moods')
   }
 
-  setModel(model: ModelLight): void {
+  public setModel(model: ModelLight): void {
     this.#flowService.updateModelId(model.businessId)
+    this.#paginationService.resetModelGalleryCurrentPage()
   }
 }

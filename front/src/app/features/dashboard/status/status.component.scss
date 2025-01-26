@@ -1,4 +1,17 @@
 .current-mood {
+    padding: 0 25px 25px 0;
+
+    background-color: var(--colorMainOpacity2);
+    border: 3px solid var(--colorMain);
+    border-radius: 10px;
+    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+    .title {   
+        margin-bottom: 15px;    
+        color: var(--colorMain);
+        font-size: 17px;
+    }
+
     p {
         text-align: center;
         color: var(--colorMain);
@@ -13,6 +26,7 @@
         box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
         opacity: 0.8;
     }
+
     img:hover {
         cursor: pointer;
         opacity: 1;
@@ -26,6 +40,7 @@
         }
     }
 }
+
 .current-tags {
     margin-top: 15px;
 
@@ -45,6 +60,7 @@
         padding: 7px;
         margin: 5px;
     }
+
     p:hover {
         cursor: pointer;
         border: 3px solid var(--colorMain);
