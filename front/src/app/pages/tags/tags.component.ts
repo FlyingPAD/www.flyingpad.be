@@ -1,30 +1,31 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FlowService } from '../../services/flow.service';
+import { ButtonTopService } from '../../services/display/button-top.service';
+import { MoodsService } from '../../services/moods.service';
 
 @Component({
   selector: 'app-tags',
   templateUrl: './tags.component.html',
   styleUrl: './tags.component.scss'
 })
-export class TagsComponent implements OnInit {
+export class TagsComponent implements OnInit, OnDestroy {
   #flowService = inject(FlowService)
-  flow = this.#flowService.flow
+  #moodsService = inject(MoodsService)
+  #buttonTopService = inject(ButtonTopService)
+  
+  public flow = this.#flowService.flow
 
   ngOnInit(): void {
     window.scrollTo(0, 0)
-    const businessIdString = `${this.flow()?.tag?.businessId ?? 'fallbackValue'}`
-    this.scrollToStart(businessIdString)
+    this.#buttonTopService.setShowButtonTop(true)
   }
 
-  updateTagId(tagId : number | null) {
+  ngOnDestroy(): void {
+    this.#buttonTopService.setShowButtonTop(false)
+  }
+
+  public updateTagId(tagId : number | null) {
     this.#flowService.updateTagId( tagId )
-  }
-
-  scrollToStart(elementId : string): void {
-    const domElement = document.getElementById( elementId )
-
-    if (domElement) {
-      domElement.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" })
-    }
+    this.#moodsService.updateMoodMenuState('gallery')
   }
 }

@@ -4,6 +4,7 @@ import { StorageService } from '../../../services/storage.service';
 import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
 import { DashboardService } from '../../../services/dashboard.service';
+import { AuthenticationService } from '../../../services/authentication.service';
 
 export class Note {
   name: string = ''
@@ -33,6 +34,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
   #userService= inject(UserService)
   #routerService = inject(Router)
   #dashboardService = inject(DashboardService)
+  #authService = inject(AuthenticationService)
 
   timer: number = 15
   intervalId: any | undefined = undefined
@@ -155,40 +157,42 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
         this.gameEnd = true
         this.message = this.score > 0 ? 'Congratulations !' : '...'
         this.timerStop()
-        this.#userService.updatePlayerExperience(500)
-        if(this.run > 10) {
-          if(this.#userService.appUser.achievements[1].isTrue === false) {
-            this.#dashboardService.updateMenuState('achievements')
-            this.#routerService.navigateByUrl('/')
-            this.#userService.obtainAchievement(1)
+        if(this.#authService.isConnected()) {
+          this.#userService.updatePlayerExperience(500)
+          if(this.run > 10) {
+            if(this.#userService.appUser.achievements[1].isTrue === false) {
+              this.#dashboardService.updateMenuState('achievements')
+              this.#routerService.navigateByUrl('/')
+              this.#userService.obtainAchievement(1)
+            }
           }
-        }
-        if(this.run > 20) {
-          if(this.#userService.appUser.achievements[2].isTrue === false) {
-            this.#dashboardService.updateMenuState('achievements')
-            this.#routerService.navigateByUrl('/')
-            this.#userService.obtainAchievement(2)
+          if(this.run > 20) {
+            if(this.#userService.appUser.achievements[2].isTrue === false) {
+              this.#dashboardService.updateMenuState('achievements')
+              this.#routerService.navigateByUrl('/')
+              this.#userService.obtainAchievement(2)
+            }
           }
-        }
-        if(this.run > 30) {
-          if(this.#userService.appUser.achievements[3].isTrue === false) {
-            this.#dashboardService.updateMenuState('achievements')
-            this.#routerService.navigateByUrl('/')
-            this.#userService.obtainAchievement(3)
+          if(this.run > 30) {
+            if(this.#userService.appUser.achievements[3].isTrue === false) {
+              this.#dashboardService.updateMenuState('achievements')
+              this.#routerService.navigateByUrl('/')
+              this.#userService.obtainAchievement(3)
+            }
           }
-        }
-        if(this.run > 40) {
-          if(this.#userService.appUser.achievements[4].isTrue === false) {
-            this.#dashboardService.updateMenuState('achievements')
-            this.#routerService.navigateByUrl('/')
-            this.#userService.obtainAchievement(4)
+          if(this.run > 40) {
+            if(this.#userService.appUser.achievements[4].isTrue === false) {
+              this.#dashboardService.updateMenuState('achievements')
+              this.#routerService.navigateByUrl('/')
+              this.#userService.obtainAchievement(4)
+            }
           }
-        }
-        if(this.run > 50) {
-          if(this.#userService.appUser.achievements[5].isTrue === false) {
-            this.#dashboardService.updateMenuState('achievements')
-            this.#routerService.navigateByUrl('/')
-            this.#userService.obtainAchievement(5)
+          if(this.run > 50) {
+            if(this.#userService.appUser.achievements[5].isTrue === false) {
+              this.#dashboardService.updateMenuState('achievements')
+              this.#routerService.navigateByUrl('/')
+              this.#userService.obtainAchievement(5)
+            }
           }
         }
       }

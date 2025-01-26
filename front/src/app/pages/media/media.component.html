@@ -2,22 +2,22 @@
 <div class="media">
     <div *ngFor="let media of flow()?.franchisesWithMedia">
         @if(media.franchises.length != 0) {
-            <h2 (click)="updateMediaId(media.businessId)">{{media.name}}</h2>
-            <div class="media">
-                <div *ngFor="let franchise of media.franchises">
-                    <div class="franchise">
-                        <h3 (click)="updateFranchiseId(franchise.businessId)">{{franchise.name}}</h3>
-                        <div class="scroll">
-                            <div *ngFor="let model of franchise.models">
-                                <p (click)="updateModelId(model.businessId)">
-                                    <span [ngClass]="model.gender === 'F' ? 'female' : 'male' " > ▸ </span>
-                                    {{model.pseudonym}}
-                                </p>
-                            </div>
+        <h2 (click)="updateMediaId(media.businessId)">{{media.name}}</h2>
+        <div class="media">
+            <div *ngFor="let franchise of media.franchises">
+                <div class="franchise">
+                    <h3 (click)="updateFranchiseId(franchise.businessId)">{{franchise.name}}</h3>
+                    <div class="scroll">
+                        <div *ngFor="let model of franchise.models">
+                            <p (click)="updateModelId(model.businessId)">
+                                <span [ngClass]="model.gender === 'F' ? 'female' : 'male' "> ▸ </span>
+                                {{model.pseudonym}}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         }
     </div>
 </div>
