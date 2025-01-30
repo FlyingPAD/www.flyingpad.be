@@ -1,6 +1,6 @@
 <div class="dashboard">
-  <app-dashboard-header [user]="user" />
-  <app-dashboard-menu [user]="user" (menuState)="updateMenuState($event)" />
+  <app-dashboard-header [user]="user()" />
+  <app-dashboard-menu [user]="user()" (menuState)="updateMenuState($event)" />
 
   @if(dashboardMenuState() === 'status') {
   <app-status />
@@ -15,11 +15,11 @@
   }
 
   @if(dashboardMenuState() === 'account') {
-  <app-account [user]="user" />
+  <app-account />
   }
 
   @if(dashboardMenuState() === 'achievements') {
-  <app-achievements [achievements]="user.achievements" />
+  <app-achievements [achievements]="user().achievements" />
   }
 </div>
 <app-spacer height="175px" />

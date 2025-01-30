@@ -11,8 +11,11 @@
 
 
     .flex {
+        height: 25px;
+
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         background-color: var(--colorWhiteOpacity7);
         border-radius: 5px;
@@ -29,6 +32,16 @@
             a:hover {
                 text-decoration: underline;
             }
+        }
+        input {
+            margin: 0;
+            padding: 5px;
+            border-radius: 5px;
+
+            text-align: right;
+            color: var(--colorMain);
+            font-size: 14px;
+            letter-spacing: 1px;
         }
     }
 

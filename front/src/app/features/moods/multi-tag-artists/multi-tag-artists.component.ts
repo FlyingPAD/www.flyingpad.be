@@ -1,5 +1,5 @@
 import { Component, OnDestroy, inject } from '@angular/core';
-import { MultiTagService } from '../../../services/features/multi-tag.service';
+import { MultiTagService } from '../../../services/multi-tag.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RelationsMoodArtistForm } from '../../../interfaces/relations';
 import { Router } from '@angular/router';

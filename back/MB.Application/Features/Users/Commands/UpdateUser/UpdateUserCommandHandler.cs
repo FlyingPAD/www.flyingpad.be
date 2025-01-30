@@ -1,42 +1,33 @@
 ﻿using AutoMapper;
+using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence.Common;
 using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Users.Commands.UpdateUser;
 
-public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UpdateUserCommandResponse>
+public class UpdateUserCommandHandler(IMapper mapper, IBaseRepository<User> userRepository) : IRequestHandler<UpdateUserCommand, UpdateUserCommandResponse>
 {
-    private readonly IMapper _mapper;
-    private readonly IBaseRepository<User> _userRepository;
-
-    public UpdateUserCommandHandler(IMapper mapper, IBaseRepository<User> userRepository)
-    {
-        _mapper = mapper;
-        _userRepository = userRepository;
-    }
+    private readonly IMapper _mapper = mapper;
+    private readonly IBaseRepository<User> _userRepository = userRepository;
 
     public async Task<UpdateUserCommandResponse> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetByBusinessIdAsync(request.BusinessId);
+        var user = await _userRepository.GetByBusinessIdAsync(request.BusinessId)
+            ?? throw new NotFoundException("User not found.");
 
-        if (user == null)
-        {
-            return new UpdateUserCommandResponse { Success = false, Message = "User wasn't found :(" };
-        }
-
-        _mapper.Map(request, user);
+        user.Pseudonym = request.Pseudonym;
+        user.FirstName = request.FirstName;
+        user.LastName = request.LastName;
+        user.Birthdate = request.Birthdate;
 
         await _userRepository.UpdateAsync(user);
-
-        var updatedUserDto = _mapper.Map<UpdateUserDto>(user);
 
         return new UpdateUserCommandResponse
         {
             Success = true,
-            Message = "User was Updated :)",
-            UpdatedUser = updatedUserDto
+            Message = "User Updated",
+            UpdatedUser = _mapper.Map<UpdateUserDto>(user)
         };
     }
-
 }

@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlowService } from '../../services/flow.service';
-import { ButtonTopService } from '../../services/display/button-top.service';
+import { ButtonTopService } from '../../services/button-top.service';
 
 @Component({
   selector: 'app-media',

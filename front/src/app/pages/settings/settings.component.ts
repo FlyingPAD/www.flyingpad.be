@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { LanguageService } from '../../services/display/language.service';
-import { DisplayService } from '../../services/display/display.service';
-import { FullScreenService } from '../../services/display/full-screen.service';
+import { LanguageService } from '../../services/language.service';
+import { DisplayService } from '../../services/display.service';
+import { FullScreenService } from '../../services/full-screen.service';
 import { Theme } from '../../enumerations/themes';
-import { ThemeService } from '../../services/display/theme.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-settings',

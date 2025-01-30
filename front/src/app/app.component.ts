@@ -1,15 +1,14 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
-import { UserService } from './services/user.service';
-import { CustomCookieService } from './services/cookie.service';
-import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
-import { LanguageService } from './services/display/language.service';
-import { DisplayService } from './services/display/display.service';
-import { FullScreenService } from './services/display/full-screen.service';
-import { ThemeService } from './services/display/theme.service';
+import { LanguageService } from './services/language.service';
+import { DisplayService } from './services/display.service';
+import { FullScreenService } from './services/full-screen.service';
+import { ThemeService } from './services/theme.service';
 import { GdprService } from './services/gdpr.service';
-import { MenuService } from './services/display/menu.service';
-import { ButtonTopService } from './services/display/button-top.service';
+import { MenuService } from './services/menu.service';
+import { ButtonTopService } from './services/button-top.service';
+import { TokenService } from './services/token.service';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -22,31 +21,19 @@ export class AppComponent implements OnInit {
   #languageService = inject(LanguageService)
   #menuService = inject(MenuService)
   #gdprService = inject(GdprService)
-  #authService = inject(AuthenticationService)
-  #userService = inject(UserService)
-  #cookieService = inject(CustomCookieService)
+  #authenticationService = inject(AuthenticationService)
+  #tokenService = inject(TokenService)
   #buttonTopService = inject(ButtonTopService)
   #router = inject(Router)
 
   public gdprStatus = this.#gdprService.currentStatus
-  public displayInfo = this.#displayService.displayInfo
   public showButtonState = this.#buttonTopService.showButtonTop
 
   ngOnInit(): void {
-    let token = this.#cookieService.retrieveToken()
+    let token = this.#tokenService.retrieveToken()
 
     if (token) {
-      this.#userService.setSpecificUser(token)
-      this.#authService.acceptConnection()
-    }
-    else {
-      this.#userService.setDefaultUser()
-    }
-
-    if(this.displayInfo().mode === 'Desktop') {
-      this.#menuService.openRightMenu()
-    } else {
-      this.#menuService.closeRightMenu()
+      this.#authenticationService.authenticate(token)
     }
   }
 

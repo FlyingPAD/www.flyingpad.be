@@ -17,7 +17,6 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UserLoginErrorComponent } from './pages/user-login-error/user-login-error.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
-import { UserUpdateComponent } from './pages/user-update/user-update.component';
 import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circle-of-fifths.component';
 import { DiapasonComponent } from './features/tools/diapason/diapason.component';
 import { FlyingKeysMiniComponent } from './features/tools/flying-keys-mini/flying-keys-mini.component';
@@ -187,6 +186,7 @@ import { EditMoodFormComponent } from './features/moods/edit-mood-form/edit-mood
 import { EditMoodTagsComponent } from './features/moods/edit-mood-tags/edit-mood-tags.component';
 import { EditMoodScoreComponent } from './features/moods/edit-mood-score/edit-mood-score.component';
 import { SpacerComponent } from './components/spacer/spacer.component';
+import { IconDiapasonComponent } from './icons/icon-diapason/icon-diapason.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   let version : string = '1.0.0'
@@ -323,7 +323,6 @@ export function appInitializerFactory(translate: TranslateService) {
     DeleteLinkCategoryComponent,
     DeleteLinkComponent,
     // Users.
-    UserUpdateComponent,
     UserRegisterComponent,
     UserLoginErrorComponent,
     // Scripts.
@@ -392,7 +391,8 @@ export function appInitializerFactory(translate: TranslateService) {
     LogoInstagramComponent,
     LogoYoutubeComponent,
     LogoSoundcloudComponent,
-    SpacerComponent
+    SpacerComponent,
+    IconDiapasonComponent
   ],
   imports: [
     BrowserModule,

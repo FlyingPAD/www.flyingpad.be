@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import { ImageUrlService } from '../../services/display/image-url.service';
-import { LanguageService } from '../../services/display/language.service';
+import { ImageUrlService } from '../../services/image-url.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-header-home',

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { PaginationService } from '../../services/display/pagination.service';
+import { PaginationService } from '../../services/pagination.service';
 import { LinkLight } from '../../interfaces/link';
-import { LinkService } from '../../services/features/link.service';
+import { LinkService } from '../../services/link.service';
 
 @Component({
   selector: 'app-links',

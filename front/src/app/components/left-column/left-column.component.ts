@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { ImageUrlService } from '../../services/display/image-url.service';
-import { LanguageService } from '../../services/display/language.service';
-import { DisplayService } from '../../services/display/display.service';
+import { ImageUrlService } from '../../services/image-url.service';
+import { LanguageService } from '../../services/language.service';
+import { DisplayService } from '../../services/display.service';
 
 @Component({
   selector: 'app-left-column',

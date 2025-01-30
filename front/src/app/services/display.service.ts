@@ -1,22 +1,24 @@
-import { Injectable, Signal } from '@angular/core';
+import { inject, Injectable, Signal } from '@angular/core';
 import { BehaviorSubject, combineLatest, fromEvent } from 'rxjs';
 import { debounceTime, startWith, map } from 'rxjs/operators';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { DisplayModes } from '../../enumerations/display-modes';
-import { DisplayOrientations } from '../../enumerations/display-orientations';
-import { DisplayInfo } from '../../interfaces/display-info';
+import { DisplayModes } from '../enumerations/display-modes';
+import { DisplayOrientations } from '../enumerations/display-orientations';
+import { DisplayInfo } from '../interfaces/display-info';
+import { MenuService } from './menu.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DisplayService {
+  #menuService = inject(MenuService)
   private readonly MOBILE_BREAKPOINT = 768
   #windowWidth = new BehaviorSubject<number>(window.innerWidth)
   #windowHeight = new BehaviorSubject<number>(window.innerHeight)
   #displayMode = new BehaviorSubject<DisplayModes>(this.detectDisplayMode())
   #displayOrientation = new BehaviorSubject<DisplayOrientations>(this.detectDisplayOrientation())
 
-  displayInfo$ = combineLatest([
+  private displayInfo$ = combineLatest([
     this.#windowWidth,
     this.#windowHeight,
     this.#displayMode,
@@ -24,7 +26,7 @@ export class DisplayService {
   ]).pipe(
     map(([width, height, mode, orientation]) => ({ width, height, mode, orientation }))
   )
-  displayInfo: Signal<DisplayInfo> = toSignal(this.displayInfo$, {
+  public displayInfo: Signal<DisplayInfo> = toSignal(this.displayInfo$, {
     initialValue: {
       width: window.innerWidth,
       height: window.innerHeight,
@@ -36,7 +38,7 @@ export class DisplayService {
   constructor() {
     fromEvent(window, 'resize')
       .pipe(
-        debounceTime(200),
+        debounceTime(25),
         startWith(null)
       )
       .subscribe(() => {
@@ -45,6 +47,13 @@ export class DisplayService {
         this.#displayMode.next(this.detectDisplayMode())
         this.#displayOrientation.next(this.detectDisplayOrientation())
       })
+
+    if (this.displayInfo().mode === 'Desktop') {
+      this.#menuService.openRightMenu()
+    }
+    else {
+      this.#menuService.closeRightMenu()
+    }
   }
 
   private detectDisplayMode(): DisplayModes {
@@ -56,9 +65,11 @@ export class DisplayService {
   private detectDisplayOrientation(): DisplayOrientations {
     if (window.innerWidth > window.innerHeight) {
       return DisplayOrientations.Landscape
-    } else if (window.innerWidth < window.innerHeight) {
+    }
+    else if (window.innerWidth < window.innerHeight) {
       return DisplayOrientations.Portrait
-    } else {
+    }
+    else {
       return DisplayOrientations.Square
     }
   }

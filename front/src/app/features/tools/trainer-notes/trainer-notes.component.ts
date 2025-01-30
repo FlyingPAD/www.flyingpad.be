@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { AudioService } from '../../../services/tools/audio.service';
+import { AudioService } from '../../../services/audio.service';
 import { StorageService } from '../../../services/storage.service';
 import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
@@ -29,36 +29,36 @@ export interface GameResult {
   styleUrl: './trainer-notes.component.scss'
 })
 export class TrainerNotesComponent implements OnInit, OnDestroy {
-  audioService = inject(AudioService)
-  storageService = inject(StorageService)
+  #audioService = inject(AudioService)
+  #storageService = inject(StorageService)
   #userService= inject(UserService)
   #routerService = inject(Router)
   #dashboardService = inject(DashboardService)
   #authService = inject(AuthenticationService)
 
-  timer: number = 15
-  intervalId: any | undefined = undefined
-  run: number = 0
-
-  gameStart: boolean = false
-  gameEnd: boolean = false
-
-  clefBass: boolean = false
-  clefTreble: boolean = false
-  clefAlto: boolean = false
-
-  score: number = 0
-
-  pic: boolean | undefined = false
-  note: boolean = false
-  randomNote: Note = new Note()
-  previousRandomNote: Note = new Note()
-  userNote: Note = new Note()
-
-  message: string = 'Get Ready !'
-
-  notes: Note[] = []
-  notesREF: Note[] =
+  private intervalId: any | undefined = undefined
+  public user = this.#userService.user
+  public timer: number = 15
+  public run: number = 0
+  public gameStart: boolean = false
+  public gameEnd: boolean = false
+  public clefBass: boolean = false
+  public clefTreble: boolean = false
+  public clefAlto: boolean = false
+  public score: number = 0
+  public pic: boolean | undefined = false
+  public note: boolean = false
+  public randomNote: Note = new Note()
+  public previousRandomNote: Note = new Note()
+  public userNote: Note = new Note()
+  public message: string = 'Get Ready !'
+  public notes: Note[] = []
+  public info: boolean = false
+  public scoreboard: boolean = false
+  public gameResults: GameResult[] = []
+  public playerName: string = ''
+  public naming: boolean = false
+  public notesREF: Note[] =
     [
       { name: 'C', freq: 261.63, row: 1, alteration: false, extension: true, doubleUp: undefined },
       { name: 'C#', freq: 277.18, row: 1, alteration: true, extension: true, doubleUp: undefined },
@@ -73,12 +73,6 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
       { name: 'A#', freq: 466.16, row: 6, alteration: true, extension: false, doubleUp: undefined },
       { name: 'B', freq: 493.88, row: 7, alteration: false, extension: false, doubleUp: undefined },
     ]
-
-  info: boolean = false
-  scoreboard: boolean = false
-  gameResults: GameResult[] = []
-  playerName: string = ''
-  naming: boolean = false
 
   ngOnInit(): void {
     this.updateScoreboard()
@@ -142,7 +136,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
   }
 
   resetStorage() {
-    this.storageService.removeItem('gameResults')
+    this.#storageService.removeItem('gameResults')
     this.updateScoreboard()
   }
 
@@ -160,35 +154,35 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
         if(this.#authService.isConnected()) {
           this.#userService.updatePlayerExperience(500)
           if(this.run > 10) {
-            if(this.#userService.appUser.achievements[1].isTrue === false) {
+            if(this.#userService.user().achievements[1].isTrue === false) {
               this.#dashboardService.updateMenuState('achievements')
               this.#routerService.navigateByUrl('/')
               this.#userService.obtainAchievement(1)
             }
           }
           if(this.run > 20) {
-            if(this.#userService.appUser.achievements[2].isTrue === false) {
+            if(this.#userService.user().achievements[2].isTrue === false) {
               this.#dashboardService.updateMenuState('achievements')
               this.#routerService.navigateByUrl('/')
               this.#userService.obtainAchievement(2)
             }
           }
           if(this.run > 30) {
-            if(this.#userService.appUser.achievements[3].isTrue === false) {
+            if(this.#userService.user().achievements[3].isTrue === false) {
               this.#dashboardService.updateMenuState('achievements')
               this.#routerService.navigateByUrl('/')
               this.#userService.obtainAchievement(3)
             }
           }
           if(this.run > 40) {
-            if(this.#userService.appUser.achievements[4].isTrue === false) {
+            if(this.#userService.user().achievements[4].isTrue === false) {
               this.#dashboardService.updateMenuState('achievements')
               this.#routerService.navigateByUrl('/')
               this.#userService.obtainAchievement(4)
             }
           }
           if(this.run > 50) {
-            if(this.#userService.appUser.achievements[5].isTrue === false) {
+            if(this.#userService.user().achievements[5].isTrue === false) {
               this.#dashboardService.updateMenuState('achievements')
               this.#routerService.navigateByUrl('/')
               this.#userService.obtainAchievement(5)
@@ -198,18 +192,20 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
       }
     }, 1000)
   }
-  timerStop(): void {
+
+  public timerStop(): void {
     if (this.intervalId !== undefined) {
       clearInterval(this.intervalId)
       this.intervalId = undefined
     }
   }
 
-  getName() {
+  public getName() {
     this.naming = true
     this.scoreboard = true
   }
-  saveGame() {
+
+  public saveGame() {
     let result: GameResult =
     {
       playerName: this.playerName,
@@ -225,38 +221,38 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
     this.scoreboard = true
   }
 
-  clefBassTrigger() {
+  public clefBassTrigger() {
     this.clefBass = true
     this.clefTreble = false
     this.clefAlto = false
   }
 
-  clefTrebleTrigger() {
+  public clefTrebleTrigger() {
     this.clefBass = false
     this.clefTreble = true
     this.clefAlto = false
   }
 
-  clefAltoTrigger() {
+  public clefAltoTrigger() {
     this.clefBass = false
     this.clefTreble = false
     this.clefAlto = true
   }
 
-  updateUserNote(note: Note) {
+  public updateUserNote(note: Note) {
     this.userNote = note
     this.checkNote()
     this.generateRandomNote()
   }
 
-  generateRandomNote() {
+  public generateRandomNote() {
     let randomIndex = Math.floor(Math.random() * this.notes.length);
     this.randomNote = this.notes[randomIndex];
     this.previousRandomNote = this.notes[randomIndex]
     this.playNote(this.randomNote.freq);
   }
 
-  checkNote() {
+  public checkNote() {
     if (this.userNote.name === this.randomNote.name) {
       this.timer += 1
       this.message = 'Yeah ! Keep Going !'
@@ -269,11 +265,11 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
     }
   }
 
-  playNote(freq: number) {
-    this.audioService.playFrequencyWithEnvelope(freq, 1, 1)
+  public playNote(freq: number) {
+    this.#audioService.playFrequencyWithEnvelope(freq, 1, 1)
   }
 
-  initializeNotes() {
+  public initializeNotes() {
     if (this.clefBass === true) {
       this.notes =
         [
@@ -364,17 +360,17 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveGameResult(result: GameResult): void {
-    let results: GameResult[] = this.storageService.getItem<GameResult[]>('gameResults') || []
+  public saveGameResult(result: GameResult): void {
+    let results: GameResult[] = this.#storageService.getItem<GameResult[]>('gameResults') || []
     results.push(result)
-    this.storageService.setItem('gameResults', results)
+    this.#storageService.setItem('gameResults', results)
   }
 
-  getGameResults(): GameResult[] {
-    return this.storageService.getItem<GameResult[]>('gameResults') || []
+  public getGameResults(): GameResult[] {
+    return this.#storageService.getItem<GameResult[]>('gameResults') || []
   }
 
-  updateScoreboard(): void {
+  public updateScoreboard(): void {
     let gameResults = this.getGameResults()
     this.gameResults = gameResults.sort((a, b) => b.score - a.score)
   }

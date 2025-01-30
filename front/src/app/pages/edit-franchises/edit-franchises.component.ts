@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FlowService } from '../../services/flow.service';
 import { Router } from '@angular/router';
-import { PaginationService } from '../../services/display/pagination.service';
+import { PaginationService } from '../../services/pagination.service';
 import { FranchiseLight } from '../../interfaces/franchise';
 
 @Component({

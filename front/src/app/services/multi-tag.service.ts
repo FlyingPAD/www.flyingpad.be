@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { environment } from '../../../environments/environment';
-import { ArtistCheckBox, GetAllArtistsResponse } from '../../interfaces/artist';
+import { environment } from '../../environments/environment';
+import { ArtistCheckBox, GetAllArtistsResponse } from '../interfaces/artist';
 import { map, Observable } from 'rxjs';
-import { GetModelsByMoodResponse, ModelCheckBox } from '../../interfaces/model';
+import { GetModelsByMoodResponse, ModelCheckBox } from '../interfaces/model';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { SupportedLanguages } from '../../enumerations/supported-languages';
-import { ImageUrlService } from '../../services/display/image-url.service';
-import { LanguageService } from '../../services/display/language.service';
+import { ImageUrlService } from '../../services/image-url.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-language-menu-home',

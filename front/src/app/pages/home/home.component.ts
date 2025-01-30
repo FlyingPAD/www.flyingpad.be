@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { ImageUrlService } from '../../services/display/image-url.service';
+import { ImageUrlService } from '../../services/image-url.service';
 import { FlowService } from '../../services/flow.service';
 import { environment } from '../../../environments/environment';
 
@@ -16,13 +16,14 @@ export class HomeComponent implements OnInit {
   #imageURLService = inject(ImageUrlService)
   #router = inject(Router)
 
-  flow = this.#flowService.flow
-  environment : string = environment.apiBaseUrl
+  public flow = this.#flowService.flow
+  public user = this.#userService.user
+  public environment : string = environment.apiBaseUrl
   
 
   ngOnInit() : void {
-    if(this.#userService.appUser.role === 2) {
-      this.#router.navigateByUrl('dashboard')
+    if(this.user()?.role === 2) {
+      this.#router.navigateByUrl('/dashboard')
     }
   }
 

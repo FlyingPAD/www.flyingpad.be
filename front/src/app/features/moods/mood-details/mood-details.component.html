@@ -11,7 +11,7 @@
     <hr class="dialog-hr">
     }
 
-    @if(userService.appUser.role === 2) {
+    @if(user().role === 2) {
     @if(models && models.length > 0) {
     <p class="box-title">{{ 'title.starring' | translate }}</p>
     <div class="list_categories">

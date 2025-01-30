@@ -30,8 +30,8 @@ public class UsersControllerV1(IMediator mediator) : ControllerBase
     public async Task<ActionResult<GetUsersListQueryResponse>> GetAll()
         => Ok(await _mediator.Send(new GetUsersListQuery()));
 
-    [HttpGet("GetOneDetails/{userId}")]
-    public async Task<ActionResult<GetUserByIdQuery>> GetOneDetails( Guid userId )
+    [HttpGet("GetUser/{userId}")]
+    public async Task<ActionResult<GetUserByIdQuery>> GetUser( Guid userId )
         => Ok(await _mediator.Send(new GetUserByIdQuery { UserId = userId }));
 
     [HttpPut("Update")]

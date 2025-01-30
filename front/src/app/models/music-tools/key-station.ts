@@ -1,7 +1,7 @@
-import { AudioService } from "../../services/tools/audio.service";
-import { KeysService } from "../../services/tools/keys.service";
+import { AudioService } from "../../services/audio.service";
 import { Key } from "./key";
 import { Note } from "../../interfaces/music-tools/note";
+import { KeysService } from "../../services/keys.service";
 
 export class KeyStation {
   isActive: boolean = true
