@@ -7,7 +7,7 @@ import { UserService } from '../../services/user.service';
   styleUrl: './bottom-bar.component.scss'
 })
 export class BottomBarComponent {
-  userService = inject(UserService)
+  #userService = inject(UserService)
 
   @Input() entityName: string | undefined = undefined
   @Input() moodsLength: number | undefined = undefined
@@ -31,26 +31,26 @@ export class BottomBarComponent {
   @Output() showMultiTag = new EventEmitter<void>()
   @Output() triggerSaveMood = new EventEmitter<void>()
 
+  public user = this.#userService.user
+  public topButtonIsActive: boolean = false
+  public diaporamaIsActive: boolean = false
+  public leftCardIsActive: boolean = false
+  public focusIsActive: boolean = false
 
-  topButtonIsActive: boolean = false
-  diaporamaIsActive: boolean = false
-  leftCardIsActive: boolean = false
-  focusIsActive: boolean = false
-
-  handleTopButton(): void { this.topButton.emit() }
-  handleDialog(): void { this.dialog.emit() }
-  handleOpenMoodInNewTab(): void { this.openMoodInNewTab.emit() }
-  handleRandomMood(): void { this.randomMood.emit() }
-  handleBackToGallery(): void { this.back.emit() }
-  handleEditButton(): void { this.edition.emit() }
-  handleGetIndex(direction: string): void { this.getIndex.emit(direction) }
-  handleDiaporamaStart(isRandom: boolean): void { this.diaporamaStart.emit(isRandom); this.diaporamaIsActive = true }
-  handleDiaporamaStop(): void { this.diaporamaStop.emit(); this.diaporamaIsActive = false }
-  handleLeftCard(): void { this.leftCard.emit() }
-  handleToggleFocus(): void { this.isFocused.emit(this.focusIsActive ? false : true); this.focusIsActive = this.focusIsActive ? false : true }
-  handleShowDetails(): void { this.showDetails.emit() }
-  handleTriggerSaveMood(): void { this.triggerSaveMood.emit() }
-  handleShowMultiTag(): void { this.showMultiTag.emit() }
+  public handleTopButton(): void { this.topButton.emit() }
+  public handleDialog(): void { this.dialog.emit() }
+  public handleOpenMoodInNewTab(): void { this.openMoodInNewTab.emit() }
+  public handleRandomMood(): void { this.randomMood.emit() }
+  public handleBackToGallery(): void { this.back.emit() }
+  public handleEditButton(): void { this.edition.emit() }
+  public handleGetIndex(direction: string): void { this.getIndex.emit(direction) }
+  public handleDiaporamaStart(isRandom: boolean): void { this.diaporamaStart.emit(isRandom); this.diaporamaIsActive = true }
+  public handleDiaporamaStop(): void { this.diaporamaStop.emit(); this.diaporamaIsActive = false }
+  public handleLeftCard(): void { this.leftCard.emit() }
+  public handleToggleFocus(): void { this.isFocused.emit(this.focusIsActive ? false : true); this.focusIsActive = this.focusIsActive ? false : true }
+  public handleShowDetails(): void { this.showDetails.emit() }
+  public handleTriggerSaveMood(): void { this.triggerSaveMood.emit() }
+  public handleShowMultiTag(): void { this.showMultiTag.emit() }
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(): void {

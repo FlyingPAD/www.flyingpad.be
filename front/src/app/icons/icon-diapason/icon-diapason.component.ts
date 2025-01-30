@@ -2,10 +2,10 @@ import { Component, inject, Input } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
-  selector: 'app-icon-hamburger',
-  templateUrl: './icon-hamburger.component.html'
+  selector: 'app-icon-diapason',
+  templateUrl: './icon-diapason.component.html'
 })
-export class IconHamburgerComponent {
+export class IconDiapasonComponent {
   #themeService = inject(ThemeService)
 
   @Input() color?: string

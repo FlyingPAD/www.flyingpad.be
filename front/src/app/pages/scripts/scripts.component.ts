@@ -1,5 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ButtonTopService } from '../../services/display/button-top.service';
+import { ButtonTopService } from '../../services/button-top.service';
 
 @Component({
   selector: 'app-scripts',

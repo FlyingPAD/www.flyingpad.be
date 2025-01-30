@@ -14,9 +14,9 @@ import { RelationsMoodTagForm, RelationsMoodArtistForm, RelationsMoodModelForm, 
 import { CreateMoodVideoResponse, GetOneVideoDetailsResponse, VideoForm } from '../interfaces/mood-video';
 import { CreateMoodImageResponse, GetOneImageDetailsResponse, ImageForm } from '../interfaces/mood-image';
 import { GetOneVideoYoutubeDetailsResponse } from '../interfaces/mood-video-youtube';
-import { ArtistUpdateForm, FranchiseUpdateForm, LinkCategoryUpdateForm, LinkUpdateForm, MediumUpdateForm, ModelUpdateForm, MoodScoreUpdate, MoodUpdateForm, StyleUpdateForm, TagCategoryUpdateForm, TagUpdateForm, UserUpdateForm } from '../interfaces/forms-update';
-import { CreateArtistResponse, CreateFranchiseResponse, CreateLinkCategoryResponse, CreateLinkResponse, CreateMediumResponse, CreateMoodResponse, CreateStyleResponse, CreateTagCategoryResponse, CreateTagResponse, CreateUserResponse } from '../interfaces/responses-create';
-import { ArtistCreateForm, FranchiseCreateForm, LinkCategoryCreateForm, LinkCreateForm, MediumCreateForm, ModelCreateForm, MoodCreateForm, StyleCreateForm, TagCategoryCreateForm, TagCreateForm, UserCreateForm } from '../interfaces/forms-create';
+import { ArtistUpdateForm, FranchiseUpdateForm, LinkCategoryUpdateForm, LinkUpdateForm, MediumUpdateForm, ModelUpdateForm, MoodScoreUpdate, MoodUpdateForm, StyleUpdateForm, TagCategoryUpdateForm, TagUpdateForm } from '../interfaces/forms-update';
+import { CreateArtistResponse, CreateFranchiseResponse, CreateLinkCategoryResponse, CreateLinkResponse, CreateMediumResponse, CreateMoodResponse, CreateStyleResponse, CreateTagCategoryResponse, CreateTagResponse } from '../interfaces/responses-create';
+import { ArtistCreateForm, FranchiseCreateForm, LinkCategoryCreateForm, LinkCreateForm, MediumCreateForm, ModelCreateForm, MoodCreateForm, StyleCreateForm, TagCategoryCreateForm, TagCreateForm } from '../interfaces/forms-create';
 import { GetAllTagCategoriesResponse, TagCategoryFull, GetTagCategoryByIdResponse } from '../interfaces/tag-category';
 import { TagsGetFullListResponse, GetTagsCheckBoxesByMoodResponse } from '../interfaces/tags-list';
 import { GetAllStylesResponse, GetStyleByIdResponse, GetStylesCheckBoxesByArtistResponse, StyleFull } from '../interfaces/style';
@@ -50,8 +50,6 @@ export class FlowService {
   public updateLinkId(linkId: number | null) { this.#linkId.next(linkId) }
   #linkCategoryId = new BehaviorSubject<number | null>(null)
   public updateLinkCategoryId(linkCategoryId: number | null) { this.#linkCategoryId.next(linkCategoryId) }
-  #userId = new BehaviorSubject<number | null>(null)
-  public updateUserId(userId: number | null) { this.#userId.next(userId) }
   #moodsGalleryType = new BehaviorSubject<string>('all')
   public updateMoodsGalleryType(moodsGalleryType: string) { this.#moodsGalleryType.next(moodsGalleryType) }
   moodsGalleryType$ = this.#moodsGalleryType.asObservable()
@@ -77,8 +75,6 @@ export class FlowService {
   public refreshLinkCategories() { this.#refreshLinkCategories.next(true) }
   #refreshLinks = new BehaviorSubject<boolean>(true)
   public refreshLinks() { this.#refreshLinks.next(true) }
-  #refreshUsers = new BehaviorSubject<boolean>(true)
-  public refreshUsers() { this.#refreshUsers.next(true) }
 
   // Get all.
   moods$ = this.#refreshMoods.pipe(
@@ -714,17 +710,6 @@ export class FlowService {
       })
     )
   }
-  public CreateUser(form: UserCreateForm) {
-    return this.#http.post<CreateUserResponse>(`${this.#url}Users/Create`, form).pipe(
-      tap(response => {
-        if (response.success) {
-          this.updateUserId(response.userId)
-          this.refreshUsers()
-        }
-        else this.#toastr.error(response.message)
-      })
-    )
-  }
 
   // Update.
   public UpdateMood(form: MoodUpdateForm) {
@@ -845,16 +830,6 @@ export class FlowService {
         else this.#toastr.error(response.message)
       }))
   }
-  public UpdateUser(form: UserUpdateForm) {
-    return this.#http.put<BaseResponse>(`${this.#url}Users/Update`, form).pipe(
-      tap(response => {
-        if (response.success) {
-          this.updateUserId(form.userId)
-          this.refreshUsers()
-        }
-        else this.#toastr.error(response.message)
-      }))
-  }
 
   // Delete.
   public DeleteMood(moodId: number) {
@@ -958,16 +933,6 @@ export class FlowService {
         if (response.success) {
           this.updateLinkId(null)
           this.refreshLinks()
-        }
-        else this.#toastr.error(response.message)
-      }))
-  }
-  public DeleteUser(userId: number) {
-    return this.#http.delete<BaseResponse>(`${this.#url}Users/Delete/${userId}`).pipe(
-      tap(response => {
-        if (response.success) {
-          this.updateUserId(null)
-          this.refreshUsers()
         }
         else this.#toastr.error(response.message)
       }))

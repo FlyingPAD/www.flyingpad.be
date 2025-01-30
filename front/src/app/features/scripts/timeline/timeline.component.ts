@@ -1,6 +1,6 @@
 import { Component, HostListener, inject, OnInit, ViewChild, ElementRef } from '@angular/core'
-import { TimelineService } from '../../../services/tools/timeline.service'
 import { Timeline } from '../../../models/music-tools/timeline'
+import { TimelineService } from '../../../services/timeline.service'
 
 @Component({
   selector: 'app-timeline',

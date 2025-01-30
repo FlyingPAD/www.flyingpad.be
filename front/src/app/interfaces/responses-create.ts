@@ -39,7 +39,3 @@ export interface CreateLinkCategoryResponse extends BaseResponse {
 export interface CreateLinkResponse extends BaseResponse {
     linkId : number
 }
-
-export interface CreateUserResponse extends BaseResponse {
-    userId : number
-}

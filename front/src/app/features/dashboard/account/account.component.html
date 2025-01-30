@@ -1,36 +1,78 @@
-<div class="profile">
-    <div class="flex">
-        <p><b>{{ 'title.pseudonym' | translate }}</b></p>
-        <p>{{user.pseudonym}}</p>
-    </div>
-    <div class="flex">
-        <p><b>{{ 'title.email' | translate }}</b></p>
-        <p>{{user.email}}</p>
-    </div>
-    <hr class="dialog-hr">
-    <div class="flex">
-        <p><b>{{ 'title.first-name' | translate }}</b></p>
-        <p>{{user.firstName}}</p>
-    </div>
-    <div class="flex">
-        <p><b>{{ 'title.last-name' | translate }}</b></p>
-        <p>{{user.lastName}}</p>
-    </div>
-    <hr class="dialog-hr">
-    <div class="flex">
-        <p><b>{{ 'title.birthdate' | translate }}</b></p>
-        <p>{{ user.birthdate | localizedDate:undefined:false }}</p>
-    </div>
-    <hr class="dialog-hr">
-    <div class="flex_created">
-        <div class="box_created">
-            <p>{{ 'title.modified' | translate }}</p>
-            <p>{{ user.modified | localizedDate }}</p>
+@if(!showEdition) {
+    <div class="profile">
+        <div class="flex">
+            <p><b>{{ 'title.pseudonym' | translate }}</b></p>
+            <p>{{user().pseudonym}}</p>
+        </div>
+        <div class="flex">
+            <p><b>{{ 'title.email' | translate }}</b></p>
+            <p>{{user().email}}</p>
+        </div>
+        <hr class="dialog-hr">
+        <div class="flex">
+            <p><b>{{ 'title.first-name' | translate }}</b></p>
+            <p>{{user().firstName}}</p>
+        </div>
+        <div class="flex">
+            <p><b>{{ 'title.last-name' | translate }}</b></p>
+            <p>{{user().lastName}}</p>
+        </div>
+        <hr class="dialog-hr">
+        <div class="flex">
+            <p><b>{{ 'title.birthdate' | translate }}</b></p>
+            <p>{{ user().birthdate | localizedDate:undefined:false }}</p>
+        </div>
+        <hr class="dialog-hr">
+        <div class="flex_created">
+            <div class="box_created">
+                <p>{{ 'title.modified' | translate }}</p>
+                <p>{{ user().modified | localizedDate }}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="buttons">
+            <div class="button" (click)="toggleEdition()">{{ 'title.modify' | translate }}</div>
         </div>
     </div>
-    <hr>
+}
+@if(showEdition) {
+    <form class="profile" [formGroup]="formGroup">
+        <div class="flex">
+            <p><b>{{ 'title.pseudonym' | translate }}</b></p>
+            <input type="text" formControlName="pseudonym">
+        </div>
+        <div class="flex">
+            <p><b>{{ 'title.email' | translate }}</b></p>
+            <p>{{user().email}}</p>
+        </div>
+        <hr class="dialog-hr">
+        <div class="flex">
+            <p><b>{{ 'title.first-name' | translate }}</b></p>
+            <input type="text" formControlName="firstName">
+        </div>
+        <div class="flex">
+            <p><b>{{ 'title.last-name' | translate }}</b></p>
+            <input type="text" formControlName="lastName">
+        </div>
+        <hr class="dialog-hr">
+        <div class="flex">
+            <p><b>{{ 'title.birthdate' | translate }}</b></p>
+            <input type="date" formControlName="birthdate">
+        </div>
+        <hr class="dialog-hr">
+        <div class="flex_created">
+            <div class="box_created">
+                <p>{{ 'title.modified' | translate }}</p>
+                <p>{{ user().modified | localizedDate }}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="buttons">
+            <div class="button" (click)="onSubmit()">{{ 'title.submit' | translate }}</div>
+        </div>
+    </form>
+    <app-spacer height="25px" />
     <div class="buttons">
-        <div class="button" routerLink="/users/delete-user/{{user.businessId}}">{{ 'title.delete' | translate }}</div>
-        <div class="button" routerLink="/users/user-update">{{ 'title.modify' | translate }}</div>
+        <div class="button" routerLink="/users/delete-user/{{user().businessId}}">{{ 'title.delete' | translate }}</div>
     </div>
-</div>
+}

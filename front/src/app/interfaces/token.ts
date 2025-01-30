@@ -1,13 +1,5 @@
-export interface Token {
-    token : string
-}
-
-export interface TokenCustom { 
-    id: number, 
-    firstName: string, 
-    lastName: string, 
-    Email: string, 
-    birthdate: Date, 
+export interface Token { 
+    businessId: number, 
     role: string, 
     exp: number, 
     iss: string, 

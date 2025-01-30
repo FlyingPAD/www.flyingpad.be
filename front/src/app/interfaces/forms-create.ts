@@ -56,8 +56,3 @@ export interface LinkCreateForm {
     url : string
     linkCategoryIds : number[]
 }
-
-export interface UserCreateForm {
-    firstName : string
-    lastName : string
-}

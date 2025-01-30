@@ -1,11 +1,41 @@
-import { Component, Input } from '@angular/core';
-import { User } from '../../../interfaces/user';
+import { Component, inject, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../../services/user.service';
+import { Subscription } from 'rxjs';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss'
 })
-export class AccountComponent {
-  @Input() user! : User
+export class AccountComponent implements OnDestroy {
+  #userService = inject(UserService)
+  #formBuilder = inject(FormBuilder)
+
+  #subscription = new Subscription()
+  public user = this.#userService.user
+
+  public showEdition: boolean = false
+  public formGroup: FormGroup = this.#formBuilder.group({
+    businessId: [this.user().businessId],
+    pseudonym: [this.user().pseudonym, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    firstName: [this.user().firstName, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    lastName: [this.user().lastName, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    birthdate: [formatDate(this.user().birthdate, 'yyyy-MM-dd', 'en_US')]
+  })
+
+  ngOnDestroy(): void {
+    this.#subscription.unsubscribe
+  }
+
+  public toggleEdition(): void {
+    this.showEdition = !this.showEdition
+  }
+
+  public onSubmit(): void {
+    if (this.formGroup.valid) {
+      this.#subscription = this.#userService.updateUser(this.formGroup.value).subscribe(() => this.toggleEdition())
+    }
+  }
 }

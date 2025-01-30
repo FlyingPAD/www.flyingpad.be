@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 import { BehaviorSubject, combineLatest, map, Observable, of, startWith, switchMap, tap } from 'rxjs';
-import { GetLinksResponse, GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, LinkCategoryFull, LinkFull, LinkLight } from '../../interfaces/link';
-import { BaseResponse } from '../../interfaces/base-response';
-import { LinkCategoryCreateForm, LinkCreateForm } from '../../interfaces/forms-create';
-import { LinkCategoryUpdateForm, LinkUpdateForm } from '../../interfaces/forms-update';
-import { CreateLinkCategoryResponse, CreateLinkResponse } from '../../interfaces/responses-create';
+import { GetLinksResponse, GetLinkCategoriesResponse, GetLinkCategoryResponse, GetLinkResponse, LinkCategoryFull, LinkFull, LinkLight } from '../interfaces/link';
+import { BaseResponse } from '../interfaces/base-response';
+import { LinkCategoryCreateForm, LinkCreateForm } from '../interfaces/forms-create';
+import { LinkCategoryUpdateForm, LinkUpdateForm } from '../interfaces/forms-update';
+import { CreateLinkCategoryResponse, CreateLinkResponse } from '../interfaces/responses-create';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({

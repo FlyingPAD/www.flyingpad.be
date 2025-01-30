@@ -1,6 +1,5 @@
 import { inject, Injectable, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { StorageService } from './storage.service';
 
@@ -9,7 +8,6 @@ import { StorageService } from './storage.service';
 })
 export class GdprService {
   #storageService = inject(StorageService)
-  #toastr = inject(ToastrService)
 
   #currentStatus = new BehaviorSubject<boolean | undefined | null>(undefined)
   public currentStatus: Signal<boolean | undefined | null> = toSignal(this.#currentStatus)
@@ -19,7 +17,8 @@ export class GdprService {
 
     if (storedStatus) {
       this.setCurrentStatus(storedStatus)
-    } else {
+    } 
+    else {
       this.#currentStatus.next(undefined)
     }
   }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Chord } from '../../interfaces/music-tools/chord';
-import { Key } from '../../models/music-tools/key';
-import { Note } from '../../interfaces/music-tools/note';
-import { Scale } from '../../models/music-tools/scale';
+import { Chord } from '../interfaces/music-tools/chord';
+import { Key } from '../models/music-tools/key';
+import { Note } from '../interfaces/music-tools/note';
+import { Scale } from '../models/music-tools/scale';
 
 @Injectable({
   providedIn: 'root'

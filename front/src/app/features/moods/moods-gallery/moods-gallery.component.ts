@@ -1,8 +1,8 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { PaginationService } from '../../../services/display/pagination.service';
+import { PaginationService } from '../../../services/pagination.service';
 import { MoodLight } from '../../../interfaces/mood';
-import { MenuService } from '../../../services/display/menu.service';
+import { MenuService } from '../../../services/menu.service';
 
 @Component({
   selector: 'app-moods-gallery',

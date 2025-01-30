@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, Signal } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
-import { MenuService } from '../../services/display/menu.service';
+import { MenuService } from '../../services/menu.service';
 
 @Component({
   selector: 'app-layout-moods',

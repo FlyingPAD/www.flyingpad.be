@@ -1,7 +1,7 @@
 <div class="bar">
     @if(moodsGalleryType === 'all') {
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
-        @if(userService.appUser.role === 2) {
+        @if(user().role === 2) {
             <a (click)="handleShowMultiTag()"><app-icon-edit class="icon" size="25px" /></a>
         }
         <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
@@ -15,7 +15,7 @@
         <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
         <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info class="icon" appAnimSpin size="25px" /></a>
-        <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2"><app-icon-edit class="icon" size="25px" /></a>
+        <a (click)="handleShowMultiTag()" *ngIf="user().role === 2"><app-icon-edit class="icon" size="25px" /></a>
         @if(entityName != '# Unknown Artist') {
             <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><app-icon-google class="icon" size="25px" /></a>
             <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><app-icon-google-lens class="icon" size="25px" /></a>
@@ -31,7 +31,7 @@
         <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
         <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info appAnimSpin class="icon" size="25px" /></a>
-        <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2"><app-icon-edit class="icon" size="25px" /></a>
+        <a (click)="handleShowMultiTag()" *ngIf="user().role === 2"><app-icon-edit class="icon" size="25px" /></a>
         @if(entityName != '# Unrelated Model' && entityName != '# Unknown Model') {
             <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><app-icon-google class="icon" size="25px" /></a>
             <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><app-icon-google-lens class="icon" size="25px" /></a>
@@ -46,7 +46,7 @@
     @if(moodsGalleryType === 'tag') {
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
         <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info appAnimSpin class="icon" size="25px" /></a>
-        <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2"><app-icon-edit class="icon" size="25px" /></a>
+        <a (click)="handleShowMultiTag()" *ngIf="user().role === 2"><app-icon-edit class="icon" size="25px" /></a>
         <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
         @if(topButtonIsActive) {
             <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
@@ -58,7 +58,7 @@
         <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
         <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info appAnimSpin class="icon" size="25px" /></a>
-        <a (click)="handleShowMultiTag()" *ngIf="userService.appUser.role === 2"><app-icon-edit class="icon" size="25px" /></a>
+        <a (click)="handleShowMultiTag()" *ngIf="user().role === 2"><app-icon-edit class="icon" size="25px" /></a>
         @if(entityName != '# Unrelated Franchise') {
             <a target="_blank" href="https://www.google.com/search?q={{entityName}}"><app-icon-google class="icon" size="25px" /></a>
             <a target="_blank" href="https://images.google.com/images?q={{entityName}}"><app-icon-google-lens class="icon" size="25px" /></a>
@@ -79,7 +79,7 @@
         <a class="toggle" *ngIf="!diaporamaIsActive" (click)="handleDiaporamaStart(true)"><app-icon-play-shuffle class="icon" size="25px" /></a>
         <a *ngIf="diaporamaIsActive" (click)="handleDiaporamaStop()"><app-icon-stop class="icon" size="25px" /></a>
         <a (click)="handleLeftCard()"><app-icon-info appAnimSpin class="icon" size="25px" /></a>
-        <a (click)="handleEditButton()" *ngIf="userService.appUser.role === 2"><app-icon-edit class="icon" size="25px" /></a>
+        <a (click)="handleEditButton()" *ngIf="user().role === 2"><app-icon-edit class="icon" size="25px" /></a>
         <a class="toggle" (click)="handleToggleFocus()" *ngIf="moodType === 1"><app-icon-wheel class="icon" [ngClass]="{'rotate': focusIsActive, 'rotate-back': !focusIsActive}" size="25px" /></a>
         <span class="toggle" *ngIf="moodType !== 1"><app-icon-wheel class="icon" size="25px" color="grey" /></span>
         <a class="toggle" (click)="handleOpenMoodInNewTab()"><app-icon-open class="icon" size="25px" /></a>
@@ -106,6 +106,15 @@
         <a (click)="handleBackToGallery()"><app-icon-back class="icon" size="25px" /></a>
         <a routerLink="/moods/multi-tag-artists"><app-icon-artist class="icon" size="25px" /></a>
         <a routerLink="/moods/multi-tag-models"><app-icon-model class="icon" size="25px" /></a>
+        @if(topButtonIsActive) {
+            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+        } @else {
+            <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
+        }
+    }
+    @if(moodsGalleryType === 'upload-images'){
+        <a (click)="handleBackToGallery()"><app-icon-back class="icon" size="25px" /></a>
+        <a (click)="handleTriggerSaveMood()"><app-icon-save class="icon" size="25px" /></a>
         @if(topButtonIsActive) {
             <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
         } @else {

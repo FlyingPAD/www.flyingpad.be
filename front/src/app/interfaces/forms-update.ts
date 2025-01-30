@@ -73,7 +73,9 @@ export interface LinkUpdateForm {
 }
 
 export interface UserUpdateForm {
-    userId: number
+    businessId: number
+    pseudonym: string
     firstName: string
     lastName: string
+    birthdate: Date
 }

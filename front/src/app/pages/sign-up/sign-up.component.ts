@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { ImageUrlService } from '../../services/display/image-url.service';
-import { LanguageService } from '../../services/display/language.service';
+import { ImageUrlService } from '../../services/image-url.service';
+import { LanguageService } from '../../services/language.service';
 import { FlowService } from '../../services/flow.service';
 
 @Component({

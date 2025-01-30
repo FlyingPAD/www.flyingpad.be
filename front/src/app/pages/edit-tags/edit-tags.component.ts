@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { TagLight } from '../../interfaces/tag';
 import { Router } from '@angular/router';
 import { FlowService } from '../../services/flow.service';
-import { PaginationService } from '../../services/display/pagination.service';
+import { PaginationService } from '../../services/pagination.service';
 import { MoodsService } from '../../services/moods.service';
 
 @Component({

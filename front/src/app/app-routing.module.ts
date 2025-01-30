@@ -6,7 +6,6 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UserLoginErrorComponent } from './pages/user-login-error/user-login-error.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
-import { UserUpdateComponent } from './pages/user-update/user-update.component';
 import { CreateMoodImageComponent } from './features/moods/create-mood-image/create-mood-image.component';
 import { MultiTagArtistsComponent } from './features/moods/multi-tag-artists/multi-tag-artists.component';
 import { MultiTagModelsComponent } from './features/moods/multi-tag-models/multi-tag-models.component';
@@ -77,8 +76,7 @@ const routes: Routes = [
       { path: 'tags/edition', component: EditTagsComponent, title: 'Flying PAD | Edit Tags' },
       { path: 'models/edition', component: EditModelsComponent, title: 'Flying PAD | Edit Models' },
       { path: 'franchises/edition', component: EditFranchisesComponent, title: 'Flying PAD | Edit Franchises' },
-      { path: 'settings', component: SettingsComponent, title: 'Flying PAD | Settings' },
-      { path: 'users/user-update', component: UserUpdateComponent, title: 'Flying PAD | Update User' },
+      { path: 'settings', component: SettingsComponent, title: 'Flying PAD | Settings' }
     ]
   },
 

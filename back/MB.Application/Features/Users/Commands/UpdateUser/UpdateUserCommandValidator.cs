@@ -6,6 +6,6 @@ public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
 {
     public UpdateUserCommandValidator()
     {
-        RuleFor(x => x.FirstName).NotEmpty().WithMessage("First Name is required.");
+        RuleFor(request => request.FirstName).NotEmpty().WithMessage("First Name is required.");
     }
 }

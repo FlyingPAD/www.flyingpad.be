@@ -1,10 +1,10 @@
 import { AfterViewChecked, Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { FlowService } from '../../services/flow.service';
-import { PaginationService } from '../../services/display/pagination.service';
-import { ViewerService } from '../../services/features/viewer.service';
-import { MenuService } from '../../services/display/menu.service';
-import { DisplayService } from '../../services/display/display.service';
+import { PaginationService } from '../../services/pagination.service';
+import { ViewerService } from '../../services/viewer.service';
+import { MenuService } from '../../services/menu.service';
+import { DisplayService } from '../../services/display.service';
 import { MoodsService } from '../../services/moods.service';
 
 @Component({

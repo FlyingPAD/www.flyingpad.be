@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core'
 import { FlowService } from '../../services/flow.service'
 import { Router } from '@angular/router'
 import { ModelLight } from '../../interfaces/model'
-import { PaginationService } from '../../services/display/pagination.service'
+import { PaginationService } from '../../services/pagination.service'
 
 @Component({
   selector: 'app-edit-models',

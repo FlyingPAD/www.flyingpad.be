@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { ThemeService } from '../../services/display/theme.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-icon-model',

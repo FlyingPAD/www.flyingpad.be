@@ -6,18 +6,18 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CustomCookieService } from '../services/cookie.service';
+import { TokenService } from '../services/token.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor 
 {
-  #cookieService = inject(CustomCookieService)
+  #tokenService = inject(TokenService)
   
   intercept(request : HttpRequest<unknown>, next : HttpHandler) : Observable<HttpEvent<unknown>> 
   {
     // Retrieve the JWT token from cookie
 
-    let token = this.#cookieService.retrieveToken()
+    let token = this.#tokenService.retrieveToken()
 
     // Check if the token exists
 

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ImageForm } from '../../../interfaces/mood-image';
 import { FlowService } from '../../../services/flow.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-mood-image',
@@ -13,19 +14,20 @@ export class CreateMoodImageComponent {
   #flowService = inject(FlowService)
   #builder = inject(FormBuilder)
   #router = inject(Router)
+  #toastr = inject(ToastrService)
 
-  images : ImageForm[] = []
-  forms : FormGroup[] = []
-  invalidCount : number = 0
-  invalidNames : string[] = []
+  public images : ImageForm[] = []
+  public forms : FormGroup[] = []
+  public invalidCount : number = 0
+  public invalidNames : string[] = []
 
   @ViewChild('originalInput') originalInput!: ElementRef<HTMLInputElement>
 
-  onClickHack(): void {
+  public onClickHack(): void {
     this.originalInput?.nativeElement.click()
   }
 
-  onFileSelect(event : any) {
+  public onFileSelect(event : any) {
     for (let i = 0; i < event.target.files.length; i++) {
       const file = event.target.files[i]
   
@@ -79,7 +81,7 @@ export class CreateMoodImageComponent {
     }
   }
 
-  dropFile(fileName: string): void {
+  public dropFile(fileName: string): void {
     const index = this.images.findIndex(image => image.sourceFile === fileName)
 
     if (index !== -1) {
@@ -88,10 +90,17 @@ export class CreateMoodImageComponent {
     }
   }
 
-  onSubmit(): void {
-    for (let i = 0; i < this.forms.length; i++) {
-      this.#flowService.CreateImage( this.forms[i].value ).subscribe()   
+  public onSubmit(): void {
+    if(this.forms.length > 0) {
+      for (let i = 0; i < this.forms.length; i++) {
+        this.#flowService.CreateImage( this.forms[i].value ).subscribe()   
+      }
+      this.#router.navigateByUrl('/moods')
     }
-    this.#router.navigateByUrl('/moods')
+    else this.#toastr.error('No images were selected ...')
+  }
+
+  public backToDashboard(): void {
+    this.#router.navigateByUrl('/dashboard')
   }
 }

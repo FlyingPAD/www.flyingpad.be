@@ -25,13 +25,6 @@ public class TokenManager(IConfiguration config) : ITokenManager
         Claim[] claims =
         [
             new ("businessId", user.BusinessId.ToString()),
-            new ("created", user.Created.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")),
-            new ("modified", user.Modified.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")),
-            new ("pseudonym", user.Pseudonym.ToString()),
-            new ("firstName", user.FirstName.ToString()),
-            new ("lastName", user.LastName.ToString()),
-            new ("email", user.Email.ToString()),
-            new ("birthdate", user.Birthdate.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")),
             new ("role", user.Role.ToString())
         ];
 

@@ -17,8 +17,7 @@ import { MoodScoreUpdate } from "../../../interfaces/forms-update"
 })
 export class MoodDetailsComponent {
   #flowService = inject(FlowService)
-  userService = inject(UserService)
-  infoIsActive = true
+  #userService = inject(UserService)
 
   @Input() mood : any | undefined = undefined
   @Input() artists! : ArtistLight[] | undefined
@@ -30,17 +29,20 @@ export class MoodDetailsComponent {
   @Output() tagId = new EventEmitter<number>()
   @Output() franchiseId = new EventEmitter<number>()
 
-  updateArtistId(artistId: number): void {
+  public user = this.#userService.user
+  public infoIsActive = true
+
+  public updateArtistId(artistId: number): void {
     this.artistId.emit(artistId)
   }
-  updateModelId(modelId: number): void {
+  public updateModelId(modelId: number): void {
     this.modelId.emit(modelId)
   }
-  updateFranchiseId(franchiseId: number): void {
+  public updateFranchiseId(franchiseId: number): void {
     this.franchiseId.emit(franchiseId)
   }
 
-  typeCheck(media : any) {
+  public typeCheck(media : any) {
     if(this.mood?.type === 1) {
       return media as Image
     }
@@ -55,7 +57,7 @@ export class MoodDetailsComponent {
     }
   }
 
-  updateMoodScore(scoreValue : number): void {
+  public updateMoodScore(scoreValue : number): void {
     let form : MoodScoreUpdate = {moodId : this.mood.businessId, value : scoreValue} 
     this.#flowService.updateScore(form)
   }

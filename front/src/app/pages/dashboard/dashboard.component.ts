@@ -1,6 +1,5 @@
 import { Component, inject, Signal } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { User } from '../../interfaces/user';
 import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
@@ -13,7 +12,7 @@ export class DashboardComponent {
   #dashboardService = inject(DashboardService)
 
   public dashboardMenuState : Signal<string> = this.#dashboardService.dashboardMenuState
-  public user : User = this.#userService.appUser
+  public user = this.#userService.user
 
   public updateMenuState(menuState : string): void {
     this.#dashboardService.updateMenuState(menuState)
