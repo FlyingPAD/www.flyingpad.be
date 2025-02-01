@@ -1,51 +1,61 @@
-<ng-container [ngSwitch]="currentScript">
-    <app-intro *ngSwitchCase="'introduction'"></app-intro>
-    <app-key-ref *ngSwitchCase="'pianoReference'"></app-key-ref>
-    <app-viewpoint *ngSwitchCase="'viewpoint'"></app-viewpoint>
-    <app-notation *ngSwitchCase="'notation'"></app-notation>
-    <app-notes *ngSwitchCase="'notesFr'"></app-notes>
-    <app-notes-trad *ngSwitchCase="'notesEn'"></app-notes-trad>
-    <app-intervals *ngSwitchCase="'intervals'"></app-intervals>
-    <app-chords *ngSwitchCase="'chords'"></app-chords>
-    <app-scales *ngSwitchCase="'scales'"></app-scales>
-    <app-melody *ngSwitchCase="'melody'"></app-melody>
-    <app-notes-ex *ngSwitchCase="'notesEx'"></app-notes-ex>
-    <app-pulsation *ngSwitchCase="'pulsation'"></app-pulsation>
-    <app-metrics-a *ngSwitchCase="'metricsA'"></app-metrics-a>
-    <app-metrics-b *ngSwitchCase="'metricsB'"></app-metrics-b>
-    <app-timeline *ngSwitchCase="'timeline'"></app-timeline>
-    <app-music-principles *ngSwitchCase="'music-principles'"></app-music-principles>
-</ng-container>    
 <app-right-column>
     <div class="section-flex">
         <section>
             <h2>INTRODUCTION</h2>
-            <p (click)="selectScript('introduction')" [class.active]="currentScript === 'introduction'">▸ Avant de commencer</p>
-            <p (click)="selectScript('viewpoint')" [class.active]="currentScript === 'viewpoint'">▸ Point de Vue</p>
-            <p (click)="selectScript('timeline')" [class.active]="currentScript === 'timeline'">▸ Ligne du Temps</p>
-            <p (click)="selectScript('notation')" [class.active]="currentScript === 'notation'">▸ La Notation Musicale</p>
-            <p (click)="selectScript('pianoReference')" [class.active]="currentScript === 'pianoReference'">▸ La Référence Clavier</p>
-            <p (click)="selectScript('music-principles')" [class.active]="currentScript === 'music-principles'">▸ Principes élémentaires</p>
+            <p (click)="updateMenuState('introduction')" [class.active]="currentScript() === 'introduction'">▸ Avant de commencer</p>
+            <p (click)="updateMenuState('viewpoint')" [class.active]="currentScript() === 'viewpoint'">▸ Point de Vue</p>
+            <p (click)="updateMenuState('notation')" [class.active]="currentScript() === 'notation'">▸ La Notation Musicale</p>
+            <p (click)="updateMenuState('pianoReference')" [class.active]="currentScript() === 'pianoReference'">▸ La Référence Clavier</p>
+            <p (click)="updateMenuState('music-principles')" [class.active]="currentScript() === 'music-principles'">▸ Principes élémentaires</p>
+            <p (click)="updateMenuState('music-arsenal')" [class.active]="currentScript() === 'music-arsenal'">▸ Arsenal Musical</p>
         </section>
         <section>
-            <h2>HARMONIE</h2>
-            <p (click)="selectScript('notesFr')" [class.active]="currentScript === 'notesFr'">▸ Les Notes</p>
-            <p (click)="selectScript('notesEn')" [class.active]="currentScript === 'notesEn'">▸ Les Notes (en anglais)</p>
-            <p (click)="selectScript('intervals')" [class.active]="currentScript === 'intervals'">▸ Les Intervalles</p>
-            <p (click)="selectScript('chords')" [class.active]="currentScript === 'chords'">▸ Les Accords</p>
-            <p (click)="selectScript('scales')" [class.active]="currentScript === 'scales'">▸ Les Gammes</p>
-            <p (click)="selectScript('melody')" [class.active]="currentScript === 'melody'">▸ La Mélodie</p>
+            <h2>CONVENTIONS</h2>
+            <p (click)="updateMenuState('notesFr')" [class.active]="currentScript() === 'notesFr'">▸ Les Notes</p>
+            <p (click)="updateMenuState('notesEn')" [class.active]="currentScript() === 'notesEn'">▸ Les Notes (en anglais)</p>
+            <p (click)="updateMenuState('tones')" [class.active]="currentScript() === 'tones'">▸ Tons et Demi-Tons</p>
+            <p (click)="updateMenuState('intervals')" [class.active]="currentScript() === 'intervals'">▸ Les Intervalles</p>
+            <p (click)="updateMenuState('scales')" [class.active]="currentScript() === 'scales'">▸ Les Gammes</p>
+            <p (click)="updateMenuState('chords')" [class.active]="currentScript() === 'chords'">▸ Les Accords</p>
         </section>
         <section>
-            <h2>HARMONIE: Exercices</h2>
-            <p (click)="selectScript('notesEx')" [class.active]="currentScript === 'notesEx'">▸ Les Notes</p>
+            <h2>Arsenal RYTHMIQUE</h2>
+            <p (click)="updateMenuState('rythmic-arsenal')" [class.active]="currentScript() === 'rythmic-arsenal'">▸ Arsenal Rythmique</p>
+            <p (click)="updateMenuState('pulsation')" [class.active]="currentScript() === 'pulsation'">▸ La Pulsation</p>
+            <p (click)="updateMenuState('time-values')" [class.active]="currentScript() === 'time-values'">▸ Les Valeurs de Temps</p>
+            <p (click)="updateMenuState('metricsA')" [class.active]="currentScript() === 'metricsA'">▸ Les Métriques</p>
         </section>
         <section>
-            <h2>RYTHME</h2>
-            <p (click)="selectScript('pulsation')" [class.active]="currentScript === 'pulsation'">▸ La Pulsation</p>
-            <p (click)="selectScript('metricsA')" [class.active]="currentScript === 'metricsA'">▸ Les Métriques (1)</p>
-            <p (click)="selectScript('metricsB')" [class.active]="currentScript === 'metricsB'">▸ Les Métriques (2)</p>
+            <h2>Arsenal HARMONIQUE</h2>
+            <p (click)="updateMenuState('harmonic-arsenal')" [class.active]="currentScript() === 'harmonic-arsenal'">▸ Arsenal Harmonique</p>
+        </section>
+        <section>
+            <h2>Arsenal MÉLODIQUE</h2>
+            <p (click)="updateMenuState('melodic-arsenal')" [class.active]="currentScript() === 'melodic-arsenal'">▸ Arsenal Mélodique</p>
         </section>
     </div>
 </app-right-column>
+
+<ng-container [ngSwitch]="currentScript()">
+    <app-introduction *ngSwitchCase="'introduction'" />
+    <app-key-ref *ngSwitchCase="'pianoReference'" />
+    <app-viewpoint *ngSwitchCase="'viewpoint'" />
+    <app-notation *ngSwitchCase="'notation'" />
+    <app-notes *ngSwitchCase="'notesFr'" />
+    <app-notes-trad *ngSwitchCase="'notesEn'" />
+    <app-intervals *ngSwitchCase="'intervals'" />
+    <app-chords *ngSwitchCase="'chords'" />
+    <app-scales *ngSwitchCase="'scales'" />
+    <app-pulsation *ngSwitchCase="'pulsation'" />
+    <app-metrics-a *ngSwitchCase="'metricsA'" />
+    <app-metrics-b *ngSwitchCase="'metricsB'" />
+    <app-music-principles *ngSwitchCase="'music-principles'" />
+    <app-music-arsenal *ngSwitchCase="'music-arsenal'" />
+    <app-rythmic-arsenal *ngSwitchCase="'rythmic-arsenal'" />
+    <app-harmonic-arsenal *ngSwitchCase="'harmonic-arsenal'" />
+    <app-melodic-arsenal *ngSwitchCase="'melodic-arsenal'" />
+    <app-tones *ngSwitchCase="'tones'" />
+    <app-time-values *ngSwitchCase="'time-values'" />
+</ng-container>    
+
 <app-spacer height="175px" />

@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, Signal, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ArtistCheckBox, GetAllArtistsResponse } from '../interfaces/artist';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { GetModelsByMoodResponse, ModelCheckBox } from '../interfaces/model';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root'
@@ -11,43 +12,48 @@ import { GetModelsByMoodResponse, ModelCheckBox } from '../interfaces/model';
 export class MultiTagService {
   #http = inject(HttpClient)
   #url: string = environment.apiBaseUrl + '/api/V1/'
-  selectedMoods: number[] = []
+  
+  #selectedMoods = new BehaviorSubject<number[]>([])
+  public selectedMoods = toSignal(this.#selectedMoods) as Signal<number[]>
 
-  selectionToggle(moodId: number): void {
-    let index = this.selectedMoods.findIndex(x => x === moodId)
+  private artists$ = this.getArtists()
+  public artists = toSignal(this.artists$, { initialValue: [] }) as Signal<ArtistCheckBox[]>
 
-    if (index === -1) {
-      this.selectedMoods.push(moodId)
-    }
-    else {
-      this.selectedMoods.splice(index, 1)
-    }
-  }
+  private models$ = this.getModels()
+  public models = toSignal(this.models$, { initialValue: [] }) as Signal<ModelCheckBox[]>
 
-  checkIfSelected(moodId: number): boolean {
-    let index = this.selectedMoods.findIndex(x => x === moodId)
-
-    if (index === -1) {
-      return false
-    }
-    else {
-      return true
-    }
-  }
-
-  getArtists(): Observable<ArtistCheckBox[]> {
+  public getArtists(): Observable<ArtistCheckBox[]> {
     return this.#http.get<GetAllArtistsResponse>(`${this.#url}Artists/GetAll`).pipe(
       map(response => response.artists)
     )
   }
-
-  getModels(): Observable<ModelCheckBox[]> {
+  public getModels(): Observable<ModelCheckBox[]> {
     return this.#http.get<GetModelsByMoodResponse>(`${this.#url}Models/GetAll`).pipe(
       map(response => response.models)
     )
   }
 
-  reset(): void {
-    this.selectedMoods = []
+  public selectionToggle(moodId: number): void {
+    const currentMoods = this.#selectedMoods.value
+    const index = currentMoods.indexOf(moodId)
+    
+    let newSelection: number[]
+  
+    if (index === -1) {
+      newSelection = [...currentMoods, moodId]
+    } 
+    else {
+      newSelection = currentMoods.filter(id => id !== moodId)
+    }
+  
+    this.#selectedMoods.next(newSelection)
+  }
+
+  public checkIfSelected(moodId: number): boolean {
+    return this.selectedMoods().includes(moodId)
+  }
+
+  public resetSelection(): void {
+    this.#selectedMoods.next([])
   }
 }

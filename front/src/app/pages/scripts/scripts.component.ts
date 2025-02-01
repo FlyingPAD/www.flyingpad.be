@@ -1,5 +1,6 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ButtonTopService } from '../../services/button-top.service';
+import { ScriptsService } from '../../services/scripts.service';
 
 @Component({
   selector: 'app-scripts',
@@ -7,8 +8,10 @@ import { ButtonTopService } from '../../services/button-top.service';
   styleUrl: './scripts.component.scss'
 })
 export class ScriptsComponent implements OnInit, OnDestroy {
+  #scriptsService = inject(ScriptsService)
   #toTopButtonService = inject(ButtonTopService)
-  public currentScript: string = 'introduction'
+
+  public currentScript = this.#scriptsService.scriptsMenuState
 
   ngOnInit(): void {
     this.#toTopButtonService.setShowButtonTop(true)
@@ -17,7 +20,7 @@ export class ScriptsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.#toTopButtonService.setShowButtonTop(false)
   }
-  public selectScript(scriptName: string): void {
-    this.currentScript = scriptName
+  public updateMenuState(menuState: string): void {
+    this.#scriptsService.updateScriptMenuState(menuState)
   }
 }

@@ -21,4 +21,14 @@ public class GetStatisticsQueryDto
     public int TotalLinks { get; set; }
     public int TotalLinkCategories { get; set; }
     public int TotalUsers { get; set; }
+    public int TotalRelationsArtistStyle { get; set; }
+    public int TotalRelationsFranchiseMedium { get; set; }
+    public int TotalRelationsFranchiseModel { get; set; }
+    public int TotalRelationsLinkArtist { get; set; }
+    public int TotalRelationsLinkCategory { get; set; }
+    public int TotalRelationsLinkModel { get; set; }
+    public int TotalRelationsMoodArtist { get; set; }
+    public int TotalRelationsMoodFranchise { get; set; }
+    public int TotalRelationsMoodModel { get; set; }
+    public int TotalRelationsMoodTag { get; set; }
 }

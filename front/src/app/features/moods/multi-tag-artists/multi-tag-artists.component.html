@@ -1,23 +1,26 @@
-<p class="p"><b>{{multiTagService.selectedMoods.length}}</b> Moods Selected</p>
+<app-spacer height="25px"></app-spacer>
+<p class="p"><b>{{ selectedMoods().length }}</b> Moods Selected</p>
 <div class="row-white">
   <div class="filter">
-    <input type="text" [(ngModel)]="searchArtist" placeholder="Filter artists ...">
+    <input type="text" [(ngModel)]="searchArtist" placeholder="Filter artists ..." />
   </div>
-  <div class="form-container">
-    <div class="form-flex">
-      <div class="form_cat_box">
-        <div *ngFor="let m of filterArtists()">
-          <div class="duo">
-            <input type="checkbox" id="{{m.name}}" value="{{m.name}}" [checked]="m.isChecked"
-              (change)="m.isChecked = !m.isChecked">
-            <label for="{{m.name}}">{{m.name}}</label>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-container">
+      <div class="form-flex">
+        <div class="form_cat_box">
+          <div *ngFor="let artist of filteredArtists">
+            <div class="duo">
+              <input type="checkbox" [formControlName]="artist.businessId.toString()"
+                     id="{{ artist.name }}" />
+              <label [for]="artist.name">{{ artist.name }}</label>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="buttons">
-  <app-button-back />
-  <div class="button" (click)="onSubmit()">Submit</div>
+    <div class="buttons">
+      <app-button-back></app-button-back>
+      <button type="submit" class="button">Submit</button>
+    </div>
+  </form>
 </div>

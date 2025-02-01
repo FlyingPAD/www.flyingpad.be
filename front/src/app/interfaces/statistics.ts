@@ -20,6 +20,16 @@ export interface Statistics {
     totalLinks: number
     totalLinkCategories: number
     totalUsers: number
+    totalRelationsArtistStyle: number
+    totalRelationsFranchiseMedium: number
+    totalRelationsFranchiseModel: number
+    totalRelationsLinkArtist: number
+    totalRelationsLinkCategory: number
+    totalRelationsLinkModel: number
+    totalRelationsMoodArtist: number
+    totalRelationsMoodFranchise: number
+    totalRelationsMoodModel: number
+    totalRelationsMoodTag: number
 }
 
 export interface GetStatisticsResponse extends BaseResponse {

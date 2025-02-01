@@ -32,11 +32,11 @@ $key-border-type: solid;
             }
 
             input[type="range"]::-moz-range-track {
-                background: #6b5240;
+                background: var(--colorMain);
             }
 
             input[type="range"]::-moz-range-thumb {
-                background: #6b5240;
+                background: var(--colorMain);
                 border: 1px solid #261a12;
                 border-radius: 3px;
                 width: 3px;

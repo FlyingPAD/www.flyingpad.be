@@ -23,14 +23,11 @@ import { FlyingKeysMiniComponent } from './features/tools/flying-keys-mini/flyin
 import { TrainerNotesComponent } from './features/tools/trainer-notes/trainer-notes.component';
 import { ChordsComponent } from './features/scripts/chords/chords.component';
 import { IntervalsComponent } from './features/scripts/intervals/intervals.component';
-import { IntroComponent } from './features/scripts/intro/intro.component';
 import { KeyRefComponent } from './features/scripts/key-ref/key-ref.component';
 import { LearnMusicComponent } from './features/scripts/learn-music/learn-music.component';
-import { MelodyComponent } from './features/scripts/melody/melody.component';
 import { MetricsAComponent } from './features/scripts/metrics-a/metrics-a.component';
 import { MetricsBComponent } from './features/scripts/metrics-b/metrics-b.component';
 import { NotationComponent } from './features/scripts/notation/notation.component';
-import { NotesExComponent } from './features/scripts/notes-ex/notes-ex.component';
 import { NotesTradComponent } from './features/scripts/notes-trad/notes-trad.component';
 import { NotesComponent } from './features/scripts/notes/notes.component';
 import { PulsationComponent } from './features/scripts/pulsation/pulsation.component';
@@ -111,7 +108,7 @@ import { OverlayComponent } from './components/overlay/overlay.component';
 import { MediumGalleryComponent } from './pages/medium-gallery/medium-gallery.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { FormatRatioPipe } from './pipes/format-ratio.pipe';
-import { TimelineComponent } from './features/scripts/timeline/timeline.component';
+import { TimelineComponent } from './features/tools/timeline/timeline.component';
 import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 import { GuitarTunerComponent } from './features/tools/guitar-tuner/guitar-tuner.component';
 import { ChordWheelComponent } from './features/tools/chord-wheel/chord-wheel.component';
@@ -187,6 +184,16 @@ import { EditMoodTagsComponent } from './features/moods/edit-mood-tags/edit-mood
 import { EditMoodScoreComponent } from './features/moods/edit-mood-score/edit-mood-score.component';
 import { SpacerComponent } from './components/spacer/spacer.component';
 import { IconDiapasonComponent } from './icons/icon-diapason/icon-diapason.component';
+import { IconKeyboardComponent } from './icons/icon-keyboard/icon-keyboard.component';
+import { MusicArsenalComponent } from './features/scripts/music-arsenal/music-arsenal.component';
+import { IntroductionComponent } from './features/scripts/introduction/introduction.component';
+import { RythmicArsenalComponent } from './features/scripts/rythmic-arsenal/rythmic-arsenal.component';
+import { MelodicArsenalComponent } from './features/scripts/melodic-arsenal/melodic-arsenal.component';
+import { HarmonicArsenalComponent } from './features/scripts/harmonic-arsenal/harmonic-arsenal.component';
+import { IconTimelineComponent } from './icons/icon-timeline/icon-timeline.component';
+import { TimbreComponent } from './features/scripts/timbre/timbre.component';
+import { TonesComponent } from './features/scripts/tones/tones.component';
+import { TimeValuesComponent } from './features/scripts/time-values/time-values.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   let version : string = '1.0.0'
@@ -264,6 +271,7 @@ export function appInitializerFactory(translate: TranslateService) {
     HeaderMoodsComponent,
     LanguageMenuHeaderComponent,
     LanguageMenuHomeComponent,
+    SpacerComponent,
     // => Features :
     // Dashboard.
     StatisticsComponent,
@@ -326,19 +334,21 @@ export function appInitializerFactory(translate: TranslateService) {
     UserRegisterComponent,
     UserLoginErrorComponent,
     // Scripts.
+    IntroductionComponent,
+    MusicArsenalComponent,
     NotesComponent,
     NotesTradComponent,
     PulsationComponent,
     MetricsAComponent,
-    IntroComponent,
     KeyRefComponent,
     IntervalsComponent,
     ChordsComponent,
     ScalesComponent,
     NotationComponent,
-    MelodyComponent,
     MetricsBComponent,
-    NotesExComponent,
+    RythmicArsenalComponent,
+    MelodicArsenalComponent,
+    HarmonicArsenalComponent,
     LearnMusicComponent,
     ViewpointComponent,
     TimelineComponent,
@@ -387,12 +397,16 @@ export function appInitializerFactory(translate: TranslateService) {
     IconGoogleLensComponent,
     IconPlayShuffleComponent,
     IconSaveComponent,
+    IconDiapasonComponent,
+    IconKeyboardComponent,
+    IconTimelineComponent,
     LogoFacebookComponent,
     LogoInstagramComponent,
     LogoYoutubeComponent,
     LogoSoundcloudComponent,
-    SpacerComponent,
-    IconDiapasonComponent
+    TimbreComponent,
+    TonesComponent,
+    TimeValuesComponent
   ],
   imports: [
     BrowserModule,

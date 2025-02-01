@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ImageUrlService } from '../../services/image-url.service';
+import { ToolsService } from '../../services/tools.service';
 
 @Component({
   selector: 'app-tools',
@@ -7,47 +8,13 @@ import { ImageUrlService } from '../../services/image-url.service';
   styleUrl: './tools.component.scss'
 })
 export class ToolsComponent {
+  #toolsService = inject(ToolsService)
   #imageURLService = inject(ImageUrlService)
 
-  showCircleofFifths: boolean = true
-  showChordWheel: boolean = false
-  showDiapason: boolean = false
-  showMiniKeys: boolean = false
-  showTrainer: boolean = false
-  showTuner: boolean = false
+  public toolsMenuState = this.#toolsService.toolsMenuState
 
-  private resetToggles() {
-    this.showCircleofFifths = false
-    this.showChordWheel = false
-    this.showDiapason = false
-    this.showMiniKeys = false
-    this.showTrainer = false
-    this.showTuner = false
-  }
-  
-  toggleCircleofFifths() {
-    this.resetToggles()
-    this.showCircleofFifths = true
-  }
-  toggleChordWheel() {
-    this.resetToggles()
-    this.showChordWheel = true
-  }
-  toggleDiapason() {
-    this.resetToggles()
-    this.showDiapason = true
-  }
-  toggleMiniKeys() {
-    this.resetToggles()
-    this.showMiniKeys = true
-  }
-  toggleTrainer() {
-    this.resetToggles()
-    this.showTrainer = true
-  }
-  toggleTuner() {
-    this.resetToggles()
-    this.showTuner = true
+  public updateMenuState(menuState: string): void {
+    this.#toolsService.updateToolsMenuState(menuState)
   }
 
   public getImageURL(folderName: string, imageName: string, imageExtension: string): string {

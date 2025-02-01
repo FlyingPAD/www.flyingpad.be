@@ -1,7 +1,7 @@
 <div class="statistics">
   <div class="box">
-    <p><b>Total Moods</b> : {{ statistics()?.totalMoods }}</p>
-    <p> - Images : {{ statistics()?.totalImages }} ( {{ statistics()?.imagesPercentage | number:'1.2-2' }} % )</p>
+    <p><b>Total Moods</b> : {{ statistics()?.totalMoods | number: '3.0' }}</p>
+    <p> - Images : {{ statistics()?.totalImages | number: '3.0' }} ( {{ statistics()?.imagesPercentage | number:'1.2-2' }} % )</p>
     <p> - Videos : {{ statistics()?.totalVideos }} ( {{ statistics()?.videosPercentage | number:'1.2-2' }} % )</p>
   </div>
   <div class="box">
@@ -10,13 +10,13 @@
     <p> - </p>
   </div>
   <div class="box">
-    <p><b>Total Artists</b> : {{ statistics()?.totalArtists }}</p>
-    <p>Total Styles : {{ statistics()?.totalStyles }}</p>
-    <p> - </p>
+    <p>Relations Mood / Artist : {{ statistics()?.totalRelationsMoodArtist | number: '3.0' }}</p>
+    <p>Relations Mood / Model : {{ statistics()?.totalRelationsMoodModel | number: '3.0' }}</p>
+    <p>Relations Mood / Tag : {{ statistics()?.totalRelationsMoodTag | number: '3.0' }}</p>
   </div>
   <div class="box">
-    <p><b>Total Media</b> : {{ statistics()?.totalMedia }}</p>
-    <p>Total Franchises : {{ statistics()?.totalFranchises }}</p>
+    <p><b>Total Users</b> : {{ statistics()?.totalUsers }}</p>
+    <p> - </p>
     <p> - </p>
   </div>
   <div class="box">
@@ -25,13 +25,28 @@
     <p> - Females : {{ statistics()?.totalFemales }} ( {{ statistics()?.femalesPercentage | number:'1.2-2' }} % )</p>
   </div>
   <div class="box">
-    <p><b>Total Links</b> : {{ statistics()?.totalLinks }}</p>
-    <p>Total Link Categories : {{ statistics()?.totalLinkCategories }}</p>
+    <p><b>Total Artists</b> : {{ statistics()?.totalArtists }}</p>
+    <p>Total Styles : {{ statistics()?.totalStyles }}</p>
+    <p>Total Relations : {{ statistics()?.totalRelationsArtistStyle }} </p>
+  </div>
+  <div class="box">
+    <p><b>Total Franchises</b> : {{ statistics()?.totalFranchises }}</p>
+    <p>Total Media : {{ statistics()?.totalMedia }}</p>
+    <p>Total Relations : {{ statistics()?.totalRelationsFranchiseMedium }} </p>
+  </div>
+  <div class="box">
+    <p>Relations Mood / Franchise : {{ statistics()?.totalRelationsMoodFranchise }}</p>
+    <p>Relations Franchise / Model : {{ statistics()?.totalRelationsFranchiseModel }}</p>
     <p> - </p>
   </div>
   <div class="box">
-    <p><b>Total Users</b> : {{ statistics()?.totalUsers }}</p>
-    <p> - </p>
+    <p><b>Total Links</b> : {{ statistics()?.totalLinks }}</p>
+    <p>Total Link Categories : {{ statistics()?.totalLinkCategories }}</p>
+    <p>Total Relations : {{ statistics()?.totalRelationsLinkCategory }} </p>
+  </div>
+  <div class="box">
+    <p>Relations Link / Artist : {{ statistics()?.totalRelationsLinkArtist }}</p>
+    <p>Relations Link / Model : {{ statistics()?.totalRelationsLinkModel }}</p>
     <p> - </p>
   </div>
 </div>
