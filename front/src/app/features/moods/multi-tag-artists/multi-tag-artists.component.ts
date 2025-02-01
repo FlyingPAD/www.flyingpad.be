@@ -1,51 +1,61 @@
-import { Component, OnDestroy, inject } from '@angular/core';
-import { MultiTagService } from '../../../services/multi-tag.service';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { RelationsMoodArtistForm } from '../../../interfaces/relations';
-import { Router } from '@angular/router';
-import { FlowService } from '../../../services/flow.service';
-import { ArtistCheckBox } from '../../../interfaces/artist';
+import { Component, inject, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { MultiTagService } from '../../../services/multi-tag.service'
+import { FlowService } from '../../../services/flow.service'
+import { MoodsService } from '../../../services/moods.service'
+import { Router } from '@angular/router'
+import { ArtistCheckBox } from '../../../interfaces/artist'
+import { RelationsMoodArtistForm } from '../../../interfaces/relations'
 
 @Component({
   selector: 'app-multi-tag-artists',
   templateUrl: './multi-tag-artists.component.html',
   styleUrl: './multi-tag-artists.component.scss'
 })
-export class MultiTagArtistsComponent implements OnDestroy {
+export class MultiTagArtistsComponent implements OnInit {
   #flowService = inject(FlowService)
-  multiTagService = inject(MultiTagService)
-  router = inject(Router)
+  #multiTagService = inject(MultiTagService)
+  #moodsService = inject(MoodsService)
+  #router = inject(Router)
+  #formBuilder = inject(FormBuilder)
 
-  artists$ = this.multiTagService.getArtists()
-  artists = toSignal(this.artists$)
+  public selectedMoods = this.#multiTagService.selectedMoods
+  public artists = this.#multiTagService.artists
+  public searchArtist : string = ''
+  public form! : FormGroup
 
-  searchArtist : string = ''
-
-  ngOnDestroy(): void {
-    this.multiTagService.reset()
+  ngOnInit(): void {
+    const controlsConfig = this.artists().reduce((config, artist) => {
+      config[artist.businessId.toString()] = [false]
+      return config
+    }, {} as { [key: string]: any })
+    this.form = this.#formBuilder.group(controlsConfig)
   }
 
-  onSubmit() {
-    let form : RelationsMoodArtistForm = { moodId : 0, artistIds : [] }
-    let idListArtist : number[] = []
-
-    this.artists()?.forEach(artist => {
-      if (artist.isChecked)
-      {
-        idListArtist.push(artist.businessId)
-      }
-    })
-    form.artistIds = idListArtist
-
-    this.multiTagService.selectedMoods.forEach(mood => {
-      form.moodId = mood      
-      this.#flowService.InsertRMA(form).subscribe()
-    })
-
-    this.router.navigateByUrl('/moods')
+  get filteredArtists() : ArtistCheckBox[] {
+    return this.artists()?.filter(artist =>
+      artist.name.toLowerCase().includes(this.searchArtist.toLowerCase())
+    )
   }
 
-  filterArtists(): ArtistCheckBox[] | undefined {
-    return this.artists()?.filter(m => m.name.toLowerCase().includes(this.searchArtist.toLowerCase()))
+  public onSubmit() : void {
+    const selectedArtistIds : number[] = this.artists()
+      .filter(artist => this.form.get(artist.businessId.toString())?.value)
+      .map(artist => artist.businessId)
+
+    const relationsForm : RelationsMoodArtistForm = {
+      moodId : 0,
+      artistIds : selectedArtistIds
+    }
+
+    this.selectedMoods().forEach(mood => {
+      relationsForm.moodId = mood
+      this.#flowService.InsertRMA(relationsForm).subscribe()
+    })
+
+    this.form.reset()
+    this.#multiTagService.resetSelection()
+    this.#moodsService.updateMoodMenuState('gallery')
+    this.#router.navigateByUrl('moods')
   }
 }

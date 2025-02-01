@@ -12,12 +12,12 @@ import { KeysService } from '../../../services/keys.service';
 })
 export class FlyingKeysMiniComponent {
   #audioService = inject(AudioService)
-  keysService = inject(KeysService)
+  #keysService = inject(KeysService)
   #router = inject(Router)
 
-  keyStation: KeyStation = new KeyStation(this.#audioService, this.keysService)
-  currentVolume: number = 0.5
-  showNotes: boolean = true
+  public keyStation: KeyStation = new KeyStation(this.#audioService, this.#keysService)
+  public currentVolume: number = 0.5
+  public showNotes: boolean = true
 
   CKeyPressed: boolean = false
   CSharpKeyPressed: boolean = false
@@ -32,7 +32,7 @@ export class FlyingKeysMiniComponent {
   ASharpKeyPressed: boolean = false
   BKeyPressed: boolean = false
 
-  playNote(keyStation: KeyStation, note: Note, durationInSeconds: number): void {
+  public playNote(keyStation: KeyStation, note: Note, durationInSeconds: number): void {
     keyStation.playNote(note, durationInSeconds, this.currentVolume)
   }
 
@@ -40,29 +40,29 @@ export class FlyingKeysMiniComponent {
     this.showNotes = !this.showNotes
   }
 
-  triggerShowNotes(station: KeyStation): void {
+  public triggerShowNotes(station: KeyStation): void {
     station.showNotes = !station.showNotes
   }
-  triggerShowNotesFr(station: KeyStation): void {
+  public triggerShowNotesFr(station: KeyStation): void {
     station.showNotesFr = !station.showNotesFr
   }
-  triggerShowEnharmony(station: KeyStation): void {
+  public triggerShowEnharmony(station: KeyStation): void {
     station.showEnharmony = !station.showEnharmony
   }
-  triggerShowFrequencies(station: KeyStation): void {
+  public triggerShowFrequencies(station: KeyStation): void {
     station.showFrequency = !station.showFrequency
   }
 
-  volumeUp(): void {
+  private volumeUp(): void {
     if (this.currentVolume >= 1) this.currentVolume = 1
     else this.currentVolume += 0.1
   }
-  volumeDown(): void {
+  private volumeDown(): void {
     if (this.currentVolume <= 0) this.currentVolume = 0
     else this.currentVolume -= 0.1
   }
 
-  lightKey(note: Note): void {
+  private lightKey(note: Note): void {
     note.pressed = true
     setTimeout(() => {
       note.pressed = false

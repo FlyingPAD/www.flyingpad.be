@@ -1,37 +1,43 @@
 <app-right-column>
     <div class="tools-icons">
         <div class="icon">
-            <a [class.active]="showCircleofFifths" (click)="toggleCircleofFifths()">
+            <a [class.active]="toolsMenuState() === 'circle-of-fifths'" (click)="updateMenuState('circle-of-fifths')">
                 <img [src]="getImageURL('icons-tools', 'circle-fifths', 'png')" />
             </a>
             <span>Circle of Fifths</span>
         </div>
         <div class="icon">
-            <a [class.active]="showChordWheel" (click)="toggleChordWheel()">
+            <a [class.active]="toolsMenuState() === 'chord-wheel'" (click)="updateMenuState('chord-wheel')">
                 <img [src]="getImageURL('icons-tools', 'chord-wheel', 'png')" />
             </a>
             <span>Chord Wheel</span>
         </div>
         <div class="icon">
-            <a [class.active]="showDiapason" (click)="toggleDiapason()">
-                <app-icon-diapason size="75px" />
+            <a [class.active]="toolsMenuState() === 'diapason'" (click)="updateMenuState('diapason')">
+                <app-icon-diapason size="85px" />
             </a>
             <span>Diapason</span>
         </div>
         <div class="icon">
-            <a [class.active]="showMiniKeys" (click)="toggleMiniKeys()">
-                <img [src]="getImageURL('icons-tools', 'keyboard', 'svg')" />
+            <a [class.active]="toolsMenuState() === 'mini-keyboard'" (click)="updateMenuState('mini-keyboard')">
+                <app-icon-keyboard size="65px" />
             </a>
             <span>Keyboard</span>
         </div>
         <div class="icon">
-            <a [class.active]="showTrainer" (click)="toggleTrainer()">
+            <a [class.active]="toolsMenuState() === 'notes-trainer'" (click)="updateMenuState('notes-trainer')">
                 <img [src]="getImageURL('icons-tools', 'notes-trainer', 'png')" />
             </a>
             <span>Notes Trainer</span>
         </div>
         <div class="icon">
-            <a [class.active]="showTuner" (click)="toggleTuner()">
+            <a [class.active]="toolsMenuState() === 'timeline'" (click)="updateMenuState('timeline')">
+                <app-icon-timeline size="65px" />
+            </a>
+            <span>Timeline</span>
+        </div>
+        <div class="icon">
+            <a [class.active]="toolsMenuState() === 'guitar-tuner'" (click)="updateMenuState('guitar-tuner')">
                 <img [src]="getImageURL('icons-tools', 'guitar-tuner', 'png')" />
             </a>
             <span>Guitar Tuner</span>
@@ -39,9 +45,10 @@
     </div>
 </app-right-column>
 
-<app-circle-of-fifths *ngIf="showCircleofFifths" />
-<app-chord-wheel *ngIf="showChordWheel" />
-<app-diapason *ngIf="showDiapason" />
-<app-flying-keys-mini *ngIf="showMiniKeys" />
-<app-trainer-notes *ngIf="showTrainer" />
-<app-guitar-tuner *ngIf="showTuner" />
+<app-circle-of-fifths *ngIf="toolsMenuState() === 'circle-of-fifths'" />
+<app-chord-wheel *ngIf="toolsMenuState() === 'chord-wheel'" />
+<app-diapason *ngIf="toolsMenuState() === 'diapason'" />
+<app-flying-keys-mini *ngIf="toolsMenuState() === 'mini-keyboard'" />
+<app-trainer-notes *ngIf="toolsMenuState() === 'notes-trainer'" />
+<app-timeline *ngIf="toolsMenuState() === 'timeline'" />
+<app-guitar-tuner *ngIf="toolsMenuState() === 'guitar-tuner'" />

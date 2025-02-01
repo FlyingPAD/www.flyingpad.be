@@ -15,7 +15,17 @@ public class GetStatisticsQueryHandler(
     IBaseRepository<Model> modelRepository,
     IBaseRepository<Link> linkRepository,
     IBaseRepository<LinkCategory> linkCategoriesRepository,
-    IBaseRepository<User> userRepository
+    IBaseRepository<User> userRepository,
+    IBaseRepository<RelationArtistStyle> rArtistStyle,
+    IBaseRepository<RelationFranchiseMedia> rFranchiseMedium,
+    IBaseRepository<RelationFranchiseModel> rFranchiseModel,
+    IBaseRepository<RelationLinkArtist> rLinkArtist,
+    IBaseRepository<RelationLinkCategory> rLinkCategory,
+    IBaseRepository<RelationLinkModel> rLinkModel,
+    IBaseRepository<RelationMoodArtist> rMoodArtist,
+    IBaseRepository<RelationMoodFranchise> rMoodFranchise,
+    IBaseRepository<RelationMoodModel> rMoodModel,
+    IBaseRepository<RelationMoodTag> rMoodTag
     ) : IRequestHandler<GetStatisticsQuery, GetStatisticsQueryResponse>
 {
     private readonly IBaseRepository<Mood> _moodRepository = moodRepository;
@@ -29,6 +39,16 @@ public class GetStatisticsQueryHandler(
     private readonly IBaseRepository<Link> _linkRepository = linkRepository;
     private readonly IBaseRepository<LinkCategory> _linkCategoriesRepository = linkCategoriesRepository;
     private readonly IBaseRepository<User> _userRepository = userRepository;
+    private readonly IBaseRepository<RelationArtistStyle> _rArtistStyle = rArtistStyle;
+    private readonly IBaseRepository<RelationFranchiseMedia> _rFranchiseMedium = rFranchiseMedium;
+    private readonly IBaseRepository<RelationFranchiseModel> _rFranchiseModel = rFranchiseModel;
+    private readonly IBaseRepository<RelationLinkArtist> _rLinkArtist = rLinkArtist;
+    private readonly IBaseRepository<RelationLinkCategory> _rLinkCategory = rLinkCategory;
+    private readonly IBaseRepository<RelationLinkModel> _rLinkModel = rLinkModel;
+    private readonly IBaseRepository<RelationMoodArtist> _rMoodArtist = rMoodArtist;
+    private readonly IBaseRepository<RelationMoodFranchise> _rMoodFranchise = rMoodFranchise;
+    private readonly IBaseRepository<RelationMoodModel> _rMoodModel = rMoodModel;
+    private readonly IBaseRepository<RelationMoodTag> _rMoodTag = rMoodTag;
     public async Task<GetStatisticsQueryResponse> Handle(GetStatisticsQuery request, CancellationToken cancellationToken)
     {
         var totalMoods = await _moodRepository.CountAsync();
@@ -46,6 +66,16 @@ public class GetStatisticsQueryHandler(
         var totalLinks = await _linkRepository.CountAsync();
         var totalLinkCategories = await _linkCategoriesRepository.CountAsync();
         var totalUsers = await _userRepository.CountAsync();
+        var rArtistStyle = await _rArtistStyle.CountAsync();
+        var rFranchiseMedium = await _rFranchiseMedium.CountAsync();
+        var rFranchiseModel = await _rFranchiseModel.CountAsync();
+        var rLinkArtist = await _rLinkArtist.CountAsync();
+        var rLinkCategory = await _rLinkCategory.CountAsync();
+        var rLinkModel = await _rLinkModel.CountAsync();
+        var rMoodArtist = await _rMoodArtist.CountAsync();
+        var rMoodFranchise = await _rMoodFranchise.CountAsync();
+        var rMoodModel = await _rMoodModel.CountAsync();
+        var rMoodTag = await _rMoodTag.CountAsync();
 
         return new GetStatisticsQueryResponse
         {
@@ -70,7 +100,17 @@ public class GetStatisticsQueryHandler(
                 FemalesPercentage = totalModels > 0 ? (totalFemales / (double)totalModels) * 100 : 0,
                 TotalLinks = totalLinks,
                 TotalLinkCategories = totalLinkCategories,
-                TotalUsers = totalUsers
+                TotalUsers = totalUsers,
+                TotalRelationsArtistStyle = rArtistStyle,
+                TotalRelationsFranchiseMedium = rFranchiseMedium,
+                TotalRelationsFranchiseModel = rFranchiseModel,
+                TotalRelationsLinkArtist = rLinkArtist,
+                TotalRelationsLinkCategory = rLinkCategory,
+                TotalRelationsLinkModel = rLinkModel,
+                TotalRelationsMoodArtist = rMoodArtist,
+                TotalRelationsMoodFranchise = rMoodFranchise,
+                TotalRelationsMoodModel = rMoodModel,
+                TotalRelationsMoodTag = rMoodTag
             }
         };
     }
