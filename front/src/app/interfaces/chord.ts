@@ -1,4 +1,4 @@
-import { Interval } from "../../models/music-tools/interval";
+import { Interval } from "../models/interval";
 import { Note } from "./note";
 
 export interface Chord {

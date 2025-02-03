@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { WheelKey } from '../../../models/music-tools/wheel-key';
+import { WheelKey } from '../../../models/wheel-key';
 
 @Component({
   selector: 'app-circle-of-fifths',

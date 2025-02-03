@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { UserLoginErrorComponent } from './pages/user-login-error/user-login-error.component';
+import { LogInErrorComponent } from './pages/log-in-error/log-in-error.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
 import { CreateMoodImageComponent } from './features/moods/create-mood-image/create-mood-image.component';
@@ -58,7 +58,6 @@ const routes: Routes = [
       { path: 'tags', component: TagsComponent, title: 'Flying PAD | Tags Gallery' },
       { path: 'media', component: MediaComponent, title: 'Flying PAD | Media' },
       { path: 'not-found', component: NotFoundComponent, title: 'Flying PAD | Not Found' },
-      { path: 'login-error', component: UserLoginErrorComponent, title: 'Flying PAD | Login Error' },
       { path: 'register', component: UserRegisterComponent, title: 'Flying PAD | Register' },
       { path: 'medium-gallery', component: MediumGalleryComponent, title: 'Flying PAD | Medium Gallery' },
     ]
@@ -84,6 +83,7 @@ const routes: Routes = [
   {
     path: '', component: LayoutEmptyComponent, children: [
       { path: 'log-in', component: LogInComponent, title: 'Flying PAD | Log in' },
+      { path: 'log-in/error', component: LogInErrorComponent, title: 'Flying PAD | Log in Error' },
       { path: 'sign-up', component: SignUpComponent, title: 'Flying PAD | Sign up' },
     ]
   },

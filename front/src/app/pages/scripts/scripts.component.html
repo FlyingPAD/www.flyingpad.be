@@ -3,7 +3,7 @@
         <section>
             <h2>INTRODUCTION</h2>
             <p (click)="updateMenuState('introduction')" [class.active]="currentScript() === 'introduction'">▸ Avant de commencer</p>
-            <p (click)="updateMenuState('viewpoint')" [class.active]="currentScript() === 'viewpoint'">▸ Point de Vue</p>
+            <p (click)="updateMenuState('point-of-view')" [class.active]="currentScript() === 'point-of-view'">▸ Point de Vue</p>
             <p (click)="updateMenuState('notation')" [class.active]="currentScript() === 'notation'">▸ La Notation Musicale</p>
             <p (click)="updateMenuState('pianoReference')" [class.active]="currentScript() === 'pianoReference'">▸ La Référence Clavier</p>
             <p (click)="updateMenuState('music-principles')" [class.active]="currentScript() === 'music-principles'">▸ Principes élémentaires</p>
@@ -13,6 +13,7 @@
             <h2>CONVENTIONS</h2>
             <p (click)="updateMenuState('notesFr')" [class.active]="currentScript() === 'notesFr'">▸ Les Notes</p>
             <p (click)="updateMenuState('notesEn')" [class.active]="currentScript() === 'notesEn'">▸ Les Notes (en anglais)</p>
+            <p (click)="updateMenuState('the-octave')" [class.active]="currentScript() === 'the-octave'">▸ L'Octave</p>
             <p (click)="updateMenuState('tones')" [class.active]="currentScript() === 'tones'">▸ Tons et Demi-Tons</p>
             <p (click)="updateMenuState('intervals')" [class.active]="currentScript() === 'intervals'">▸ Les Intervalles</p>
             <p (click)="updateMenuState('scales')" [class.active]="currentScript() === 'scales'">▸ Les Gammes</p>
@@ -23,7 +24,7 @@
             <p (click)="updateMenuState('rythmic-arsenal')" [class.active]="currentScript() === 'rythmic-arsenal'">▸ Arsenal Rythmique</p>
             <p (click)="updateMenuState('pulsation')" [class.active]="currentScript() === 'pulsation'">▸ La Pulsation</p>
             <p (click)="updateMenuState('time-values')" [class.active]="currentScript() === 'time-values'">▸ Les Valeurs de Temps</p>
-            <p (click)="updateMenuState('metricsA')" [class.active]="currentScript() === 'metricsA'">▸ Les Métriques</p>
+            <p (click)="updateMenuState('time-signature')" [class.active]="currentScript() === 'time-signature'">▸ Les Mesures</p>
         </section>
         <section>
             <h2>Arsenal HARMONIQUE</h2>
@@ -39,7 +40,7 @@
 <ng-container [ngSwitch]="currentScript()">
     <app-introduction *ngSwitchCase="'introduction'" />
     <app-key-ref *ngSwitchCase="'pianoReference'" />
-    <app-viewpoint *ngSwitchCase="'viewpoint'" />
+    <app-point-of-view *ngSwitchCase="'point-of-view'" />
     <app-notation *ngSwitchCase="'notation'" />
     <app-notes *ngSwitchCase="'notesFr'" />
     <app-notes-trad *ngSwitchCase="'notesEn'" />
@@ -47,8 +48,7 @@
     <app-chords *ngSwitchCase="'chords'" />
     <app-scales *ngSwitchCase="'scales'" />
     <app-pulsation *ngSwitchCase="'pulsation'" />
-    <app-metrics-a *ngSwitchCase="'metricsA'" />
-    <app-metrics-b *ngSwitchCase="'metricsB'" />
+    <app-time-signature *ngSwitchCase="'time-signature'" />
     <app-music-principles *ngSwitchCase="'music-principles'" />
     <app-music-arsenal *ngSwitchCase="'music-arsenal'" />
     <app-rythmic-arsenal *ngSwitchCase="'rythmic-arsenal'" />
@@ -56,6 +56,7 @@
     <app-melodic-arsenal *ngSwitchCase="'melodic-arsenal'" />
     <app-tones *ngSwitchCase="'tones'" />
     <app-time-values *ngSwitchCase="'time-values'" />
+    <app-the-octave *ngSwitchCase="'the-octave'" />
 </ng-container>    
 
 <app-spacer height="175px" />

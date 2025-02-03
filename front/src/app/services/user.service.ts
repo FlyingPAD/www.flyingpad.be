@@ -40,12 +40,22 @@ export class UserService {
         user.role = role
         user.experience = 0
         user.achievements = [
-          { id: 1, name: 'Member', isTrue: true },
-          { id: 2, name: 'Lasted 10 seconds', isTrue: false },
-          { id: 3, name: 'Lasted 20 seconds', isTrue: false },
-          { id: 4, name: 'Lasted 30 seconds', isTrue: false },
-          { id: 5, name: 'Lasted 40 seconds', isTrue: false },
-          { id: 6, name: 'Lasted 50 seconds', isTrue: false },
+          { id: 1, name: 'Official Member', description: 'You created an account :)', category: 'standard', obtained: new Date(), isTrue: true },
+          { id: 2, name: 'Novice', description: 'You lasted 10 seconds !!', category: 'notes-bass', obtained: undefined, isTrue: false },
+          { id: 3, name: 'Intermediate', description: 'You lasted 20 seconds !!', category: 'notes-bass', obtained: undefined, isTrue: false },
+          { id: 4, name: 'Advanced', description: 'You lasted 30 seconds !!', category: 'notes-bass', obtained: undefined, isTrue: false },
+          { id: 5, name: 'Expert', description: 'You lasted 40 seconds !!', category: 'notes-bass', obtained: undefined, isTrue: false },
+          { id: 6, name: 'Master', description: 'You lasted 50 seconds !!', category: 'notes-bass', obtained: undefined, isTrue: false },
+          { id: 7, name: 'Novice', description: 'You lasted 10 seconds !!', category: 'notes-alto', obtained: undefined, isTrue: false },
+          { id: 8, name: 'Intermediate', description: 'You lasted 20 seconds !!', category: 'notes-alto', obtained: undefined, isTrue: false },
+          { id: 9, name: 'Advanced', description: 'You lasted 30 seconds !!', category: 'notes-alto', obtained: undefined, isTrue: false },
+          { id: 10, name: 'Expert', description: 'You lasted 40 seconds !!', category: 'notes-alto', obtained: undefined, isTrue: false },
+          { id: 11, name: 'Master', description: 'You lasted 50 seconds !!', category: 'notes-alto', obtained: undefined, isTrue: false },
+          { id: 12, name: 'Novice', description: 'You lasted 10 seconds !!', category: 'notes-treble', obtained: undefined, isTrue: false },
+          { id: 13, name: 'Intermediate', description: 'You lasted 20 seconds !!', category: 'notes-treble', obtained: undefined, isTrue: false },
+          { id: 14, name: 'Advanced', description: 'You lasted 30 seconds !!', category: 'notes-treble', obtained: undefined, isTrue: false },
+          { id: 15, name: 'Expert', description: 'You lasted 40 seconds !!', category: 'notes-treble', obtained: undefined, isTrue: false },
+          { id: 16, name: 'Master', description: 'You lasted 50 seconds !!', category: 'notes-treble', obtained: undefined, isTrue: false },
         ]
         this.#user.next(user)
       })
@@ -53,7 +63,7 @@ export class UserService {
   }
 
   public updatePlayerExperience(score: number): void {
-    const user = this.user();
+    const user = this.user()
     if (user) {
       const updatedUser = { ...user, experience: user.experience + score }
       this.#user.next(updatedUser)
@@ -61,10 +71,10 @@ export class UserService {
   }
 
   public obtainAchievement(tableEntry: number): void {
-    const user = this.user();
+    const user = this.user()
     if (user && tableEntry >= 0 && tableEntry < user.achievements.length) {
       const updatedAchievements = user.achievements.map((achievement, index) =>
-        index === tableEntry ? { ...achievement, isTrue: true } : achievement
+        index === tableEntry ? { ...achievement, isTrue: true, obtained: new Date() } : achievement
       )
       this.#user.next({ ...user, achievements: updatedAchievements })
     }

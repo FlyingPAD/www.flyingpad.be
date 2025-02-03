@@ -12,9 +12,9 @@ public class LoginQueryHandler(IAuthRepository authRepository, ITokenManager tok
 
     public async Task<LoginQueryResponse> Handle(LoginQuery request, CancellationToken cancellationToken)
     {
-        var user = await _authRepository.LoginAsync(request.Email, request.Password)
-            ?? throw new NotFoundException("Invalid credentials.");
-
+        var user = await _authRepository.LoginAsync(request.Email, request.Password) 
+            ?? throw new InvalidCredentialException("Invalid credentials.");
+        
         var token = _tokenManager.GenerateToken(user);
 
         return new LoginQueryResponse(token)

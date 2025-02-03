@@ -1,5 +1,5 @@
 import { TimelineEvent } from "./timeline-event"
-import { Graduation } from "../../interfaces/music-tools/timeline-graduation"
+import { Graduation } from "../interfaces/timeline-graduation"
 import { TimelinePeriod } from "./timeline-period"
 import { CustomDate } from "./timeline-custom-date"
 
