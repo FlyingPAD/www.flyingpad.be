@@ -1,14 +1,137 @@
 <div class="achievements">
-  @for(achievement of achievements; track achievement.id) {
-  @if(achievement.isTrue) {
-  <div class="achievement done">
-    <p>{{ achievement.name }}</p>
+  <h1>Achievements</h1>
+  <hr class="hr-dialog">
+  <div class="category">
+    @for(achievement of achievements; track achievement.id) {
+    @if(achievement.category === 'standard') {
+    @if(achievement.isTrue) {
+    <div class="achievement" (click)="displayAchievement(achievement)">
+      <div class="icon done">
+        <app-icon-coin size="75px" />
+      </div>
+      <p>{{ achievement.name }}</p>
+    </div>
+    }
+    @else {
+    <div class="achievement" (click)="displayAchievement(achievement)">
+      <div class="icon">
+        <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
+      </div>
+      <p>{{ achievement.name }}</p>
+    </div>
+    }
+    }
+    }
   </div>
-  }
-  @else {
-  <div class="achievement">
-    <p>{{ achievement.name }}</p>
+  <h1>Notes Master</h1>
+  <hr class="hr-dialog">
+  <div class="category">
+    <div class="achievement">
+      <div class="icon">
+        <app-icon-clef-bass size="75px" />
+      </div>
+      <p>Bass</p>
+    </div>
+    @for(achievement of achievements; track achievement.id) {
+    @if(achievement.category === 'notes-bass') {
+    @if(achievement.isTrue) {
+    <div class="achievement" (click)="displayAchievement(achievement)">
+      <div class="icon done">
+        <app-icon-coin size="75px" />
+      </div>
+      <p>{{ achievement.name }}</p>
+    </div>
+    }
+    @else {
+    <div class="achievement" (click)="displayAchievement(achievement)">
+      <div class="icon">
+        <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
+      </div>
+      <p>{{ achievement.name }}</p>
+    </div>
+    }
+    }
+    }
   </div>
-  }
-  }
+  <div class="category">
+    <div class="achievement">
+      <div class="icon">
+        <app-icon-clef-alto size="75px" />
+      </div>
+      <p>Alto</p>
+    </div>
+    @for(achievement of achievements; track achievement.id) {
+    @if(achievement.category === 'notes-alto') {
+    @if(achievement.isTrue) {
+    <div class="achievement" (click)="displayAchievement(achievement)">
+      <div class="icon done">
+        <app-icon-coin size="75px" />
+      </div>
+      <p>{{ achievement.name }}</p>
+    </div>
+    }
+    @else {
+    <div class="achievement" (click)="displayAchievement(achievement)">
+      <div class="icon">
+        <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
+      </div>
+      <p>{{ achievement.name }}</p>
+    </div>
+    }
+    }
+    }
+  </div>
+  <div class="category">
+    <div class="achievement">
+      <div class="icon">
+        <app-icon-clef-treble size="75px" />
+      </div>
+      <p>Treble</p>
+    </div>
+    @for(achievement of achievements; track achievement.id) {
+    @if(achievement.category === 'notes-treble') {
+    @if(achievement.isTrue) {
+    <div class="achievement" (click)="displayAchievement(achievement)">
+      <div class="icon done">
+        <app-icon-coin size="75px" />
+      </div>
+      <p>{{ achievement.name }}</p>
+    </div>
+    }
+    @else {
+    <div class="achievement" (click)="displayAchievement(achievement)">
+      <div class="icon">
+        <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
+      </div>
+      <p>{{ achievement.name }}</p>
+    </div>
+    }
+    }
+    }
+  </div>
 </div>
+
+@if(isDialogOpen) {
+<app-dialog (dialog)="toggleDialog()">
+  <div class="dialog">
+    @if(this.currentAchievement.isTrue) {
+      <app-icon-coin class="icon" size="100px" />
+      <div>
+        <p class="name">{{ currentAchievement.name }}</p>
+        <p class="date">{{ currentAchievement.obtained | date }}</p>
+        <p>{{ currentAchievement.description }}</p>
+      </div>
+    }
+    @else {
+      <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" class="icon" size="100px" />
+      <div>
+        <p class="name">{{ currentAchievement.name }}</p>
+        <p>{{ currentAchievement.description }}</p>
+      </div>
+    }
+
+  </div>
+</app-dialog>
+}
+
+<app-overlay [isOverlayOn]="isDialogOpen" (toggle)="toggleDialog()" />

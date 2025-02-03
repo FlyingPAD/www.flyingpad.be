@@ -7,40 +7,83 @@
     border-radius: 10px;
     box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    h1 {
+        color: var(--colorMain);
+        font-size: 22px;
+        text-align: center;
+        margin: 0;
+    }
 
-    .achievement {
-        width: 120px;
-        height: 120px;
-
-        margin: 15px;
-
-        background-color: var(--colorWhiteOpacity5);
-        border: 3px solid var(--colorMain);
-        border-radius: 10px;
-        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
-
+    .category {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
 
-        p {
-            color: var(--colorMain);
-            font-size: 13px;
-            text-align: center;
-        }
-    }
-    .done {
-        border: 3px solid gold;
-        box-shadow: 0 3px 4px 0px goldenrod;
-        background-color: goldenrod;
+        margin-bottom: 35px;
 
-        p {
-            color: gold;
+        .achievement {
+            margin: 15px;
+
+            cursor: pointer;
+
+            .icon {
+                width: 100px;
+                height: 100px;
+
+                background-color: var(--colorWhiteOpacity5);
+                border: 8px solid var(--colorMain);
+                border-radius: 20px;
+                box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                opacity: 0.8;
+            }
+
+            .icon:hover {
+                opacity: 1;
+                transition: 300ms;
+            }
+
+            .done {
+                border: 8px solid gold;
+                box-shadow: 0 3px 4px 0px goldenrod;
+                background-color: goldenrod;
+            }
+    
+            p {
+                color: var(--colorMain);
+                font-size: 15px;
+                text-align: center;
+                font-weight: bold;
+            }
         }
+
+
+    }
+}
+
+.dialog {
+    display: flex;
+    align-items: center;
+
+    .icon {
+        margin-right: 25px;
+    }
+
+    .name {
+        font-weight: bold;
+        color: var(--colorMain);
+    }
+
+    .date {
+        font-size: 12px;
+    }
+
+    p {
+        font-size: 14px; 
     }
 }

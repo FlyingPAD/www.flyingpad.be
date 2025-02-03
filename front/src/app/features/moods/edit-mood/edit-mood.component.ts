@@ -146,6 +146,7 @@ export class EditMoodComponent implements OnInit, OnDestroy {
     this.#flowService.DeleteMood(this.mood.businessId).subscribe(response => {
       if (response.success) {
         this.showGallery.emit()
+        this.#moodsService.updateEditMoodMenuState('info')
       }
     })
   }

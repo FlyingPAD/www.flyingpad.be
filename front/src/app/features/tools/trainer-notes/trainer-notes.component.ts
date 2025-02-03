@@ -5,23 +5,8 @@ import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
 import { DashboardService } from '../../../services/dashboard.service';
 import { AuthenticationService } from '../../../services/authentication.service';
-
-export class Note {
-  name: string = ''
-  freq: number = 0
-  row: number = 0
-  alteration: boolean = false
-  extension: boolean = false
-  doubleUp: boolean | undefined = undefined
-}
-
-export interface GameResult {
-  playerName: string
-  score: number
-  duration: number
-  timestamp: string
-  clef: string
-}
+import { GameResult } from '../../../interfaces/game-result';
+import { NoteTrainer } from '../../../interfaces/note-trainer';
 
 @Component({
   selector: 'app-trainer-notes',
@@ -48,18 +33,17 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
   public score: number = 0
   public pic: boolean | undefined = false
   public note: boolean = false
-  public randomNote: Note = new Note()
-  public previousRandomNote: Note = new Note()
-  public userNote: Note = new Note()
+  public randomNote: NoteTrainer = new NoteTrainer()
+  public previousRandomNote: NoteTrainer = new NoteTrainer()
+  public userNote: NoteTrainer = new NoteTrainer()
   public message: string = 'Get Ready !'
-  public notes: Note[] = []
+  public notes: NoteTrainer[] = []
   public info: boolean = false
   public scoreboard: boolean = false
   public gameResults: GameResult[] = []
   public playerName: string = ''
   public naming: boolean = false
-  public notesREF: Note[] =
-    [
+  public notesREF: NoteTrainer[] = [
       { name: 'C', freq: 261.63, row: 1, alteration: false, extension: true, doubleUp: undefined },
       { name: 'C#', freq: 277.18, row: 1, alteration: true, extension: true, doubleUp: undefined },
       { name: 'D', freq: 293.66, row: 2, alteration: false, extension: false, doubleUp: undefined },
@@ -113,10 +97,10 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
 
     this.pic = false
     this.note = false
-    this.randomNote = new Note()
-    this.previousRandomNote = new Note()
+    this.randomNote = new NoteTrainer()
+    this.previousRandomNote = new NoteTrainer()
 
-    this.userNote = new Note()
+    this.userNote = new NoteTrainer()
     this.message = 'Get Ready !'
 
     this.info = false
@@ -153,39 +137,115 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
         this.timerStop()
         if(this.#authService.isConnected()) {
           this.#userService.updatePlayerExperience(500)
-          if(this.run > 10) {
-            if(this.#userService.user().achievements[1].isTrue === false) {
-              this.#dashboardService.updateMenuState('achievements')
-              this.#routerService.navigateByUrl('/')
-              this.#userService.obtainAchievement(1)
+          if(this.clefBass) {
+            if(this.run > 10) {
+              if(this.#userService.user().achievements[1].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(1)
+              }
+            }
+            if(this.run > 20) {
+              if(this.#userService.user().achievements[2].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(2)
+              }
+            }
+            if(this.run > 30) {
+              if(this.#userService.user().achievements[3].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(3)
+              }
+            }
+            if(this.run > 40) {
+              if(this.#userService.user().achievements[4].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(4)
+              }
+            }
+            if(this.run > 50) {
+              if(this.#userService.user().achievements[5].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(5)
+              }
             }
           }
-          if(this.run > 20) {
-            if(this.#userService.user().achievements[2].isTrue === false) {
-              this.#dashboardService.updateMenuState('achievements')
-              this.#routerService.navigateByUrl('/')
-              this.#userService.obtainAchievement(2)
+          if(this.clefAlto) {
+            if(this.run > 10) {
+              if(this.#userService.user().achievements[6].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(6)
+              }
+            }
+            if(this.run > 20) {
+              if(this.#userService.user().achievements[7].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(7)
+              }
+            }
+            if(this.run > 30) {
+              if(this.#userService.user().achievements[8].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(8)
+              }
+            }
+            if(this.run > 40) {
+              if(this.#userService.user().achievements[9].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(9)
+              }
+            }
+            if(this.run > 50) {
+              if(this.#userService.user().achievements[10].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(10)
+              }
             }
           }
-          if(this.run > 30) {
-            if(this.#userService.user().achievements[3].isTrue === false) {
-              this.#dashboardService.updateMenuState('achievements')
-              this.#routerService.navigateByUrl('/')
-              this.#userService.obtainAchievement(3)
+          if(this.clefTreble) {
+            if(this.run > 10) {
+              if(this.#userService.user().achievements[11].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(11)
+              }
             }
-          }
-          if(this.run > 40) {
-            if(this.#userService.user().achievements[4].isTrue === false) {
-              this.#dashboardService.updateMenuState('achievements')
-              this.#routerService.navigateByUrl('/')
-              this.#userService.obtainAchievement(4)
+            if(this.run > 20) {
+              if(this.#userService.user().achievements[12].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(12)
+              }
             }
-          }
-          if(this.run > 50) {
-            if(this.#userService.user().achievements[5].isTrue === false) {
-              this.#dashboardService.updateMenuState('achievements')
-              this.#routerService.navigateByUrl('/')
-              this.#userService.obtainAchievement(5)
+            if(this.run > 30) {
+              if(this.#userService.user().achievements[13].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(13)
+              }
+            }
+            if(this.run > 40) {
+              if(this.#userService.user().achievements[14].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(14)
+              }
+            }
+            if(this.run > 50) {
+              if(this.#userService.user().achievements[15].isTrue === false) {
+                this.#dashboardService.updateMenuState('achievements')
+                this.#routerService.navigateByUrl('/')
+                this.#userService.obtainAchievement(15)
+              }
             }
           }
         }
@@ -239,7 +299,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
     this.clefAlto = true
   }
 
-  public updateUserNote(note: Note) {
+  public updateUserNote(note: NoteTrainer) {
     this.userNote = note
     this.checkNote()
     this.generateRandomNote()
@@ -271,8 +331,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
 
   public initializeNotes() {
     if (this.clefBass === true) {
-      this.notes =
-        [
+      this.notes = [
           { name: 'D', freq: 73.415, row: 0, alteration: false, extension: false, doubleUp: true },
           { name: 'D#', freq: 77.783, row: 0, alteration: true, extension: false, doubleUp: true },
           { name: 'E', freq: 82.408, row: 1, alteration: false, extension: true, doubleUp: undefined },
@@ -298,8 +357,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
         ]
     }
     if (this.clefAlto === true) {
-      this.notes =
-        [
+      this.notes = [
           { name: 'C', freq: 130.815, row: 0, alteration: false, extension: false, doubleUp: true },
           { name: 'C#', freq: 138.59, row: 0, alteration: true, extension: false, doubleUp: true },
           { name: 'D', freq: 146.83, row: 1, alteration: false, extension: true, doubleUp: undefined },
@@ -327,8 +385,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
         ]
     }
     if (this.clefTreble === true) {
-      this.notes =
-        [
+      this.notes = [
           // { name: 'A', freq: 220, row: -1, alteration: false, extension: true, doubleUp: false },
           // { name: 'A#', freq: 233.08, row: -1, alteration: true, extension: true, doubleUp: false },
           { name: 'B', freq: 246.94, row: 0, alteration: false, extension: false, doubleUp: true },

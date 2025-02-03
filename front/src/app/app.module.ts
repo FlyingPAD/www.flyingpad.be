@@ -14,7 +14,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { UserLoginErrorComponent } from './pages/user-login-error/user-login-error.component';
+import { LogInErrorComponent } from './pages/log-in-error/log-in-error.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
 import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circle-of-fifths.component';
@@ -24,15 +24,11 @@ import { TrainerNotesComponent } from './features/tools/trainer-notes/trainer-no
 import { ChordsComponent } from './features/scripts/chords/chords.component';
 import { IntervalsComponent } from './features/scripts/intervals/intervals.component';
 import { KeyRefComponent } from './features/scripts/key-ref/key-ref.component';
-import { LearnMusicComponent } from './features/scripts/learn-music/learn-music.component';
-import { MetricsAComponent } from './features/scripts/metrics-a/metrics-a.component';
-import { MetricsBComponent } from './features/scripts/metrics-b/metrics-b.component';
 import { NotationComponent } from './features/scripts/notation/notation.component';
 import { NotesTradComponent } from './features/scripts/notes-trad/notes-trad.component';
 import { NotesComponent } from './features/scripts/notes/notes.component';
 import { PulsationComponent } from './features/scripts/pulsation/pulsation.component';
 import { ScalesComponent } from './features/scripts/scales/scales.component';
-import { ViewpointComponent } from './features/scripts/viewpoint/viewpoint.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -194,6 +190,12 @@ import { IconTimelineComponent } from './icons/icon-timeline/icon-timeline.compo
 import { TimbreComponent } from './features/scripts/timbre/timbre.component';
 import { TonesComponent } from './features/scripts/tones/tones.component';
 import { TimeValuesComponent } from './features/scripts/time-values/time-values.component';
+import { IconClefBassComponent } from './icons/icon-clef-bass/icon-clef-bass.component';
+import { IconClefTrebleComponent } from './icons/icon-clef-treble/icon-clef-treble.component';
+import { IconClefAltoComponent } from './icons/icon-clef-alto/icon-clef-alto.component';
+import { TheOctaveComponent } from './features/scripts/the-octave/the-octave.component';
+import { PointOfViewComponent } from './features/scripts/point-of-view/point-of-view.component';
+import { TimeSignatureComponent } from './features/scripts/time-signature/time-signature.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   let version : string = '1.0.0'
@@ -248,6 +250,8 @@ export function appInitializerFactory(translate: TranslateService) {
     SettingsComponent,
     SignUpComponent,
     LogInComponent,
+    LogInErrorComponent,
+    UserRegisterComponent,
     // Components.
     AppComponent,
     ListFlowComponent,
@@ -330,29 +334,27 @@ export function appInitializerFactory(translate: TranslateService) {
     EditLinkComponent,
     DeleteLinkCategoryComponent,
     DeleteLinkComponent,
-    // Users.
-    UserRegisterComponent,
-    UserLoginErrorComponent,
     // Scripts.
     IntroductionComponent,
     MusicArsenalComponent,
     NotesComponent,
     NotesTradComponent,
     PulsationComponent,
-    MetricsAComponent,
     KeyRefComponent,
     IntervalsComponent,
     ChordsComponent,
     ScalesComponent,
     NotationComponent,
-    MetricsBComponent,
+    TimeSignatureComponent,
     RythmicArsenalComponent,
     MelodicArsenalComponent,
     HarmonicArsenalComponent,
-    LearnMusicComponent,
-    ViewpointComponent,
-    TimelineComponent,
     MusicPrinciplesComponent,
+    TheOctaveComponent,
+    PointOfViewComponent,
+    TimbreComponent,
+    TonesComponent,
+    TimeValuesComponent,
     // Tools.
     ChordWheelComponent,
     CircleOfFifthsComponent,
@@ -360,6 +362,7 @@ export function appInitializerFactory(translate: TranslateService) {
     FlyingKeysMiniComponent,
     TrainerNotesComponent,
     GuitarTunerComponent,
+    TimelineComponent,
     // SVG Icons.
     IconStarComponent,
     IconEditComponent,
@@ -400,13 +403,15 @@ export function appInitializerFactory(translate: TranslateService) {
     IconDiapasonComponent,
     IconKeyboardComponent,
     IconTimelineComponent,
+    // Logo
     LogoFacebookComponent,
     LogoInstagramComponent,
     LogoYoutubeComponent,
     LogoSoundcloudComponent,
-    TimbreComponent,
-    TonesComponent,
-    TimeValuesComponent
+    // Clef
+    IconClefBassComponent,
+    IconClefTrebleComponent,
+    IconClefAltoComponent,
   ],
   imports: [
     BrowserModule,

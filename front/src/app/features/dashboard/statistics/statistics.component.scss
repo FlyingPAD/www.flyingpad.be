@@ -23,5 +23,20 @@
         padding: 15px;
 
         color: var(--colorMain);
+
+        .group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .group-icon {
+                display: flex;
+                align-items: center;
+            }
+
+            p {
+                margin: 7px;
+            }
+        }
     }
 }

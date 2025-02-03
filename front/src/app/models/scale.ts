@@ -1,5 +1,5 @@
 import { Interval } from "./interval";
-import { Note } from "../../interfaces/music-tools/note";
+import { Note } from "../interfaces/note";
 
 export class Scale
 {

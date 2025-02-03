@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Signal, inject } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { LoginQueryResponse, RegisterCommandResponse, UserLoginForm, UserRegisterForm } from '../interfaces/authentication';
 import { environment } from '../../environments/environment';
@@ -9,6 +9,7 @@ import { UserService } from './user.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TokenService } from './token.service';
 import { RedirectionService } from './redirection.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthenticationService {
   #tokenService = inject(TokenService)
   #userService = inject(UserService)
   #redirectionService = inject(RedirectionService)
+  #router = inject(Router)
 
   #url = environment.apiBaseUrl + '/api/V1/'
   #isConnected = new BehaviorSubject<boolean>(false)
@@ -31,9 +33,16 @@ export class AuthenticationService {
           this.#tokenService.storeToken(response.token)
           this.authenticate(response.token)
           this.#toastr.success(response.message)
+        } else {
+          this.#toastr.error(response.message)
+          this.#router.navigateByUrl('log-in/error')
         }
-        else this.#toastr.error(response.message)
-      }))
+      }),
+      catchError(error => {
+        this.#router.navigateByUrl('log-in/error')        
+        return throwError(() => error)
+      })
+    )
   }
 
   public register(form: UserRegisterForm): Observable<RegisterCommandResponse> {

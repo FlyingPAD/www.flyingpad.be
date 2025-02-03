@@ -1,8 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { FlowService } from '../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
 import { ImageUrlService } from '../../services/image-url.service';
@@ -18,7 +17,6 @@ export class LogInComponent implements OnInit {
   #authService = inject(AuthenticationService)
   #userService = inject(UserService)
   #formBuilder = inject(FormBuilder)
-  #router = inject(Router)
   #languageService = inject(LanguageService)
   #imageUrlService = inject(ImageUrlService)
 
@@ -27,7 +25,7 @@ export class LogInComponent implements OnInit {
   public environment: string = environment.apiBaseUrl
   public currentLanguage = this.#languageService.currentLanguage
   public closeButtonIsOn: boolean = false
-  public isLanguageMenuON : boolean = false
+  public isLanguageMenuON: boolean = false
   public formGroup: FormGroup = this.#formBuilder
     .group({
       email: ['', [Validators.required, Validators.email, Validators.maxLength(384)]],
@@ -35,16 +33,14 @@ export class LogInComponent implements OnInit {
     })
 
   ngOnInit(): void {
-    setTimeout( () => {
+    setTimeout(() => {
       this.closeButtonIsOn = true
     }, 500)
   }
 
   public onLogin(): void {
     if (this.formGroup.valid) {
-      this.#authService.login(this.formGroup.value).subscribe({
-        error: (() => this.#router.navigateByUrl('authentication/login-error'))
-      })
+      this.#authService.login(this.formGroup.value).subscribe()
     }
   }
 
@@ -53,11 +49,20 @@ export class LogInComponent implements OnInit {
   }
 
   public getImageURL(theme: boolean, folderName: string, imageName: string, imageExtension: string): string {
-    if(theme) {
+    if (theme) {
       return this.#imageUrlService.getImageURL(folderName, imageName, imageExtension)
     }
     else {
       return this.#imageUrlService.getImageURLNoTheme(folderName, imageName, imageExtension)
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.onLogin()
+        break
     }
   }
 }
