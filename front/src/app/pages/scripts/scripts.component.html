@@ -15,9 +15,7 @@
             <p (click)="updateMenuState('notesEn')" [class.active]="currentScript() === 'notesEn'">▸ Les Notes (en anglais)</p>
             <p (click)="updateMenuState('the-octave')" [class.active]="currentScript() === 'the-octave'">▸ L'Octave</p>
             <p (click)="updateMenuState('tones')" [class.active]="currentScript() === 'tones'">▸ Tons et Demi-Tons</p>
-            <p (click)="updateMenuState('intervals')" [class.active]="currentScript() === 'intervals'">▸ Les Intervalles</p>
-            <p (click)="updateMenuState('scales')" [class.active]="currentScript() === 'scales'">▸ Les Gammes</p>
-            <p (click)="updateMenuState('chords')" [class.active]="currentScript() === 'chords'">▸ Les Accords</p>
+            <p (click)="updateMenuState('intervals')" [class.active]="currentScript() === 'intervals'">▸ Les Intervalles</p> 
         </section>
         <section>
             <h2>Arsenal RYTHMIQUE</h2>
@@ -29,10 +27,12 @@
         <section>
             <h2>Arsenal HARMONIQUE</h2>
             <p (click)="updateMenuState('harmonic-arsenal')" [class.active]="currentScript() === 'harmonic-arsenal'">▸ Arsenal Harmonique</p>
+            <p (click)="updateMenuState('chords')" [class.active]="currentScript() === 'chords'">▸ Les Accords</p>
         </section>
         <section>
             <h2>Arsenal MÉLODIQUE</h2>
             <p (click)="updateMenuState('melodic-arsenal')" [class.active]="currentScript() === 'melodic-arsenal'">▸ Arsenal Mélodique</p>
+            <p (click)="updateMenuState('scales')" [class.active]="currentScript() === 'scales'">▸ Les Gammes</p>
         </section>
     </div>
 </app-right-column>

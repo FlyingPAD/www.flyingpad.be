@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ScriptsService } from '../../../services/scripts.service';
 
 @Component({
   selector: 'app-the-octave',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './the-octave.component.scss'
 })
 export class TheOctaveComponent {
+  #scriptsService = inject(ScriptsService)
 
+  public goTo(page: string): void {
+    this.#scriptsService.updateScriptMenuState(page)
+  }
 }

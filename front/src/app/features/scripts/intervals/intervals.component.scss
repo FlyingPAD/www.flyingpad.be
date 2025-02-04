@@ -2,12 +2,17 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
 
-    margin-top: 25px;
-    margin-bottom: 150px;
+    table {
+        color: var(--colorMain);
+        margin-bottom: 15px;
 
-    .legend {
-        margin: 50px;
+        tr {
+            td {
+                border: 1px solid var(--colorMain);
+                border-radius: 5px;
+                padding: 10px;
+            }
+        }
     }
 }
