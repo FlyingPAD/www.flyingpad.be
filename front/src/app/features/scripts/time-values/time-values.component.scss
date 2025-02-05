@@ -58,11 +58,36 @@ table {
     td {
         border: 1px solid var(--colorMain);
         border-radius: 5px;
-        padding: 10px;
+        padding: 0 10px;
+
+        .webp {
+            width: 40px;
+            height: 40px;
+            margin: auto;
+            background-color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .svg {
+            width: 40px;
+            height: 40px;
+            margin: auto;
+
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .icon {
+
+            }
+        }
 
         img {
-            display: block;
-            margin: auto;
+            height: 80%;
         }
     }
 

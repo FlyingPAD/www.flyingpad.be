@@ -9,7 +9,7 @@ import { ScriptsService } from '../../../services/scripts.service';
 export class TheOctaveComponent {
   #scriptsService = inject(ScriptsService)
 
-  public goTo(page: string): void {
+  public updateMenuState(page: string): void {
     this.#scriptsService.updateScriptMenuState(page)
   }
 }

@@ -3,6 +3,7 @@ import { FlowService } from '../../services/flow.service';
 import { Router } from '@angular/router';
 import { PaginationService } from '../../services/pagination.service';
 import { FranchiseLight } from '../../interfaces/franchise';
+import { MoodsService } from '../../services/moods.service';
 
 @Component({
   selector: 'app-edit-franchises',
@@ -12,6 +13,7 @@ export class EditFranchisesComponent {
   #flowService = inject(FlowService)
   #router = inject(Router)
   #paginationService = inject(PaginationService)
+  #moodsService = inject(MoodsService)
 
   public flow = this.#flowService.flow
   public currentPage = this.#paginationService.editFranchisesCurrentPage
@@ -61,6 +63,7 @@ export class EditFranchisesComponent {
   }
 
   public go(): void {
+    this.#moodsService.updateMoodMenuState('gallery')
     this.#router.navigateByUrl('/moods')
   }
 

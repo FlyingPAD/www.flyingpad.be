@@ -36,6 +36,15 @@
         li {
             color: var(--colorMain);
         }
+
+        .link {
+            color: var(--colorMainOpacity8);
+            cursor: pointer;
+        }
+        .link:hover {
+            color: var(--colorMain);
+            text-decoration: underline;
+        }
     }
 
     .primary {

@@ -144,7 +144,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   public scrollToStart(elementId: string): void {
     const domElement = document.getElementById(elementId)
     if (domElement) {
-      domElement.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+      domElement.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" })
     }
   }
 

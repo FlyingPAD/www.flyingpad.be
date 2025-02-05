@@ -3,6 +3,7 @@ import { FlowService } from '../../services/flow.service'
 import { Router } from '@angular/router'
 import { ModelLight } from '../../interfaces/model'
 import { PaginationService } from '../../services/pagination.service'
+import { MoodsService } from '../../services/moods.service'
 
 @Component({
   selector: 'app-edit-models',
@@ -12,6 +13,7 @@ export class EditModelsComponent {
   #flowService = inject(FlowService)
   #router = inject(Router)
   #paginationService = inject(PaginationService)
+  #moodsService = inject(MoodsService)
 
   public flow = this.#flowService.flow
   public searchModels = ''
@@ -72,6 +74,7 @@ export class EditModelsComponent {
   }
 
   public go(): void {
+    this.#moodsService.updateMoodMenuState('gallery')
     this.#router.navigateByUrl('/moods')
   }
 

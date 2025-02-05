@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class ScriptsService {
   #scriptsMenuState = new BehaviorSubject<string>('introduction')
 
-  public scriptsMenuState = toSignal(this.#scriptsMenuState)
+  public scriptsMenuState = toSignal(this.#scriptsMenuState) as Signal<string>
 
   public updateScriptMenuState(menuState: string): void {
     this.#scriptsMenuState.next(menuState)
