@@ -3,6 +3,7 @@ import { FlowService } from '../../services/flow.service';
 import { Router } from '@angular/router';
 import { PaginationService } from '../../services/pagination.service';
 import { ArtistLight } from '../../interfaces/artist';
+import { MoodsService } from '../../services/moods.service';
 
 @Component({
   selector: 'app-edit-artists',
@@ -12,6 +13,7 @@ export class EditArtistsComponent {
   #flowService = inject(FlowService)
   #router = inject(Router)
   #paginationService = inject(PaginationService)
+  #moodsService = inject(MoodsService)
 
   public flow = this.#flowService.flow
   public currentPage = this.#paginationService.editArtistsCurrentPage
@@ -60,6 +62,7 @@ export class EditArtistsComponent {
   }
 
   public go(): void {
+    this.#moodsService.updateMoodMenuState('gallery')
     this.#router.navigateByUrl('/moods')
   }
 

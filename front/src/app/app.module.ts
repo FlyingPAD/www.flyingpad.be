@@ -196,6 +196,12 @@ import { IconClefAltoComponent } from './icons/icon-clef-alto/icon-clef-alto.com
 import { TheOctaveComponent } from './features/scripts/the-octave/the-octave.component';
 import { PointOfViewComponent } from './features/scripts/point-of-view/point-of-view.component';
 import { TimeSignatureComponent } from './features/scripts/time-signature/time-signature.component';
+import { TimeValueCrotchetComponent } from './icons/time-value-crotchet/time-value-crotchet.component';
+import { TimeValueSemibreveComponent } from './icons/time-value-semibreve/time-value-semibreve.component';
+import { TimeValueMinimComponent } from './icons/time-value-minim/time-value-minim.component';
+import { TimeValueQuaverComponent } from './icons/time-value-quaver/time-value-quaver.component';
+import { TimeValueSemiquaverComponent } from './icons/time-value-semiquaver/time-value-semiquaver.component';
+import { ScrollDirective } from './directives/scroll.directive';
 
 export function HttpLoaderFactory(http: HttpClient) {
   let version : string = '1.0.0'
@@ -412,6 +418,12 @@ export function appInitializerFactory(translate: TranslateService) {
     IconClefBassComponent,
     IconClefTrebleComponent,
     IconClefAltoComponent,
+    TimeValueCrotchetComponent,
+    TimeValueSemibreveComponent,
+    TimeValueMinimComponent,
+    TimeValueQuaverComponent,
+    TimeValueSemiquaverComponent,
+    ScrollDirective,
   ],
   imports: [
     BrowserModule,

@@ -7,9 +7,9 @@ import { ScriptsService } from '../../../services/scripts.service';
   styleUrl: './music-arsenal.component.scss'
 })
 export class MusicArsenalComponent {
-    #scriptsService = inject(ScriptsService)
-  
-    public updateMenuState(menuState: string): void {
-      this.#scriptsService.updateScriptMenuState(menuState)
-    }
+  #scriptsService = inject(ScriptsService)
+
+  public updateMenuState(menuState: string): void {
+    this.#scriptsService.updateScriptMenuState(menuState)
+  }
 }
