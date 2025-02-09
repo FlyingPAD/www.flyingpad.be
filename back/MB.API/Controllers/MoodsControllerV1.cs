@@ -2,6 +2,7 @@
 using MB.Application.Features.Moods.Commands.CreateMoodImage;
 using MB.Application.Features.Moods.Commands.CreateMoodVideo;
 using MB.Application.Features.Moods.Commands.DeleteMood;
+using MB.Application.Features.Moods.Commands.MultiTags;
 using MB.Application.Features.Moods.Commands.UpdateMood;
 using MB.Application.Features.Moods.Commands.UpdateMoodScore;
 using MB.Application.Features.Moods.Queries;
@@ -78,6 +79,11 @@ public class MoodsControllerV1(IMediator mediator) : ControllerBase
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<BaseResponse>> Update([FromBody] UpdateMoodCommand command)
         => Ok(await _mediator.Send(command));
+
+    [HttpPut("MultiTags")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    public async Task<ActionResult<BaseResponse>> MultiTags([FromBody] MultiTagsCommand command)
+    => Ok(await _mediator.Send(command));
 
     [HttpPut("UpdateScore")]
     [Authorize(AuthenticationSchemes = "Bearer")]

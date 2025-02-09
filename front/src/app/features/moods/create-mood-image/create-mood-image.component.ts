@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ImageForm } from '../../../interfaces/mood-image';
 import { FlowService } from '../../../services/flow.service';
-import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from '../../../services/notification.service';
+import { LowerCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-mood-image',
@@ -14,7 +15,7 @@ export class CreateMoodImageComponent {
   #flowService = inject(FlowService)
   #builder = inject(FormBuilder)
   #router = inject(Router)
-  #toastr = inject(ToastrService)
+  #notificationService = inject(NotificationService)
 
   public images : ImageForm[] = []
   public forms : FormGroup[] = []
@@ -33,13 +34,13 @@ export class CreateMoodImageComponent {
   
       const reader = new FileReader()
       reader.readAsDataURL(file)
-  
+
       reader.onload = () => {
-        if(file.name.slice(file.name.lastIndexOf('.') + 1) === 'gif' && file.size < 50000000
-        || file.name.slice(file.name.lastIndexOf('.') + 1) === 'jpg' && file.size < 50000000
-        || file.name.slice(file.name.lastIndexOf('.') + 1) === 'jpeg' && file.size < 50000000
-        || file.name.slice(file.name.lastIndexOf('.') + 1) === 'png' && file.size < 50000000
-        || file.name.slice(file.name.lastIndexOf('.') + 1) === 'webp' && file.size < 50000000) {
+        if(file.name.slice(file.name.lastIndexOf('.') + 1).toLowerCase() === 'gif' && file.size < 50000000
+        || file.name.slice(file.name.lastIndexOf('.') + 1).toLowerCase() === 'jpg' && file.size < 50000000
+        || file.name.slice(file.name.lastIndexOf('.') + 1).toLowerCase() === 'jpeg' && file.size < 50000000
+        || file.name.slice(file.name.lastIndexOf('.') + 1).toLowerCase() === 'png' && file.size < 50000000
+        || file.name.slice(file.name.lastIndexOf('.') + 1).toLowerCase() === 'webp' && file.size < 50000000) {
           const image: ImageForm = {
             name: '...',
             description: '...',
@@ -97,7 +98,7 @@ export class CreateMoodImageComponent {
       }
       this.#router.navigateByUrl('/moods')
     }
-    else this.#toastr.error('No images were selected ...')
+    else this.#notificationService.error('No images were selected ...')
   }
 
   public backToDashboard(): void {

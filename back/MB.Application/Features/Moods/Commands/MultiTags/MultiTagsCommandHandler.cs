@@ -1,0 +1,22 @@
+﻿using MB.Application.Interfaces.Persistence;
+using MB.Application.Models;
+using MediatR;
+
+namespace MB.Application.Features.Moods.Commands.MultiTags
+{
+    public class MultiTagsCommandHandler(IMoodRepository moodRepository) : IRequestHandler<MultiTagsCommand, BaseResponse>
+    {
+        private readonly IMoodRepository _moodRepository = moodRepository;
+
+        public async Task<BaseResponse> Handle(MultiTagsCommand request, CancellationToken cancellationToken)
+        {
+            await _moodRepository.UpdateMultiTags(request.MoodIds.ToList(), request.Tags.ToList());
+
+            return new BaseResponse
+            {
+                Success = true,
+                Message = "MultiTags updated successfully."
+            };
+        }
+    }
+}

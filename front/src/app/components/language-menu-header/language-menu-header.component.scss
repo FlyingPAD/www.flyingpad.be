@@ -59,16 +59,16 @@
 }
 
 .on {
-    right: 150px;
     opacity: 1;
+    pointer-events: initial;
 }
 
 .off {
-    right: -215px;
     opacity: 0;
+    pointer-events: none;
 }
 
-@media (max-width: 800) {
+@media (max-width: 800px) {
     .language-menu {
         display: none;
     }

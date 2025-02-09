@@ -1,6 +1,7 @@
 <div class="list">
     <a [class.active]="currentEntityId === null" (click)="handleId(null)"> ▸ {{ 'title.all-items' | translate }}</a>
     <div *ngFor="let item of table">
-        <a [class.active]="currentEntityId === item.businessId" (click)="handleId(item.businessId)"> ▸ {{item.name}}</a>
+        <a [appScrollActive]="currentEntityId === item.businessId" [class.active]="currentEntityId === item.businessId" 
+            (click)="handleId(item.businessId)"> ▸ {{item.name}}</a>
     </div>
 </div>

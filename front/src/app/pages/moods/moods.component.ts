@@ -12,7 +12,7 @@ import { MoodsService } from '../../services/moods.service';
   templateUrl: './moods.component.html',
   styleUrl: './moods.component.scss'
 })
-export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
+export class MoodsComponent implements OnInit, OnDestroy {
   #flowService = inject(FlowService)
   #menuService = inject(MenuService)
   #paginationService = inject(PaginationService)
@@ -27,17 +27,11 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   public environment = environment.apiBaseUrl
   public showDialog: boolean = false
   public leftCardIsActive: boolean = this.leftCardInit()
+  public isDiaporamaActive: boolean = false
 
   ngOnInit(): void {
     this.getMoodHeight(false)
     window.scrollTo(0, 0)
-    const businessIdString = `${this.flow()?.tag?.businessId ?? 'fallbackValue'}`
-    this.scrollToStart(businessIdString)
-  }
-
-  ngAfterViewChecked(): void {
-    const businessIdString = `${this.flow()?.tag?.businessId ?? 'fallbackValue'}`
-    this.scrollToStart(businessIdString)
   }
 
   ngOnDestroy(): void {
@@ -58,6 +52,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   public diaporamaStart(isRandom: boolean): void {
+    this.isDiaporamaActive = true
     isRandom ? this.updateMoodId(null) : this.getPage('next')
     this.intervalId = setInterval(() => {
       isRandom ? this.updateMoodId(null) : this.getPage('next')
@@ -69,6 +64,7 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
       clearInterval(this.intervalId)
       this.intervalId = undefined
     }
+    this.isDiaporamaActive = false
   }
 
   public getPage(direction: string): void {
@@ -141,13 +137,6 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.#paginationService.resetFranchiseGalleryCurrentPage()
   }
 
-  public scrollToStart(elementId: string): void {
-    const domElement = document.getElementById(elementId)
-    if (domElement) {
-      domElement.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" })
-    }
-  }
-
   public toTop(): void {
     window.scrollTo({
       top: 0,
@@ -203,10 +192,10 @@ export class MoodsComponent implements OnInit, AfterViewChecked, OnDestroy {
           this.getRandomMood()
           break
         case 'Control':
-          // this.toggleFocus()
+          this.leftCardToggle()
           break
         case 'Enter':
-          this.leftCardToggle()
+          this.updateMoodMenuState('edition')
           break
         case '+':
           this.menuTrigger()

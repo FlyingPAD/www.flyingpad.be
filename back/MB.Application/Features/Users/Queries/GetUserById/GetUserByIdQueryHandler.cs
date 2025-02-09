@@ -13,12 +13,13 @@ public class GetUserByIdQueryHandler(IMapper mapper, IBaseRepository<User> userR
 
     public async Task<GetUserByIdQueryResponse> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetByBusinessIdAsync(request.UserId) ?? throw new NotFoundException("User not found.");
+        var user = await _userRepository.GetByBusinessIdAsync(request.UserId) 
+            ?? throw new NotFoundException("User not found.");
 
         return new GetUserByIdQueryResponse()
         {
             Success = true,
-            Message = $"{user.Pseudonym}.",
+            Message = $"{user.UserName}.",
             User = _mapper.Map<GetUserByIdQueryDto>(user)
         };
     }

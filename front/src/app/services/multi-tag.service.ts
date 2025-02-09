@@ -5,14 +5,20 @@ import { ArtistCheckBox, GetAllArtistsResponse } from '../interfaces/artist';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { GetModelsByMoodResponse, ModelCheckBox } from '../interfaces/model';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MoodScoreUpdate } from '../interfaces/forms-update';
+import { FlowService } from './flow.service';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MultiTagService {
   #http = inject(HttpClient)
+  #flowService = inject(FlowService)
+  #notificationService = inject(NotificationService)
+
   #url: string = environment.apiBaseUrl + '/api/V1/'
-  
+
   #selectedMoods = new BehaviorSubject<number[]>([])
   public selectedMoods = toSignal(this.#selectedMoods) as Signal<number[]>
 
@@ -36,16 +42,16 @@ export class MultiTagService {
   public selectionToggle(moodId: number): void {
     const currentMoods = this.#selectedMoods.value
     const index = currentMoods.indexOf(moodId)
-    
+
     let newSelection: number[]
-  
+
     if (index === -1) {
       newSelection = [...currentMoods, moodId]
-    } 
+    }
     else {
       newSelection = currentMoods.filter(id => id !== moodId)
     }
-  
+
     this.#selectedMoods.next(newSelection)
   }
 
@@ -55,5 +61,28 @@ export class MultiTagService {
 
   public resetSelection(): void {
     this.#selectedMoods.next([])
+  }
+
+  public selectAll(allMoodIds: number[]): void {
+    this.#selectedMoods.next(allMoodIds)
+  }
+
+  public invertSelection(allMoodIds: number[]): void {
+    const currentSelection = this.#selectedMoods.value
+    const newSelection = allMoodIds.filter(moodId => !currentSelection.includes(moodId))
+    this.#selectedMoods.next(newSelection)
+  }
+
+  public multiScore(score: number): void {
+    const currentSelection = this.#selectedMoods.value
+
+    if (currentSelection.length === 0) {
+      this.#notificationService.warning('No Moods Selected')
+    } else {
+      currentSelection.forEach(moodId => {
+        let form: MoodScoreUpdate = { moodId: moodId, value: score }
+        this.#flowService.updateScore(form)
+      })
+    }
   }
 }

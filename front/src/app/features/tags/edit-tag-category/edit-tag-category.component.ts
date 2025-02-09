@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TagCategoryFull } from '../../../interfaces/tag-category';
 import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,16 +11,17 @@ import { TagCategoryUpdateForm } from '../../../interfaces/forms-update';
   styleUrl: './edit-tag-category.component.scss'
 })
 export class EditTagCategoryComponent implements OnInit, OnDestroy {
-  @Input() tagCategory : TagCategoryFull | undefined = undefined
+  @Input() tagCategory: TagCategoryFull | undefined = undefined
   @Output() showListTrigger = new EventEmitter<void>()
 
   #flowService = inject(FlowService)
   #formBuilder = inject(FormBuilder)
-  
-  subscription = new Subscription()
-  isDeleteDialogOpen : boolean = false
-  
-  editFormGroup! : FormGroup
+
+  #subscription = new Subscription()
+
+  public isDeleteDialogOpen: boolean = false
+  public editFormGroup!: FormGroup
+
 
   ngOnInit(): void {
     this.editFormGroup = this.#formBuilder.group({
@@ -30,33 +31,42 @@ export class EditTagCategoryComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    this.#subscription.unsubscribe()
   }
 
-  openDeleteDialog(): void {
+  public openDeleteDialog(): void {
     this.isDeleteDialogOpen = true
   }
-  closeDeleteDialog(): void {
+  public closeDeleteDialog(): void {
     this.isDeleteDialogOpen = false
   }
-  closeDeleteDialogEmit(): void {
+  public closeDeleteDialogEmit(): void {
     this.isDeleteDialogOpen = false
     this.showListTrigger.emit()
   }
 
-  onSubmit() : void {
-    let form : TagCategoryUpdateForm = {
-      tagCategoryId : this.tagCategory? this.tagCategory.businessId : 0,
-      name : this.editFormGroup.value.name,
-      description : this.editFormGroup.value.description
+  public onSubmit(): void {
+    let form: TagCategoryUpdateForm = {
+      tagCategoryId: this.tagCategory ? this.tagCategory.businessId : 0,
+      name: this.editFormGroup.value.name,
+      description: this.editFormGroup.value.description
     }
 
-    if(this.editFormGroup.valid) {
-      this.subscription = this.#flowService.UpdateTagCategory(form).subscribe({
-        next : () => {
+    if (this.editFormGroup.valid) {
+      this.#subscription = this.#flowService.UpdateTagCategory(form).subscribe({
+        next: () => {
           this.showListTrigger.emit()
         }
       })
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.onSubmit()
+        break
     }
   }
 }

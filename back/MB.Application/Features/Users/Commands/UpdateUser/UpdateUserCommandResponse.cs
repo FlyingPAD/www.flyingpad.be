@@ -4,5 +4,5 @@ namespace MB.Application.Features.Users.Commands.UpdateUser;
 
 public class UpdateUserCommandResponse : BaseResponse
 {
-    public UpdateUserDto UpdatedUser { get; set; } = default!;
+    public UpdateUserCommandDto UpdatedUser { get; set; } = default!;
 }

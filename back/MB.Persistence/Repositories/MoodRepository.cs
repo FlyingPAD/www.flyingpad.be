@@ -1,5 +1,6 @@
 ﻿using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
+using MB.Domain.Common;
 using MB.Domain.Entities;
 using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
@@ -150,6 +151,9 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         var tagImage = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Image");
         if (tagImage != null) imageSpecificTags.Add(tagImage.EntityId);
 
+        var tagNewFile = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "New Files");
+        if (tagNewFile != null) imageSpecificTags.Add(tagNewFile.EntityId);
+
         // Handle Extensions.
         var tagBmp = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".bmp");
         var tagGif = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".gif");
@@ -231,6 +235,9 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         var tagVideo = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Video");
         if (tagVideo != null) videoSpecificTags.Add(tagVideo.EntityId);
 
+        var tagNewFile = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "New Files");
+        if (tagNewFile != null) videoSpecificTags.Add(tagNewFile.EntityId);
+
         // Handle Extensions.
         var tagMp4 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".mp4");
         var tagWebm = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".webm");
@@ -292,5 +299,57 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
 
         await _context.RMoodTag.AddRangeAsync(relations);
         await _context.SaveChangesAsync();
+    }
+
+    public async System.Threading.Tasks.Task UpdateMultiTags(ICollection<Guid> moodGuids, ICollection<Guid> tagGuids)
+    {
+        var moodEntities = await _context.Moods
+            .OfType<AuditableEntity>()
+            .Where(m => moodGuids.Contains(m.BusinessId))
+            .ToListAsync();
+
+        var moodIds = moodEntities.Select(m => m.EntityId).ToList();
+
+        var tagEntities = await _context.Tags
+            .OfType<AuditableEntity>()
+            .Where(t => tagGuids.Contains(t.BusinessId))
+            .ToListAsync();
+
+        var tagIds = tagEntities.Select(t => t.EntityId).ToList();
+
+        if (moodIds.Count == 0 || tagIds.Count == 0)
+        {
+            return;
+        }
+
+        var moodsWithTags = await _context.Moods
+            .Where(m => moodIds.Contains(m.EntityId))
+            .Include(m => m.MoodTags)
+            .ToListAsync();
+
+        var relationsToAdd = new List<RelationMoodTag>();
+
+        foreach (var mood in moodsWithTags)
+        {
+            var existingTagIds = mood.MoodTags?.Select(mt => mt.TagId).ToHashSet() ?? [];
+
+            foreach (var tagId in tagIds)
+            {
+                if (!existingTagIds.Contains(tagId))
+                {
+                    relationsToAdd.Add(new RelationMoodTag
+                    {
+                        MoodId = mood.EntityId,
+                        TagId = tagId
+                    });
+                }
+            }
+        }
+
+        if (relationsToAdd.Count != 0)
+        {
+            await _context.RMoodTag.AddRangeAsync(relationsToAdd);
+            await _context.SaveChangesAsync();
+        }
     }
 }

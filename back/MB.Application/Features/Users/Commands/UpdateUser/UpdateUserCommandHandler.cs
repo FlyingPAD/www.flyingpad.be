@@ -16,7 +16,7 @@ public class UpdateUserCommandHandler(IMapper mapper, IBaseRepository<User> user
         var user = await _userRepository.GetByBusinessIdAsync(request.BusinessId)
             ?? throw new NotFoundException("User not found.");
 
-        user.Pseudonym = request.Pseudonym;
+        user.UserName = request.UserName;
         user.FirstName = request.FirstName;
         user.LastName = request.LastName;
         user.Birthdate = request.Birthdate;
@@ -27,7 +27,7 @@ public class UpdateUserCommandHandler(IMapper mapper, IBaseRepository<User> user
         {
             Success = true,
             Message = "User Updated",
-            UpdatedUser = _mapper.Map<UpdateUserDto>(user)
+            UpdatedUser = _mapper.Map<UpdateUserCommandDto>(user)
         };
     }
 }

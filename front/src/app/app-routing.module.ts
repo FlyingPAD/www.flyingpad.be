@@ -30,6 +30,8 @@ import { LogInComponent } from './pages/log-in/log-in.component';
 import { LayoutMoodsComponent } from './layouts/layout-moods/layout-moods.component';
 import { LayoutToolsComponent } from './layouts/layout-tools/layout-tools.component';
 import { LayoutAboutComponent } from './layouts/layout-about/layout-about.component';
+import { authGuard } from './guards/auth.guard';
+import { MultiTagTagsComponent } from './features/moods/multi-tag-tags/multi-tag-tags.component';
 
 const routes: Routes = [
   // Layout ' Home '.
@@ -53,6 +55,7 @@ const routes: Routes = [
       { path: 'moods', component: MoodsComponent, title: 'Flying PAD | Moods Gallery' },
       { path: 'moods/multi-tag-artists', component: MultiTagArtistsComponent, title: 'Flying PAD | Multi Tag Artists' },
       { path: 'moods/multi-tag-models', component: MultiTagModelsComponent, title: 'Flying PAD | Multi Tag Models' },
+      { path: 'moods/multi-tag-tags', component: MultiTagTagsComponent, title: 'Flying PAD | Multi Tag Tags' },
       { path: 'moods/create-mood-image', component: CreateMoodImageComponent, title: 'Flying PAD | Create Mood(s)' },
       { path: 'moods/create-mood-video', component: CreateMoodVideoComponent, title: 'Flying PAD | Create Mood(s)' },
       { path: 'tags', component: TagsComponent, title: 'Flying PAD | Tags Gallery' },
@@ -66,7 +69,7 @@ const routes: Routes = [
   // Layout ' Tools '.
   {
     path: '', component: LayoutToolsComponent, children: [
-      { path: 'dashboard', component: DashboardComponent, title: 'Flying PAD | Dashboard' },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard], title: 'Flying PAD | Dashboard' },
       { path: 'tools', component: ToolsComponent, title: 'Flying PAD | Tools' },
       { path: 'scripts', component: ScriptsComponent, title: 'Flying PAD | Scripts' },
       { path: 'links', component: LinksComponent, title: 'Flying PAD | Links Gallery' },

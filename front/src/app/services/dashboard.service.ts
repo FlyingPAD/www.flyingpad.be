@@ -6,9 +6,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class DashboardService {
-  private dashboardMenuState$ = new BehaviorSubject<string>('status')
-  public dashboardMenuState = toSignal(this.dashboardMenuState$) as Signal<string>
+  #dashboardMenuState = new BehaviorSubject<string>('status')
+
+  public dashboardMenuState = toSignal(this.#dashboardMenuState) as Signal<string>
+  
   public updateMenuState(menuState : string): void {
-    this.dashboardMenuState$.next(menuState)
+    this.#dashboardMenuState.next(menuState)
   }
 }

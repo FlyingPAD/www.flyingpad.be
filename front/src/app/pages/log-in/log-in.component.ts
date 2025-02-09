@@ -6,6 +6,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
 import { ImageUrlService } from '../../services/image-url.service';
 import { LanguageService } from '../../services/language.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -19,6 +20,8 @@ export class LogInComponent implements OnInit {
   #formBuilder = inject(FormBuilder)
   #languageService = inject(LanguageService)
   #imageUrlService = inject(ImageUrlService)
+  #route = inject(ActivatedRoute)
+  #router = inject(Router)
 
   public flow = this.#flowService.flow
   public user = this.#userService.user
@@ -40,7 +43,15 @@ export class LogInComponent implements OnInit {
 
   public onLogin(): void {
     if (this.formGroup.valid) {
-      this.#authService.login(this.formGroup.value).subscribe()
+      this.#authService.login(this.formGroup.value).subscribe({
+        next: () => {
+          const redirectUrl = this.#route.snapshot.queryParamMap.get('redirectUrl') || '/dashboard'
+          this.#router.navigateByUrl(redirectUrl)
+        },
+        error: (err) => {
+          this.#router.navigateByUrl('log-in/error')
+        }
+      })
     }
   }
 

@@ -11,8 +11,8 @@ import { MenuService } from './menu.service';
   providedIn: 'root'
 })
 export class DisplayService {
-  #menuService = inject(MenuService)
   private readonly MOBILE_BREAKPOINT = 768
+  #menuService = inject(MenuService)
   #windowWidth = new BehaviorSubject<number>(window.innerWidth)
   #windowHeight = new BehaviorSubject<number>(window.innerHeight)
   #displayMode = new BehaviorSubject<DisplayModes>(this.detectDisplayMode())

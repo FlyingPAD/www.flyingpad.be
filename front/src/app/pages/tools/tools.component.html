@@ -1,43 +1,50 @@
 <app-right-column>
     <div class="tools-icons">
         <div class="icon">
-            <a [class.active]="toolsMenuState() === 'circle-of-fifths'" (click)="updateMenuState('circle-of-fifths')">
+            <a [appScrollActive]="toolsMenuState() === 'circle-of-fifths'" [class.active]="toolsMenuState() === 'circle-of-fifths'" 
+                (click)="updateMenuState('circle-of-fifths')">
                 <img [src]="getImageURL('icons-tools', 'circle-fifths', 'png')" />
             </a>
             <span>Circle of Fifths</span>
         </div>
         <div class="icon">
-            <a [class.active]="toolsMenuState() === 'chord-wheel'" (click)="updateMenuState('chord-wheel')">
+            <a [appScrollActive]="toolsMenuState() === 'chord-wheel'" [class.active]="toolsMenuState() === 'chord-wheel'" 
+                (click)="updateMenuState('chord-wheel')">
                 <img [src]="getImageURL('icons-tools', 'chord-wheel', 'png')" />
             </a>
             <span>Chord Wheel</span>
         </div>
         <div class="icon">
-            <a [class.active]="toolsMenuState() === 'diapason'" (click)="updateMenuState('diapason')">
+            <a [appScrollActive]="toolsMenuState() === 'diapason'" [class.active]="toolsMenuState() === 'diapason'" 
+                (click)="updateMenuState('diapason')">
                 <app-icon-diapason size="85px" />
             </a>
             <span>Diapason</span>
         </div>
         <div class="icon">
-            <a [class.active]="toolsMenuState() === 'mini-keyboard'" (click)="updateMenuState('mini-keyboard')">
+            <a [appScrollActive]="toolsMenuState() === 'mini-keyboard'" [class.active]="toolsMenuState() === 'mini-keyboard'" 
+                (click)="updateMenuState('mini-keyboard')">
                 <app-icon-keyboard size="65px" />
             </a>
             <span>Keyboard</span>
         </div>
         <div class="icon">
-            <a [class.active]="toolsMenuState() === 'notes-trainer'" (click)="updateMenuState('notes-trainer')">
+            <a [appScrollActive]="toolsMenuState() === 'notes-trainer'" [class.active]="toolsMenuState() === 'notes-trainer'" 
+                (click)="updateMenuState('notes-trainer')">
                 <img [src]="getImageURL('icons-tools', 'notes-trainer', 'png')" />
             </a>
             <span>Notes Trainer</span>
         </div>
         <div class="icon">
-            <a [class.active]="toolsMenuState() === 'timeline'" (click)="updateMenuState('timeline')">
+            <a [appScrollActive]="toolsMenuState() === 'timeline'" [class.active]="toolsMenuState() === 'timeline'" 
+                (click)="updateMenuState('timeline')">
                 <app-icon-timeline size="65px" />
             </a>
             <span>Timeline</span>
         </div>
         <div class="icon">
-            <a [class.active]="toolsMenuState() === 'guitar-tuner'" (click)="updateMenuState('guitar-tuner')">
+            <a [appScrollActive]="toolsMenuState() === 'guitar-tuner'" [class.active]="toolsMenuState() === 'guitar-tuner'" 
+                (click)="updateMenuState('guitar-tuner')">
                 <img [src]="getImageURL('icons-tools', 'guitar-tuner', 'png')" />
             </a>
             <span>Guitar Tuner</span>

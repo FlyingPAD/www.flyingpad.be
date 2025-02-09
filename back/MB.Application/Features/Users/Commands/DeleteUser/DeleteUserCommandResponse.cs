@@ -7,7 +7,7 @@ public class DeleteUserCommandResponse : BaseResponse
     /// <summary>
     /// Properties
     /// </summary>
-    public DeleteUserDto DeletedUserId { get; set; } = default!;
+    public DeleteUserCommandDto DeletedUserId { get; set; } = default!;
 
     /// <summary>
     /// Constructor

@@ -1,8 +1,8 @@
 @if(!showEdition) {
     <div class="profile">
         <div class="flex">
-            <p><b>{{ 'title.pseudonym' | translate }}</b></p>
-            <p>{{user().pseudonym}}</p>
+            <p><b>{{ 'title.user-name' | translate }}</b></p>
+            <p>{{user().userName}}</p>
         </div>
         <div class="flex">
             <p><b>{{ 'title.email' | translate }}</b></p>
@@ -38,8 +38,8 @@
 @if(showEdition) {
     <form class="profile" [formGroup]="formGroup">
         <div class="flex">
-            <p><b>{{ 'title.pseudonym' | translate }}</b></p>
-            <input type="text" formControlName="pseudonym">
+            <p><b>{{ 'title.user-name' | translate }}</b></p>
+            <input type="text" formControlName="userName">
         </div>
         <div class="flex">
             <p><b>{{ 'title.email' | translate }}</b></p>

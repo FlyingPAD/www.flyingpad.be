@@ -4,9 +4,10 @@
             <p class="category-name">{{tagList.category.name}}</p>
             <div *ngFor="let tag of tagList.tags">
                 <div class="box">
-                    <a id="{{tag.businessId}}" class="name-tag" [class.active]="tag.businessId === currentTagId"
-                        (click)="handleTagId(tag.businessId)"> ▸ {{tag.name}}
-                    </a>                         
+                    <a id="{{tag.businessId}}" class="name-tag" [appScrollActive]="tag.businessId === currentTagId"
+                        [class.active]="tag.businessId === currentTagId" (click)="handleTagId(tag.businessId)"> ▸
+                        {{tag.name}}
+                    </a>
                 </div>
             </div>
         </div>

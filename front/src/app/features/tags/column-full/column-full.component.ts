@@ -7,11 +7,11 @@ import { TagList } from '../../../interfaces/tags-list';
   styleUrl: './column-full.component.scss'
 })
 export class ColumnFullComponent {
-  @Input() currentTagId : number | undefined = undefined
-  @Input() tags : TagList[] | undefined = undefined
+  @Input() currentTagId: number | undefined = undefined
+  @Input() tags: TagList[] | undefined = undefined
   @Output() tagId = new EventEmitter<number>()
 
-  handleTagId(tagId : number): void {
+  public handleTagId(tagId: number): void {
     this.tagId.emit(tagId)
   }
 }

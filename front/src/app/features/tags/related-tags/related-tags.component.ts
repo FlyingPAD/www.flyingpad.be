@@ -7,11 +7,11 @@ import { TagLight } from '../../../interfaces/tag';
   styleUrl: './related-tags.component.scss'
 })
 export class RelatedTagsComponent {
-  @Input() currentTagId : number | undefined = undefined
-  @Input() relatedTags : TagLight[] | undefined = undefined
+  @Input() currentTagId: number | undefined = undefined
+  @Input() relatedTags: TagLight[] | undefined = undefined
   @Output() tagId = new EventEmitter<number>()
 
-  handleTagId(tagId : number): void {
+  public handleTagId(tagId: number): void {
     this.tagId.emit(tagId)
   }
 }

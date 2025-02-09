@@ -202,6 +202,12 @@ import { TimeValueMinimComponent } from './icons/time-value-minim/time-value-min
 import { TimeValueQuaverComponent } from './icons/time-value-quaver/time-value-quaver.component';
 import { TimeValueSemiquaverComponent } from './icons/time-value-semiquaver/time-value-semiquaver.component';
 import { ScrollDirective } from './directives/scroll.directive';
+import { TimeValueSixteenthComponent } from './icons/time-value-sixteenth/time-value-sixteenth.component';
+import { TimeValueWholeComponent } from './icons/time-value-whole/time-value-whole.component';
+import { TimeValueHalfComponent } from './icons/time-value-half/time-value-half.component';
+import { TimeValueQuarterComponent } from './icons/time-value-quarter/time-value-quarter.component';
+import { TimeValueEighthComponent } from './icons/time-value-eighth/time-value-eighth.component';
+import { MultiTagTagsComponent } from './features/moods/multi-tag-tags/multi-tag-tags.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   let version : string = '1.0.0'
@@ -424,6 +430,12 @@ export function appInitializerFactory(translate: TranslateService) {
     TimeValueQuaverComponent,
     TimeValueSemiquaverComponent,
     ScrollDirective,
+    TimeValueSixteenthComponent,
+    TimeValueWholeComponent,
+    TimeValueHalfComponent,
+    TimeValueQuarterComponent,
+    TimeValueEighthComponent,
+    MultiTagTagsComponent,
   ],
   imports: [
     BrowserModule,
@@ -432,7 +444,7 @@ export function appInitializerFactory(translate: TranslateService) {
     BrowserAnimationsModule, 
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
-      timeOut: 1500,
+      timeOut: 2500,
       extendedTimeOut: 0,
       progressBar: true,
       closeButton: true,
