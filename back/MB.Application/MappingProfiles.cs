@@ -197,9 +197,9 @@ public class MappingProfiles : Profile
         CreateMap<Domain.Entities.Task, DeleteTaskCommand>().ReverseMap();
 
         // Users.
-        CreateMap<User, UserListVm>().ReverseMap();
+        CreateMap<User, GetUsersListQueryDto>().ReverseMap();
         CreateMap<User, GetUserByIdQueryDto>().ReverseMap();
-        CreateMap<User, UpdateUserDto>().ReverseMap();
+        CreateMap<User, UpdateUserCommandDto>().ReverseMap();
         CreateMap<User, UpdateUserCommand>().ReverseMap();
         CreateMap<User, DeleteUserCommand>().ReverseMap();
     }

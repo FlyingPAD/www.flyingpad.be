@@ -13,6 +13,7 @@ export class MoodsGalleryComponent {
   #menuService = inject(MenuService)
   #paginationService = inject(PaginationService)
 
+  @Input() currentMoodId: number = 0
   @Input() moods: MoodLight[] | undefined = undefined
   @Input() galleryType: string = 'all'
   @Output() moodId = new EventEmitter<number>()

@@ -74,8 +74,13 @@ export interface LinkUpdateForm {
 
 export interface UserUpdateForm {
     businessId: number
-    pseudonym: string
+    userName: string
     firstName: string
     lastName: string
     birthdate: Date
+}
+
+export interface MultiTagsForm {
+    moodIds: number[]
+    tags: number[]
 }

@@ -3,20 +3,20 @@
     <div *ngFor="let mood of moods || [] | paginate : { itemsPerPage : moodsPerPage, currentPage : getCurrentPage() }">
         <section>
             @if(mood.type == 1) {
-            <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
-                (click)="handleMoodId(mood.businessId)" />
+            <img [class.active]="currentMoodId === mood.businessId" [appScrollActive]="currentMoodId === mood.businessId" 
+                src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" (click)="handleMoodId(mood.businessId)" />
             }
             @if(mood.type == 2) {
-            <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
-                (click)="handleMoodId(mood.businessId)" />
+            <img [class.active]="currentMoodId === mood.businessId" [appScrollActive]="currentMoodId === mood.businessId" 
+                class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg" (click)="handleMoodId(mood.businessId)" />
             }
             @if(mood.type == 3) {
-            <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
-                (click)="handleMoodId(mood.businessId)" />
+            <img [class.active]="currentMoodId === mood.businessId" [appScrollActive]="currentMoodId === mood.businessId" 
+                src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg" (click)="handleMoodId(mood.businessId)" />
             }
             @if(mood.type == 4) {
-            <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
-                (click)="handleMoodId(mood.businessId)" />
+            <img [class.active]="currentMoodId === mood.businessId" [appScrollActive]="currentMoodId === mood.businessId" 
+                class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg" (click)="handleMoodId(mood.businessId)" />
             }
         </section>
     </div>

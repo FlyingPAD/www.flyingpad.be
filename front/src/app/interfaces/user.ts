@@ -6,7 +6,7 @@ export interface User {
     modified: Date
     email: string
     businessId: number
-    pseudonym: string
+    userName: string
     firstName: string
     lastName: string
     birthdate: Date

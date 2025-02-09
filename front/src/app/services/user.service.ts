@@ -19,13 +19,13 @@ export class UserService {
     businessId: 0,
     created: new Date(),
     modified: new Date(),
-    pseudonym: 'Default User',
+    userName: 'Default User',
     firstName: 'John',
     lastName: 'Smith',
     birthdate: new Date(),
     email: 'user@app.com',
     role: 0,
-    level: 1,
+    level: 0,
     experience: 0,
     achievements: []
   }
@@ -36,9 +36,7 @@ export class UserService {
     return this.#http.get<GetUserResponse>(`${this.#url}Users/GetUser/${userId}`).pipe(
       map(response => response.user),
       tap(user => {
-        user.level = 1
         user.role = role
-        user.experience = 0
         user.achievements = [
           { id: 1, name: 'Official Member', description: 'You created an account :)', category: 'standard', obtained: new Date(), isTrue: true },
           { id: 2, name: 'Novice', description: 'You lasted 10 seconds !!', category: 'notes-bass', obtained: undefined, isTrue: false },

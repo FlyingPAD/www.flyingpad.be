@@ -18,7 +18,7 @@ public class GetUsersListQueryHandler(IBaseRepository<User> userRepository, IMap
         {
             Success = true,
             Message = "Success.",
-            UsersList = _mapper.Map<List<UserListVm>>(users)
+            UsersList = _mapper.Map<List<GetUsersListQueryDto>>(users)
         };
 
         return response;

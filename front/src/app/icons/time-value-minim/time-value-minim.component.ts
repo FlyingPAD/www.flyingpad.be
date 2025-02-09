@@ -6,12 +6,22 @@ import { ThemeService } from '../../services/theme.service';
   templateUrl: './time-value-minim.component.html'
 })
 export class TimeValueMinimComponent {
-  #themeService = inject(ThemeService)
+  #themeService = inject(ThemeService);
 
-  @Input() color?: string
-  @Input() size: string = '24px'
+  /** Taille de l'icône, par défaut "24px" */
+  @Input() size = '24px';
+  /** Couleur principale (celle de la note) */
+  @Input() noteColor?: string;
+  /** Couleur de la portée (stave) */
+  @Input() staveColor?: string;
 
-  public getColor(): string {
-    return this.color ?? this.#themeService.getCurrentColor()
+  public getNoteColor(): string {
+    // Retourne la couleur principale ou, par défaut, celle définie dans ton service de thème
+    return this.noteColor ?? this.#themeService.getCurrentColor();
+  }
+
+  public getStaveColor(): string {
+    // Retourne la couleur de la portée ou, par défaut, du gris clair (#b3b3b3)
+    return this.staveColor ?? '#b3b3b3';
   }
 }

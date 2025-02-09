@@ -16,8 +16,8 @@ export class EditMoodTagsComponent implements OnInit, OnDestroy {
   @Output() tagsSelected = new EventEmitter<number[]>()
 
   #subscription = new Subscription()
-
-  tagsList!: TagsCheckBoxesList[]
+  public tagsList!: TagsCheckBoxesList[]
+  
   
   ngOnInit(): void {
     this.#subscription = this.#flowService.getTagsCheckBoxByMood(this.mood.businessId).subscribe({

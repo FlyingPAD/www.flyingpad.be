@@ -104,6 +104,7 @@
     }
     @if(moodsGalleryType === 'multi-tag'){
         <a (click)="handleBackToGallery()"><app-icon-back class="icon" size="25px" /></a>
+        <a routerLink="/moods/multi-tag-tags"><app-icon-tag class="icon" size="25px" /></a>
         <a routerLink="/moods/multi-tag-artists"><app-icon-artist class="icon" size="25px" /></a>
         <a routerLink="/moods/multi-tag-models"><app-icon-model class="icon" size="25px" /></a>
         @if(topButtonIsActive) {

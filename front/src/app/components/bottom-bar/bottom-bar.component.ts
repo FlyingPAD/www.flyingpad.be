@@ -15,6 +15,7 @@ export class BottomBarComponent {
   @Input() moodsGalleryType: string = 'all'
   @Input() currentIndex: number = 0
   @Input() moodType: number = 0
+  @Input() diaporamaIsActive: boolean = false
 
   @Output() topButton = new EventEmitter<void>()
   @Output() dialog = new EventEmitter<void>()
@@ -33,7 +34,6 @@ export class BottomBarComponent {
 
   public user = this.#userService.user
   public topButtonIsActive: boolean = false
-  public diaporamaIsActive: boolean = false
   public leftCardIsActive: boolean = false
   public focusIsActive: boolean = false
 
@@ -44,8 +44,8 @@ export class BottomBarComponent {
   public handleBackToGallery(): void { this.back.emit() }
   public handleEditButton(): void { this.edition.emit() }
   public handleGetIndex(direction: string): void { this.getIndex.emit(direction) }
-  public handleDiaporamaStart(isRandom: boolean): void { this.diaporamaStart.emit(isRandom); this.diaporamaIsActive = true }
-  public handleDiaporamaStop(): void { this.diaporamaStop.emit(); this.diaporamaIsActive = false }
+  public handleDiaporamaStart(isRandom: boolean): void { this.diaporamaStart.emit(isRandom) }
+  public handleDiaporamaStop(): void { this.diaporamaStop.emit() }
   public handleLeftCard(): void { this.leftCard.emit() }
   public handleToggleFocus(): void { this.isFocused.emit(this.focusIsActive ? false : true); this.focusIsActive = this.focusIsActive ? false : true }
   public handleShowDetails(): void { this.showDetails.emit() }

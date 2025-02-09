@@ -15,7 +15,7 @@ export class MultiTagComponent {
   
   #flowService = inject(FlowService)
   #paginationService = inject(PaginationService)
-  multiTagService = inject(MultiTagService)
+  #multiTagService = inject(MultiTagService)
 
   public flow = this.#flowService.flow
   public currentPage = this.#paginationService.moodsByTagCurrentPage
@@ -27,10 +27,28 @@ export class MultiTagComponent {
   }
 
   public selectionToggle(moodId: number): void {
-    this.multiTagService.selectionToggle(moodId)
+    this.#multiTagService.selectionToggle(moodId)
   }
   
   public checkIfSelected(moodId: number): boolean {
-    return this.multiTagService.checkIfSelected(moodId)
+    return this.#multiTagService.checkIfSelected(moodId)
+  }
+
+  public selectAll(): void {
+    const allIds = this.moods.map(mood => mood.businessId)
+    this.#multiTagService.selectAll(allIds)
+  }
+  
+  public invertSelection(): void {
+    const allIds = this.moods.map(mood => mood.businessId)
+    this.#multiTagService.invertSelection(allIds)
+  }
+
+  public resetSelection(): void {
+    this.#multiTagService.resetSelection()
+  }
+
+  public multiScore(score: number): void {
+    this.#multiTagService.multiScore(score)
   }
 }

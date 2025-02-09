@@ -18,7 +18,7 @@ export class EditTagsComponent {
   public flow = this.#flowService.flow
   public currentPage = this.#paginationService.editTagsCurrentPage
   public searchTags : string = ''
-  public elementsPerPage : number = 11
+  public elementsPerPage : number = 12
   public showList : boolean = true
   public showNew : boolean = false
   public showNewCategory : boolean = false

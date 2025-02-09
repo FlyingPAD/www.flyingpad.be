@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Output } from '@angular/core';
 import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -15,25 +15,38 @@ export class CreateTagCategoryComponent {
   #flowService = inject(FlowService)
   #formBuilder = inject(FormBuilder)
 
-  createFormGroup : FormGroup = this.#formBuilder.group({
-    name : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    description : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
+  createFormGroup: FormGroup = this.#formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
 
-  subscription = new Subscription()
+  #subscription = new Subscription()
+
+  ngOnDestroy(): void {
+    this.#subscription.unsubscribe()
+  }
 
   onSubmit(): void {
-    let form : TagCategoryCreateForm = {
-      name : this.createFormGroup.value.name,
-      description : this.createFormGroup.value.description,
+    let form: TagCategoryCreateForm = {
+      name: this.createFormGroup.value.name,
+      description: this.createFormGroup.value.description,
     }
 
-    if(this.createFormGroup.valid) {
-      this.subscription = this.#flowService.CreateTagCategory(form).subscribe({
-        next : () => {
+    if (this.createFormGroup.valid) {
+      this.#subscription = this.#flowService.CreateTagCategory(form).subscribe({
+        next: () => {
           this.trigger.emit()
         }
       })
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.onSubmit()
+        break
     }
   }
 }

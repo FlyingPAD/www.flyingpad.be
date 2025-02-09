@@ -38,7 +38,7 @@
         }
 
         .active {
-            border: 10px solid rgb(255, 255, 255);
+            border: 10px solid var(--colorMainOpacity7);
             border-radius: 10px;
             box-shadow: 0 6px 12px 0px var(--colorMain);
             transition-duration: 500ms;

@@ -1,29 +1,29 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { NotificationService } from '../services/notification.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  toastr = inject(ToastrService)
+  #notificationService = inject(NotificationService)
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        let errorMsg = 'An error occurred'
+        let errorMessage = 'An error occurred'
 
         if (error.error instanceof ErrorEvent) {
           // Client-side error
-          errorMsg = `Client Error: ${error.error.message}`
+          errorMessage = `Client Error: ${error.error.message}`
         }
         else {
           // Server-side error
-          errorMsg = `Server Error Status: ${error.status}, Message: ${error.message}`
+          errorMessage = `Server Error Status: ${error.status}, Message: ${error.message}`
         }
-        this.toastr.error(errorMsg, 'server Error')
+        this.#notificationService.error(errorMessage, 'server Error')
 
-        return throwError(() => new Error(errorMsg))
+        return throwError(() => new Error(errorMessage))
       })
     )
   }
