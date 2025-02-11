@@ -196,11 +196,6 @@ import { IconClefAltoComponent } from './icons/icon-clef-alto/icon-clef-alto.com
 import { TheOctaveComponent } from './features/scripts/the-octave/the-octave.component';
 import { PointOfViewComponent } from './features/scripts/point-of-view/point-of-view.component';
 import { TimeSignatureComponent } from './features/scripts/time-signature/time-signature.component';
-import { TimeValueCrotchetComponent } from './icons/time-value-crotchet/time-value-crotchet.component';
-import { TimeValueSemibreveComponent } from './icons/time-value-semibreve/time-value-semibreve.component';
-import { TimeValueMinimComponent } from './icons/time-value-minim/time-value-minim.component';
-import { TimeValueQuaverComponent } from './icons/time-value-quaver/time-value-quaver.component';
-import { TimeValueSemiquaverComponent } from './icons/time-value-semiquaver/time-value-semiquaver.component';
 import { ScrollDirective } from './directives/scroll.directive';
 import { TimeValueSixteenthComponent } from './icons/time-value-sixteenth/time-value-sixteenth.component';
 import { TimeValueWholeComponent } from './icons/time-value-whole/time-value-whole.component';
@@ -208,6 +203,11 @@ import { TimeValueHalfComponent } from './icons/time-value-half/time-value-half.
 import { TimeValueQuarterComponent } from './icons/time-value-quarter/time-value-quarter.component';
 import { TimeValueEighthComponent } from './icons/time-value-eighth/time-value-eighth.component';
 import { MultiTagTagsComponent } from './features/moods/multi-tag-tags/multi-tag-tags.component';
+import { TimeValueRestEighthComponent } from './icons/time-value-rest-eighth/time-value-rest-eighth.component';
+import { TimeValueRestSixteenthComponent } from './icons/time-value-rest-sixteenth/time-value-rest-sixteenth.component';
+import { TimeValueRestHalfComponent } from './icons/time-value-rest-half/time-value-rest-half.component';
+import { TimeValueRestQuarterComponent } from './icons/time-value-rest-quarter/time-value-rest-quarter.component';
+import { TimeValueRestWholeComponent } from './icons/time-value-rest-whole/time-value-rest-whole.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   let version : string = '1.0.0'
@@ -424,11 +424,6 @@ export function appInitializerFactory(translate: TranslateService) {
     IconClefBassComponent,
     IconClefTrebleComponent,
     IconClefAltoComponent,
-    TimeValueCrotchetComponent,
-    TimeValueSemibreveComponent,
-    TimeValueMinimComponent,
-    TimeValueQuaverComponent,
-    TimeValueSemiquaverComponent,
     ScrollDirective,
     TimeValueSixteenthComponent,
     TimeValueWholeComponent,
@@ -436,6 +431,11 @@ export function appInitializerFactory(translate: TranslateService) {
     TimeValueQuarterComponent,
     TimeValueEighthComponent,
     MultiTagTagsComponent,
+    TimeValueRestEighthComponent,
+    TimeValueRestSixteenthComponent,
+    TimeValueRestHalfComponent,
+    TimeValueRestQuarterComponent,
+    TimeValueRestWholeComponent,
   ],
   imports: [
     BrowserModule,

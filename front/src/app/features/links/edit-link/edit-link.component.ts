@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { FlowService } from '../../../services/flow.service';
 import { LinkCategoryCheckBox, LinkFull } from '../../../interfaces/link';
@@ -16,8 +16,8 @@ export class EditLinkComponent implements OnInit {
   #flowService = inject(FlowService)
   #formBuilder = inject(FormBuilder)
 
-  formGroup!: FormGroup
-  isDeleteDialogOpen : boolean = false
+  public formGroup!: FormGroup
+  public isDeleteDialogOpen: boolean = false
 
   ngOnInit(): void {
     if (this.link) {
@@ -74,7 +74,16 @@ export class EditLinkComponent implements OnInit {
         linkCategoryIds: selectedCategories
       }
 
-      this.#flowService.UpdateLink(form).subscribe(response => { if(response.success) this.trigger.emit() })
+      this.#flowService.UpdateLink(form).subscribe(response => { if (response.success) this.trigger.emit() })
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.onSubmit()
+        break
     }
   }
 }

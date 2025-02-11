@@ -2,10 +2,10 @@ import { Component, inject, Input } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
-  selector: 'app-time-value-half',
-  templateUrl: './time-value-half.component.html'
+  selector: 'app-time-value-rest-half',
+  templateUrl: './time-value-rest-half.component.html'
 })
-export class TimeValueHalfComponent {
+export class TimeValueRestHalfComponent {
   #themeService = inject(ThemeService)
 
   @Input() size: string = '24px'

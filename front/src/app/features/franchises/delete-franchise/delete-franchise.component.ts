@@ -14,14 +14,16 @@ export class DeleteFranchiseComponent implements OnDestroy {
 
   #flowService = inject(FlowService)
 
-  subscription = new Subscription()
+  #subscription = new Subscription()
+  
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    this.#subscription.unsubscribe()
   }
-  deleteLink(): void {
+
+  public deleteLink(): void {
     if(this.franchise) {
-      this.subscription = this.#flowService.DeleteFranchise(this.franchise.businessId).subscribe(
+      this.#subscription = this.#flowService.DeleteFranchise(this.franchise.businessId).subscribe(
         (response) => {if(response.success) this.toggleDialog.emit()})
     }
   }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ModelFull } from '../../../interfaces/model';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -11,20 +11,20 @@ import { FranchiseCheckBox } from '../../../interfaces/franchise';
   templateUrl: './edit-model.component.html',
   styleUrl: './edit-model.component.scss'
 })
-export class EditModelComponent implements OnInit {
+export class EditModelComponent implements OnInit, OnDestroy {
   @Input() model: ModelFull | undefined = undefined
   @Output() showListTrigger = new EventEmitter<void>()
 
   #flowService = inject(FlowService)
   #formBuilder = inject(FormBuilder)
 
-  subscription = new Subscription()
-  
-  formGroup!: FormGroup
-  isDeleteDialogOpen: boolean = false
+  #subscription = new Subscription()
+
+  public formGroup!: FormGroup
+  public isDeleteDialogOpen: boolean = false
 
   ngOnInit(): void {
-    if(this.model) {
+    if (this.model) {
       this.formGroup = this.#formBuilder.group({
         pseudonym: [this.model?.pseudonym, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
         firstName: [this.model?.firstName, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
@@ -38,11 +38,16 @@ export class EditModelComponent implements OnInit {
         .subscribe(franchises => this.populateCategories(franchises))
     }
   }
+
+  ngOnDestroy(): void {
+    this.#subscription.unsubscribe()
+  }
+
   get franchisesArray(): FormArray {
     return this.formGroup.get('franchises') as FormArray
   }
 
-  populateCategories(franchises: FranchiseCheckBox[]): void {
+  private populateCategories(franchises: FranchiseCheckBox[]): void {
     franchises.forEach(franchise => {
       this.franchisesArray.push(
         this.#formBuilder.group({
@@ -53,22 +58,23 @@ export class EditModelComponent implements OnInit {
       )
     })
   }
-  openDeleteDialog(): void {
+
+  public openDeleteDialog(): void {
     this.isDeleteDialogOpen = true
   }
-  closeDeleteDialog(): void {
+  public closeDeleteDialog(): void {
     this.isDeleteDialogOpen = false
   }
-  closeDeleteDialogEmit(): void {
+  public closeDeleteDialogEmit(): void {
     this.isDeleteDialogOpen = false
     this.showListTrigger.emit()
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.formGroup.valid && this.model) {
       let selectedFranchises = this.formGroup.value.franchises
-      .filter((franchise: { isChecked: boolean }) => franchise.isChecked)
-      .map((franchise: { businessId: number }) => franchise.businessId)
+        .filter((franchise: { isChecked: boolean }) => franchise.isChecked)
+        .map((franchise: { businessId: number }) => franchise.businessId)
 
       let form: ModelUpdateForm = {
         modelId: this.model.businessId,
@@ -79,7 +85,17 @@ export class EditModelComponent implements OnInit {
         description: this.formGroup.value.description,
         franchisesIds: selectedFranchises
       }
-      this.subscription = this.#flowService.UpdateModel(form).subscribe(response => { if (response.success) this.showListTrigger.emit() })
+      this.#subscription = this.#flowService.UpdateModel(form).subscribe(response => { 
+        if (response.success) this.showListTrigger.emit() })
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.onSubmit()
+        break
     }
   }
 }

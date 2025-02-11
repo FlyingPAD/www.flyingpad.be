@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
 import { LinkFull } from '../../../interfaces/link';
 import { FlowService } from '../../../services/flow.service';
 import { Subscription } from 'rxjs';
@@ -8,20 +8,21 @@ import { Subscription } from 'rxjs';
   templateUrl: './delete-link.component.html',
   styleUrl: './delete-link.component.scss'
 })
-export class DeleteLinkComponent {
+export class DeleteLinkComponent implements OnDestroy {
   @Input() link : LinkFull | undefined = undefined
   @Output() toggleDialog = new EventEmitter<void>()
 
   #flowService = inject(FlowService)
 
-  subscription = new Subscription()
+  #subscription = new Subscription()
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    this.#subscription.unsubscribe()
   }
-  delete(): void {
+  
+  public delete(): void {
     if(this.link) {
-      this.subscription = this.#flowService.DeleteLink(this.link.businessId).subscribe(
+      this.#subscription = this.#flowService.DeleteLink(this.link.businessId).subscribe(
         (response) => {if(response.success) this.toggleDialog.emit()})
     }
   }

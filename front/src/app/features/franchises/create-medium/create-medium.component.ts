@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, OnDestroy, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MediumCreateForm } from '../../../interfaces/forms-create';
@@ -9,29 +9,41 @@ import { FlowService } from '../../../services/flow.service';
   templateUrl: './create-medium.component.html',
   styleUrl: './create-medium.component.scss'
 })
-export class CreateMediumComponent {
+export class CreateMediumComponent implements OnDestroy {
   @Output() trigger = new EventEmitter<void>()
 
   #flowService = inject(FlowService)
   #formBuilder = inject(FormBuilder)
 
-  formGroup : FormGroup = this.#formBuilder.group({
-    name : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    description : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
+  #subscription = new Subscription()
+  public formGroup: FormGroup = this.#formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
 
-  subscription = new Subscription()
+  ngOnDestroy(): void {
+    this.#subscription.unsubscribe()
+  }
 
-  onSubmit(): void {
-    let form : MediumCreateForm = {
-      name : this.formGroup.value.name,
-      description : this.formGroup.value.description,
+  public onSubmit(): void {
+    let form: MediumCreateForm = {
+      name: this.formGroup.value.name,
+      description: this.formGroup.value.description,
     }
 
-    if(this.formGroup.valid) {
-      this.subscription = this.#flowService.CreateMedium(form).subscribe((response) => {
-        if(response.success) this.trigger.emit() 
+    if (this.formGroup.valid) {
+      this.#subscription = this.#flowService.CreateMedium(form).subscribe((response) => {
+        if (response.success) this.trigger.emit()
       })
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.onSubmit()
+        break
     }
   }
 }

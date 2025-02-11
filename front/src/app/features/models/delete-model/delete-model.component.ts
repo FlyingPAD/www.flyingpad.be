@@ -14,21 +14,16 @@ export class DeleteModelComponent implements OnDestroy {
 
   #flowService = inject(FlowService)
 
-  subscription = new Subscription()
+  #subscription = new Subscription()
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    this.#subscription.unsubscribe()
   }
   
-  deleteModel(): void {
+  public deleteModel(): void {
     if(this.model) {
-      this.subscription = this.#flowService.DeleteModel(this.model?.businessId).subscribe({
-        next : (response) => {
-          if(response.success) {
-            this.toggleDialog.emit()
-          }
-        }
-      })
+      this.#subscription = this.#flowService.DeleteModel(this.model?.businessId).subscribe(response => {
+        if(response.success) this.toggleDialog.emit() })
     }
   }
 }

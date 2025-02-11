@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MediumCheckBox } from '../../../interfaces/franchise';
 import { FlowService } from '../../../services/flow.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,7 +17,7 @@ export class CreateFranchiseComponent implements OnInit, OnDestroy {
   #flowService = inject(FlowService)
   #builder = inject(FormBuilder)
 
-  subscription = new Subscription()
+  #subscription = new Subscription()
   formGroup!: FormGroup
 
   get mediaArray(): FormArray {
@@ -43,10 +43,10 @@ export class CreateFranchiseComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.#subscription.unsubscribe()
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.formGroup.valid) {
       let media = this.mediaArray?.value
 
@@ -59,8 +59,17 @@ export class CreateFranchiseComponent implements OnInit, OnDestroy {
             .map((medium: { businessId: number }) => medium.businessId)
         }
 
-        this.subscription = this.#flowService.CreateFranchise(form).subscribe((response) => {if(response.success) this.trigger.emit()})
+        this.#subscription = this.#flowService.CreateFranchise(form).subscribe((response) => { if (response.success) this.trigger.emit() })
       }
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.onSubmit()
+        break
     }
   }
 }
