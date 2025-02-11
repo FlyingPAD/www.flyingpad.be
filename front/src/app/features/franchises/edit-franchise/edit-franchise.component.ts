@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnInit, Output } from '@angular/core';
 import { FranchiseFull, MediumCheckBox } from '../../../interfaces/franchise';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlowService } from '../../../services/flow.service';
@@ -9,15 +9,15 @@ import { FranchiseUpdateForm } from '../../../interfaces/forms-update';
   templateUrl: './edit-franchise.component.html',
   styleUrl: './edit-franchise.component.scss'
 })
-export class EditFranchiseComponent {
-  @Input() franchise : FranchiseFull | undefined = undefined
+export class EditFranchiseComponent implements OnInit {
+  @Input() franchise: FranchiseFull | undefined = undefined
   @Output() trigger = new EventEmitter<void>()
 
   #flowService = inject(FlowService)
   #formBuilder = inject(FormBuilder)
 
-  formGroup!: FormGroup
-  isDeleteDialogOpen : boolean = false
+  public formGroup!: FormGroup
+  public isDeleteDialogOpen: boolean = false
 
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class EditFranchiseComponent {
     return this.formGroup.get('media') as FormArray
   }
 
-  populateCategories(media: MediumCheckBox[]): void {
+  private populateCategories(media: MediumCheckBox[]): void {
     media.forEach(medium => {
       this.mediaArray.push(
         this.#formBuilder.group({
@@ -49,18 +49,18 @@ export class EditFranchiseComponent {
     })
   }
 
-  openDeleteDialog(): void {
+  public openDeleteDialog(): void {
     this.isDeleteDialogOpen = true
   }
-  closeDeleteDialog(): void {
+  public closeDeleteDialog(): void {
     this.isDeleteDialogOpen = false
   }
-  closeDeleteDialogEmit(): void {
+  public closeDeleteDialogEmit(): void {
     this.isDeleteDialogOpen = false
     this.trigger.emit()
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.formGroup.valid && this.franchise) {
       let selectedMedia = this.formGroup.value.media
         .filter((media: { isChecked: boolean }) => media.isChecked)
@@ -73,7 +73,16 @@ export class EditFranchiseComponent {
         mediaIds: selectedMedia
       }
 
-      this.#flowService.UpdateFranchise(form).subscribe(response => { if(response.success) this.trigger.emit() })
+      this.#flowService.UpdateFranchise(form).subscribe(response => { if (response.success) this.trigger.emit() })
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.onSubmit()
+        break
     }
   }
 }

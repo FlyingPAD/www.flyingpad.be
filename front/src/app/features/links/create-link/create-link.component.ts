@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LinkCreateForm } from '../../../interfaces/forms-create';
@@ -17,8 +17,8 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
   #flowService = inject(FlowService)
   #builder = inject(FormBuilder)
 
-  private subscription = new Subscription()
-  
+  #subscription = new Subscription()
+
   public formGroup!: FormGroup
 
   get linkCategoriesArray(): FormArray {
@@ -37,7 +37,7 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.#subscription.unsubscribe();
   }
 
   private createCategoryFormGroup(category: LinkCategoryCheckBox): FormGroup {
@@ -47,7 +47,7 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
       isChecked: [false]
     })
   }
-  
+
   public onSubmit(): void {
     if (this.formGroup.valid) {
       let categories = this.linkCategoriesArray?.value
@@ -62,8 +62,17 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
             .map((category: { businessId: number }) => category.businessId)
         }
 
-        this.subscription = this.#flowService.CreateLink(form).subscribe((response) => {if(response.success) this.trigger.emit()})
+        this.#subscription = this.#flowService.CreateLink(form).subscribe(response => { if (response.success) this.trigger.emit() })
       }
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.onSubmit()
+        break
     }
   }
 }

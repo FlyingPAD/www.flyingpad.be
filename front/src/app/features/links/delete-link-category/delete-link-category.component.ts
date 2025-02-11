@@ -9,20 +9,21 @@ import { Subscription } from 'rxjs';
   styleUrl: './delete-link-category.component.scss'
 })
 export class DeleteLinkCategoryComponent implements OnDestroy {
-  @Input() linkCategory : LinkCategoryFull | undefined = undefined
+  @Input() linkCategory: LinkCategoryFull | undefined = undefined
   @Output() toggleDialog = new EventEmitter<void>()
 
   #flowService = inject(FlowService)
 
-  subscription = new Subscription()
+  #subscription = new Subscription()
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    this.#subscription.unsubscribe()
   }
-  delete(): void {
-    if(this.linkCategory != undefined) {
-      this.subscription = this.#flowService.DeleteLinkCategory(this.linkCategory.businessId).subscribe(
-        (response) => { if(response.success) this.toggleDialog.emit() })
+
+  public delete(): void {
+    if (this.linkCategory != undefined) {
+      this.#subscription = this.#flowService.DeleteLinkCategory(this.linkCategory.businessId).subscribe(
+        (response) => { if (response.success) this.toggleDialog.emit() })
     }
   }
 }

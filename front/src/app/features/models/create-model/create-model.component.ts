@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ModelCreateForm } from '../../../interfaces/forms-create';
@@ -17,8 +17,8 @@ export class CreateModelComponent implements OnInit, OnDestroy {
   #flowService = inject(FlowService)
   #formBuilder = inject(FormBuilder)
 
-  subscription = new Subscription()
-  formGroup!: FormGroup
+  #subscription = new Subscription()
+  public formGroup!: FormGroup
 
   get franchisesArray(): FormArray {
     return this.formGroup.get('franchises') as FormArray
@@ -26,11 +26,11 @@ export class CreateModelComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.formGroup = this.#formBuilder.group({
-      pseudonym : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-      firstName : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-      lastName : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-      gender : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-      description : ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      pseudonym: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      gender: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       franchises: this.#formBuilder.array(
         this.franchises.map(franchise => this.createFranchiseFormGroup(franchise))
       )
@@ -38,7 +38,7 @@ export class CreateModelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.#subscription.unsubscribe()
   }
 
 
@@ -51,7 +51,7 @@ export class CreateModelComponent implements OnInit, OnDestroy {
   }
 
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.formGroup.valid) {
       let franchises = this.franchisesArray?.value
 
@@ -67,8 +67,18 @@ export class CreateModelComponent implements OnInit, OnDestroy {
             .map((franchise: { businessId: number }) => franchise.businessId)
         }
 
-        this.subscription = this.#flowService.CreateModel(form).subscribe((response) => {if(response.success) this.trigger.emit()})
+        this.#subscription = this.#flowService.CreateModel(form).subscribe(response => { 
+          if (response.success) this.trigger.emit() })
       }
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.onSubmit()
+        break
     }
   }
 }

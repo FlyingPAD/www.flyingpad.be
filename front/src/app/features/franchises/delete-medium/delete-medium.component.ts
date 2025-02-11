@@ -9,20 +9,21 @@ import { Subscription } from 'rxjs';
   styleUrl: './delete-medium.component.scss'
 })
 export class DeleteMediumComponent {
-  @Input() medium : MediumFull | undefined = undefined
+  @Input() medium: MediumFull | undefined = undefined
   @Output() toggleDialog = new EventEmitter<void>()
 
   #flowService = inject(FlowService)
 
-  subscription = new Subscription()
+  #subscription = new Subscription()
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    this.#subscription.unsubscribe()
   }
-  delete(): void {
-    if(this.medium) {
-      this.subscription = this.#flowService.DeleteMedium(this.medium.businessId).subscribe(
-        (response) => { if(response.success) this.toggleDialog.emit() })
+
+  public delete(): void {
+    if (this.medium) {
+      this.#subscription = this.#flowService.DeleteMedium(this.medium.businessId).subscribe(
+        (response) => { if (response.success) this.toggleDialog.emit() })
     }
   }
 }
