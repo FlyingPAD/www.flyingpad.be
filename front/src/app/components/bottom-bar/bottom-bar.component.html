@@ -6,10 +6,11 @@
         }
         <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
         @if(topButtonIsActive) {
-            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+            <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
         } @else {
             <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
         }
+        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'artist') {
         <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
@@ -22,10 +23,11 @@
         }
         <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
         @if(topButtonIsActive) {
-            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+            <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
         } @else {
             <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
         }
+        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'model') {
         <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
@@ -38,10 +40,11 @@
         }
         <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
         @if(topButtonIsActive) {
-            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+            <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
         } @else {
             <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
         }
+        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'tag') {
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
@@ -49,10 +52,11 @@
         <a (click)="handleShowMultiTag()" *ngIf="user().role === 2"><app-icon-edit class="icon" size="25px" /></a>
         <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
         @if(topButtonIsActive) {
-            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+            <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
         } @else {
             <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
         }
+        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'franchise') {
         <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
@@ -65,10 +69,11 @@
         }
         <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
         @if(topButtonIsActive) {
-            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+            <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
         } @else {
             <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
         }
+        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'details') {
         <a (click)="handleGetIndex('previous')"><app-icon-arrow-short appAnimGrow class="icon" size="25px" direction="left" /></a>
@@ -84,16 +89,18 @@
         <span class="toggle" *ngIf="moodType !== 1"><app-icon-wheel class="icon" size="25px" color="grey" /></span>
         <a class="toggle" (click)="handleOpenMoodInNewTab()"><app-icon-open class="icon" size="25px" /></a>
         <a (click)="handleRandomMood()"><app-icon-question appAnimRandom class="icon" size="25px" /></a>
+        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'link') {
         <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
+        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'edit-mood') {
         <a (click)="handleShowDetails()"><app-icon-back class="icon" size="25px" /></a>
         <a (click)="handleTriggerSaveMood()"><app-icon-save class="icon" size="25px" /></a>
         @if(topButtonIsActive) {
-            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+            <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
         } @else {
             <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
         }
@@ -108,7 +115,7 @@
         <a routerLink="/moods/multi-tag-artists"><app-icon-artist class="icon" size="25px" /></a>
         <a routerLink="/moods/multi-tag-models"><app-icon-model class="icon" size="25px" /></a>
         @if(topButtonIsActive) {
-            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+            <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
         } @else {
             <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
         }
@@ -117,9 +124,12 @@
         <a (click)="handleBackToGallery()"><app-icon-back class="icon" size="25px" /></a>
         <a (click)="handleTriggerSaveMood()"><app-icon-save class="icon" size="25px" /></a>
         @if(topButtonIsActive) {
-            <a (click)="handleTopButton()"><app-icon-arrow-short class="icon" size="25px" /></a>
+            <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
         } @else {
             <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
         }
+    }
+    @if(moodsGalleryType === 'scripts'){
+        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
 </div>

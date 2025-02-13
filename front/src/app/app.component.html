@@ -5,5 +5,7 @@
 }
 
 @if(showButtonState()) {
-    <app-button-top />
+    @if(displayInfos().mode.valueOf() === 'Desktop') {
+        <app-button-top />
+    }
 }

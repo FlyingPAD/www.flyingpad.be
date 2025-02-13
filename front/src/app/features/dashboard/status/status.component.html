@@ -1,17 +1,20 @@
 <div class="current-mood">
-    <p class="title"> ▸ <b>{{ flow()?.mood?.name }}</b> | {{ flow()?.mood?.description }}</p>
-    @if(flow()?.mood.type == 1) {
-    <img src="{{environment}}/Content/img_thumbs/{{flow()?.mood.businessId}}.{{flow()?.mood.extension}}" (click)="goToCurrentMood()" />
-    }
-    @if(flow()?.mood.type == 2) {
-    <img class="vid" src="{{environment}}/Content/video_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
-    }
-    @if(flow()?.mood.type == 3) {
-    <img src="{{environment}}/Content/txt_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
-    }
-    @if(flow()?.mood.type == 4) {
-    <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
-    }
+    <p><b>{{ flow()?.mood?.name }}</b></p>
+    <div class="thumbnail">
+        @if(flow()?.mood.type == 1) {
+            <img src="{{environment}}/Content/img_thumbs/{{flow()?.mood.businessId}}.{{flow()?.mood.extension}}" (click)="goToCurrentMood()" />
+            }
+            @if(flow()?.mood.type == 2) {
+            <img src="{{environment}}/Content/video_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+            }
+            @if(flow()?.mood.type == 3) {
+            <img src="{{environment}}/Content/txt_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+            }
+            @if(flow()?.mood.type == 4) {
+            <img src="{{environment}}/Content/youtube_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+            }
+    </div>
+    <p>{{ flow()?.mood?.description }}</p>
 </div>
 <div class="current-tags">
     @for (tag of flow()?.mood.tags; track $index) {

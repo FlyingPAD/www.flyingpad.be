@@ -29,8 +29,8 @@
             <span>Keyboard</span>
         </div>
         <div class="icon">
-            <a [appScrollActive]="toolsMenuState() === 'notes-trainer'" [class.active]="toolsMenuState() === 'notes-trainer'" 
-                (click)="updateMenuState('notes-trainer')">
+            <a [appScrollActive]="toolsMenuState() === 'notes-master'" [class.active]="toolsMenuState() === 'notes-master'" 
+                (click)="updateMenuState('notes-master')">
                 <img [src]="getImageURL('icons-tools', 'notes-trainer', 'png')" />
             </a>
             <span>Notes Trainer</span>
@@ -56,6 +56,6 @@
 <app-chord-wheel *ngIf="toolsMenuState() === 'chord-wheel'" />
 <app-diapason *ngIf="toolsMenuState() === 'diapason'" />
 <app-flying-keys-mini *ngIf="toolsMenuState() === 'mini-keyboard'" />
-<app-trainer-notes *ngIf="toolsMenuState() === 'notes-trainer'" />
+<app-trainer-notes *ngIf="toolsMenuState() === 'notes-master'" />
 <app-timeline *ngIf="toolsMenuState() === 'timeline'" />
 <app-guitar-tuner *ngIf="toolsMenuState() === 'guitar-tuner'" />

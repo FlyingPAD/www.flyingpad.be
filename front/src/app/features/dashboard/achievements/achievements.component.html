@@ -4,12 +4,12 @@
   <div class="category">
     @for(achievement of achievements; track achievement.id) {
     @if(achievement.category === 'standard') {
-    @if(achievement.isTrue) {
+    @if(achievement.unlocked) {
     <div class="achievement" (click)="displayAchievement(achievement)">
       <div class="icon done">
         <app-icon-coin size="75px" />
       </div>
-      <p>{{ achievement.name }}</p>
+      <p class="limit">{{ achievement.title }}</p>
     </div>
     }
     @else {
@@ -17,29 +17,29 @@
       <div class="icon">
         <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
       </div>
-      <p>{{ achievement.name }}</p>
+      <p class="limit">{{ achievement.title }}</p>
     </div>
     }
     }
     }
   </div>
-  <h1>Notes Master</h1>
+  <h1 class="link" (click)="GoTo('notes-master')">Notes Master</h1>
   <hr class="hr-dialog">
   <div class="category">
     <div class="achievement">
-      <div class="icon">
+      <div class="icon-title">
         <app-icon-clef-bass size="75px" />
       </div>
-      <p>Bass</p>
+      <p>Bass Clef</p>
     </div>
     @for(achievement of achievements; track achievement.id) {
     @if(achievement.category === 'notes-bass') {
-    @if(achievement.isTrue) {
+    @if(achievement.unlocked) {
     <div class="achievement" (click)="displayAchievement(achievement)">
       <div class="icon done">
         <app-icon-coin size="75px" />
       </div>
-      <p>{{ achievement.name }}</p>
+      <p class="limit">{{ achievement.title }}</p>
     </div>
     }
     @else {
@@ -47,7 +47,7 @@
       <div class="icon">
         <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
       </div>
-      <p>{{ achievement.name }}</p>
+      <p class="limit">{{ achievement.title }}</p>
     </div>
     }
     }
@@ -55,19 +55,19 @@
   </div>
   <div class="category">
     <div class="achievement">
-      <div class="icon">
+      <div class="icon-title">
         <app-icon-clef-alto size="75px" />
       </div>
-      <p>Alto</p>
+      <p>Alto Clef</p>
     </div>
     @for(achievement of achievements; track achievement.id) {
     @if(achievement.category === 'notes-alto') {
-    @if(achievement.isTrue) {
+    @if(achievement.unlocked) {
     <div class="achievement" (click)="displayAchievement(achievement)">
       <div class="icon done">
         <app-icon-coin size="75px" />
       </div>
-      <p>{{ achievement.name }}</p>
+      <p class="limit">{{ achievement.title }}</p>
     </div>
     }
     @else {
@@ -75,7 +75,7 @@
       <div class="icon">
         <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
       </div>
-      <p>{{ achievement.name }}</p>
+      <p class="limit">{{ achievement.title }}</p>
     </div>
     }
     }
@@ -83,19 +83,19 @@
   </div>
   <div class="category">
     <div class="achievement">
-      <div class="icon">
+      <div class="icon-title">
         <app-icon-clef-treble size="75px" />
       </div>
-      <p>Treble</p>
+      <p>Treble Clef</p>
     </div>
     @for(achievement of achievements; track achievement.id) {
     @if(achievement.category === 'notes-treble') {
-    @if(achievement.isTrue) {
+    @if(achievement.unlocked) {
     <div class="achievement" (click)="displayAchievement(achievement)">
       <div class="icon done">
         <app-icon-coin size="75px" />
       </div>
-      <p>{{ achievement.name }}</p>
+      <p class="limit">{{ achievement.title }}</p>
     </div>
     }
     @else {
@@ -103,7 +103,7 @@
       <div class="icon">
         <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
       </div>
-      <p>{{ achievement.name }}</p>
+      <p class="limit">{{ achievement.title }}</p>
     </div>
     }
     }
@@ -114,19 +114,19 @@
 @if(isDialogOpen) {
 <app-dialog (dialog)="toggleDialog()">
   <div class="dialog">
-    @if(this.currentAchievement.isTrue) {
+    @if(this.currentAchievement.unlocked) {
       <app-icon-coin class="icon" size="100px" />
       <div>
-        <p class="name">{{ currentAchievement.name }}</p>
-        <p class="date">{{ currentAchievement.obtained | date }}</p>
-        <p>{{ currentAchievement.description }}</p>
+        <p class="title"><b>{{ currentAchievement.title }}</b></p>
+        <p class="date">{{ currentAchievement.date | date }}</p>
+        <p>{{ currentAchievement.done }}</p>
       </div>
     }
     @else {
       <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" class="icon" size="100px" />
       <div>
-        <p class="name">{{ currentAchievement.name }}</p>
-        <p>{{ currentAchievement.description }}</p>
+        <p class="title"><b>{{ currentAchievement.title }}</b></p>
+        <p>{{ currentAchievement.goal }}</p>
       </div>
     }
 

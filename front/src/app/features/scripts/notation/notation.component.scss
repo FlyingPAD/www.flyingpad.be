@@ -3,6 +3,8 @@
     justify-content: center;
     flex-wrap: wrap;
 
+    color: var(--colorMain);
+
     div {
         width: 315px;
 
@@ -10,6 +12,12 @@
         border-radius: 5px;
 
         margin: 15px;
+
+        h3 {
+            text-align: left;
+            text-indent: 15px;
+            font-size: 16px;
+        }
 
         img {
             display: block;
@@ -19,6 +27,10 @@
 
             border: 1px dotted var(--colorMain);
             border-radius: 5px;
+        }
+
+        p {
+            text-align: center;
         }
     }
 }

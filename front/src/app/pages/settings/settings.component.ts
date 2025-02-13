@@ -4,6 +4,8 @@ import { DisplayService } from '../../services/display.service';
 import { FullScreenService } from '../../services/full-screen.service';
 import { Theme } from '../../enumerations/themes';
 import { ThemeService } from '../../services/theme.service';
+import { ImageUrlService } from '../../services/image-url.service';
+import { SupportedLanguages } from '../../enumerations/supported-languages';
 
 @Component({
   selector: 'app-settings',
@@ -15,17 +17,19 @@ export class SettingsComponent {
   #displayService = inject(DisplayService)
   #fullScreenService = inject(FullScreenService)
   #themeService = inject(ThemeService)
+  #imageUrlService = inject(ImageUrlService)
 
-  currentLanguage = this.#languageService.currentLanguage
-  displayInfos = this.#displayService.displayInfo
-  isFullScreen = this.#fullScreenService.isFullscreen
-  currentTheme = this.#themeService.currentTheme
-  Theme = Theme
+  public currentLanguage = this.#languageService.currentLanguage
+  public displayInfos = this.#displayService.displayInfo
+  public isFullScreen = this.#fullScreenService.isFullscreen
+  public currentTheme = this.#themeService.currentTheme
+  public Theme = Theme
+  public isLanguageMenuON: boolean = false
+  public supportedLanguages: string[] = Object.values(SupportedLanguages)
 
   get themeKeys(): (keyof typeof Theme)[] {
-    return Object.keys(this.Theme) as Array<keyof typeof Theme>;
+    return Object.keys(this.Theme) as Array<keyof typeof Theme>
   }
-
   public currentThemeKey(): keyof typeof Theme {
     return Object.keys(this.Theme).find(
       key => this.Theme[key as keyof typeof Theme] === this.currentTheme()
@@ -33,21 +37,34 @@ export class SettingsComponent {
   }
 
   public changeTheme(selectedThemeKey: keyof typeof Theme): void {
-    const selectedTheme = this.Theme[selectedThemeKey];
-    this.#themeService.setTheme(selectedTheme);
+    const selectedTheme = this.Theme[selectedThemeKey]
+    this.#themeService.setTheme(selectedTheme)
   }
 
   public switchLanguage(language: string): void {
-    this.#languageService.setLanguage(language);
+    this.#languageService.setLanguage(language)
+    this.isLanguageMenuON = false
   }
 
   public toggleFullScreen(): void {
-    this.#fullScreenService.toggleFullscreen();
+    this.#fullScreenService.toggleFullscreen()
   }
 
   public async factorySettings(): Promise<void> {
-    await this.#fullScreenService.exitFullscreen();
-    this.#languageService.resetLanguage();
-    this.#themeService.setDefaultTheme();
+    await this.#fullScreenService.exitFullscreen()
+    this.#languageService.resetLanguage()
+    this.#themeService.setDefaultTheme()
+  }
+
+  public languageMenuToggle(): void {
+    this.isLanguageMenuON = !this.isLanguageMenuON
+  }
+
+  public getImageURL(theme: boolean, folderName: string, imageName: string, imageExtension: string): string {
+    if (theme) {
+      return this.#imageUrlService.getImageURL(folderName, imageName, imageExtension)
+    } else {
+      return this.#imageUrlService.getImageURLNoTheme(folderName, imageName, imageExtension)
+    }
   }
 }

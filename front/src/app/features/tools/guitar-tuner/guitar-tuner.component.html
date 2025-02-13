@@ -37,3 +37,5 @@
     <div class="note e4" (click)="playNote(currentTuning[5].name!)"
         [class.highlight]="targetNote?.name === currentTuning[5].name">{{ currentTuning[5].name }}</div>
 </div>
+
+<app-bottom-bar-larger [contentType]="'guitar-tuner'" />

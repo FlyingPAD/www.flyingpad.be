@@ -17,7 +17,6 @@ export class BottomBarComponent {
   @Input() moodType: number = 0
   @Input() diaporamaIsActive: boolean = false
 
-  @Output() topButton = new EventEmitter<void>()
   @Output() dialog = new EventEmitter<void>()
   @Output() openMoodInNewTab = new EventEmitter<void>()
   @Output() randomMood = new EventEmitter<void>()
@@ -34,10 +33,8 @@ export class BottomBarComponent {
 
   public user = this.#userService.user
   public topButtonIsActive: boolean = false
-  public leftCardIsActive: boolean = false
   public focusIsActive: boolean = false
 
-  public handleTopButton(): void { this.topButton.emit() }
   public handleDialog(): void { this.dialog.emit() }
   public handleOpenMoodInNewTab(): void { this.openMoodInNewTab.emit() }
   public handleRandomMood(): void { this.randomMood.emit() }

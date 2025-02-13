@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { ImageUrlService } from '../../services/image-url.service';
-import { LanguageService } from '../../services/language.service';
 import { DisplayService } from '../../services/display.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-left-column',
@@ -9,27 +9,18 @@ import { DisplayService } from '../../services/display.service';
   styleUrl: './left-column.component.scss'
 })
 export class LeftColumnComponent {
-  #languageService = inject(LanguageService)
   #imageUrlService = inject(ImageUrlService)
   #displayService = inject(DisplayService)
 
-  public currentLanguage = this.#languageService.currentLanguage
-  public displayInfo = this.#displayService.displayInfo
-
-  isLanguageMenuON : boolean = false
-
   @Input() isLeftMenuOn : boolean | undefined = false
   @Input() isUserConnected : boolean | undefined = false
-  @Input() userRole : number = 0
   @Output() menuToggle = new EventEmitter()
-  @Output() menuTriggerEmitter = new EventEmitter()
   @Output() logout = new EventEmitter<void>()
 
-  currentYear: number = new Date().getFullYear()
+  public displayInfo = this.#displayService.displayInfo
+  public currentYear: number = new Date().getFullYear()
+  public appVersion = environment.appVersion
 
-  public handleMenuTrigger(): void {
-    this.menuTriggerEmitter.emit()
-  }
   public handleMenuToggle(): void {
     this.menuToggle.emit()
   }
@@ -39,12 +30,9 @@ export class LeftColumnComponent {
       this.handleMenuToggle()
     }
   }
+
   public handleLogout(): void {
     this.logout.emit()
-  }
-
-  languageMenuToggle(): void {
-    this.isLanguageMenuON = !this.isLanguageMenuON
   }
 
   public getImageURL(folderName: string, imageName: string, imageExtension: string): string {

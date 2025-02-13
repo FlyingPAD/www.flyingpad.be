@@ -29,6 +29,8 @@ export class AppComponent implements OnInit {
   public gdprStatus = this.#gdprService.currentStatus
   public showButtonState = this.#buttonTopService.showButtonTop
 
+  public displayInfos = this.#displayService.displayInfo
+
   ngOnInit(): void {
     let token = this.#tokenService.retrieveToken()
 
