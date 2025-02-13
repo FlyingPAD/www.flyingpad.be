@@ -139,35 +139,35 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
           this.#userService.updatePlayerExperience(500)
           if(this.clefBass) {
             if(this.run > 10) {
-              if(this.#userService.user().achievements[1].isTrue === false) {
+              if(this.#userService.user().achievements[1].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(1)
               }
             }
             if(this.run > 20) {
-              if(this.#userService.user().achievements[2].isTrue === false) {
+              if(this.#userService.user().achievements[2].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(2)
               }
             }
             if(this.run > 30) {
-              if(this.#userService.user().achievements[3].isTrue === false) {
+              if(this.#userService.user().achievements[3].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(3)
               }
             }
             if(this.run > 40) {
-              if(this.#userService.user().achievements[4].isTrue === false) {
+              if(this.#userService.user().achievements[4].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(4)
               }
             }
             if(this.run > 50) {
-              if(this.#userService.user().achievements[5].isTrue === false) {
+              if(this.#userService.user().achievements[5].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(5)
@@ -176,35 +176,35 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
           }
           if(this.clefAlto) {
             if(this.run > 10) {
-              if(this.#userService.user().achievements[6].isTrue === false) {
+              if(this.#userService.user().achievements[6].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(6)
               }
             }
             if(this.run > 20) {
-              if(this.#userService.user().achievements[7].isTrue === false) {
+              if(this.#userService.user().achievements[7].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(7)
               }
             }
             if(this.run > 30) {
-              if(this.#userService.user().achievements[8].isTrue === false) {
+              if(this.#userService.user().achievements[8].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(8)
               }
             }
             if(this.run > 40) {
-              if(this.#userService.user().achievements[9].isTrue === false) {
+              if(this.#userService.user().achievements[9].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(9)
               }
             }
             if(this.run > 50) {
-              if(this.#userService.user().achievements[10].isTrue === false) {
+              if(this.#userService.user().achievements[10].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(10)
@@ -213,35 +213,35 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
           }
           if(this.clefTreble) {
             if(this.run > 10) {
-              if(this.#userService.user().achievements[11].isTrue === false) {
+              if(this.#userService.user().achievements[11].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(11)
               }
             }
             if(this.run > 20) {
-              if(this.#userService.user().achievements[12].isTrue === false) {
+              if(this.#userService.user().achievements[12].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(12)
               }
             }
             if(this.run > 30) {
-              if(this.#userService.user().achievements[13].isTrue === false) {
+              if(this.#userService.user().achievements[13].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(13)
               }
             }
             if(this.run > 40) {
-              if(this.#userService.user().achievements[14].isTrue === false) {
+              if(this.#userService.user().achievements[14].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(14)
               }
             }
             if(this.run > 50) {
-              if(this.#userService.user().achievements[15].isTrue === false) {
+              if(this.#userService.user().achievements[15].unlocked === false) {
                 this.#dashboardService.updateMenuState('achievements')
                 this.#routerService.navigateByUrl('/')
                 this.#userService.obtainAchievement(15)

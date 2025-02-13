@@ -11,6 +11,8 @@
     background-color: var(--colorWhite);
     border-top: 1px solid var(--colorMain);
 
+    z-index: 25;
+
     a {
         display: flex;
         justify-content: center;

@@ -38,23 +38,154 @@ export class UserService {
       tap(user => {
         user.role = role
         user.achievements = [
-          { id: 1, name: 'Official Member', description: 'You created an account :)', category: 'standard', obtained: new Date(), isTrue: true },
-          { id: 2, name: 'Novice', description: 'You lasted 10 seconds !!', category: 'notes-bass', obtained: undefined, isTrue: false },
-          { id: 3, name: 'Intermediate', description: 'You lasted 20 seconds !!', category: 'notes-bass', obtained: undefined, isTrue: false },
-          { id: 4, name: 'Advanced', description: 'You lasted 30 seconds !!', category: 'notes-bass', obtained: undefined, isTrue: false },
-          { id: 5, name: 'Expert', description: 'You lasted 40 seconds !!', category: 'notes-bass', obtained: undefined, isTrue: false },
-          { id: 6, name: 'Master', description: 'You lasted 50 seconds !!', category: 'notes-bass', obtained: undefined, isTrue: false },
-          { id: 7, name: 'Novice', description: 'You lasted 10 seconds !!', category: 'notes-alto', obtained: undefined, isTrue: false },
-          { id: 8, name: 'Intermediate', description: 'You lasted 20 seconds !!', category: 'notes-alto', obtained: undefined, isTrue: false },
-          { id: 9, name: 'Advanced', description: 'You lasted 30 seconds !!', category: 'notes-alto', obtained: undefined, isTrue: false },
-          { id: 10, name: 'Expert', description: 'You lasted 40 seconds !!', category: 'notes-alto', obtained: undefined, isTrue: false },
-          { id: 11, name: 'Master', description: 'You lasted 50 seconds !!', category: 'notes-alto', obtained: undefined, isTrue: false },
-          { id: 12, name: 'Novice', description: 'You lasted 10 seconds !!', category: 'notes-treble', obtained: undefined, isTrue: false },
-          { id: 13, name: 'Intermediate', description: 'You lasted 20 seconds !!', category: 'notes-treble', obtained: undefined, isTrue: false },
-          { id: 14, name: 'Advanced', description: 'You lasted 30 seconds !!', category: 'notes-treble', obtained: undefined, isTrue: false },
-          { id: 15, name: 'Expert', description: 'You lasted 40 seconds !!', category: 'notes-treble', obtained: undefined, isTrue: false },
-          { id: 16, name: 'Master', description: 'You lasted 50 seconds !!', category: 'notes-treble', obtained: undefined, isTrue: false },
-        ]
+          {
+            id: 1,
+            title: 'Official Member',
+            goal: 'Create an account',
+            done: 'You created an account :)',
+            category: 'standard',
+            date: new Date(),
+            unlocked: true
+          },
+          // notes-bass
+          {
+            id: 2,
+            title: 'Bass Novice',
+            goal: 'Survive 10 seconds.',
+            done: 'You lasted 10 sec. !!',
+            category: 'notes-bass',
+            date: undefined,
+            unlocked: false
+          },
+          {
+            id: 3,
+            title: 'Bass Intermediate',
+            goal: 'Survive 20 seconds.',
+            done: 'You lasted 20 sec. !!',
+            category: 'notes-bass',
+            date: undefined,
+            unlocked: false
+          },
+          {
+            id: 4,
+            title: 'Bass Advanced',
+            goal: 'Survive 30 seconds.',
+            done: 'You lasted 30 sec. !!',
+            category: 'notes-bass',
+            date: undefined,
+            unlocked: false
+          },
+          {
+            id: 5,
+            title: 'Bass Expert',
+            goal: 'Survive 40 seconds.',
+            done: 'You lasted 40 sec. !!',
+            category: 'notes-bass',
+            date: undefined,
+            unlocked: false
+          },
+          {
+            id: 6,
+            title: 'Bass Master',
+            goal: 'Survive 50 seconds.',
+            done: 'You lasted 50 sec. !!',
+            category: 'notes-bass',
+            date: undefined,
+            unlocked: false
+          },
+          // notes-alto
+          {
+            id: 7,
+            title: 'Alto Novice',
+            goal: 'Survive 10 seconds.',
+            done: 'You lasted 10 sec. !!',
+            category: 'notes-alto',
+            date: undefined,
+            unlocked: false
+          },
+          {
+            id: 8,
+            title: 'Alto Intermediate',
+            goal: 'Survive 20 seconds.',
+            done: 'You lasted 20 sec. !!',
+            category: 'notes-alto',
+            date: undefined,
+            unlocked: false
+          },
+          {
+            id: 9,
+            title: 'Alto Advanced',
+            goal: 'Survive 30 seconds.',
+            done: 'You lasted 30 sec. !!',
+            category: 'notes-alto',
+            date: undefined,
+            unlocked: false
+          },
+          {
+            id: 10,
+            title: 'Alto Expert',
+            goal: 'Survive 40 seconds.',
+            done: 'You lasted 40 sec. !!',
+            category: 'notes-alto',
+            date: undefined,
+            unlocked: false
+          },
+          {
+            id: 11,
+            title: 'Alto Master',
+            goal: 'Survive 50 seconds.',
+            done: 'You lasted 50 sec. !!',
+            category: 'notes-alto',
+            date: undefined,
+            unlocked: false
+          },
+          // notes-treble
+          {
+            id: 12,
+            title: 'Treble Novice',
+            goal: 'Survive 10 seconds.',
+            done: 'You lasted 10 sec. !!',
+            category: 'notes-treble',
+            date: undefined,
+            unlocked: false
+          },
+          {
+            id: 13,
+            title: 'Treble Intermediate',
+            goal: 'Survive 20 seconds.',
+            done: 'You lasted 20 sec. !!',
+            category: 'notes-treble',
+            date: undefined,
+            unlocked: false
+          },
+          {
+            id: 14,
+            title: 'Treble Advanced',
+            goal: 'Survive 30 seconds.',
+            done: 'You lasted 30 sec. !!',
+            category: 'notes-treble',
+            date: undefined,
+            unlocked: false
+          },
+          {
+            id: 15,
+            title: 'Treble Expert',
+            goal: 'Survive 40 seconds.',
+            done: 'You lasted 40 sec. !!',
+            category: 'notes-treble',
+            date: undefined,
+            unlocked: false
+          },
+          {
+            id: 16,
+            title: 'Treble Master',
+            goal: 'Survive 50 seconds.',
+            done: 'You lasted 50 sec. !!',
+            category: 'notes-treble',
+            date: undefined,
+            unlocked: false
+          }
+        ]        
         this.#user.next(user)
       })
     )
@@ -72,7 +203,7 @@ export class UserService {
     const user = this.user()
     if (user && tableEntry >= 0 && tableEntry < user.achievements.length) {
       const updatedAchievements = user.achievements.map((achievement, index) =>
-        index === tableEntry ? { ...achievement, isTrue: true, obtained: new Date() } : achievement
+        index === tableEntry ? { ...achievement, unlocked: true, date: new Date() } : achievement
       )
       this.#user.next({ ...user, achievements: updatedAchievements })
     }

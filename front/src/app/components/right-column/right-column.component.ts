@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
+import { DisplayService } from '../../services/display.service';
 
 @Component({
   selector: 'app-right-column',
@@ -8,7 +9,9 @@ import { MenuService } from '../../services/menu.service';
 })
 export class RightColumnComponent {
   #menuService = inject(MenuService)
+  #displayService = inject(DisplayService)
 
+  public displayMode = this.#displayService.displayInfo().mode.valueOf()
   public rightColumnIsActive = this.#menuService.isRightMenuOn
 
   public menuTrigger(): void {

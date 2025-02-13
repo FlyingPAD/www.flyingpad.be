@@ -1,8 +1,9 @@
 export interface Achievement {
     id: number
-    name: string
-    description: string
+    title: string
+    goal: string
+    done: string
     category: string
-    obtained: Date | undefined
-    isTrue: boolean
+    date: Date | undefined
+    unlocked: boolean
 }

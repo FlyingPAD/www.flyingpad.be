@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { FlowService } from '../../services/flow.service';
 import { PaginationService } from '../../services/pagination.service';
@@ -31,7 +31,6 @@ export class MoodsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getMoodHeight(false)
-    window.scrollTo(0, 0)
   }
 
   ngOnDestroy(): void {
@@ -135,13 +134,6 @@ export class MoodsComponent implements OnInit, OnDestroy {
     this.#flowService.updateFranchiseId(franchiseId)
     this.updateMoodMenuState('gallery')
     this.#paginationService.resetFranchiseGalleryCurrentPage()
-  }
-
-  public toTop(): void {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
   }
 
   public menuTrigger(): void {

@@ -3,7 +3,6 @@ import { environment } from '../../../environments/environment';
 import { FlowService } from '../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
-import { UserService } from '../../services/user.service';
 import { ImageUrlService } from '../../services/image-url.service';
 import { LanguageService } from '../../services/language.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +15,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LogInComponent implements OnInit {
   #flowService = inject(FlowService)
   #authService = inject(AuthenticationService)
-  #userService = inject(UserService)
   #formBuilder = inject(FormBuilder)
   #languageService = inject(LanguageService)
   #imageUrlService = inject(ImageUrlService)
@@ -24,7 +22,6 @@ export class LogInComponent implements OnInit {
   #router = inject(Router)
 
   public flow = this.#flowService.flow
-  public user = this.#userService.user
   public environment: string = environment.apiBaseUrl
   public currentLanguage = this.#languageService.currentLanguage
   public closeButtonIsOn: boolean = false

@@ -5,7 +5,8 @@
 
     .button {
         display: block;
-        width: 100px;
+        width: 150px;
+        height: 30px;
     
         background-color: var(--colorMain);
         border: 1px solid var(--colorMain);
@@ -14,11 +15,14 @@
         
         padding: 8px;
         margin: 8px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
     
-        text-align: center;
         letter-spacing: 1px;
         color: var(--colorWhite);
-        font-size: 14px;
+        font-size: 15px;
     }
     .button:hover:not(.button-disabled) {
         background-color: var(--colorWhite);

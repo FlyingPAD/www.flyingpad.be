@@ -1,6 +1,10 @@
-<div class="column-trigger" [class.column-trigger-on]="rightColumnIsActive()" (click)="menuTrigger()">
-  <div class="trigger-arrow"></div>
+<div *ngIf="displayMode === 'Desktop'">
+  <div class="column-trigger" [class.column-trigger-on]="rightColumnIsActive()" (click)="menuTrigger()">
+    <div class="trigger-arrow"></div>
+  </div>
 </div>
+
 <div class="right-column" [ngClass]="rightColumnIsActive() ? 'right-column-on' : 'right-column-off'">
   <ng-content />
+  <app-spacer height="70px" />
 </div>

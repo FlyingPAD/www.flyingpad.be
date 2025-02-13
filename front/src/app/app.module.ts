@@ -208,20 +208,29 @@ import { TimeValueRestSixteenthComponent } from './icons/time-value-rest-sixteen
 import { TimeValueRestHalfComponent } from './icons/time-value-rest-half/time-value-rest-half.component';
 import { TimeValueRestQuarterComponent } from './icons/time-value-rest-quarter/time-value-rest-quarter.component';
 import { TimeValueRestWholeComponent } from './icons/time-value-rest-whole/time-value-rest-whole.component';
+import { environment } from '../environments/environment';
+import { ScrollToTopDirective } from './directives/scroll-to-top.directive';
+import { IconMenuRightComponent } from './icons/icon-menu-right/icon-menu-right.component';
+import { ToggleMenuRightDirective } from './directives/toggle-menu-right.directive';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  let version : string = '1.0.0'
-  return new TranslateHttpLoader(http, './assets/i18n/', `.json?v=${version}`)
+  const version = environment.translationVersion
+  return new TranslateHttpLoader(
+    http,
+    './assets/i18n/',
+    `.json?v=${version}`
+  )
 }
 
 export function appInitializerFactory(translate: TranslateService) {
-  return () => new Promise<void>((resolve) => {
-    translate.setDefaultLang('fr')
-    translate.use('fr').subscribe({
-      next: () => resolve(),
-      error: () => resolve()
+  return () =>
+    new Promise<void>((resolve) => {
+      translate.setDefaultLang('fr')
+      translate.use('fr').subscribe({
+        next: () => resolve(),
+        error: () => resolve()
+      })
     })
-  })
 }
 
 @NgModule({
@@ -436,6 +445,9 @@ export function appInitializerFactory(translate: TranslateService) {
     TimeValueRestHalfComponent,
     TimeValueRestQuarterComponent,
     TimeValueRestWholeComponent,
+    ScrollToTopDirective,
+    IconMenuRightComponent,
+    ToggleMenuRightDirective,
   ],
   imports: [
     BrowserModule,

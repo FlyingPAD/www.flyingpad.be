@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Achievement } from '../../../interfaces/achievement';
+import { Router } from '@angular/router';
+import { ToolsService } from '../../../services/tools.service';
 
 @Component({
   selector: 'app-achievements',
@@ -7,7 +9,10 @@ import { Achievement } from '../../../interfaces/achievement';
   styleUrl: './achievements.component.scss'
 })
 export class AchievementsComponent {
-  @Input() achievements : Achievement[] = []
+  #toolsService = inject(ToolsService)
+  #router = inject(Router)
+
+  @Input() achievements: Achievement[] = []
 
   public currentAchievement!: Achievement
   public isDialogOpen: boolean = false
@@ -23,5 +28,10 @@ export class AchievementsComponent {
   public displayAchievement(achievement: Achievement): void {
     this.setAchievement(achievement)
     this.toggleDialog()
+  }
+
+  public GoTo(script: string): void {
+    this.#toolsService.updateToolsMenuState(script)
+    this.#router.navigateByUrl('/tools')
   }
 }

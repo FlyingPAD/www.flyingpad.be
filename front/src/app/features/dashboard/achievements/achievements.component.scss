@@ -8,10 +8,16 @@
     box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
     h1 {
-        color: var(--colorMain);
+        color: var(--colorMainOpacity8);
         font-size: 22px;
         text-align: center;
         margin: 0;
+        transition-duration: 300ms;
+    }
+    .link:hover {
+        cursor: pointer;
+        color: var(--colorMain);
+        text-decoration: underline; 
     }
 
     .category {
@@ -26,6 +32,22 @@
             margin: 15px;
 
             cursor: pointer;
+
+            .icon-title {
+                width: 100px;
+                height: 100px;
+
+                background-color: var(--colorWhiteOpacity5);
+                border: 8px solid var(--colorMain);
+                border-radius: 20px;
+                box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                cursor: initial;
+            }
 
             .icon {
                 width: 100px;
@@ -56,13 +78,19 @@
     
             p {
                 color: var(--colorMain);
-                font-size: 15px;
+                font-size: 13px;
                 text-align: center;
                 font-weight: bold;
             }
+
+            .limit {
+                width: 125px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: inline-block;
+            }
         }
-
-
     }
 }
 
@@ -74,7 +102,7 @@
         margin-right: 25px;
     }
 
-    .name {
+    .title {
         font-weight: bold;
         color: var(--colorMain);
     }
