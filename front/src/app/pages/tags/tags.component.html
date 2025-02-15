@@ -1,50 +1,28 @@
-<div id="layout-central" *ngIf="flow() as flow">
-    <div class="mobile"> 
-        <div class="tags-gallery" *ngIf="flow.tags.length; else loading">
-            <div *ngFor="let list of flow.tagsWithCategories">
-                <div class="box">
-                    <p>{{ list.category.name }}</p>
-                    <div class="flex">
-                        <div *ngFor="let tag of list.tags">
-                            <a id="{{tag.businessId}}" 
-                                [class.active]="tag.businessId === flow.tag?.businessId" 
-                                routerLink="/moods" 
-                                (click)="updateTagId(tag.businessId)"> ▸ {{ tag.name }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>    
-        <ng-template #loading>
-            <div class="loading">
-                <p>Loading ...</p>
-                <img src="../../../../assets/app_icons/spinner.gif" />
-            </div>
-        </ng-template>
-    </div>
-    <div class="desktop">
-        <div id="tags-wall" *ngIf="flow.tags.length; else loading">
-            <div class="tags-box" *ngFor="let category of flow.tagsWithCategories">
-                <div class="box-category">
-                    <p class="name-cat left">{{ category.category.name }}</p>
-                </div>
-                <div class="overflow">
-                    <div *ngFor="let tag of category.tags">
-                        <p>
-                            <span> ▸ </span>
-                            <a routerLink="/moods" class="name-tag" (click)="updateTagId(tag.businessId)">{{ tag.name }}</a>
-                        </p>
-                    </div>
-                </div>
-            </div>   
+<app-spacer height="5px" />
+<div class="tags-container" *ngIf="flow() as flow">
+  <div class="tags-grid">
+    <div *ngFor="let group of flow.tagsWithCategories" class="tags-card">
+      <div [appScrollActive]="isCategoryExpanded(group.category.businessId)" scrollPosition="top" [scrollOffset]="100"
+        class="tags-header" (click)="toggleCategory(group.category.businessId)"
+        [ngClass]="{'active': isCategoryExpanded(group.category.businessId)}">
+        <h3> ▸ <b>{{ group.category.name }}</b> ( {{group.tags.length}} )</h3>
+        <div class="tags-actions">
+          <button class="toggle-category">
+            <span class="arrow" [ngClass]="{'expanded': isCategoryExpanded(group.category.businessId)}"></span>
+          </button>
         </div>
-        <ng-template #loading>
-            <div class="loading">
-                <p>Loading ...</p>
-                <img src="../../../../assets/app_icons/spinner.gif" />
-            </div>
-        </ng-template>  
+      </div>
+      <div class="tags-content" *ngIf="isCategoryExpanded(group.category.businessId)">
+        <div class="tag-list">
+          <div *ngFor="let tag of group.tags" class="tag-item">
+            <a id="{{tag.businessId}}" [class.active]="tag.businessId === flow.tag?.businessId" routerLink="/moods"
+              (click)="updateTagId(tag.businessId)">
+              ▸ {{ tag.name }}
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-<app-spacer height=" 175px" />
+<app-spacer height="150px" />

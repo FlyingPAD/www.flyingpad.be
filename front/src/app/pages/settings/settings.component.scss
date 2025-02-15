@@ -49,6 +49,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         .button:hover {
             background-color: rgba(255, 255, 255, 0.3);
         }
@@ -71,9 +72,8 @@
         }
 
         .languages {
-            justify-content: flex-start;
-
             height: 35px;
+            justify-content: space-between;
 
             img {
                 height: 15px;
@@ -112,11 +112,11 @@
             border-radius: 5px;
             box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(3px);
-            
+
             z-index: 10;
 
             display: flex;
-            flex-direction: column;            
+            flex-direction: column;
 
             .dropdown-item {
                 width: 100px;
@@ -126,7 +126,7 @@
 
                 padding: 10px;
                 margin: 4px;
-                
+
                 background-color: var(--colorWhiteOpacity7);
                 border: 2px solid var(--colorMain);
                 border-radius: 5px;

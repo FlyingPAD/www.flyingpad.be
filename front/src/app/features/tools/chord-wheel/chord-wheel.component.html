@@ -1,5 +1,21 @@
+<div class="wheel-controls">
+  <div class="arrow-left" >
+    <a><div class="icon" appAnimGrow (click)="rotateImage(-30)"><app-icon-arrow size="30px" direction="left" /></div></a>
+    <p>Rotate Left</p>
+  </div>
+  <div class="random">
+    <a><div class="icon" appAnimRandom (click)="randomPosition()"><app-icon-question  size="30px" /></div></a>
+    <p>Random Key</p>
+  </div>
+  <div class="arrow-right">
+    <a><div class="icon" appAnimGrow (click)="rotateImage(30)"><app-icon-arrow size="30px" direction="right" /></div></a>
+    <p>Rotate Right</p>
+  </div>
+</div>
+
 <div class="wheel-container">
   <img #wheel class="wheel" src="../../../../assets/app_tools/wheel.png" />
   <img src="../../../../assets/app_tools/wheel_focus.png" />
 </div>
-<app-bottom-bar-larger [contentType]="'chord-wheel'" (rotation)="rotateImage($event)" (random)="randomPosition()" />
+
+<app-bottom-bar-larger />

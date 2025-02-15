@@ -14,14 +14,18 @@ export class ScriptsComponent implements OnInit, OnDestroy {
   #displayService = inject(DisplayService)
 
   public currentScript = this.#scriptsService.scriptsMenuState
-  public displayMode = this.#displayService.displayInfo().mode.valueOf()
+  public displayInfo = this.#displayService.displayInfo
 
   ngOnInit(): void {
-    this.#toTopButtonService.setShowButtonTop(true)
+    if(this.displayInfo().mode.valueOf() === 'Desktop') {
+      this.#toTopButtonService.setShowButtonTop(true)
+    }
   }
 
   ngOnDestroy(): void {
-    this.#toTopButtonService.setShowButtonTop(false)
+    if(this.displayInfo().mode.valueOf() === 'Desktop') {
+      this.#toTopButtonService.setShowButtonTop(false)
+    }
   }
   public updateMenuState(menuState: string): void {
     this.#scriptsService.updateScriptMenuState(menuState)

@@ -1,5 +1,6 @@
 <div class="current-mood">
     <p><b>{{ flow()?.mood?.name }}</b></p>
+    <hr class="dialog-hr">
     <div class="thumbnail">
         @if(flow()?.mood.type == 1) {
             <img src="{{environment}}/Content/img_thumbs/{{flow()?.mood.businessId}}.{{flow()?.mood.extension}}" (click)="goToCurrentMood()" />

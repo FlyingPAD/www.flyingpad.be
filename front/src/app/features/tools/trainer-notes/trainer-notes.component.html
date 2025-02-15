@@ -72,7 +72,7 @@
 <div class="spacer-150"></div>
 
 @if(!gameStart || gameEnd) {
-    <app-bottom-bar-larger [contentType]="'notes-master'" (reset)="reset()" (info)="toggleInfo()" />
+    <app-bottom-bar-larger />
 }
 
 @if(info) {

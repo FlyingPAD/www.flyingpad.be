@@ -4,12 +4,12 @@
             <app-icon-plus class=icon size="25px" direction="diagonal" />
         </div>
         <div class="languages" (click)="languageMenuToggle()" [class.active]="isLanguageMenuON">
-            <img [src]="getImageURL('icons-flags', currentLanguage(), 'png')" />
+            <img [src]="getImageURL(false, 'icons-flags', currentLanguage(), 'png')" />
             <span>{{ currentLanguage() === 'fr' ? 'Français' : 'English' }}</span>
         </div>
         <app-language-menu-home [isMenuOn]="isLanguageMenuON" (menuToggle)="languageMenuToggle()" />
         <div class="login-form">
-            <img class="logo" [src]="getImageURL('images-logo', 'logo-3', 'png')" />
+            <img class="logo" [src]="getImageURL(true, 'images-logo', 'logo-3', 'png')" />
             <div class="menu">
                 <a routerLink="/sign-up" routerLinkActive="active">{{ 'title.sign-up' | translate }}</a>
                 <a routerLink="/log-in" routerLinkActive="active">{{ 'title.log-in' | translate }}</a>

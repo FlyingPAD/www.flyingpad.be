@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { DisplayService } from '../../services/display.service';
 import { FullScreenService } from '../../services/full-screen.service';
@@ -6,18 +6,20 @@ import { Theme } from '../../enumerations/themes';
 import { ThemeService } from '../../services/theme.service';
 import { ImageUrlService } from '../../services/image-url.service';
 import { SupportedLanguages } from '../../enumerations/supported-languages';
+import { ButtonTopService } from '../../services/button-top.service';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit, OnDestroy {
   #languageService = inject(LanguageService)
   #displayService = inject(DisplayService)
   #fullScreenService = inject(FullScreenService)
   #themeService = inject(ThemeService)
   #imageUrlService = inject(ImageUrlService)
+  #buttonTopService = inject(ButtonTopService)
 
   public currentLanguage = this.#languageService.currentLanguage
   public displayInfos = this.#displayService.displayInfo
@@ -30,6 +32,15 @@ export class SettingsComponent {
   get themeKeys(): (keyof typeof Theme)[] {
     return Object.keys(this.Theme) as Array<keyof typeof Theme>
   }
+
+  ngOnInit(): void {
+    this.#buttonTopService.setShowButtonTop(true)
+  }
+
+  ngOnDestroy(): void {
+    this.#buttonTopService.setShowButtonTop(false)
+  }
+
   public currentThemeKey(): keyof typeof Theme {
     return Object.keys(this.Theme).find(
       key => this.Theme[key as keyof typeof Theme] === this.currentTheme()

@@ -50,7 +50,7 @@ export class UserService {
           // notes-bass
           {
             id: 2,
-            title: 'Bass Novice',
+            title: 'Novice',
             goal: 'Survive 10 seconds.',
             done: 'You lasted 10 sec. !!',
             category: 'notes-bass',
@@ -59,7 +59,7 @@ export class UserService {
           },
           {
             id: 3,
-            title: 'Bass Intermediate',
+            title: 'Intermediate',
             goal: 'Survive 20 seconds.',
             done: 'You lasted 20 sec. !!',
             category: 'notes-bass',
@@ -68,7 +68,7 @@ export class UserService {
           },
           {
             id: 4,
-            title: 'Bass Advanced',
+            title: 'Advanced',
             goal: 'Survive 30 seconds.',
             done: 'You lasted 30 sec. !!',
             category: 'notes-bass',
@@ -77,7 +77,7 @@ export class UserService {
           },
           {
             id: 5,
-            title: 'Bass Expert',
+            title: 'Expert',
             goal: 'Survive 40 seconds.',
             done: 'You lasted 40 sec. !!',
             category: 'notes-bass',
@@ -86,7 +86,7 @@ export class UserService {
           },
           {
             id: 6,
-            title: 'Bass Master',
+            title: 'Master',
             goal: 'Survive 50 seconds.',
             done: 'You lasted 50 sec. !!',
             category: 'notes-bass',
@@ -96,7 +96,7 @@ export class UserService {
           // notes-alto
           {
             id: 7,
-            title: 'Alto Novice',
+            title: 'Novice',
             goal: 'Survive 10 seconds.',
             done: 'You lasted 10 sec. !!',
             category: 'notes-alto',
@@ -105,7 +105,7 @@ export class UserService {
           },
           {
             id: 8,
-            title: 'Alto Intermediate',
+            title: 'Intermediate',
             goal: 'Survive 20 seconds.',
             done: 'You lasted 20 sec. !!',
             category: 'notes-alto',
@@ -114,7 +114,7 @@ export class UserService {
           },
           {
             id: 9,
-            title: 'Alto Advanced',
+            title: 'Advanced',
             goal: 'Survive 30 seconds.',
             done: 'You lasted 30 sec. !!',
             category: 'notes-alto',
@@ -123,7 +123,7 @@ export class UserService {
           },
           {
             id: 10,
-            title: 'Alto Expert',
+            title: 'Expert',
             goal: 'Survive 40 seconds.',
             done: 'You lasted 40 sec. !!',
             category: 'notes-alto',
@@ -132,7 +132,7 @@ export class UserService {
           },
           {
             id: 11,
-            title: 'Alto Master',
+            title: 'Master',
             goal: 'Survive 50 seconds.',
             done: 'You lasted 50 sec. !!',
             category: 'notes-alto',
@@ -142,7 +142,7 @@ export class UserService {
           // notes-treble
           {
             id: 12,
-            title: 'Treble Novice',
+            title: 'Novice',
             goal: 'Survive 10 seconds.',
             done: 'You lasted 10 sec. !!',
             category: 'notes-treble',
@@ -151,7 +151,7 @@ export class UserService {
           },
           {
             id: 13,
-            title: 'Treble Intermediate',
+            title: 'Intermediate',
             goal: 'Survive 20 seconds.',
             done: 'You lasted 20 sec. !!',
             category: 'notes-treble',
@@ -160,7 +160,7 @@ export class UserService {
           },
           {
             id: 14,
-            title: 'Treble Advanced',
+            title: 'Advanced',
             goal: 'Survive 30 seconds.',
             done: 'You lasted 30 sec. !!',
             category: 'notes-treble',
@@ -169,7 +169,7 @@ export class UserService {
           },
           {
             id: 15,
-            title: 'Treble Expert',
+            title: 'Expert',
             goal: 'Survive 40 seconds.',
             done: 'You lasted 40 sec. !!',
             category: 'notes-treble',
@@ -178,7 +178,7 @@ export class UserService {
           },
           {
             id: 16,
-            title: 'Treble Master',
+            title: 'Master',
             goal: 'Survive 50 seconds.',
             done: 'You lasted 50 sec. !!',
             category: 'notes-treble',

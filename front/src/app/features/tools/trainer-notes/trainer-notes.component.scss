@@ -6,11 +6,11 @@
     width: 600px;
     margin: auto;
 
-    background-color: rgba(255, 253, 251, 0.5);
+    background-color: var(--colorWhiteOpacity5);
     border: 2px solid var(--colorMain);
     border-radius: 15px;
     backdrop-filter: blur(3px);
-    box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
+    box-shadow: 0 3px 4px 0px var(--colorMainOpacity3);
 
     .trainer-container {
         position: relative;
@@ -114,15 +114,15 @@ h1 {
     color: var(--colorMain);
     font-size: 18px;
     font-weight: normal;
-    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+    text-shadow: 0px 3px 3px var(--colorMainOpacity3);
     letter-spacing: 2px;
 }
 
 p {
     text-align: center;
-    color: rgb(68, 0, 0);
+    color: var(--colorMain);
     font-size: 15px;
-    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+    text-shadow: 0px 3px 3px var(--colorMainOpacity3);
     letter-spacing: 2px;
 }
 
@@ -141,7 +141,7 @@ p {
         background-color: var(--colorMain);
         border: 1px solid var(--colorMain);
         border-radius: 0 0 5px 5px;
-        box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity3);
 
         font-size: 13px;
         letter-spacing: 1px;
@@ -150,7 +150,7 @@ p {
     }
 
     a:hover {
-        background-color: white;
+        background-color: var(--colorWhite);
         color: var(--colorMain);
         cursor: pointer;
         transition-duration: 500ms;
@@ -189,12 +189,12 @@ p {
         border: 1px solid var(--colorMain);
         border-radius: 5px;
 
-        color: white;
+        color: var(--colorWhite);
         text-align: center;
     }
 
     a:hover {
-        background-color: white;
+        background-color: var(--colorWhite);
         color: var(--colorMain);
         cursor: pointer;
         transition-duration: 500ms;

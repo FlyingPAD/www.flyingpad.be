@@ -7,11 +7,11 @@ import { WheelKey } from '../../../models/wheel-key';
   styleUrls: ['./circle-of-fifths.component.scss']
 })
 export class CircleOfFifthsComponent {
-  @ViewChild('wheel', { static: false }) wheel!: ElementRef;
+  @ViewChild('wheel', { static: false }) wheel!: ElementRef
 
-  currentAngle: number = 0
+  private currentAngle: number = 0
 
-  keys: WheelKey[] = [
+  public keys: WheelKey[] = [
     { name: 'C', enharmony: '', enharmonyFr: '', nameFr: 'Do', position: 0 },
     { name: 'G', enharmony: '', enharmonyFr: '', nameFr: 'Sol', position: 30 },
     { name: 'D', enharmony: '', enharmonyFr: '', nameFr: 'Ré', position: 60 },

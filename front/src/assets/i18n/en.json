@@ -32,7 +32,8 @@
         "modified" : "Modified",
         "enable" : "Enable",
         "disable" : "Disable",
-        "defaults" : "Defaults",
+        "default" : "Default",
+        "default-settings" : "Default Settings",
         "starring" : "Starring",
         "from" : "From",
         "art-by" : "Art By",
@@ -67,8 +68,12 @@
         "english" : "English",
         "version" : "Version",
         "user-name" : "User Name",
-        "subscription" : "Subscription",
-        "achievements" : "Success"
+        "subscription" : "Member, since",
+        "achievements" : "Success",
+        "restore" : "Restore",
+        "experience" : "Experience",
+        "level" : "Level",
+        "league" : "League"
     },
     "message": {
         "404": "Page was not found.",

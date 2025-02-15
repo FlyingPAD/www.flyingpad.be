@@ -1,3 +1,44 @@
+.wheel-controls {
+    margin-top: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+        height: 50px;
+        width: 50px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: var(--colorWhiteOpacity5);
+        border: 3px solid var(--colorMainOpacity5);
+        border-radius: 10px;
+
+        margin: 0 25px;
+        cursor: pointer;
+        transition-duration: 300ms;
+
+        .icon {
+            padding: 25px;
+        }
+    }
+    a:hover {
+        background-color: var(--colorWhite);
+        border: 3px solid var(--colorMain);
+    }
+
+    p {
+        font-size: 12px;
+        color: var(--colorMain);
+        text-align: center;
+        margin: 0;
+        margin-top: 5px;
+    }
+}
+
 .wheel-composition {
     display: flex;
     justify-content: center;

@@ -8,8 +8,8 @@
     margin-top: 25px;
     margin-bottom: 15px;
 
-    background-color: rgb(255, 255, 255, 0.5);
-    border: 5px solid rgb(107, 82, 64, 0.5);
+    background-color: var(--colorWhiteOpacity5);
+    border: 5px solid var(--colorMainOpacity5);
     border-radius: 15px;
 
     .option {
@@ -17,7 +17,7 @@
         justify-content: space-between;
         align-items: center;
 
-        background-color: rgb(107, 82, 64, 0.1);
+        background-color: var(--colorMainOpacity1);
         border-radius: 10px;
 
         font-size: 15px;
@@ -35,13 +35,13 @@
     width: 300px;
     margin: auto;
 
-    background-color: rgb(255, 255, 255, 0.5);
-    border: 5px solid rgb(107, 82, 64, 0.5);
+    background-color: var(--colorWhiteOpacity5);
+    border: 5px solid var(--colorMainOpacity5);
     border-radius: 15px;
 
     text-align: center;
-    font-size: 27px;
-    color: #6b5240;
+    font-size: 25px;
+    color: var(--colorMain);
 
     margin-bottom: 20px;
 }
@@ -51,7 +51,8 @@
     height: 40px;
     margin: auto;
     transition: background-color 0.5s;
-    border: 1px solid #6b5240;
+    border: 1px solid var(--colorMain);
+
     border-radius: 5px;
     margin-bottom: 25px;
 }
@@ -66,15 +67,16 @@ button {
     margin: auto;
     padding: 10px;
     font-size: 1.5em;
-    border: 1px solid #6b5240;
+    border: 1px solid var(--colorMain);
+
     border-radius: 5px;
-    background-color: rgb(107, 82, 64, 0.3);
+    background-color: var(--colorMainOpacity3);
 }
 
 .guitar-head {
     position: relative;
     width: 100%;
-    max-width: 350px;
+    max-width: 335px;
     height: auto;
     margin: auto;
 }
@@ -90,8 +92,8 @@ button {
     height: 47px;
     margin: 15px;
     padding: 5px;
-    background-color: #fff;
-    border: 5px solid rgb(107, 82, 64, 0.5);
+    background-color: var(--colorWhiteOpacity7);
+    border: 5px solid var(--colorMain);
     border-radius: 50px;
     display: flex;
     justify-content: center;
@@ -101,8 +103,7 @@ button {
 }
 
 .note:hover {
-    background-color: rgb(255, 201, 162);
-    border: 5px solid rgb(107, 82, 64);
+    background-color: var(--colorWhite);
     transition-duration: 500ms;
     cursor: pointer;
 }

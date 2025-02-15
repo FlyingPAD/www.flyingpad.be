@@ -1,0 +1,113 @@
+.tags-container {
+    max-width: 1350px;
+    margin: 25px auto;
+
+    .tags-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .tags-card {
+        width: 247px;
+        border: 1px solid var(--colorMainOpacity3);
+        border-radius: 8px;
+        background-color: var(--colorWhiteOpacity5);
+        box-shadow: 0 2px 4px var(--colorMainOpacity2);
+        overflow: hidden;
+
+        .tags-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--colorMainOpacity2);
+            padding: 8px 10px;
+            cursor: pointer;
+
+            &.active {
+                background-color: var(--colorMainOpacity1);
+            }
+
+            h3 {
+                font-size: 13px;
+                font-weight: initial;
+                color: var(--colorMain);
+                margin: 0;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .tags-actions {
+                button {
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    padding: 5px;
+                    font-size: 16px;
+                    color: var(--colorMain);
+                    transition: color 0.3s ease;
+
+                    &:hover {
+                        color: var(--colorMainOpacity7);
+                    }
+
+                    .arrow {
+                        display: inline-block;
+                        width: 8px;
+                        height: 8px;
+                        border: solid var(--colorMain);
+                        border-width: 0 2px 2px 0;
+                        transform: rotate(45deg);
+                        transition: transform 0.3s ease;
+                    }
+
+                    .arrow.expanded {
+                        transform: rotate(225deg);
+                    }
+                }
+            }
+        }
+
+        .tags-header:hover {
+            background-color: var(--colorMainOpacity1);
+            transition-duration: 300ms;
+        }
+
+        .tags-content {
+            padding: 10px;
+
+            .tag-list {
+                max-height: 400px;
+                overflow-y: auto;
+
+                .tag-item {
+                    margin-bottom: 5px;
+
+                    a {
+                        display: block;
+                        font-size: 14px;
+                        color: var(--colorMain);
+                        text-decoration: none;
+                        padding: 4px;
+                        border: 1px solid transparent;
+                        border-radius: 3px;
+                    }
+
+                    a:hover {
+                        text-decoration: underline;
+                        transition-duration: 300ms;
+                    }
+
+                    a.active {
+                        background-color: var(--colorMain);
+                        color: var(--colorWhite);
+                        transition-duration: 300ms;
+                    }
+                }
+            }
+        }
+    }
+}
