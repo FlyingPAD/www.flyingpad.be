@@ -8,11 +8,14 @@
     box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
     h1 {
-        color: var(--colorMainOpacity8);
-        font-size: 22px;
+        color: var(--colorMain);
+        font-size: 18px;
         text-align: center;
         margin: 0;
         transition-duration: 300ms;
+    }
+    .link {
+        color: var(--colorMainOpacity8);
     }
     .link:hover {
         cursor: pointer;

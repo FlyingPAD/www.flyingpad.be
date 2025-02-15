@@ -1,6 +1,6 @@
 <div class="achievements">
   <h1>Achievements</h1>
-  <hr class="hr-dialog">
+  <hr class="dialog-hr">
   <div class="category">
     @for(achievement of achievements; track achievement.id) {
     @if(achievement.category === 'standard') {
@@ -24,7 +24,7 @@
     }
   </div>
   <h1 class="link" (click)="GoTo('notes-master')">Notes Master</h1>
-  <hr class="hr-dialog">
+  <hr class="dialog-hr">
   <div class="category">
     <div class="achievement">
       <div class="icon-title">

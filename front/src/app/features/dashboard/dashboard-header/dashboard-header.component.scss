@@ -4,54 +4,74 @@
     border-radius: 10px;
     box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 15px;
 
-    img {
-        margin: 15px 10px 15px 0px;
-        padding: 15px;
+    color: var(--colorMain);
 
-        height: 80px;
-        width: 80px;
-
-        background-color: var(--colorWhiteOpacity5);
-        border: 3px solid var(--colorMain);
-        border-radius: 10px;
-        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
-    }
-
-    .user {
-        margin-top: 15px;
-
+    .user-header {
         display: flex;
+        justify-content: flex-start;
         align-items: center;
 
-        .icon {
-            margin-right: 6px;
+        img {
+            padding: 15px;
+    
+            height: 100px;
+            width: 100px;
+    
+            background-color: var(--colorWhiteOpacity5);
+            border: 3px solid var(--colorMain);
+            border-radius: 10px;
+            box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
         }
+    
+        .user-info {    
+            height: 130px;
+            padding: 0 15px;
 
-        p {
-            font-size: 15px;
-            font-weight: bold;
-            color: var(--colorMain);
-            margin: 0;
+            .user-name {
+                display: flex;
+                align-items: center;
+
+                padding-top: 7px;
+                margin-bottom: 5px;
+
+                .icon {
+                    margin: 0;
+                    margin-right: 5px; 
+                }
+
+                h1 {
+                    margin: 0;
+                    font-size: 17px;
+                }
+            }
+
+            .row {
+                width: 180px;
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                background-color: var(--colorWhiteOpacity4);
+                border-radius: 5px;
+                box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+                margin-bottom: 3px;
+                padding: 5px;
+
+                p {
+                    margin: 0;
+                    font-size: 13px;
+                }
+            }
         }
     }
 
-    .info {
-        margin-top: 5px;
-
-        p {
-            font-size: 13px;
-            color: var(--colorMain);
-            margin: 2px;
-        }
-    }
-
-    .tweak {
-        margin-top: 10px;
-        font-size: 12px;
-        color: var(--colorMain);
+    .subscription {
+        margin: 0;
+        margin-top: 8px;
+        font-size: 13px;
     }
 }

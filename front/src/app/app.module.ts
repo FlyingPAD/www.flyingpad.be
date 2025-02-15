@@ -101,7 +101,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { OverlayComponent } from './components/overlay/overlay.component';
-import { MediumGalleryComponent } from './pages/medium-gallery/medium-gallery.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { FormatRatioPipe } from './pipes/format-ratio.pipe';
 import { TimelineComponent } from './features/tools/timeline/timeline.component';
@@ -263,7 +262,6 @@ export function appInitializerFactory(translate: TranslateService) {
     MoodsComponent,
     TagsComponent,
     MediaComponent,
-    MediumGalleryComponent,
     ScriptsComponent,
     ToolsComponent,
     LinksComponent,

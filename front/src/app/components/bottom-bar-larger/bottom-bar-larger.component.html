@@ -1,29 +1,5 @@
 <div class="bottom-bar-larger">
-    @if(contentType === 'circle-of-fifths') {
-        <a (click)="handleRotateLeft()"><app-icon-arrow appAnimGrow size="40px" direction="left" /></a>
-        <a (click)="handleRandomRotation()"><app-icon-question appAnimRandom size="40px" /></a>
-        <a (click)="handleRotateRight()"><app-icon-arrow appAnimGrow size="40px" direction="right" /></a>
-        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
-    }
-    @if(contentType === 'chord-wheel') {
-        <a (click)="handleRotation(30)"><app-icon-arrow appAnimGrow size="40px" direction="left" /></a>
-        <a (click)="handleRandomRotation()"><app-icon-question appAnimRandom size="40px" /></a>
-        <a (click)="handleRotation(-30)"><app-icon-arrow appAnimGrow size="40px" direction="right" /></a>
-        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
-    }
-    @if(contentType === 'diapason') {
-        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
-    }
-    @if(contentType === 'mini-keyboard') {
-        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
-    }
-    @if(contentType === 'notes-master') {
-        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
-    }
-    @if(contentType === 'timeline') {
-        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
-    }
-    @if(contentType === 'guitar-tuner') {
+    @if(contentType === 'standard') {
         <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
 </div>

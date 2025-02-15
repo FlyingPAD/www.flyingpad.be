@@ -32,7 +32,8 @@
     "modified" : "Modifié, le",
     "enable" : "Activer",
     "disable" : "Désactiver",
-    "defaults" : "Défauts",
+    "default" : "Défaut",
+    "default-settings" : "Paramètres par défaut",
     "starring" : "Avec la participation de",
     "from" : "Provenant de",
     "art-by" : "Créé par",
@@ -67,8 +68,12 @@
     "english" : "Anglais",
     "version" : "Version",
     "user-name" : "Nom d'utilisateur",
-    "subscription" : "Inscription",
-    "achievements" : "Succès"
+    "subscription" : "Membre, depuis le",
+    "achievements" : "Succès",
+    "restore" : "Restaurer",
+    "experience" : "Expérience",
+    "level" : "Niveau",
+    "league" : "Ligue"
   },
   "message": {
     "404": "La page n'a pas été trouvée.",

@@ -22,7 +22,6 @@ import { EditTagsComponent } from './pages/edit-tags/edit-tags.component';
 import { EditLinksComponent } from './pages/edit-links/edit-links.component';
 import { EditArtistsComponent } from './pages/edit-artists/edit-artists.component';
 import { CreateMoodVideoComponent } from './features/moods/create-mood-video/create-mood-video.component';
-import { MediumGalleryComponent } from './pages/medium-gallery/medium-gallery.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { LayoutHomeComponent } from './layouts/layout-home/layout-home.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
@@ -61,8 +60,7 @@ const routes: Routes = [
       { path: 'tags', component: TagsComponent, title: 'Flying PAD | Tags Gallery' },
       { path: 'media', component: MediaComponent, title: 'Flying PAD | Media' },
       { path: 'not-found', component: NotFoundComponent, title: 'Flying PAD | Not Found' },
-      { path: 'register', component: UserRegisterComponent, title: 'Flying PAD | Register' },
-      { path: 'medium-gallery', component: MediumGalleryComponent, title: 'Flying PAD | Medium Gallery' },
+      { path: 'register', component: UserRegisterComponent, title: 'Flying PAD | Register' }
     ]
   },
 
@@ -87,7 +85,7 @@ const routes: Routes = [
     path: '', component: LayoutEmptyComponent, children: [
       { path: 'log-in', component: LogInComponent, title: 'Flying PAD | Log in' },
       { path: 'log-in/error', component: LogInErrorComponent, title: 'Flying PAD | Log in Error' },
-      { path: 'sign-up', component: SignUpComponent, title: 'Flying PAD | Sign up' },
+      { path: 'sign-up', component: SignUpComponent, title: 'Flying PAD | Sign up' }
     ]
   },
 

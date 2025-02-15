@@ -51,8 +51,13 @@
             [moodsLength]="flow.moodsByFranchise.length" (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
         }
         <app-right-column>
-            <app-column-full [tags]="flow.tagsWithCategories" [currentTagId]="flow.tag?.businessId" (tagId)="updateTagId($event)" />
-        </app-right-column>
+            <app-column-full
+              [tags]="flow.tagsWithCategories"
+              [currentTagId]="flow.tag?.businessId"
+              (tagId)="updateTagId($event)"
+              (tagCategoryId)="updateTagCategoryId($event)">
+            </app-column-full>
+          </app-right-column>
     }
 
     @if(moodMenuState() === 'details') {
@@ -65,7 +70,7 @@
         }
 
         <app-right-column>
-            <app-related-tags [relatedTags]="flow.mood.tags" [currentTagId]="flow.tag?.businessId" (tagId)="updateTagId($event)" />
+            <app-related-tags [relatedTags]="flow.mood.tags" [currentTagId]="flow.tag?.businessId" (tagId)="onRelatedTagClicked($event)" />
         </app-right-column>
 
         @if(flow.moodsGalleryType === 'all') {

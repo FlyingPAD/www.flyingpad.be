@@ -7,34 +7,35 @@ import { AudioService } from '../../../services/audio.service';
   styleUrls: ['./diapason.component.scss']
 })
 export class DiapasonComponent {
-  audioService = inject(AudioService)
+  #audioService = inject(AudioService)
 
-  currentVolume: number = 0.5
-  frequency: number = 440
+  public currentVolume: number = 0.5
+  public frequency: number = 440
 
   constructor() {
-    document.addEventListener('click', () => this.resumeAudioContext());
+    document.addEventListener('click', () => this.resumeAudioContext())
   }
 
   private resumeAudioContext(): void {
-    if (this.audioService.audioContext.state === 'suspended') this.audioService.audioContext.resume()
+    if (this.#audioService.audioContext.state === 'suspended') this.#audioService.audioContext.resume()
   }
 
-  playNote(): void {
-    this.resumeAudioContext()
-    this.audioService.playFrequencyWithEnvelope(this.frequency, 2, this.currentVolume)
-  }
-
-  volumeUp() {
+  private volumeUp() {
     this.currentVolume = Math.min(this.currentVolume + 0.1, 1)
   }
 
-  volumeDown(): void {
+  private volumeDown(): void {
     this.currentVolume = Math.max(this.currentVolume - 0.1, 0)
+  }
+
+  public playNote(): void {
+    this.resumeAudioContext()
+    this.#audioService.playFrequencyWithEnvelope(this.frequency, 2, this.currentVolume)
   }
 
   public resetTune(): void {
     this.frequency = 440
+    this.currentVolume = 0.5
   }
 
   public validateVolume(): void {
@@ -60,10 +61,10 @@ export class DiapasonComponent {
     switch (event.code) {
       case 'NumpadAdd':
         this.volumeUp()
-        break;
+        break
       case 'NumpadSubtract':
         this.volumeDown()
-        break;
+        break
     }
   }
 }

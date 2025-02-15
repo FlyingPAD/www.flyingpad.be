@@ -56,7 +56,7 @@
     </div>
     }
     @if (showNew) {
-    <app-create-tag [tagCategories]="flow.tagCategories" (trigger)="triggerShowList()" />
+    <app-create-tag [tagCategories]="flow.tagCategories" [category]="flow.tagCategory"  (trigger)="triggerShowList()" />
     }
     @if (showNewCategory) {
     <app-create-tag-category (trigger)="triggerShowList()" />

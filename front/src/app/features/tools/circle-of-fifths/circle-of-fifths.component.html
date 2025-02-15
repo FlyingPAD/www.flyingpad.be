@@ -1,3 +1,18 @@
+<div class="wheel-controls">
+  <div class="arrow-left" >
+    <a><div class="icon" appAnimGrow (click)="rotateToLeft()"><app-icon-arrow size="30px" direction="left" /></div></a>
+    <p>Rotate Left</p>
+  </div>
+  <div class="random">
+    <a><div class="icon" appAnimRandom (click)="randomPosition()"><app-icon-question  size="30px" /></div></a>
+    <p>Random Key</p>
+  </div>
+  <div class="arrow-right">
+    <a><div class="icon" appAnimGrow (click)="rotateToRight()"><app-icon-arrow size="30px" direction="right" /></div></a>
+    <p>Rotate Right</p>
+  </div>
+</div>
+
 <div class="wheel-composition">
   <div class="container">
     <svg #wheel class="wheel" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
@@ -110,5 +125,4 @@
   </div>
 </div>
 
-<app-bottom-bar-larger [contentType]="'circle-of-fifths'" 
-  (random)="randomPosition()" (rotateLeft)="rotateToLeft()" (rotateRight)="rotateToRight()" />
+<app-bottom-bar-larger />

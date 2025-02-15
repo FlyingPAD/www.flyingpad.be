@@ -14,7 +14,7 @@ export class ThemeService {
   private readonly DEFAULT_THEME: Theme = Theme.Default
 
   #currentTheme = new BehaviorSubject<Theme>(this.DEFAULT_THEME)
-  currentTheme = toSignal(this.#currentTheme)
+  public currentTheme = toSignal(this.#currentTheme)
 
   constructor() {
     const storedTheme = this.#storageService.getItem(StorageProperties.Theme) as Theme | null

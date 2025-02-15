@@ -3,7 +3,7 @@
 </div>
 <div class="list-categories">
     <div *ngFor="let tag of relatedTags">
-        <div><a [appScrollActive]="tag.businessId === currentTagId" [class.active]="tag.businessId === currentTagId" 
-            (click)="handleTagId(tag.businessId)"> ▸ {{tag.name}}</a></div>
+        <div><a [appScrollActive]="tag.businessId === currentTagId" [class.active]="tag.businessId === currentTagId"
+                (click)="handleTagId(tag.businessId)"> ▸ {{tag.name}}</a></div>
     </div>
 </div>

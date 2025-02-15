@@ -16,14 +16,14 @@ export class MoodsComponent implements OnInit, OnDestroy {
   #flowService = inject(FlowService)
   #menuService = inject(MenuService)
   #paginationService = inject(PaginationService)
-  viewerService = inject(ViewerService)
-  displayService = inject(DisplayService)
-  moodsService = inject(MoodsService)
+  #viewerService = inject(ViewerService)
+  #displayService = inject(DisplayService)
+  #moodsService = inject(MoodsService)
 
   private intervalId: any | undefined = undefined
   public flow = this.#flowService.flow
-  public displayInfos = this.displayService.displayInfo
-  public moodMenuState = this.moodsService.moodMenuState
+  public displayInfos = this.#displayService.displayInfo
+  public moodMenuState = this.#moodsService.moodMenuState
   public environment = environment.apiBaseUrl
   public showDialog: boolean = false
   public leftCardIsActive: boolean = this.leftCardInit()
@@ -47,7 +47,7 @@ export class MoodsComponent implements OnInit, OnDestroy {
   }
 
   public updateMoodMenuState(menuState: string): void {
-    this.moodsService.updateMoodMenuState(menuState)
+    this.#moodsService.updateMoodMenuState(menuState)
   }
 
   public diaporamaStart(isRandom: boolean): void {
@@ -125,15 +125,30 @@ export class MoodsComponent implements OnInit, OnDestroy {
     this.updateMoodMenuState('gallery')
     this.#paginationService.resetModelGalleryCurrentPage()
   }
+  public updateTagCategoryId(categoryId: number): void {
+    this.#flowService.updateTagCategoryId(categoryId)
+  }
   public updateTagId(tagId: number): void {
     this.#flowService.updateTagId(tagId)
     this.updateMoodMenuState('gallery')
     this.#paginationService.resetMoodsByTagCurrentPage()
-  }
+  }  
   public updateFranchiseId(franchiseId: number | null): void {
     this.#flowService.updateFranchiseId(franchiseId)
     this.updateMoodMenuState('gallery')
     this.#paginationService.resetFranchiseGalleryCurrentPage()
+  }
+  public onRelatedTagClicked(tagId: number): void {
+    this.updateTagId(tagId)
+    const tagGroups = this.flow()?.tagsWithCategories
+    if (tagGroups) {
+      for (const group of tagGroups) {
+        if (group.tags.some(tag => tag.businessId === tagId)) {
+          this.updateTagCategoryId(group.category.businessId)
+          break
+        }
+      }
+    }
   }
 
   public menuTrigger(): void {
@@ -161,7 +176,7 @@ export class MoodsComponent implements OnInit, OnDestroy {
   }
 
   public getMoodHeight(focusState: boolean) {
-    this.viewerService.getMoodHeight(focusState, window.innerHeight, this.flow()?.mood.height)
+    this.#viewerService.getMoodHeight(focusState, window.innerHeight, this.flow()?.mood.height)
   }
 
   @HostListener('window:keydown', ['$event'])

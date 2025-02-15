@@ -1,4 +1,5 @@
 <h1 class="h1">{{ 'title.settings' | translate }}</h1>
+<hr class="dialog-hr">
 <p class="p">{{ 'message.settings-short' | translate }}</p>
 
 <div class="settings">
@@ -20,11 +21,13 @@
         <p *ngIf="displayInfos().orientation === 'Square'">{{ 'title.square' | translate }}</p>
     </div>
 
-    <div class="row">
-        <p><b>{{ 'title.full-screen' | translate }}</b></p>
-        <p class="button" *ngIf="isFullScreen() === true" (click)="toggleFullScreen()">{{ 'title.disable' | translate }}</p>
-        <p class="button" *ngIf="isFullScreen() === false" (click)="toggleFullScreen()">{{ 'title.enable' | translate }}</p>
-    </div>
+    @if(displayInfos().mode === 'Desktop') {
+        <div class="row">
+            <p><b>{{ 'title.full-screen' | translate }}</b></p>
+            <p class="button" *ngIf="isFullScreen() === true" (click)="toggleFullScreen()">{{ 'title.disable' | translate }}</p>
+            <p class="button" *ngIf="isFullScreen() === false" (click)="toggleFullScreen()">{{ 'title.enable' | translate }}</p>
+        </div>
+    }
 
     <div class="row">
         <p><b>{{ 'title.language' | translate }}</b></p>
@@ -58,14 +61,11 @@
     </div>
 
     <div class="row">
-        <p><b>Paramètres par défaut</b></p>
-        <p class="button" (click)="factorySettings()">Réinitialiser</p>
+        <p><b>{{ 'title.default-settings' | translate }}</b></p>
+        <p class="button" (click)="factorySettings()">{{ 'title.restore' | translate }}</p>
     </div>
 </div>
 
-<div class="buttons">
-    <app-button-back />
-</div>
-
+<hr class="dialog-hr">
+<div class="buttons"><app-button-back /></div>
 <app-spacer height="175px" />
-<app-button-top />
