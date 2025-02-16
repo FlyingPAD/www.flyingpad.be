@@ -1,8 +1,8 @@
 <div class="home">
   <div class="left">
     <img class="logo" [src]="getImageURL('images-logo', 'logo-1', 'png')" />
+    <p class="p">{{ 'message.home-quote' | translate }}</p>
     <div class="cta">
-      <p class="p">{{ 'message.home-quote' | translate }}</p>
       <a class="button-big" routerLink="/moods">{{ 'message.home-cta' | translate }}</a>
     </div>
   </div>
