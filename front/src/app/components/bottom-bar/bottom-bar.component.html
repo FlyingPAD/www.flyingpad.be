@@ -13,7 +13,6 @@
         <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'artist') {
-        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
         <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info class="icon" appAnimSpin size="25px" /></a>
         <a (click)="handleShowMultiTag()" *ngIf="user().role === 2"><app-icon-edit class="icon" size="25px" /></a>
@@ -30,7 +29,6 @@
         <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'model') {
-        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
         <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info appAnimSpin class="icon" size="25px" /></a>
         <a (click)="handleShowMultiTag()" *ngIf="user().role === 2"><app-icon-edit class="icon" size="25px" /></a>
@@ -59,7 +57,6 @@
         <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'franchise') {
-        <a class="tweak" *ngIf="entityName"><div class="position"><b>{{entityName}}</b></div></a>
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
         <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info appAnimSpin class="icon" size="25px" /></a>
         <a (click)="handleShowMultiTag()" *ngIf="user().role === 2"><app-icon-edit class="icon" size="25px" /></a>
@@ -88,7 +85,7 @@
         <a class="toggle" (click)="handleToggleFocus()" *ngIf="moodType === 1"><app-icon-wheel class="icon" [ngClass]="{'rotate': focusIsActive, 'rotate-back': !focusIsActive}" size="25px" /></a>
         <span class="toggle" *ngIf="moodType !== 1"><app-icon-wheel class="icon" size="25px" color="grey" /></span>
         <a class="toggle" (click)="handleOpenMoodInNewTab()"><app-icon-open class="icon" size="25px" /></a>
-        <a (click)="handleRandomMood()"><app-icon-question appAnimRandom class="icon" size="25px" /></a>
+        <a class="toggle" (click)="handleRandomMood()"><app-icon-question appAnimRandom class="icon" size="25px" /></a>
         <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'link') {

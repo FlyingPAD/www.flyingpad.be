@@ -1,9 +1,16 @@
 .title {
-    margin: 0;
+    position: sticky;
+    top: 70px;
+    left: 0;
 
-    margin-left: 10px;
-    padding-top: 20px;
+    display: inline;
+    padding: 10px;
+    padding-right: 20px;
+
+    background-color: var(--colorWhiteOpacity9);
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
     color: var(--colorMain);
-    font-size: 17px;
+    font-size: 15px;
 }
