@@ -7,7 +7,7 @@
             </app-dialog>  
             <app-overlay [isOverlayOn]="showDialog" (toggle)="toggleDialog()" />
             <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moods.length" 
-            (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag') "/>
+                (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag') "/>
         }
         @if(flow.moodsGalleryType === 'tag') {
             <p class="title"> ▸ <b>{{ flow.tag?.name }}</b> - {{ flow.tag?.description }}</p>
@@ -16,8 +16,8 @@
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.tag" [moodsLength]="flow.moodsByTag.length"/>
             </app-dialog>  
             <app-overlay [isOverlayOn]="showDialog" (toggle)="toggleDialog()" />
-            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.tag?.name" 
-            [moodsLength]="flow.moodsByTag.length" (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByTag.length" 
+                (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
         }
         @if(flow.moodsGalleryType === 'model') {
             <p class="title"> ▸ <b>{{ flow.model?.pseudonym }}</b></p>
@@ -26,8 +26,8 @@
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.model" [moodsLength]="flow.moodsByModel.length"/>
             </app-dialog>
             <app-overlay [isOverlayOn]="showDialog" (toggle)="toggleDialog()" />
-            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.model?.pseudonym" 
-            [moodsLength]="flow.moodsByModel.length" (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByModel.length" 
+                (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
         }
         @if(flow.moodsGalleryType === 'artist') {
             <p class="title"> ▸ <b>{{ flow.artist?.name }}</b></p>
@@ -37,8 +37,8 @@
                 [moodsLength]="flow.moodsByArtist.length"/>
             </app-dialog>
             <app-overlay [isOverlayOn]="showDialog" (toggle)="toggleDialog()" />
-            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.artist?.name" 
-            [moodsLength]="flow.moodsByArtist.length" (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')" />
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByArtist.length" 
+                (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')" />
         }
         @if(flow.moodsGalleryType === 'franchise') {
             <p class="title"> ▸ <b>{{ flow.franchise?.name }}</b></p>
@@ -47,8 +47,8 @@
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.franchise" [moodsLength]="flow.moodsByFranchise.length"/>
             </app-dialog>  
             <app-overlay [isOverlayOn]="showDialog" (toggle)="toggleDialog()" />
-            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [entityName]="flow.franchise?.name" 
-            [moodsLength]="flow.moodsByFranchise.length" (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByFranchise.length" 
+                (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
         }
         <app-right-column>
             <app-column-full
