@@ -220,7 +220,20 @@
     .metronome {
         width: 100%;
         padding: 5px;
+        border-radius: none;
         border-left: none;
         border-right: none;
+
+        section {
+            border-radius: none;
+            border-left: none;
+            border-right: none;
+
+            .bpm-controls {
+                .bpm-display {
+                    width: 100px;
+                }
+            }
+        }
     }
 }
