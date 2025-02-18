@@ -1,0 +1,73 @@
+<div class="metronome">
+    <h1> ▸ BPM Controls</h1>
+    <section>
+        <div class="bpm-controls">
+            <div class="bpm-btn" (click)="bpmDecrement(10)">-10</div>
+            <div class="bpm-btn" (click)="bpmDecrement(1)">-1</div>
+            <div class="bpm-btn" (click)="bpmDecrement(0.1)">-0.1</div>
+            <span class="bpm-display">{{ bpm | number:'3.2' }}</span>
+            <div class="bpm-btn" (click)="bpmIncrement(0.1)">+0.1</div>
+            <div class="bpm-btn" (click)="bpmIncrement(1)">+1</div>
+            <div class="bpm-btn" (click)="bpmIncrement(10)">+10</div>
+        </div>
+    </section>
+    <section>
+        <div class="slider-container">
+            <input [(ngModel)]="bpm" type="range" [min]="bpmMIN" [max]="bpmMAX" (change)="bpmSet(bpm)"
+                class="slider bpm-slider" />
+        </div>
+    </section>
+    <section>
+        <div class="ms-container">
+            <div class="ms-box">
+                <span>ms</span>
+                <span>{{ (60 / bpm) * 1000 | number:'0.2' }}</span>
+            </div>
+            <div class="ms-box">
+                <span>sec</span>
+                <span>{{ 60 / bpm | number:'0.2' }}</span>
+            </div>
+        </div>
+    </section>
+    <h1> ▸ Controls</h1>
+    <section>
+        <div class="controls">
+            <div class="control-btn" (click)="reset()">RESET</div>
+            <div class="indicator" [ngClass]="{'active': imgTik}"></div>
+            <div class="control-btn" *ngIf="!isPlaying" (click)="start()">START</div>
+            <div class="control-btn" *ngIf="isPlaying" [class.active]="isPlaying" (click)="stop()">STOP</div>
+
+        </div>
+    </section>
+    <h1> ▸ Volume</h1>
+    <section>
+        <div class="slider-container">
+            <input [(ngModel)]="volume" type="range" [min]="volumeMIN" [max]="volumeMAX" step="0.025"
+                class="slider volume-slider" />
+        </div>
+    </section>
+    <h1> ▸ BPM Presets</h1>
+    <section>
+        <div class="presets">
+            <div class="preset-btn" (click)="bpmSet(20)">20</div>
+            <div class="preset-btn" (click)="bpmSet(40)">40</div>
+            <div class="preset-btn" (click)="bpmSet(60)">60</div>
+            <div class="preset-btn" (click)="bpmSet(80)">80</div>
+            <div class="preset-btn" (click)="bpmSet(100)">100</div>
+            <div class="preset-btn" (click)="bpmSet(120)">120</div>
+            <div class="preset-btn" (click)="bpmSet(140)">140</div>
+        </div>
+        <div class="presets">
+            <div class="preset-btn" (click)="bpmSet(160)">160</div>
+            <div class="preset-btn" (click)="bpmSet(180)">180</div>
+            <div class="preset-btn" (click)="bpmSet(200)">200</div>
+            <div class="preset-btn" (click)="bpmSet(220)">220</div>
+            <div class="preset-btn" (click)="bpmSet(240)">240</div>
+            <div class="preset-btn" (click)="bpmSet(260)">260</div>
+            <div class="preset-btn" (click)="bpmSet(280)">280</div>
+        </div>
+    </section>
+</div>
+
+<app-spacer height="150px" />
+<app-bottom-bar-larger />

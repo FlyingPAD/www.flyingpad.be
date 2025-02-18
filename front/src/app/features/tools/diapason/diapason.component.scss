@@ -12,9 +12,10 @@
     border: 3px solid var(--colorMain);
     border-radius: 10px;
     background-color: rgb(255, 255, 255, 0.1);
+    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
     padding: 10px;
 }
-
 .diapason:hover {
     cursor: pointer;
     background-color: rgb(255, 255, 255, 0.5);
@@ -47,6 +48,8 @@
         border: 3px solid var(--colorMain);
         border-radius: 10px;
         background-color: rgba(80, 80, 80, 0.2);
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
         padding: 3px 10px 3px 10px;
 
         letter-spacing: 2px;
@@ -62,6 +65,8 @@
 
         border: 3px solid var(--colorMain);
         border-radius: 10px;
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
         font-size: 22px;
         color: var(--colorMain);
     }
@@ -84,6 +89,8 @@
     border: 3px solid var(--colorMain);
     border-radius: 10px;
     background-color: rgba(80, 80, 80, 0.2);
+    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+    
     padding: 3px 10px 3px 10px;
     color: var(--colorMain);
 

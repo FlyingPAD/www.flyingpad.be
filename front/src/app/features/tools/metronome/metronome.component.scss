@@ -1,0 +1,217 @@
+.metronome {
+    width: 380px;
+    margin: auto;
+    margin-top: 25px;
+
+    padding: 15px;
+
+    background-color: var(--colorMainOpacity3);
+    border: 3px solid var(--colorMain);
+    border-radius: 10px;
+    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+    color: var(--colorMain);
+    font-size: 15px;
+
+    h1 {
+        margin: 0;
+        font-size: 15px;
+    }
+
+    section {
+        background-color: var(--colorWhiteOpacity5);
+        border: 3px solid var(--colorMain);
+        border-radius: 8px;
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+        padding: 10px;
+        margin: 10px 0;
+
+        .presets {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .preset-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                height: 30px;
+                width: 30px;
+
+                margin: 5px;
+
+                background-color: var(--colorMainOpacity2);
+                border: 2px solid var(--colorMainOpacity5);
+                border-radius: 8px;
+                box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+                font-size: 12px;
+            }
+            .preset-btn:hover {
+                cursor: pointer;
+                background-color: var(--colorWhite);
+                border: 2px solid var(--colorMain);
+                transition-duration: 200ms;
+            }
+        }
+
+        .bpm-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .bpm-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                width: 30px;
+                height: 30px;
+
+                background-color: var(--colorMainOpacity2);
+                border: 2px solid var(--colorMainOpacity5);
+                border-radius: 8px;
+                box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+                font-size: 12px;
+            }
+            .bpm-btn:hover {
+                cursor: pointer;
+                background-color: var(--colorWhite);
+                border: 2px solid var(--colorMain);
+                transition-duration: 200ms;
+            }
+
+            .bpm-display {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                height: 50px;
+                width: 110px;
+
+                background-color: var(--colorWhite);
+                border: 3px solid var(--colorMain);
+                border-radius: 8px;
+                box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+                font-size: 25px;
+                font-weight: bold;
+            }
+        }
+
+        .ms-container {
+            display: flex;
+            gap: 10px;
+
+            .ms-box {
+                flex: 1;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                padding: 8px;
+                
+                background-color: var(--colorWhiteOpacity5);
+                border: 1px solid var(--colorMainOpacity5);
+                border-radius: 5px;
+                box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+                
+                font-size: 14px;
+            }
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .control-btn {
+                width: 100px;
+                height: 35px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                background-color: var(--colorMainOpacity2);
+                border: 2px solid var(--colorMain);
+                border-radius: 8px;
+                box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+                font-weight: bold;
+            }
+            .control-btn:hover {
+                cursor: pointer;
+                background-color: var(--colorWhite);
+                transition-duration: 200ms;
+            }
+            .active {
+                background-color: var(--colorWhite);
+            }
+
+            .indicator {
+                width: 40px;
+                height: 40px;
+                border: 3px solid var(--colorMain);
+                border-radius: 50%;
+                background-color: var(--colorMainOpacity5);
+                transition: background-color 0.1s;
+            }
+
+            .indicator.active {
+                background-color: var(--colorWhite);
+            }
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+
+            .slider {
+                width: 100%;
+                -webkit-appearance: none;
+                background: transparent;
+            }
+
+            /* Style commun pour les sliders (BPM et Volume) */
+            .slider::-webkit-slider-runnable-track {
+                height: 8px;
+                background: var(--colorWhiteOpacity5);
+                border-radius: 4px;
+            }
+
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                margin-top: -4px;
+                /* Ajuste pour centrer le thumb */
+                height: 16px;
+                width: 16px;
+                border-radius: 50%;
+                background: var(--colorMain);
+                border: 2px solid var(--colorWhite);
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                cursor: pointer;
+            }
+
+            /* Pour Firefox */
+            .slider::-moz-range-track {
+                height: 8px;
+                background: var(--colorWhiteOpacity5);
+                border-radius: 4px;
+            }
+
+            .slider::-moz-range-thumb {
+                height: 16px;
+                width: 16px;
+                border-radius: 50%;
+                background: var(--colorMain);
+                border: 2px solid var(--colorWhite);
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                cursor: pointer;
+            }
+        }
+    }
+}

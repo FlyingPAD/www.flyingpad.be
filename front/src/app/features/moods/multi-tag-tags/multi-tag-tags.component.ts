@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlowService } from '../../../services/flow.service';
 import { MoodsService } from '../../../services/moods.service';
 import { MultiTagService } from '../../../services/multi-tag.service';
 import { TagsCheckBoxesList } from '../../../interfaces/tags-list';
 import { MultiTagsForm } from '../../../interfaces/forms-update';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-multi-tag-tags',
@@ -16,6 +17,7 @@ export class MultiTagTagsComponent {
   #multiTagService = inject(MultiTagService)
   #moodsService = inject(MoodsService)
   #router = inject(Router)
+  #notificationService = inject(NotificationService)
 
   public flow = this.#flowService.flow
   public selectedMoods = this.#multiTagService.selectedMoods
@@ -45,24 +47,31 @@ export class MultiTagTagsComponent {
           .filter(tag => tag.isChecked)
           .map(tag => tag.businessId)
       )
-  
-    const multiTagsForm: MultiTagsForm = {
-      moodIds: this.selectedMoods(),
-      tags: selectedTagIds
+
+    if (selectedTagIds.length === 0) {
+      this.#notificationService.warning('No Tags Selected')
     }
-  
-    this.#flowService.multiTags(multiTagsForm).subscribe({
-      next: response => {
-        if (response.success) {
-          console.log('youpi');
-        }
-      },
-      error: err => console.error(err)
-    })
-  
-    this.#multiTagService.resetSelection()
-    this.tagsList = []
-    this.#moodsService.updateMoodMenuState('gallery')
-    this.#router.navigateByUrl('moods')
-  }  
+    else {
+      const multiTagsForm: MultiTagsForm = {
+        moodIds: this.selectedMoods(),
+        tags: selectedTagIds
+      }
+
+      this.#flowService.multiTags(multiTagsForm).subscribe()
+
+      this.#multiTagService.resetSelection()
+      this.tagsList = []
+      this.#moodsService.updateMoodMenuState('gallery')
+      this.#router.navigateByUrl('moods')
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.onSubmit()
+        break
+    }
+  }
 }

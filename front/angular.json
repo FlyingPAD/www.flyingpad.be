@@ -51,7 +51,6 @@
               "src/design/central/gallery.scss",
               "src/design/central/list.scss",
               "src/design/central/menu-flex.scss",
-              "src/design/central/tags-gallery.scss",
               "./node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
@@ -138,7 +137,6 @@
               "src/design/central/gallery.scss",
               "src/design/central/list.scss",
               "src/design/central/menu-flex.scss",
-              "src/design/central/tags-gallery.scss",
               "./node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []

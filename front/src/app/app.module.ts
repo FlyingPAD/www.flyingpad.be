@@ -211,6 +211,9 @@ import { environment } from '../environments/environment';
 import { ScrollToTopDirective } from './directives/scroll-to-top.directive';
 import { IconMenuRightComponent } from './icons/icon-menu-right/icon-menu-right.component';
 import { ToggleMenuRightDirective } from './directives/toggle-menu-right.directive';
+import { GoBackDirective } from './directives/go-back.directive';
+import { MetronomeComponent } from './features/tools/metronome/metronome.component';
+import { IconMetronomeComponent } from './icons/icon-metronome/icon-metronome.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   const version = environment.translationVersion
@@ -250,6 +253,10 @@ export function appInitializerFactory(translate: TranslateService) {
     AnimGrowDirective,
     AnimSpinDirective,
     AnimRotation360Directive,
+    ScrollToTopDirective,
+    ToggleMenuRightDirective,
+    GoBackDirective,
+    ScrollDirective,
     // Pages.
     DashboardComponent,
     HomeComponent,
@@ -318,9 +325,10 @@ export function appInitializerFactory(translate: TranslateService) {
     MoodsGalleryComponent,
     MoodDetailsComponent,
     MoodViewerComponent,
+    MultiTagComponent,
     MultiTagArtistsComponent,
     MultiTagModelsComponent,
-    MultiTagComponent,
+    MultiTagTagsComponent,
     // Tags.
     CreateTagCategoryComponent,
     CreateTagComponent,
@@ -422,30 +430,29 @@ export function appInitializerFactory(translate: TranslateService) {
     IconDiapasonComponent,
     IconKeyboardComponent,
     IconTimelineComponent,
+    IconMenuRightComponent,
+    // Clef
+    IconClefBassComponent,
+    IconClefTrebleComponent,
+    IconClefAltoComponent,
     // Logo
     LogoFacebookComponent,
     LogoInstagramComponent,
     LogoYoutubeComponent,
     LogoSoundcloudComponent,
-    // Clef
-    IconClefBassComponent,
-    IconClefTrebleComponent,
-    IconClefAltoComponent,
-    ScrollDirective,
+    // Time Values    
     TimeValueSixteenthComponent,
     TimeValueWholeComponent,
     TimeValueHalfComponent,
     TimeValueQuarterComponent,
     TimeValueEighthComponent,
-    MultiTagTagsComponent,
     TimeValueRestEighthComponent,
     TimeValueRestSixteenthComponent,
     TimeValueRestHalfComponent,
     TimeValueRestQuarterComponent,
     TimeValueRestWholeComponent,
-    ScrollToTopDirective,
-    IconMenuRightComponent,
-    ToggleMenuRightDirective,
+    MetronomeComponent,
+    IconMetronomeComponent,
   ],
   imports: [
     BrowserModule,

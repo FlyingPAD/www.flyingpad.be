@@ -11,4 +11,12 @@
         border: 3px solid var(--colorMain);
         border-radius: 10px;
     }
+
+    @media (max-width: 1150px) {
+        img {
+            max-height: none;
+            width: 97%;
+            height: auto;
+        }
+    }
 }
