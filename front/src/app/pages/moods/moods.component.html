@@ -10,7 +10,7 @@
                 (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag') "/>
         }
         @if(flow.moodsGalleryType === 'tag') {
-            <p class="title"> ▸ <b>{{ flow.tag?.name }}</b> - {{ flow.tag?.description }}</p>
+            <p class="sticky-label"> ▸ <b>{{ flow.tag?.name }}</b> - {{ flow.tag?.description }}</p>
             <app-moods-gallery [moods]="flow.moodsByTag" (moodId)="updateMoodId($event)" [galleryType]="flow.moodsGalleryType" [currentMoodId]="flow.mood.businessId" />
             <app-dialog *ngIf="showDialog" (dialog)="toggleDialog()">
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.tag" [moodsLength]="flow.moodsByTag.length"/>
@@ -20,7 +20,7 @@
                 (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
         }
         @if(flow.moodsGalleryType === 'model') {
-            <p class="title"> ▸ <b>{{ flow.model?.pseudonym }}</b></p>
+            <p class="sticky-label"> ▸ <b>{{ flow.model?.pseudonym }}</b></p>
             <app-moods-gallery [moods]="flow.moodsByModel" (moodId)="updateMoodId($event)" [galleryType]="flow.moodsGalleryType" [currentMoodId]="flow.mood.businessId" />
             <app-dialog *ngIf="showDialog" (dialog)="toggleDialog()">
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.model" [moodsLength]="flow.moodsByModel.length"/>
@@ -30,7 +30,7 @@
                 (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
         }
         @if(flow.moodsGalleryType === 'artist') {
-            <p class="title"> ▸ <b>{{ flow.artist?.name }}</b></p>
+            <p class="sticky-label"> ▸ <b>{{ flow.artist?.name }}</b></p>
             <app-moods-gallery [moods]="flow.moodsByArtist" (moodId)="updateMoodId($event)" [galleryType]="flow.moodsGalleryType" [currentMoodId]="flow.mood.businessId" />
             <app-dialog *ngIf="showDialog" (dialog)="toggleDialog()">
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.artist" 
@@ -41,7 +41,7 @@
                 (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')" />
         }
         @if(flow.moodsGalleryType === 'franchise') {
-            <p class="title"> ▸ <b>{{ flow.franchise?.name }}</b></p>
+            <p class="sticky-label"> ▸ <b>{{ flow.franchise?.name }}</b></p>
             <app-moods-gallery [moods]="flow.moodsByFranchise" (moodId)="updateMoodId($event)" [galleryType]="flow.moodsGalleryType" [currentMoodId]="flow.mood.businessId" />
             <app-dialog *ngIf="showDialog" (dialog)="toggleDialog()">
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.franchise" [moodsLength]="flow.moodsByFranchise.length"/>

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { RelationsMoodModelForm } from '../../../interfaces/relations';
 import { MultiTagService } from '../../../services/multi-tag.service';
 import { FlowService } from '../../../services/flow.service';
@@ -6,6 +6,7 @@ import { MoodsService } from '../../../services/moods.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModelCheckBox } from '../../../interfaces/model';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-multi-tag-models',
@@ -18,10 +19,11 @@ export class MultiTagModelsComponent implements OnInit {
   #moodsService = inject(MoodsService)
   #formBuilder = inject(FormBuilder)
   #router = inject(Router)
+  #notificationService = inject(NotificationService)
 
   public selectedMoods = this.#multiTagService.selectedMoods
   public models = this.#multiTagService.models
-  public searchModel : string = ''
+  public searchModel: string = ''
   public form!: FormGroup
 
   ngOnInit(): void {
@@ -38,25 +40,39 @@ export class MultiTagModelsComponent implements OnInit {
       model.pseudonym.toLowerCase().includes(this.searchModel.toLowerCase())
     )
   }
-  
+
   public onSubmit(): void {
     const selectedModelIds: number[] = this.models()
       .filter(model => this.form.get(model.businessId.toString())?.value)
       .map(model => model.businessId)
 
-    const relationsForm: RelationsMoodModelForm = {
-      moodId: 0,
-      modelIds: selectedModelIds
+    if (selectedModelIds.length === 0) {
+      this.#notificationService.warning('No models selected')
     }
+    else {
+      const relationsForm: RelationsMoodModelForm = {
+        moodId: 0,
+        modelIds: selectedModelIds
+      }
 
-    this.selectedMoods().forEach(mood => {
-      relationsForm.moodId = mood
-      this.#flowService.InsertRMM(relationsForm).subscribe()
-    })
+      this.selectedMoods().forEach(mood => {
+        relationsForm.moodId = mood
+        this.#flowService.InsertRMM(relationsForm).subscribe()
+      })
 
-    this.form.reset()
-    this.#multiTagService.resetSelection()
-    this.#moodsService.updateMoodMenuState('gallery')
-    this.#router.navigateByUrl('moods')
+      this.form.reset()
+      this.#multiTagService.resetSelection()
+      this.#moodsService.updateMoodMenuState('gallery')
+      this.#router.navigateByUrl('moods')
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.onSubmit()
+        break
+    }
   }
 }

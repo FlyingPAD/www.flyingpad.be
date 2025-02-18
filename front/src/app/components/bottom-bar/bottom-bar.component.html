@@ -105,6 +105,7 @@
     @if(moodsGalleryType === 'list-edition'){
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
         <a routerLink="/dashboard"><app-icon-back class="icon" size="25px" /></a>
+        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
     @if(moodsGalleryType === 'multi-tag'){
         <a (click)="handleBackToGallery()"><app-icon-back class="icon" size="25px" /></a>
@@ -117,8 +118,17 @@
             <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
         }
     }
+    @if(moodsGalleryType === 'multi-tags'){ 
+        <a appGoBack><app-icon-back class="icon" size="25px" /></a>
+        <a (click)="handleTriggerSaveMood()"><app-icon-save class="icon" size="25px" /></a>
+        @if(topButtonIsActive) {
+            <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
+        } @else {
+            <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
+        }
+    }
     @if(moodsGalleryType === 'upload-images'){
-        <a (click)="handleBackToGallery()"><app-icon-back class="icon" size="25px" /></a>
+        <a appGoBack><app-icon-back class="icon" size="25px" /></a>
         <a (click)="handleTriggerSaveMood()"><app-icon-save class="icon" size="25px" /></a>
         @if(topButtonIsActive) {
             <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
@@ -127,6 +137,12 @@
         }
     }
     @if(moodsGalleryType === 'scripts'){
+        <a appGoBack><app-icon-back class="icon" size="25px" /></a>
+        @if(topButtonIsActive) {
+            <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
+        } @else {
+            <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
+        }
         <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
 </div>

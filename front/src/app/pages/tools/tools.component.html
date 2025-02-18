@@ -22,6 +22,13 @@
             <span>Diapason</span>
         </div>
         <div class="icon">
+            <a [appScrollActive]="toolsMenuState() === 'metronome'" [class.active]="toolsMenuState() === 'metronome'" 
+                (click)="updateMenuState('metronome')">
+                <app-icon-metronome size="85px" />
+            </a>
+            <span>Metronome</span>
+        </div>
+        <div class="icon">
             <a [appScrollActive]="toolsMenuState() === 'mini-keyboard'" [class.active]="toolsMenuState() === 'mini-keyboard'" 
                 (click)="updateMenuState('mini-keyboard')">
                 <app-icon-keyboard size="65px" />
@@ -55,6 +62,7 @@
 <app-circle-of-fifths *ngIf="toolsMenuState() === 'circle-of-fifths'" />
 <app-chord-wheel *ngIf="toolsMenuState() === 'chord-wheel'" />
 <app-diapason *ngIf="toolsMenuState() === 'diapason'" />
+<app-metronome *ngIf="toolsMenuState() === 'metronome'" />
 <app-flying-keys-mini *ngIf="toolsMenuState() === 'mini-keyboard'" />
 <app-trainer-notes *ngIf="toolsMenuState() === 'notes-master'" />
 <app-timeline *ngIf="toolsMenuState() === 'timeline'" />

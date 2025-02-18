@@ -7,64 +7,72 @@ import { AudioService } from '../../../services/audio.service';
   styleUrls: ['./diapason.component.scss']
 })
 export class DiapasonComponent {
-  #audioService = inject(AudioService)
+  private audioService = inject(AudioService)
 
   public currentVolume: number = 0.5
-  public frequency: number = 440
+  public volumeMIN: number = 0
+  public volumeMAX: number = 1
+  public currentFrequency: number = 440
+  public frequencyMIN: number = 415.3
+  public frequencyMAX: number = 466.16
 
-  constructor() {
-    document.addEventListener('click', () => this.resumeAudioContext())
+
+  private keyActions: { [key: string]: () => void } = {
+    'NumpadAdd': () => this.volumeUp(),
+    'NumpadSubtract': () => this.volumeDown(),
+    'ArrowLeft': () => this.setFrequency(-0.01),
+    'ArrowRight': () => this.setFrequency(0.01),
+    'Space': () => this.playNote(),
+    'Numpad0': () => this.reset()
+  };
+
+  @HostListener('document:click')
+  resumeAudioContextOnClick(): void {
+    this.resumeAudioContext()
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent): void {
+    const action = this.keyActions[event.code]
+    if (action) {
+      action()
+    }
   }
 
   private resumeAudioContext(): void {
-    if (this.#audioService.audioContext.state === 'suspended') this.#audioService.audioContext.resume()
+    if (this.audioService.audioContext.state === 'suspended') {
+      this.audioService.audioContext.resume()
+    }
   }
 
-  private volumeUp() {
-    this.currentVolume = Math.min(this.currentVolume + 0.1, 1)
+  private setFrequency(value: number): void {
+    this.currentFrequency += value
+    this.validateFrequency()
+  }
+
+  private volumeUp(): void {
+    this.currentVolume = Math.min(this.currentVolume + 0.1, this.volumeMAX)
   }
 
   private volumeDown(): void {
-    this.currentVolume = Math.max(this.currentVolume - 0.1, 0)
+    this.currentVolume = Math.max(this.currentVolume - 0.1, this.volumeMIN)
   }
 
   public playNote(): void {
     this.resumeAudioContext()
-    this.#audioService.playFrequencyWithEnvelope(this.frequency, 2, this.currentVolume)
+    this.audioService.playFrequencyWithEnvelope(this.currentFrequency, 2, this.currentVolume)
   }
 
-  public resetTune(): void {
-    this.frequency = 440
+  public reset(): void {
+    this.currentFrequency = 440
     this.currentVolume = 0.5
   }
 
   public validateVolume(): void {
-    if (this.currentVolume < 0) {
-      this.currentVolume = 0
-    }
-    else if (this.currentVolume > 1) {
-      this.currentVolume = 1
-    }
+    this.currentVolume = Math.min(Math.max(this.currentVolume, this.volumeMIN), this.volumeMAX)
   }
 
   public validateFrequency(): void {
-    if (this.frequency < 415.3) {
-      this.frequency = 415.3
-    }
-    else if (this.frequency > 466.16) {
-      this.frequency = 466.16
-    }
-  }
-
-  @HostListener('window:keydown', ['$event'])
-  onKeyPress(event: KeyboardEvent) {
-    switch (event.code) {
-      case 'NumpadAdd':
-        this.volumeUp()
-        break
-      case 'NumpadSubtract':
-        this.volumeDown()
-        break
-    }
+    this.currentFrequency = Math.min(Math.max(this.currentFrequency, this.frequencyMIN), this.frequencyMAX)
   }
 }

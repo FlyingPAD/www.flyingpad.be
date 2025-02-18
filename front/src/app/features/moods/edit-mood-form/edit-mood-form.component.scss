@@ -13,5 +13,11 @@ form {
             width: 120px;
             color: var(--colorMain);
         }
+
+        @media (max-width: 1150px) {
+            input {
+                width: 150px;
+            }
+        }
     }
 }
