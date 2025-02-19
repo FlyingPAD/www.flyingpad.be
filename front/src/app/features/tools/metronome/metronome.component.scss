@@ -1,9 +1,10 @@
 .metronome {
-    width: 380px;
+    width: 340px;
     margin: auto;
     margin-top: 25px;
 
-    padding: 15px;
+    padding: 10px;
+    padding-bottom: 0;
 
     background-color: var(--colorMainOpacity3);
     border: 3px solid var(--colorMain);
@@ -15,7 +16,7 @@
 
     h1 {
         margin: 0;
-        font-size: 15px;
+        font-size: 14px;
     }
 
     section {
@@ -90,14 +91,14 @@
                 align-items: center;
 
                 height: 50px;
-                width: 110px;
+                width: 90px;
 
                 background-color: var(--colorWhite);
                 border: 3px solid var(--colorMain);
                 border-radius: 8px;
                 box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
-                font-size: 25px;
+                font-size: 22px;
                 font-weight: bold;
             }
         }
@@ -176,7 +177,6 @@
                 background: transparent;
             }
 
-            /* Style commun pour les sliders (BPM et Volume) */
             .slider::-webkit-slider-runnable-track {
                 height: 8px;
                 background: var(--colorWhiteOpacity5);
@@ -186,7 +186,6 @@
             .slider::-webkit-slider-thumb {
                 -webkit-appearance: none;
                 margin-top: -4px;
-                /* Ajuste pour centrer le thumb */
                 height: 16px;
                 width: 16px;
                 border-radius: 50%;
@@ -211,28 +210,6 @@
                 border: 2px solid var(--colorWhite);
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
                 cursor: pointer;
-            }
-        }
-    }
-}
-
-@media (max-width: 416px) {
-    .metronome {
-        width: 100%;
-        padding: 0;
-        border-radius: none;
-        border-left: none;
-        border-right: none;
-
-        section {
-            border-radius: none;
-            border-left: none;
-            border-right: none;
-
-            .bpm-controls {
-                .bpm-display {
-                    width: 100px;
-                }
             }
         }
     }
