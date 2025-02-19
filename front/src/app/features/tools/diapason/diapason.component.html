@@ -1,25 +1,27 @@
 <div class="diapason">
-    <app-icon-diapason appAnimSpin size="250px" (click)="playNote()" />
-</div>
-<div class="volume">
-    <p><b>Volume</b></p>
-    <div class="slider">
-        <input type="range" [min]="volumeMIN" [max]="volumeMAX" step="0.01" 
-            [(ngModel)]="currentVolume" (blur)="validateVolume()" aria-label="Volume" />
+    <div class="display">
+        <app-icon-diapason appAnimSpin size="250px" (click)="playNote()" />
     </div>
-</div>
-<div class="volume">
-    <p><b>Tune</b></p>
-    <div class="slider">
-        <input type="range" [min]="frequencyMIN" [max]="frequencyMAX" step="0.01" 
-            [(ngModel)]="currentFrequency" (blur)="validateFrequency()" aria-label="Tune Frequency" />
+    <div class="volume">
+        <p><b>Volume</b></p>
+        <div class="slider">
+            <input type="range" [min]="volumeMIN" [max]="volumeMAX" step="0.01" 
+                [(ngModel)]="currentVolume" (blur)="validateVolume()" aria-label="Volume" />
+        </div>
     </div>
-</div>
-<div class="frequency">
-    <input type="number" [min]="frequencyMIN" [max]="frequencyMAX" step="0.01" 
-        [(ngModel)]="currentFrequency" (blur)="validateFrequency()" aria-label="Frequency">
-    <h1>Hertz</h1>
-    <div class="reset" (click)="reset()">RESET</div>
+    <div class="volume">
+        <p><b>Tune</b></p>
+        <div class="slider">
+            <input type="range" [min]="frequencyMIN" [max]="frequencyMAX" step="0.01" 
+                [(ngModel)]="currentFrequency" (blur)="validateFrequency()" aria-label="Tune Frequency" />
+        </div>
+    </div>
+    <div class="frequency">
+        <input type="number" [min]="frequencyMIN" [max]="frequencyMAX" step="0.01" 
+            [(ngModel)]="currentFrequency" (blur)="validateFrequency()" aria-label="Frequency">
+        <h1>Hertz</h1>
+        <div class="reset" (click)="reset()">RESET</div>
+    </div>
 </div>
 
 <app-bottom-bar-larger />
