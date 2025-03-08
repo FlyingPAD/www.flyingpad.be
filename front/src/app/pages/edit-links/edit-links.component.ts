@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { LinkLight } from '../../interfaces/link';
-import { FlowService } from '../../services/flow.service';
+import { FlowService } from '../../services/http/flow.service';
 import { PaginationService } from '../../services/pagination.service';
 
 @Component({
   selector: 'app-edit-links',
   templateUrl: './edit-links.component.html'
 })
+
 export class EditLinksComponent {
   #flowService = inject(FlowService)
   #paginationService = inject(PaginationService)

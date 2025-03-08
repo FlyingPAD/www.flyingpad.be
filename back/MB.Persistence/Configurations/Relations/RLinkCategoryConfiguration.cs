@@ -1,4 +1,4 @@
-﻿using MB.Domain.Entities;
+﻿using MB.Domain.LinkAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

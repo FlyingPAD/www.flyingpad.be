@@ -24,30 +24,22 @@ public class ArtistsControllerV1(IMediator mediator) : ControllerBase
 
     [HttpPost("Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    [ProducesResponseType(typeof(CreateArtistCommandResponse), 201)]
-    [ProducesResponseType(typeof(BaseResponse), 400)]
     public async Task<ActionResult<CreateArtistCommandResponse>> Create([FromBody] CreateArtistCommand createArtistCommand, CancellationToken cancellationToken)
         => Ok(await _mediator.Send(createArtistCommand, cancellationToken));
 
     [HttpGet("Count")]
-    [ProducesResponseType(typeof(CountArtistsQueryResponse), 200)]
     public async Task<ActionResult<CountArtistsQueryResponse>> Count(CancellationToken cancellationToken)
         => Ok(await _mediator.Send(new CountArtistsQuery(), cancellationToken));
 
     [HttpGet("GetAll")]
-    [ProducesResponseType(typeof(GetAllArtistsQueryResponse), 200)]
     public async Task<ActionResult<GetAllArtistsQueryResponse>> GetAll(CancellationToken cancellationToken)
         => Ok(await _mediator.Send(new GetAllArtistsQuery(), cancellationToken));
 
     [HttpGet("GetOneDetails/{artistId}")]
-    [ProducesResponseType(typeof(GetArtistByIdQuery), 200)]
-    [ProducesResponseType(404)]
     public async Task<ActionResult<GetArtistByIdQuery>> GetById(Guid artistId, CancellationToken cancellationToken)
         => Ok(await _mediator.Send(new GetArtistByIdQuery { ArtistId = artistId }, cancellationToken));
 
     [HttpGet("GetByMood/{moodId}")]
-    [ProducesResponseType(typeof(GetArtistsByMoodQuery), 200)]
-    [ProducesResponseType(404)]
     public async Task<ActionResult<GetArtistsByMoodQueryResponse>> GetByMood(Guid moodId, CancellationToken cancellationToken)
         => Ok(await _mediator.Send(new GetArtistsByMoodQuery { MoodId = moodId }, cancellationToken));
 
@@ -56,29 +48,20 @@ public class ArtistsControllerV1(IMediator mediator) : ControllerBase
         => Ok(await _mediator.Send(new GetArtistCheckBoxesByMoodQuery { MoodId = moodId }));
 
     [HttpGet("GetByStyle/{styleId}")]
-    [ProducesResponseType(typeof(GetArtistsByStyleQuery), 200)]
-    [ProducesResponseType(404)]
     public async Task<ActionResult<GetArtistsByStyleQueryResponse>> GetByStyle(Guid styleId, CancellationToken cancellationToken)
         => Ok(await _mediator.Send(new GetArtistsByStyleQuery { StyleId = styleId }, cancellationToken));
 
     [HttpGet("GetPage")]
-    [ProducesResponseType(typeof(GetArtistsPageQueryResponse), 200)]
     public async Task<ActionResult<GetArtistsPageQueryResponse>> GetPage(CancellationToken cancellationToken, Guid? styleId = null, Guid? startId = null, string abc = "", int pageSize = 10)
         => Ok(await _mediator.Send(new GetArtistsPageQuery { StyleId = styleId, StartId = startId, Abc = abc, PageSize = pageSize }, cancellationToken));
 
     [HttpPut("Update")]
     [Authorize]
-    [ProducesResponseType(typeof(BaseResponse), 200)]
-    [ProducesResponseType(typeof(BaseResponse), 400)]
-    [ProducesResponseType(404)]
     public async Task<ActionResult<BaseResponse>> Update([FromBody] UpdateArtistCommand updateArtistCommand, CancellationToken cancellationToken)
         => Ok(await _mediator.Send(updateArtistCommand, cancellationToken));
 
     [HttpDelete("Delete/{artistId}")]
     [Authorize]
-    [ProducesResponseType(typeof(BaseResponse), 200)]
-    [ProducesResponseType(typeof(BaseResponse), 400)]
-    [ProducesResponseType(404)]
     public async Task<ActionResult<BaseResponse>> Delete(Guid artistId, CancellationToken cancellationToken)
         => Ok(await _mediator.Send(new DeleteArtistCommand { ArtistId = artistId }, cancellationToken));
 }

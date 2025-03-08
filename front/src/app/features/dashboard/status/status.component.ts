@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FlowService } from '../../../services/flow.service';
+import { FlowService } from '../../../services/http/flow.service';
 import { environment } from '../../../../environments/environment';
 import { MoodsService } from '../../../services/moods.service';
 import { Router } from '@angular/router';

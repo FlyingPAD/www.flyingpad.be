@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
 import { TagCategoryFull } from '../../../interfaces/tag-category';
-import { FlowService } from '../../../services/flow.service';
 import { Subscription } from 'rxjs';
+import { TagCategoryService } from '../../../services/http/tag-category.service';
 
 @Component({
   selector: 'app-delete-tag-category',
@@ -12,7 +12,7 @@ export class DeleteTagCategoryComponent implements OnDestroy {
   @Input() tagCategory: TagCategoryFull | undefined = undefined
   @Output() toggleDialog = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #tagCategoryService = inject(TagCategoryService)
 
   #subscription = new Subscription()
 
@@ -22,7 +22,7 @@ export class DeleteTagCategoryComponent implements OnDestroy {
 
   public deleteTagCategory(): void {
     if (this.tagCategory != undefined) {
-      this.#subscription = this.#flowService.DeleteTagCategory(this.tagCategory.businessId).subscribe(
+      this.#subscription = this.#tagCategoryService.deleteTagCategory(this.tagCategory.businessId).subscribe(
         (response) => { if (response.success) this.toggleDialog.emit() })
     }
   }

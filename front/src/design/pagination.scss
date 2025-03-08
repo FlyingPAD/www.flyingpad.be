@@ -1,0 +1,26 @@
+.pagination-row {
+    position: fixed;
+    bottom: 65px;
+    width: 100vw;
+    
+    background-color: rgba(255, 253, 251, 0.8);
+    backdrop-filter: blur(3px);
+    border-top: 1px solid var(--colorMain);
+
+    display: flex;
+    justify-content: center;
+
+    z-index: 25;
+}
+.pagination { 
+    pagination-controls {
+        position: relative;
+        left: -30px;
+        text-align: center;
+    }
+
+    .ngx-pagination .current {
+        background: var(--colorMain);
+        border-radius: 5px;
+    }
+}

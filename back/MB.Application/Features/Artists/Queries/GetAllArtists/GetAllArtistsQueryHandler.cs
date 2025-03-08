@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+using MB.Application.Interfaces.Persistence;
+using MB.Domain.ArtistAggregate;
 using MediatR;
 
 namespace MB.Application.Features.Artists.Queries.GetAllArtists;

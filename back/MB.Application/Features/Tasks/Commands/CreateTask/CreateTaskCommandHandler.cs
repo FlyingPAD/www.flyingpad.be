@@ -11,7 +11,7 @@ public class CreateTaskCommandHandler(ITaskRepository taskRepository, IMapper ma
 
     public async Task<Guid> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
     {
-        var task = _mapper.Map<Domain.Entities.Task>(request);
+        var task = _mapper.Map<Domain.TaskAggregate.Task>(request);
 
         var businessId = Guid.NewGuid();
         task.BusinessId = businessId;

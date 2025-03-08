@@ -23,11 +23,8 @@
         line-height: 20px;
 
         white-space: nowrap;
-        /* Empêche le texte de passer à la ligne */
         overflow: hidden;
-        /* Coupe le texte qui déborde */
         text-overflow: ellipsis;
-        /* Ajoute les points de suspension à la fin du texte */
 
         z-index: 0;
         transition-duration: 500ms;

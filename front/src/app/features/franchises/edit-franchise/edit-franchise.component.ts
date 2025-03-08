@@ -1,8 +1,9 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnInit, Output } from '@angular/core';
 import { FranchiseFull, MediumCheckBox } from '../../../interfaces/franchise';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FlowService } from '../../../services/flow.service';
+import { FlowService } from '../../../services/http/flow.service';
 import { FranchiseUpdateForm } from '../../../interfaces/forms-update';
+import { FranchiseService } from '../../../services/http/franchise.service';
 
 @Component({
   selector: 'app-edit-franchise',
@@ -14,6 +15,7 @@ export class EditFranchiseComponent implements OnInit {
   @Output() trigger = new EventEmitter<void>()
 
   #flowService = inject(FlowService)
+  #franchiseService = inject(FranchiseService)
   #formBuilder = inject(FormBuilder)
 
   public formGroup!: FormGroup
@@ -73,7 +75,7 @@ export class EditFranchiseComponent implements OnInit {
         mediaIds: selectedMedia
       }
 
-      this.#flowService.UpdateFranchise(form).subscribe(response => { if (response.success) this.trigger.emit() })
+      this.#franchiseService.updateFranchise(form).subscribe(response => { if (response.success) this.trigger.emit() })
     }
   }
 

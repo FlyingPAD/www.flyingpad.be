@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { StyleFull } from '../../../interfaces/style';
-import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { StyleUpdateForm } from '../../../interfaces/forms-update';
+import { StyleService } from '../../../services/http/style.service';
 
 @Component({
   selector: 'app-edit-style',
@@ -14,13 +14,13 @@ export class EditStyleComponent implements OnInit, OnDestroy {
   @Input() style: StyleFull | undefined = undefined
   @Output() trigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #styleService = inject(StyleService)
   #formBuilder = inject(FormBuilder)
 
-  subscription = new Subscription()
-  isDeleteDialogOpen: boolean = false
+  #subscription = new Subscription()
 
-  formGroup!: FormGroup
+  public isDeleteDialogOpen: boolean = false
+  public formGroup!: FormGroup
 
   ngOnInit(): void {
     this.formGroup = this.#formBuilder.group({
@@ -28,22 +28,25 @@ export class EditStyleComponent implements OnInit, OnDestroy {
       description: [this.style?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
     })
   }
+
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    this.#subscription.unsubscribe()
   }
 
-  openDeleteDialog(): void {
+  public openDeleteDialog(): void {
     this.isDeleteDialogOpen = true
   }
-  closeDeleteDialog(): void {
+
+  public closeDeleteDialog(): void {
     this.isDeleteDialogOpen = false
   }
-  closeDeleteDialogEmit(): void {
+  
+  public closeDeleteDialogEmit(): void {
     this.isDeleteDialogOpen = false
     this.trigger.emit()
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.formGroup.valid && this.style) {
       let form: StyleUpdateForm = {
         styleId: this.style.businessId,
@@ -52,9 +55,7 @@ export class EditStyleComponent implements OnInit, OnDestroy {
       }
 
       if (this.formGroup.valid) {
-        this.subscription = this.#flowService.UpdateStyle(form).subscribe((response) => {
-          if (response.success) this.trigger.emit()
-        })
+        this.#subscription = this.#styleService.updateStyle(form).subscribe((response) => { if (response.success) this.trigger.emit() })
       }
     }
   }

@@ -1,7 +1,8 @@
 <div class="tags-list">
     <div *ngFor="let tagList of tags">
         <div class="container">
-            <p class="category-name">{{ tagList.category.name }}</p>
+            <p class="category-name" (click)="handleGetMoodsByTagCategoryId(tagList.category.businessId)"
+                [class.active]="tagList.category.businessId === currentTagCategoryId">{{ tagList.category.name }}</p>
             <div *ngFor="let tag of tagList.tags">
                 <div class="box">
                     <a id="{{ tag.businessId }}" class="name-tag" [appScrollActive]="tag.businessId === currentTagId"

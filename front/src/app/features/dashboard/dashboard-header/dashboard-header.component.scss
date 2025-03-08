@@ -1,78 +1,70 @@
-.dashboard-header {
-    background-color: var(--colorMainOpacity2);
-    border: 3px solid var(--colorMain);
-    border-radius: 10px;
-    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+.user-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
-    padding: 15px;
+    img {
+        padding: 15px;
 
-    color: var(--colorMain);
+        height: 100px;
+        width: 100px;
 
-    .user-header {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+        background-color: var(--colorWhiteOpacity5);
+        border: 3px solid var(--colorMain);
+        border-radius: 10px;
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+    }
 
-        img {
-            padding: 15px;
-    
-            height: 100px;
-            width: 100px;
-    
-            background-color: var(--colorWhiteOpacity5);
-            border: 3px solid var(--colorMain);
-            border-radius: 10px;
+    .user-info {
+        height: 130px;
+        padding: 0 15px;
+
+        color: var(--colorMain);
+
+        .user-name {
+            display: flex;
+            align-items: center;
+
+            padding-top: 7px;
+            margin-bottom: 5px;
+
+            .icon {
+                margin: 0;
+                margin-right: 5px;
+            }
+
+            h1 {
+                margin: 0;
+                font-size: 17px;
+            }
+        }
+
+        .row {
+            width: 155px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background-color: var(--colorWhiteOpacity4);
+            border-radius: 5px;
             box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
-        }
-    
-        .user-info {    
-            height: 130px;
-            padding: 0 15px;
 
-            .user-name {
-                display: flex;
-                align-items: center;
+            margin-bottom: 3px;
+            padding: 5px;
+            padding-right: 10px;
 
-                padding-top: 7px;
-                margin-bottom: 5px;
-
-                .icon {
-                    margin: 0;
-                    margin-right: 5px; 
-                }
-
-                h1 {
-                    margin: 0;
-                    font-size: 17px;
-                }
-            }
-
-            .row {
-                width: 155px;
-
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                background-color: var(--colorWhiteOpacity4);
-                border-radius: 5px;
-                box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
-
-                margin-bottom: 3px;
-                padding: 5px;
-                padding-right: 10px;
-
-                p {
-                    margin: 0;
-                    font-size: 13px;
-                }
+            p {
+                margin: 0;
+                font-size: 13px;
             }
         }
     }
+}
 
-    .subscription {
-        margin: 0;
-        margin-top: 8px;
-        font-size: 13px;
-    }
+.subscription {
+    margin: 0;
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--colorMain);
 }

@@ -1,9 +1,10 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { ArtistFull } from '../../../interfaces/artist';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FlowService } from '../../../services/flow.service';
+import { FlowService } from '../../../services/http/flow.service';
 import { StyleLight } from '../../../interfaces/style';
 import { ArtistUpdateForm } from '../../../interfaces/forms-update';
+import { ArtistService } from '../../../services/http/artist.service';
 
 @Component({
   selector: 'app-edit-artist',
@@ -15,10 +16,11 @@ export class EditArtistComponent implements OnInit {
   @Output() trigger = new EventEmitter<void>()
 
   #flowService = inject(FlowService)
+  #artistService = inject(ArtistService)
   #formBuilder = inject(FormBuilder)
 
   formGroup!: FormGroup
-  isDeleteDialogOpen : boolean = false
+  isDeleteDialogOpen: boolean = false
 
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class EditArtistComponent implements OnInit {
     return this.formGroup.get('styles') as FormArray
   }
 
-  populateCategories(styles: StyleLight[]): void {
+  private populateCategories(styles: StyleLight[]): void {
     styles.forEach(style => {
       this.stylesArray.push(
         this.#formBuilder.group({
@@ -50,18 +52,18 @@ export class EditArtistComponent implements OnInit {
     })
   }
 
-  openDeleteDialog(): void {
+  public openDeleteDialog(): void {
     this.isDeleteDialogOpen = true
   }
-  closeDeleteDialog(): void {
+  public closeDeleteDialog(): void {
     this.isDeleteDialogOpen = false
   }
-  closeDeleteDialogEmit(): void {
+  public closeDeleteDialogEmit(): void {
     this.isDeleteDialogOpen = false
     this.trigger.emit()
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.formGroup.valid && this.artist) {
       let selectedStyles = this.formGroup.value.styles
         .filter((style: { isChecked: boolean }) => style.isChecked)
@@ -74,7 +76,7 @@ export class EditArtistComponent implements OnInit {
         styleIds: selectedStyles
       }
 
-      this.#flowService.UpdateArtist(form).subscribe((response) => { if(response.success) this.trigger.emit() })
+      this.#artistService.updateArtist(form).subscribe((response) => { if (response.success) this.trigger.emit() })
     }
   }
 }

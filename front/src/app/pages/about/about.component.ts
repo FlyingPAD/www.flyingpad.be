@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ImageUrlService } from '../../services/image-url.service';
 import { environment } from '../../../environments/environment';
-import { FlowService } from '../../services/flow.service';
+import { FlowService } from '../../services/http/flow.service';
 
 @Component({
   selector: 'app-about',

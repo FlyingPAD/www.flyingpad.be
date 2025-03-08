@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { FlowService } from '../../services/flow.service';
+import { FlowService } from '../../services/http/flow.service';
 import { ButtonTopService } from '../../services/button-top.service';
 import { MoodsService } from '../../services/moods.service';
 import { PaginationService } from '../../services/pagination.service';

@@ -16,46 +16,58 @@
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.tag" [moodsLength]="flow.moodsByTag.length"/>
             </app-dialog>  
             <app-overlay [isOverlayOn]="showDialog" (toggle)="toggleDialog()" />
-            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByTag.length" 
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByTag.length" [entityName]="flow.tag?.name"
+                (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
+        }
+        @if(flow.moodsGalleryType === 'tagCategory') {
+            <p class="sticky-label"> ▸ <b>{{ flow.tagCategory?.name }}</b> - {{ flow.tagCategory?.description }}</p>
+            <app-moods-gallery [moods]="flow.moodsByTagCategory" (moodId)="updateMoodId($event)" [galleryType]="flow.moodsGalleryType" [currentMoodId]="flow.mood.businessId" />
+            <app-dialog *ngIf="showDialog" (dialog)="toggleDialog()">
+                <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.tagCategory" [moodsLength]="flow.moodsByTagCategory.length"/>
+            </app-dialog>  
+            <app-overlay [isOverlayOn]="showDialog" (toggle)="toggleDialog()" />
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByTagCategory.length" [entityName]="flow.tagCategory?.name"
                 (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
         }
         @if(flow.moodsGalleryType === 'model') {
-            <p class="sticky-label"> ▸ <b>{{ flow.model?.pseudonym }}</b></p>
+            <p class="sticky-label"> ▸ <b>{{ flow.model?.pseudonym }}</b> - {{ flow.model?.description }}</p>
             <app-moods-gallery [moods]="flow.moodsByModel" (moodId)="updateMoodId($event)" [galleryType]="flow.moodsGalleryType" [currentMoodId]="flow.mood.businessId" />
             <app-dialog *ngIf="showDialog" (dialog)="toggleDialog()">
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.model" [moodsLength]="flow.moodsByModel.length"/>
             </app-dialog>
             <app-overlay [isOverlayOn]="showDialog" (toggle)="toggleDialog()" />
-            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByModel.length" 
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByModel.length" [entityName]="flow.model?.pseudonym"
                 (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
         }
         @if(flow.moodsGalleryType === 'artist') {
-            <p class="sticky-label"> ▸ <b>{{ flow.artist?.name }}</b></p>
+            <p class="sticky-label"> ▸ <b>{{ flow.artist?.name }}</b> - {{ flow.artist?.description }}</p>
             <app-moods-gallery [moods]="flow.moodsByArtist" (moodId)="updateMoodId($event)" [galleryType]="flow.moodsGalleryType" [currentMoodId]="flow.mood.businessId" />
             <app-dialog *ngIf="showDialog" (dialog)="toggleDialog()">
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.artist" 
                 [moodsLength]="flow.moodsByArtist.length"/>
             </app-dialog>
             <app-overlay [isOverlayOn]="showDialog" (toggle)="toggleDialog()" />
-            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByArtist.length" 
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByArtist.length" [entityName]="flow.artist?.name"
                 (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')" />
         }
         @if(flow.moodsGalleryType === 'franchise') {
-            <p class="sticky-label"> ▸ <b>{{ flow.franchise?.name }}</b></p>
+            <p class="sticky-label"> ▸ <b>{{ flow.franchise?.name }}</b> - {{ flow.franchise?.description }}</p>
             <app-moods-gallery [moods]="flow.moodsByFranchise" (moodId)="updateMoodId($event)" [galleryType]="flow.moodsGalleryType" [currentMoodId]="flow.mood.businessId" />
             <app-dialog *ngIf="showDialog" (dialog)="toggleDialog()">
                 <app-dialog-info [moodsGalleryType]="flow.moodsGalleryType" [entity]="flow.franchise" [moodsLength]="flow.moodsByFranchise.length"/>
             </app-dialog>  
             <app-overlay [isOverlayOn]="showDialog" (toggle)="toggleDialog()" />
-            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByFranchise.length" 
+            <app-bottom-bar [moodsGalleryType]="flow.moodsGalleryType" [moodsLength]="flow.moodsByFranchise.length" [entityName]="flow.franchise?.name"
                 (dialog)="toggleDialog()" (showMultiTag)="updateMoodMenuState('multi-tag')"/>
         }
         <app-right-column>
             <app-column-full
               [tags]="flow.tagsWithCategories"
               [currentTagId]="flow.tag?.businessId"
+              [currentTagCategoryId]="flow.tagCategory?.businessId"
               (tagId)="updateTagId($event)"
-              (tagCategoryId)="updateTagCategoryId($event)">
+              (tagCategoryId)="updateTagCategoryId($event)"
+              (moodsByTagCategoryId)="getMoodsByTagCategory($event)">   
             </app-column-full>
           </app-right-column>
     }
@@ -84,6 +96,14 @@
         @if(flow.moodsGalleryType === 'tag') {
             <app-bottom-bar 
             moodsGalleryType="details" [moodsLength]="flow.moodsByTag.length" [currentIndex]="flow.moodsByTagIndexes.currentIndex" [diaporamaIsActive]="isDiaporamaActive"
+            [moodType]="flow.mood.type"
+            (dialog)="toggleDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
+            (back)="updateMoodMenuState('gallery')" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" 
+            (leftCard)="leftCardToggle()" (isFocused)="getMoodHeight($event)" (edition)="updateMoodMenuState('edition')"/>
+        }
+        @if(flow.moodsGalleryType === 'tagCategory') {
+            <app-bottom-bar 
+            moodsGalleryType="details" [moodsLength]="flow.moodsByTagCategory.length" [currentIndex]="flow.moodsByTagCategoryIndexes.currentIndex" [diaporamaIsActive]="isDiaporamaActive"
             [moodType]="flow.mood.type"
             (dialog)="toggleDialog()" (openMoodInNewTab)="openMoodInNewTab()" (randomMood)="getRandomMood()" 
             (back)="updateMoodMenuState('gallery')" (getIndex)="getPage($event)" (diaporamaStart)="diaporamaStart($event)" (diaporamaStop)="diaporamaStop()" 
@@ -128,6 +148,11 @@
         @if(flow.moodsGalleryType === 'tag') {
             <app-multi-tag [moods]="flow.moodsByTag" />
             <app-bottom-bar [entityName]="flow.tag?.name" [moodsLength]="flow.moodsByTag.length" moodsGalleryType="multi-tag" 
+                (back)="updateMoodMenuState('gallery')" />
+        }
+        @if(flow.moodsGalleryType === 'tagCategory') {
+            <app-multi-tag [moods]="flow.moodsByTagCategory" />
+            <app-bottom-bar [entityName]="flow.tagCategory?.name" [moodsLength]="flow.moodsByTagCategory.length" moodsGalleryType="multi-tag" 
                 (back)="updateMoodMenuState('gallery')" />
         }
         @if(flow.moodsGalleryType === 'model') {

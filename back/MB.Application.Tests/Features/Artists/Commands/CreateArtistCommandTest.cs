@@ -1,7 +1,7 @@
 ﻿using MB.Application.Exceptions;
 using MB.Application.Features.Artists.Commands.CreateArtist;
 using MB.Application.Interfaces.Persistence;
-using MB.Domain.Entities;
+using MB.Domain.ArtistAggregate;
 using Moq;
 using Xunit;
 

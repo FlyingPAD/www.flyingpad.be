@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace MB.Persistence.Configurations;
 
-public class TaskConfiguration : IEntityTypeConfiguration<MB.Domain.Entities.Task>
+public class TaskConfiguration : IEntityTypeConfiguration<Domain.TaskAggregate.Task>
 {
-    public void Configure(EntityTypeBuilder<MB.Domain.Entities.Task> builder)
+    public void Configure(EntityTypeBuilder<Domain.TaskAggregate.Task> builder)
     {
         builder.HasKey(entity => entity.EntityId);
 

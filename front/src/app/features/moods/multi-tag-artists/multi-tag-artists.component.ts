@@ -1,7 +1,7 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { MultiTagService } from '../../../services/multi-tag.service'
-import { FlowService } from '../../../services/flow.service'
+import { FlowService } from '../../../services/http/flow.service'
 import { MoodsService } from '../../../services/moods.service'
 import { Router } from '@angular/router'
 import { ArtistCheckBox } from '../../../interfaces/artist'

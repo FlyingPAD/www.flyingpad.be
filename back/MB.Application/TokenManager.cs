@@ -1,5 +1,5 @@
 ﻿using MB.Application.Interfaces;
-using MB.Domain.Entities;
+using MB.Domain.UserAggregate;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

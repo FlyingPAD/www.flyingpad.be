@@ -10,7 +10,16 @@
 
         border: 3px solid var(--colorMain);
         border-radius: 10px;
+
+        opacity: 0.9;
+        transition-duration: 200ms;
+        cursor: pointer;
     }
+
+    img:hover {
+        opacity: 1;
+    }
+
 
     @media (max-width: 1150px) {
         img {

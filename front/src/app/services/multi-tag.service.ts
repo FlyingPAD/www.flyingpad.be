@@ -6,15 +6,15 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { GetModelsByMoodResponse, ModelCheckBox } from '../interfaces/model';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MoodScoreUpdate } from '../interfaces/forms-update';
-import { FlowService } from './flow.service';
 import { NotificationService } from './notification.service';
+import { MoodService } from './http/mood.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MultiTagService {
   #http = inject(HttpClient)
-  #flowService = inject(FlowService)
+  #moodService = inject(MoodService)
   #notificationService = inject(NotificationService)
 
   #url: string = environment.apiBaseUrl + '/api/V1/'
@@ -81,7 +81,7 @@ export class MultiTagService {
     } else {
       currentSelection.forEach(moodId => {
         let form: MoodScoreUpdate = { moodId: moodId, value: score }
-        this.#flowService.updateScore(form)
+        this.#moodService.updateMoodScore(form)
       })
     }
   }

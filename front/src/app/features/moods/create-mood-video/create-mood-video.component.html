@@ -1,18 +1,10 @@
+<p class="sticky-label">Selected Files : 0</p>
+<app-spacer height="5px" />
 <h1 class="h1">{{ 'title.add-video' | translate }}</h1>
-<div class="row-white">
-    <div class="buttons">
-        <app-button-back></app-button-back>
-    </div>
-</div>
-<p class="p"><b>Supported Types</b> : </p>
-<p class="p">MP4, WEBM</p>
-<div id="display-model">
-    <div class="model-flex">
-        <p><b>maximum</b> file size : </p>
-        <p>50 Mo</p>
-    </div>
-</div>
-<form [formGroup]="form" (ngSubmit)="onUpload()">
+<p class="p">( MP4, WEBM )</p>
+<p class="p">Maximum file size : 50 Mo</p>
+<hr class="dialog-hr">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div id="file_menu">
         <p><input type="file" (change)="loadFile($event)" multiple></p>
     </div>
@@ -65,3 +57,5 @@
         </div>
     </div>
 </form>
+<app-spacer height="75px" />
+<app-bottom-bar moodsGalleryType="upload-video" (triggerSaveMood)="onSubmit()" />

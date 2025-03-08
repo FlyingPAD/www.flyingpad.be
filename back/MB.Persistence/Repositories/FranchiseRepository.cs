@@ -1,7 +1,6 @@
 ﻿using MB.Application.Features.Franchises.Queries.GetFranchisesCheckBoxesByModel;
 using MB.Application.Interfaces.Persistence;
-using MB.Domain.Entities;
-using MB.Persistence.Repositories.Common;
+using MB.Domain.FranchiseAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories;

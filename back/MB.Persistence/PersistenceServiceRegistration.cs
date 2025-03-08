@@ -1,9 +1,7 @@
 ﻿using MB.Application;
 using MB.Application.Interfaces;
 using MB.Application.Interfaces.Persistence;
-using MB.Application.Interfaces.Persistence.Common;
 using MB.Persistence.Repositories;
-using MB.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

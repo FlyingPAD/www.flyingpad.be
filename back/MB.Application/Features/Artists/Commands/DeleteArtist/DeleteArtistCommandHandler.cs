@@ -19,7 +19,7 @@ public class DeleteArtistCommandHandler(IArtistRepository artistRepository) : IR
         return new BaseResponse
         {
             Success = true,
-            Message = "Deletion successful."
+            Message = "Artist was deleted."
         };
     }
 }

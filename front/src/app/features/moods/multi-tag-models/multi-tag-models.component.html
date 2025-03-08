@@ -5,15 +5,13 @@
         <input type="text" [(ngModel)]="searchModel" placeholder="Filter models ..." />
     </div>
     <form [formGroup]="form">
-        <div class="form-container">
-            <div class="form-flex">
-                <div class="form_cat_box">
-                    <div *ngFor="let model of filteredModels">
-                        <div class="duo">
-                            <input type="checkbox" [formControlName]="model.businessId.toString()"
-                                id="{{ model.pseudonym }}" />
-                            <label [for]="model.pseudonym">{{ model.pseudonym }}</label>
-                        </div>
+        <div class="box-wrapper">
+            <div class="box">
+                <div *ngFor="let model of filteredModels">
+                    <div class="duo">
+                        <input type="checkbox" [formControlName]="model.businessId.toString()"
+                            id="{{ model.pseudonym }}" />
+                        <label [for]="model.pseudonym">{{ model.pseudonym }}</label>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Interfaces.Persistence;
-using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+using MB.Domain.MediumAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

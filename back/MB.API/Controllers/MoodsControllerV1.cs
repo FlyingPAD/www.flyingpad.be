@@ -8,11 +8,13 @@ using MB.Application.Features.Moods.Commands.UpdateMoodScore;
 using MB.Application.Features.Moods.Queries;
 using MB.Application.Features.Moods.Queries.CountMoods;
 using MB.Application.Features.Moods.Queries.GetAllMoods;
+using MB.Application.Features.Moods.Queries.GetCommonTagsByMoods;
 using MB.Application.Features.Moods.Queries.GetMoodById;
 using MB.Application.Features.Moods.Queries.GetMoodsByArtist;
 using MB.Application.Features.Moods.Queries.GetMoodsByFranchise;
 using MB.Application.Features.Moods.Queries.GetMoodsByModel;
 using MB.Application.Features.Moods.Queries.GetMoodsByTag;
+using MB.Application.Features.Moods.Queries.GetMoodsByTagCategory;
 using MB.Application.Features.Moods.Queries.GetRandomMood;
 using MB.Application.Models;
 using MediatR;
@@ -63,6 +65,10 @@ public class MoodsControllerV1(IMediator mediator) : ControllerBase
     public async Task<ActionResult<GetMoodsByTagQueryResponse>> GetByTag(Guid tagId)
         => Ok(await _mediator.Send(new GetMoodsByTagQuery { TagId = tagId }));
 
+    [HttpGet("GetByTagCategory/{tagCategoryId}")]
+    public async Task<ActionResult<GetMoodsByTagCategoryQueryResponse>> GetByTagCategory(Guid tagCategoryId)
+    => Ok(await _mediator.Send(new GetMoodsByTagCategoryQuery { TagCategoryId = tagCategoryId }));
+
     [HttpGet("GetByArtist/{artistId}")]
     public async Task<ActionResult<GetMoodsByArtistQueryResponse>> GetByArtist(Guid artistId)
         => Ok(await _mediator.Send(new GetMoodsByArtistQuery { ArtistId = artistId }));
@@ -75,12 +81,16 @@ public class MoodsControllerV1(IMediator mediator) : ControllerBase
     public async Task<ActionResult<GetMoodsByFranchiseQueryResponse>> GetByFranchise(Guid franchiseId)
         => Ok(await _mediator.Send(new GetMoodsByFranchiseQuery { FranchiseId = franchiseId }));
 
+    [HttpPost("GetCommonTagsByMoods")]
+    public async Task<ActionResult<GetCommonTagsByMoodsQueryResponse>> GetCommonTagsByMoods([FromBody] GetCommonTagsByMoodsQuery getCommonTagsByMoods)
+        => Ok(await _mediator.Send(getCommonTagsByMoods));
+
     [HttpPut("Update")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<BaseResponse>> Update([FromBody] UpdateMoodCommand command)
         => Ok(await _mediator.Send(command));
 
-    [HttpPut("MultiTags")]
+    [HttpPost("MultiTags")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<BaseResponse>> MultiTags([FromBody] MultiTagsCommand command)
     => Ok(await _mediator.Send(command));

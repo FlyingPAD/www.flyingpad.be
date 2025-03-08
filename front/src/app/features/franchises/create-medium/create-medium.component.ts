@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostListener, inject, OnDestroy, Output } from
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MediumCreateForm } from '../../../interfaces/forms-create';
-import { FlowService } from '../../../services/flow.service';
+import { MediumService } from '../../../services/http/medium.service';
 
 @Component({
   selector: 'app-create-medium',
@@ -12,7 +12,7 @@ import { FlowService } from '../../../services/flow.service';
 export class CreateMediumComponent implements OnDestroy {
   @Output() trigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #mediumService = inject(MediumService)
   #formBuilder = inject(FormBuilder)
 
   #subscription = new Subscription()
@@ -32,7 +32,7 @@ export class CreateMediumComponent implements OnDestroy {
     }
 
     if (this.formGroup.valid) {
-      this.#subscription = this.#flowService.CreateMedium(form).subscribe((response) => {
+      this.#subscription = this.#mediumService.createMedium(form).subscribe((response) => {
         if (response.success) this.trigger.emit()
       })
     }

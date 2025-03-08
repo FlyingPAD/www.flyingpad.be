@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit, Output, EventEmitter, inject } from '@angular/core'
 import { Subscription } from 'rxjs'
-import { FlowService } from '../../../services/flow.service'
+import { FlowService } from '../../../services/http/flow.service'
 import { MoodFull } from '../../../interfaces/mood'
 import { TagsCheckBoxesList } from '../../../interfaces/tags-list'
 

@@ -1,66 +1,41 @@
-.current-mood {
-    padding: 25px;
+.thumbnail {
+    display: flex;
+    justify-content: center;
 
-    background-color: var(--colorMainOpacity2);
-    border: 3px solid var(--colorMain);
-    border-radius: 10px;
-    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+    margin: 15px;
 
-    p {
-        margin: 0;    
-        text-align: center;
-        color: var(--colorMain);
-        font-size: 18px;
+    img {
+        height: 350px;
+        border: 3px solid var(--colorMain);
+        border-radius: 15px;
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+        opacity: 0.8;
     }
 
-    .thumbnail {
-        display: flex;
-        justify-content: center;
+    img:hover {
+        cursor: pointer;
+        opacity: 1;
+        transition-duration: 300ms;
+    }
 
-        margin: 15px;
-
+    @media(max-width: 550px) {
         img {
-            height: 350px;
-            border: 3px solid var(--colorMain);
-            border-radius: 15px;
-            box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
-            opacity: 0.8;
-        }
-    
-        img:hover {
-            cursor: pointer;
-            opacity: 1;
-            transition-duration: 300ms;
-        }
-    
-        @media(max-width: 550px) {
-            img {
-                width: 95%;
-                height: auto;
-            }
+            width: 95%;
+            height: auto;
         }
     }
 }
 
-.current-tags {
-    margin-top: 15px;
-
+.related-tags {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 
-    padding: 25px;
-
-    background-color: var(--colorMainOpacity2);
-    border: 3px solid var(--colorMain);
-    border-radius: 10px;
-    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
-
-    p {
+    .tag {
         background-color: var(--colorWhiteOpacity5);
         border: 3px solid var(--colorMainOpacity2);
         border-radius: 10px;
-        
+
         font-size: 14px;
         color: var(--colorMain);
 
@@ -70,7 +45,7 @@
         cursor: pointer;
     }
 
-    p:hover {
+    .tag:hover {
         background-color: var(--colorWhite);
         box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
         border: 3px solid var(--colorMain);

@@ -1,28 +1,28 @@
-import { Component, EventEmitter, HostListener, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MediumFull } from '../../../interfaces/franchise';
-import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MediumUpdateForm } from '../../../interfaces/forms-update';
+import { MediumService } from '../../../services/http/medium.service';
 
 @Component({
   selector: 'app-edit-medium',
   templateUrl: './edit-medium.component.html',
   styleUrl: './edit-medium.component.scss'
 })
-export class EditMediumComponent {
+export class EditMediumComponent implements OnInit, OnDestroy {
   @Input() medium: MediumFull | undefined = undefined
   @Output() trigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #mediumService = inject(MediumService)
   #formBuilder = inject(FormBuilder)
 
-  subscription = new Subscription()
-  isDeleteDialogOpen: boolean = false
+  #subscription = new Subscription()
 
-  editFormGroup!: FormGroup
+  public isDeleteDialogOpen: boolean = false
+  public editFormGroup!: FormGroup
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.editFormGroup = this.#formBuilder.group({
       name: [this.medium?.name, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       description: [this.medium?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]]
@@ -30,7 +30,7 @@ export class EditMediumComponent {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    this.#subscription.unsubscribe()
   }
 
   public openDeleteDialog(): void {
@@ -52,7 +52,7 @@ export class EditMediumComponent {
         description: this.editFormGroup.value.description
       }
 
-      this.subscription = this.#flowService.UpdateMedium(form).subscribe((response) => {
+      this.#subscription = this.#mediumService.updateMedium(form).subscribe((response) => {
         if (response.success) this.trigger.emit()
       })
     }

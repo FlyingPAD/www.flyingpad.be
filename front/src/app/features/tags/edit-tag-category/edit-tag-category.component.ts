@@ -1,9 +1,9 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TagCategoryFull } from '../../../interfaces/tag-category';
-import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { TagCategoryUpdateForm } from '../../../interfaces/forms-update';
+import { TagCategoryService } from '../../../services/http/tag-category.service';
 
 @Component({
   selector: 'app-edit-tag-category',
@@ -14,7 +14,7 @@ export class EditTagCategoryComponent implements OnInit, OnDestroy {
   @Input() tagCategory: TagCategoryFull | undefined = undefined
   @Output() showListTrigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #tagCategoryService = inject(TagCategoryService)
   #formBuilder = inject(FormBuilder)
 
   #subscription = new Subscription()
@@ -53,7 +53,7 @@ export class EditTagCategoryComponent implements OnInit, OnDestroy {
     }
 
     if (this.editFormGroup.valid) {
-      this.#subscription = this.#flowService.UpdateTagCategory(form).subscribe({
+      this.#subscription = this.#tagCategoryService.updateTagCategory(form).subscribe({
         next: () => {
           this.showListTrigger.emit()
         }

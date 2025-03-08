@@ -7,13 +7,16 @@ public class MultiTagsCommandValidator : AbstractValidator<MultiTagsCommand>
     public MultiTagsCommandValidator()
     {
         RuleFor(request => request.MoodIds)
-            .NotEmpty().WithMessage("The mood list cannot be empty.")
+            .NotEmpty().WithMessage("MoodIds cannot be empty.")
             .Must(moodIds => moodIds.All(id => id != Guid.Empty))
-            .WithMessage("All MoodIds must be valid.");
+            .WithMessage("MoodIds must be valid.");
 
-        RuleFor(request => request.Tags)
-            .NotEmpty().WithMessage("The tag list cannot be empty.")
+        RuleFor(request => request.TagsToAdd)
             .Must(tagIds => tagIds.All(id => id != Guid.Empty))
-            .WithMessage("All TagIds must be valid.");
+            .WithMessage("TagsToAdd must be valid.");
+
+        RuleFor(request => request.TagsToRemove)
+            .Must(tagIds => tagIds.All(id => id != Guid.Empty))
+            .WithMessage("TagsToRemove must be valid.");
     }
 }

@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, Signal } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication.service';
-import { UserService } from '../../services/user.service';
+import { AuthenticationService } from '../../services/http/authentication.service';
+import { UserService } from '../../services/http/user.service';
 import { MenuService } from '../../services/menu.service';
 
 @Component({

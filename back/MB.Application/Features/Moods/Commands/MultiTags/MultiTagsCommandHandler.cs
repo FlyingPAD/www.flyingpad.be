@@ -10,12 +10,12 @@ namespace MB.Application.Features.Moods.Commands.MultiTags
 
         public async Task<BaseResponse> Handle(MultiTagsCommand request, CancellationToken cancellationToken)
         {
-            await _moodRepository.UpdateMultiTags(request.MoodIds.ToList(), request.Tags.ToList());
+            await _moodRepository.UpdateMultiTags(request.MoodIds, request.TagsToAdd, request.TagsToRemove);
 
             return new BaseResponse
             {
                 Success = true,
-                Message = "MultiTags updated successfully."
+                Message = "Common tags updated."
             };
         }
     }

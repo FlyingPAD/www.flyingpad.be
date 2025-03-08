@@ -1,8 +1,10 @@
 ﻿using MB.Application.Exceptions;
+using MB.Application.Features.Moods.Queries.GetCommonTagsByMoods;
+using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
+using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
 using MB.Application.Interfaces.Persistence;
-using MB.Domain.Common;
-using MB.Domain.Entities;
-using MB.Persistence.Repositories.Common;
+using MB.Domain;
+using MB.Domain.MoodAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories;
@@ -301,55 +303,143 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         await _context.SaveChangesAsync();
     }
 
-    public async System.Threading.Tasks.Task UpdateMultiTags(ICollection<Guid> moodGuids, ICollection<Guid> tagGuids)
+    public async System.Threading.Tasks.Task UpdateMultiTags(Guid[] moodIds, Guid[] tagsToAdd, Guid[] tagsToRemove)
     {
         var moodEntities = await _context.Moods
             .OfType<AuditableEntity>()
-            .Where(m => moodGuids.Contains(m.BusinessId))
+            .Where(m => moodIds.Contains(m.BusinessId))
             .ToListAsync();
+        var tempMoodIds = moodEntities.Select(m => m.EntityId).ToList();
 
-        var moodIds = moodEntities.Select(m => m.EntityId).ToList();
-
-        var tagEntities = await _context.Tags
-            .OfType<AuditableEntity>()
-            .Where(t => tagGuids.Contains(t.BusinessId))
-            .ToListAsync();
-
-        var tagIds = tagEntities.Select(t => t.EntityId).ToList();
-
-        if (moodIds.Count == 0 || tagIds.Count == 0)
+        if (tempMoodIds.Count == 0)
         {
             return;
         }
 
+        var tagAddEntities = await _context.Tags
+            .OfType<AuditableEntity>()
+            .Where(t => tagsToAdd.Contains(t.BusinessId))
+            .ToListAsync();
+        var tagAddIds = tagAddEntities.Select(t => t.EntityId).ToList();
+
+        var tagRemoveEntities = await _context.Tags
+            .OfType<AuditableEntity>()
+            .Where(t => tagsToRemove.Contains(t.BusinessId))
+            .ToListAsync();
+        var tagRemoveIds = tagRemoveEntities.Select(t => t.EntityId).ToList();
+
         var moodsWithTags = await _context.Moods
-            .Where(m => moodIds.Contains(m.EntityId))
+            .Where(m => tempMoodIds.Contains(m.EntityId))
             .Include(m => m.MoodTags)
             .ToListAsync();
-
-        var relationsToAdd = new List<RelationMoodTag>();
 
         foreach (var mood in moodsWithTags)
         {
             var existingTagIds = mood.MoodTags?.Select(mt => mt.TagId).ToHashSet() ?? [];
 
-            foreach (var tagId in tagIds)
+            var tagsToActuallyAdd = tagAddIds.Except(existingTagIds).ToList();
+            foreach (var tagId in tagsToActuallyAdd)
             {
-                if (!existingTagIds.Contains(tagId))
+                _context.RMoodTag.Add(new RelationMoodTag
                 {
-                    relationsToAdd.Add(new RelationMoodTag
-                    {
-                        MoodId = mood.EntityId,
-                        TagId = tagId
-                    });
-                }
+                    MoodId = mood.EntityId,
+                    TagId = tagId
+                });
+            }
+
+            var tagsToActuallyRemove = (mood.MoodTags ?? Enumerable.Empty<RelationMoodTag>())
+                .Where(mt => tagRemoveIds.Contains(mt.TagId))
+                .ToList();
+
+            if (tagsToActuallyRemove.Any())
+            {
+                _context.RMoodTag.RemoveRange(tagsToActuallyRemove);
             }
         }
 
-        if (relationsToAdd.Count != 0)
-        {
-            await _context.RMoodTag.AddRangeAsync(relationsToAdd);
-            await _context.SaveChangesAsync();
-        }
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<Mood>> GetMoodsByTagCategory(Guid tagCategoryId)
+    {
+        var tagCategory = await _context.TagCategories
+            .Include(tc => tc.Tags)
+            .FirstOrDefaultAsync(tc => tc.BusinessId == tagCategoryId);
+
+        if (tagCategory == null || tagCategory.Tags.Count == 0)
+            return [];
+
+        var tagIds = tagCategory.Tags.Select(t => t.EntityId).ToList();
+
+        var moods = await _context.Moods
+            .Where(m => m.MoodTags != null && m.MoodTags.Any(mt => tagIds.Contains(mt.TagId)))
+            .OrderByDescending(m => m.Score)
+            .ToListAsync();
+
+        return moods;
+    }
+
+    public async Task<List<GetCommonTagsByMoodsQueryDto>> GetCommonTagsByMoods(Guid[] moodIds)
+    {
+        if (moodIds == null || moodIds.Length == 0)
+            return [];
+
+        var moodEntityQuery = _context.Moods
+            .Where(m => moodIds.Contains(m.BusinessId))
+            .Select(m => m.EntityId);
+
+        int totalMoodsCount = await moodEntityQuery.CountAsync();
+
+        var filteredTagsQuery = _context.RMoodTag
+            .AsNoTracking()
+            .Where(rmt =>
+                moodEntityQuery.Contains(rmt.MoodId) &&
+                rmt.Tag != null &&
+                rmt.Tag!.TagCategory != null)
+            .Select(rmt => new
+            {
+                Tag = rmt.Tag!,
+                TagCategory = rmt.Tag!.TagCategory!,
+                rmt.MoodId
+            });
+
+        var commonTags = await filteredTagsQuery
+            .GroupBy(x => new
+            {
+                CategoryBusinessId = x.TagCategory!.BusinessId,
+                CategoryName = x.TagCategory!.Name,
+                TagBusinessId = x.Tag!.BusinessId,
+                TagName = x.Tag!.Name
+            })
+            .Select(g => new
+            {
+                g.Key.CategoryBusinessId,
+                g.Key.CategoryName,
+                g.Key.TagBusinessId,
+                g.Key.TagName,
+                MoodCount = g.Select(x => x.MoodId).Distinct().Count()
+            })
+            .Where(x => x.MoodCount == totalMoodsCount)
+            .ToListAsync();
+
+        var result = commonTags
+            .GroupBy(x => new { x.CategoryBusinessId, x.CategoryName })
+            .Select(g => new GetCommonTagsByMoodsQueryDto
+            {
+                Category = new TagCategoryDto
+                {
+                    BusinessId = g.Key.CategoryBusinessId,
+                    Name = g.Key.CategoryName
+                },
+                TagsCheckBoxes = g.Select(x => new TagsCheckBoxesDto
+                {
+                    BusinessId = x.TagBusinessId,
+                    Name = x.TagName,
+                    IsChecked = true
+                }).ToList()
+            })
+            .ToList();
+
+        return result;
     }
 }

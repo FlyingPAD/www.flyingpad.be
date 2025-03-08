@@ -1,4 +1,4 @@
-﻿using MB.Domain.Entities;
+﻿using MB.Domain.UserAggregate;
 
 namespace MB.Application.Interfaces;
 

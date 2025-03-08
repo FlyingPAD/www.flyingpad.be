@@ -1,6 +1,6 @@
 ﻿using MB.Application.Interfaces;
 using MB.Application.Interfaces.Persistence;
-using MB.Domain.Entities;
+using MB.Domain.UserAggregate;
 using MediatR;
 
 namespace MB.Application.Features.Auth.Commands.Register;

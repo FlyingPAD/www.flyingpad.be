@@ -1,5 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+﻿using MB.Application.Interfaces.Persistence;
+using MB.Domain.MediumAggregate;
 using MediatR;
 
 namespace MB.Application.Features.Medias.Queries.CountMedia;

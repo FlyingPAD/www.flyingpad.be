@@ -2,8 +2,8 @@
 using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
 using MB.Application.Interfaces.Persistence;
-using MB.Domain.Entities;
-using MB.Persistence.Repositories.Common;
+using MB.Domain.TagAggregate;
+using MB.Domain.TagCategoryAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories;

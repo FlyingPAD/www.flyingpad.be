@@ -1,3 +1,4 @@
+<p class="sticky-label"><b>{{ selectedMoods().length }}</b> Moods Selected</p>
 <app-spacer height="25px" />
 <div class="buttons">
     <div class="button" (click)="selectAll()">Select All</div>
@@ -19,25 +20,31 @@
         <div class="gallery">
             <div *ngFor="let mood of moods | paginate : { itemsPerPage : moodsPerPage, currentPage : currentPage()}">
                 <section>
-                    <div *ngIf="mood.type == 1">
-                        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
-                            [class.active]="checkIfSelected(mood.businessId)"
-                            (click)="selectionToggle(mood.businessId)" />
-                    </div>
-                    <div *ngIf="mood.type == 2">
-                        <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
-                            [class.active]="checkIfSelected(mood.businessId)"
-                            (click)="selectionToggle(mood.businessId)" />
-                    </div>
-                    <div *ngIf="mood.type == 3">
-                        <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
-                            [class.active]="checkIfSelected(mood.businessId)"
-                            (click)="selectionToggle(mood.businessId)" />
-                    </div>
-                    <div *ngIf="mood.type == 4">
-                        <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
-                            [class.active]="checkIfSelected(mood.businessId)"
-                            (click)="selectionToggle(mood.businessId)" />
+                    <div class="mood-container">
+                        <div *ngIf="mood.type == 1">
+                            <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
+                                [class.active]="checkIfSelected(mood.businessId)"
+                                (click)="selectionToggle(mood.businessId)" />
+                        </div>
+                        <div *ngIf="mood.type == 2">
+                            <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
+                                [class.active]="checkIfSelected(mood.businessId)"
+                                (click)="selectionToggle(mood.businessId)" />
+                        </div>
+                        <div *ngIf="mood.type == 3">
+                            <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
+                                [class.active]="checkIfSelected(mood.businessId)"
+                                (click)="selectionToggle(mood.businessId)" />
+                        </div>
+                        <div *ngIf="mood.type == 4">
+                            <img class="vid-youtube"
+                                src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
+                                [class.active]="checkIfSelected(mood.businessId)"
+                                (click)="selectionToggle(mood.businessId)" />
+                        </div>
+                        <div class="mood-score">
+                            {{ mood.score }}
+                        </div>
                     </div>
                 </section>
             </div>
@@ -56,3 +63,4 @@
         </div>
     </div>
 </div>
+<app-spacer height="150px" />

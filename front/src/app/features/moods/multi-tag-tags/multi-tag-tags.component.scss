@@ -49,12 +49,10 @@
                 margin-bottom: 3px;
                 font-size: 14px;
                 text-align: left;
+
                 white-space: nowrap;
-                /* Empêche le texte de passer à la ligne */
                 overflow: hidden;
-                /* Coupe le texte qui déborde */
                 text-overflow: ellipsis;
-                /* Ajoute les points de suspension à la fin du texte */
 
                 a {
                     color: var(--colorMain);
@@ -77,13 +75,12 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+
                 margin-bottom: 3px;
+
                 white-space: nowrap;
-                /* Empêche le texte de passer à la ligne */
                 overflow: hidden;
-                /* Coupe le texte qui déborde */
                 text-overflow: ellipsis;
-                /* Ajoute les points de suspension à la fin du texte */
 
                 span {
                     margin-left: 5px;

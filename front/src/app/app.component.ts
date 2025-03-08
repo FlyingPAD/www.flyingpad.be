@@ -8,7 +8,7 @@ import { GdprService } from './services/gdpr.service';
 import { MenuService } from './services/menu.service';
 import { ButtonTopService } from './services/button-top.service';
 import { TokenService } from './services/token.service';
-import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationService } from './services/http/authentication.service';
 
 @Component({
   selector: 'app-root',

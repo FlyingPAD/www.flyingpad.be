@@ -1,7 +1,7 @@
 import { Component, inject, Signal } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
-import { AuthenticationService } from '../../services/authentication.service';
-import { UserService } from '../../services/user.service';
+import { AuthenticationService } from '../../services/http/authentication.service';
+import { UserService } from '../../services/http/user.service';
 import { DisplayService } from '../../services/display.service';
 
 @Component({

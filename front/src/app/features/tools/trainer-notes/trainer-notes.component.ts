@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { AudioService } from '../../../services/audio.service';
 import { StorageService } from '../../../services/storage.service';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../services/http/user.service';
 import { Router } from '@angular/router';
 import { DashboardService } from '../../../services/dashboard.service';
-import { AuthenticationService } from '../../../services/authentication.service';
+import { AuthenticationService } from '../../../services/http/authentication.service';
 import { GameResult } from '../../../interfaces/game-result';
 import { NoteTrainer } from '../../../interfaces/note-trainer';
 
@@ -136,7 +136,6 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
         this.message = this.score > 0 ? 'Congratulations !' : '...'
         this.timerStop()
         if(this.#authService.isConnected()) {
-          this.#userService.updatePlayerExperience(500)
           if(this.clefBass) {
             if(this.run > 10) {
               if(this.#userService.user().achievements[1].unlocked === false) {

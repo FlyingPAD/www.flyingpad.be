@@ -2,13 +2,13 @@ import { Component, inject, Input, EventEmitter, Output } from "@angular/core"
 import { Video } from "../../../interfaces/mood-video"
 import { Image } from "../../../interfaces/mood-image"
 import { VideoYouTube } from "../../../interfaces/mood-video-youtube"
-import { UserService } from "../../../services/user.service"
+import { UserService } from "../../../services/http/user.service"
 import { ArtistLight } from "../../../interfaces/artist"
 import { FranchiseLight } from "../../../interfaces/franchise"
 import { ModelLight } from "../../../interfaces/model"
 import { TagLight } from "../../../interfaces/tag"
-import { FlowService } from "../../../services/flow.service"
 import { MoodScoreUpdate } from "../../../interfaces/forms-update"
+import { MoodService } from "../../../services/http/mood.service"
 
 @Component({
   selector: 'app-mood-details',
@@ -16,14 +16,14 @@ import { MoodScoreUpdate } from "../../../interfaces/forms-update"
   styleUrl: './mood-details.component.scss'
 })
 export class MoodDetailsComponent {
-  #flowService = inject(FlowService)
+  #moodService = inject(MoodService)
   #userService = inject(UserService)
 
-  @Input() mood : any | undefined = undefined
-  @Input() artists! : ArtistLight[] | undefined
-  @Input() models! : ModelLight[] | undefined
-  @Input() tags! : TagLight[] | undefined
-  @Input() franchises! : FranchiseLight[] | undefined
+  @Input() mood: any | undefined = undefined
+  @Input() artists!: ArtistLight[] | undefined
+  @Input() models!: ModelLight[] | undefined
+  @Input() tags!: TagLight[] | undefined
+  @Input() franchises!: FranchiseLight[] | undefined
   @Output() modelId = new EventEmitter<number>()
   @Output() artistId = new EventEmitter<number>()
   @Output() tagId = new EventEmitter<number>()
@@ -42,23 +42,23 @@ export class MoodDetailsComponent {
     this.franchiseId.emit(franchiseId)
   }
 
-  public typeCheck(media : any) {
-    if(this.mood?.type === 1) {
+  public typeCheck(media: any) {
+    if (this.mood?.type === 1) {
       return media as Image
     }
-    if(this.mood?.type === 2) {
+    if (this.mood?.type === 2) {
       return media as Video
     }
-    if(this.mood?.type === 4) {
-        return media as VideoYouTube
-      }
+    if (this.mood?.type === 4) {
+      return media as VideoYouTube
+    }
     else {
       return media
     }
   }
 
-  public updateMoodScore(scoreValue : number): void {
-    let form : MoodScoreUpdate = {moodId : this.mood.businessId, value : scoreValue} 
-    this.#flowService.updateScore(form)
+  public updateMoodScore(scoreValue: number): void {
+    let form: MoodScoreUpdate = { moodId: this.mood.businessId, value: scoreValue }
+    this.#moodService.updateMoodScore(form)
   }
 }

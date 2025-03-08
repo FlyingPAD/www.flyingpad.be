@@ -1,7 +1,6 @@
 ﻿using MB.Application.Interfaces.Infrastructure;
 using MB.Application.Interfaces.Persistence;
-using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+using MB.Domain.MoodAggregate;
 using MediatR;
 
 namespace MB.Application.Features.Moods.Commands.CreateMoodImage;

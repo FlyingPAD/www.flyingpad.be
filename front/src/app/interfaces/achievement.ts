@@ -6,4 +6,5 @@ export interface Achievement {
     category: string
     date: Date | undefined
     unlocked: boolean
+    xpValue: number
 }

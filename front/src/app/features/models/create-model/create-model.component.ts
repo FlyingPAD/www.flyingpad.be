@@ -2,8 +2,8 @@ import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ModelCreateForm } from '../../../interfaces/forms-create';
-import { FlowService } from '../../../services/flow.service';
 import { FranchiseCheckBox } from '../../../interfaces/franchise';
+import { ModelService } from '../../../services/http/model.service';
 
 @Component({
   selector: 'app-create-model',
@@ -14,7 +14,7 @@ export class CreateModelComponent implements OnInit, OnDestroy {
   @Input() franchises: FranchiseCheckBox[] = []
   @Output() trigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #modelService = inject(ModelService)
   #formBuilder = inject(FormBuilder)
 
   #subscription = new Subscription()
@@ -41,7 +41,6 @@ export class CreateModelComponent implements OnInit, OnDestroy {
     this.#subscription.unsubscribe()
   }
 
-
   private createFranchiseFormGroup(franchise: FranchiseCheckBox): FormGroup {
     return this.#formBuilder.group({
       businessId: [franchise.businessId],
@@ -49,7 +48,6 @@ export class CreateModelComponent implements OnInit, OnDestroy {
       isChecked: [false]
     })
   }
-
 
   public onSubmit(): void {
     if (this.formGroup.valid) {
@@ -67,7 +65,7 @@ export class CreateModelComponent implements OnInit, OnDestroy {
             .map((franchise: { businessId: number }) => franchise.businessId)
         }
 
-        this.#subscription = this.#flowService.CreateModel(form).subscribe(response => { 
+        this.#subscription = this.#modelService.createModel(form).subscribe(response => { 
           if (response.success) this.trigger.emit() })
       }
     }

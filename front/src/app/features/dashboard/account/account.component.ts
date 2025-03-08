@@ -1,6 +1,6 @@
 import { Component, inject, HostListener, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../services/http/user.service';
 import { Subscription } from 'rxjs';
 import { formatDate } from '@angular/common';
 

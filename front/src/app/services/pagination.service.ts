@@ -16,6 +16,7 @@ export class PaginationService {
   #editTagsCurrentPage = new BehaviorSubject<number>(1)
   #editLinksCurrentPage = new BehaviorSubject<number>(1)
   #moodsByTagCurrentPage = new BehaviorSubject<number>(1)
+  #moodsByTagCategoryCurrentPage = new BehaviorSubject<number>(1)
 
   // SIGNALS
   public fullGalleryCurrentPage = toSignal(this.#fullGalleryCurrentPage) as Signal<number>
@@ -28,6 +29,7 @@ export class PaginationService {
   public editTagsCurrentPage = toSignal(this.#editTagsCurrentPage) as Signal<number>
   public editLinksCurrentPage = toSignal(this.#editLinksCurrentPage) as Signal<number>
   public moodsByTagCurrentPage = toSignal(this.#moodsByTagCurrentPage) as Signal<number>
+  public moodsByTagCategoryCurrentPage = toSignal(this.#moodsByTagCategoryCurrentPage) as Signal<number>
 
   // UPDATE PAGE METHODS
   public updateFullGalleryCurrentPage(page: number): void {
@@ -60,6 +62,9 @@ export class PaginationService {
   public updateMoodsByTagCurrentPage(page: number): void {
     this.#moodsByTagCurrentPage.next(page)
   }
+  public updateMoodsByTagCategoryCurrentPage(page: number): void {
+    this.#moodsByTagCategoryCurrentPage.next(page)
+  }
 
   // RESET PAGE METHODS
   public resetFullGalleryCurrentPage(): void {
@@ -91,5 +96,8 @@ export class PaginationService {
   }
   public resetMoodsByTagCurrentPage(): void {
     this.updateMoodsByTagCurrentPage(1)
+  }
+  public resetMoodsByTagCategoryCurrentPage(): void {
+    this.updateMoodsByTagCategoryCurrentPage(1)
   }
 }

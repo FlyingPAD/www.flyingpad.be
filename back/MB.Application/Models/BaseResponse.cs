@@ -7,6 +7,6 @@ public class BaseResponse
     public bool Success { get; set; }
     public string Message { get; set; } = string.Empty;
 
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string[]? ValidationErrors { get; set; } = null;
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public string[]? ValidationErrors { get; set; }
 }

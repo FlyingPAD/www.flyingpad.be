@@ -1,4 +1,15 @@
-﻿using MB.Domain.Entities;
+﻿using MB.Domain.ArtistAggregate;
+using MB.Domain.FranchiseAggregate;
+using MB.Domain.LinkAggregate;
+using MB.Domain.LinkCategoryAggregate;
+using MB.Domain.MediumAggregate;
+using MB.Domain.ModelAggregate;
+using MB.Domain.MoodAggregate;
+using MB.Domain.StyleAggregate;
+using MB.Domain.TagAggregate;
+using MB.Domain.TagCategoryAggregate;
+using MB.Domain.TaskCategoryAggregate;
+using MB.Domain.UserAggregate;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
@@ -569,11 +580,11 @@ public static class PostDeployment
         };
         modelBuilder.Entity<TaskCategory>().HasData(taskCategories);
 
-        var tasks = new List<Domain.Entities.Task>
+        var tasks = new List<Domain.TaskAggregate.Task>
         {
             new() { EntityId = 1, BusinessId = Guid.NewGuid(), Name = "Check Mails", TaskCategoryId = 5 }
         };
-        modelBuilder.Entity<Domain.Entities.Task>().HasData(tasks);
+        modelBuilder.Entity<Domain.TaskAggregate.Task>().HasData(tasks);
 
         var userList = new List<User>();
         int entityId = 1;

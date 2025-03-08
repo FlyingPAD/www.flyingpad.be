@@ -1,25 +1,23 @@
-import { Component, EventEmitter, HostListener, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TagFull } from '../../../interfaces/tag';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { TagUpdateForm } from '../../../interfaces/forms-update';
-import { FlowService } from '../../../services/flow.service';
 import { TagCategoryLight } from '../../../interfaces/tag-category';
+import { TagService } from '../../../services/http/tag.service';
 
 @Component({
   selector: 'app-edit-tag',
   templateUrl: './edit-tag.component.html',
   styleUrl: './edit-tag.component.scss'
 })
-export class EditTagComponent implements OnInit {
+export class EditTagComponent implements OnInit, OnDestroy {
   @Input() tag: TagFull | undefined = undefined
   @Input() tagCategories: TagCategoryLight[] = []
   @Output() showListTrigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #tagService = inject(TagService)
   #formBuilder = inject(FormBuilder)
-  #toastr = inject(ToastrService)
 
   #subscription = new Subscription()
 
@@ -58,12 +56,8 @@ export class EditTagComponent implements OnInit {
     }
 
     if (this.editFormGroup.valid) {
-      this.#subscription = this.#flowService.UpdateTag(form).subscribe({
-        next: () => {
-          this.#toastr.success('Success !')
-          this.showListTrigger.emit()
-        }
-      })
+      this.#subscription = this.#tagService.updateTag(form).subscribe(response => {
+        if(response.success) this.showListTrigger.emit() })
     }
   }
 

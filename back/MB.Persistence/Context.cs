@@ -1,5 +1,18 @@
-﻿using MB.Domain.Common;
-using MB.Domain.Entities;
+﻿using MB.Domain;
+using MB.Domain.ArtistAggregate;
+using MB.Domain.BoardAggregate;
+using MB.Domain.BookAggregate;
+using MB.Domain.FranchiseAggregate;
+using MB.Domain.LinkAggregate;
+using MB.Domain.LinkCategoryAggregate;
+using MB.Domain.MediumAggregate;
+using MB.Domain.ModelAggregate;
+using MB.Domain.MoodAggregate;
+using MB.Domain.StyleAggregate;
+using MB.Domain.TagAggregate;
+using MB.Domain.TagCategoryAggregate;
+using MB.Domain.TaskCategoryAggregate;
+using MB.Domain.UserAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence;
@@ -16,7 +29,7 @@ public class Context(DbContextOptions<Context> options) : DbContext(options)
     public DbSet<Media> Medias { get; set; }
     public DbSet<Link> Links { get; set; }
     public DbSet<LinkCategory> LinkCategories { get; set; }
-    public DbSet<Domain.Entities.Task> Tasks { get; set; }
+    public DbSet<Domain.TaskAggregate.Task> Tasks { get; set; }
     public DbSet<TaskCategory> TaskCategories { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Board> Boards { get; set; }

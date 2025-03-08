@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
 using MB.Application.Features.Tasks.Queries.GetTaskDetails;
 using MB.Application.Interfaces.Persistence;
-using MB.Application.Interfaces.Persistence.Common;
 using MediatR;
 
 namespace MB.Application.Features.Tasks.Queries.GetTasksDetails;
 
-public class GetTaskDetailsQueryHandler(IBaseRepository<MB.Domain.Entities.Task> taskRepository, ITaskCategoryRepository taskCategoryRepository, IMapper mapper) : IRequestHandler<GetTaskDetailsQuery, TaskDetailsVm>
+public class GetTaskDetailsQueryHandler(IBaseRepository<Domain.TaskAggregate.Task> taskRepository, ITaskCategoryRepository taskCategoryRepository, IMapper mapper) : IRequestHandler<GetTaskDetailsQuery, TaskDetailsVm>
 {
-    private readonly IBaseRepository<MB.Domain.Entities.Task> _taskRepository = taskRepository;
+    private readonly IBaseRepository<Domain.TaskAggregate.Task> _taskRepository = taskRepository;
     private readonly ITaskCategoryRepository _taskCategoryRepository = taskCategoryRepository;
     private readonly IMapper _mapper = mapper;
 

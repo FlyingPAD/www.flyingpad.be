@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Interfaces.Persistence;
-using MB.Domain.Entities;
+using MB.Domain.LinkAggregate;
 using MediatR;
 
 namespace MB.Application.Features.Links.Queries.GetPageLinksContainingAbc;

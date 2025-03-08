@@ -2,9 +2,8 @@ import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ImageForm } from '../../../interfaces/mood-image';
-import { FlowService } from '../../../services/flow.service';
 import { NotificationService } from '../../../services/notification.service';
-import { LowerCasePipe } from '@angular/common';
+import { MoodService } from '../../../services/http/mood.service';
 
 @Component({
   selector: 'app-create-mood-image',
@@ -12,7 +11,7 @@ import { LowerCasePipe } from '@angular/common';
   styleUrl: './create-mood-image.component.scss'
 })
 export class CreateMoodImageComponent {
-  #flowService = inject(FlowService)
+  #moodService = inject(MoodService)
   #builder = inject(FormBuilder)
   #router = inject(Router)
   #notificationService = inject(NotificationService)
@@ -94,14 +93,10 @@ export class CreateMoodImageComponent {
   public onSubmit(): void {
     if(this.forms.length > 0) {
       for (let i = 0; i < this.forms.length; i++) {
-        this.#flowService.CreateImage( this.forms[i].value ).subscribe()   
+        this.#moodService.createImage( this.forms[i].value ).subscribe()   
       }
       this.#router.navigateByUrl('/moods')
     }
-    else this.#notificationService.error('No images were selected ...')
-  }
-
-  public backToDashboard(): void {
-    this.#router.navigateByUrl('/dashboard')
+    else this.#notificationService.warning('No images selected.')
   }
 }

@@ -1,8 +1,9 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { FlowService } from '../../../services/flow.service';
+import { FlowService } from '../../../services/http/flow.service';
 import { LinkCategoryCheckBox, LinkFull } from '../../../interfaces/link';
 import { LinkUpdateForm } from '../../../interfaces/forms-update';
+import { LinkService } from '../../../services/http/link.service';
 
 @Component({
   selector: 'app-edit-link',
@@ -14,6 +15,7 @@ export class EditLinkComponent implements OnInit {
   @Output() trigger = new EventEmitter<void>()
 
   #flowService = inject(FlowService)
+  #linkService = inject(LinkService)
   #formBuilder = inject(FormBuilder)
 
   public formGroup!: FormGroup
@@ -60,7 +62,7 @@ export class EditLinkComponent implements OnInit {
     this.trigger.emit()
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.formGroup.valid && this.link) {
       let selectedCategories = this.formGroup.value.linkCategories
         .filter((category: { isChecked: boolean }) => category.isChecked)
@@ -74,7 +76,7 @@ export class EditLinkComponent implements OnInit {
         linkCategoryIds: selectedCategories
       }
 
-      this.#flowService.UpdateLink(form).subscribe(response => { if (response.success) this.trigger.emit() })
+      this.#linkService.updateLink(form).subscribe(response => { if (response.success) this.trigger.emit() })
     }
   }
 

@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using MediatR;
-using MB.Application.Interfaces.Persistence.Common;
+using MB.Application.Interfaces.Persistence;
 
 namespace MB.Application.Features.Tasks.Queries.GetTasksList;
 
-public class GetTasksListQueryHandler(IBaseRepository<Domain.Entities.Task> taskRepository, IMapper mapper) : IRequestHandler<GetTasksListQuery, List<TasksListVm>>
+public class GetTasksListQueryHandler(IBaseRepository<Domain.TaskAggregate.Task> taskRepository, IMapper mapper) : IRequestHandler<GetTasksListQuery, List<TasksListVm>>
 {
-    private readonly IBaseRepository<Domain.Entities.Task> _taskRepository = taskRepository;
+    private readonly IBaseRepository<Domain.TaskAggregate.Task> _taskRepository = taskRepository;
     private readonly IMapper _mapper = mapper;
 
     public async Task<List<TasksListVm>> Handle(GetTasksListQuery request, CancellationToken cancellationToken)

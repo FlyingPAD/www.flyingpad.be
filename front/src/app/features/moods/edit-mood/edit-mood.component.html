@@ -3,7 +3,7 @@
 
 @if(editMoodMenuState() === 'info'){
     <div class="info">
-        <app-edit-mood-thumbnail [mood]="mood" [environment]="environment" />
+        <app-edit-mood-thumbnail [mood]="mood" [environment]="environment" (toDetails)="handleShowDetails()" />
         <app-edit-mood-form [formGroup]="formGroup" />
         <app-edit-mood-score [mood]="mood" />
     </div>

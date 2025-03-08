@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence.Common;
+using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
-using MB.Domain.Entities;
+using MB.Domain.TagCategoryAggregate;
 using MediatR;
 
 namespace MB.Application.Features.TagCategories.Commands.UpdateTagCategory;

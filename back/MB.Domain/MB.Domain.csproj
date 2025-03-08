@@ -4,4 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="AuditableEntity.cs~RF2611606.TMP" />
+  </ItemGroup>
 </Project>
