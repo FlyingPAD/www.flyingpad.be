@@ -43,7 +43,7 @@ jobs:
         run: dotnet test ./back/MB.Persistence.Tests/MB.Persistence.Tests.csproj
 
       - name: Publish .NET project
-        run: dotnet publish ./back/MB.API/MB.API.csproj -c Release -o ./publish
+        run: dotnet publish ./back/MB.API/MB.API.csproj -c Release -o ./publish -p:EnableMSDeployAppOffline=true
 
       - name: Apply EF Core Migrations
         run: dotnet ef database update --project ./back/MB.Persistence/MB.Persistence.csproj
