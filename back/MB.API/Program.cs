@@ -63,7 +63,7 @@ public class Program
         }
         catch (Exception ex)
         {
-            Log.Fatal(ex, "Fatal Exception !! Application Stop.");
+            Log.Fatal(ex, "Fatal Exception ! Application Stopped.");
         }
         finally
         {
