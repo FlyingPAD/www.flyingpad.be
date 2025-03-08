@@ -38,7 +38,7 @@ namespace MB.Application.Tests.Features.Artists.Commands
 
             // Assert
             Assert.True(result.Success);
-            Assert.Equal("Creation successful.", result.Message);
+            Assert.Equal("Artist was created.", result.Message);
             Assert.Equal(artist.BusinessId, result.ArtistId);
         }
 
