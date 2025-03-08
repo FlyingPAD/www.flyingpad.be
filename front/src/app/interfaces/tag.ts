@@ -24,9 +24,6 @@ export interface GetAllTagsResponse extends BaseResponse {
 export interface GetTagsByCategoryResponse extends BaseResponse {
     tags : TagLight[]
 }
-export interface GetOneTagDetailsResponse extends BaseResponse {
-    tag : TagFull
-}
 export interface GetTagByIdResponse extends BaseResponse {
     tag : TagFull
 }

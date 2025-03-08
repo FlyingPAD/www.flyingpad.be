@@ -1,6 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Common;
-using MB.Domain.Entities;
+﻿using MB.Domain;
+using MB.Domain.LinkAggregate;
 
 namespace MB.Application.Interfaces.Persistence;
 

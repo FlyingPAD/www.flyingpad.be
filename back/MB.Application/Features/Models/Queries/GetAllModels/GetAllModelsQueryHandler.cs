@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+using MB.Application.Interfaces.Persistence;
+using MB.Domain.ModelAggregate;
 using MediatR;
 
 namespace MB.Application.Features.Models.Queries.GetAllModels;

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence.Common;
+using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
-using MB.Domain.Entities;
+using MB.Domain.LinkCategoryAggregate;
 using MediatR;
 
 namespace MB.Application.Features.LinkCategories.Commands.UpdateLinkCategory;

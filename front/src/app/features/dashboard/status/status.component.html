@@ -1,5 +1,5 @@
-<div class="current-mood">
-    <p><b>{{ flow()?.mood?.name }}</b></p>
+<div class="main-frame">
+    <p class="frame-title">{{ flow()?.mood?.name }}</p>
     <hr class="dialog-hr">
     <div class="thumbnail">
         @if(flow()?.mood.type == 1) {
@@ -15,10 +15,15 @@
             <img src="{{environment}}/Content/youtube_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
             }
     </div>
-    <p>{{ flow()?.mood?.description }}</p>
+    <p class="p">{{ flow()?.mood?.description }}</p>
 </div>
-<div class="current-tags">
-    @for (tag of flow()?.mood.tags; track $index) {
-        <p (click)="goToCurrentTag(tag.businessId)">{{ tag.name }}</p>
-    }
+
+<app-spacer height="15px" />
+
+<div class="main-frame">
+    <div class="related-tags">
+        @for (tag of flow()?.mood.tags; track $index) {
+            <p class="tag" (click)="goToCurrentTag(tag.businessId)">{{ tag.name }}</p>
+        }
+    </div>
 </div>

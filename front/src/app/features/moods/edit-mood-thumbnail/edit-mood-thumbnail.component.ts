@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MoodFull } from '../../../interfaces/mood';
 
 @Component({
@@ -9,4 +9,10 @@ import { MoodFull } from '../../../interfaces/mood';
 export class EditMoodThumbnailComponent {
   @Input() mood!: MoodFull
   @Input() environment!: string
+
+  @Output() toDetails = new EventEmitter<void>()
+
+  public handleToDetails(): void {
+    this.toDetails.emit()
+  }
 }

@@ -1,164 +1,168 @@
-<div class="statistics">
-  <div class="box">
-    <div class="group">
-      <div class="group-icon">
-        <app-icon-moods size="25px"></app-icon-moods>
-        <p><b>Total Moods</b> :</p>
+<div class="main-frame">
+  <p class="frame-title">Statistics</p>
+  <hr class="dialog-hr">
+  <div class="statistics">
+    <div class="box">
+      <div class="group">
+        <div class="group-icon">
+          <app-icon-moods size="25px"></app-icon-moods>
+          <p><b>Total Moods</b> :</p>
+        </div>
+        <p><b>{{ statistics()?.totalMoods | number:'4.0' }}</b></p>
       </div>
-      <p><b>{{ statistics()?.totalMoods | number:'4.0' }}</b></p>
-    </div>
-    <div class="group">
-      <p>▸ Images :</p>
-      <p>{{ statistics()?.totalImages | number:'4.0' }} ({{ statistics()?.imagesPercentage | number:'2.2-2' }} %)</p>
-    </div>
-    <div class="group">
-      <p>▸ Videos :</p>
-      <p>{{ statistics()?.totalVideos }} ({{ statistics()?.videosPercentage | number:'2.2-2' }} %)</p>
-    </div>
-  </div>
-
-  <div class="box">
-    <div class="group">
-      <div class="group-icon">
-        <app-icon-tag size="25px"></app-icon-tag>
-        <p><b>Total Tags</b> :</p>
+      <div class="group">
+        <p>▸ Images :</p>
+        <p>{{ statistics()?.totalImages | number:'4.0' }} ({{ statistics()?.imagesPercentage | number:'2.2-2' }} %)</p>
       </div>
-      <p><b>{{ statistics()?.totalTags }}</b></p>
-    </div>
-    <div class="group">
-      <p>▸ Tag Categories :</p>
-      <p>{{ statistics()?.totalTagCategories }}</p>
-    </div>
-    <div class="group">
-      <p> - </p>
-    </div>
-  </div>
-
-  <div class="box">
-    <div class="group">
-      <p>Relations Mood / Tag :</p>
-      <p>{{ statistics()?.totalRelationsMoodTag | number:'3.0' }}</p>
-    </div>
-    <div class="group">
-      <p>Relations Mood / Model :</p>
-      <p>{{ statistics()?.totalRelationsMoodModel | number:'3.0' }}</p>
-    </div>
-    <div class="group">
-      <p>Relations Mood / Artist :</p>
-      <p>{{ statistics()?.totalRelationsMoodArtist | number:'3.0' }}</p>
-    </div>
-  </div>
-
-  <div class="box">
-    <div class="group">
-      <p><b>Total Users</b> :</p>
-      <p><b>{{ statistics()?.totalUsers }}</b></p>
-    </div>
-    <div class="group">
-      <p> - </p>
-    </div>
-    <div class="group">
-      <p> - </p>
-    </div>
-  </div>
-
-  <div class="box">
-    <div class="group">
-      <div class="group-icon">
-        <app-icon-model size="25px"></app-icon-model>
-        <p><b>Total Models</b> :</p>
+      <div class="group">
+        <p>▸ Videos :</p>
+        <p>{{ statistics()?.totalVideos }} ({{ statistics()?.videosPercentage | number:'2.2-2' }} %)</p>
       </div>
-      <p><b>{{ statistics()?.totalModels }}</b></p>
     </div>
-    <div class="group">
-      <p>▸ Males :</p>
-      <p>{{ statistics()?.totalMales }} ({{ statistics()?.malesPercentage | number:'1.2-2' }} %)</p>
-    </div>
-    <div class="group">
-      <p>▸ Females :</p>
-      <p>{{ statistics()?.totalFemales }} ({{ statistics()?.femalesPercentage | number:'1.2-2' }} %)</p>
-    </div>
-  </div>
-
-  <div class="box">
-    <div class="group">
-      <div class="group-icon">
-        <app-icon-artist size="25px"></app-icon-artist>
-        <p><b>Total Artists</b> :</p>
+  
+    <div class="box">
+      <div class="group">
+        <div class="group-icon">
+          <app-icon-tag size="25px"></app-icon-tag>
+          <p><b>Total Tags</b> :</p>
+        </div>
+        <p><b>{{ statistics()?.totalTags }}</b></p>
       </div>
-      <p><b>{{ statistics()?.totalArtists }}</b></p>
-    </div>
-    <div class="group">
-      <p>▸ Total Styles :</p>
-      <p>{{ statistics()?.totalStyles }}</p>
-    </div>
-    <div class="group">
-      <p>▸ Total Relations :</p>
-      <p>{{ statistics()?.totalRelationsArtistStyle }}</p>
-    </div>
-  </div>
-
-  <div class="box">
-    <div class="group">
-      <div class="group-icon">
-        <app-icon-media size="25px"></app-icon-media>
-        <p><b>Total Franchises</b> :</p>
+      <div class="group">
+        <p>▸ Tag Categories :</p>
+        <p>{{ statistics()?.totalTagCategories }}</p>
       </div>
-      <p><b>{{ statistics()?.totalFranchises }}</b></p>
-    </div>
-    <div class="group">
-      <p>▸ Total Media :</p>
-      <p>{{ statistics()?.totalMedia }}</p>
-    </div>
-    <div class="group">
-      <p>▸ Total Relations :</p>
-      <p>{{ statistics()?.totalRelationsFranchiseMedium }}</p>
-    </div>
-  </div>
-
-  <div class="box">
-    <div class="group">
-      <p>Relations Franchise / Model :</p>
-      <p>{{ statistics()?.totalRelationsFranchiseModel }}</p>
-    </div>
-    <div class="group">
-      <p>Relations Mood / Franchise :</p>
-      <p>{{ statistics()?.totalRelationsMoodFranchise }}</p>
-    </div>
-    <div class="group">
-      <p> - </p>
-    </div>
-  </div>
-
-  <div class="box">
-    <div class="group">
-      <div class="group-icon">
-        <app-icon-link size="25px"></app-icon-link>
-        <p><b>Total Links</b> :</p>
+      <div class="group">
+        <p> - </p>
       </div>
-      <p><b>{{ statistics()?.totalLinks }}</b></p>
     </div>
-    <div class="group">
-      <p>▸ Link Categories :</p>
-      <p>{{ statistics()?.totalLinkCategories }}</p>
+  
+    <div class="box">
+      <div class="group">
+        <p>Relations Mood / Tag :</p>
+        <p>{{ statistics()?.totalRelationsMoodTag | number:'3.0' }}</p>
+      </div>
+      <div class="group">
+        <p>Relations Mood / Model :</p>
+        <p>{{ statistics()?.totalRelationsMoodModel | number:'3.0' }}</p>
+      </div>
+      <div class="group">
+        <p>Relations Mood / Artist :</p>
+        <p>{{ statistics()?.totalRelationsMoodArtist | number:'3.0' }}</p>
+      </div>
     </div>
-    <div class="group">
-      <p>▸ Total Relations :</p>
-      <p>{{ statistics()?.totalRelationsLinkCategory }}</p>
+  
+    <div class="box">
+      <div class="group">
+        <p><b>Total Users</b> :</p>
+        <p><b>{{ statistics()?.totalUsers }}</b></p>
+      </div>
+      <div class="group">
+        <p> - </p>
+      </div>
+      <div class="group">
+        <p> - </p>
+      </div>
     </div>
-  </div>
-
-  <div class="box">
-    <div class="group">
-      <p>Relations Link / Artist :</p>
-      <p>{{ statistics()?.totalRelationsLinkArtist }}</p>
+  
+    <div class="box">
+      <div class="group">
+        <div class="group-icon">
+          <app-icon-model size="25px"></app-icon-model>
+          <p><b>Total Models</b> :</p>
+        </div>
+        <p><b>{{ statistics()?.totalModels }}</b></p>
+      </div>
+      <div class="group">
+        <p>▸ Males :</p>
+        <p>{{ statistics()?.totalMales }} ({{ statistics()?.malesPercentage | number:'1.2-2' }} %)</p>
+      </div>
+      <div class="group">
+        <p>▸ Females :</p>
+        <p>{{ statistics()?.totalFemales }} ({{ statistics()?.femalesPercentage | number:'1.2-2' }} %)</p>
+      </div>
     </div>
-    <div class="group">
-      <p>Relations Link / Model :</p>
-      <p>{{ statistics()?.totalRelationsLinkModel }}</p>
+  
+    <div class="box">
+      <div class="group">
+        <div class="group-icon">
+          <app-icon-artist size="25px"></app-icon-artist>
+          <p><b>Total Artists</b> :</p>
+        </div>
+        <p><b>{{ statistics()?.totalArtists }}</b></p>
+      </div>
+      <div class="group">
+        <p>▸ Total Styles :</p>
+        <p>{{ statistics()?.totalStyles }}</p>
+      </div>
+      <div class="group">
+        <p>▸ Total Relations :</p>
+        <p>{{ statistics()?.totalRelationsArtistStyle }}</p>
+      </div>
     </div>
-    <div class="group">
-      <p> - </p>
+  
+    <div class="box">
+      <div class="group">
+        <div class="group-icon">
+          <app-icon-media size="25px"></app-icon-media>
+          <p><b>Total Franchises</b> :</p>
+        </div>
+        <p><b>{{ statistics()?.totalFranchises }}</b></p>
+      </div>
+      <div class="group">
+        <p>▸ Total Media :</p>
+        <p>{{ statistics()?.totalMedia }}</p>
+      </div>
+      <div class="group">
+        <p>▸ Total Relations :</p>
+        <p>{{ statistics()?.totalRelationsFranchiseMedium }}</p>
+      </div>
+    </div>
+  
+    <div class="box">
+      <div class="group">
+        <p>Relations Franchise / Model :</p>
+        <p>{{ statistics()?.totalRelationsFranchiseModel }}</p>
+      </div>
+      <div class="group">
+        <p>Relations Mood / Franchise :</p>
+        <p>{{ statistics()?.totalRelationsMoodFranchise }}</p>
+      </div>
+      <div class="group">
+        <p> - </p>
+      </div>
+    </div>
+  
+    <div class="box">
+      <div class="group">
+        <div class="group-icon">
+          <app-icon-link size="25px"></app-icon-link>
+          <p><b>Total Links</b> :</p>
+        </div>
+        <p><b>{{ statistics()?.totalLinks }}</b></p>
+      </div>
+      <div class="group">
+        <p>▸ Link Categories :</p>
+        <p>{{ statistics()?.totalLinkCategories }}</p>
+      </div>
+      <div class="group">
+        <p>▸ Total Relations :</p>
+        <p>{{ statistics()?.totalRelationsLinkCategory }}</p>
+      </div>
+    </div>
+  
+    <div class="box">
+      <div class="group">
+        <p>Relations Link / Artist :</p>
+        <p>{{ statistics()?.totalRelationsLinkArtist }}</p>
+      </div>
+      <div class="group">
+        <p>Relations Link / Model :</p>
+        <p>{{ statistics()?.totalRelationsLinkModel }}</p>
+      </div>
+      <div class="group">
+        <p> - </p>
+      </div>
     </div>
   </div>
 </div>

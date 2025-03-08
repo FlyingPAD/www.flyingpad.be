@@ -56,6 +56,18 @@
         }
         <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
     }
+    @if(moodsGalleryType === 'tagCategory') {
+        <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
+        <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info appAnimSpin class="icon" size="25px" /></a>
+        <a (click)="handleShowMultiTag()" *ngIf="user().role === 2"><app-icon-edit class="icon" size="25px" /></a>
+        <a routerLink="/settings"><app-icon-settings class="icon" size="25px" /></a>
+        @if(topButtonIsActive) {
+            <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
+        } @else {
+            <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
+        }
+        <a appToggleRightMenu><app-icon-menu-right appAnimGrow class="icon" size="25px" /></a>
+    }
     @if(moodsGalleryType === 'franchise') {
         <a class="tweak"><div class="position">{{moodsLength | number : '4.0'}}</div></a>
         <a (click)="handleDialog()" [class.active]="infoTriggerIsActive === true"><app-icon-info appAnimSpin class="icon" size="25px" /></a>
@@ -128,6 +140,15 @@
         }
     }
     @if(moodsGalleryType === 'upload-images'){
+        <a appGoBack><app-icon-back class="icon" size="25px" /></a>
+        <a (click)="handleTriggerSaveMood()"><app-icon-save class="icon" size="25px" /></a>
+        @if(topButtonIsActive) {
+            <a appScrollToTop><app-icon-arrow-short class="icon" size="25px" /></a>
+        } @else {
+            <span><app-icon-arrow-short class="icon" size="25px" color="grey" /></span>
+        }
+    }
+    @if(moodsGalleryType === 'upload-video'){
         <a appGoBack><app-icon-back class="icon" size="25px" /></a>
         <a (click)="handleTriggerSaveMood()"><app-icon-save class="icon" size="25px" /></a>
         @if(topButtonIsActive) {

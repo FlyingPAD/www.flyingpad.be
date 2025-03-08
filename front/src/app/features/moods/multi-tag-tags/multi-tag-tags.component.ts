@@ -1,18 +1,19 @@
-import { Component, HostListener, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { FlowService } from '../../../services/flow.service';
-import { MoodsService } from '../../../services/moods.service';
-import { MultiTagService } from '../../../services/multi-tag.service';
-import { TagsCheckBoxesList } from '../../../interfaces/tags-list';
-import { MultiTagsForm } from '../../../interfaces/forms-update';
-import { NotificationService } from '../../../services/notification.service';
+import { Component, HostListener, inject, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { FlowService } from '../../../services/http/flow.service'
+import { MoodsService } from '../../../services/moods.service'
+import { MultiTagService } from '../../../services/multi-tag.service'
+import { TagsCheckBoxesList } from '../../../interfaces/tags-list'
+import { NotificationService } from '../../../services/notification.service'
+import { CommonTagsByMoodsForm } from '../../../interfaces/mood'
+import { MultiTagsForm } from '../../../interfaces/forms-update'
 
 @Component({
   selector: 'app-multi-tag-tags',
   templateUrl: './multi-tag-tags.component.html',
-  styleUrl: './multi-tag-tags.component.scss'
+  styleUrls: ['./multi-tag-tags.component.scss']
 })
-export class MultiTagTagsComponent {
+export class MultiTagTagsComponent implements OnInit {
   #flowService = inject(FlowService)
   #multiTagService = inject(MultiTagService)
   #moodsService = inject(MoodsService)
@@ -22,6 +23,7 @@ export class MultiTagTagsComponent {
   public flow = this.#flowService.flow
   public selectedMoods = this.#multiTagService.selectedMoods
   public tagsList!: TagsCheckBoxesList[]
+  private initialCommonTagIds: number[] = []
 
   ngOnInit(): void {
     const flowData = this.flow()
@@ -34,6 +36,24 @@ export class MultiTagTagsComponent {
         }))
       }))
     }
+    const moodIds = this.selectedMoods()
+    const form: CommonTagsByMoodsForm = { moodIds }
+    this.#flowService.getCommonTagsByMoods(form).subscribe(commonTags => {
+      commonTags.forEach(commonCategory => {
+        const completeCategory = this.tagsList.find(tc => tc.category.businessId === commonCategory.category.businessId)
+        if (completeCategory) {
+          commonCategory.tagsCheckBoxes.forEach(commonTag => {
+            const completeTag = completeCategory.tagsCheckBoxes.find(t => t.businessId === commonTag.businessId)
+            if (completeTag) {
+              completeTag.isChecked = true
+              if (!this.initialCommonTagIds.includes(completeTag.businessId)) {
+                this.initialCommonTagIds.push(completeTag.businessId)
+              }
+            }
+          })
+        }
+      })
+    })
   }
 
   public onTagCheckChange(tag: any): void {
@@ -41,24 +61,21 @@ export class MultiTagTagsComponent {
   }
 
   public onSubmit(): void {
-    const selectedTagIds: number[] = this.tagsList
-      .flatMap(categoryGroup =>
-        categoryGroup.tagsCheckBoxes
-          .filter(tag => tag.isChecked)
-          .map(tag => tag.businessId)
-      )
-
-    if (selectedTagIds.length === 0) {
+    const tagsToAdd = this.tagsList.flatMap(categoryGroup =>
+      categoryGroup.tagsCheckBoxes.filter(tag => !this.initialCommonTagIds.includes(tag.businessId) && tag.isChecked).map(tag => tag.businessId)
+    )
+    const tagsToRemove = this.tagsList.flatMap(categoryGroup =>
+      categoryGroup.tagsCheckBoxes.filter(tag => this.initialCommonTagIds.includes(tag.businessId) && !tag.isChecked).map(tag => tag.businessId)
+    )
+    if (tagsToAdd.length === 0 && tagsToRemove.length === 0) {
       this.#notificationService.warning('No Tags Selected')
-    }
-    else {
+    } else {
       const multiTagsForm: MultiTagsForm = {
         moodIds: this.selectedMoods(),
-        tags: selectedTagIds
+        tagsToAdd: tagsToAdd,
+        tagsToRemove: tagsToRemove
       }
-
       this.#flowService.multiTags(multiTagsForm).subscribe()
-
       this.#multiTagService.resetSelection()
       this.tagsList = []
       this.#moodsService.updateMoodMenuState('gallery')
@@ -68,10 +85,8 @@ export class MultiTagTagsComponent {
 
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) {
-    switch (event.key) {
-      case 'Enter':
-        this.onSubmit()
-        break
+    if (event.key === 'Enter') {
+      this.onSubmit()
     }
   }
 }

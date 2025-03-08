@@ -1,8 +1,7 @@
 ﻿using MB.Application.Features.Tags.Queries.GetTagsByMood;
 using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
-using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+using MB.Domain.TagAggregate;
 
 namespace MB.Application.Interfaces.Persistence;
 

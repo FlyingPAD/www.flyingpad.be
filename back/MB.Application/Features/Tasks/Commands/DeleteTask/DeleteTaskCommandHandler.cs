@@ -1,12 +1,12 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence.Common;
+using MB.Application.Interfaces.Persistence;
 using MediatR;
 
 namespace MB.Application.Features.Tasks.Commands.DeleteTask;
 
-public class DeleteTaskCommandHandler(IBaseRepository<Domain.Entities.Task> taskRepository) : IRequestHandler<DeleteTaskCommand, DeleteTaskCommandResponse>
+public class DeleteTaskCommandHandler(IBaseRepository<Domain.TaskAggregate.Task> taskRepository) : IRequestHandler<DeleteTaskCommand, DeleteTaskCommandResponse>
 {
-    private readonly IBaseRepository<MB.Domain.Entities.Task> _taskRepository = taskRepository;
+    private readonly IBaseRepository<Domain.TaskAggregate.Task> _taskRepository = taskRepository;
 
     public async Task<DeleteTaskCommandResponse> Handle(DeleteTaskCommand request, CancellationToken cancellationToken)
     {

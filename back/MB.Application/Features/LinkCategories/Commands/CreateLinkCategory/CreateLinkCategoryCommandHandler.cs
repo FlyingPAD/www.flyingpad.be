@@ -1,5 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+﻿using MB.Application.Interfaces.Persistence;
+using MB.Domain.LinkCategoryAggregate;
 using MediatR;
 
 namespace MB.Application.Features.LinkCategories.Commands.CreateLinkCategory;

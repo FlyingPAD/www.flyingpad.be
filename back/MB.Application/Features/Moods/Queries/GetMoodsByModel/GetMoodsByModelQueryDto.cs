@@ -7,4 +7,5 @@ public class GetMoodsByModelQueryDto
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public string Extension { get; set; } = string.Empty;
+    public int Score { get; set; }
 }

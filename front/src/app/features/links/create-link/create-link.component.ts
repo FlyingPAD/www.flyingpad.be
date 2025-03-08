@@ -2,8 +2,8 @@ import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LinkCreateForm } from '../../../interfaces/forms-create';
-import { FlowService } from '../../../services/flow.service';
 import { LinkCategoryCheckBox } from '../../../interfaces/link';
+import { LinkService } from '../../../services/http/link.service';
 
 @Component({
   selector: 'app-create-link',
@@ -14,7 +14,7 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
   @Input() linkCategories: LinkCategoryCheckBox[] = []
   @Output() trigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #linkService = inject(LinkService)
   #builder = inject(FormBuilder)
 
   #subscription = new Subscription()
@@ -62,7 +62,7 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
             .map((category: { businessId: number }) => category.businessId)
         }
 
-        this.#subscription = this.#flowService.CreateLink(form).subscribe(response => { if (response.success) this.trigger.emit() })
+        this.#subscription = this.#linkService.createLink(form).subscribe(response => { if (response.success) this.trigger.emit() })
       }
     }
   }

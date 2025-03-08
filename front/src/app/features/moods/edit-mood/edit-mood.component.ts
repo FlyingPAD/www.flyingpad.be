@@ -1,11 +1,12 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MoodFull } from '../../../interfaces/mood';
-import { FlowService } from '../../../services/flow.service';
+import { FlowService } from '../../../services/http/flow.service';
 import { MoodUpdateForm } from '../../../interfaces/forms-update';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm } from '../../../interfaces/relations';
 import { MoodsService } from '../../../services/moods.service';
+import { MoodService } from '../../../services/http/mood.service';
 
 @Component({
   selector: 'app-edit-mood',
@@ -14,6 +15,7 @@ import { MoodsService } from '../../../services/moods.service';
 })
 export class EditMoodComponent implements OnInit, OnDestroy {
   #flowService = inject(FlowService)
+  #moodService = inject(MoodService)
   #moodsService = inject(MoodsService)
   #formBuilder = inject(FormBuilder)
 
@@ -96,7 +98,7 @@ export class EditMoodComponent implements OnInit, OnDestroy {
     }
 
     if (this.formGroup.valid) {
-      this.#infoSubscription = this.#flowService.UpdateMood(form).subscribe()
+      this.#infoSubscription = this.#moodService.updateMood(form).subscribe()
     }
   }
 
@@ -143,7 +145,7 @@ export class EditMoodComponent implements OnInit, OnDestroy {
   }
 
   public deleteMood(): void {
-    this.#flowService.DeleteMood(this.mood.businessId).subscribe(response => {
+    this.#moodService.deleteMood(this.mood.businessId).subscribe(response => {
       if (response.success) {
         this.showGallery.emit()
         this.#moodsService.updateEditMoodMenuState('info')

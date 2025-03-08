@@ -1,9 +1,9 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, Output } from '@angular/core';
 import { LinkCategoryFull } from '../../../interfaces/link';
-import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LinkCategoryUpdateForm } from '../../../interfaces/forms-update';
+import { LinkCategoryService } from '../../../services/http/link-category.service';
 
 @Component({
   selector: 'app-edit-link-category',
@@ -14,10 +14,11 @@ export class EditLinkCategoryComponent implements OnDestroy {
   @Input() linkCategory: LinkCategoryFull | undefined = undefined
   @Output() showListTrigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #linkCategoryService = inject(LinkCategoryService)
   #formBuilder = inject(FormBuilder)
 
   #subscription = new Subscription()
+
   public isDeleteDialogOpen: boolean = false
   public formGroup: FormGroup = this.#formBuilder.group({
     name: [this.linkCategory?.name, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
@@ -48,7 +49,7 @@ export class EditLinkCategoryComponent implements OnDestroy {
     }
 
     if (this.formGroup.valid) {
-      this.#subscription = this.#flowService.UpdateLinkCategory(form).subscribe((response) => {
+      this.#subscription = this.#linkCategoryService.updateLinkCategory(form).subscribe((response) => {
         if (response.success) this.showListTrigger.emit()
       })
     }

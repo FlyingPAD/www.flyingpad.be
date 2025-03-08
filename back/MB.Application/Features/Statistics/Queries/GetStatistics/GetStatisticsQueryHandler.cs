@@ -1,5 +1,15 @@
-﻿using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+﻿using MB.Application.Interfaces.Persistence;
+using MB.Domain.ArtistAggregate;
+using MB.Domain.FranchiseAggregate;
+using MB.Domain.LinkAggregate;
+using MB.Domain.LinkCategoryAggregate;
+using MB.Domain.MediumAggregate;
+using MB.Domain.ModelAggregate;
+using MB.Domain.MoodAggregate;
+using MB.Domain.StyleAggregate;
+using MB.Domain.TagAggregate;
+using MB.Domain.TagCategoryAggregate;
+using MB.Domain.UserAggregate;
 using MediatR;
 
 namespace MB.Application.Features.Statistics.Queries.GetStatistics;

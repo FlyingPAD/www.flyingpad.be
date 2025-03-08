@@ -1,6 +1,7 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+using MB.Application.Interfaces.Persistence;
+using MB.Domain.TagAggregate;
+using MB.Domain.TagCategoryAggregate;
 using MediatR;
 
 namespace MB.Application.Features.Tags.Commands.CreateTag;

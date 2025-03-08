@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit, Output, EventEmitter, inject } fro
 import { MoodFull } from '../../../interfaces/mood';
 import { ArtistCheckBox } from '../../../interfaces/artist';
 import { Subscription } from 'rxjs';
-import { FlowService } from '../../../services/flow.service';
+import { FlowService } from '../../../services/http/flow.service';
 
 @Component({
   selector: 'app-edit-mood-artists',

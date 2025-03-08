@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, inject } fro
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { StyleLight } from '../../../interfaces/style';
-import { FlowService } from '../../../services/flow.service';
 import { ArtistCreateForm } from '../../../interfaces/forms-create';
+import { ArtistService } from '../../../services/http/artist.service';
 
 @Component({
   selector: 'app-create-artist',
@@ -14,10 +14,10 @@ export class CreateArtistComponent implements OnInit, OnDestroy {
   @Input() styles: StyleLight[] = []
   @Output() trigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #artistService = inject(ArtistService)
   #builder = inject(FormBuilder)
 
-  subscription = new Subscription()
+  #subscription = new Subscription()
   form!: FormGroup
 
   get stylesArray(): FormArray {
@@ -34,16 +34,16 @@ export class CreateArtistComponent implements OnInit, OnDestroy {
     })
   }
 
+  ngOnDestroy(): void {
+    this.#subscription.unsubscribe();
+  }
+
   private createStyleForm(style: StyleLight): FormGroup {
     return this.#builder.group({
       businessId: [style.businessId],
       name: [style.name],
       isChecked: [false]
     })
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   onSubmit(): void {
@@ -59,7 +59,7 @@ export class CreateArtistComponent implements OnInit, OnDestroy {
             .map((style: { businessId: number }) => style.businessId)
         }
 
-        this.subscription = this.#flowService.CreateArtist(form).subscribe((response) => {if(response.success) this.trigger.emit()})
+        this.#subscription = this.#artistService.createArtist(form).subscribe((response) => {if(response.success) this.trigger.emit()})
       }
     }
   }

@@ -1,4 +1,4 @@
-<div *ngIf="signal() as flow">
+<div *ngIf="flow() as flow">
     @if(flow.linkCategory?.name){
     <h1 class="h1">{{flow.linkCategory?.name}}</h1>
     }
@@ -29,7 +29,7 @@
 
         <div class="edition-list">
             <div
-                *ngFor="let link of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: editLinksCurrentPage()}">
+                *ngFor="let link of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage()}">
                 <a [class.active]="link.name === flow.link?.name" (click)="setLink(link)"> ▸ {{link.name}}</a>
             </div>
         </div>
@@ -42,7 +42,7 @@
         <div class="pagination-row" *ngIf="flow.links.length > elementsPerPage">
             <div class="pagination">
                 <pagination-controls previousLabel="" nextLabel="" class="pagination"
-                    (pageChange)="updateEditLinksCurrentPage($event)"></pagination-controls>
+                    (pageChange)="updateCurrentPage($event)"></pagination-controls>
             </div>
         </div>
 

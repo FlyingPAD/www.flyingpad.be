@@ -1,6 +1,6 @@
 import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { FlowService } from '../../services/flow.service';
+import { FlowService } from '../../services/http/flow.service';
 import { PaginationService } from '../../services/pagination.service';
 import { ViewerService } from '../../services/viewer.service';
 import { MenuService } from '../../services/menu.service';
@@ -83,6 +83,9 @@ export class MoodsComponent implements OnInit, OnDestroy {
       if (this.flow()?.moodsGalleryType === 'tag') {
         this.updateMoodId(flow.moodsByTagIndexes.previousMoodId)
       }
+      if (this.flow()?.moodsGalleryType === 'tagCategory') {
+        this.updateMoodId(flow.moodsByTagCategoryIndexes.previousMoodId)
+      }
       if (this.flow()?.moodsGalleryType === 'franchise') {
         this.updateMoodId(flow.moodsByFranchiseIndexes.previousMoodId)
       }
@@ -99,6 +102,9 @@ export class MoodsComponent implements OnInit, OnDestroy {
       }
       if (this.flow()?.moodsGalleryType === 'tag') {
         this.updateMoodId(flow.moodsByTagIndexes.nextMoodId)
+      }
+      if (this.flow()?.moodsGalleryType === 'tagCategory') {
+        this.updateMoodId(flow.moodsByTagCategoryIndexes.nextMoodId)
       }
       if (this.flow()?.moodsGalleryType === 'franchise') {
         this.updateMoodId(flow.moodsByFranchiseIndexes.nextMoodId)
@@ -127,6 +133,12 @@ export class MoodsComponent implements OnInit, OnDestroy {
   }
   public updateTagCategoryId(categoryId: number): void {
     this.#flowService.updateTagCategoryId(categoryId)
+  }
+  public getMoodsByTagCategory(categoryId: number): void {
+    this.#flowService.updateTagCategoryId(categoryId)
+    this.updateMoodMenuState('gallery')
+    this.#flowService.updateMoodsGalleryType('tagCategory')
+    this.#paginationService.resetMoodsByTagCategoryCurrentPage()
   }
   public updateTagId(tagId: number): void {
     this.#flowService.updateTagId(tagId)

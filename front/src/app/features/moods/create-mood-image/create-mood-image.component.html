@@ -1,69 +1,56 @@
-<app-spacer height="15px" />
+<p class="sticky-label">Selected Files : {{images.length || 0}}</p>
+<app-spacer height="5px" />
 <h1 class="h1">{{ 'title.add-image' | translate}}</h1>
 <p class="p">( BMP, GIF, JPG, JPEG, PNG, WEBP )</p>
-<div id="display-model">
-    <div class="model-flex">
-        <p><b>maximum</b> file size : </p>
-        <p>50 Mo</p>
-    </div>
+<p class="p">Maximum file size : 50 Mo</p>
+<hr class="dialog-hr">
+<input #originalInput type="file" multiple (change)="onFileSelect($event)">
+<div class="buttons">
+    <div id="hack" class="button" (click)="onClickHack()">Select File(s)</div>
 </div>
-<div id="create-multiple-images">
-    <div id="file_menu">
-        <p>
-            <input #originalInput type="file" multiple (change)="onFileSelect($event)">
-            <button id="hack" (click)="onClickHack()">Select</button>
-        </p>
-        <p *ngIf="images.length != 0">Selected Files : {{images.length}}</p>
-    </div>
-    @if(invalidCount > 0) {
-    <div id="supported_types">
-        <div class="flex_temp">
-            <p><b>Ignored Files</b> : </p>
-            <p>{{invalidCount}}</p>
-        </div>
-    </div>
-    <div *ngFor="let name of invalidNames">
-        <p>{{name}}</p>
-    </div>
-    }
-    <div id="multiple">
-        <div *ngFor="let image of images; let i = index">
-            <form [formGroup]="forms[i]" (ngSubmit)="onSubmit()">
-                <div class="file">
-                    <div class="file-picture">
-                        <img src="{{image.url}}" />
-                    </div>
-                    <div class="info_flex">
-                        <p><label for="name"><b>Name</b></label> :</p>
-                        <input type="text" id="name" value="{{image.sourceFile}}" formControlName="name">
-                    </div>
-                    <div class="info_flex">
-                        <p><label for="title"><b>Description</b></label> :</p>
-                        <input type="text" id="title" value="{{image.description}}" formControlName="description">
-                    </div>
-                    <div class="info_flex">
-                        <p><b>Extension</b> :</p>
-                        <p>*.{{image.extension}}</p>
-                    </div>
-                    <div class="info_flex">
-                        <p><b>Size</b> :</p>
-                        <p>{{image.size | formatSize : 2}}</p>
-                    </div>
-                    <div class="info_flex">
-                        <p><b>Height</b> :</p>
-                        <p>{{image.height}} pixels</p>
-                    </div>
-                    <div class="info_flex">
-                        <p><b>Width</b> :</p>
-                        <p>{{image.width}} pixels</p>
-                    </div>
-                    <div class="buttons">
-                        <div class="button" (click)="dropFile(image.sourceFile)">Drop File</div>
-                    </div>
+<div class="multiple">
+    <div *ngFor="let image of images; let i = index">
+        <form [formGroup]="forms[i]" (ngSubmit)="onSubmit()">
+            <div class="file">
+                <div class="file-picture">
+                    <img src="{{image.url}}" />
                 </div>
-            </form>
-        </div>
+                <div class="info-flex">
+                    <p><label for="name"><b>Name</b></label></p>
+                    <input type="text" id="name" value="{{image.sourceFile}}" formControlName="name">
+                </div>
+                <div class="info-flex">
+                    <p><label for="title"><b>Description</b></label></p>
+                    <input type="text" id="title" value="{{image.description}}" formControlName="description">
+                </div>
+                <div class="info-flex">
+                    <p><b>Extension</b></p>
+                    <p>*.{{image.extension}}</p>
+                </div>
+                <div class="info-flex">
+                    <p><b>Size</b></p>
+                    <p>{{image.size | formatSize : 2}}</p>
+                </div>
+                <div class="info-flex">
+                    <p><b>Height</b></p>
+                    <p>{{image.height}} pixels</p>
+                </div>
+                <div class="info-flex">
+                    <p><b>Width</b></p>
+                    <p>{{image.width}} pixels</p>
+                </div>
+                <div class="buttons">
+                    <div class="button" (click)="dropFile(image.sourceFile)">Drop File</div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
+@if(invalidCount > 0) {
+<p class="p"><b>Ignored Files</b> : {{invalidCount}}</p>
+<div *ngFor="let name of invalidNames">
+    <p class="p">{{name}}</p>
+</div>
+}
 <app-spacer height="75px" />
-<app-bottom-bar moodsGalleryType="upload-images" (back)="backToDashboard()" (triggerSaveMood)="onSubmit()" />
+<app-bottom-bar moodsGalleryType="upload-images" (triggerSaveMood)="onSubmit()" />

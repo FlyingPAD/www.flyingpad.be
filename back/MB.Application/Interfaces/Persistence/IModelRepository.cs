@@ -1,6 +1,5 @@
 ﻿using MB.Application.Features.Models.Queries.GetModelCheckBoxesByMood;
-using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+using MB.Domain.ModelAggregate;
 
 namespace MB.Application.Interfaces.Persistence;
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MB.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class twelfth : Migration
+    public partial class Twelfth : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -46,15 +46,15 @@ namespace MB.Persistence.Migrations
                 table: "Artists",
                 keyColumn: "EntityId",
                 keyValue: 1,
-                columns: new[] { "BusinessId", "Created", "Modified" },
-                values: new object[] { new Guid("6474aa79-7d0d-470b-b2e9-78c736150223"), new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5319), new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5322) });
+                columns: ["BusinessId", "Created", "Modified"],
+                values: [new Guid("6474aa79-7d0d-470b-b2e9-78c736150223"), new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5319), new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5322)]);
 
             migrationBuilder.UpdateData(
                 table: "Artists",
                 keyColumn: "EntityId",
                 keyValue: 2,
                 columns: new[] { "BusinessId", "Created", "Modified" },
-                values: new object[] { new Guid("2d4c789b-9cf2-4036-b0b4-c6791cf7b6bc"), new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5332), new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5332) });
+                values: [new Guid("2d4c789b-9cf2-4036-b0b4-c6791cf7b6bc"), new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5332), new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5332)]);
 
             migrationBuilder.UpdateData(
                 table: "Artists",
@@ -75,7 +75,7 @@ namespace MB.Persistence.Migrations
                 keyColumn: "EntityId",
                 keyValue: 5,
                 columns: new[] { "BusinessId", "Created", "Modified" },
-                values: new object[] { new Guid("caaf6d01-fae6-4b86-a6ad-5e7553001ca7"), new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5352), new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5353) });
+                values: [new Guid("caaf6d01-fae6-4b86-a6ad-5e7553001ca7"), new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5352), new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5353)]);
 
             migrationBuilder.UpdateData(
                 table: "Artists",

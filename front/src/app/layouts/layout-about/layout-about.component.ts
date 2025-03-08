@@ -1,7 +1,7 @@
 import { Component, inject, Signal } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthenticationService } from '../../services/http/authentication.service';
 import { MenuService } from '../../services/menu.service';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/http/user.service';
 
 @Component({
   selector: 'app-layout-about',

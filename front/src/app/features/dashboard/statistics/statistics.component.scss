@@ -1,15 +1,8 @@
 .statistics {
-    padding: 25px;
-
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-
-    background-color: var(--colorMainOpacity2);
-    border: 3px solid var(--colorMain);
-    border-radius: 10px;
-    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
     .box {
         width: 300px;

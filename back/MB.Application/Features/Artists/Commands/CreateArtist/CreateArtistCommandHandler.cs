@@ -1,6 +1,6 @@
 ﻿using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
-using MB.Domain.Entities;
+using MB.Domain.ArtistAggregate;
 using MediatR;
 
 namespace MB.Application.Features.Artists.Commands.CreateArtist;
@@ -32,7 +32,7 @@ public class CreateArtistCommandHandler(IArtistRepository artistRepository, ISty
         return new CreateArtistCommandResponse
         {
             Success = true,
-            Message = "Creation successful.",
+            Message = "Artist was created.",
             ArtistId = artist.BusinessId
         };
     }

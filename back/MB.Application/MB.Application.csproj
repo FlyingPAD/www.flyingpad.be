@@ -5,6 +5,7 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="Features\Moods\Queries\GetCommonTagsByMoods\GetCommonTagsByMoodsQueryResponse.cs~RF22a0b05.TMP" />
 	  <None Remove="Features\Users\Queries\GetUserById\GetUserByIdQueryResponse.cs~RF24afae8.TMP" />
 	</ItemGroup>
 

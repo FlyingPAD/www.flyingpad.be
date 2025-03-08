@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MB.Domain.Entities;
+using MB.Domain.BookAggregate;
 
 namespace MB.Persistence.Configurations;
 

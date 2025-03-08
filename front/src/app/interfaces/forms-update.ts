@@ -82,5 +82,6 @@ export interface UserUpdateForm {
 
 export interface MultiTagsForm {
     moodIds: number[]
-    tags: number[]
+    tagsToAdd: number[]
+    tagsToRemove: number[]
 }

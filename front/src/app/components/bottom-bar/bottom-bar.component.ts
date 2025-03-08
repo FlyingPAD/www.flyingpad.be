@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, inject, Input, Output } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/http/user.service';
 
 @Component({
   selector: 'app-bottom-bar',

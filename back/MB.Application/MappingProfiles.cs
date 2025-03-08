@@ -48,6 +48,7 @@ using MB.Application.Features.Moods.Queries.GetMoodsByArtist;
 using MB.Application.Features.Moods.Queries.GetMoodsByFranchise;
 using MB.Application.Features.Moods.Queries.GetMoodsByModel;
 using MB.Application.Features.Moods.Queries.GetMoodsByTag;
+using MB.Application.Features.Moods.Queries.GetMoodsByTagCategory;
 using MB.Application.Features.Moods.Queries.GetRandomMood;
 using MB.Application.Features.Styles.Commands.DeleteStyle;
 using MB.Application.Features.Styles.Commands.UpdateStyle;
@@ -78,7 +79,18 @@ using MB.Application.Features.Users.Queries.GetUserById;
 using MB.Application.Features.Users.Queries.GetUsersList;
 using MB.Application.Features.Videos.Queries.GetOneVideoDetails;
 using MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetails;
-using MB.Domain.Entities;
+using MB.Domain.ArtistAggregate;
+using MB.Domain.FranchiseAggregate;
+using MB.Domain.LinkAggregate;
+using MB.Domain.LinkCategoryAggregate;
+using MB.Domain.MediumAggregate;
+using MB.Domain.ModelAggregate;
+using MB.Domain.MoodAggregate;
+using MB.Domain.StyleAggregate;
+using MB.Domain.TagAggregate;
+using MB.Domain.TagCategoryAggregate;
+using MB.Domain.TaskCategoryAggregate;
+using MB.Domain.UserAggregate;
 
 namespace MB.Application;
 
@@ -94,6 +106,7 @@ public class MappingProfiles : Profile
         CreateMap<Mood, GetMoodByIdQueryDto>().ReverseMap();
         CreateMap<Mood, GetRandomMoodQueryDto>().ReverseMap();
         CreateMap<Mood, GetMoodsByTagQueryDto>().ReverseMap();
+        CreateMap<Mood, GetMoodsByTagCategoryQueryDto>().ReverseMap();
         CreateMap<Mood, GetMoodsByArtistQueryDto>().ReverseMap();
         CreateMap<Mood, GetMoodsByModelQueryDto>().ReverseMap();
         CreateMap<Mood, GetMoodsByFranchiseQueryDto>().ReverseMap();
@@ -190,11 +203,11 @@ public class MappingProfiles : Profile
         CreateMap<TaskCategory, TaskCategoryTaskListVm>().ReverseMap();
 
         // Tasks.
-        CreateMap<Domain.Entities.Task, CreateTaskCommand>().ReverseMap();
-        CreateMap<Domain.Entities.Task, TasksListVm>().ReverseMap();
-        CreateMap<Domain.Entities.Task, TaskDetailsVm>().ReverseMap();
-        CreateMap<Domain.Entities.Task, UpdateTaskCommand>().ReverseMap();
-        CreateMap<Domain.Entities.Task, DeleteTaskCommand>().ReverseMap();
+        CreateMap<Domain.TaskAggregate.Task, CreateTaskCommand>().ReverseMap();
+        CreateMap<Domain.TaskAggregate.Task, TasksListVm>().ReverseMap();
+        CreateMap<Domain.TaskAggregate.Task, TaskDetailsVm>().ReverseMap();
+        CreateMap<Domain.TaskAggregate.Task, UpdateTaskCommand>().ReverseMap();
+        CreateMap<Domain.TaskAggregate.Task, DeleteTaskCommand>().ReverseMap();
 
         // Users.
         CreateMap<User, GetUsersListQueryDto>().ReverseMap();

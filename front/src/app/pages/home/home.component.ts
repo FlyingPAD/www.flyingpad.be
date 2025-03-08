@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/http/user.service';
 import { Router } from '@angular/router';
 import { ImageUrlService } from '../../services/image-url.service';
-import { FlowService } from '../../services/flow.service';
+import { FlowService } from '../../services/http/flow.service';
 import { environment } from '../../../environments/environment';
 
 @Component({

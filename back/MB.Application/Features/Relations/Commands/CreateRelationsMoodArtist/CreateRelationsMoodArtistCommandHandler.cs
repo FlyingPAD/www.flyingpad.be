@@ -1,7 +1,6 @@
 ﻿using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MB.Application.Models;
-using MB.Domain.Entities;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Commands.CreateRelationsMoodArtist;

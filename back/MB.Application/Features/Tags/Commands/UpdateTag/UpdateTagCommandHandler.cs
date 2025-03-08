@@ -1,8 +1,9 @@
-﻿using MB.Application.Interfaces.Persistence.Common;
-using MB.Application.Models;
-using MB.Domain.Entities;
+﻿using MB.Application.Models;
 using MediatR;
 using MB.Application.Exceptions;
+using MB.Application.Interfaces.Persistence;
+using MB.Domain.TagAggregate;
+using MB.Domain.TagCategoryAggregate;
 
 namespace MB.Application.Features.Tags.Commands.UpdateTag;
 

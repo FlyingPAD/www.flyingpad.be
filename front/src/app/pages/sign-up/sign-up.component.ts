@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ImageUrlService } from '../../services/image-url.service';
 import { LanguageService } from '../../services/language.service';
-import { FlowService } from '../../services/flow.service';
+import { FlowService } from '../../services/http/flow.service';
 
 @Component({
   selector: 'app-sign-up',

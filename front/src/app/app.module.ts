@@ -50,7 +50,6 @@ import { MultiTagModelsComponent } from './features/moods/multi-tag-models/multi
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CreateArtistComponent } from './features/artists/create-artist/create-artist.component';
 import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
-import { ListFlowComponent } from './components/list-flow/list-flow.component';
 import { TagsComponent } from './pages/tags/tags.component';
 import { ScriptsComponent } from './pages/scripts/scripts.component';
 import { ToolsComponent } from './pages/tools/tools.component';
@@ -280,7 +279,6 @@ export function appInitializerFactory(translate: TranslateService) {
     UserRegisterComponent,
     // Components.
     AppComponent,
-    ListFlowComponent,
     CurrentTimeComponent,
     ButtonBackComponent,
     ButtonTopComponent,

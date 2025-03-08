@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
 import { FranchiseFull } from '../../../interfaces/franchise';
-import { FlowService } from '../../../services/flow.service';
 import { Subscription } from 'rxjs';
+import { FranchiseService } from '../../../services/http/franchise.service';
 
 @Component({
   selector: 'app-delete-franchise',
@@ -12,10 +12,9 @@ export class DeleteFranchiseComponent implements OnDestroy {
   @Input() franchise : FranchiseFull | undefined = undefined
   @Output() toggleDialog = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #franchiseService = inject(FranchiseService)
 
-  #subscription = new Subscription()
-  
+  #subscription = new Subscription()  
 
   ngOnDestroy(): void {
     this.#subscription.unsubscribe()
@@ -23,7 +22,7 @@ export class DeleteFranchiseComponent implements OnDestroy {
 
   public deleteLink(): void {
     if(this.franchise) {
-      this.#subscription = this.#flowService.DeleteFranchise(this.franchise.businessId).subscribe(
+      this.#subscription = this.#franchiseService.deleteFranchise(this.franchise.businessId).subscribe(
         (response) => {if(response.success) this.toggleDialog.emit()})
     }
   }

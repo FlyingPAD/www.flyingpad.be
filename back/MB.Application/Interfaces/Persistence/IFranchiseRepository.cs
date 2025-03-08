@@ -1,6 +1,5 @@
 ﻿using MB.Application.Features.Franchises.Queries.GetFranchisesCheckBoxesByModel;
-using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+using MB.Domain.FranchiseAggregate;
 
 namespace MB.Application.Interfaces.Persistence;
 

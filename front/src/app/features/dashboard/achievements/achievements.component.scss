@@ -1,90 +1,76 @@
-.achievements {    
-    margin: auto;
-    padding: 25px;
-    
-    background-color: var(--colorMainOpacity2);
-    border: 3px solid var(--colorMain);
-    border-radius: 10px;
-    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+.link {
+    text-align: center;
+    font-size: 17px;
+    color: var(--colorMainOpacity8);
+}
 
-    h1 {
-        color: var(--colorMain);
-        font-size: 18px;
-        text-align: center;
-        margin: 0;
-        transition-duration: 300ms;
-    }
-    .link {
-        color: var(--colorMainOpacity8);
-    }
-    .link:hover {
+.link:hover {
+    cursor: pointer;
+    color: var(--colorMain);
+    text-decoration: underline;
+}
+
+.category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    margin-bottom: 35px;
+
+    .achievement {
+        margin: 15px;
+
         cursor: pointer;
-        color: var(--colorMain);
-        text-decoration: underline; 
-    }
 
-    .category {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
+        .icon-title {
+            width: 95px;
+            height: 95px;
 
-        margin-bottom: 35px;
+            background-color: var(--colorWhiteOpacity5);
+            border: 8px solid var(--colorMain);
+            border-radius: 20px;
+            box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
-        .achievement {
-            margin: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            cursor: pointer;
+            cursor: initial;
+        }
 
-            .icon-title {
-                width: 95px;
-                height: 95px;
+        .icon {
+            width: 95px;
+            height: 95px;
 
-                background-color: var(--colorWhiteOpacity5);
-                border: 8px solid var(--colorMain);
-                border-radius: 20px;
-                box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+            background-color: var(--colorWhiteOpacity5);
+            border: 8px solid var(--colorMain);
+            border-radius: 20px;
+            box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-                cursor: initial;
-            }
+            opacity: 0.8;
+        }
 
-            .icon {
-                width: 95px;
-                height: 95px;
+        .icon:hover {
+            opacity: 1;
+            transition: 300ms;
+        }
 
-                background-color: var(--colorWhiteOpacity5);
-                border: 8px solid var(--colorMain);
-                border-radius: 20px;
-                box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+        .done {
+            border: 8px solid gold;
+            box-shadow: 0 3px 4px 0px goldenrod;
+            background-color: goldenrod;
+        }
 
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                opacity: 0.8;
-            }
-
-            .icon:hover {
-                opacity: 1;
-                transition: 300ms;
-            }
-
-            .done {
-                border: 8px solid gold;
-                box-shadow: 0 3px 4px 0px goldenrod;
-                background-color: goldenrod;
-            }
-    
-            p {
-                color: var(--colorMain);
-                font-size: 13px;
-                text-align: center;
-                font-weight: bold;
-            }
+        p {
+            color: var(--colorMain);
+            font-size: 13px;
+            text-align: center;
+            font-weight: bold;
         }
     }
 }
@@ -107,6 +93,6 @@
     }
 
     p {
-        font-size: 14px; 
+        font-size: 14px;
     }
 }

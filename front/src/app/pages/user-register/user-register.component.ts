@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthenticationService } from '../../services/http/authentication.service';
 
 @Component({
   selector: 'app-user-register',

@@ -1,7 +1,6 @@
 ﻿using MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckBoxesByLink;
 using MB.Application.Interfaces.Persistence;
-using MB.Domain.Entities;
-using MB.Persistence.Repositories.Common;
+using MB.Domain.LinkCategoryAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories;

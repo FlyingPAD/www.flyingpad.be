@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { ArtistFull } from '../../../interfaces/artist';
-import { FlowService } from '../../../services/flow.service';
 import { Subscription } from 'rxjs';
+import { ArtistService } from '../../../services/http/artist.service';
 
 @Component({
   selector: 'app-delete-artist',
@@ -12,16 +12,16 @@ export class DeleteArtistComponent {
   @Input() artist : ArtistFull | undefined = undefined
   @Output() toggleDialog = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #artistService = inject(ArtistService)
 
-  subscription = new Subscription()
+  #subscription = new Subscription()
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    this.#subscription.unsubscribe()
   }
   delete(): void {
     if(this.artist) {
-      this.subscription = this.#flowService.DeleteArtist(this.artist.businessId).subscribe(
+      this.#subscription = this.#artistService.deleteArtist(this.artist.businessId).subscribe(
         (response) => {if(response.success) this.toggleDialog.emit()})
     }
   }

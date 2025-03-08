@@ -1,8 +1,7 @@
 ﻿using MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 using MB.Application.Interfaces.Persistence;
-using MB.Domain.Common;
-using MB.Domain.Entities;
-using MB.Persistence.Repositories.Common;
+using MB.Domain;
+using MB.Domain.ArtistAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence.Repositories;

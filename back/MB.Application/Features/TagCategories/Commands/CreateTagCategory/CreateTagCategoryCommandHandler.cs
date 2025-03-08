@@ -1,5 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence.Common;
-using MB.Domain.Entities;
+﻿using MB.Application.Interfaces.Persistence;
+using MB.Domain.TagCategoryAggregate;
 using MediatR;
 
 namespace MB.Application.Features.TagCategories.Commands.CreateTagCategory;

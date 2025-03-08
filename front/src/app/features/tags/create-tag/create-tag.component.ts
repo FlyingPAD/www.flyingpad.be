@@ -1,10 +1,10 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FlowService } from '../../../services/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { TagCreateForm } from '../../../interfaces/forms-create';
 import { TagCategoryFull, TagCategoryLight } from '../../../interfaces/tag-category';
+import { TagService } from '../../../services/http/tag.service';
 
 @Component({
   selector: 'app-create-tag',
@@ -16,7 +16,7 @@ export class CreateTagComponent implements OnInit, OnDestroy {
   @Input() category: TagCategoryFull | undefined = undefined
   @Output() trigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #tagService = inject(TagService)
   #formBuilder = inject(FormBuilder)
   #toastr = inject(ToastrService)
 
@@ -46,10 +46,9 @@ export class CreateTagComponent implements OnInit, OnDestroy {
     }
 
     if (this.createFormGroup.valid) {
-      this.#subscription = this.#flowService.CreateTag(form).subscribe({
+      this.#subscription = this.#tagService.createTag(form).subscribe({
         next: () => {
           this.trigger.emit()
-          this.#toastr.success('Tag was created.')
         },
         error: (error) => {
           this.#toastr.error(`Error : ${error}`)

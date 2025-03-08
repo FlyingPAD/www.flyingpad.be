@@ -1,11 +1,11 @@
-﻿using MB.Application.Interfaces.Persistence.Common;
+﻿using MB.Application.Interfaces.Persistence;
 using MediatR;
 
 namespace MB.Application.Features.Tasks.Queries.CountTasks;
 
-public class CountTasksQueryHandler(IBaseRepository<Domain.Entities.Task> taskRepository) : IRequestHandler<CountTasksQuery, CountTasksQueryResponse>
+public class CountTasksQueryHandler(IBaseRepository<Domain.TaskAggregate.Task> taskRepository) : IRequestHandler<CountTasksQuery, CountTasksQueryResponse>
 {
-    private readonly IBaseRepository<Domain.Entities.Task> _taskRepository = taskRepository;
+    private readonly IBaseRepository<Domain.TaskAggregate.Task> _taskRepository = taskRepository;
 
     public async Task<CountTasksQueryResponse> Handle(CountTasksQuery request, CancellationToken cancellationToken)
     {

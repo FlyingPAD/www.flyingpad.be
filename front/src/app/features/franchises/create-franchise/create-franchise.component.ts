@@ -1,9 +1,9 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MediumCheckBox } from '../../../interfaces/franchise';
-import { FlowService } from '../../../services/flow.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FranchiseCreateForm } from '../../../interfaces/forms-create';
+import { FranchiseService } from '../../../services/http/franchise.service';
 
 @Component({
   selector: 'app-create-franchise',
@@ -14,7 +14,7 @@ export class CreateFranchiseComponent implements OnInit, OnDestroy {
   @Input() media: MediumCheckBox[] = []
   @Output() trigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
+  #franchiseService = inject(FranchiseService)
   #builder = inject(FormBuilder)
 
   #subscription = new Subscription()
@@ -34,16 +34,16 @@ export class CreateFranchiseComponent implements OnInit, OnDestroy {
     })
   }
 
+  ngOnDestroy(): void {
+    this.#subscription.unsubscribe()
+  }
+
   private createMediumFormGroup(medium: MediumCheckBox): FormGroup {
     return this.#builder.group({
       businessId: [medium.businessId],
       name: [medium.name],
       isChecked: [false]
     })
-  }
-
-  ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
   }
 
   public onSubmit(): void {
@@ -59,7 +59,7 @@ export class CreateFranchiseComponent implements OnInit, OnDestroy {
             .map((medium: { businessId: number }) => medium.businessId)
         }
 
-        this.#subscription = this.#flowService.CreateFranchise(form).subscribe((response) => { if (response.success) this.trigger.emit() })
+        this.#subscription = this.#franchiseService.createFranchise(form).subscribe((response) => { if (response.success) this.trigger.emit() })
       }
     }
   }

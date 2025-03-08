@@ -3,6 +3,7 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { NotificationService } from '../services/notification.service';
+import { BaseResponse } from '../interfaces/base-response';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -14,15 +15,26 @@ export class ErrorInterceptor implements HttpInterceptor {
         let errorMessage = 'An error occurred'
 
         if (error.error instanceof ErrorEvent) {
-          // Client-side error
+          // Client Error :
           errorMessage = `Client Error: ${error.error.message}`
-        }
+        } 
         else {
-          // Server-side error
-          errorMessage = `Server Error Status: ${error.status}, Message: ${error.message}`
-        }
-        this.#notificationService.error(errorMessage, 'server Error')
+          // Server Error :
+          const serverResponse = error.error as BaseResponse
 
+          if (serverResponse && typeof serverResponse.message === 'string') {
+            errorMessage = serverResponse.message
+
+            if (serverResponse.validationErrors && serverResponse.validationErrors.length) {
+              errorMessage += ' - ' + serverResponse.validationErrors.join(', ')
+            }
+          } else {
+            // Fallback :
+            errorMessage = `Server Error Status: ${error.status}, Message: ${error.message}`
+          }
+        }
+
+        this.#notificationService.error(errorMessage, 'Server Error')
         return throwError(() => new Error(errorMessage))
       })
     )

@@ -1,5 +1,5 @@
-<div class="achievements">
-  <h1>Achievements</h1>
+<div class="main-frame">
+  <h1 class="frame-title">Achievements</h1>
   <hr class="dialog-hr">
   <div class="category">
     @for(achievement of achievements; track achievement.id) {
@@ -120,6 +120,7 @@
         <p class="title"><b>{{ currentAchievement.title }}</b></p>
         <p class="date">{{ currentAchievement.date | date }}</p>
         <p>{{ currentAchievement.done }}</p>
+        <p>( + {{ currentAchievement.xpValue }} XP )</p>
       </div>
     }
     @else {
@@ -127,6 +128,7 @@
       <div>
         <p class="title"><b>{{ currentAchievement.title }}</b></p>
         <p>{{ currentAchievement.goal }}</p>
+        <p>( + {{ currentAchievement.xpValue }} XP )</p>
       </div>
     }
 

@@ -33,6 +33,9 @@ export class MoodsGalleryComponent {
     if(this.galleryType === 'tag') {
       this.#paginationService.updateMoodsByTagCurrentPage(page)
     }
+    if(this.galleryType === 'tagCategory') {
+      this.#paginationService.updateMoodsByTagCategoryCurrentPage(page)
+    }
     if(this.galleryType === 'model') {
       this.#paginationService.updateModelGalleryCurrentPage(page)
     }
@@ -50,6 +53,9 @@ export class MoodsGalleryComponent {
     }
     if(this.galleryType === 'tag') {
       return this.#paginationService.moodsByTagCurrentPage()
+    }
+    if(this.galleryType === 'tagCategory') {
+      return this.#paginationService.moodsByTagCategoryCurrentPage()
     }
     if(this.galleryType === 'model') {
       return this.#paginationService.modelGalleryCurrentPage()
