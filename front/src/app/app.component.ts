@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
     if (token) { this.#authenticationService.authenticate(token) }
   }
 
+  // Global shortcuts
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
