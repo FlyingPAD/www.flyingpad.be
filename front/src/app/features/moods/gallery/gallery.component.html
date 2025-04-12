@@ -1,0 +1,81 @@
+@if(galleryType() === galleryTypes.Gallery) {
+@if(moods?.length) {
+<div [ngClass]="isRightMenuOn() ? 'gallery menu-open' : 'gallery' ">
+    <div *ngFor="let mood of moods || [] | paginate : { itemsPerPage : itemsPerPage, currentPage : currentPage }">
+        <section>
+            @if(mood.type == 1) {
+            <img [class.active]="currentMood?.businessId === mood.businessId"
+                [appScrollActive]="currentMood?.businessId === mood.businessId"
+                src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
+                (click)="handleSetMood(mood.businessId)" />
+            }
+            @if(mood.type == 2) {
+            <img [class.active]="currentMood?.businessId === mood.businessId"
+                [appScrollActive]="currentMood?.businessId === mood.businessId" class="vid"
+                src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
+                (click)="handleSetMood(mood.businessId)" />
+            }
+            @if(mood.type == 3) {
+            <img [class.active]="currentMood?.businessId === mood.businessId"
+                [appScrollActive]="currentMood?.businessId === mood.businessId"
+                src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
+                (click)="handleSetMood(mood.businessId)" />
+            }
+            @if(mood.type == 4) {
+            <img [class.active]="currentMood?.businessId === mood.businessId"
+                [appScrollActive]="currentMood?.businessId === mood.businessId" class="vid-youtube"
+                src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
+                (click)="handleSetMood(mood.businessId)" />
+            }
+        </section>
+    </div>
+</div>
+}
+@if(!moods?.length) {
+<div class="empty-moods">
+    <p>No moods found !</p>
+</div>
+}
+<div class="pagination-row">
+    @if(moods && moods.length > itemsPerPage) {
+    <div class="pagination">
+        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event" />
+    </div>
+    }
+</div>
+<app-spacer height="150px" />
+}
+
+@if(galleryType() === galleryTypes.Details) {
+@if(currentMood) {
+<div class="viewer">
+    @if(currentMood.type === 1) {
+    <div class="type-1">
+        <img [style.height.px]="moodSizeToggle() ? 1500 : null"
+            src="{{environment}}/Content/img_thumbs/{{currentMood.businessId}}.{{currentMood.extension}}" />
+    </div>
+    }
+    @if(currentMood.type === 2) {
+    <div class="type-2">
+        <video controls autoplay loop [muted]="true"
+            [src]="environment + '/Content/video/' + currentMood.businessId + '.' + currentMood.extension"
+            type="video/mp4">
+        </video>
+    </div>
+    }
+    @if(currentMood.type === 3) {
+    <div class="type-3">
+        <!-- Work in Progress -->
+    </div>
+    }
+    @if(currentMood.type === 4) {
+    <div class="type-4">
+        <!-- Work in Progress -->
+    </div>
+    }
+</div>
+}
+@else {
+<p class="p">No mood selected.</p>
+}
+}

@@ -17,8 +17,19 @@
   box-shadow: 0 3px 4px 0px rgba(80, 42, 14, 0.3);
 
   z-index: 1000;
+  transition-duration: 300ms;
   
   hr {
     margin-top: 20px;
   }
+}
+
+.on {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.off {
+  opacity: 0;
+  pointer-events: none;
 }

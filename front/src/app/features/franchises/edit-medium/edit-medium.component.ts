@@ -3,7 +3,7 @@ import { MediumFull } from '../../../interfaces/franchise';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MediumUpdateForm } from '../../../interfaces/forms-update';
-import { MediumService } from '../../../services/http/medium.service';
+import { FranchiseService } from '../../../services/http/franchise.service';
 
 @Component({
   selector: 'app-edit-medium',
@@ -12,9 +12,9 @@ import { MediumService } from '../../../services/http/medium.service';
 })
 export class EditMediumComponent implements OnInit, OnDestroy {
   @Input() medium: MediumFull | undefined = undefined
-  @Output() trigger = new EventEmitter<void>()
+  @Output() setViewMode = new EventEmitter<void>()
 
-  #mediumService = inject(MediumService)
+  #franchiseService = inject(FranchiseService)
   #formBuilder = inject(FormBuilder)
 
   #subscription = new Subscription()
@@ -41,7 +41,7 @@ export class EditMediumComponent implements OnInit, OnDestroy {
   }
   public closeDeleteDialogEmit(): void {
     this.isDeleteDialogOpen = false
-    this.trigger.emit()
+    this.setViewMode.emit()
   }
 
   public onSubmit(): void {
@@ -52,8 +52,8 @@ export class EditMediumComponent implements OnInit, OnDestroy {
         description: this.editFormGroup.value.description
       }
 
-      this.#subscription = this.#mediumService.updateMedium(form).subscribe((response) => {
-        if (response.success) this.trigger.emit()
+      this.#subscription = this.#franchiseService.updateMedium(form).subscribe((response) => {
+        if (response.success) this.setViewMode.emit()
       })
     }
   }

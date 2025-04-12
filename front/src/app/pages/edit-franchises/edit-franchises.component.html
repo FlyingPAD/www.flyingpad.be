@@ -1,73 +1,86 @@
-<div class="edition" *ngIf="flow() as flow">
+<div class="edition">
     <div class="edition-selection">
-        @if(flow.medium?.name){
-        <p><b>{{flow.medium?.name}}</b></p>
-        }
-        @else {
-        <p>Select a medium.</p>
-        }
+        <p [style.fontWeight]="franchisesFlow()?.medium ? 'bold' : 'normal'">{{ franchisesFlow()?.medium?.name || 'Select a category.' }}</p>
+        
         <div class="edition-buttons">
-            <app-icon-list class="icon" [class.active]="showList" size="25px" (click)="triggerShowList()" />
-            <app-icon-plus class="icon" [class.active]="showNewCategory" size="25px"
-                (click)="triggerShowNewCategory()" />
-            @if(flow.medium?.name){
-            <app-icon-edit class="icon" [class.active]="showEditCategory" size="25px"
-                (click)="triggerShowEditCategory()" />
+            <app-icon-list class="icon" [class.active]="currentViewMode === viewModes.ListView" size="25px"
+                (click)="setViewMode(viewModes.ListView)" />
+            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.MediumCreationView"
+                size="25px" (click)="setViewMode(viewModes.MediumCreationView)" />                
+            @if(franchisesFlow()?.medium) {
+                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.MediumEditionView"
+                    size="25px" (click)="setViewMode(viewModes.MediumEditionView)" />
             }
         </div>
     </div>
     <div class="edition-selection">
-        @if(flow.franchise){
-        <p><b>{{flow.franchise.name}}</b></p>
-        }
-        @else {
-        <p>Please, select a franchise from the list.</p>
-        }
+        <p [style.fontWeight]="franchisesFlow()?.franchise ? 'bold' : 'normal'">
+            {{ franchisesFlow()?.franchise?.name || 'Please, select a franchise from the list.' }}</p>
+
         <div class="edition-buttons">
-            <app-icon-plus class="icon" [class.active]="showNew" size="25px" (click)="triggerShowNew()" />
-            @if(flow.franchise){
-            <app-icon-edit class="icon" [class.active]="showEdit" size="25px" (click)="triggerShowEdit()" />
-            <app-icon-go class="icon" size="25px" (click)="go()" />
+            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.FranchiseCreationView" size="25px"
+                (click)="setViewMode(viewModes.FranchiseCreationView)" />
+            @if(franchisesFlow()?.franchise){
+                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.FranchiseEditionView" size="25px"
+                    (click)="setViewMode(viewModes.FranchiseEditionView)" />
+                <app-icon-go class="icon" size="25px" (click)="go()" />
             }
         </div>
     </div>
-    @if (showList) {
-    <div class="filter">
-        <input type="text" [(ngModel)]="searchFranchises" placeholder="Filter franchises ...">
-    </div>
 
-    <div class="edition-list">
-        <div
-            *ngFor="let franchise of filterFranchises() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage()}">
-            <a [class.active]="franchise.name === flow.franchise?.name" (click)="setFranchise(franchise)"> ▸
-                {{franchise.name}}</a>
+    @if (currentViewMode === viewModes.ListView) {
+        <div class="filter">
+            <input type="text" [(ngModel)]="searchFranchises" placeholder="Filter franchises ...">
         </div>
-    </div>
-
-    <app-right-column>
-        <app-right-column-list [table]="flow.media" [currentEntityId]="flow.medium?.businessId"
-            (entityId)="updateMediaId($event)" />
-    </app-right-column>
-
-    <div class="pagination-row" *ngIf="flow.franchisesByMedium.length > elementsPerPage">
-        <div class="pagination">
-            <pagination-controls previousLabel="" nextLabel="" class="pagination"
-                (pageChange)="updateCurrentPage($event)" />
-        </div>
-    </div>
+        @if(filterFranchises()?.length) {
+            <div class="edition-list">
+                <div *ngFor="let franchise of filterFranchises() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage}">
+                    <a [class.active]="franchise.name === franchisesFlow()?.franchise?.name" (click)="setFranchiseId(franchise.businessId)"> ▸
+                        {{ franchise.name }}
+                    </a>
+                </div>
+            </div>
+        }
+        @else if(!filterFranchises()?.length) {
+            <p class="p">No franchises were found.</p>
+            <div class="empty-list">
+                <p>Click</p>
+                <app-icon-plus size="25px" class="icon" />
+                <p>to add a new franchise.</p>
+            </div>
+        }
+        @if((franchisesFlow()?.franchisesByMedium?.length || 0) > elementsPerPage) {
+            <div class="pagination-row">
+                <div class="pagination">
+                    <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />
+                </div>
+            </div>
+        }
     }
-    @if (showNew) {
-    <app-create-franchise [media]="flow.media" (trigger)="triggerShowList()" />
-    }
-    @if (showNewCategory) {
-    <app-create-medium (trigger)="triggerShowList()" />
-    }
-    @if (showEdit) {
-    <app-edit-franchise [franchise]="flow.franchise" (trigger)="triggerShowList()" />
-    }
-    @if (showEditCategory) {
-    <app-edit-medium [medium]="flow.medium" (trigger)="triggerShowList()" />
-    }
-    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.franchisesByMedium.length" />
 </div>
-<app-spacer height="150px" />
+
+@if (currentViewMode === viewModes.FranchiseCreationView) {
+    <app-create-franchise [media]="franchisesFlow()?.media || []" (setViewMode)="setViewMode(viewModes.ListView)" />
+}
+@if (currentViewMode === viewModes.MediumCreationView) {
+    <app-create-medium (setViewMode)="setViewMode(viewModes.ListView)" />
+}
+@if (currentViewMode === viewModes.FranchiseEditionView) {
+    <app-edit-franchise [franchise]="franchisesFlow()?.franchise" (setViewMode)="setViewMode(viewModes.ListView)" />
+}
+@if (currentViewMode === viewModes.MediumEditionView) {
+    <app-edit-medium [medium]="franchisesFlow()?.medium" (setViewMode)="setViewMode(viewModes.ListView)" />
+}
+
+<app-right-column>
+    <app-right-column-generic-list [items]="franchisesFlow()?.media || []" 
+        [selectedItemId]="franchisesFlow()?.medium?.businessId" (setSelectedItemId)="setMediumId($event)" />
+</app-right-column>
+
+<app-spacer />
+
+<app-bottom-bar>
+    <app-bottom-icon-back />
+    <app-bottom-items-length [itemsLength]="franchisesFlow()?.franchisesByMedium?.length" />
+    <app-bottom-toggle-right-menu />
+</app-bottom-bar>

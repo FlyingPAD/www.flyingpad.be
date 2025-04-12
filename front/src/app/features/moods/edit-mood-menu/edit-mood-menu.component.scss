@@ -1,49 +1,97 @@
 .edit-mood-menu {
-    position: sticky;
-    top: 60px;
-    margin-top: 10px;
+    position: fixed;
+    top: 61px;
+    left: -2px;
+
+    width: 315px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
+    background-color: var(--colorWhiteOpacity5);
+    backdrop-filter: blur(3px);
+    border: 3px solid var(--colorMain);
+    border-radius: 0 15px 15px 0;
+    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
     z-index: 5;
 
-    a {
+    .button {
         position: relative;
+        top: 0;
 
         margin: 10px;
-        padding: 10px;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        .icon {
+            height: 50px;
+            width: 50px;
 
-        font-size: 17px;
-        color: var(--colorMain);
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-        background-color: var(--colorWhiteOpacity4);
-        border: 2px solid var(--colorMainOpacity4);
-        border-radius: 15px;
-        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+            background-color: var(--colorWhiteOpacity4);
+            border: 3px solid var(--colorMainOpacity4);
+            border-radius: 10px;
+            box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
-        span {
-            position: absolute;
-            top: 80px;
-            font-size: 12px;
-            font-weight: bold;
+            transition-duration: 500ms;
+
+            margin-bottom: 5px;
+        }
+
+        .icon-text {
+            p {
+                margin: 0;
+
+                font-size: 9px;
+                font-weight: bold;
+                text-align: center;
+                color: var(--colorMainOpacity7);
+
+                transition-duration: 500ms;
+            }
         }
     }
 
-    a:not(.active):hover {
-        background-color: var(--colorWhiteOpacity7);
-        border: 2px solid var(--colorMainOpacity7);
-        transition-duration: 500ms;
+    .button:not(.active):hover {
         cursor: pointer;
+
+        .icon {
+            border: 3px solid var(--colorMainOpacity8);
+            background-color: var(--colorWhiteOpacity8);
+        }
+
+        .icon-text {
+            color: var(--colorMain);
+        }
     }
 
     .active {
-        background-color: var(--colorWhite);
-        border: 2px solid var(--colorMain);
+        .icon {
+            border: 3px solid var(--colorMain);
+            background-color: var(--colorWhite);
+        }
+
+        .icon-text {
+            p {
+                color: var(--colorMain);
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .edit-mood-menu {
+        position: sticky;
+        top: 61px;
+        left: 0;
+
+        margin: auto;
+
+        border-radius: 15px;
+
+        transform: translateX(0);
     }
 }

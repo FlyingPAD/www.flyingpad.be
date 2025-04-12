@@ -21,7 +21,7 @@ public class GetLinksByCategoryQueryHandler(ILinkRepository linkRepository, ILin
         return new GetLinksByCategoryQueryResponse
         {
             Success = true,
-            Message = "Links by category.",
+            Message = "Links by category",
             Links = _mapper.Map<List<GetLinksByCategoryQueryDto>>(links)
         };
     }

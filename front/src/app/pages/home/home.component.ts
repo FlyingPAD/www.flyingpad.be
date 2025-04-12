@@ -2,8 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { UserService } from '../../services/http/user.service';
 import { Router } from '@angular/router';
 import { ImageUrlService } from '../../services/image-url.service';
-import { FlowService } from '../../services/http/flow.service';
 import { environment } from '../../../environments/environment';
+import { MoodService } from '../../services/http/mood.service';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +11,12 @@ import { environment } from '../../../environments/environment';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  #flowService = inject(FlowService)
+  #moodService = inject(MoodService)
   #userService = inject(UserService)
   #imageURLService = inject(ImageUrlService)
   #router = inject(Router)
 
-  public flow = this.#flowService.flow
+  public moodsFlow = this.#moodService.moodsFlow
   public user = this.#userService.user
   public environment : string = environment.apiBaseUrl
   

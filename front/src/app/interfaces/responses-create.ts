@@ -1,41 +1,45 @@
 import { BaseResponse } from "./base-response";
 
-export interface CreateMoodResponse extends BaseResponse {
-    moodId : number
+export interface CreateMoodImageResponse extends BaseResponse {
+    moodId?: number
+}
+
+export interface CreateMoodVideoResponse extends BaseResponse {
+    moodId?: number
 }
 
 export interface CreateTagCategoryResponse extends BaseResponse {
-    tagCategoryId : number
+    tagCategoryId?: number
 }
 
 export interface CreateTagResponse extends BaseResponse {
-    tagId : number
+    tagId?: number
 }
 
 export interface CreateModelResponse extends BaseResponse {
-    modelId : number
+    modelId?: number
 }
 
 export interface CreateStyleResponse extends BaseResponse {
-    styleId : number
+    styleId?: number
 }
 
 export interface CreateArtistResponse extends BaseResponse {
-    artistId : number
+    artistId?: number
 }
 
 export interface CreateMediumResponse extends BaseResponse {
-    mediumId : number
+    mediumId?: number
 }
 
 export interface CreateFranchiseResponse extends BaseResponse {
-    franchiseId : number
+    franchiseId?: number
 }
 
 export interface CreateLinkCategoryResponse extends BaseResponse {
-    linkCategoryId : number
+    linkCategoryId?: number
 }
 
 export interface CreateLinkResponse extends BaseResponse {
-    linkId : number
+    linkId?: number
 }

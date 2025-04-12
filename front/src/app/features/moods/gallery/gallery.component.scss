@@ -1,0 +1,151 @@
+.empty-moods {
+    height: 300px;
+    width: 300px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    color: var(--colorMain);
+}
+
+.gallery {
+    padding: 20px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    columns: 6;
+    margin-bottom: 150px;
+    margin-right: 45px;
+
+    transition-duration: 500ms;
+
+    section {
+        margin-left: 0px;
+        margin-right: 25px;
+        margin-top: 0px;
+        margin-bottom: 20px;
+
+        img,
+        video {
+            width: 100%;
+            border: 10px solid rgba(255, 255, 255, 0);
+            border-radius: 30px;
+        }
+
+        img:hover {
+            border: 10px solid rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 6px 12px 0px var(--colorMain);
+            cursor: pointer;
+            transition-duration: 500ms;
+        }
+
+        .vid {
+            box-shadow: 0 0 0 1px var(--colorMain);
+        }
+
+        .vid-youtube {
+            box-shadow: 0 0 0 1px red;
+        }
+
+        .active {
+            border: 10px solid var(--colorMainOpacity7);
+            border-radius: 10px;
+            box-shadow: 0 6px 12px 0px var(--colorMain);
+            transition-duration: 500ms;
+        }
+    }
+}
+
+.menu-open {
+    margin-right: 330px;
+}
+
+@media screen and (max-width: 550px) {
+    .gallery {
+        columns: 2;
+    }
+}
+
+@media screen and (min-width: 550px) and (max-width: 850px) {
+    .gallery {
+        columns: 3;
+    }
+}
+
+@media screen and (min-width: 850px) and (max-width: 1150px) {
+    .gallery {
+        columns: 4;
+    }
+}
+
+@media screen and (min-width: 1150px) and (max-width: 1500px) {
+    .gallery {
+        columns: 2;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .gallery {
+        margin: 0;
+    }
+}
+
+.viewer {
+    position: absolute;
+    top: 62px;
+    left: 0;
+
+    width: 100%;
+    height: calc(100% - 62px - 65px);
+
+    .type-1 {
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+
+        img {
+            display: block;
+            height: 100%;
+
+            transition-duration: 500ms;
+        }
+    }
+
+    .type-2 {
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+
+        video {
+            display: block;
+            height: 100%;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .viewer {
+        .type-1 {                
+            width: 100%;
+            height: auto;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+        .type-2 {
+            width: 100%;
+            height: auto;
+
+            video {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}

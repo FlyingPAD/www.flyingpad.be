@@ -1,36 +1,37 @@
 import { Component, Input, OnDestroy, OnInit, Output, EventEmitter, inject } from '@angular/core'
-import { Subscription } from 'rxjs'
-import { FlowService } from '../../../services/http/flow.service'
+import { Subject, takeUntil } from 'rxjs'
 import { MoodFull } from '../../../interfaces/mood'
 import { ModelCheckBox } from '../../../interfaces/model'
+import { MoodService } from '../../../services/http/mood.service'
 
 @Component({
   selector: 'app-edit-mood-models',
-  templateUrl: './edit-mood-models.component.html',
-  styleUrls: ['./edit-mood-models.component.scss']
+  templateUrl: './edit-mood-models.component.html'
 })
 export class EditMoodModelsComponent implements OnInit, OnDestroy {
-  #flowService = inject(FlowService)
+  #moodService = inject(MoodService)
 
   @Input() mood!: MoodFull
   @Output() modelsSelected = new EventEmitter<number[]>()
 
-  #subscription = new Subscription()
+  #destroy$ = new Subject<void>()
 
   public models: ModelCheckBox[] = []
   public input: string = ''
 
+
   ngOnInit(): void {
-    this.#subscription = this.#flowService.getModelsCheckBoxByMood(this.mood.businessId).subscribe({
-      next: (data) => {
+    this.#moodService.getModelsCheckBoxesByMood(this.mood.businessId)
+      .pipe(takeUntil(this.#destroy$))
+      .subscribe(data => {
         this.models = data
         this.emitSelectedModels()
-      }
-    })
+      })
   }
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   private emitSelectedModels() {

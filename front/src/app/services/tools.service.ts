@@ -1,16 +1,17 @@
 import { Injectable, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject } from 'rxjs';
+import { ToolsViewMode } from '../enumerations/view-modes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToolsService {
-  #toolsMenuState = new BehaviorSubject<string>('circle-of-fifths')
+  #toolsViewMode$ = new BehaviorSubject<string>(ToolsViewMode.ChordWriter)
 
-  public toolsMenuState = toSignal(this.#toolsMenuState) as Signal<string>
+  public toolsViewMode = toSignal(this.#toolsViewMode$) as Signal<ToolsViewMode>
 
-  public updateToolsMenuState(menuState: string): void {
-    this.#toolsMenuState.next(menuState)
+  public setToolsViewMode(viewMode: ToolsViewMode): void {
+    this.#toolsViewMode$.next(viewMode)
   }
 }

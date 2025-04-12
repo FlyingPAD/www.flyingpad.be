@@ -1,28 +1,29 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TagFull } from '../../../interfaces/tag';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { TagUpdateForm } from '../../../interfaces/forms-update';
-import { TagCategoryLight } from '../../../interfaces/tag-category';
+import { TagCategoryLight } from '../../../interfaces/tag';
 import { TagService } from '../../../services/http/tag.service';
 
 @Component({
   selector: 'app-edit-tag',
-  templateUrl: './edit-tag.component.html',
-  styleUrl: './edit-tag.component.scss'
+  templateUrl: './edit-tag.component.html'
 })
 export class EditTagComponent implements OnInit, OnDestroy {
   @Input() tag: TagFull | undefined = undefined
   @Input() tagCategories: TagCategoryLight[] = []
-  @Output() showListTrigger = new EventEmitter<void>()
+
+  @Output() setViewMode = new EventEmitter<void>()
 
   #tagService = inject(TagService)
   #formBuilder = inject(FormBuilder)
 
-  #subscription = new Subscription()
+  #destroy$ = new Subject<void>()
 
   public isDeleteDialogOpen: boolean = false
   public editFormGroup!: FormGroup
+
 
   ngOnInit(): void {
     this.editFormGroup = this.#formBuilder.group({
@@ -33,7 +34,8 @@ export class EditTagComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   public openDeleteDialog(): void {
@@ -44,7 +46,7 @@ export class EditTagComponent implements OnInit, OnDestroy {
   }
   public closeDeleteDialogEmit(): void {
     this.isDeleteDialogOpen = false
-    this.showListTrigger.emit()
+    this.setViewMode.emit()
   }
 
   public onSubmit(): void {
@@ -56,8 +58,10 @@ export class EditTagComponent implements OnInit, OnDestroy {
     }
 
     if (this.editFormGroup.valid) {
-      this.#subscription = this.#tagService.updateTag(form).subscribe(response => {
-        if(response.success) this.showListTrigger.emit() })
+      this.#tagService.updateTag(form)
+      .pipe(takeUntil(this.#destroy$))
+      .subscribe(response => {
+        if(response.success) this.setViewMode.emit() })
     }
   }
 

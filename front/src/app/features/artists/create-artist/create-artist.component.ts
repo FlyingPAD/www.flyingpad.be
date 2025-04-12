@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { StyleLight } from '../../../interfaces/style';
 import { ArtistCreateForm } from '../../../interfaces/forms-create';
 import { ArtistService } from '../../../services/http/artist.service';
+import { StyleLight } from '../../../interfaces/artist';
 
 @Component({
   selector: 'app-create-artist',
@@ -12,7 +12,7 @@ import { ArtistService } from '../../../services/http/artist.service';
 })
 export class CreateArtistComponent implements OnInit, OnDestroy {
   @Input() styles: StyleLight[] = []
-  @Output() trigger = new EventEmitter<void>()
+  @Output() setViewMode = new EventEmitter<void>()
 
   #artistService = inject(ArtistService)
   #builder = inject(FormBuilder)
@@ -59,7 +59,7 @@ export class CreateArtistComponent implements OnInit, OnDestroy {
             .map((style: { businessId: number }) => style.businessId)
         }
 
-        this.#subscription = this.#artistService.createArtist(form).subscribe((response) => {if(response.success) this.trigger.emit()})
+        this.#subscription = this.#artistService.createArtist(form).subscribe((response) => {if(response.success) this.setViewMode.emit()})
       }
     }
   }

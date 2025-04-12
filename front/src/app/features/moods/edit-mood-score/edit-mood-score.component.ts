@@ -1,7 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
-import { MoodScoreUpdate } from '../../../interfaces/forms-update';
-import { MoodFull } from '../../../interfaces/mood';
-import { MoodService } from '../../../services/http/mood.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-edit-mood-score',
@@ -9,11 +6,11 @@ import { MoodService } from '../../../services/http/mood.service';
   styleUrl: './edit-mood-score.component.scss'
 })
 export class EditMoodScoreComponent {
-  #moodService = inject(MoodService)
-  @Input() mood!: MoodFull
+  @Input() moodScore!: number
 
-  public updateMoodScore(scoreValue: number): void {
-    let form: MoodScoreUpdate = { moodId: this.mood.businessId, value: scoreValue }
-    this.#moodService.updateMoodScore(form)
+  @Output() updateMoodScore = new EventEmitter<number>()
+
+  public handleUpdateMoodScore(scoreValue: number): void {
+    this.updateMoodScore.emit(scoreValue)
   }
 }

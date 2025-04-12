@@ -17,7 +17,7 @@ public class GetAllLinkCategoriesQueryHandler(IBaseRepository<LinkCategory> link
         return new GetAllLinkCategoriesQueryResponse
         {
             Success = true,
-            Message = "All link categories.",
+            Message = "Link categories",
             LinkCategories = _mapper.Map<List<GetAllLinkCategoriesQueryDto>>(linkCategories)
         };
     }

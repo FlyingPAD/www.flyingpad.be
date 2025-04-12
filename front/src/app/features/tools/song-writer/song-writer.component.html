@@ -1,0 +1,145 @@
+<div class="song-writer">
+    <h2>Song Writer</h2>
+
+    <!-- Boutons de navigation des vues -->
+    <div class="buttons view-modes">
+        <div class="button" [class.button-active]="currentViewMode === 'edition'" (click)="setViewMode('edition')">
+            Edition
+        </div>
+        <div class="button" [class.button-active]="currentViewMode === 'save'" (click)="setViewMode('save')">
+            Save
+        </div>
+        <div class="button" [class.button-active]="currentViewMode === 'settings'" (click)="setViewMode('settings')">
+            Settings
+        </div>
+        <div class="button" [class.button-active]="currentViewMode === 'preview'" (click)="setViewMode('preview')">
+            Preview
+        </div>
+    </div>
+
+    <!-- Vue Settings : Contrôles globaux -->
+    <div *ngIf="currentViewMode === 'settings'" class="global-controls">
+        <div class="control-fader">
+            <p class="control-name">BPM</p>
+            <input id="bpm" type="range" min="10" max="300" [(ngModel)]="bpm" />
+            <p class="control-value">{{ bpm | number:'3.0' }}</p>
+        </div>
+        <div class="control-fader">
+            <p class="control-name">Click Volume</p>
+            <input id="tickVolume" type="range" min="0" max="1" step="0.01" [(ngModel)]="tickVolume" />
+            <p class="control-value">{{ tickVolume | number:'1.2' }}</p>
+        </div>
+        <div class="control-fader">
+            <p class="control-name">Chords Volume</p>
+            <input id="chordVolume" type="range" min="0" max="1" step="0.01" [(ngModel)]="chordVolume" />
+            <p class="control-value">{{ chordVolume | number:'1.2' }}</p>
+        </div>
+        <div class="control-fader">
+            <p class="control-name">Master Volume</p>
+            <input id="masterVolume" type="range" min="0" max="1" step="0.01" [(ngModel)]="masterVolume"
+                (ngModelChange)="updateMasterVolume()" />
+            <p class="control-value">{{ masterVolume | number:'1.2' }}</p>
+        </div>
+        <div class="control-select">
+            <p>Time Signature</p>
+            <select id="timeSignature" [(ngModel)]="timeSignature" (change)="onTimeSignatureChange($event)">
+                <option value="4/4">4/4</option>
+                <option value="3/4">3/4</option>
+                <option value="6/8">6/8</option>
+                <option value="5/4">5/4</option>
+            </select>
+        </div>
+        <div class="control-input">
+            <p>Nombre de mesures:</p>
+            <input id="measures" type="number" min="1" [(ngModel)]="numberOfMeasures"
+                (ngModelChange)="updateMeasures()" />
+        </div>
+        <div class="control-checkbox">
+            <p>Loop</p>
+            <input id="loopToggle" type="checkbox" [(ngModel)]="loopEnabled" />
+        </div>
+        <div class="control-select">
+            <p>Tick Sound</p>
+            <select id="tickSound" [(ngModel)]="selectedTickSound" (change)="onTickSoundChange($event)">
+                <option *ngFor="let option of tickSoundOptions" [value]="option.file">
+                    {{ option.name }}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Vue Edition : Visualisation, drag & drop et commandes de lecture -->
+    <div *ngIf="currentViewMode === 'edition'">
+        <div class="visual">
+            <div class="measure" *ngFor="let measure of measureArray; let mIndex = index"
+                (dragover)="onDragOver($event)" (drop)="onDrop($event, mIndex)">
+                <div class="chord-label" *ngIf="measure.assignedChord">
+                    {{ measure.assignedChord.name }}
+                </div>
+                <div class="beats">
+                    <div class="beat" *ngFor="let beat of beatArrayInMeasure; let bIndex = index"
+                        [class.active]="activeBeat === (mIndex * beatsPerMeasure + bIndex)">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chords">
+            <div class="chord" *ngFor="let chord of chords" draggable="true" (dragstart)="onDragStart($event, chord)">
+                <b>{{ chord.name }}</b> ( {{ chord.notes.join(', ') }} )
+            </div>
+        </div>
+        <div class="buttons playback-controls">
+            <button (click)="start()" [disabled]="isPlaying">Play</button>
+            <button (click)="stop()" [disabled]="!isPlaying">Stop</button>
+            <button (click)="reset()">Reset</button>
+        </div>
+    </div>
+
+    <!-- Vue Save : Gestion de la composition -->
+    <div *ngIf="currentViewMode === 'save'" class="composition-management">
+        <h3>Composition Management</h3>
+        <input type="text" placeholder="Composition Title" [(ngModel)]="compositionTitle" />
+        <input type="text" placeholder="Description" [(ngModel)]="compositionDescription" />
+        <button (click)="saveComposition()">Save Composition</button>
+        <button (click)="downloadComposition()">Download JSON</button>
+        <input type="file" (change)="loadCompositionFromFile($event)" />
+        <div class="saved-compositions">
+            <p>Saved Compositions:</p>
+            <ul>
+                <li *ngFor="let title of savedCompositionTitles">
+                    {{ title }}
+                    <button (click)="loadComposition(title)">Load</button>
+                    <button (click)="deleteComposition(title)">Delete</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Vue Preview : Aperçu pour impression formaté A4 -->
+    <div *ngIf="currentViewMode === 'preview'" class="print-preview">
+        <h3>Print Preview</h3>
+        <div class="preview-content">
+            <div class="composition-header">
+                <p><strong>Title:</strong> {{ compositionTitle || 'Untitled' }}</p>
+                <p><strong>Description:</strong> {{ compositionDescription || 'No description' }}</p>
+                <p><strong>BPM:</strong> {{ bpm }}</p>
+                <p><strong>Time Signature:</strong> {{ timeSignature }}</p>
+            </div>
+            <div class="measures-preview">
+                <div class="measure-preview" *ngFor="let measure of measureArray; let mIndex = index">
+                    <span class="measure-number">Measure {{ mIndex + 1 }}:</span>
+                    <span class="chord">{{ measure.assignedChord?.name || '-' }}</span>
+                </div>
+            </div>
+        </div>
+        <button (click)="printPreview()">Print</button>
+    </div>
+</div>
+
+<app-bottom-bar>
+    <app-bottom-icon-back page="/dashboard"></app-bottom-icon-back>
+    <app-bottom-item-name itemName="Song Writer"></app-bottom-item-name>
+    <app-bottom-toggle-right-menu></app-bottom-toggle-right-menu>
+</app-bottom-bar>
+
+<app-spacer height="175px"></app-spacer>

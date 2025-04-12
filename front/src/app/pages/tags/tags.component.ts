@@ -1,8 +1,11 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { FlowService } from '../../services/http/flow.service';
 import { ButtonTopService } from '../../services/button-top.service';
-import { MoodsService } from '../../services/moods.service';
-import { PaginationService } from '../../services/pagination.service';
+import { TagService } from '../../services/http/tag.service';
+import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { GalleryType } from '../../enumerations/gallery-type';
+import { StateService } from '../../services/custom-state/state.service';
+import { Router } from '@angular/router';
+import { GalleryMode } from '../../enumerations/gallery-mode';
 
 @Component({
   selector: 'app-tags',
@@ -10,19 +13,21 @@ import { PaginationService } from '../../services/pagination.service';
   styleUrls: ['./tags.component.scss']
 })
 export class TagsComponent implements OnInit, OnDestroy {
-  #flowService = inject(FlowService)
+  #stateService = inject(StateService)
+  #tagService = inject(TagService)
+  #moodsGalleryService = inject(MoodsGalleryService)
   #buttonTopService = inject(ButtonTopService)
-  #moodsService = inject(MoodsService)
-  #paginationService = inject(PaginationService)
+  #router = inject(Router)
 
-  public flow = this.#flowService.flow
+  public tagsFlow = this.#tagService.tagsFlow
   public expandedCategories: Record<number, boolean> = {}
+
 
   ngOnInit(): void {
     window.scrollTo(0, 0)
     this.#buttonTopService.setShowButtonTop(true)
 
-    const currentFlow = this.flow()
+    const currentFlow = this.tagsFlow()
 
     if (currentFlow && currentFlow.tagCategory) {
       const categoryId = currentFlow.tagCategory.businessId
@@ -34,22 +39,27 @@ export class TagsComponent implements OnInit, OnDestroy {
     this.#buttonTopService.setShowButtonTop(false)
   }
 
-  public updateTagCategoryId(categoryId: number): void {
-    this.#flowService.updateTagCategoryId(categoryId)
-  }
-
-  public updateTagId(tagId: number | null): void {
-    this.#flowService.updateTagId(tagId)
-    this.#paginationService.resetMoodsByTagCurrentPage()
-    this.#moodsService.updateMoodMenuState('gallery')
-  }
-
   public isCategoryExpanded(categoryId: number): boolean {
     return !!this.expandedCategories[categoryId]
   }
 
   public toggleCategory(categoryId: number): void {
-    this.updateTagCategoryId(categoryId)
+    this.setTagCategoryId(categoryId)
     this.expandedCategories[categoryId] = !this.isCategoryExpanded(categoryId)
+  }
+
+  public setTagCategoryId(tagCategoryId: number): void {
+    if(this.tagsFlow()?.tagCategory?.businessId != tagCategoryId) this.#tagService.setTagCategoryId(tagCategoryId)
+  }
+
+  public setTagId(tagId: number): void {
+    if(this.tagsFlow()?.tag?.businessId != tagId) this.#stateService.setTagId(tagId)
+  }
+
+  public goToTag(tagId: number): void {
+    this.setTagId(tagId)
+    this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
+    this.#moodsGalleryService.setGalleryMode(GalleryMode.Tag)
+    this.#router.navigateByUrl('/central-gallery')
   }
 }

@@ -1,16 +1,17 @@
 import { Injectable, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject } from 'rxjs';
+import { ScriptsViewMode } from '../enumerations/view-modes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScriptsService {
-  #scriptsMenuState = new BehaviorSubject<string>('introduction')
+  #scriptsViewMode$ = new BehaviorSubject<ScriptsViewMode>(ScriptsViewMode.Introduction)
 
-  public scriptsMenuState = toSignal(this.#scriptsMenuState) as Signal<string>
+  public scriptsViewMode = toSignal(this.#scriptsViewMode$) as Signal<ScriptsViewMode>
 
-  public updateScriptMenuState(menuState: string): void {
-    this.#scriptsMenuState.next(menuState)
+  public setScriptsViewMode(viewMode: ScriptsViewMode): void {
+    this.#scriptsViewMode$.next(viewMode)
   }
 }

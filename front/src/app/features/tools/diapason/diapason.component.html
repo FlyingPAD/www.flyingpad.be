@@ -5,24 +5,28 @@
     <div class="volume">
         <p><b>Volume</b></p>
         <div class="slider">
-            <input type="range" [min]="volumeMIN" [max]="volumeMAX" step="0.01" 
-                [(ngModel)]="currentVolume" (blur)="validateVolume()" aria-label="Volume" />
+            <input type="range" [min]="volumeMIN" [max]="volumeMAX" step="0.01" [(ngModel)]="currentVolume"
+                (blur)="validateVolume()" aria-label="Volume" />
         </div>
     </div>
     <div class="volume">
         <p><b>Tune</b></p>
         <div class="slider">
-            <input type="range" [min]="frequencyMIN" [max]="frequencyMAX" step="0.01" 
-                [(ngModel)]="currentFrequency" (blur)="validateFrequency()" aria-label="Tune Frequency" />
+            <input type="range" [min]="frequencyMIN" [max]="frequencyMAX" step="0.01" [(ngModel)]="currentFrequency"
+                (blur)="validateFrequency()" aria-label="Tune Frequency" />
         </div>
     </div>
     <div class="frequency">
-        <input type="number" [min]="frequencyMIN" [max]="frequencyMAX" step="0.01" 
-            [(ngModel)]="currentFrequency" (blur)="validateFrequency()" aria-label="Frequency">
+        <input type="number" [min]="frequencyMIN" [max]="frequencyMAX" step="0.01" [(ngModel)]="currentFrequency"
+            (blur)="validateFrequency()" aria-label="Frequency">
         <h1>Hertz</h1>
         <div class="reset" (click)="reset()">RESET</div>
     </div>
 </div>
 
-<app-bottom-bar-larger />
 <app-spacer height="150px" />
+<app-bottom-bar>
+    <app-bottom-icon-back page="/dashboard" />
+    <app-bottom-item-name itemName="Diapason" />
+    <app-bottom-toggle-right-menu />
+</app-bottom-bar>

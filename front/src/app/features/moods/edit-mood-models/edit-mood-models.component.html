@@ -1,14 +1,16 @@
-<div class="filter">
-    <input type="text" [(ngModel)]="input" placeholder="Filter models ..." />
-</div>
-
-<div class="box-wrapper">
-    <div class="box">
-        <div *ngFor="let model of filterModels()">
-            <div class="duo">
-                <input type="checkbox" [id]="model.pseudonym" [value]="model.businessId" [checked]="model.isChecked"
-                    (change)="onModelCheckChange(model)" />
-                <label [for]="model.pseudonym">{{ model.pseudonym }}</label>
+<div class="main-frame">
+    <div class="filter">
+        <input type="text" [(ngModel)]="input" placeholder="Filter models ..." />
+    </div>
+    
+    <div class="box-wrapper">
+        <div class="box">
+            <div *ngFor="let model of filterModels()">
+                <div class="duo">
+                    <label [for]="model.pseudonym"> ▸ {{ model.pseudonym }}</label>
+                    <input type="checkbox" [id]="model.pseudonym" [value]="model.businessId" [checked]="model.isChecked"
+                        (change)="onModelCheckChange(model)" />
+                </div>
             </div>
         </div>
     </div>

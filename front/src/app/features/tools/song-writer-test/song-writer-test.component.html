@@ -1,0 +1,92 @@
+<div class="mode-toggle">
+    <button [class.active]="mode === 'edition'" (click)="mode = 'edition'">Edit Song</button>
+    <button [class.active]="mode === 'preview'" (click)="mode = 'preview'">Preview</button>
+</div>
+
+<div class="container">
+    <div *ngIf="mode === 'edition'" class="global-edit-wrapper">
+        <h2>Edit Song</h2>
+        <div class="global-edit-view">
+            <div class="form-group">
+                <label for="song-title">Title</label>
+                <input id="song-title" type="text" [(ngModel)]="song.title">
+            </div>
+            <div class="form-group">
+                <label for="song-createdBy">Created by</label>
+                <input id="song-createdBy" type="text" [(ngModel)]="song.createdBy">
+            </div>
+            <div class="form-group">
+                <label for="song-description">Description</label>
+                <textarea id="song-description" [(ngModel)]="song.description"></textarea>
+            </div>
+            <hr>
+            <button class="add-section" (click)="addSection()">Add Section</button>
+            <ul class="sections-overview">
+                <li *ngFor="let section of song.sections; let i = index">
+                    <button class="edit-btn" (click)="editSection(i)"> ▸ {{ section.name }}</button>
+                    <button class="duplicate-btn" (click)="duplicateSection(i)">Duplicate</button>
+                    <button class="up-btn" (click)="moveSectionUp(i)"><app-icon-arrow direction="up"
+                            size="13px" /></button>
+                    <button class="down-btn" (click)="moveSectionDown(i)"><app-icon-arrow direction="down"
+                            size="13px" /></button>
+                    <button class="delete-btn" (click)="deleteSection(i)">✖</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div *ngIf="mode === 'sectionEdit' && currentSectionIndex !== null" class="section-edit-wrapper">
+        <h2>Edit Section</h2>
+        <div class="section-edit-view">
+            <div class="form-group">
+                <label for="section-name">Section Name:</label>
+                <input id="section-name" type="text" [(ngModel)]="song.sections[currentSectionIndex].name">
+            </div>
+            <div class="form-group">
+                <label for="section-bpm">BPM:</label>
+                <input id="section-bpm" type="number" [(ngModel)]="song.sections[currentSectionIndex].bpm">
+            </div>
+            <div class="form-group">
+                <label for="section-ts">Time Signature:</label>
+                <input id="section-ts" type="text" [(ngModel)]="song.sections[currentSectionIndex].timeSignature">
+            </div>
+            <div class="actions">
+                <button class="back-btn" (click)="mode = 'edition'; currentSectionIndex = null">Back</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="mode === 'preview'" class="preview-wrapper">
+    <h2>Song Preview</h2>
+    <div class="preview-content">
+        <div class="a4-page">
+            <h2>{{ song.title }}</h2>
+            <p class="createdBy">Created by: {{ song.createdBy }}</p>
+            <p>{{ song.description }}</p>
+            <div class="common-info">
+                <p>BPM: {{ commonBpm }}</p>
+                <p>Time Signature: {{ commonTimeSignature }}</p>
+            </div>
+            <div class="sections-list-preview">
+                <div *ngFor="let section of song.sections" class="section-preview">
+                    <h3>▸ {{ section.name }}</h3>
+                    <ng-container *ngIf="commonBpm === 'Variable'">
+                        <p>BPM: {{ section.bpm }}</p>
+                    </ng-container>
+                    <ng-container *ngIf="commonTimeSignature === 'Variable'">
+                        <p>Time Signature: {{ section.timeSignature }}</p>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-spacer height="150px" />
+
+<app-bottom-bar>
+    <app-bottom-icon-back page="/dashboard" />
+    <app-bottom-item-name itemName="Guitar Tuner" />
+    <app-bottom-toggle-right-menu />
+</app-bottom-bar>

@@ -1,0 +1,17 @@
+<div class="models">
+    <div class="model">
+        <p (click)="handleSwitchToFranchise()" 
+            [appScrollActive]="activeEntity() === activeEntities.Franchise" [class.active]="activeEntity() === activeEntities.Franchise">
+            <span> ▸ </span> {{ franchise?.name }}</p>
+    </div>
+    @for (model of models; track $index) {
+        <div class="model">
+            <p (click)="handleSetModel(model.businessId)"
+                [appScrollActive]="model.businessId === modelId && activeEntity() === activeEntities.Model"
+                [class.active]="model.businessId === modelId && activeEntity() === activeEntities.Model">
+                <span [ngClass]="{'female': model.gender === 'F', 'male': model.gender !== 'F'}"> ▸ </span>{{model.pseudonym}}
+            </p>
+            <app-icon-go class="icon" size="20px" (click)="handleSwitchToModel(model.businessId)" />
+        </div>
+    }
+</div>

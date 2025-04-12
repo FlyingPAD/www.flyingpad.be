@@ -3,9 +3,9 @@ import { ModelFull } from '../../../interfaces/model';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ModelUpdateForm } from '../../../interfaces/forms-update';
-import { FlowService } from '../../../services/http/flow.service';
 import { FranchiseCheckBox } from '../../../interfaces/franchise';
 import { ModelService } from '../../../services/http/model.service';
+import { FranchiseService } from '../../../services/http/franchise.service';
 
 @Component({
   selector: 'app-edit-model',
@@ -16,8 +16,8 @@ export class EditModelComponent implements OnInit, OnDestroy {
   @Input() model: ModelFull | undefined = undefined
   @Output() showListTrigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
   #modelService = inject(ModelService)
+  #franchiseService = inject(FranchiseService)
   #formBuilder = inject(FormBuilder)
 
   #subscription = new Subscription()
@@ -36,7 +36,7 @@ export class EditModelComponent implements OnInit, OnDestroy {
         franchises: this.#formBuilder.array([])
       })
 
-      this.#flowService.getFranchisesCheckBoxesByModel(this.model.businessId)
+      this.#franchiseService.getFranchisesCheckBoxesByModel(this.model.businessId)
         .subscribe(franchises => this.populateCategories(franchises))
     }
   }

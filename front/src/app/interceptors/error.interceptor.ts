@@ -28,7 +28,8 @@ export class ErrorInterceptor implements HttpInterceptor {
             if (serverResponse.validationErrors && serverResponse.validationErrors.length) {
               errorMessage += ' - ' + serverResponse.validationErrors.join(', ')
             }
-          } else {
+          } 
+          else {
             // Fallback :
             errorMessage = `Server Error Status: ${error.status}, Message: ${error.message}`
           }

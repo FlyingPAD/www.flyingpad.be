@@ -1,9 +1,8 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { TagCreateForm } from '../../../interfaces/forms-create';
-import { TagCategoryFull, TagCategoryLight } from '../../../interfaces/tag-category';
+import { TagCategoryFull, TagCategoryLight } from '../../../interfaces/tag';
 import { TagService } from '../../../services/http/tag.service';
 
 @Component({
@@ -14,13 +13,12 @@ import { TagService } from '../../../services/http/tag.service';
 export class CreateTagComponent implements OnInit, OnDestroy {
   @Input() tagCategories!: TagCategoryLight[]
   @Input() category: TagCategoryFull | undefined = undefined
-  @Output() trigger = new EventEmitter<void>()
+  @Output() setViewMode = new EventEmitter<void>()
 
   #tagService = inject(TagService)
   #formBuilder = inject(FormBuilder)
-  #toastr = inject(ToastrService)
 
-  #subscription = new Subscription()
+  #destroy$ = new Subject<void>()
 
   public createFormGroup: FormGroup = this.#formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
@@ -35,7 +33,8 @@ export class CreateTagComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   public onSubmit(): void {
@@ -46,14 +45,9 @@ export class CreateTagComponent implements OnInit, OnDestroy {
     }
 
     if (this.createFormGroup.valid) {
-      this.#subscription = this.#tagService.createTag(form).subscribe({
-        next: () => {
-          this.trigger.emit()
-        },
-        error: (error) => {
-          this.#toastr.error(`Error : ${error}`)
-        }
-      })
+      this.#tagService.createTag(form)
+      .pipe(takeUntil(this.#destroy$))
+      .subscribe(() => this.setViewMode.emit())    
     }
   }
 

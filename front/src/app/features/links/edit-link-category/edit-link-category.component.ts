@@ -1,20 +1,20 @@
-import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { LinkCategoryFull } from '../../../interfaces/link';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LinkCategoryUpdateForm } from '../../../interfaces/forms-update';
-import { LinkCategoryService } from '../../../services/http/link-category.service';
+import { LinkService } from '../../../services/http/link.service';
 
 @Component({
   selector: 'app-edit-link-category',
   templateUrl: './edit-link-category.component.html',
   styleUrl: './edit-link-category.component.scss'
 })
-export class EditLinkCategoryComponent implements OnDestroy {
+export class EditLinkCategoryComponent implements OnChanges, OnDestroy {
   @Input() linkCategory: LinkCategoryFull | undefined = undefined
   @Output() showListTrigger = new EventEmitter<void>()
 
-  #linkCategoryService = inject(LinkCategoryService)
+  #linkService = inject(LinkService)
   #formBuilder = inject(FormBuilder)
 
   #subscription = new Subscription()
@@ -25,6 +25,14 @@ export class EditLinkCategoryComponent implements OnDestroy {
     description: [this.linkCategory?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['linkCategory'] && this.linkCategory) {
+      this.formGroup.patchValue({
+        name: this.linkCategory.name,
+        description: this.linkCategory.description
+      })
+    }
+  }
 
   ngOnDestroy(): void {
     this.#subscription.unsubscribe()
@@ -49,7 +57,7 @@ export class EditLinkCategoryComponent implements OnDestroy {
     }
 
     if (this.formGroup.valid) {
-      this.#subscription = this.#linkCategoryService.updateLinkCategory(form).subscribe((response) => {
+      this.#subscription = this.#linkService.updateLinkCategory(form).subscribe((response) => {
         if (response.success) this.showListTrigger.emit()
       })
     }

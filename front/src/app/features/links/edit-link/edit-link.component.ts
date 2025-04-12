@@ -1,6 +1,5 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { FlowService } from '../../../services/http/flow.service';
 import { LinkCategoryCheckBox, LinkFull } from '../../../interfaces/link';
 import { LinkUpdateForm } from '../../../interfaces/forms-update';
 import { LinkService } from '../../../services/http/link.service';
@@ -14,12 +13,12 @@ export class EditLinkComponent implements OnInit {
   @Input() link: LinkFull | undefined = undefined
   @Output() trigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
   #linkService = inject(LinkService)
   #formBuilder = inject(FormBuilder)
 
   public formGroup!: FormGroup
   public isDeleteDialogOpen: boolean = false
+  
 
   ngOnInit(): void {
     if (this.link) {
@@ -30,7 +29,7 @@ export class EditLinkComponent implements OnInit {
         linkCategories: this.#formBuilder.array([])
       })
 
-      this.#flowService.getLinkCategoriesCheckBoxes(this.link.businessId)
+      this.#linkService.getLinkCategoriesCheckBoxes(this.link.businessId)
         .subscribe(categories => this.populateCategories(categories))
     }
   }

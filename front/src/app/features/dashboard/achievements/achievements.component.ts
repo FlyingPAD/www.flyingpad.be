@@ -2,6 +2,7 @@ import { Component, inject, Input } from '@angular/core';
 import { Achievement } from '../../../interfaces/achievement';
 import { Router } from '@angular/router';
 import { ToolsService } from '../../../services/tools.service';
+import { ToolsViewMode } from '../../../enumerations/view-modes';
 
 @Component({
   selector: 'app-achievements',
@@ -30,8 +31,8 @@ export class AchievementsComponent {
     this.toggleDialog()
   }
 
-  public GoTo(script: string): void {
-    this.#toolsService.updateToolsMenuState(script)
+  public GoToNotesTrainer(): void {
+    this.#toolsService.setToolsViewMode(ToolsViewMode.NotesTrainer)
     this.#router.navigateByUrl('/tools')
   }
 }

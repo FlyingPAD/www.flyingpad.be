@@ -27,7 +27,7 @@ public class CreateRelationsModelFranchiseCommandHandler(IModelRepository modelR
         return new BaseResponse
         {
             Success = true,
-            Message = "Relations created successfully."
+            Message = "Franchises updated."
         };
     }
 }

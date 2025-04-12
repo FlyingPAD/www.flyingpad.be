@@ -1,0 +1,65 @@
+<p class="sticky-label">Selected Files : 0</p>
+<h1 class="h1">{{ 'title.add-video' | translate }}</h1>
+<p class="p">( MP4, WEBM )</p>
+<p class="p">Maximum file size : 50 Mo</p>
+<hr class="dialog-hr">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div id="file_menu">
+        <p><input type="file" (change)="loadFile($event)" multiple></p>
+    </div>
+    <div *ngIf="url">
+        <video controls [muted]="true">
+            <source src="{{url}}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="mood_info">
+            <h3>Mood Info</h3>
+            <hr>
+            <div id="info_flex">
+                <p><label for="in_title">Mood Title :</label></p>
+                <input type="text" id="in_title" formControlName="title" required>
+            </div>
+            <div id="info_flex">
+                <p><label for="in_description">Mood Description :</label></p>
+                <input type="text" id="in_description" formControlName="description" required>
+            </div>
+            <hr>
+            <h3>File Info</h3>
+            <hr>
+            <div id="info_flex">
+                <p>Size :</p>
+                <p>{{size | formatSize : 2}}</p>
+            </div>
+            <div id="info_flex">
+                <p>File Extension :</p>
+                <p>*.{{extension}}</p>
+            </div>
+            <hr>
+            <h3>Video Info</h3>
+            <hr>
+            <div id="info_flex">
+                <p>Height :</p>
+                <p>{{height}} pixels</p>
+            </div>
+            <div id="info_flex">
+                <p>Width :</p>
+                <p>{{width}} pixels</p>
+            </div>
+            <div id="info_flex">
+                <p>Duration :</p>
+                <p>{{duration}} seconds</p>
+            </div>
+            <hr>
+            <div id="submit">
+                <button type="submit">Upload</button>
+            </div>
+        </div>
+    </div>
+</form>
+<app-spacer height="75px" />
+
+<app-bottom-bar>
+    <app-bottom-icon-back />
+    <app-bottom-icon-to-top />
+    <app-bottom-icon-save (triggerSave)="onSubmit()" />
+</app-bottom-bar>

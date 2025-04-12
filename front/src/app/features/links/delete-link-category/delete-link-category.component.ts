@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
 import { LinkCategoryFull } from '../../../interfaces/link';
 import { Subscription } from 'rxjs';
-import { LinkCategoryService } from '../../../services/http/link-category.service';
+import { LinkService } from '../../../services/http/link.service';
 
 @Component({
   selector: 'app-delete-link-category',
@@ -12,7 +12,7 @@ export class DeleteLinkCategoryComponent implements OnDestroy {
   @Input() linkCategory: LinkCategoryFull | undefined = undefined
   @Output() toggleDialog = new EventEmitter<void>()
 
-  #linkCategoryService = inject(LinkCategoryService)
+  #linkService = inject(LinkService)
 
   #subscription = new Subscription()
 
@@ -22,7 +22,7 @@ export class DeleteLinkCategoryComponent implements OnDestroy {
 
   public delete(): void {
     if (this.linkCategory != undefined) {
-      this.#subscription = this.#linkCategoryService.deleteLinkCategory(this.linkCategory.businessId).subscribe(
+      this.#subscription = this.#linkService.deleteLinkCategory(this.linkCategory.businessId).subscribe(
         (response) => { if (response.success) this.toggleDialog.emit() })
     }
   }

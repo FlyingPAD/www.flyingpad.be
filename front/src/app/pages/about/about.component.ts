@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ImageUrlService } from '../../services/image-url.service';
 import { environment } from '../../../environments/environment';
-import { FlowService } from '../../services/http/flow.service';
+import { MoodService } from '../../services/http/mood.service';
 
 @Component({
   selector: 'app-about',
@@ -9,10 +9,10 @@ import { FlowService } from '../../services/http/flow.service';
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-  #flowService = inject(FlowService)
+  #moodService = inject(MoodService)
   #imageURLService = inject(ImageUrlService)
 
-  public flow = this.#flowService.flow
+  public moodsFlow = this.#moodService.moodsFlow
   public environment : string = environment.apiBaseUrl
 
   public getImageURL(folderName: string, imageName: string, imageExtension: string): string { 

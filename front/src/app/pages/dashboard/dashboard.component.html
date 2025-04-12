@@ -1,25 +1,29 @@
 <div class="dashboard">
   <app-dashboard-header [user]="user()" />
-  <app-dashboard-menu [user]="user()" (menuState)="updateMenuState($event)" />
 
-  @if(dashboardMenuState() === 'status') {
+  @if(viewMode() === viewModes.Status) {
   <app-status />
   }
 
-  @if(dashboardMenuState() === 'statistics') {
-  <app-statistics />
-  }
-
-  @if(dashboardMenuState() === 'edition') {
+  @if(viewMode() === viewModes.Edition) {
   <app-dashboard-edition-menu />
   }
 
-  @if(dashboardMenuState() === 'account') {
+  @if(viewMode() === viewModes.Account) {
   <app-account />
   }
 
-  @if(dashboardMenuState() === 'achievements') {
+  @if(viewMode() === viewModes.Achievements) {
   <app-achievements [achievements]="user().achievements" />
   }
 </div>
+
 <app-spacer height="175px" />
+
+<app-bottom-bar>
+  <app-bottom-icon-dashboard-status />
+  <app-bottom-icon-dashboard-edition />
+  <app-bottom-icon-dashboard-account />
+  <app-bottom-icon-dashboard-achievements />
+  <app-bottom-icon-random-mood (click)="setViewMode(viewModes.Status)" />
+</app-bottom-bar>

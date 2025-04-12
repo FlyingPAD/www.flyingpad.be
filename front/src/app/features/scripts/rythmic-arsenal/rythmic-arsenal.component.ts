@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ScriptsService } from '../../../services/scripts.service';
+import { ScriptsViewMode } from '../../../enumerations/view-modes';
 
 @Component({
   selector: 'app-rythmic-arsenal',
@@ -9,7 +10,9 @@ import { ScriptsService } from '../../../services/scripts.service';
 export class RythmicArsenalComponent {
   #scriptsService = inject(ScriptsService)
 
-  public updateMenuState(menuState: string): void {
-    this.#scriptsService.updateScriptMenuState(menuState)
+  public viewModes = ScriptsViewMode
+
+  public setViewMode(viewMode: ScriptsViewMode): void {
+    this.#scriptsService.setScriptsViewMode(viewMode)
   }
 }

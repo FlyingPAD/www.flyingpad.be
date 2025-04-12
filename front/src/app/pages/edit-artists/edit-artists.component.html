@@ -1,72 +1,85 @@
-<div class="edition" *ngIf="flow() as flow">
+<div class="edition">
     <div class="edition-selection">
-        @if(flow.style?.name){
-        <p><b>{{flow.style?.name}}</b></p>
-        }
-        @else {
-        <p>Select a style.</p>
-        }
+        <p [style.fontWeight]="artistsFlow()?.style ? 'bold' : 'normal'">
+            {{ artistsFlow()?.style?.name || 'Select a category.' }}
+        </p>
         <div class="edition-buttons">
-            <app-icon-list class="icon" [class.active]="showList" size="25px" (click)="triggerShowList()" />
-            <app-icon-plus class="icon" [class.active]="showNewCategory" size="25px"
-                (click)="triggerShowNewCategory()" />
-            @if(flow.style?.name){
-            <app-icon-edit class="icon" [class.active]="showEditCategory" size="25px"
-                (click)="triggerShowEditCategory()" />
+            <app-icon-list class="icon" [class.active]="currentViewMode === viewModes.ListView" size="25px"
+                (click)="setViewMode(viewModes.ListView)" />
+            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.StyleCreationView"
+                size="25px" (click)="setViewMode(viewModes.StyleCreationView)" />
+            @if(artistsFlow()?.style) {
+                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.StyleEditionView"
+                    size="25px" (click)="setViewMode(viewModes.StyleEditionView)" />
             }
         </div>
     </div>
     <div class="edition-selection">
-        @if(flow.artist){
-        <p><b>{{flow.artist.name}}</b></p>
-        }
-        @else {
-        <p>Please, select an artist from the list.</p>
-        }
+        <p [style.fontWeight]="artistsFlow()?.artist ? 'bold' : 'normal'">
+            {{artistsFlow()?.artist?.name || 'Please, select an artist from the list.' }}</p>
         <div class="edition-buttons">
-            <app-icon-plus class="icon" [class.active]="showNew" size="25px" (click)="triggerShowNew()" />
-            @if(flow.artist){
-            <app-icon-edit class="icon" [class.active]="showEdit" size="25px" (click)="triggerShowEdit()" />
-            <app-icon-go class="icon" size="25px" (click)="go()" />
+            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.ArtistCreationView" size="25px"
+                (click)="setViewMode(viewModes.ArtistCreationView)" />
+            @if(artistsFlow()?.artist){
+                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.ArtistEditionView" size="25px"
+                    (click)="setViewMode(viewModes.ArtistEditionView)" />
+                <app-icon-go class="icon" size="25px" (click)="go()" />
             }
         </div>
     </div>
-    @if (showList) {
-    <div class="filter">
-        <input type="text" [(ngModel)]="searchArtists" placeholder="Filter artists ...">
-    </div>
 
-    <div class="edition-list">
-        <div
-            *ngFor="let artist of filterArtists() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage()}">
-            <a [class.active]="artist.name === flow.artist?.name" (click)="setArtist(artist)"> ▸ {{artist.name}}</a>
-        </div>
-    </div>
-
-    <app-right-column>
-        <app-right-column-list [table]="flow.styles" [currentEntityId]="flow.style?.businessId"
-            (entityId)="updateStyleId($event)" />
-    </app-right-column>
-
-    <div class="pagination-row" *ngIf="flow.artistsByStyle.length > elementsPerPage">
-        <div class="pagination">
-            <pagination-controls previousLabel="" nextLabel="" class="pagination"
-                (pageChange)="updateCurrentPage($event)" />
-        </div>
-    </div>
+    @if (currentViewMode === viewModes.ListView) {
+        <div class="filter"><input type="text" [(ngModel)]="searchArtists" placeholder="Filter artists ..."></div>
+        @if(filterArtists()?.length) {
+            <div class="edition-list">
+                <div
+                    *ngFor="let artist of filterArtists() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage}">
+                    <a [class.active]="artist.name === artistsFlow()?.artist?.name" (click)="setArtistId(artist.businessId)"> ▸
+                        {{artist.name}}</a>
+                </div>
+            </div>
+        }
+        @else if(!filterArtists()?.length) {
+            <p class="p">There are currently no artists in this list.</p>
+            <div class="empty-list">
+                <p>Click</p>
+                <app-icon-plus size="25px" class="icon" />
+                <p>to add a new artist.</p>
+            </div>
+        }
     }
-    @if (showNew) {
-    <app-create-artist (trigger)="triggerShowList()" [styles]="flow.styles" />
-    }
-    @if (showNewCategory) {
-    <app-create-style (trigger)="triggerShowList() " />
-    }
-    @if (showEdit) {
-    <app-edit-artist [artist]="flow.artist" (trigger)="triggerShowList()" />
-    }
-    @if (showEditCategory) {
-    <app-edit-style [style]="flow.style" (trigger)="triggerShowList()" />
-    }
-    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.artistsByStyle.length" />
 </div>
-<app-spacer height="150px" />
+
+@if (currentViewMode === viewModes.ArtistCreationView) {
+    <app-create-artist [styles]="artistsFlow()?.styles || []" (setViewMode)="setViewMode(viewModes.ListView)" />
+}
+@if (currentViewMode === viewModes.StyleCreationView) {
+    <app-create-style (trigger)="setViewMode(viewModes.ListView)" />
+}
+@if (currentViewMode === viewModes.ArtistEditionView) {
+    <app-edit-artist [artist]="artistsFlow()?.artist" (trigger)="setViewMode(viewModes.ListView)" />
+}
+@if (currentViewMode === viewModes.StyleEditionView) {
+    <app-edit-style [style]="artistsFlow()?.style" (trigger)="setViewMode(viewModes.ListView)" />
+}
+
+<app-right-column>
+    <app-right-column-generic-list [items]="artistsFlow()?.styles || []" 
+        [selectedItemId]="artistsFlow()?.style?.businessId" (setSelectedItemId)="setStyleId($event)" />
+</app-right-column>
+
+@if((artistsFlow()?.artistsByStyle?.length || 0) > elementsPerPage) {
+    <div class="pagination-row">
+        <div class="pagination">
+            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />
+        </div>
+    </div>
+}
+
+<app-spacer />
+
+<app-bottom-bar>
+    <app-bottom-icon-back />
+    <app-bottom-items-length [itemsLength]="artistsFlow()?.artistsByStyle?.length" />
+    <app-bottom-toggle-right-menu />
+</app-bottom-bar>

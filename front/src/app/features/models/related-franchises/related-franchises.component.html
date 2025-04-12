@@ -1,0 +1,17 @@
+<div class="franchises">
+    <div class="franchise">
+        <p (click)="handleSwitchToModel()" 
+            [appScrollActive]="activeEntity() === activeEntities.Model" [class.active]="activeEntity() === activeEntities.Model">
+            <span> ▸ </span> {{ model?.pseudonym }}</p>
+    </div>
+    @for (franchise of franchises; track $index) {
+        <div class="franchise">
+            <p (click)="handleSetFranchise(franchise.businessId)" 
+                [appScrollActive]="franchise.businessId === franchiseId && activeEntity() === activeEntities.Franchise"
+                [class.active]="franchise.businessId === franchiseId && activeEntity() === activeEntities.Franchise">
+                <span> ▸ </span> {{franchise.name}}
+            </p>
+            <app-icon-go class="icon" size="20px" (click)="handleSwitchToFranchise(franchise.businessId)" />
+        </div>
+    }
+</div>

@@ -10,6 +10,7 @@
 
         border: 3px solid var(--colorMain);
         border-radius: 10px;
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
         opacity: 0.9;
         transition-duration: 200ms;
@@ -26,6 +27,24 @@
             max-height: none;
             width: 97%;
             height: auto;
+        }
+    }
+}
+
+.flex_created {
+    margin-top: 15px;
+    margin-left: 30px;
+    margin-right: 30px;
+
+    .box_created {
+        display: flex;
+        justify-content: space-between;
+
+        p {
+            margin: 2px;
+            text-align: center;
+            color: var(--colorMainOpacity8);
+            font-size: 12px;
         }
     }
 }

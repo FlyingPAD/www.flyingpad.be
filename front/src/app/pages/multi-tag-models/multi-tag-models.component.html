@@ -1,0 +1,28 @@
+<p class="sticky-label"><b>{{ selectedMoods().length }}</b> Moods Selected</p>
+
+<app-spacer height="25px" />
+
+<div class="filter">
+    <input type="text" [(ngModel)]="searchModel" placeholder="Filter models ..." />
+</div>
+
+<form [formGroup]="form">
+    <div class="box-wrapper">
+        <div class="box">
+            <div *ngFor="let model of filteredModels()">
+                <div class="duo">
+                    <input type="checkbox" [formControlName]="model.businessId.toString()" id="{{ model.pseudonym }}" />
+                    <label [for]="model.pseudonym">{{ model.pseudonym }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<app-spacer height="150px" />
+
+<app-bottom-bar>
+    <app-bottom-icon-back page="/moods/multi-tag" />
+    <app-bottom-icon-to-top />
+    <app-bottom-icon-save (triggerSave)="onSubmit()" />
+</app-bottom-bar>

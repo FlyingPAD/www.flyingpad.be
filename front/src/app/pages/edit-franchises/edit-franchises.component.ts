@@ -1,79 +1,68 @@
-import { Component, inject } from '@angular/core';
-import { FlowService } from '../../services/http/flow.service';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PaginationService } from '../../services/pagination.service';
+import { FranchiseService } from '../../services/http/franchise.service';
+import { StorageService } from '../../services/storage.service';
+import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { EditFranchisesViewMode } from '../../enumerations/view-modes-edition';
 import { FranchiseLight } from '../../interfaces/franchise';
-import { MoodsService } from '../../services/moods.service';
+import { GalleryType } from '../../enumerations/gallery-type';
+import { StateService } from '../../services/custom-state/state.service';
+import { ActiveEntity, GalleryMode } from '../../enumerations/gallery-mode';
 
 @Component({
   selector: 'app-edit-franchises',
   templateUrl: './edit-franchises.component.html'
 })
-export class EditFranchisesComponent {
-  #flowService = inject(FlowService)
+export class EditFranchisesComponent implements OnInit {
+  #stateService = inject(StateService)
+  #franchiseService = inject(FranchiseService)
+  #storageService = inject(StorageService)
+  #moodsGalleryService = inject(MoodsGalleryService)
   #router = inject(Router)
-  #paginationService = inject(PaginationService)
-  #moodsService = inject(MoodsService)
 
-  public flow = this.#flowService.flow
-  public currentPage = this.#paginationService.editFranchisesCurrentPage
-  public searchFranchises: string = ''
+  public franchisesFlow = this.#franchiseService.franchisesFlow
+
+  public currentPage = 1
   public elementsPerPage: number = 12
-  public showList: boolean = true
-  public showNew: boolean = false
-  public showNewCategory: boolean = false
-  public showEdit: boolean = false
-  public showEditCategory: boolean = false
+  public searchFranchises: string = ''
 
-  private triggerReset(): void {
-    this.showList = false
-    this.showNew = false
-    this.showNewCategory = false
-    this.showEdit = false
-    this.showEditCategory = false
-  }
-  public triggerShowList(): void {
-    this.triggerReset()
-    this.showList = true
-  }
-  public triggerShowNew(): void {
-    this.triggerReset()
-    this.showNew = true
-  }
-  public triggerShowNewCategory(): void {
-    this.triggerReset()
-    this.showNewCategory = true
-  }
-  public triggerShowEdit(): void {
-    this.triggerReset()
-    this.showEdit = true
-  }
-  public triggerShowEditCategory(): void {
-    this.triggerReset()
-    this.showEditCategory = true
+  public viewModes = EditFranchisesViewMode
+  public currentViewMode = EditFranchisesViewMode.ListView
+  
+
+  ngOnInit(): void {
+    let storedPage = this.#storageService.getItem('pageFranchises')
+    if (storedPage != null) this.setCurrentPage(storedPage as number)
   }
 
-  public updateCurrentPage(page: number): void {
-    this.#paginationService.updateEditFranchisesCurrentPage(page)
+  public setCurrentPage(page: number): void {
+    this.currentPage = page
+    this.#storageService.setItem('pageFranchises', page)
   }
 
+  public setViewMode(viewMode: EditFranchisesViewMode) {
+    this.currentViewMode = viewMode
+  }
 
   public filterFranchises(): FranchiseLight[] | undefined {
-    return this.flow()?.franchisesByMedium.filter(franchise => franchise.name.toLowerCase().includes(this.searchFranchises.toLowerCase()))
+    return this.franchisesFlow()?.franchisesByMedium.filter(franchise => franchise.name.toLowerCase().includes(this.searchFranchises.toLowerCase()))
   }
 
   public go(): void {
-    this.#moodsService.updateMoodMenuState('gallery')
-    this.#router.navigateByUrl('/moods')
+    this.#stateService.setFranchiseId(this.franchisesFlow()?.franchise?.businessId)
+    this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
+    this.#moodsGalleryService.setGalleryMode(GalleryMode.Franchise)
+    this.#moodsGalleryService.setActiveEntity(ActiveEntity.Franchise)
+    this.#router.navigateByUrl('/central-gallery')
   }
 
-  public setFranchise(franchise: FranchiseLight): void {
-    this.#flowService.updateFranchiseId(franchise.businessId)
-    this.#paginationService.resetFranchiseGalleryCurrentPage()
+  public setFranchiseId(franchiseId: number | undefined): void {
+    this.#stateService.setFranchiseId(franchiseId)
   }
 
-  public updateMediaId(mediaId: number | null): void {
-    this.#paginationService.resetEditFranchisesCurrentPage()
-    this.#flowService.updateMediumId(mediaId)
+  public setMediumId(mediumId: number | undefined): void {
+    this.setCurrentPage(1)
+    this.setViewMode(EditFranchisesViewMode.ListView)
+    this.#franchiseService.setMediumId(mediumId)
   }
 }

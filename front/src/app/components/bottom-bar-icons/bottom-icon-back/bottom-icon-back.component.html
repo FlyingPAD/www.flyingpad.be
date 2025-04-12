@@ -1,0 +1,10 @@
+@if(page) {
+<div class="bottom-bar-icon" (click)="goTo(page)">
+    <app-icon-back size="25px" class="icon" />
+</div>
+}
+@else {
+<div class="bottom-bar-icon" appGoBack>
+    <app-icon-back size="25px" class="icon" />
+</div>
+}

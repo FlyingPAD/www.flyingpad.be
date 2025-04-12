@@ -1,0 +1,14 @@
+<div class="related-tags">
+    <div class="title">
+        <app-icon-tag class="icon" />
+        <p class="key"><b>Related Tags</b> :</p>
+        <p class="value">{{ relatedTags?.length }}</p>
+    </div>
+</div>
+<div class="list-categories">
+    @for (tag of relatedTags; track $index) {
+    <a [appScrollActive]="tag.businessId === currentTagId" [class.active]="tag.businessId === currentTagId"
+        (click)="handleTagId(tag.businessId)"> ▸ {{tag.name}}
+    </a>
+    }
+</div>

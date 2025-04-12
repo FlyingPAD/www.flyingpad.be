@@ -1,78 +1,76 @@
-@if(!showEdition) {
-    <div class="profile">
-        <div class="flex">
-            <p><b>{{ 'title.user-name' | translate }}</b></p>
-            <p>{{user().userName}}</p>
-        </div>
-        <div class="flex">
-            <p><b>{{ 'title.email' | translate }}</b></p>
-            <p>{{user().email}}</p>
-        </div>
-        <hr class="dialog-hr">
-        <div class="flex">
-            <p><b>{{ 'title.first-name' | translate }}</b></p>
-            <p>{{user().firstName}}</p>
-        </div>
-        <div class="flex">
-            <p><b>{{ 'title.last-name' | translate }}</b></p>
-            <p>{{user().lastName}}</p>
-        </div>
-        <hr class="dialog-hr">
-        <div class="flex">
-            <p><b>{{ 'title.birthdate' | translate }}</b></p>
-            <p>{{ user().birthdate | localizedDate:undefined:false }}</p>
-        </div>
-        <hr class="dialog-hr">
-        <div class="flex_created">
-            <div class="box_created">
-                <p>{{ 'title.modified' | translate }}</p>
-                <p>{{ user().modified | localizedDate }}</p>
+<div class="main-frame">
+    @if(!showEdition) {
+        <div class="profile">
+            <div class="flex">
+                <p><b>{{ 'title.user-name' | translate }}</b></p>
+                <p>{{user().userName}}</p>
+            </div>
+            <div class="flex">
+                <p><b>{{ 'title.email' | translate }}</b></p>
+                <p>{{user().email}}</p>
+            </div>
+            <div class="flex">
+                <p><b>{{ 'title.first-name' | translate }}</b></p>
+                <p>{{user().firstName}}</p>
+            </div>
+            <div class="flex">
+                <p><b>{{ 'title.last-name' | translate }}</b></p>
+                <p>{{user().lastName}}</p>
+            </div>
+            <div class="flex">
+                <p><b>{{ 'title.birthdate' | translate }}</b></p>
+                <p>{{ user().birthdate | localizedDate:undefined:false }}</p>
+            </div>
+            <div class="flex_created">
+                <div class="box_created">
+                    <p>{{ 'title.modified' | translate }}</p>
+                    <p>{{ user().modified | localizedDate }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="buttons">
+                <div class="button" (click)="toggleEdition()">{{ 'title.modify' | translate }}</div>
             </div>
         </div>
-        <hr>
-        <div class="buttons">
-            <div class="button" (click)="toggleEdition()">{{ 'title.modify' | translate }}</div>
-        </div>
-    </div>
-}
-@if(showEdition) {
-    <form class="profile" [formGroup]="formGroup">
-        <div class="flex">
-            <p><b>{{ 'title.user-name' | translate }}</b></p>
-            <input type="text" formControlName="userName">
-        </div>
-        <div class="flex">
-            <p><b>{{ 'title.email' | translate }}</b></p>
-            <p>{{user().email}}</p>
-        </div>
-        <hr class="dialog-hr">
-        <div class="flex">
-            <p><b>{{ 'title.first-name' | translate }}</b></p>
-            <input type="text" formControlName="firstName">
-        </div>
-        <div class="flex">
-            <p><b>{{ 'title.last-name' | translate }}</b></p>
-            <input type="text" formControlName="lastName">
-        </div>
-        <hr class="dialog-hr">
-        <div class="flex">
-            <p><b>{{ 'title.birthdate' | translate }}</b></p>
-            <input type="date" formControlName="birthdate">
-        </div>
-        <hr class="dialog-hr">
-        <div class="flex_created">
-            <div class="box_created">
-                <p>{{ 'title.modified' | translate }}</p>
-                <p>{{ user().modified | localizedDate }}</p>
+    }
+    
+    @if(showEdition) {
+        <form class="profile" [formGroup]="formGroup">
+            <div class="flex">
+                <p><b>{{ 'title.user-name' | translate }}</b></p>
+                <input type="text" formControlName="userName">
             </div>
-        </div>
-        <hr>
+            <div class="flex">
+                <p><b>{{ 'title.email' | translate }}</b></p>
+                <p>{{user().email}}</p>
+            </div>
+            <div class="flex">
+                <p><b>{{ 'title.first-name' | translate }}</b></p>
+                <input type="text" formControlName="firstName">
+            </div>
+            <div class="flex">
+                <p><b>{{ 'title.last-name' | translate }}</b></p>
+                <input type="text" formControlName="lastName">
+            </div>
+            <div class="flex">
+                <p><b>{{ 'title.birthdate' | translate }}</b></p>
+                <input type="date" formControlName="birthdate">
+            </div>
+            <div class="flex_created">
+                <div class="box_created">
+                    <p>{{ 'title.modified' | translate }}</p>
+                    <p>{{ user().modified | localizedDate }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="buttons">
+                <div class="button" (click)="onSubmit()">{{ 'title.submit' | translate }}</div>
+                <div class="button" (click)="toggleEdition()">{{ 'title.cancel' | translate }}</div>
+            </div>
+        </form>
+        <app-spacer height="25px" />
         <div class="buttons">
-            <div class="button" (click)="onSubmit()">{{ 'title.submit' | translate }}</div>
+            <div class="button" routerLink="/users/delete-user/{{user().businessId}}">{{ 'title.delete' | translate }}</div>
         </div>
-    </form>
-    <app-spacer height="25px" />
-    <div class="buttons">
-        <div class="button" routerLink="/users/delete-user/{{user().businessId}}">{{ 'title.delete' | translate }}</div>
-    </div>
-}
+    }
+</div>

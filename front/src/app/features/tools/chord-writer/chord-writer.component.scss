@@ -1,0 +1,330 @@
+.song-writer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+        color: var(--colorMain);
+        margin: 15px;
+        font-size: 20px;
+    }
+
+    .buttons.view-modes {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+
+        .button {
+            padding: 5px 10px;
+            border: 2px solid var(--colorMain);
+            border-radius: 4px;
+            background: var(--colorMainOpacity5);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .button-active {
+            background: var(--colorMain);
+            color: #fff;
+        }
+    }
+
+    .global-controls {
+        width: 350px;
+        background-color: var(--colorMainOpacity5);
+        border: 3px solid var(--colorMain);
+        border-radius: 10px;
+        backdrop-filter: blur(3px);
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+        padding: 10px;
+        font-size: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .control-fader,
+        .control-select,
+        .control-input,
+        .control-checkbox {
+            background-color: var(--colorWhiteOpacity5);
+            border: 3px solid var(--colorMain);
+            border-radius: 10px;
+            backdrop-filter: blur(3px);
+            box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .control-fader {
+            .control-name {
+                width: 115px;
+            }
+        }
+
+        .control-input input {
+            width: 75px;
+        }
+
+        .control-checkbox input {
+            width: 75px;
+        }
+    }
+
+    .buttons.playback-controls {
+        display: flex;
+        align-items: center;
+        margin: 15px;
+
+        button {
+            margin: 10px;
+            padding: 0.5rem 1rem;
+            border: 3px solid var(--colorMain);
+            border-radius: 4px;
+            background: var(--colorMainOpacity7);
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background: var(--colorMain);
+        }
+    }
+
+    .visual {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 75px;
+        width: 100%;
+
+        .chord-label {
+            position: absolute;
+            top: -80px;
+            width: 140px;
+            background: #fff;
+            border-radius: 10px;
+            margin: 15px;
+            padding: 10px;
+            color: var(--colorMain);
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .measure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 25px;
+            border: 2px dashed #aaa;
+            min-width: 140px;
+            position: relative;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .beats {
+            display: flex;
+            flex-direction: row;
+            gap: 25px;
+
+            .beat {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: #ccc;
+                transition: background-color 0.1s;
+            }
+
+            .beat.active {
+                background-color: #f00;
+            }
+        }
+    }
+
+    .chords {
+        width: 600px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .chord {
+            width: 150px;
+            padding: 15px;
+            margin: 15px;
+            background: var(--colorMainOpacity5);
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+            font-size: 15px;
+            text-align: center;
+            cursor: grab;
+            user-select: none;
+            transition: transform 0.1s;
+        }
+
+        .chord:active {
+            transform: scale(0.98);
+        }
+    }
+
+    .composition-management {
+        background-color: var(--colorWhiteOpacity5);
+        border: 3px solid var(--colorMain);
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 20px;
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            margin-right: 10px;
+        }
+
+        .saved-compositions {
+            margin-top: 10px;
+
+            ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            li {
+                margin: 5px 0;
+            }
+
+            li button {
+                margin-left: 10px;
+                padding: 2px 5px;
+            }
+        }
+    }
+
+    .song-structure {
+        width: 600px;
+        margin: 20px auto;
+        text-align: center;
+
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 0.3rem 0.6rem;
+            border: 2px solid var(--colorMain);
+            border-radius: 4px;
+            background: var(--colorMainOpacity5);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .sections {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .section {
+            border: 2px dashed var(--colorMain);
+            border-radius: 10px;
+            padding: 10px;
+            background: #fff;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .section-measures {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .measure-preview {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #f9f9f9;
+            cursor: grab;
+        }
+    }
+
+    .print-preview {
+        width: 210mm;
+        height: 297mm;
+        margin: 20px auto;
+        padding: 20mm;
+        border: 2px solid var(--colorMain);
+        border-radius: 10px;
+        background: #fff;
+        box-sizing: border-box;
+        text-align: left;
+        overflow: hidden;
+    }
+
+    .print-preview .preview-content {
+        margin-bottom: 15px;
+    }
+
+    .print-preview .composition-header p {
+        margin: 5px 0;
+    }
+
+    .print-preview .sections-preview {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .print-preview .section-preview h4 {
+        margin: 0 0 5px 0;
+    }
+
+    .print-preview .measure-preview {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        .print-preview,
+        .print-preview * {
+            visibility: visible;
+        }
+
+        .print-preview {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 210mm;
+            height: 297mm;
+            margin: 0;
+            padding: 20mm;
+            box-sizing: border-box;
+        }
+    }
+}

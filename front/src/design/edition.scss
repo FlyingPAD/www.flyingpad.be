@@ -1,4 +1,18 @@
 .edition {
+    .empty-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            color: var(--colorMain);
+        }
+
+        .icon {
+            margin: 5px;
+        }
+    }
+
     .edition-selection {
         p {
             display: block;

@@ -1,0 +1,13 @@
+@if(displayInfo().mode === displayModes.Desktop) {
+    @if(moodType === 1) {
+        <div appToggleMoodSize class="bottom-bar-icon">
+            <app-icon-wheel class="icon"
+                [ngClass]="{'rotate': moodSizeToggle() === true, 'rotate-back': moodSizeToggle() === false}" size="25px" />
+        </div>
+    }
+    @else {
+        <div class="bottom-bar-icon bottom-bar-icon-disabled">
+            <app-icon-wheel class="icon" size="25px" color="grey" />
+        </div>
+    }
+}

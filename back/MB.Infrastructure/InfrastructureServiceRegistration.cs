@@ -11,6 +11,7 @@ public static class InfrastructureServiceRegistration
     {
         services.AddScoped<IFileService, FileService>();
         services.AddScoped<IEMailService, EMailService>();
+        services.AddScoped<EmailJob>();
 
         services.AddHttpClient();
 

@@ -1,14 +1,15 @@
 <div class="edit-score">
+    <p class="p">Score</p>
     <div class="score-display">
-        <p>Score</p>
-        <p><b>{{ mood.score | number : '3.0'}}</b></p>
+        <p>{{ moodScore | number : '3.0'}}</p>
     </div>
+    <hr class="dialog-hr">
     <div class="score-buttons">
-        <button (click)="updateMoodScore(-50)">-50</button>
-        <button (click)="updateMoodScore(-10)">-10</button>
-        <button (click)="updateMoodScore(-1)">-1</button>
-        <button (click)="updateMoodScore(1)">+1</button>
-        <button (click)="updateMoodScore(10)">+10</button>
-        <button (click)="updateMoodScore(50)">+50</button>
+        <button (click)="handleUpdateMoodScore(-50)">-50</button>
+        <button (click)="handleUpdateMoodScore(-10)">-10</button>
+        <button (click)="handleUpdateMoodScore(-1)">-1</button>
+        <button (click)="handleUpdateMoodScore(1)">+1</button>
+        <button (click)="handleUpdateMoodScore(10)">+10</button>
+        <button (click)="handleUpdateMoodScore(50)">+50</button>
     </div>
 </div>

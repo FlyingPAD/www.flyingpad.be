@@ -11,13 +11,13 @@
     </div>
     <hr class="dialog-hr">
     <div class="article_box primary">
-        <p class="link" (click)="updateMenuState('pulsation')"><b> ▸ La Pulsation</b> ( BPM et Tempo )</p>
+        <p class="link" (click)="setViewMode(viewModes.Pulsation)"><b> ▸ La Pulsation</b> ( BPM et Tempo )</p>
     </div>
     <div class="article_box primary">
-        <p class="link" (click)="updateMenuState('time-values')"><b> ▸ Les Valeurs de Temps</b> ( Sons et Silences )</p>
+        <p class="link" (click)="setViewMode(viewModes.TimeValues)"><b> ▸ Les Valeurs de Temps</b> ( Sons et Silences )</p>
     </div>
     <div class="article_box primary">
-        <p class="link" (click)="updateMenuState('time-signature')"><b> ▸ Les Mesures</b> ( Simples et Composées )</p>
+        <p class="link" (click)="setViewMode(viewModes.TimeSignatures)"><b> ▸ Les Mesures</b> ( Simples et Composées )</p>
     </div>
     <div class="article_box primary">
         <p><b> ▸ Les Séquences</b> ( Boucles et Répétitions )</p>

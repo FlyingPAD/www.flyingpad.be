@@ -27,7 +27,7 @@ public class CreateRelationsMoodModelCommandHandler(IMoodRepository moodReposito
         return new BaseResponse
         {
             Success = true,
-            Message = "Relations created successfully."
+            Message = "Models updated."
         };
     }
 }

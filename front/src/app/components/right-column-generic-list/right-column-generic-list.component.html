@@ -1,0 +1,7 @@
+<div class="list">
+    <a [class.active]="!selectedItemId" (click)="handleSetSelectedItemId(undefined)"> ▸ {{ 'title.all-items' | translate }}</a>
+    @for (item of items; track $index) {
+        <a [appScrollActive]="selectedItemId === item.businessId" [class.active]="selectedItemId === item.businessId" 
+        (click)="handleSetSelectedItemId(item.businessId)"> ▸ {{item.name}}</a>
+    }
+</div>

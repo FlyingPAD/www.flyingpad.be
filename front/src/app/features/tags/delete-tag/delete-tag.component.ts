@@ -23,7 +23,7 @@ export class DeleteTagComponent implements OnDestroy {
 
   public deleteTag(): void {
     if (this.tag && this.tagCategoryId) {
-      this.#subscription = this.#tagService.deleteTag(this.tag.businessId, this.tagCategoryId).subscribe(
+      this.#subscription = this.#tagService.deleteTag(this.tag.businessId).subscribe(
         (response) => { if (response.success) this.toggleDialog.emit() })
     }
   }

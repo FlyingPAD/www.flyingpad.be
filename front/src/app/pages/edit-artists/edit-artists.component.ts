@@ -1,78 +1,67 @@
-import { Component, inject } from '@angular/core';
-import { FlowService } from '../../services/http/flow.service';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PaginationService } from '../../services/pagination.service';
 import { ArtistLight } from '../../interfaces/artist';
-import { MoodsService } from '../../services/moods.service';
+import { ArtistService } from '../../services/http/artist.service';
+import { StorageService } from '../../services/storage.service';
+import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { EditArtistsViewMode } from '../../enumerations/view-modes-edition';
+import { GalleryType } from '../../enumerations/gallery-type';
+import { StateService } from '../../services/custom-state/state.service';
+import { GalleryMode } from '../../enumerations/gallery-mode';
 
 @Component({
   selector: 'app-edit-artists',
   templateUrl: './edit-artists.component.html'
 })
-export class EditArtistsComponent {
-  #flowService = inject(FlowService)
+export class EditArtistsComponent implements OnInit {
+  #stateService = inject(StateService)
+  #artistService = inject(ArtistService)
+  #storageService = inject(StorageService)
+  #moodsGalleryService = inject(MoodsGalleryService)
   #router = inject(Router)
-  #paginationService = inject(PaginationService)
-  #moodsService = inject(MoodsService)
 
-  public flow = this.#flowService.flow
-  public currentPage = this.#paginationService.editArtistsCurrentPage
-  public searchArtists: string = ''
+  public artistsFlow = this.#artistService.artistsFlow
+
+  public currentPage = 1
   public elementsPerPage: number = 12
-  public showList: boolean = true
-  public showNew: boolean = false
-  public showNewCategory: boolean = false
-  public showEdit: boolean = false
-  public showEditCategory: boolean = false
+  public searchArtists: string = ''
 
-  private triggerReset(): void {
-    this.showList = false
-    this.showNew = false
-    this.showNewCategory = false
-    this.showEdit = false
-    this.showEditCategory = false
-  }
-  public triggerShowList(): void {
-    this.triggerReset()
-    this.showList = true
-  }
-  public triggerShowNew(): void {
-    this.triggerReset()
-    this.showNew = true
-  }
-  public triggerShowNewCategory(): void {
-    this.triggerReset()
-    this.showNewCategory = true
-  }
-  public triggerShowEdit(): void {
-    this.triggerReset()
-    this.showEdit = true
-  }
-  public triggerShowEditCategory(): void {
-    this.triggerReset()
-    this.showEditCategory = true
+  public viewModes = EditArtistsViewMode
+  public currentViewMode = EditArtistsViewMode.ListView
+  
+
+  ngOnInit(): void {
+    let storedPage = this.#storageService.getItem('pageArtists')
+    if (storedPage != null) this.setCurrentPage(storedPage as number)
   }
 
-  public updateCurrentPage(page: number): void {
-    this.#paginationService.updateEditArtistsCurrentPage(page)
+  public setCurrentPage(page: number): void {
+    this.currentPage = page
+    this.#storageService.setItem('pageArtists', page)
+  }
+
+  public setViewMode(viewMode: EditArtistsViewMode) {
+    this.currentViewMode = viewMode
   }
 
   public filterArtists(): ArtistLight[] | undefined {
-    return this.flow()?.artistsByStyle.filter(artist => artist.name.toLowerCase().includes(this.searchArtists.toLowerCase()))
+    return this.artistsFlow()?.artistsByStyle.filter(artist => artist.name.toLowerCase().includes(this.searchArtists.toLowerCase()))
   }
 
   public go(): void {
-    this.#moodsService.updateMoodMenuState('gallery')
-    this.#router.navigateByUrl('/moods')
+    this.#stateService.setArtistId(this.artistsFlow()?.artist?.businessId)
+    this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
+    this.#moodsGalleryService.setGalleryMode(GalleryMode.Artist)
+    this.#router.navigateByUrl('/central-gallery')
   }
 
-  public setArtist(artist: ArtistLight): void {
-    this.#flowService.updateArtistId(artist.businessId)
-    this.#paginationService.resetArtistGalleryCurrentPage()
+  public setArtistId(artistId: number | undefined): void {
+    this.#stateService.setArtistId(artistId)
   }
 
-  public updateStyleId(styleId: number | null): void {
-    this.#paginationService.resetEditArtistsCurrentPage()
-    this.#flowService.updateStyleId(styleId)
+  public setStyleId(styleId: number | undefined): void {
+    this.setCurrentPage(1)
+    this.setViewMode(EditArtistsViewMode.ListView)
+    this.#artistService.setStyleId(styleId)
   }
 }

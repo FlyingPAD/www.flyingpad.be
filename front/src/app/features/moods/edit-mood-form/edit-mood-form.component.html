@@ -1,11 +1,11 @@
 <form class="form" [formGroup]="formGroup">
     <div class="form-group">
-        <label>Nom</label>
+        <label>{{ 'title.title' | translate }}</label>
         <input class="input" type="text" formControlName="name"
             placeholder="{{ formGroup.get('name')?.value }}" />
     </div>
     <div *ngIf="formGroup.get('name')?.invalid && formGroup.get('name')?.touched" class="error">
-        Le nom est requis.
+        ▸ {{ 'validation-message.name-required' | translate }}
     </div>
 
     <div class="form-group">
@@ -14,6 +14,6 @@
             placeholder="{{ formGroup.get('description')?.value }}" />
     </div>
     <div *ngIf="formGroup.get('description')?.invalid && formGroup.get('description')?.touched" class="error">
-        La description est requise.
+        ▸ {{ 'validation-message.description-required' | translate }}
     </div>
 </form>

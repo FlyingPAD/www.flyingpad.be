@@ -3,22 +3,22 @@
     <img class="logo" [src]="getImageURL('images-logo', 'logo-1', 'png')" />
     <p class="p">{{ 'message.home-quote' | translate }}</p>
     <div class="cta">
-      <a class="button-big" routerLink="/moods">{{ 'message.home-cta' | translate }}</a>
+      <a class="button-big" routerLink="/central-gallery">{{ 'message.home-cta' | translate }}</a>
     </div>
   </div>
   <div class="right">
-    @if(flow()?.mood?.type === 1) {
-      @if (flow()?.mood?.height === flow()?.mood?.width) {
+    @if(moodsFlow()?.mood?.type === 1) {
+      @if (moodsFlow()?.mood?.height === moodsFlow()?.mood?.width) {
       <img class="mood-square"
-        src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+        src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
       }
-      @if (flow()?.mood?.height > flow()?.mood?.width) {
+      @if (moodsFlow()?.mood?.height > moodsFlow()?.mood?.width) {
       <img class="mood-portrait"
-        src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+        src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
       }
-      @if (flow()?.mood?.height < flow()?.mood?.width) {
+      @if (moodsFlow()?.mood?.height < moodsFlow()?.mood?.width) {
       <img class="mood-landscape"
-        src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+        src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
       }
     }
   </div>

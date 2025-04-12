@@ -6,21 +6,19 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ButtonTopService {
-  #topButtonisActiveSubject = new BehaviorSubject<boolean>(false)
-  #showButtonTopSubject = new BehaviorSubject<boolean>(false)
+  #topButtonisActiveSubject$ = new BehaviorSubject<boolean>(false)
+  #showButtonTopSubject$ = new BehaviorSubject<boolean>(false)
 
-  public topButtonisActive = toSignal(this.#topButtonisActiveSubject) as Signal<boolean>
-  public showButtonTop = toSignal(this.#showButtonTopSubject) as Signal<boolean>
+  public topButtonisActive = toSignal(this.#topButtonisActiveSubject$) as Signal<boolean>
+  public showButtonTop = toSignal(this.#showButtonTopSubject$) as Signal<boolean>
 
   public updateTopButtonState(state: boolean): void {
-    this.#topButtonisActiveSubject.next(state)
+    this.#topButtonisActiveSubject$.next(state)
   }
   
   public setShowButtonTop(state: boolean): void {
-    this.#showButtonTopSubject.next(state)
+    this.#showButtonTopSubject$.next(state)
 
-    if(!state) {
-      this.updateTopButtonState(false)
-    }
+    if(!state) this.updateTopButtonState(false)
   }
 }

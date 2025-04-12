@@ -1,45 +1,47 @@
 <app-spacer height="5px" />
 <div class="media-container">
-    <div *ngFor="let media of flow()?.franchisesWithMedia" class="media-category">
-        <div [appScrollActive]="isMediaExpanded(media.businessId)" scrollPosition="top" [scrollOffset]="100"
-            class="media-header" (click)="toggleMedia(media.businessId)" [ngClass]="{'active': isMediaExpanded(media.businessId)}">
-            <h2> ▸ <b>{{ media.name }}</b> ( {{media.franchises.length}} )</h2>
+    <div *ngFor="let medium of franchisesFlow()?.mediaList" class="media-category">
+        <div [appScrollActive]="isMediumExpanded(medium.businessId)" scrollPosition="top" [scrollOffset]="100"
+            class="media-header" (click)="toggleMedium(medium.businessId)"
+            [ngClass]="{'active': isMediumExpanded(medium.businessId)}">
+            <h2> ▸ <b>{{ medium.name }}</b> ( {{medium.franchises.length}} )</h2>
             <div class="media-actions">
                 <button class="toggle-media">
-                    <span class="arrow" [ngClass]="{'expanded': isMediaExpanded(media.businessId)}"></span>
+                    <span class="arrow" [ngClass]="{'expanded': isMediumExpanded(medium.businessId)}"></span>
                 </button>
             </div>
         </div>
 
-        <div class="media-content" *ngIf="isMediaExpanded(media.businessId)">
+        <div class="media-content" *ngIf="isMediumExpanded(medium.businessId)">
             <div class="franchise-grid">
-                <div *ngFor="let franchise of media.franchises" class="franchise-wrapper">
+                <div *ngFor="let franchise of medium.franchises" class="franchise-wrapper">
                     <div class="franchise-card">
-                        <div [appScrollActive]="isFranchiseExpanded(media.businessId, franchise.businessId)" scrollPosition="top" [scrollOffset]="300"
-                            class="franchise-header" (click)="toggleFranchise(media.businessId, franchise.businessId)"
-                            [ngClass]="{'active': isFranchiseExpanded(media.businessId, franchise.businessId)}">
+                        <div [appScrollActive]="isFranchiseExpanded(medium.businessId, franchise.businessId)"
+                            scrollPosition="top" [scrollOffset]="300" class="franchise-header"
+                            (click)="toggleFranchise(medium.businessId, franchise.businessId)"
+                            [ngClass]="{'active': isFranchiseExpanded(medium.businessId, franchise.businessId)}">
                             <h3> ▸ <b>{{ franchise.name }}</b> ( {{franchise.models.length}} )</h3>
                             <span class="arrow"
-                                [ngClass]="{'expanded': isFranchiseExpanded(media.businessId, franchise.businessId)}"></span>
+                                [ngClass]="{'expanded': isFranchiseExpanded(medium.businessId, franchise.businessId)}"></span>
                         </div>
                         <div class="franchise-content"
-                            *ngIf="isFranchiseExpanded(media.businessId, franchise.businessId)">
+                            *ngIf="isFranchiseExpanded(medium.businessId, franchise.businessId)">
                             <div class="model-list">
                                 <div *ngFor="let model of franchise.models" class="model-item">
-                                    <p (click)="goTo('model', model.businessId)"
-                                    [ngClass]="{'active': flow()?.model?.businessId === model.businessId}">
-                                    <span [ngClass]="{
+                                    <p (click)="goToModel(model.businessId)"
+                                        [ngClass]="{'active': modelsFlow()?.model?.businessId === model.businessId}">
+                                        <span [ngClass]="{
                                         'female': model.gender === 'F',
                                         'male': model.gender !== 'F'
                                       }">▸</span>
-                                    {{ model.pseudonym }}
-                                  </p>
+                                        {{ model.pseudonym }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button class="navigate-franchise"
-                        (click)="goTo('franchise', franchise.businessId)">
+                    <button class="navigate-franchise" routerLink="/central-gallery"
+                        (click)="goToFranchise(franchise.businessId)">
                         <span class="nav-icon"><app-icon-go size="15px" /></span>
                     </button>
                 </div>

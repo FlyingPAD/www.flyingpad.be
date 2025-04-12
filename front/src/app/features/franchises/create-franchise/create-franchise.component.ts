@@ -1,23 +1,23 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { MediumCheckBox } from '../../../interfaces/franchise';
+import { MediumLight } from '../../../interfaces/franchise';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { FranchiseCreateForm } from '../../../interfaces/forms-create';
 import { FranchiseService } from '../../../services/http/franchise.service';
 
 @Component({
   selector: 'app-create-franchise',
-  templateUrl: './create-franchise.component.html',
-  styleUrl: './create-franchise.component.scss'
+  templateUrl: './create-franchise.component.html'
 })
 export class CreateFranchiseComponent implements OnInit, OnDestroy {
-  @Input() media: MediumCheckBox[] = []
-  @Output() trigger = new EventEmitter<void>()
+  @Input() media: MediumLight[] = []
+  @Output() setViewMode = new EventEmitter<void>()
 
   #franchiseService = inject(FranchiseService)
   #builder = inject(FormBuilder)
 
-  #subscription = new Subscription()
+  #destroy$ = new Subject<void>()
+
   formGroup!: FormGroup
 
   get mediaArray(): FormArray {
@@ -35,10 +35,11 @@ export class CreateFranchiseComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
-  private createMediumFormGroup(medium: MediumCheckBox): FormGroup {
+  private createMediumFormGroup(medium: MediumLight): FormGroup {
     return this.#builder.group({
       businessId: [medium.businessId],
       name: [medium.name],
@@ -59,7 +60,9 @@ export class CreateFranchiseComponent implements OnInit, OnDestroy {
             .map((medium: { businessId: number }) => medium.businessId)
         }
 
-        this.#subscription = this.#franchiseService.createFranchise(form).subscribe((response) => { if (response.success) this.trigger.emit() })
+        this.#franchiseService.createFranchise(form)
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe(response => { if (response.success) this.setViewMode.emit() })
       }
     }
   }

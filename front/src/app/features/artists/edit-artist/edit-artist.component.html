@@ -17,10 +17,13 @@
   <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="onSubmit()">Submit</a>
   <a class="edition-button" (click)="openDeleteDialog()">Delete</a>
 </div>
-<div class="spacer150"></div>
+
+<app-spacer height="150px" />
+
 @if(isDeleteDialogOpen) {
 <app-dialog (dialog)="closeDeleteDialog()">
   <app-delete-artist [artist]="artist" (toggleDialog)="closeDeleteDialogEmit()" />
 </app-dialog>
 }
+
 <app-overlay [isOverlayOn]="isDeleteDialogOpen" (toggle)="closeDeleteDialog()" />

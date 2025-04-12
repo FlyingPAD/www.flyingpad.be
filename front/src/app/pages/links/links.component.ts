@@ -1,74 +1,54 @@
-import { Component, inject } from '@angular/core';
-import { PaginationService } from '../../services/pagination.service';
+import { Component, inject, OnInit } from '@angular/core';
 import { LinkLight } from '../../interfaces/link';
-import { FlowService } from '../../services/http/flow.service';
+import { LinkService } from '../../services/http/link.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-links',
   templateUrl: './links.component.html'
 })
-export class LinksComponent {
-  #flowService = inject(FlowService)
-  #paginationService = inject(PaginationService)
+export class LinksComponent implements OnInit {
+  #linkService = inject(LinkService)
+  #storageService = inject(StorageService)
 
-  public flow = this.#flowService.flow
-  public currentPage = this.#paginationService.editLinksCurrentPage
-  public searchLinks : string = ''
-  public elementsPerPage : number = 12
-  public showList : boolean = true
-  public showNew : boolean = false
-  public showNewCategory : boolean = false
-  public showEdit : boolean = false
-  public showEditCategory : boolean = false
+  public linksFlow = this.#linkService.linksFlow
 
-  private triggerReset(): void {
-    this.showList = false
-    this.showNew = false
-    this.showNewCategory = false
-    this.showEdit = false
-    this.showEditCategory = false
-  }
-  public triggerShowList(): void {
-    this.triggerReset()
-    this.showList = true
-  }
-  public triggerShowNew(): void {
-    this.triggerReset()
-    this.showNew = true
-  }
-  public triggerShowNewCategory(): void {
-    this.triggerReset()
-    this.showNewCategory = true
-  }
-  public triggerShowEdit(): void {
-    this.triggerReset()
-    this.showEdit = true
-  }
-  public triggerShowEditCategory(): void {
-    this.triggerReset()
-    this.showEditCategory = true
+  public currentPage = 1
+  public searchLinks: string = ''
+  public elementsPerPage: number = 12
+
+
+  ngOnInit(): void {
+    let storedPage = this.#storageService.getItem('pageLinks')
+    if(storedPage != null) this.setCurrentPage(storedPage as number)
   }
 
-  public updateCurrentPage(page: number): void {
-    this.#paginationService.updateEditLinksCurrentPage(page)
+  private resetCurrentPage(): void {
+    this.currentPage = 1
+    this.#storageService.setItem('pageLinks', this.currentPage)
+  }
+
+  public setCurrentPage(page: number): void {
+    this.currentPage = page
+    this.#storageService.setItem('pageLinks', page)
+  }
+
+  public setLinkCategoryId(linkCategoryId: number | undefined): void {
+    this.resetCurrentPage()
+    if (this.linksFlow()?.linkCategory?.businessId === linkCategoryId) return
+    this.#linkService.setLinkCategoryId(linkCategoryId)
+  }
+
+  public setLinkId(linkId: number | undefined): void {
+    if (this.linksFlow()?.link?.businessId === linkId) return
+    this.#linkService.setLinkId(linkId)
   }
 
   public filterLinks(): LinkLight[] | undefined {
-    return this.flow()?.linksByCategory.filter(link => link.name.toLowerCase().includes(this.searchLinks.toLowerCase()))
+    return this.linksFlow()?.linksByCategory.filter(link => link.name.toLowerCase().includes(this.searchLinks.toLowerCase()))
   }
-
+  
   public go(): void {
-    if(this.flow()?.link) {
-      window.open(this.flow()?.link?.url, '_blank')
-    }
-  }
-
-  public setLink(link : LinkLight): void {
-    this.#flowService.updateLinkId(link.businessId)
-  }
-
-  public updateLinkCategoryId(categoryId : number | null): void {
-    this.#paginationService.resetEditLinksCurrentPage()
-    this.#flowService.updateLinkCategoryId(categoryId)
+    window.open(this.linksFlow()?.link?.url, '_blank')
   }
 }

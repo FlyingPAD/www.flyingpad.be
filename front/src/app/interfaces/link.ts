@@ -6,6 +6,7 @@ export interface LinkLight {
     description : string
     url : string
 }
+
 export interface LinkFull {
     businessId : number
     name : string
@@ -16,13 +17,15 @@ export interface LinkFull {
     modified : Date
     modifiedBy : string
 }
+
 export interface LinkCategoryLight {
     businessId : number
     name : string
 }
 export interface LinkCategoryCheckBox extends LinkCategoryLight {
-    isChecked? : boolean
+    isChecked : boolean
 }
+
 export interface LinkCategoryFull {
     businessId : number
     name : string

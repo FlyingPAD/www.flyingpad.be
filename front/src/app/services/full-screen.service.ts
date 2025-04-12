@@ -20,21 +20,11 @@ export class FullScreenService {
     }
   }
 
-  async enterFullscreen(): Promise<void> {
-    if (screenfull.isEnabled) {
-      await screenfull.request()
-      this.#isFullscreen.next(true)
-    } else {
-      this.#isFullscreen.next(this.DEFAULT_FULLSCREEN_STATE)
-    }
-  }
-
   async exitFullscreen(): Promise<void> {
     if (screenfull.isEnabled && screenfull.isFullscreen) {
       await screenfull.exit()
       this.#isFullscreen.next(false)
-    } else {
-      this.#isFullscreen.next(this.DEFAULT_FULLSCREEN_STATE)
-    }
+    } 
+    else this.#isFullscreen.next(this.DEFAULT_FULLSCREEN_STATE)
   }
 }

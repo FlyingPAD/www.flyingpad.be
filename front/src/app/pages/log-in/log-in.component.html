@@ -52,18 +52,18 @@
         </div>
     </div>
     <div class="right">
-        @if(flow()?.mood?.type === 1) {
-            @if (flow()?.mood?.height === flow()?.mood?.width) {
+        @if(moodsFlow()?.mood?.type === 1) {
+            @if (moodsFlow()?.mood?.height === moodsFlow()?.mood?.width) {
             <img class="mood-square"
-              src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+              src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
             }
-            @if (flow()?.mood?.height > flow()?.mood?.width) {
+            @if (moodsFlow()?.mood?.height > moodsFlow()?.mood?.width) {
             <img class="mood-portrait"
-              src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+              src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
             }
-            @if (flow()?.mood?.height < flow()?.mood?.width) {
+            @if (moodsFlow()?.mood?.height < moodsFlow()?.mood?.width) {
             <img class="mood-landscape"
-              src="{{environment}}/Content/img_thumbs/{{flow()?.mood?.businessId}}.{{flow()?.mood?.extension}}" />
+              src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
             }
           }
     </div>

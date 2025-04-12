@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { ActiveEntity } from '../../enumerations/gallery-mode';
 
 @Component({
   selector: 'app-dialog-info',
@@ -6,7 +8,11 @@ import { Component, Input } from '@angular/core';
   styleUrl: './dialog-info.component.scss'
 })
 export class DialogInfoComponent {
+  #moodsGalleryService = inject(MoodsGalleryService)
+
   @Input() entity : any | undefined = undefined 
-  @Input() moodsLength : number | undefined = 0
-  @Input() moodsGalleryType : string = 'all'
+  @Input() moodsLength : number | undefined = undefined
+
+  public activeEntity = this.#moodsGalleryService.activeEntity
+  public activeEntities = ActiveEntity
 }

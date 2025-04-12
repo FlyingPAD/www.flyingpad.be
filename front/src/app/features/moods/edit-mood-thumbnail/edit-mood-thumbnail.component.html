@@ -1,8 +1,19 @@
-<div class="thumbnail" (click)="handleToDetails()">
+<div class="thumbnail">
     @if(mood.type == 1){
-        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" />
+        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" (click)="handleBackToGallery()"/>
     }
     @if(mood.type == 2){
-        <img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg" />
+        <img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg" (click)="handleBackToGallery()"/>
     }
+</div>
+
+<div class="flex_created">
+    <div class="box_created">
+        <p>{{ 'title.created' | translate }} :</p>
+        <p>{{ 'title.modified' | translate }} :</p>
+    </div>
+    <div class="box_created">
+        <p>{{ mood.created | localizedDate }}</p>
+        <p>{{ mood.modified | localizedDate }}</p>
+    </div>
 </div>

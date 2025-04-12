@@ -22,7 +22,7 @@ public class GetArtistCheckBoxesByMoodQueryHandler(IMapper mapper, IBaseReposito
         return new GetArtistCheckBoxesByMoodQueryResponse
         {
             Success = true,
-            Message = "Related artists.",
+            Message = "Checkboxes / Artists",
             Artists = _mapper.Map<IEnumerable<GetArtistCheckBoxesByMoodQueryDto>>(artists)
         };
     }

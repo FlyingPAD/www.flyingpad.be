@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
-import { StyleFull } from '../../../interfaces/style';
 import { Subscription } from 'rxjs';
-import { StyleService } from '../../../services/http/style.service';
+import { ArtistService } from '../../../services/http/artist.service';
+import { StyleFull } from '../../../interfaces/artist';
 
 @Component({
   selector: 'app-delete-style',
@@ -12,7 +12,7 @@ export class DeleteStyleComponent implements OnDestroy {
   @Input() style: StyleFull | undefined = undefined
   @Output() toggleDialog = new EventEmitter<void>()
 
-  #styleService = inject(StyleService)
+  #artistService = inject(ArtistService)
 
   #subscription = new Subscription()
 
@@ -21,7 +21,7 @@ export class DeleteStyleComponent implements OnDestroy {
   }
   delete(): void {
     if(this.style != undefined) {
-      this.#subscription = this.#styleService.deleteStyle(this.style.businessId).subscribe(
+      this.#subscription = this.#artistService.deleteStyle(this.style.businessId).subscribe(
         (response) => { if(response.success) this.toggleDialog.emit() })
     }
   }

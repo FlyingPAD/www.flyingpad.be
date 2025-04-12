@@ -112,79 +112,25 @@ hr {
 
 // Sticky Label ( Side info )
 .sticky-label {
-    position: sticky;
-    top: 70px;
+    position: fixed;
+    top: 46px;
     left: 0;
 
     display: inline;
     padding: 10px;
     padding-right: 20px;
 
-    background-color: var(--colorWhiteOpacity9);
-    border-radius: 0 10px 10px 0;
+    background-color: var(--colorWhiteOpacity8);
+    backdrop-filter: blur(3px);
+    border: 1px solid var(--colorMainOpacity7);
+    border-left: none;
+    border-radius: 0 7px 7px 0;
     box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
     color: var(--colorMain);
     font-size: 15px;
 
     z-index: 15;
-}
-
-// Filters & inputs
-.filter {
-    display: flex;
-    justify-content: center;
-
-    input {
-        padding: 10px;
-        margin: 8px;
-        border-radius: 5px;
-        font-size: 14px;
-        width: 200px;
-    }
-
-    input:focus {
-        outline: none;
-        border: 2px solid var(--colorMain);
-    }
-}
-.form {
-    input {
-        padding: 10px;
-        border-radius: 5px;
-        font-size: 14px;
-        width: 200px;
-    }
-    
-    input:focus {
-        outline: none;
-        border: 2px solid var(--colorMain);
-    }
-}
-
-// Dialog.
-.dialog-h3 {
-    margin-top: 10px;
-    text-align: center;
-    color: var(--colorMain);
-}
-
-.dialog-p {
-    color: var(--colorMain);
-}
-
-.dialog-entity-name {
-    margin: 0;
-    margin-top: 15px;
-    margin-bottom: 15px;
-
-    text-align: center;
-    color: var(--colorMainOpacity7);
-    font-weight: bold;
-}
-.dialog-hr {
-    color: var(--colorMainOpacity1);
-    margin-bottom: 15px;
 }
 
 // Break Points ( Media Queries ).
@@ -209,9 +155,9 @@ hr {
         height: 450px;
 
         margin: 15px;
-        padding: 25px;
+        padding: 15px;
 
-        border: 2px solid var(--colorMain);
+        border: 3px solid var(--colorMainOpacity7);
         border-radius: 10px;
         background-color: rgba(255, 255, 255, 0.5);
 
@@ -221,6 +167,7 @@ hr {
 
         .duo {
             display: flex;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 5px;
 
@@ -230,7 +177,10 @@ hr {
             }
 
             label {
-                margin-left: 15px;
+                width: 200px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
     }
@@ -239,10 +189,11 @@ hr {
 // Main Frame
 .main-frame {
     background-color: var(--colorMainOpacity2);
-    border: 3px solid var(--colorMain);
+    border: 3px solid var(--colorMainOpacity9);
     border-radius: 10px;
     box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
+    margin: 15px;
     padding: 15px;
 
     .frame-title {

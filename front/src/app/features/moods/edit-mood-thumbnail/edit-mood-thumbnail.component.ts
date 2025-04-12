@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MoodFull } from '../../../interfaces/mood';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-edit-mood-thumbnail',
@@ -8,11 +9,11 @@ import { MoodFull } from '../../../interfaces/mood';
 })
 export class EditMoodThumbnailComponent {
   @Input() mood!: MoodFull
-  @Input() environment!: string
+  @Output() backToGallery = new EventEmitter<void>()
 
-  @Output() toDetails = new EventEmitter<void>()
+  public environment = environment.apiBaseUrl
 
-  public handleToDetails(): void {
-    this.toDetails.emit()
+  public handleBackToGallery(): void {
+    this.backToGallery.emit()
   }
 }

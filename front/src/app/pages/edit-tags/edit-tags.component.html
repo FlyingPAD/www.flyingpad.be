@@ -1,72 +1,87 @@
-<div class="edition" *ngIf="flow() as flow">
+<div class="edition">
     <div class="edition-selection">
-        @if(flow.tagCategory?.name){
-        <p><b>{{flow.tagCategory?.name}}</b></p>
-        }
-        @else {
-        <p>Select a category.</p>
-        }
+        <p [style.fontWeight]="tagsFlow()?.tagCategory ? 'bold' : 'normal'">
+            {{ tagsFlow()?.tagCategory?.name || 'Select a category.' }}
+        </p>
         <div class="edition-buttons">
-            <app-icon-list class="icon" [class.active]="showList" size="25px" (click)="triggerShowList()" />
-            <app-icon-plus class="icon" [class.active]="showNewCategory" size="25px"
-                (click)="triggerShowNewCategory()" />
-            @if(flow.tagCategory?.name){
-            <app-icon-edit class="icon" [class.active]="showEditCategory" size="25px"
-                (click)="triggerShowEditCategory()" />
+            <app-icon-list class="icon" [class.active]="currentViewMode === viewModes.ListView" size="25px"
+                (click)="setViewMode(viewModes.ListView)" />
+            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.TagCategoryCreationView"
+                size="25px" (click)="setViewMode(viewModes.TagCategoryCreationView)" />
+            @if(tagsFlow()?.tagCategory) {
+            <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.TagCategoryEditionView"
+                size="25px" (click)="setViewMode(viewModes.TagCategoryEditionView)" />
+            <app-icon-go class="icon" size="25px" (click)="goToTagCategory()" />
             }
         </div>
     </div>
     <div class="edition-selection">
-        @if(flow.tag?.name){
-        <p><b>{{flow.tag?.name}}</b></p>
-        }
-        @else {
-        <p>Select a tag.</p>
-        }
+        <p [style.fontWeight]="tagsFlow()?.tag ? 'bold' : 'normal'">
+            {{ tagsFlow()?.tag?.name || 'Please, select a tag from the list.' }}</p>
         <div class="edition-buttons">
-            <app-icon-plus class="icon" [class.active]="showNew" size="25px" (click)="triggerShowNew()" />
-            @if(flow.tag?.name){
-            <app-icon-edit class="icon" [class.active]="showEdit" size="25px" (click)="triggerShowEdit()" />
-            <app-icon-go class="icon" size="25px" (click)="go()" />
+            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.TagCreationView" size="25px"
+                (click)="setViewMode(viewModes.TagCreationView)" />
+            @if(tagsFlow()?.tag){
+            <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.TagEditionView" size="25px"
+                (click)="setViewMode(viewModes.TagEditionView)" />
+            <app-icon-go class="icon" size="25px" (click)="goToTag()" />
             }
         </div>
     </div>
-    @if (showList) {
-    <div class="filter">
-        <input type="text" [(ngModel)]="searchTags" placeholder="Filter tags ...">
-    </div>
 
-    <div class="edition-list">
-        <div
-            *ngFor="let tag of filterTags() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage()}">
-            <a [class.active]="tag.name === flow.tag?.name" (click)="setTag(tag)"> ▸ {{tag.name}}</a>
-        </div>
-    </div>
-
-    <app-right-column>
-        <app-right-column-list [table]="flow.tagCategories" [currentEntityId]="flow.tagCategory?.businessId"
-            (entityId)="updateTagCategoryId($event)" />
-    </app-right-column>
-
-    <div class="pagination-row" *ngIf="flow.tagsByCategory.length > elementsPerPage">
-        <div class="pagination">
-            <pagination-controls previousLabel="" nextLabel="" class="pagination"
-                (pageChange)="updateCurrentPage($event)" />
-        </div>
-    </div>
+    @if (currentViewMode === viewModes.ListView) {
+        @if(filterTags()?.length) {
+            <div class="filter">
+                <input type="text" [(ngModel)]="searchTags" placeholder="Filter tags ...">
+            </div>
+            <div class="edition-list">
+                <div *ngFor="let tag of filterTags() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage}">
+                    <a [class.active]="tag.businessId === tagsFlow()?.tag?.businessId" (click)="setTagId(tag.businessId)"> ▸
+                        {{ tag.name }}
+                    </a>
+                </div>
+            </div>
+        }
+        @else if(!filterTags()?.length) {
+            <p class="p">There are currently no tags in this list.</p>
+            <div class="empty-list">
+                <p>Click</p>
+                <app-icon-plus size="25px" class="icon" />
+                <p>to add a new tag.</p>
+            </div>
+        }
+        @if((tagsFlow()?.tagsByCategory?.length || 0) > elementsPerPage) {
+            <div class="pagination-row">
+                <div class="pagination">
+                    <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />
+                </div>
+            </div>
+        }
     }
-    @if (showNew) {
-    <app-create-tag [tagCategories]="flow.tagCategories" [category]="flow.tagCategory"  (trigger)="triggerShowList()" />
-    }
-    @if (showNewCategory) {
-    <app-create-tag-category (trigger)="triggerShowList()" />
-    }
-    @if (showEdit) {
-    <app-edit-tag [tag]="flow.tag" [tagCategories]="flow.tagCategories" (showListTrigger)="triggerShowList()" />
-    }
-    @if (showEditCategory) {
-    <app-edit-tag-category [tagCategory]="flow.tagCategory" (showListTrigger)="triggerShowList()" />
-    }
-    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.tagsByCategory.length" />
 </div>
+
+@if (currentViewMode === viewModes.TagCreationView) {
+    <app-create-tag [category]="tagsFlow()?.tagCategory" [tagCategories]="tagsFlow()?.tagCategories || []" (setViewMode)="setViewMode(viewModes.ListView)" />
+}
+@if (currentViewMode === viewModes.TagCategoryCreationView) {
+    <app-create-tag-category (setViewMode)="setViewMode(viewModes.ListView)" />
+}
+@if (currentViewMode === viewModes.TagEditionView) {
+    <app-edit-tag [tag]="tagsFlow()?.tag" [tagCategories]="tagsFlow()?.tagCategories || []" (setViewMode)="setViewMode(viewModes.ListView)" />
+}
+@if (currentViewMode === viewModes.TagCategoryEditionView) {
+    <app-edit-tag-category [tagCategory]="tagsFlow()?.tagCategory" (setViewMode)="setViewMode(viewModes.ListView)" />
+}
+
+<app-right-column>
+    <app-right-column-generic-list [items]="tagsFlow()?.tagCategories || []" 
+        [selectedItemId]="tagsFlow()?.tagCategory?.businessId" (setSelectedItemId)="setTagCategoryId($event)" />
+</app-right-column>
+
 <app-spacer height="150px" />
+
+<app-bottom-bar>
+    <app-bottom-icon-back />
+    <app-bottom-items-length [itemsLength]="tagsFlow()?.tagsByCategory?.length" />
+    <app-bottom-toggle-right-menu />
+</app-bottom-bar>

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MoodsGalleryService } from '../../services/moods-gallery.service';
 
 @Component({
   selector: 'app-dialog',
@@ -6,9 +7,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './dialog.component.scss'
 })
 export class DialogComponent {
-  @Output() dialog = new EventEmitter<void>()
+  #moodsGalleryService = inject(MoodsGalleryService)
 
-  public handleDialog(): void {
-    this.dialog.emit()
-  }
+  public entityInfoToggle = this.#moodsGalleryService.entityInfoToggle
 }

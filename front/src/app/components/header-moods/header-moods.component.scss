@@ -3,6 +3,7 @@ header {
     top: 0;
     left: 0;
 
+    height: 62px;
     width: 100%;
 
     display: flex;
@@ -14,6 +15,7 @@ header {
     border-bottom: 1px solid var(--colorMain);
     box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
+    box-sizing: border-box;
     z-index: 15;
 
     section {

@@ -27,7 +27,7 @@ public class CreateRelationsMoodTagsCommandHandler(IMoodRepository moodRepositor
         return new BaseResponse
         {
             Success = true,
-            Message = "Relations created successfully."
+            Message = "Tags updated."
         };
     }
 }
