@@ -1,0 +1,128 @@
+@if(galleryType() === galleryTypes.Gallery) {
+    <p class="sticky-label">
+        <span *ngIf="galleryMode() === galleryModes.Default"> ▸ <b>All Files</b> | Full Collection</span>
+        <span *ngIf="galleryMode() === galleryModes.Tag"> ▸ <b>{{ tagsFlow()?.tag?.name }}</b> | {{ tagsFlow()?.tag?.description }}</span>
+        <span *ngIf="galleryMode() === galleryModes.TagCategory"> ▸ <b>{{ tagsFlow()?.tagCategory?.name }}</b> | {{ tagsFlow()?.tagCategory?.description }}</span>
+        <span *ngIf="galleryMode() === galleryModes.Artist"> ▸ <b>{{ artistsFlow()?.artist?.name }}</b> | {{ artistsFlow()?.artist?.description }}</span>
+        <span *ngIf="galleryMode() === galleryModes.Model"> 
+            <span *ngIf="activeEntity() === activeEntities.Franchise"> ▸ <b>{{ franchisesFlow()?.franchise?.name }}</b> - {{ franchisesFlow()?.franchise?.description }}</span>
+            <span *ngIf="activeEntity() === activeEntities.Model"> ▸ <b>{{ modelsFlow()?.model?.pseudonym }}</b> - {{ modelsFlow()?.model?.description }}</span>
+        </span>
+        <span *ngIf="galleryMode() === galleryModes.Franchise"> ▸ <b>{{ franchisesFlow()?.franchise?.name }}</b>
+            <span *ngIf="activeEntity() === activeEntities.Model"> | {{ modelsFlow()?.model?.pseudonym }}</span>
+            <span *ngIf="activeEntity() === activeEntities.Franchise"> - {{ franchisesFlow()?.franchise?.description }}</span>
+        </span>
+    </p>
+}
+@if(galleryType() === galleryTypes.Details) {
+    <p class="sticky-label"> ▸ <b>{{ moodsFlow()?.mood?.name }}</b> | {{ moodsFlow()?.mood?.description }}</p>
+
+    <app-mood-informations [mood]="moodsFlow()?.mood" [infoIsActive]="moodInfoToggle()" (artistId)="setAndSwitchToArtist($event)"
+    (modelId)="setAndSwitchToModel($event)" (franchiseId)="setAndSwitchToFranchise($event)" />
+}
+
+<app-gallery [currentMood]="moodsFlow()?.mood" [moods]="moodsFlow()?.moods" [resetPaginationSignal]="resetPaginationSignal$" (setMood)="setAndSwitchToMood($event)" />
+
+<app-bottom-bar>
+    @if(galleryType() === galleryTypes.Gallery) {
+        <app-bottom-icon-back page="/dashboard" />
+        <app-bottom-items-length [itemsLength]="moodsFlow()?.moods?.length" />
+        <app-bottom-icon-edit page="/moods/multi-tag" />
+        <app-bottom-icon-to-top />
+        @if(galleryMode() === galleryModes.Franchise) {
+            <app-bottom-toggle-entity-info />
+            <app-bottom-icon-google [itemName]="activeEntity() === activeEntities.Model ? modelsFlow()?.model?.pseudonym : franchisesFlow()?.franchise?.name" />
+            <app-bottom-icon-google-image [itemName]="activeEntity() === activeEntities.Model ? modelsFlow()?.model?.pseudonym : franchisesFlow()?.franchise?.name" />
+        }
+        @if(galleryMode() === galleryModes.Model) {
+            <app-bottom-toggle-entity-info />
+            <app-bottom-icon-google [itemName]="activeEntity() === activeEntities.Model ? modelsFlow()?.model?.pseudonym : franchisesFlow()?.franchise?.name" />
+            <app-bottom-icon-google-image [itemName]="activeEntity() === activeEntities.Model ? modelsFlow()?.model?.pseudonym : franchisesFlow()?.franchise?.name" />
+        }
+        @if(galleryMode() === galleryModes.Artist) {
+            <app-bottom-toggle-entity-info />
+            <app-bottom-icon-google [itemName]="artistsFlow()?.artist?.name" />
+            <app-bottom-icon-google-image [itemName]="artistsFlow()?.artist?.name" />
+        }
+        @if(galleryMode() === galleryModes.Tag) {
+            <app-bottom-toggle-entity-info />
+        }
+        @if(galleryMode() === galleryModes.TagCategory) {
+            <app-bottom-toggle-entity-info />
+        }
+        <app-bottom-toggle-right-menu />
+    }
+    @if(galleryType() === galleryTypes.Details) {
+        <app-bottom-toggle-mood-info />
+        <app-bottom-icon-moods />
+        <app-bottom-icon-page-previous (previousPage)="handleGetIndex('previous')" />
+        <app-bottom-item-position [currentIndex]="getCurrentMoodIndex()" [totalItems]="moodsFlow()?.moods?.length" />
+        <app-bottom-icon-page-next (nextPage)="handleGetIndex('next')" />
+        <app-bottom-icon-diaporama [isDiaporamaActive]="isDiaporamaActive" [isShuffleActive]="isShuffleActive" (startDiaporama)="diaporamaStart(false)" (stopDiaporama)="diaporamaStop()" />
+        <app-bottom-icon-shuffle [isDiaporamaActive]="isDiaporamaActive" (startDiaporama)="diaporamaStart(true)" />
+        <app-bottom-icon-edit page="/moods/edit-mood" />
+        <app-bottom-icon-open (openMoodInNewTab)="openMoodInNewTab()" />
+        <app-bottom-toggle-mood-size [moodType]="moodsFlow()?.mood?.type" />
+        <app-bottom-icon-random-mood />
+        <app-bottom-toggle-right-menu />
+    }
+</app-bottom-bar>
+
+<app-right-column>
+    @if(galleryMode() === galleryModes.Franchise) {
+        @if(galleryType() === galleryTypes.Details) {
+            <app-related-tags [relatedTags]="moodsFlow()?.mood.relatedTags" [currentTagId]="tagsFlow()?.tag?.businessId" (tagId)="setAndSwitchToTag($event)" />
+        }
+        @if(galleryType() === galleryTypes.Gallery) {
+            <app-related-models [franchise]="franchisesFlow()?.franchise" 
+            [models]="franchisesFlow()?.franchise?.relatedModels || []" [modelId]="modelsFlow()?.model?.businessId" 
+            (setModel)="setModel($event)" (switchToModel)="setAndSwitchToModel($event)" (switchToFranchise)="setAndSwitchToFranchise($event)" />
+        }
+    }
+    @if(galleryMode() === galleryModes.Model) {
+        @if(galleryType() === galleryTypes.Details) {
+            <app-related-tags [relatedTags]="moodsFlow()?.mood.relatedTags" [currentTagId]="tagsFlow()?.tag?.businessId" (tagId)="setAndSwitchToTag($event)" />
+        }
+        @if(galleryType() === galleryTypes.Gallery) {
+            <app-related-franchises [model]="modelsFlow()?.model" 
+            [franchises]="modelsFlow()?.model?.relatedFranchises || []" [franchiseId]="franchisesFlow()?.franchise?.businessId"
+            (setFranchise)="setFranchise($event)" (switchToFranchise)="setAndSwitchToFranchise($event)" (switchToModel)="setAndSwitchToModel($event)" />
+        }
+    }
+    @if(galleryMode() === galleryModes.Default || galleryMode() === galleryModes.Tag || galleryMode() === galleryModes.TagCategory || galleryMode() === galleryModes.Artist) {
+        @if(galleryType() === galleryTypes.Details) {
+            <app-related-tags [relatedTags]="moodsFlow()?.mood.relatedTags" [currentTagId]="tagsFlow()?.tag?.businessId" (tagId)="setAndSwitchToTag($event)" />
+        }
+        @if(galleryType() === galleryTypes.Gallery) {
+            <app-column-full [tags]="tagsFlow()?.tagsList" [currentTagId]="tagsFlow()?.tag?.businessId" (tagId)="setAndSwitchToTag($event)" (moodsByTagCategoryId)="setAndSwitchToTagCategory($event)" />
+        }
+    }
+</app-right-column>
+
+<app-dialog>
+    @if(galleryMode() === galleryModes.Franchise) {
+        @if(activeEntity() === activeEntities.Franchise) {
+            <app-dialog-info [moodsLength]="moodsFlow()?.moods?.length" [entity]="franchisesFlow()?.franchise" />
+        }
+        @if(activeEntity() === activeEntities.Model) {
+            <app-dialog-info [moodsLength]="moodsFlow()?.moods?.length" [entity]="modelsFlow()?.model" />
+        }
+    }
+    @if(galleryMode() === galleryModes.Model) {
+        @if(activeEntity() === activeEntities.Model) {
+            <app-dialog-info [moodsLength]="moodsFlow()?.moods?.length" [entity]="modelsFlow()?.model" />
+        }
+        @if(activeEntity() === activeEntities.Franchise) {
+            <app-dialog-info [moodsLength]="moodsFlow()?.moods?.length" [entity]="franchisesFlow()?.franchise" />
+        }
+    }
+    @if(galleryMode() === galleryModes.Artist) {
+        <app-dialog-info [moodsLength]="moodsFlow()?.moods?.length" [entity]="artistsFlow()?.artist" />
+    }
+    @if(galleryMode() === galleryModes.Tag) {
+        <app-dialog-info [moodsLength]="moodsFlow()?.moods?.length" [entity]="tagsFlow()?.tag" />
+    }
+    @if(galleryMode() === galleryModes.TagCategory) {
+        <app-dialog-info [moodsLength]="moodsFlow()?.moods?.length" [entity]="tagsFlow()?.tagCategory" />
+    }
+</app-dialog>

@@ -1,0 +1,60 @@
+<p class="sticky-label">Selected Files : {{images.length || 0}}</p>
+<h1 class="h1">{{ 'title.add-image' | translate}}</h1>
+<p class="p">( BMP, GIF, JPG, JPEG, PNG, WEBP )</p>
+<p class="p">Maximum file size : 50 Mo</p>
+<hr class="dialog-hr">
+<input #originalInput type="file" multiple (change)="onFileSelect($event)">
+<div class="buttons">
+    <div id="hack" class="button" (click)="onClickHack()">Select File(s)</div>
+</div>
+<div class="multiple">
+    <div *ngFor="let image of images; let i = index">
+        <form [formGroup]="forms[i]" (ngSubmit)="onSubmit()">
+            <div class="file">
+                <div class="file-picture">
+                    <img src="{{image.url}}" />
+                </div>
+                <div class="info-flex">
+                    <p><label for="name"><b>Name</b></label></p>
+                    <input type="text" id="name" value="{{image.sourceFile}}" formControlName="name">
+                </div>
+                <div class="info-flex">
+                    <p><label for="title"><b>Description</b></label></p>
+                    <input type="text" id="title" value="{{image.description}}" formControlName="description">
+                </div>
+                <div class="info-flex">
+                    <p><b>Extension</b></p>
+                    <p>*.{{image.extension}}</p>
+                </div>
+                <div class="info-flex">
+                    <p><b>Size</b></p>
+                    <p>{{image.size | formatSize : 2}}</p>
+                </div>
+                <div class="info-flex">
+                    <p><b>Height</b></p>
+                    <p>{{image.height}} pixels</p>
+                </div>
+                <div class="info-flex">
+                    <p><b>Width</b></p>
+                    <p>{{image.width}} pixels</p>
+                </div>
+                <div class="buttons">
+                    <div class="button" (click)="dropFile(image.sourceFile)">Drop File</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@if(invalidCount > 0) {
+<p class="p"><b>Ignored Files</b> : {{invalidCount}}</p>
+<div *ngFor="let name of invalidNames">
+    <p class="p">{{name}}</p>
+</div>
+}
+<app-spacer height="75px" />
+
+<app-bottom-bar>
+    <app-bottom-icon-back />
+    <app-bottom-icon-to-top />
+    <app-bottom-icon-save (triggerSave)="onSubmit()" />
+</app-bottom-bar>

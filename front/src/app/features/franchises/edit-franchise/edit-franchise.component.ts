@@ -1,7 +1,6 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnInit, Output } from '@angular/core';
 import { FranchiseFull, MediumCheckBox } from '../../../interfaces/franchise';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FlowService } from '../../../services/http/flow.service';
 import { FranchiseUpdateForm } from '../../../interfaces/forms-update';
 import { FranchiseService } from '../../../services/http/franchise.service';
 
@@ -12,9 +11,8 @@ import { FranchiseService } from '../../../services/http/franchise.service';
 })
 export class EditFranchiseComponent implements OnInit {
   @Input() franchise: FranchiseFull | undefined = undefined
-  @Output() trigger = new EventEmitter<void>()
+  @Output() setViewMode = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
   #franchiseService = inject(FranchiseService)
   #formBuilder = inject(FormBuilder)
 
@@ -30,7 +28,7 @@ export class EditFranchiseComponent implements OnInit {
         media: this.#formBuilder.array([])
       })
 
-      this.#flowService.getMediaCheckBoxesByFranchise(this.franchise.businessId)
+      this.#franchiseService.getMediaCheckBoxesByFranchise(this.franchise.businessId)
         .subscribe(media => this.populateCategories(media))
     }
   }
@@ -59,7 +57,7 @@ export class EditFranchiseComponent implements OnInit {
   }
   public closeDeleteDialogEmit(): void {
     this.isDeleteDialogOpen = false
-    this.trigger.emit()
+    this.setViewMode.emit()
   }
 
   public onSubmit(): void {
@@ -75,7 +73,7 @@ export class EditFranchiseComponent implements OnInit {
         mediaIds: selectedMedia
       }
 
-      this.#franchiseService.updateFranchise(form).subscribe(response => { if (response.success) this.trigger.emit() })
+      this.#franchiseService.updateFranchise(form).subscribe(response => { if (response.success) this.setViewMode.emit() })
     }
   }
 

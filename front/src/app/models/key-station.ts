@@ -1,6 +1,6 @@
 import { AudioService } from "../services/audio.service";
 import { Key } from "./key";
-import { Note } from "../interfaces/note";
+import { Note } from "../interfaces/music-tools/note";
 import { KeysService } from "../services/keys.service";
 
 export class KeyStation {

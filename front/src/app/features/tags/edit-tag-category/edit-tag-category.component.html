@@ -1,16 +1,21 @@
 <div class="edition"> 
     <h2 class="h2">Edit current tag category.</h2>
+
     <form [formGroup]="editFormGroup">
         <input type="text" formControlName="name">
         <input type="text" formControlName="description">     
     </form>
+
     <a class="edition-button" [class.edition-button-disabled]="editFormGroup.invalid" (click)="onSubmit()">Submit</a>
     <a class="edition-button" (click)="openDeleteDialog()">Delete</a>
 </div>
-<div class="spacer-150"></div>
+
+<app-spacer height="150px" />
+
 @if(isDeleteDialogOpen) {
     <app-dialog (dialog)="closeDeleteDialog()">
         <app-delete-tag-category [tagCategory]="tagCategory" (toggleDialog)="closeDeleteDialogEmit()" />
     </app-dialog>
 }
+
 <app-overlay [isOverlayOn]="isDeleteDialogOpen" (toggle)="closeDeleteDialog()" />

@@ -19,6 +19,7 @@ export interface User {
 export interface GetUserResponse extends BaseResponse {
     user: User
 }
+
 export interface UserUpdateResponse extends BaseResponse {
     updatedUser: User
 }

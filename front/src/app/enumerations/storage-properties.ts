@@ -1,4 +1,18 @@
 export enum StorageProperties {
+  ActiveEntity = 'active-entity',
+  GalleryMode = 'gallery-mode',
+  GalleryType = 'gallery-type',
+  GDPR = 'gdpr',
   Language = 'language',
-  Theme = 'theme'
+  StateArtistId = 'state-artist-id',
+  StateFranchiseId = 'state-franchise-id',
+  StateLinkId = 'state-link-id',
+  StateLinkCategoryId = 'state-link-category-id',
+  StateMediumId = 'state-medium-id',
+  StateModelId = 'state-model-id',
+  StateMoodId = 'state-mood-id',
+  StateStyleId = 'state-style-id',
+  StateTagId = 'state-tag-id',
+  StateTagCategoryId = 'state-tag-category-id',
+  Theme = 'theme',
 }

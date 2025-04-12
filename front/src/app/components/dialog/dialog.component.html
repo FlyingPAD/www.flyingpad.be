@@ -1,7 +1,9 @@
-<div class="dialog">
+<div class="dialog" [ngClass]="entityInfoToggle() ? 'on' : 'off' ">
     <ng-content />
     <hr>
     <div class="buttons">
-        <div class="button" (click)="handleDialog()">{{ 'title.close' | translate }}</div>
+        <div appToggleEntityInfo class="button">{{ 'title.close' | translate }}</div>
     </div>
 </div>
+
+<app-overlay appToggleEntityInfo [isOverlayOn]="entityInfoToggle()" />

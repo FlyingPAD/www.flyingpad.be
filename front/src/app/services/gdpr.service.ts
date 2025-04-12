@@ -9,22 +9,20 @@ import { StorageService } from './storage.service';
 export class GdprService {
   #storageService = inject(StorageService)
 
-  #currentStatus = new BehaviorSubject<boolean | undefined | null>(undefined)
-  public currentStatus: Signal<boolean | undefined | null> = toSignal(this.#currentStatus)
+  #currentStatus$ = new BehaviorSubject<boolean | undefined | null>(undefined)
+
+  public currentStatus: Signal<boolean | undefined | null> = toSignal(this.#currentStatus$)
+
 
   constructor() {
     let storedStatus: boolean | null = this.#storageService.getItem('gdpr')
 
-    if (storedStatus) {
-      this.setCurrentStatus(storedStatus)
-    } 
-    else {
-      this.#currentStatus.next(undefined)
-    }
+    if (storedStatus) this.setCurrentStatus(storedStatus)
+    else this.#currentStatus$.next(undefined)
   }
 
   public setCurrentStatus(gdprStatus: boolean | undefined | null): void {
-      this.#currentStatus.next(gdprStatus)
-      this.#storageService.setItem('gdpr', gdprStatus)
+    this.#currentStatus$.next(gdprStatus)
+    this.#storageService.setItem('gdpr', gdprStatus)
   }
 }

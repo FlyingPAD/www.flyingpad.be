@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostListener, inject, OnDestroy, Output } from
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LinkCategoryCreateForm } from '../../../interfaces/forms-create';
-import { LinkCategoryService } from '../../../services/http/link-category.service';
+import { LinkService } from '../../../services/http/link.service';
 
 @Component({
   selector: 'app-create-link-category',
@@ -12,7 +12,7 @@ import { LinkCategoryService } from '../../../services/http/link-category.servic
 export class CreateLinkCategoryComponent implements OnDestroy {
   @Output() trigger = new EventEmitter<void>()
 
-  #linkCategoryService = inject(LinkCategoryService)
+  #linkService = inject(LinkService)
   #formBuilder = inject(FormBuilder)
 
   #subscription = new Subscription()
@@ -33,7 +33,7 @@ export class CreateLinkCategoryComponent implements OnDestroy {
     }
 
     if (this.formGroup.valid) {
-      this.#subscription = this.#linkCategoryService.createLinkCategory(form).subscribe((response) => {
+      this.#subscription = this.#linkService.createLinkCategory(form).subscribe((response) => {
         if (response.success) this.trigger.emit()
       })
     }

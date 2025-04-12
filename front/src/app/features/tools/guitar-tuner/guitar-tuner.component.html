@@ -38,4 +38,8 @@
         [class.highlight]="targetNote?.name === currentTuning[5].name">{{ currentTuning[5].name }}</div>
 </div>
 
-<app-bottom-bar-larger />
+<app-bottom-bar>
+    <app-bottom-icon-back page="/dashboard" />
+    <app-bottom-item-name itemName="Guitar Tuner" />
+    <app-bottom-toggle-right-menu />
+</app-bottom-bar>

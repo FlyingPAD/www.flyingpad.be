@@ -1,41 +1,46 @@
-<div class="edition" *ngIf="flow() as flow">
+<div class="edition">
     <div class="edition-selection">
-        @if(flow?.model) {
-            <p><b>{{ flow.model?.pseudonym }}</b></p>
-        }
-        @else {
-            <p>Please, select a model from the list.</p>
-        }
+        <p *ngIf="modelsFlow()?.model"><b>{{ modelsFlow()?.model?.pseudonym }}</b></p>
+        <p *ngIf="!modelsFlow()?.model">Please, select a model from the list.</p>
+        
         <div class="edition-buttons">
-            <app-icon-list class="icon" [class.active]="showList" size="25px" (click)="triggerShowList()" />
-            <app-icon-plus class="icon" [class.active]="showNew" size="25px" (click)="triggerShowNew()" />
-            @if(flow?.model) {
-                <app-icon-edit class="icon" [class.active]="showEdit" size="25px" (click)="triggerShowEdit()" />
+            <app-icon-list (click)="setViewMode(viewModes.ListView)" class="icon" [class.active]="currentViewMode === viewModes.ListView" size="25px" />
+            <app-icon-plus (click)="setViewMode(viewModes.ModelCreationView)" class="icon" [class.active]="currentViewMode === viewModes.ModelCreationView" size="25px" />
+            
+            @if(modelsFlow()?.model) {
+                <app-icon-edit (click)="setViewMode(viewModes.ModelEditionView)" class="icon" [class.active]="currentViewMode === viewModes.ModelEditionView" size="25px" />
                 <app-icon-go class="icon" size="25px" (click)="go()" />
             }
         </div>
     </div>
-    @if (showList) {
-        <div class="filter">
-            <input type="text" [(ngModel)]="searchModels" (ngModelChange)="handleSearchModelsChange($event)" placeholder="Filter models ..." />
-        </div>
+
+    @if(currentViewMode === viewModes.ListView) {
+        <div class="filter"><input type="text" [ngModel]="searchModelsSignal()" (ngModelChange)="handleSearchModelsChange($event)" placeholder="Filter models ..." /></div>
+
         <div class="edition-list">
-            <div *ngFor="let model of filterModels() | paginate : { itemsPerPage: elementsPerPage, currentPage: currentPage() }">
-                <a [class.active]="model.pseudonym === flow.model?.pseudonym" (click)="setModel(model)"> ▸ {{ model.pseudonym }}</a>
+            <div *ngFor="let model of filterModels() | paginate: { itemsPerPage: elementsPerPage, currentPage: displayPage() }">
+                <a [class.active]="model.pseudonym === modelsFlow()?.model?.pseudonym" (click)="setModelId(model.businessId)">▸ {{ model.pseudonym }}</a>
             </div>
         </div>
-        <div class="pagination-row" *ngIf="filterModels().length > elementsPerPage">
-            <div class="pagination">
-                <pagination-controls (pageChange)="onPageChange($event)" previousLabel="" nextLabel="" class="pagination" />
+        @if(filterModels().length > elementsPerPage) {
+            <div class="pagination-row">
+                <div class="pagination">
+                    <pagination-controls (pageChange)="onPageChange($event)" previousLabel="" nextLabel="" class="pagination" />
+                </div>
             </div>
-        </div>
+        }
     }
-    @if (showNew) {
-        <app-create-model [franchises]="flow.franchises" (trigger)="triggerShowList()" />
+    @if(currentViewMode === viewModes.ModelCreationView) {
+        <app-create-model [franchises]="franchisesFlow()?.franchises || []" (trigger)="setViewMode(viewModes.ListView)" />
     }
-    @if (showEdit) {
-        <app-edit-model [model]="flow.model" (showListTrigger)="triggerShowList()" />
+    @if(currentViewMode === viewModes.ModelEditionView) {
+        <app-edit-model [model]="modelsFlow()?.model" (showListTrigger)="setViewMode(viewModes.ListView)" />
     }
-    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.models.length" />
 </div>
-<app-spacer height="150px" />
+
+<app-spacer />
+
+<app-bottom-bar>
+    <app-bottom-icon-back />
+    <app-bottom-items-length [itemsLength]="modelsFlow()?.models?.length" />
+</app-bottom-bar>

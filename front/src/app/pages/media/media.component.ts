@@ -1,9 +1,12 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { FlowService } from '../../services/http/flow.service';
 import { ButtonTopService } from '../../services/button-top.service';
-import { MoodsService } from '../../services/moods.service';
-import { PaginationService } from '../../services/pagination.service';
+import { ActiveEntity, GalleryMode } from '../../enumerations/gallery-mode';
+import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { GalleryType } from '../../enumerations/gallery-type';
+import { FranchiseService } from '../../services/http/franchise.service';
+import { ModelService } from '../../services/http/model.service';
+import { StateService } from '../../services/custom-state/state.service';
 
 @Component({
   selector: 'app-media',
@@ -11,81 +14,135 @@ import { PaginationService } from '../../services/pagination.service';
   styleUrls: ['./media.component.scss']
 })
 export class MediaComponent implements OnInit, OnDestroy {
-  private flowService = inject(FlowService)
-  private moodsService = inject(MoodsService)
-  private paginationService = inject(PaginationService)
-  private buttonTopService = inject(ButtonTopService)
-  private router = inject(Router)
+  #stateService = inject(StateService)
+  #franchiseService = inject(FranchiseService)
+  #modelService = inject(ModelService)
+  #moodsGalleryService = inject(MoodsGalleryService)
+  #buttonTopService = inject(ButtonTopService)
+  #router = inject(Router)
 
-  public flow = this.flowService.flow
+  public franchisesFlow = this.#franchiseService.franchisesFlow
+  public modelsFlow = this.#modelService.modelsFlow
 
   public expandedMedia: Record<number, boolean> = {}
   public expandedFranchises: Record<number, Record<number, boolean>> = {}
 
+
   ngOnInit(): void {
-    this.buttonTopService.setShowButtonTop(true)
-
-    const currentFlow = this.flow()
-
-    if (currentFlow && currentFlow.medium) {
-      const mediaId = currentFlow.medium.businessId
-
-      this.expandedMedia[mediaId] = true
-
-      if (currentFlow.franchise) {
-        const franchiseId = currentFlow.franchise.businessId
-
-        this.expandedFranchises[mediaId] = this.expandedFranchises[mediaId] || {}
-        this.expandedFranchises[mediaId][franchiseId] = true
-      }
-    }
+    this.#buttonTopService.setShowButtonTop(true)
+    this.focusOnSelectedItem()
   }
 
   ngOnDestroy(): void {
-    this.buttonTopService.setShowButtonTop(false)
+    this.#buttonTopService.setShowButtonTop(false)
   }
 
-  public updateMediaId(mediaId: number): void {
-    this.flowService.updateMediumId(mediaId)
+  public isMediumExpanded(mediumId: number): boolean {
+    return !!this.expandedMedia[mediumId]
   }
 
-  public updateFranchiseId(franchiseId: number): void {
-    this.flowService.updateFranchiseId(franchiseId)
+  public isFranchiseExpanded(mediumId: number, franchiseId: number): boolean {
+    return !!this.expandedFranchises[mediumId]?.[franchiseId]
   }
 
-  public updateModelId(modelId: number): void {
-    this.flowService.updateModelId(modelId)
+  public toggleMedium(mediumId: number): void {
+    this.setMediumId(mediumId)
+    this.expandedMedia[mediumId] = !this.isMediumExpanded(mediumId)
   }
 
-  public goTo(mode: string, id: number): void {
-    if (mode === 'franchise') {
-      this.updateFranchiseId(id)
-      this.paginationService.resetFranchiseGalleryCurrentPage()
-    } 
-    else if (mode === 'model') {
-      this.updateModelId(id)
-      this.paginationService.resetModelGalleryCurrentPage()
+  public toggleFranchise(mediumId: number, franchiseId: number): void {
+    this.setFranchise(franchiseId)
+    this.expandedFranchises[mediumId] = this.expandedFranchises[mediumId] || {}
+    this.expandedFranchises[mediumId][franchiseId] = !this.isFranchiseExpanded(mediumId, franchiseId)
+  }
+
+  public setMediumId(mediumId: number): void {
+    let currentMedium = this.franchisesFlow()?.medium
+    if(currentMedium?.businessId != mediumId ) this.#franchiseService.setMediumId(mediumId)
+  }
+
+  public setFranchise(franchiseId: number): void {
+    let currentFranchise = this.franchisesFlow()?.franchise
+    if(currentFranchise?.businessId != franchiseId ) this.#stateService.setFranchiseId(franchiseId)
+  }
+
+  public goToFranchise(franchiseId: number): void {
+    this.setFranchise(franchiseId)
+    this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
+    this.#moodsGalleryService.setGalleryMode(GalleryMode.Franchise)
+    this.#moodsGalleryService.setActiveEntity(ActiveEntity.Franchise)
+    this.#router.navigateByUrl('/central-gallery')
+  }
+
+  public goToModel(modelId: number): void {
+    this.#stateService.setModelId(modelId)
+    this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
+    this.#moodsGalleryService.setGalleryMode(GalleryMode.Model)
+    this.#moodsGalleryService.setActiveEntity(ActiveEntity.Model)
+    this.#router.navigateByUrl('/central-gallery')
+  }
+
+  private focusOnSelectedItem(): void {
+    const flow = this.franchisesFlow()
+    if (!flow) {
+      this.expandedMedia = {}
+      this.expandedFranchises = {}
+      return
     }
-    this.moodsService.updateMoodMenuState('gallery')
-    this.router.navigateByUrl('/moods')
-  }
+  
+    const selectedModel = this.modelsFlow()?.model
+    if (selectedModel) {
+      let foundMedia: any = null
+      let foundFranchise: any = null
 
-  public isMediaExpanded(mediaId: number): boolean {
-    return !!this.expandedMedia[mediaId]
-  }
-
-  public toggleMedia(mediaId: number): void {
-    this.updateMediaId(mediaId)
-    this.expandedMedia[mediaId] = !this.isMediaExpanded(mediaId)
-  }
-
-  public isFranchiseExpanded(mediaId: number, franchiseId: number): boolean {
-    return !!this.expandedFranchises[mediaId]?.[franchiseId]
-  }
-
-  public toggleFranchise(mediaId: number, franchiseId: number): void {
-    this.updateFranchiseId(franchiseId)
-    this.expandedFranchises[mediaId] = this.expandedFranchises[mediaId] || {}
-    this.expandedFranchises[mediaId][franchiseId] = !this.isFranchiseExpanded(mediaId, franchiseId)
+      for (const media of flow.mediaList) {
+        for (const franchise of media.franchises) {
+          if (franchise.models && franchise.models.find((model: any) => model.businessId === selectedModel.businessId)) {
+            foundMedia = media
+            foundFranchise = franchise
+            break
+          }
+        }
+        if (foundMedia && foundFranchise) {
+          break
+        }
+      }
+      if (foundMedia && foundFranchise) {
+        this.expandedMedia[foundMedia.businessId] = true
+        this.expandedFranchises[foundMedia.businessId] = {
+          ...(this.expandedFranchises[foundMedia.businessId] || {}),
+          [foundFranchise.businessId]: true
+        }
+        return
+      }
+    }
+  
+    const selectedFranchise = flow.franchise
+    if (selectedFranchise) {
+      let foundMedia: any = null
+      for (const media of flow.mediaList) {
+        if (media.franchises.find((franchise: any) => franchise.businessId === selectedFranchise.businessId)) {
+          foundMedia = media
+          break
+        }
+      }
+      if (foundMedia) {
+        this.expandedMedia[foundMedia.businessId] = true
+        this.expandedFranchises[foundMedia.businessId] = {
+          ...(this.expandedFranchises[foundMedia.businessId] || {}),
+          [selectedFranchise.businessId ?? -1]: true
+        }
+        return
+      }
+    }
+  
+    const selectedMedium = flow.medium
+    if (selectedMedium) {
+      this.expandedMedia[selectedMedium.businessId] = true
+      return
+    }
+  
+    this.expandedMedia = {}
+    this.expandedFranchises = {}
   }
 }

@@ -1,16 +1,17 @@
 import { Injectable, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject } from 'rxjs';
+import { DashboardViewMode } from '../enumerations/view-modes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
-  #dashboardMenuState = new BehaviorSubject<string>('status')
+  #dashboardViewMode$ = new BehaviorSubject<DashboardViewMode>(DashboardViewMode.Status)
 
-  public dashboardMenuState = toSignal(this.#dashboardMenuState) as Signal<string>
+  public dashboardViewMode = toSignal(this.#dashboardViewMode$) as Signal<DashboardViewMode>
   
-  public updateMenuState(menuState : string): void {
-    this.#dashboardMenuState.next(menuState)
+  public setDashboardViewMode(viewMode: DashboardViewMode): void {
+    this.#dashboardViewMode$.next(viewMode)
   }
 }

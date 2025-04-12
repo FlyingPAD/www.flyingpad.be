@@ -1,8 +1,8 @@
 import { Component, EventEmitter, HostListener, inject, OnDestroy, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { TagCategoryCreateForm } from '../../../interfaces/forms-create';
-import { TagCategoryService } from '../../../services/http/tag-category.service';
+import { TagService } from '../../../services/http/tag.service';
 
 @Component({
   selector: 'app-create-tag-category',
@@ -10,9 +10,9 @@ import { TagCategoryService } from '../../../services/http/tag-category.service'
   styleUrl: './create-tag-category.component.scss'
 })
 export class CreateTagCategoryComponent implements OnDestroy {
-  @Output() trigger = new EventEmitter<void>()
+  @Output() setViewMode = new EventEmitter<void>()
 
-  #tagCategoryService = inject(TagCategoryService)
+  #tagService = inject(TagService)
   #formBuilder = inject(FormBuilder)
 
   createFormGroup: FormGroup = this.#formBuilder.group({
@@ -20,10 +20,12 @@ export class CreateTagCategoryComponent implements OnDestroy {
     description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
 
-  #subscription = new Subscription()
+  #destroy$ = new Subject<void>()
+
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   public onSubmit(): void {
@@ -33,7 +35,9 @@ export class CreateTagCategoryComponent implements OnDestroy {
     }
 
     if (this.createFormGroup.valid) {
-      this.#subscription = this.#tagCategoryService.createTagCategory(form).subscribe(response => { if (response.success) this.trigger.emit() })
+      this.#tagService.createTagCategory(form)
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe(response => { if (response.success) this.setViewMode.emit() })
     }
   }
 

@@ -1,43 +1,52 @@
 import { Injectable, inject } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-  #toastr = inject(ToastrService);
+  #notificationService = inject(NotificationService)
 
   setItem(key: string, value: any): void {
     try {
-      localStorage.setItem(key, JSON.stringify(value));
-    } catch (error) {
-      this.#toastr.error(`Error saving item ${key}`, 'Error');
+      if (value === undefined) {
+        localStorage.removeItem(key)
+      } 
+      else {
+        localStorage.setItem(key, JSON.stringify(value))
+      }
+    } 
+    catch (error) {
+      this.#notificationService.error(`Error saving item ${key}`, 'Error')
     }
   }
 
   getItem<T>(key: string): T | null {
     try {
-      const item = localStorage.getItem(key);
-      return item ? JSON.parse(item) as T : null;
-    } catch (error) {
-      this.#toastr.error(`Error retrieving item ${key}`, 'Error');
-      return null;
+      const item = localStorage.getItem(key)
+      return item ? JSON.parse(item) as T : null
+    } 
+    catch (error) {
+      this.#notificationService.error(`Error retrieving item ${key}`, 'Error')
+      return null
     }
   }
 
   removeItem(key: string): void {
     try {
-      localStorage.removeItem(key);
-    } catch (error) {
-      this.#toastr.error(`Error removing item ${key}`, 'Error');
+      localStorage.removeItem(key)
+    }
+    catch (error) {
+      this.#notificationService.error(`Error removing item ${key}`, 'Error')
     }
   }
 
   clearAll(): void {
     try {
-      localStorage.clear();
-    } catch (error) {
-      this.#toastr.error('Error clearing all items', 'Error');
+      localStorage.clear()
+    }
+    catch (error) {
+      this.#notificationService.error('Error clearing all items', 'Error')
     }
   }
 }

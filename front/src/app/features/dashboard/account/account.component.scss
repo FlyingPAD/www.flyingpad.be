@@ -1,14 +1,6 @@
 .profile {
-    padding: 25px;
-
     max-width: 450px;
     margin: auto;
-
-    background-color: var(--colorMainOpacity2);
-    border: 3px solid var(--colorMain);
-    border-radius: 10px;
-    box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
-
 
     .flex {
         height: 25px;
@@ -34,6 +26,7 @@
             }
         }
         input {
+            width: 150px;
             margin: 0;
             padding: 5px;
             border-radius: 5px;

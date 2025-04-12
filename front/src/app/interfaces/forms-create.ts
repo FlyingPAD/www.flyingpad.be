@@ -1,6 +1,26 @@
-export interface MoodCreateForm {
-    name : string
-    description : string
+export interface ImageCreateForm {
+    name: string
+    description: string
+    type: number
+    size: number
+    extension: string
+    height: number
+    width: number
+    sourceFile: string
+    url: string
+}
+
+export interface VideoCreateForm {
+    title: string
+    description: string
+    type: number
+    size: number
+    extension: string
+    height: number
+    width: number
+    duration: number
+    sourceFile: string
+    url: string
 }
 
 export interface TagCategoryCreateForm {

@@ -11,7 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 18;
+  z-index: 24;
   transition: right 500ms ease;
 
   .trigger-arrow {
@@ -21,13 +21,13 @@
     border-radius: 3px;
     transition: background-color 500ms ease;
   }
+}
 
-  &:hover {
-    cursor: pointer;
+.column-trigger:hover {
+  cursor: pointer;
 
-    .trigger-arrow {
-      background-color: var(--colorMain);
-    }
+  .trigger-arrow {
+    background-color: var(--colorMain);
   }
 }
 
@@ -55,12 +55,12 @@
   background-color: var(--colorMainOpacity5);
   backdrop-filter: blur(3px);
   border-left: 3px solid var(--colorMain);
-  z-index: 17;
+  z-index: 24;
 
   transition: right 500ms ease, opacity 500ms ease;
+}
 
-  &.right-column-off {
-    right: -310px;
-    opacity: 0;
-  }
+.right-column-off {
+  right: -310px;
+  opacity: 0;
 }

@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MoodsGalleryService } from '../../../services/moods-gallery.service';
+import { EditMoodViewMode } from '../../../enumerations/view-modes-edition';
 
 @Component({
   selector: 'app-edit-mood-menu',
@@ -6,10 +8,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './edit-mood-menu.component.scss'
 })
 export class EditMoodMenuComponent {
-  @Input() editMoodMenuState : string = 'info'
-  @Output() editMoodMenuStateTrigger = new EventEmitter()
+  #moodsGalleryService = inject(MoodsGalleryService)
 
-  public handleEditMoodMenuState(state: string): void {
-    this.editMoodMenuStateTrigger.emit(state)
+  public currentViewMode = this.#moodsGalleryService.editMoodViewMode
+  public viewModes = EditMoodViewMode
+
+  public setViewMode(viewMode: EditMoodViewMode): void {
+    this.#moodsGalleryService.setEditMoodViewMode(viewMode)
   }
 }

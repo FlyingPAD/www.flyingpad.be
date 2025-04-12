@@ -1,8 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { FlowService } from '../../../services/http/flow.service';
 import { environment } from '../../../../environments/environment';
-import { MoodsService } from '../../../services/moods.service';
 import { Router } from '@angular/router';
+import { MoodService } from '../../../services/http/mood.service';
+import { StateService } from '../../../services/custom-state/state.service';
+import { MoodsGalleryService } from '../../../services/moods-gallery.service';
+import { GalleryType } from '../../../enumerations/gallery-type';
+import { GalleryMode } from '../../../enumerations/gallery-mode';
+import { DisplayService } from '../../../services/display.service';
+import { DisplayModes } from '../../../enumerations/display-modes';
 
 @Component({
   selector: 'app-status',
@@ -10,21 +15,27 @@ import { Router } from '@angular/router';
   styleUrl: './status.component.scss'
 })
 export class StatusComponent {
-  #flowService = inject(FlowService)
-  #moodsService = inject(MoodsService)
+  #stateService = inject(StateService)
+  #moodService = inject(MoodService)
+  #moodsGalleryService = inject(MoodsGalleryService)
+  #displayService = inject(DisplayService)
   #router = inject(Router)
 
-  public flow = this.#flowService.flow
+  public moodsFlow = this.#moodService.moodsFlow
+  public displayInfo = this.#displayService.displayInfo
+  public displayModes = DisplayModes
+  
   public environment: string = environment.apiBaseUrl
 
   public goToCurrentMood(): void {
-    this.#moodsService.updateMoodMenuState('details')
-    this.#router.navigateByUrl('/moods')
+    this.#moodsGalleryService.setGalleryType(GalleryType.Details)
+    this.#router.navigateByUrl('/central-gallery')
   }
 
   public goToCurrentTag(tagId: number): void {
-    this.#flowService.updateTagId(tagId)
-    this.#moodsService.updateMoodMenuState('gallery')
-    this.#router.navigateByUrl('/moods')
+    this.#stateService.setTagId(tagId)
+    this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
+    this.#moodsGalleryService.setGalleryMode(GalleryMode.Tag)
+    this.#router.navigateByUrl('/central-gallery')
   }
 }

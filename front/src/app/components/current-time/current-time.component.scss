@@ -1,9 +1,9 @@
-#core-dynamic-date
-{
-    text-align: center;
+.current-time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    p
-    {
+    p {
         font-size: 15px;
     }
 }

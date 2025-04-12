@@ -17,7 +17,7 @@ public class GetAllLinksQueryHandler(IBaseRepository<Link> linkRepository, IMapp
         return new GetAllLinksQueryResponse
         {
             Success = true,
-            Message = "All links.",
+            Message = "Links",
             Links = _mapper.Map<List<GetAllLinksQueryDto>>(links)
         };
     }

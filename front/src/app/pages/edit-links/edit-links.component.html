@@ -1,74 +1,85 @@
-<div class="edition" *ngIf="flow() as flow">
+<div class="edition">
     <div class="edition-selection">
-        @if(flow.linkCategory?.name){
-        <p><b>{{flow.linkCategory?.name}}</b></p>
-        }
-        @else {
-        <p>Select a category.</p>
-        }
+        <p [style.fontWeight]="linksFlow()?.linkCategory ? 'bold' : 'normal'">
+            {{ linksFlow()?.linkCategory?.name || 'Select a category.' }}
+        </p>
         <div class="edition-buttons">
-            <app-icon-list class="icon" [class.active]="showList" size="25px" (click)="triggerShowList()" />
-            <app-icon-plus class="icon" [class.active]="showNewCategory" size="25px"
-                (click)="triggerShowNewCategory()" />
-            @if(flow.linkCategory?.name){
-            <app-icon-edit class="icon" [class.active]="showEditCategory" size="25px"
-                (click)="triggerShowEditCategory()" />
+            <app-icon-list class="icon" [class.active]="currentViewMode === viewModes.ListView" size="25px"
+                (click)="setViewMode(viewModes.ListView)" />
+            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.LinkCategoryCreationView"
+                size="25px" (click)="setViewMode(viewModes.LinkCategoryCreationView)" />
+            @if(linksFlow()?.linkCategory) {
+                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.LinkCategoryEditionView"
+                    size="25px" (click)="setViewMode(viewModes.LinkCategoryEditionView)" />
             }
         </div>
     </div>
     <div class="edition-selection">
-        @if(flow.link){
-        <p><b>{{flow.link.name}}</b></p>
-        }
-        @else {
-        <p>Please, select a link from the list.</p>
-        }
+        <p [style.fontWeight]="linksFlow()?.link ? 'bold' : 'normal'">
+            {{linksFlow()?.link?.name || 'Please, select a link from the list.' }}</p>
         <div class="edition-buttons">
             <img class="icon active"
-                [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + flow.link?.url + '&sz=96'" />
-            <app-icon-plus class="icon" [class.active]="showNew" size="25px" (click)="triggerShowNew()" />
-            @if(flow.link){
-            <app-icon-edit class="icon" [class.active]="showEdit" size="25px" (click)="triggerShowEdit()" />
-            <app-icon-go class="icon" size="25px" (click)="go()" />
+                [src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + linksFlow()?.link?.url + '&sz=96'" />
+            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.LinkCreationView" size="25px"
+                (click)="setViewMode(viewModes.LinkCreationView)" />
+            @if(linksFlow()?.link){
+                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.LinkEditionView" size="25px"
+                    (click)="setViewMode(viewModes.LinkEditionView)" />
+                <app-icon-go class="icon" size="25px" (click)="go()" />
             }
         </div>
     </div>
-    @if (showList) {
-    <div class="filter">
-        <input type="text" [(ngModel)]="searchLinks" placeholder="Filter links ...">
-    </div>
 
-    <div class="edition-list">
-        <div
-            *ngFor="let link of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage()}">
-            <a [class.active]="link.name === flow.link?.name" (click)="setLink(link)"> ▸ {{link.name}}</a>
-        </div>
-    </div>
+    @if (currentViewMode === viewModes.ListView) {
+        <div class="filter"><input type="text" [(ngModel)]="searchLinks" placeholder="Filter links ..."></div>
 
-    <app-right-column>
-        <app-right-column-list [table]="flow.linkCategories" [currentEntityId]="flow.linkCategory?.businessId"
-            (entityId)="updateLinkCategoryId($event)" />
-    </app-right-column>
-
-    <div class="pagination-row" *ngIf="flow.linksByCategory.length > elementsPerPage">
-        <div class="pagination">
-            <pagination-controls previousLabel="" nextLabel="" class="pagination"
-                (pageChange)="updateCurrentPage($event)" />
-        </div>
-    </div>
+        @if(filterLinks()?.length) {
+            <div class="edition-list">
+                <div *ngFor="let link of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage}">
+                    <a [class.active]="link.name === linksFlow()?.link?.name" (click)="setLinkId(link.businessId)"> ▸ {{link.name}}</a>
+                </div>
+            </div>
+        }
+        @else if(!filterLinks()?.length) {
+            <p class="p">There are currently no links in this list.</p>
+            <div class="empty-list">
+                <p>Click</p>
+                <app-icon-plus size="25px" class="icon" />
+                <p>to add a new link.</p>
+            </div>
+        }
+        @if((linksFlow()?.linksByCategory?.length || 0) > elementsPerPage) {
+            <div class="pagination-row">
+                <div class="pagination">
+                    <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />
+                </div>
+            </div>
+        }
     }
-    @if (showNew) {
-    <app-create-link [linkCategories]="flow.linkCategories" (trigger)="triggerShowList()" />
-    }
-    @if (showNewCategory) {
-    <app-create-link-category (trigger)="triggerShowList()" />
-    }
-    @if (showEdit) {
-    <app-edit-link [link]="flow.link" (trigger)="triggerShowList()" />
-    }
-    @if (showEditCategory) {
-    <app-edit-link-category [linkCategory]="flow.linkCategory" (showListTrigger)="triggerShowList()" />
-    }
-    <app-bottom-bar moodsGalleryType="list-edition" [moodsLength]="flow.linksByCategory.length" />
 </div>
-<app-spacer height="150px" />
+
+@if (currentViewMode === viewModes.LinkCreationView) {
+    <app-create-link [linkCategories]="linksFlow()?.linkCategories || []" (setViewMode)="setViewMode(viewModes.ListView)" />
+}
+@if (currentViewMode === viewModes.LinkCategoryCreationView) {
+    <app-create-link-category (trigger)="setViewMode(viewModes.ListView)" />
+}
+@if (currentViewMode === viewModes.LinkEditionView) {
+    <app-edit-link [link]="linksFlow()?.link" (trigger)="setViewMode(viewModes.ListView)" />
+}
+@if (currentViewMode === viewModes.LinkCategoryEditionView) {
+    <app-edit-link-category [linkCategory]="linksFlow()?.linkCategory" (showListTrigger)="setViewMode(viewModes.ListView)" />
+}
+
+<app-right-column>
+    <app-right-column-generic-list [items]="linksFlow()?.linkCategories || []"
+        [selectedItemId]="linksFlow()?.linkCategory?.businessId" (setSelectedItemId)="setLinkCategoryId($event)" />
+</app-right-column>
+
+<app-spacer />
+
+<app-bottom-bar>
+    <app-bottom-icon-back />
+    <app-bottom-items-length [itemsLength]="linksFlow()?.linksByCategory?.length" />
+    <app-bottom-toggle-right-menu />
+</app-bottom-bar>

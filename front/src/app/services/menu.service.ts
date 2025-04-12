@@ -15,9 +15,7 @@ export class MenuService {
   public toggleLeftMenu(): void {
     this.#isLeftMenuOn.next(!this.#isLeftMenuOn.value)
   }
-  public openLeftMenu(): void {
-    this.#isLeftMenuOn.next(true)
-  }
+
   public closeLeftMenu(): void {
     this.#isLeftMenuOn.next(false)
   }
@@ -25,9 +23,11 @@ export class MenuService {
   public toggleRightMenu(): void {
     this.#isRightMenuOn.next(!this.#isRightMenuOn.value)
   }
+
   public openRightMenu(): void {
     this.#isRightMenuOn.next(true)
   }
+  
   public closeRightMenu(): void {
     this.#isRightMenuOn.next(false)
   }

@@ -1,6 +1,7 @@
-import { Component, inject, Signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserService } from '../../services/http/user.service';
 import { DashboardService } from '../../services/dashboard.service';
+import { DashboardViewMode } from '../../enumerations/view-modes';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +12,12 @@ export class DashboardComponent {
   #userService = inject(UserService)
   #dashboardService = inject(DashboardService)
 
-  public dashboardMenuState : Signal<string> = this.#dashboardService.dashboardMenuState
+  public viewMode = this.#dashboardService.dashboardViewMode
+  public viewModes = DashboardViewMode
+
   public user = this.#userService.user
 
-  public updateMenuState(menuState : string): void {
-    this.#dashboardService.updateMenuState(menuState)
+  public setViewMode(viewMode: DashboardViewMode): void {
+    this.#dashboardService.setDashboardViewMode(viewMode)
   }
 }

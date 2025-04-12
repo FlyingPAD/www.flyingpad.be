@@ -1,6 +1,5 @@
-import { Component, HostListener, inject, OnInit, ViewChild, ElementRef } from '@angular/core'
+import { Component, HostListener, OnInit, ViewChild, ElementRef } from '@angular/core'
 import { Timeline } from '../../../models/timeline'
-import { TimelineService } from '../../../services/timeline.service'
 
 @Component({
   selector: 'app-timeline',
@@ -8,7 +7,6 @@ import { TimelineService } from '../../../services/timeline.service'
   styleUrls: ['./timeline.component.scss']
 })
 export class TimelineComponent implements OnInit {
-  timelineService = inject(TimelineService)
   windowWidth: number = window.innerWidth
   timelines: Timeline[] = [
     new Timeline()
@@ -16,7 +14,7 @@ export class TimelineComponent implements OnInit {
 
   @ViewChild('timelineContainer') timelineContainer!: ElementRef<HTMLDivElement>
 
-  private firstFocus: boolean = true // Drapeau pour détecter le premier focus
+  private firstFocus: boolean = true
 
   ngOnInit(): void {
     setTimeout(() => {

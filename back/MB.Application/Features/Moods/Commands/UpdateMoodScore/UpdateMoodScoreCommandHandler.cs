@@ -19,7 +19,7 @@ public class UpdateMoodScoreCommandHandler(IMoodRepository repository) : IReques
         return new BaseResponse
         {
             Success = true,
-            Message = "Score update successful."
+            Message = Math.Sign(request.Value) == 1 ? $"Score + {request.Value}" : $"Score {request.Value}"
         };
     }
 }

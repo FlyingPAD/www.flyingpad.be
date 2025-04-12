@@ -1,0 +1,55 @@
+<app-edit-mood-menu />
+
+@if(viewMode() === viewModes.InfoView){
+    <div class="main-frame">
+        <app-edit-mood-thumbnail [mood]="moodsFlow()?.mood" (backToGallery)="backToGallery()" />
+    </div>
+    <div class="main-frame">
+        <app-edit-mood-form [formGroup]="formGroup" />
+    </div>
+    <div class="main-frame">
+        <app-edit-mood-score [moodScore]="moodsFlow()?.mood.score" (updateMoodScore)="updateMoodScore($event)" />
+    </div>
+    <div class="buttons">
+        <div class="button" (click)="toggleEntityInfo()">{{ 'title.delete' | translate }}</div>
+    </div>
+}
+
+@if(viewMode() === viewModes.TagsView){
+    <app-edit-mood-tags (tagsSelected)="handleTagsSelected($event)" />
+}
+
+@if(viewMode() === viewModes.ModelsView){
+    <div class="models">
+        <app-edit-mood-models [mood]="moodsFlow()?.mood" (modelsSelected)="handleModelsSelected($event)" />
+    </div>
+}
+
+@if(viewMode() === viewModes.ArtistsView){
+    <div class="artists">
+        <app-edit-mood-artists [mood]="moodsFlow()?.mood" (artistsSelected)="handleArtistsSelected($event)" />
+    </div>
+}
+
+<app-dialog>
+    <h3 class="dialog-h3">Delete mood</h3>
+    <hr class="dialog-hr">
+    <p class="p">You are about to permanently delete :</p>
+    <p class="dialog-entity-name">' {{ moodsFlow()?.mood.name }} '</p>
+    <p class="p">This action <u>cannot</u> be undone !</p>
+    <hr class="dialog-hr">
+    <p><span class="span-warning">Warning :</span> This will also remove all associated relations.</p>
+    <hr class="dialog-hr">
+    <p class="p">Are you sure you want to proceed ?</p>
+    <div class="buttons">
+        <div class="button" (click)="deleteMood()">{{ 'title.delete' | translate }}</div>
+    </div>
+</app-dialog>
+
+<app-spacer height="95px" />
+
+<app-bottom-bar>
+    <app-bottom-icon-back page="/central-gallery" />
+    <app-bottom-icon-to-top />
+    <app-bottom-icon-save (triggerSave)="onSave()" />
+</app-bottom-bar>

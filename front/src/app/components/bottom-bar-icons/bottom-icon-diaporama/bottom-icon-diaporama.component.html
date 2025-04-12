@@ -1,0 +1,12 @@
+@if(displayInfo().mode === displayModes.Desktop) {
+    @if(isDiaporamaActive) {
+        <div class="bottom-bar-icon" (click)="handleStopDiaporama()">
+            <app-icon-stop class="icon" size="25px" />
+        </div>
+    }
+    @else if(!isDiaporamaActive && !isShuffleActive) {
+        <div class="bottom-bar-icon" (click)="handleStartDiaporama()">
+            <app-icon-play class="icon" size="25px" />
+        </div>
+    }
+}

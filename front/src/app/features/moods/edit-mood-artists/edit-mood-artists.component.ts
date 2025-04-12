@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit, Output, EventEmitter, inject } from '@angular/core';
 import { MoodFull } from '../../../interfaces/mood';
 import { ArtistCheckBox } from '../../../interfaces/artist';
-import { Subscription } from 'rxjs';
-import { FlowService } from '../../../services/http/flow.service';
+import { MoodService } from '../../../services/http/mood.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-edit-mood-artists',
@@ -10,27 +10,29 @@ import { FlowService } from '../../../services/http/flow.service';
   styleUrls: ['./edit-mood-artists.component.scss']
 })
 export class EditMoodArtistsComponent implements OnInit, OnDestroy {
-  #flowService = inject(FlowService)
+  #moodService = inject(MoodService)
 
   @Input() mood!: MoodFull
   @Output() artistsSelected = new EventEmitter<number[]>()
 
-  #subscription = new Subscription()
+  #destroy$ = new Subject<void>()
 
   public artists: ArtistCheckBox[] = []
   public input: string = ''
+  
 
   ngOnInit(): void {
-    this.#subscription = this.#flowService.getArtistsCheckBoxByMood(this.mood.businessId).subscribe({
-      next: (data) => {
+    this.#moodService.getArtistsCheckBoxesByMood(this.mood.businessId).pipe(
+      takeUntil(this.#destroy$))
+      .subscribe(data => {
         this.artists = data
         this.emitSelectedArtists()
-      }
-    })
+      })
   }
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   private emitSelectedArtists() {

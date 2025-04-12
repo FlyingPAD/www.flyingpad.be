@@ -33,5 +33,5 @@ export interface Statistics {
 }
 
 export interface GetStatisticsResponse extends BaseResponse {
-    statistics : Statistics
+    statistics: Statistics
 }

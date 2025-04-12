@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
 import { MediumFull } from '../../../interfaces/franchise';
 import { Subscription } from 'rxjs';
-import { MediumService } from '../../../services/http/medium.service';
+import { FranchiseService } from '../../../services/http/franchise.service';
 
 @Component({
   selector: 'app-delete-medium',
@@ -12,7 +12,7 @@ export class DeleteMediumComponent implements OnDestroy {
   @Input() medium: MediumFull | undefined = undefined
   @Output() toggleDialog = new EventEmitter<void>()
 
-  #mediumService = inject(MediumService)
+  #franchiseService = inject(FranchiseService)
 
   #subscription = new Subscription()
 
@@ -22,7 +22,7 @@ export class DeleteMediumComponent implements OnDestroy {
 
   public delete(): void {
     if (this.medium) {
-      this.#subscription = this.#mediumService.deleteMedium(this.medium.businessId).subscribe(
+      this.#subscription = this.#franchiseService.deleteMedium(this.medium.businessId).subscribe(
         (response) => { if (response.success) this.toggleDialog.emit() })
     }
   }

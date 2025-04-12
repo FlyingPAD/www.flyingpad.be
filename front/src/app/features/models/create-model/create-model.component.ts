@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ModelCreateForm } from '../../../interfaces/forms-create';
-import { FranchiseCheckBox } from '../../../interfaces/franchise';
+import { FranchiseLight } from '../../../interfaces/franchise';
 import { ModelService } from '../../../services/http/model.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ModelService } from '../../../services/http/model.service';
   styleUrl: './create-model.component.scss'
 })
 export class CreateModelComponent implements OnInit, OnDestroy {
-  @Input() franchises: FranchiseCheckBox[] = []
+  @Input() franchises: FranchiseLight[] = []
   @Output() trigger = new EventEmitter<void>()
 
   #modelService = inject(ModelService)
@@ -41,7 +41,7 @@ export class CreateModelComponent implements OnInit, OnDestroy {
     this.#subscription.unsubscribe()
   }
 
-  private createFranchiseFormGroup(franchise: FranchiseCheckBox): FormGroup {
+  private createFranchiseFormGroup(franchise: FranchiseLight): FormGroup {
     return this.#formBuilder.group({
       businessId: [franchise.businessId],
       name: [franchise.name],

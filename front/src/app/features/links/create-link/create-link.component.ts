@@ -1,23 +1,22 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { LinkCreateForm } from '../../../interfaces/forms-create';
-import { LinkCategoryCheckBox } from '../../../interfaces/link';
+import { LinkCategoryCheckBox, LinkCategoryLight } from '../../../interfaces/link';
 import { LinkService } from '../../../services/http/link.service';
 
 @Component({
   selector: 'app-create-link',
-  templateUrl: './create-link.component.html',
-  styleUrl: './create-link.component.scss'
+  templateUrl: './create-link.component.html'
 })
 export class CreateLinkComponent implements OnInit, OnDestroy {
-  @Input() linkCategories: LinkCategoryCheckBox[] = []
-  @Output() trigger = new EventEmitter<void>()
-
   #linkService = inject(LinkService)
   #builder = inject(FormBuilder)
 
-  #subscription = new Subscription()
+  @Input() linkCategories: LinkCategoryLight[] = []
+  @Output() setViewMode = new EventEmitter<void>()
+
+  #destroy$ = new Subject<void>()
 
   public formGroup!: FormGroup
 
@@ -37,15 +36,26 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe();
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
-  private createCategoryFormGroup(category: LinkCategoryCheckBox): FormGroup {
+  private createCategoryFormGroup(category: LinkCategoryLight): FormGroup {
     return this.#builder.group({
       businessId: [category.businessId],
       name: [category.name],
       isChecked: [false]
     })
+  }
+
+  private createLink(form: LinkCreateForm): void {
+    this.#linkService.createLink(form)
+      .pipe(takeUntil(this.#destroy$))
+      .subscribe(response => {
+        if (response.success) {
+          this.setViewMode.emit()
+        }
+      })
   }
 
   public onSubmit(): void {
@@ -61,8 +71,7 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
             .filter((category: { isChecked: boolean }) => category.isChecked)
             .map((category: { businessId: number }) => category.businessId)
         }
-
-        this.#subscription = this.#linkService.createLink(form).subscribe(response => { if (response.success) this.trigger.emit() })
+        this.createLink(form)
       }
     }
   }

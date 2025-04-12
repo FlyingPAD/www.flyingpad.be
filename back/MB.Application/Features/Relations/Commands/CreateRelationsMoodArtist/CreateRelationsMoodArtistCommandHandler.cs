@@ -27,7 +27,7 @@ public class CreateRelationsMoodArtistCommandHandler(IMoodRepository moodReposit
         return new BaseResponse
         {
             Success = true,
-            Message = "Relations created successfully."
+            Message = "Artists updated."
         };
     }
 }

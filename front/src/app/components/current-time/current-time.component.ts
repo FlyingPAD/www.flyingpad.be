@@ -5,45 +5,33 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   templateUrl: './current-time.component.html',
   styleUrls: ['./current-time.component.scss']
 })
-export class CurrentTimeComponent implements OnInit, OnDestroy
-{
-  // Properties :
+export class CurrentTimeComponent implements OnInit, OnDestroy {
+  #intervalId: any = 1
+  public currentDate: Date = new Date()
 
-  currentDate : Date = new Date()
-  intervalId : any = 1
-
-  // Methods :
-
-  ngOnInit() : void 
-  {   
+  ngOnInit(): void {
     this.dateStart()
   }
 
-  ngOnDestroy() : void
-  {
+  ngOnDestroy(): void {
     this.dateStop()
   }
 
-  dateStart() : void
-  {
+  private dateStart(): void {
     this.callCurrentDate()
-    this.intervalId = setInterval(() => 
-    {
+    this.#intervalId = setInterval(() => {
       this.callCurrentDate()
-    }, 
-    1000)
+    },
+      1000)
   }
 
-  dateStop() : void
-  {
-    if (this.intervalId) 
-    {
-      clearInterval(this.intervalId)
+  private dateStop(): void {
+    if (this.#intervalId) {
+      clearInterval(this.#intervalId)
     }
   }
 
-  callCurrentDate() : void
-  {
+  private callCurrentDate(): void {
     this.currentDate = new Date()
   }
 }

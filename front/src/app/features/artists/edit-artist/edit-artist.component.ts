@@ -1,23 +1,23 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { ArtistFull } from '../../../interfaces/artist';
+import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ArtistFull, StyleCheckBox } from '../../../interfaces/artist';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FlowService } from '../../../services/http/flow.service';
-import { StyleLight } from '../../../interfaces/style';
 import { ArtistUpdateForm } from '../../../interfaces/forms-update';
 import { ArtistService } from '../../../services/http/artist.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-edit-artist',
   templateUrl: './edit-artist.component.html',
   styleUrl: './edit-artist.component.scss'
 })
-export class EditArtistComponent implements OnInit {
+export class EditArtistComponent implements OnInit, OnDestroy {
   @Input() artist: ArtistFull | undefined = undefined
   @Output() trigger = new EventEmitter<void>()
 
-  #flowService = inject(FlowService)
   #artistService = inject(ArtistService)
   #formBuilder = inject(FormBuilder)
+
+  #destroy$ = new Subject<void>()
 
   formGroup!: FormGroup
   isDeleteDialogOpen: boolean = false
@@ -31,16 +31,22 @@ export class EditArtistComponent implements OnInit {
         styles: this.#formBuilder.array([])
       })
 
-      this.#flowService.getStylesCheckBoxesByArtist(this.artist.businessId)
+      this.#artistService.getStylesCheckBoxesByArtist(this.artist.businessId)
+        .pipe(takeUntil(this.#destroy$))
         .subscribe(styles => this.populateCategories(styles))
     }
+  }
+
+  ngOnDestroy(): void {
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   get stylesArray(): FormArray {
     return this.formGroup.get('styles') as FormArray
   }
 
-  private populateCategories(styles: StyleLight[]): void {
+  private populateCategories(styles: StyleCheckBox[]): void {
     styles.forEach(style => {
       this.stylesArray.push(
         this.#formBuilder.group({
@@ -76,7 +82,9 @@ export class EditArtistComponent implements OnInit {
         styleIds: selectedStyles
       }
 
-      this.#artistService.updateArtist(form).subscribe((response) => { if (response.success) this.trigger.emit() })
+      this.#artistService.updateArtist(form)
+      .pipe(takeUntil(this.#destroy$))
+      .subscribe((response) => { if (response.success) this.trigger.emit() })
     }
   }
 }

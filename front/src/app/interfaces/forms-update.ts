@@ -4,9 +4,9 @@ export interface MoodUpdateForm {
     description: string
 }
 
-export class MoodScoreUpdate {
-    moodId: number = 0
-    value: number = 0
+export interface MoodScoreUpdate {
+    moodId: number
+    value: number
 }
 
 export interface TagCategoryUpdateForm {

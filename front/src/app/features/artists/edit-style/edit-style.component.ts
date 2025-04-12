@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { StyleFull } from '../../../interfaces/style';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { StyleUpdateForm } from '../../../interfaces/forms-update';
-import { StyleService } from '../../../services/http/style.service';
+import { ArtistService } from '../../../services/http/artist.service';
+import { StyleFull } from '../../../interfaces/artist';
 
 @Component({
   selector: 'app-edit-style',
@@ -14,7 +14,7 @@ export class EditStyleComponent implements OnInit, OnDestroy {
   @Input() style: StyleFull | undefined = undefined
   @Output() trigger = new EventEmitter<void>()
 
-  #styleService = inject(StyleService)
+  #artistService = inject(ArtistService)
   #formBuilder = inject(FormBuilder)
 
   #subscription = new Subscription()
@@ -55,7 +55,7 @@ export class EditStyleComponent implements OnInit, OnDestroy {
       }
 
       if (this.formGroup.valid) {
-        this.#subscription = this.#styleService.updateStyle(form).subscribe((response) => { if (response.success) this.trigger.emit() })
+        this.#subscription = this.#artistService.updateStyle(form).subscribe((response) => { if (response.success) this.trigger.emit() })
       }
     }
   }

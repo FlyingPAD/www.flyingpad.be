@@ -22,7 +22,7 @@ public class GetModelCheckBoxesByMoodQueryHandler(IMapper mapper, IBaseRepositor
         return new GetModelCheckBoxesByMoodQueryResponse
         {
             Success = true,
-            Message = "Related models.",
+            Message = "Checkboxes / Models",
             Models = _mapper.Map<IEnumerable<GetModelCheckBoxesByMoodQueryDto>>(models)
         };
     }

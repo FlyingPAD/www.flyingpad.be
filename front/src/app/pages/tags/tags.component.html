@@ -1,28 +1,35 @@
 <app-spacer height="5px" />
-<div class="tags-container" *ngIf="flow() as flow">
+
+<div class="tags-container">
   <div class="tags-grid">
-    <div *ngFor="let group of flow.tagsWithCategories" class="tags-card">
-      <div [appScrollActive]="isCategoryExpanded(group.category.businessId)" scrollPosition="top" [scrollOffset]="100"
-        class="tags-header" (click)="toggleCategory(group.category.businessId)"
-        [ngClass]="{'active': isCategoryExpanded(group.category.businessId)}">
-        <h3> ▸ <b>{{ group.category.name }}</b> ( {{group.tags.length}} )</h3>
+    @for (tagList of tagsFlow()?.tagsList; track $index) {
+    <div class="tags-card">
+      <div [appScrollActive]="isCategoryExpanded(tagList.category.businessId)" scrollPosition="top" [scrollOffset]="100"
+        class="tags-header" (click)="toggleCategory(tagList.category.businessId)"
+        [ngClass]="{'active': isCategoryExpanded(tagList.category.businessId)}">
+        <h3> ▸ <b>{{ tagList.category.name }}</b> ( {{tagList.tags.length}} )</h3>
         <div class="tags-actions">
           <button class="toggle-category">
-            <span class="arrow" [ngClass]="{'expanded': isCategoryExpanded(group.category.businessId)}"></span>
+            <span class="arrow" [ngClass]="{'expanded': isCategoryExpanded(tagList.category.businessId)}"></span>
           </button>
         </div>
       </div>
-      <div class="tags-content" *ngIf="isCategoryExpanded(group.category.businessId)">
+      @if (isCategoryExpanded(tagList.category.businessId)) {
+      <div class="tags-content">
         <div class="tag-list">
-          <div *ngFor="let tag of group.tags" class="tag-item">
-            <a id="{{tag.businessId}}" [class.active]="tag.businessId === flow.tag?.businessId" routerLink="/moods"
-              (click)="updateTagId(tag.businessId)">
-              ▸ {{ tag.name }}
+          @for (tag of tagList.tags; track $index) {
+          <div class="tag-item">
+            <a id="{{tag.businessId}}" [class.active]="tag.businessId === tagsFlow()?.tag?.businessId"
+              (click)="goToTag(tag.businessId)"> ▸ {{ tag.name }}
             </a>
           </div>
+          }
         </div>
       </div>
+      }
     </div>
+    }
   </div>
 </div>
+
 <app-spacer height="150px" />

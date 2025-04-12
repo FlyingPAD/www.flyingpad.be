@@ -6,7 +6,7 @@ import { ThemeService } from '../../services/theme.service';
   templateUrl: './icon-arrow-short.component.html'
 })
 export class IconArrowShortComponent {
-  #themeService = inject(ThemeService);
+  #themeService = inject(ThemeService)
 
   @Input() color?: string
   @Input() size: string = '24px'
@@ -17,8 +17,8 @@ export class IconArrowShortComponent {
   }
 
   public getTransform(): string {
-    const centerX = 600;
-    const centerY = 600;
+    const centerX = 600
+    const centerY = 600
     switch (this.direction) {
       case 'up':
         return `rotate(0 ${centerX} ${centerY})`

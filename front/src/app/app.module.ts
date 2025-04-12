@@ -42,28 +42,22 @@ import { AnimRandomDirective } from './directives/anim-random.directive';
 import { AnimSpinDirective } from './directives/anim-spin.directive';
 import { FormatDurationPipe } from './pipes/format-duration.pipe';
 import { FormatSizePipe } from './pipes/format-size.pipe';
-import { CreateMoodImageComponent } from './features/moods/create-mood-image/create-mood-image.component';
-import { CreateMoodVideoComponent } from './features/moods/create-mood-video/create-mood-video.component';
-import { MoodsGalleryComponent } from './features/moods/moods-gallery/moods-gallery.component';
-import { MultiTagArtistsComponent } from './features/moods/multi-tag-artists/multi-tag-artists.component';
-import { MultiTagModelsComponent } from './features/moods/multi-tag-models/multi-tag-models.component';
+import { CreateMoodImageComponent } from './pages/create-mood-image/create-mood-image.component';
+import { CreateMoodVideoComponent } from './pages/create-mood-video/create-mood-video.component';
+import { MultiTagArtistsComponent } from './pages/multi-tag-artists/multi-tag-artists.component';
+import { MultiTagModelsComponent } from './pages/multi-tag-models/multi-tag-models.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CreateArtistComponent } from './features/artists/create-artist/create-artist.component';
-import { MoodDetailsComponent } from './features/moods/mood-details/mood-details.component';
 import { TagsComponent } from './pages/tags/tags.component';
 import { ScriptsComponent } from './pages/scripts/scripts.component';
 import { ToolsComponent } from './pages/tools/tools.component';
-import { MoodsComponent } from './pages/moods/moods.component';
-import { RelatedTagsComponent } from './features/tags/related-tags/related-tags.component';
+import { RelatedTagsComponent } from './features/moods/related-tags/related-tags.component';
 import { ColumnFullComponent } from './features/tags/column-full/column-full.component';
 import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component';
 import { DialogInfoComponent } from './components/dialog-info/dialog-info.component';
 import { RightColumnComponent } from './components/right-column/right-column.component';
-import { MoodViewerComponent } from './features/moods/mood-viewer/mood-viewer.component';
 import { MediaComponent } from './pages/media/media.component';
 import { LinksComponent } from './pages/links/links.component';
-import { RightColumnListComponent } from './components/right-column-list/right-column-list.component';
-import { ListCentralComponent } from './components/list-central/list-central.component';
 import { EditModelsComponent } from './pages/edit-models/edit-models.component';
 import { EditTagsComponent } from './pages/edit-tags/edit-tags.component';
 import { EditFranchisesComponent } from './pages/edit-franchises/edit-franchises.component';
@@ -95,7 +89,7 @@ import { EditStyleComponent } from './features/artists/edit-style/edit-style.com
 import { CreateMediumComponent } from './features/franchises/create-medium/create-medium.component';
 import { DeleteMediumComponent } from './features/franchises/delete-medium/delete-medium.component';
 import { EditMediumComponent } from './features/franchises/edit-medium/edit-medium.component';
-import { MultiTagComponent } from './features/moods/multi-tag/multi-tag.component';
+import { MultiTagComponent } from './pages/multi-tag/multi-tag.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -106,7 +100,6 @@ import { TimelineComponent } from './features/tools/timeline/timeline.component'
 import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 import { GuitarTunerComponent } from './features/tools/guitar-tuner/guitar-tuner.component';
 import { ChordWheelComponent } from './features/tools/chord-wheel/chord-wheel.component';
-import { BottomBarLargerComponent } from './components/bottom-bar-larger/bottom-bar-larger.component';
 import { GdprComponent } from './components/gdpr/gdpr.component';
 import { LeftColumnComponent } from './components/left-column/left-column.component';
 import { HeaderHomeComponent } from './components/header-home/header-home.component';
@@ -121,7 +114,6 @@ import { LanguageMenuHomeComponent } from './components/language-menu-home/langu
 import { AnimRotation360Directive } from './directives/anim-rotation-360.directive';
 import { LayoutAboutComponent } from './layouts/layout-about/layout-about.component';
 import { MusicPrinciplesComponent } from './features/scripts/music-principles/music-principles.component';
-import { StatisticsComponent } from './features/dashboard/statistics/statistics.component';
 import { StatusComponent } from './features/dashboard/status/status.component';
 import { AchievementsComponent } from './features/dashboard/achievements/achievements.component';
 import { IconStarComponent } from './icons/icon-star/icon-star.component';
@@ -136,7 +128,6 @@ import { IconArtistComponent } from './icons/icon-artist/icon-artist.component';
 import { IconModelComponent } from './icons/icon-model/icon-model.component';
 import { DashboardEditionMenuComponent } from './features/dashboard/dashboard-edition-menu/dashboard-edition-menu.component';
 import { AccountComponent } from './features/dashboard/account/account.component';
-import { DashboardMenuComponent } from './features/dashboard/dashboard-menu/dashboard-menu.component';
 import { DashboardHeaderComponent } from './features/dashboard/dashboard-header/dashboard-header.component';
 import { IconCoinComponent } from './icons/icon-coin/icon-coin.component';
 import { IconHomeComponent } from './icons/icon-home/icon-home.component';
@@ -167,7 +158,7 @@ import { LogoFacebookComponent } from './icons/logo-facebook/logo-facebook.compo
 import { LogoInstagramComponent } from './icons/logo-instagram/logo-instagram.component';
 import { LogoYoutubeComponent } from './icons/logo-youtube/logo-youtube.component';
 import { LogoSoundcloudComponent } from './icons/logo-soundcloud/logo-soundcloud.component';
-import { EditMoodComponent } from './features/moods/edit-mood/edit-mood.component';
+import { EditMoodComponent } from './pages/edit-mood/edit-mood.component';
 import { EditMoodMenuComponent } from './features/moods/edit-mood-menu/edit-mood-menu.component';
 import { IconSaveComponent } from './icons/icon-save/icon-save.component';
 import { EditMoodThumbnailComponent } from './features/moods/edit-mood-thumbnail/edit-mood-thumbnail.component';
@@ -200,7 +191,7 @@ import { TimeValueWholeComponent } from './icons/time-value-whole/time-value-who
 import { TimeValueHalfComponent } from './icons/time-value-half/time-value-half.component';
 import { TimeValueQuarterComponent } from './icons/time-value-quarter/time-value-quarter.component';
 import { TimeValueEighthComponent } from './icons/time-value-eighth/time-value-eighth.component';
-import { MultiTagTagsComponent } from './features/moods/multi-tag-tags/multi-tag-tags.component';
+import { MultiTagTagsComponent } from './pages/multi-tag-tags/multi-tag-tags.component';
 import { TimeValueRestEighthComponent } from './icons/time-value-rest-eighth/time-value-rest-eighth.component';
 import { TimeValueRestSixteenthComponent } from './icons/time-value-rest-sixteenth/time-value-rest-sixteenth.component';
 import { TimeValueRestHalfComponent } from './icons/time-value-rest-half/time-value-rest-half.component';
@@ -213,6 +204,46 @@ import { ToggleMenuRightDirective } from './directives/toggle-menu-right.directi
 import { GoBackDirective } from './directives/go-back.directive';
 import { MetronomeComponent } from './features/tools/metronome/metronome.component';
 import { IconMetronomeComponent } from './icons/icon-metronome/icon-metronome.component';
+import { GalleryComponent } from './features/moods/gallery/gallery.component';
+import { MoodInformationsComponent } from './features/moods/mood-informations/mood-informations.component';
+import { CentralGalleryComponent } from './pages/central-gallery/central-gallery.component';
+import { RelatedModelsComponent } from './features/franchises/related-models/related-models.component';
+import { RelatedFranchisesComponent } from './features/models/related-franchises/related-franchises.component';
+import { RightColumnGenericListComponent } from './components/right-column-generic-list/right-column-generic-list.component';
+import { BottomIconBackComponent } from './components/bottom-bar-icons/bottom-icon-back/bottom-icon-back.component';
+import { BottomIconToTopComponent } from './components/bottom-bar-icons/bottom-icon-to-top/bottom-icon-to-top.component';
+import { BottomIconSaveComponent } from './components/bottom-bar-icons/bottom-icon-save/bottom-icon-save.component';
+import { BottomToggleRightMenuComponent } from './components/bottom-bar-icons/bottom-toggle-right-menu/bottom-toggle-right-menu.component';
+import { BottomItemsLengthComponent } from './components/bottom-bar-icons/bottom-items-length/bottom-items-length.component';
+import { BottomItemNameComponent } from './components/bottom-bar-icons/bottom-item-name/bottom-item-name.component';
+import { BottomIconArtistComponent } from './components/bottom-bar-icons/bottom-icon-artist/bottom-icon-artist.component';
+import { BottomIconModelComponent } from './components/bottom-bar-icons/bottom-icon-model/bottom-icon-model.component';
+import { BottomIconTagComponent } from './components/bottom-bar-icons/bottom-icon-tag/bottom-icon-tag.component';
+import { BottomIconEditComponent } from './components/bottom-bar-icons/bottom-icon-edit/bottom-icon-edit.component';
+import { BottomIconMoodsComponent } from './components/bottom-bar-icons/bottom-icon-moods/bottom-icon-moods.component';
+import { BottomIconOpenComponent } from './components/bottom-bar-icons/bottom-icon-open/bottom-icon-open.component';
+import { BottomIconGoogleComponent } from './components/bottom-bar-icons/bottom-icon-google/bottom-icon-google.component';
+import { BottomIconGoogleImageComponent } from './components/bottom-bar-icons/bottom-icon-google-image/bottom-icon-google-image.component';
+import { BottomItemPositionComponent } from './components/bottom-bar-icons/bottom-item-position/bottom-item-position.component';
+import { BottomIconPageNextComponent } from './components/bottom-bar-icons/bottom-icon-page-next/bottom-icon-page-next.component';
+import { BottomIconPagePreviousComponent } from './components/bottom-bar-icons/bottom-icon-page-previous/bottom-icon-page-previous.component';
+import { BottomIconDiaporamaComponent } from './components/bottom-bar-icons/bottom-icon-diaporama/bottom-icon-diaporama.component';
+import { BottomIconShuffleComponent } from './components/bottom-bar-icons/bottom-icon-shuffle/bottom-icon-shuffle.component';
+import { BottomIconRandomMoodComponent } from './components/bottom-bar-icons/bottom-icon-random-mood/bottom-icon-random-mood.component';
+import { BottomIconDashboardEditionComponent } from './components/bottom-bar-icons/bottom-icon-dashboard-edition/bottom-icon-dashboard-edition.component';
+import { BottomIconDashboardStatusComponent } from './components/bottom-bar-icons/bottom-icon-dashboard-status/bottom-icon-dashboard-status.component';
+import { BottomIconDashboardAchievementsComponent } from './components/bottom-bar-icons/bottom-icon-dashboard-achievements/bottom-icon-dashboard-achievements.component';
+import { BottomIconDashboardAccountComponent } from './components/bottom-bar-icons/bottom-icon-dashboard-account/bottom-icon-dashboard-account.component';
+import { ChordWriterComponent } from './features/tools/chord-writer/chord-writer.component';
+import { SongWriterComponent } from './features/tools/song-writer/song-writer.component';
+import { SongWriterTestComponent } from './features/tools/song-writer-test/song-writer-test.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ToggleMoodInfoDirective } from './directives/toggle-mood-info.directive';
+import { ToggleMoodSizeDirective } from './directives/toggle-mood-size.directive';
+import { BottomToggleMoodSizeComponent } from './components/bottom-bar-icons/bottom-toggle-mood-size/bottom-toggle-mood-size.component';
+import { BottomToggleMoodInfoComponent } from './components/bottom-bar-icons/bottom-toggle-mood-info/bottom-toggle-mood-info.component';
+import { BottomToggleEntityInfoComponent } from './components/bottom-bar-icons/bottom-toggle-entity-info/bottom-toggle-entity-info.component';
+import { ToggleEntityInfoDirective } from './directives/toggle-entity-info.directive'
 
 export function HttpLoaderFactory(http: HttpClient) {
   const version = environment.translationVersion
@@ -260,17 +291,24 @@ export function appInitializerFactory(translate: TranslateService) {
     DashboardComponent,
     HomeComponent,
     AboutComponent,
+    CentralGalleryComponent,
+    EditMoodComponent,
     EditTagsComponent,
     EditModelsComponent,
     EditArtistsComponent,
     EditFranchisesComponent,
     EditLinksComponent,
-    MoodsComponent,
     TagsComponent,
     MediaComponent,
     ScriptsComponent,
     ToolsComponent,
     LinksComponent,
+    CreateMoodImageComponent,
+    CreateMoodVideoComponent,
+    MultiTagComponent,
+    MultiTagArtistsComponent,
+    MultiTagModelsComponent,
+    MultiTagTagsComponent,
     NotFoundComponent,
     SettingsComponent,
     SignUpComponent,
@@ -286,11 +324,8 @@ export function appInitializerFactory(translate: TranslateService) {
     RelatedTagsComponent,
     ColumnFullComponent,
     BottomBarComponent,
-    BottomBarLargerComponent,
     DialogInfoComponent,
     RightColumnComponent,
-    RightColumnListComponent,
-    ListCentralComponent,
     FooterComponent,
     OverlayComponent,
     GdprComponent,
@@ -300,19 +335,15 @@ export function appInitializerFactory(translate: TranslateService) {
     LanguageMenuHeaderComponent,
     LanguageMenuHomeComponent,
     SpacerComponent,
+    RightColumnGenericListComponent,
     // => Features :
     // Dashboard.
-    StatisticsComponent,
     StatusComponent,
     AchievementsComponent,
     DashboardEditionMenuComponent,
     AccountComponent,
-    DashboardMenuComponent,
     DashboardHeaderComponent,
     // Moods.
-    CreateMoodImageComponent,
-    CreateMoodVideoComponent,
-    EditMoodComponent,
     EditMoodMenuComponent,
     EditMoodThumbnailComponent,
     EditMoodFormComponent,
@@ -320,13 +351,8 @@ export function appInitializerFactory(translate: TranslateService) {
     EditMoodTagsComponent,
     EditMoodArtistsComponent,
     EditMoodModelsComponent,
-    MoodsGalleryComponent,
-    MoodDetailsComponent,
-    MoodViewerComponent,
-    MultiTagComponent,
-    MultiTagArtistsComponent,
-    MultiTagModelsComponent,
-    MultiTagTagsComponent,
+    GalleryComponent,
+    MoodInformationsComponent,
     // Tags.
     CreateTagCategoryComponent,
     CreateTagComponent,
@@ -337,7 +363,8 @@ export function appInitializerFactory(translate: TranslateService) {
     // Models.
     CreateModelComponent,
     EditModelComponent,
-    DeleteModelComponent,    
+    DeleteModelComponent,  
+    RelatedFranchisesComponent,  
     // Artists.
     CreateArtistComponent,
     CreateStyleComponent,
@@ -352,6 +379,7 @@ export function appInitializerFactory(translate: TranslateService) {
     EditFranchiseComponent,
     DeleteMediumComponent,
     DeleteFranchiseComponent,
+    RelatedModelsComponent,
     // Links.
     CreateLinkCategoryComponent,
     CreateLinkComponent,
@@ -388,6 +416,7 @@ export function appInitializerFactory(translate: TranslateService) {
     TrainerNotesComponent,
     GuitarTunerComponent,
     TimelineComponent,
+    MetronomeComponent,
     // SVG Icons.
     IconStarComponent,
     IconEditComponent,
@@ -419,16 +448,18 @@ export function appInitializerFactory(translate: TranslateService) {
     IconGoComponent,
     IconBackComponent,
     IconArrowShortComponent,
-    IconWheelComponent,
     IconOpenComponent,
     IconGoogleComponent,
     IconGoogleLensComponent,
     IconPlayShuffleComponent,
     IconSaveComponent,
+    IconMenuRightComponent,
+    // Tools Icons
+    IconWheelComponent,
     IconDiapasonComponent,
     IconKeyboardComponent,
     IconTimelineComponent,
-    IconMenuRightComponent,
+    IconMetronomeComponent,
     // Clef
     IconClefBassComponent,
     IconClefTrebleComponent,
@@ -449,8 +480,40 @@ export function appInitializerFactory(translate: TranslateService) {
     TimeValueRestHalfComponent,
     TimeValueRestQuarterComponent,
     TimeValueRestWholeComponent,
-    MetronomeComponent,
-    IconMetronomeComponent,
+    // Bottom Bar Icons
+    BottomIconBackComponent,
+    BottomIconToTopComponent,
+    BottomIconSaveComponent,
+    BottomToggleRightMenuComponent,
+    BottomItemsLengthComponent,
+    BottomItemNameComponent,
+    BottomIconArtistComponent,
+    BottomIconModelComponent,
+    BottomIconTagComponent,
+    BottomIconEditComponent,
+    BottomIconMoodsComponent,
+    BottomIconOpenComponent,
+    BottomIconGoogleComponent,
+    BottomIconGoogleImageComponent,
+    BottomItemPositionComponent,
+    BottomIconPageNextComponent,
+    BottomIconPagePreviousComponent,
+    BottomIconDiaporamaComponent,
+    BottomIconShuffleComponent,
+    BottomIconRandomMoodComponent,
+    BottomIconDashboardEditionComponent,
+    BottomIconDashboardStatusComponent,
+    BottomIconDashboardAchievementsComponent,
+    BottomIconDashboardAccountComponent,
+    ChordWriterComponent,
+    SongWriterComponent,
+    SongWriterTestComponent,
+    ToggleMoodInfoDirective,
+    ToggleMoodSizeDirective,
+    BottomToggleMoodSizeComponent,
+    BottomToggleMoodInfoComponent,
+    BottomToggleEntityInfoComponent,
+    ToggleEntityInfoDirective
   ],
   imports: [
     BrowserModule,
@@ -480,7 +543,8 @@ export function appInitializerFactory(translate: TranslateService) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    DragDropModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializerFactory, deps: [TranslateService], multi: true },

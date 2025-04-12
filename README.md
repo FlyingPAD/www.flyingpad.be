@@ -21,7 +21,7 @@ I wanted to write my own CSS on this one. I think it's a great way to exercise a
 
 ### File Structure in `./src/design/`:
 - `01_normalize.scss`: Incorporates "normalize.css v8.0.1" (from [github.com/necolas/normalize.css])
-- `02_global_variables.scss`: Contains global variables for the entire project (planned for future theming)
+- `02_global_variables.scss`: Contains global variables ( root ) for the entire project (used for theming)
 - `03_global_settings.scss`: Basic global CSS configurations (html, body, etc.)
 
 - **API Communication:** RxJS & Signal

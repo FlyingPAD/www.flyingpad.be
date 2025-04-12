@@ -1,29 +1,48 @@
 <div class="main-frame">
-    <p class="frame-title">{{ flow()?.mood?.name }}</p>
-    <hr class="dialog-hr">
-    <div class="thumbnail">
-        @if(flow()?.mood.type == 1) {
-            <img src="{{environment}}/Content/img_thumbs/{{flow()?.mood.businessId}}.{{flow()?.mood.extension}}" (click)="goToCurrentMood()" />
+    <div class="status">
+        <div class="thumbnail">
+            @if(moodsFlow()?.mood.type == 1) {
+                <img src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood.businessId}}.{{moodsFlow()?.mood.extension}}" (click)="goToCurrentMood()" />
+                }
+                @if(moodsFlow()?.mood.type == 2) {
+                <img src="{{environment}}/Content/video_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+                }
+                @if(moodsFlow()?.mood.type == 3) {
+                <img src="{{environment}}/Content/txt_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+                }
+                @if(moodsFlow()?.mood.type == 4) {
+                <img src="{{environment}}/Content/youtube_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+                }
+        </div>
+        <div class="mood-informations">
+            <p> ▸ {{ moodsFlow()?.mood?.name }}</p>   
+            <p> ▸ {{ moodsFlow()?.mood?.description }}</p>
+            <hr>
+            @for (franchise of moodsFlow()?.mood?.relatedFranchises; track $index) {
+                <p> ▸ {{ franchise.name }}</p>
             }
-            @if(flow()?.mood.type == 2) {
-            <img src="{{environment}}/Content/video_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+            <hr>
+            @for (artist of moodsFlow()?.mood?.relatedArtists; track $index) {
+                <p> ▸ {{ artist.name }}</p>
             }
-            @if(flow()?.mood.type == 3) {
-            <img src="{{environment}}/Content/txt_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+            <hr>
+            @for (model of moodsFlow()?.mood?.relatedModels; track $index) {
+                <p> ▸ {{ model.pseudonym }}</p>
             }
-            @if(flow()?.mood.type == 4) {
-            <img src="{{environment}}/Content/youtube_thumbs/{{flow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
-            }
+        </div>
     </div>
-    <p class="p">{{ flow()?.mood?.description }}</p>
 </div>
-
-<app-spacer height="15px" />
 
 <div class="main-frame">
     <div class="related-tags">
-        @for (tag of flow()?.mood.tags; track $index) {
+        @for (tag of moodsFlow()?.mood.relatedTags; track $index) {
             <p class="tag" (click)="goToCurrentTag(tag.businessId)">{{ tag.name }}</p>
         }
     </div>
 </div>
+
+@if(displayInfo().mode === displayModes.Desktop) {
+    <div class="main-frame">
+        <p class="hub-message"> ▸ Download <b>Flying PAD Hub</b> for Windows : <a href="/assets/hub/FlyingPAD-Hub.msi">Flying-PAD-Hub</a></p>
+    </div>
+}

@@ -1,23 +1,22 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { TagCategoryFull } from '../../../interfaces/tag-category';
+import { TagCategoryFull } from '../../../interfaces/tag';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { TagCategoryUpdateForm } from '../../../interfaces/forms-update';
-import { TagCategoryService } from '../../../services/http/tag-category.service';
+import { TagService } from '../../../services/http/tag.service';
 
 @Component({
   selector: 'app-edit-tag-category',
-  templateUrl: './edit-tag-category.component.html',
-  styleUrl: './edit-tag-category.component.scss'
+  templateUrl: './edit-tag-category.component.html'
 })
 export class EditTagCategoryComponent implements OnInit, OnDestroy {
   @Input() tagCategory: TagCategoryFull | undefined = undefined
-  @Output() showListTrigger = new EventEmitter<void>()
+  @Output() setViewMode = new EventEmitter<void>()
 
-  #tagCategoryService = inject(TagCategoryService)
+  #tagService = inject(TagService)
   #formBuilder = inject(FormBuilder)
 
-  #subscription = new Subscription()
+  #destroy$ = new Subject<void>()
 
   public isDeleteDialogOpen: boolean = false
   public editFormGroup!: FormGroup
@@ -31,7 +30,8 @@ export class EditTagCategoryComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   public openDeleteDialog(): void {
@@ -42,7 +42,7 @@ export class EditTagCategoryComponent implements OnInit, OnDestroy {
   }
   public closeDeleteDialogEmit(): void {
     this.isDeleteDialogOpen = false
-    this.showListTrigger.emit()
+    this.setViewMode.emit()
   }
 
   public onSubmit(): void {
@@ -53,11 +53,9 @@ export class EditTagCategoryComponent implements OnInit, OnDestroy {
     }
 
     if (this.editFormGroup.valid) {
-      this.#subscription = this.#tagCategoryService.updateTagCategory(form).subscribe({
-        next: () => {
-          this.showListTrigger.emit()
-        }
-      })
+      this.#tagService.updateTagCategory(form)
+      .pipe(takeUntil(this.#destroy$))
+      .subscribe(() => this.setViewMode.emit())
     }
   }
 

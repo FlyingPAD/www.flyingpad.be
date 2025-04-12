@@ -19,7 +19,7 @@ public class GetLinkByIdQueryHandler(IMapper mapper, IBaseRepository<Link> linkR
         return new GetLinkByIdQueryResponse
         {
             Success = true,
-            Message = $"{link.Name}.",
+            Message = $"{link.Name}",
             Link = _mapper.Map<GetLinkByIdQueryDto>(link)
         };
     }

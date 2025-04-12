@@ -1,18 +1,18 @@
 <div class="edit-mood-menu">
-    <a (click)="handleEditMoodMenuState('info')" [class.active]="editMoodMenuState === 'info' ">
-        <span>INFO</span>
-        <app-icon-mood size="50px" />
-    </a>
-    <a (click)="handleEditMoodMenuState('tags')" [class.active]="editMoodMenuState === 'tags' ">
-        <span>TAGS</span>
-        <app-icon-tag size="50px" />
-    </a>
-    <a (click)="handleEditMoodMenuState('models')" [class.active]="editMoodMenuState === 'models' ">
-        <span>{{ 'title.models' | translate | uppercase }}</span>
-        <app-icon-model size="50px" />
-    </a>
-    <a (click)="handleEditMoodMenuState('artists')" [class.active]="editMoodMenuState === 'artists' ">
-        <span>{{ 'title.artists' | translate | uppercase }}</span>
-        <app-icon-artist size="50px" />
-    </a>
+    <div class="button" (click)="setViewMode(viewModes.InfoView)" [class.active]="currentViewMode() === viewModes.InfoView ">
+        <div class="icon"><app-icon-mood size="30px" /></div>
+        <div class="icon-text"><p>INFO</p></div>
+    </div>
+    <div class="button" (click)="setViewMode(viewModes.TagsView)" [class.active]="currentViewMode() === viewModes.TagsView ">
+        <div class="icon"><app-icon-tag size="30px" /></div>
+        <div class="icon-text"><p>TAGS</p></div>
+    </div>
+    <div class="button" (click)="setViewMode(viewModes.ModelsView)" [class.active]="currentViewMode() === viewModes.ModelsView ">
+        <div class="icon"><app-icon-model size="30px" /></div>
+        <div class="icon-text"><p>{{ 'title.models' | translate | uppercase }}</p></div>
+    </div>
+    <div class="button" (click)="setViewMode(viewModes.ArtistsView)" [class.active]="currentViewMode() === viewModes.ArtistsView ">
+        <div class="icon"><app-icon-artist size="30px" /></div>
+        <div class="icon-text"><p>{{ 'title.artists' | translate | uppercase }}</p></div>
+    </div>
 </div>

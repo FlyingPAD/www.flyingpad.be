@@ -3,7 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject } from 'rxjs';
 import { StorageProperties } from '../enumerations/storage-properties';
 import { StorageService } from './storage.service';
-import { Theme } from '../enumerations/themes';
+import { Theme } from '../enumerations/supported-themes';
 
 @Injectable({
   providedIn: 'root'

@@ -24,7 +24,7 @@ public class GetOneImageDetailsQueryHandler(IMapper mapper, IBaseRepository<Imag
         return new GetOneImageDetailsQueryResponse
         {
             Success = true,
-            Message = "Mood was found :)",
+            Message = "Image Details",
             Image = imageVm
         };
     }

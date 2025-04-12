@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ScriptsService } from '../../../services/scripts.service';
+import { ScriptsViewMode } from '../../../enumerations/view-modes';
 
 @Component({
   selector: 'app-the-octave',
@@ -9,7 +10,9 @@ import { ScriptsService } from '../../../services/scripts.service';
 export class TheOctaveComponent {
   #scriptsService = inject(ScriptsService)
 
-  public updateMenuState(page: string): void {
-    this.#scriptsService.updateScriptMenuState(page)
+  public viewModes = ScriptsViewMode
+
+  public setViewMode(viewMode: ScriptsViewMode): void {
+    this.#scriptsService.setScriptsViewMode(viewMode)
   }
 }

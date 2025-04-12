@@ -3,10 +3,10 @@
     flex-wrap: wrap;
     justify-content: center;
 
-    padding-top: 15px;
+    padding-top: 90px;
 
     .tags-box {
-        width: 220px;
+        width: 214px;
         height: 160px;
 
         margin: 10px;
@@ -15,7 +15,7 @@
         padding-top: 10px;
         padding-bottom: 10px;
 
-        border: 1px solid var(--colorMainOpacity2);
+        border: 3px solid var(--colorMainOpacity2);
         border-radius: 10px;
 
         background-color: var(--colorWhiteOpacity5);
@@ -50,11 +50,8 @@
                 font-size: 14px;
                 text-align: left;
                 white-space: nowrap;
-                /* Empêche le texte de passer à la ligne */
                 overflow: hidden;
-                /* Coupe le texte qui déborde */
                 text-overflow: ellipsis;
-                /* Ajoute les points de suspension à la fin du texte */
 
                 a {
                     color: var(--colorMain);
@@ -79,16 +76,17 @@
                 align-items: center;
                 margin-bottom: 3px;
                 white-space: nowrap;
-                /* Empêche le texte de passer à la ligne */
                 overflow: hidden;
-                /* Coupe le texte qui déborde */
                 text-overflow: ellipsis;
-                /* Ajoute les points de suspension à la fin du texte */
 
                 span {
                     margin-left: 5px;
                     font-size: 14px;
                     color: var(--colorMain);
+                    width: 180px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
                 input[type="checkbox"] {
@@ -122,8 +120,36 @@
 
     .tags-box:hover {
         background-color: var(--colorWhite);
-        border: 1px solid var(--colorMain);
+        border: 3px solid var(--colorMain);
         transition-duration: 300ms;
         opacity: 1;
+    }
+}
+
+@media (max-width: 800px) {
+    .tags-wall {
+        padding-top: 0;
+
+        .tags-box {
+            width: 137px;
+            
+            .box-category {
+                p {
+                    font-size: 11px;
+                }
+            }
+
+            .overflow {
+                label {
+                    span {
+                        font-size: 12px;
+                        width: 100px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+        }
     }
 }

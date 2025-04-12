@@ -8,6 +8,8 @@ import { UserService } from './user.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TokenService } from '../token.service';
 import { NotificationService } from '../notification.service';
+import { StorageService } from '../storage.service';
+import { StorageProperties } from '../../enumerations/storage-properties';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +18,25 @@ export class AuthenticationService {
   #http = inject(HttpClient)
   #tokenService = inject(TokenService)
   #userService = inject(UserService)
+  #storageService = inject(StorageService)
   #notificationService = inject(NotificationService)
 
   #url = environment.apiBaseUrl + '/api/V1/'
-  #isConnected = new BehaviorSubject<boolean>(false)
-  public isConnected = toSignal(this.#isConnected) as Signal<boolean>
+  #isConnected$ = new BehaviorSubject<boolean>(false)
+  public isConnected = toSignal(this.#isConnected$) as Signal<boolean>
+
+  private clearStorage(): void {
+    this.#storageService.removeItem(StorageProperties.StateArtistId)
+    this.#storageService.removeItem(StorageProperties.StateFranchiseId)
+    this.#storageService.removeItem(StorageProperties.StateLinkId)
+    this.#storageService.removeItem(StorageProperties.StateLinkCategoryId)
+    this.#storageService.removeItem(StorageProperties.StateMediumId)
+    this.#storageService.removeItem(StorageProperties.StateModelId)
+    this.#storageService.removeItem(StorageProperties.StateMoodId)
+    this.#storageService.removeItem(StorageProperties.StateStyleId)
+    this.#storageService.removeItem(StorageProperties.StateTagId)
+    this.#storageService.removeItem(StorageProperties.StateTagCategoryId)
+  }
 
   public login(form: UserLoginForm): Observable<LoginQueryResponse> {
     return this.#http.post<LoginQueryResponse>(`${this.#url}Auth/Login`, form).pipe(
@@ -52,6 +68,7 @@ export class AuthenticationService {
   }
 
   public logout(): void {
+    this.clearStorage()
     this.#tokenService.removeToken()
     this.#userService.setDefaultUser()
     this.closeConnection()
@@ -59,10 +76,10 @@ export class AuthenticationService {
   }
 
   public acceptConnection(): void {
-    this.#isConnected.next(true)
+    this.#isConnected$.next(true)
   }
   public closeConnection(): void {
-    this.#isConnected.next(false)
+    this.#isConnected$.next(false)
   }
 
   public authenticate(token: string): void {

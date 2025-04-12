@@ -9,15 +9,16 @@ export interface UserRegisterForm {
     pass: string
     confirmPass: string
 }
+
 export interface UserLoginForm {
     email: string
     password: string
 }
 
-export interface LoginQueryResponse extends BaseResponse {
+export interface RegisterCommandResponse extends BaseResponse {
     token : string
 }
 
-export interface RegisterCommandResponse extends BaseResponse {
+export interface LoginQueryResponse extends BaseResponse {
     token : string
 }

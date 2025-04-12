@@ -41,10 +41,13 @@
               "src/design/02_global_variables.scss",
               "src/design/03_global_settings.scss",
               "src/design/animations.scss",
-              "src/design/scripts.scss",
+              "src/design/bottom-bar.scss",
               "src/design/buttons.scss",
+              "src/design/dialog-content.scss",
               "src/design/edition.scss",
+              "src/design/form-elements.scss",
               "src/design/pagination.scss",
+              "src/design/scripts.scss",
               "./node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
@@ -121,10 +124,12 @@
               "src/design/02_global_variables.scss",
               "src/design/03_global_settings.scss",
               "src/design/animations.scss",
-              "src/design/scripts.scss",
               "src/design/buttons.scss",
+              "src/design/dialog-content.scss",
               "src/design/edition.scss",
+              "src/design/form-elements.scss",
               "src/design/pagination.scss",
+              "src/design/scripts.scss",
               "./node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
@@ -132,5 +137,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

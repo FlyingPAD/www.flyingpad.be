@@ -1,24 +1,26 @@
-<form>
-    <div class="tags-wall">
-        @for (category of tagsList; track $index) {
-        <div class="tags-box">
-            <div class="box-category">
-                <p>{{category.category.name}}</p>
-            </div>
-            <div class="overflow">
-                @for (tag of category.tagsCheckBoxes; track $index) {
-                <div>
-                    <label [for]="tag.name">
-                        <span>{{tag.name}}</span>
-                        <input type="checkbox" [id]="tag.name" [checked]="tag.isChecked"
-                            (change)="onTagCheckChange(tag)" />
-                        <div class="custom-checkbox"></div>
-                    </label>
+<div class="main-frame">
+    <form>
+        <div class="tags-wall">
+            @for (category of tagsList; track $index) {
+            <div class="tags-box">
+                <div class="box-category">
+                    <p>{{category.category.name}}</p>
                 </div>
-                }
+                <div class="overflow">
+                    @for (tag of category.tagsCheckBoxes; track $index) {
+                    <div>
+                        <label [for]="tag.name">
+                            <span>{{tag.name}}</span>
+                            <input type="checkbox" [id]="tag.name" [checked]="tag.isChecked"
+                                (change)="onTagCheckChange(tag)" />
+                            <div class="custom-checkbox"></div>
+                        </label>
+                    </div>
+                    }
+                </div>
             </div>
+            }
         </div>
-        }
-    </div>
-</form>
+    </form>
+</div>
 <app-spacer height="150px" />

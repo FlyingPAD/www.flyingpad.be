@@ -1,78 +1,74 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TagLight } from '../../interfaces/tag';
 import { Router } from '@angular/router';
-import { FlowService } from '../../services/http/flow.service';
-import { PaginationService } from '../../services/pagination.service';
-import { MoodsService } from '../../services/moods.service';
+import { TagService } from '../../services/http/tag.service';
+import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { StorageService } from '../../services/storage.service';
+import { EditTagsViewMode } from '../../enumerations/view-modes-edition';
+import { GalleryType } from '../../enumerations/gallery-type';
+import { StateService } from '../../services/custom-state/state.service';
+import { GalleryMode } from '../../enumerations/gallery-mode';
 
 @Component({
   selector: 'app-edit-tags',
   templateUrl: './edit-tags.component.html'
 })
-export class EditTagsComponent {
-  #flowService = inject(FlowService)
+export class EditTagsComponent implements OnInit {
+  #stateService = inject(StateService)
+  #tagService = inject(TagService)
+  #storageService = inject(StorageService)
+  #moodsGalleryService = inject(MoodsGalleryService)
   #router = inject(Router)
-  #paginationService = inject(PaginationService)
-  #moodsService = inject(MoodsService)
 
-  public flow = this.#flowService.flow
-  public currentPage = this.#paginationService.editTagsCurrentPage
-  public searchTags : string = ''
-  public elementsPerPage : number = 12
-  public showList : boolean = true
-  public showNew : boolean = false
-  public showNewCategory : boolean = false
-  public showEdit : boolean = false
-  public showEditCategory : boolean = false
+  public tagsFlow = this.#tagService.tagsFlow
 
-  private triggerReset(): void {
-    this.showList = false
-    this.showNew = false
-    this.showNewCategory = false
-    this.showEdit = false
-    this.showEditCategory = false
-  }
-  public triggerShowList(): void {
-    this.triggerReset()
-    this.showList = true
-  }
-  public triggerShowNew(): void {
-    this.triggerReset()
-    this.showNew = true
-  }
-  public triggerShowNewCategory(): void {
-    this.triggerReset()
-    this.showNewCategory = true
-  }
-  public triggerShowEdit(): void {
-    this.triggerReset()
-    this.showEdit = true
-  }
-  public triggerShowEditCategory(): void {
-    this.triggerReset()
-    this.showEditCategory = true
+  public currentPage = 1
+  public elementsPerPage: number = 12
+  public searchTags: string = ''
+
+  public viewModes = EditTagsViewMode
+  public currentViewMode = EditTagsViewMode.ListView
+
+
+  ngOnInit(): void {
+    let storedPage = this.#storageService.getItem('pageTags')
+    if (storedPage != null) this.setCurrentPage(storedPage as number)
   }
 
-  public updateCurrentPage(page: number): void {
-    this.#paginationService.updateEditTagsCurrentPage(page)
+  public setCurrentPage(page: number): void {
+    this.currentPage = page
+    this.#storageService.setItem('pageTags', page)
+  }
+
+  public setViewMode(viewMode: EditTagsViewMode) {
+    this.currentViewMode = viewMode
   }
 
   public filterTags(): TagLight[] | undefined {
-    return this.flow()?.tagsByCategory.filter(tag => tag.name.toLowerCase().includes(this.searchTags.toLowerCase()))
+    return this.tagsFlow()?.tagsByCategory.filter(tag => tag.name.toLowerCase().includes(this.searchTags.toLowerCase()))
   }
 
-  public go():void {
-    this.#moodsService.updateMoodMenuState('gallery')
-    this.#router.navigateByUrl('/moods')
+  public goToTag(): void {
+    this.#stateService.setTagId(this.tagsFlow()?.tag?.businessId)
+    this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
+    this.#moodsGalleryService.setGalleryMode(GalleryMode.Tag)
+    this.#router.navigateByUrl('/central-gallery')
   }
 
-  public setTag(tag : TagLight): void {
-    this.#flowService.updateTagId(tag.businessId)
-    this.#paginationService.resetMoodsByTagCurrentPage()
+  public goToTagCategory(): void {
+    this.#stateService.setTagCategoryId(this.tagsFlow()?.tagCategory?.businessId)
+    this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
+    this.#moodsGalleryService.setGalleryMode(GalleryMode.TagCategory)
+    this.#router.navigateByUrl('/central-gallery')
   }
 
-  public updateTagCategoryId(tagCategoryId : number | null): void {
-    this.#paginationService.resetEditTagsCurrentPage()
-    this.#flowService.updateTagCategoryId(tagCategoryId)
+  public setTagId(tagId: number | undefined): void {
+    this.#stateService.setTagId(tagId)
+  }
+
+  public setTagCategoryId(tagCategoryId: number | undefined): void {
+    this.setCurrentPage(1)
+    this.setViewMode(EditTagsViewMode.ListView)
+    this.#tagService.setTagCategoryId(tagCategoryId)
   }
 }

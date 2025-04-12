@@ -1,11 +1,11 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { FlowService } from '../../services/http/flow.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/http/authentication.service';
 import { ImageUrlService } from '../../services/image-url.service';
 import { LanguageService } from '../../services/language.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MoodService } from '../../services/http/mood.service';
 
 @Component({
   selector: 'app-log-in',
@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './log-in.component.scss'
 })
 export class LogInComponent implements OnInit {
-  #flowService = inject(FlowService)
+  #moodService = inject(MoodService)
   #authService = inject(AuthenticationService)
   #formBuilder = inject(FormBuilder)
   #languageService = inject(LanguageService)
@@ -21,7 +21,7 @@ export class LogInComponent implements OnInit {
   #route = inject(ActivatedRoute)
   #router = inject(Router)
 
-  public flow = this.#flowService.flow
+  public moodsFlow = this.#moodService.moodsFlow
   public environment: string = environment.apiBaseUrl
   public currentLanguage = this.#languageService.currentLanguage
   public closeButtonIsOn: boolean = false

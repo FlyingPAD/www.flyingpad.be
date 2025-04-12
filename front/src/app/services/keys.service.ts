@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Chord } from '../interfaces/chord';
+import { Chord } from '../interfaces/music-tools/chord';
 import { Key } from '../models/key';
-import { Note } from '../interfaces/note';
+import { Note } from '../interfaces/music-tools/note';
 import { Scale } from '../models/scale';
 
 @Injectable({

@@ -2,16 +2,30 @@
     width: 350px;
     margin: auto;
 
+    p {
+        margin: 5px;
+    }
+
     .score-display {
-        margin: 18px 10px 18px 10px;
+        width: 70px;
+        margin: auto;
+
+        padding: 10px;
 
         display: flex;
+        justify-content: center;
         align-items: center;
+
+        border: 3px solid var(--colorMain);
+        border-radius: 10px;
+        background-color: var(--colorWhiteOpacity7);
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+        backdrop-filter: blur(3px);
     
         p {
-            display: block;
-            width: 120px;
             color: var(--colorMain);
+            font-weight: bold;
             margin: 0;
         }
     }
@@ -24,24 +38,26 @@
         align-items: center;
     
         button {
-            margin: 5px;
-            height: 40px;
-            width: 40px;
+            margin: 0 5px;
+            height: 44px;
+            width: 44px;
     
-            border: 2px solid var(--colorMainOpacity5);
-            border-radius: 5px;
+            border: 3px solid var(--colorMainOpacity5);
+            border-radius: 8px;
             background-color: white;
+            box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
 
             font-size: 13px;
+            color: var(--colorMain);
     
+            cursor: pointer;
             opacity: 0.8;
+            transition-duration: 200ms;
         }
     
         button:hover {
-            border: 2px solid var(--colorMain);
-            cursor: pointer;
+            border: 3px solid var(--colorMain);
             opacity: 1;
-            transition-duration: 200ms;
         }
     }
 }

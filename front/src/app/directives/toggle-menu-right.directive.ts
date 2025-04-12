@@ -8,7 +8,10 @@ export class ToggleMenuRightDirective {
   #menuService = inject(MenuService)
 
   @HostListener('click')
-  onClick(): void {
-    this.#menuService.toggleRightMenu()
+  @HostListener('window:keydown', ['$event'])
+  toggleMoodInfo(event?: KeyboardEvent): void {
+    if (!event || event.key === 'Enter') {
+      this.#menuService.toggleRightMenu()
+    }
   }
 }

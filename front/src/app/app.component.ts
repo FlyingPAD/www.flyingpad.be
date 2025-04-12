@@ -31,10 +31,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     let token = this.#tokenService.retrieveToken()
-
-    if (token) {
-      this.#authenticationService.authenticate(token)
-    }
+    if (token) { this.#authenticationService.authenticate(token) }
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -46,33 +43,6 @@ export class AppComponent implements OnInit {
       case 'F1':
         this.#menuService.toggleLeftMenu()
         break
-      // case '1':
-      //   this.router.navigateByUrl('/moods')
-      //   break
-      // case '2':
-      //   this.router.navigateByUrl('/tags')
-      //   break
-      // case '3':
-      //   this.router.navigateByUrl('/franchises/gallery')
-      //   break
-      // case '4':
-      //   this.router.navigateByUrl('/moods')
-      //   break
-      // case '5':
-      //   this.router.navigateByUrl('/moods/mood-details')
-      //   break
-      // case '6':
-      //   this.router.navigateByUrl('/tags')
-      //   break
-      // case '7':
-      //   this.router.navigateByUrl('/scripts')
-      //   break
-      // case '8':
-      //   this.router.navigateByUrl('/tools')
-      //   break
-      // case '9':
-      //   this.router.navigateByUrl('/links')
-      //   break
     }
   }
 }

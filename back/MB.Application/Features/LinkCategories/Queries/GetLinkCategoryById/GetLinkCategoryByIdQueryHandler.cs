@@ -19,7 +19,7 @@ public class GetLinkCategoryByIdQueryHandler(IMapper mapper, IBaseRepository<Lin
         return new GetLinkCategoryByIdQueryResponse
         {
             Success = true,
-            Message = $"{linkCategory.Name}.",
+            Message = $"{linkCategory.Name}",
             LinkCategory = _mapper.Map<GetLinkCategoryByIdQueryDto>(linkCategory)
         };
     }

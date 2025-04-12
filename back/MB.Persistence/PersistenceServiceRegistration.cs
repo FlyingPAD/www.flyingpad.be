@@ -1,7 +1,9 @@
 ﻿using MB.Application;
 using MB.Application.Interfaces;
+using MB.Application.Interfaces.Infrastructure;
 using MB.Application.Interfaces.Persistence;
 using MB.Persistence.Repositories;
+using MB.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,6 +37,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ITaskCategoryRepository, TaskCategoryRepository>();
         services.AddScoped<IAuthRepository, AuthRepository>();
         services.AddScoped<ITokenManager, TokenManager>();
+        services.AddScoped<IEmailDataService, EmailDataService>();
 
         return services;
     }

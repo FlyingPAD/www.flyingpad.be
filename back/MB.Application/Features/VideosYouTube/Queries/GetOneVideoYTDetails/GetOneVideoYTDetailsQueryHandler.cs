@@ -21,7 +21,7 @@ public class GetOneVideoYTDetailsQueryHandler(IMapper mapper, IBaseRepository<Vi
         return new GetOneVideoYTDetailsQueryResponse
         {
             Success = true,
-            Message = "Success.",
+            Message = "Video YouTube Details",
             VideoYouTube = videoYouTubeDto
         };
     }

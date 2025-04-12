@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, OnDestroy, Output } from '@angular/cor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { StyleCreateForm } from '../../../interfaces/forms-create';
-import { StyleService } from '../../../services/http/style.service';
+import { ArtistService } from '../../../services/http/artist.service';
 
 @Component({
   selector: 'app-create-style',
@@ -12,7 +12,7 @@ import { StyleService } from '../../../services/http/style.service';
 export class CreateStyleComponent implements OnDestroy {
   @Output() trigger = new EventEmitter<void>()
 
-  #styleService = inject(StyleService)
+  #artistService = inject(ArtistService)
   #formBuilder = inject(FormBuilder)
 
   formGroup: FormGroup = this.#formBuilder.group({
@@ -33,7 +33,7 @@ export class CreateStyleComponent implements OnDestroy {
     }
 
     if (this.formGroup.valid) {
-      this.#subscription = this.#styleService.createStyle(form).subscribe((response) => {
+      this.#subscription = this.#artistService.createStyle(form).subscribe((response) => {
         if (response.success) this.trigger.emit()
       })
     }

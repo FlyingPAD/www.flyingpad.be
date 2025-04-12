@@ -1,8 +1,8 @@
 import { Component, EventEmitter, HostListener, inject, OnDestroy, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { MediumCreateForm } from '../../../interfaces/forms-create';
-import { MediumService } from '../../../services/http/medium.service';
+import { FranchiseService } from '../../../services/http/franchise.service';
 
 @Component({
   selector: 'app-create-medium',
@@ -10,19 +10,21 @@ import { MediumService } from '../../../services/http/medium.service';
   styleUrl: './create-medium.component.scss'
 })
 export class CreateMediumComponent implements OnDestroy {
-  @Output() trigger = new EventEmitter<void>()
+  @Output() setViewMode = new EventEmitter<void>()
 
-  #mediumService = inject(MediumService)
+  #franchiseService = inject(FranchiseService)
   #formBuilder = inject(FormBuilder)
 
-  #subscription = new Subscription()
+  #destroy$ = new Subject<void>()
+
   public formGroup: FormGroup = this.#formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
   })
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   public onSubmit(): void {
@@ -32,9 +34,9 @@ export class CreateMediumComponent implements OnDestroy {
     }
 
     if (this.formGroup.valid) {
-      this.#subscription = this.#mediumService.createMedium(form).subscribe((response) => {
-        if (response.success) this.trigger.emit()
-      })
+      this.#franchiseService.createMedium(form)
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe((response) => { if (response.success) this.setViewMode.emit() })
     }
   }
 
