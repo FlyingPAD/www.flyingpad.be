@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ScriptsService } from '../../../services/scripts.service';
+import { ScriptsService } from '../../../services/user-interface/scripts.service';
 import { ScriptsViewMode } from '../../../enumerations/view-modes';
 
 @Component({

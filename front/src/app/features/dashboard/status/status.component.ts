@@ -3,10 +3,10 @@ import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
 import { MoodService } from '../../../services/http/mood.service';
 import { StateService } from '../../../services/custom-state/state.service';
-import { MoodsGalleryService } from '../../../services/moods-gallery.service';
+import { MoodsGalleryService } from '../../../services/user-interface/moods-gallery.service';
 import { GalleryType } from '../../../enumerations/gallery-type';
 import { GalleryMode } from '../../../enumerations/gallery-mode';
-import { DisplayService } from '../../../services/display.service';
+import { DisplayService } from '../../../services/user-interface/display.service';
 import { DisplayModes } from '../../../enumerations/display-modes';
 
 @Component({

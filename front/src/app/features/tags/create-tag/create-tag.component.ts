@@ -7,20 +7,19 @@ import { TagService } from '../../../services/http/tag.service';
 
 @Component({
   selector: 'app-create-tag',
-  templateUrl: './create-tag.component.html',
-  styleUrl: './create-tag.component.scss'
+  templateUrl: './create-tag.component.html'
 })
 export class CreateTagComponent implements OnInit, OnDestroy {
+  #tagService = inject(TagService)
+  #formBuilder = inject(FormBuilder)
+
   @Input() tagCategories!: TagCategoryLight[]
   @Input() category: TagCategoryFull | undefined = undefined
   @Output() setViewMode = new EventEmitter<void>()
 
-  #tagService = inject(TagService)
-  #formBuilder = inject(FormBuilder)
-
   #destroy$ = new Subject<void>()
 
-  public createFormGroup: FormGroup = this.#formBuilder.group({
+  public formGroup: FormGroup = this.#formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     tagCategoryId: [0]
@@ -28,7 +27,7 @@ export class CreateTagComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.category) {
-      this.createFormGroup.patchValue({ tagCategoryId: this.category.businessId })
+      this.formGroup.patchValue({ tagCategoryId: this.category.businessId })
     }
   }
 
@@ -37,14 +36,14 @@ export class CreateTagComponent implements OnInit, OnDestroy {
     this.#destroy$.complete()
   }
 
-  public onSubmit(): void {
+  public createTag(): void {
     let form: TagCreateForm = {
-      name: this.createFormGroup.value.name,
-      description: this.createFormGroup.value.description,
-      tagCategoryId: this.createFormGroup.value.tagCategoryId
+      name: this.formGroup.value.name,
+      description: this.formGroup.value.description,
+      tagCategoryId: this.formGroup.value.tagCategoryId
     }
 
-    if (this.createFormGroup.valid) {
+    if (this.formGroup.valid) {
       this.#tagService.createTag(form)
       .pipe(takeUntil(this.#destroy$))
       .subscribe(() => this.setViewMode.emit())    
@@ -55,7 +54,7 @@ export class CreateTagComponent implements OnInit, OnDestroy {
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        this.onSubmit()
+        this.createTag()
         break
     }
   }

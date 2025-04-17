@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { ImageUrlService } from '../../services/image-url.service';
-import { DisplayService } from '../../services/display.service';
+import { ImageUrlService } from '../../services/user-interface/image-url.service';
+import { DisplayService } from '../../services/user-interface/display.service';
 import { environment } from '../../../environments/environment';
 
 @Component({

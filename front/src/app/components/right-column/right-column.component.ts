@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { MenuService } from '../../services/menu.service';
-import { DisplayService } from '../../services/display.service';
+import { MenuService } from '../../services/user-interface/menu.service';
+import { DisplayService } from '../../services/user-interface/display.service';
 
 @Component({
   selector: 'app-right-column',

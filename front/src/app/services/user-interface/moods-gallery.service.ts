@@ -1,11 +1,11 @@
 import { inject, Injectable, signal, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject } from 'rxjs';
-import { ActiveEntity, GalleryMode } from '../enumerations/gallery-mode';
-import { GalleryType } from '../enumerations/gallery-type';
-import { EditMoodViewMode } from '../enumerations/view-modes-edition';
-import { StorageService } from './storage.service';
-import { StorageProperties } from '../enumerations/storage-properties';
+import { ActiveEntity, GalleryMode } from '../../enumerations/gallery-mode';
+import { GalleryType } from '../../enumerations/gallery-type';
+import { EditMoodViewMode } from '../../enumerations/view-modes-edition';
+import { StorageService } from '../storage.service';
+import { StorageProperties } from '../../enumerations/storage-properties';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,6 @@ export class MoodsGalleryService {
 
   public moodSizeToggle = signal<boolean>(false)
   public moodInfoToggle = signal<boolean>(true)
-  public entityInfoToggle = signal<boolean>(false)
 
 
   constructor() {
@@ -63,5 +62,4 @@ export class MoodsGalleryService {
 
   public toggleMoodSize(): void { this.moodSizeToggle.update(current => !current) }
   public toggleMoodInfo(): void { this.moodInfoToggle.update(current => !current) }
-  public toggleEntityInfo(): void { this.entityInfoToggle.update(current => !current) }
 }

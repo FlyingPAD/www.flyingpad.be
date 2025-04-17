@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FranchiseService } from '../../services/http/franchise.service';
 import { StorageService } from '../../services/storage.service';
-import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { MoodsGalleryService } from '../../services/user-interface/moods-gallery.service';
 import { EditFranchisesViewMode } from '../../enumerations/view-modes-edition';
 import { FranchiseLight } from '../../interfaces/franchise';
 import { GalleryType } from '../../enumerations/gallery-type';

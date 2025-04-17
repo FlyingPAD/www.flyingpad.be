@@ -1,8 +1,8 @@
 import { Component, inject, Signal } from '@angular/core';
-import { MenuService } from '../../services/menu.service';
+import { MenuService } from '../../services/user-interface/menu.service';
 import { AuthenticationService } from '../../services/http/authentication.service';
 import { UserService } from '../../services/http/user.service';
-import { DisplayService } from '../../services/display.service';
+import { DisplayService } from '../../services/user-interface/display.service';
 
 @Component({
   selector: 'app-layout-tools',

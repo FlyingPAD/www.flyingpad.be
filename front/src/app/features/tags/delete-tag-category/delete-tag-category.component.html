@@ -1,12 +1,15 @@
-<h3 class="dialog-h3">Delete tag category</h3>
-<hr class="dialog-hr">    
+<h3 class="dialog-h3">Delete Tag Category</h3>
+<hr class="dialog-hr">   
+
 <p class="p">You are about to permanently delete :</p>
 <p class="dialog-entity-name">' {{ tagCategory?.name }} '</p>
 <p class="p">This action <u>cannot</u> be undone !!</p>
 <hr class="dialog-hr">    
 <p><span class="span-warning">Attention :</span> This will also remove all associated tags.</p>    
+
 <hr class="dialog-hr">    
 <p class="p">Are you sure you want to proceed ?</p>    
+
 <div class="buttons">
     <div class="button" (click)="deleteTagCategory()">YES</div>
 </div>

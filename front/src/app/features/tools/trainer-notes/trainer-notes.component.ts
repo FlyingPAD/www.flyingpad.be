@@ -3,7 +3,7 @@ import { AudioService } from '../../../services/audio.service';
 import { StorageService } from '../../../services/storage.service';
 import { UserService } from '../../../services/http/user.service';
 import { Router } from '@angular/router';
-import { DashboardService } from '../../../services/dashboard.service';
+import { DashboardService } from '../../../services/user-interface/dashboard.service';
 import { AuthenticationService } from '../../../services/http/authentication.service';
 import { GameResult } from '../../../interfaces/music-tools/game-result';
 import { NoteTrainer } from '../../../interfaces/music-tools/note-trainer';

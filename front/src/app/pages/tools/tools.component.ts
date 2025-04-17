@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ImageUrlService } from '../../services/image-url.service';
-import { ToolsService } from '../../services/tools.service';
+import { ImageUrlService } from '../../services/user-interface/image-url.service';
+import { ToolsService } from '../../services/user-interface/tools.service';
 import { ToolsViewMode } from '../../enumerations/view-modes';
 
 @Component({

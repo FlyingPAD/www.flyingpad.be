@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { MoodsGalleryService } from '../../services/user-interface/moods-gallery.service';
 import { ActiveEntity } from '../../enumerations/gallery-mode';
 
 @Component({

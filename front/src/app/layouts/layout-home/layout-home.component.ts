@@ -1,5 +1,5 @@
 import { Component, inject, Signal } from '@angular/core';
-import { MenuService } from '../../services/menu.service';
+import { MenuService } from '../../services/user-interface/menu.service';
 import { AuthenticationService } from '../../services/http/authentication.service';
 import { UserService } from '../../services/http/user.service';
 

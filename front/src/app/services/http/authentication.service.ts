@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
 import { UserService } from './user.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TokenService } from '../token.service';
-import { NotificationService } from '../notification.service';
+import { NotificationService } from '../user-interface/notification.service';
 import { StorageService } from '../storage.service';
 import { StorageProperties } from '../../enumerations/storage-properties';
 

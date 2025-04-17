@@ -1,17 +1,17 @@
 import { Directive, HostListener, inject } from '@angular/core';
-import { MoodsGalleryService } from '../services/moods-gallery.service';
+import { DialogService } from '../services/user-interface/dialog.service';
 
 @Directive({
-  selector: '[appToggleEntityInfo]'
+  selector: '[appToggleDialog]'
 })
-export class ToggleEntityInfoDirective {
-  #moodsGalleryService = inject(MoodsGalleryService)
+export class ToggleDialogDirective {
+  #dialogService = inject(DialogService)
 
   @HostListener('click')
   @HostListener('window:keydown', ['$event'])
   toggleMoodInfo(event?: KeyboardEvent): void {
     if (!event || event.key === 'Control') {
-      this.#moodsGalleryService.toggleEntityInfo()
+      this.#dialogService.toggleDialog()
     }
   }
 }

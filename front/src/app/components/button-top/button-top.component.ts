@@ -1,5 +1,5 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { ButtonTopService } from '../../services/button-top.service';
+import { ButtonTopService } from '../../services/user-interface/button-top.service';
 
 @Component({
   selector: 'app-button-top',

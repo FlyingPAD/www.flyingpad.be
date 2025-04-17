@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { TagLight } from '../../interfaces/tag';
 import { Router } from '@angular/router';
 import { TagService } from '../../services/http/tag.service';
-import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { MoodsGalleryService } from '../../services/user-interface/moods-gallery.service';
 import { StorageService } from '../../services/storage.service';
 import { EditTagsViewMode } from '../../enumerations/view-modes-edition';
 import { GalleryType } from '../../enumerations/gallery-type';

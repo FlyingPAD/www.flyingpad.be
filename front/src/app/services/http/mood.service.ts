@@ -9,7 +9,7 @@ import { GetOneVideoDetailsResponse, Video } from '../../interfaces/mood-video';
 import { GetOneImageDetailsResponse, Image } from '../../interfaces/mood-image';
 import { GetOneVideoYoutubeDetailsResponse, VideoYouTube } from '../../interfaces/mood-video-youtube';
 import { MoodScoreUpdate, MoodUpdateForm, MultiTagsForm } from '../../interfaces/forms-update';
-import { NotificationService } from '../notification.service';
+import { NotificationService } from '../user-interface/notification.service';
 import { StateService } from '../custom-state/state.service';
 import { StorageService } from '../storage.service';
 import { StorageProperties } from '../../enumerations/storage-properties';
@@ -21,7 +21,7 @@ import { StatisticsService } from './statistics.service';
 import { CreateMoodImageResponse, CreateMoodVideoResponse } from '../../interfaces/responses-create';
 import { ImageCreateForm, VideoCreateForm } from '../../interfaces/forms-create';
 import { ActiveEntity, GalleryMode } from '../../enumerations/gallery-mode';
-import { MoodsGalleryService } from '../moods-gallery.service';
+import { MoodsGalleryService } from '../user-interface/moods-gallery.service';
 
 type MoodFilter =
   | { type: GalleryMode.Tag, id: number }

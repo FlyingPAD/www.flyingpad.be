@@ -15,10 +15,12 @@
             font-weight: bold;
             color: var(--colorMain);
         }
+
         .category-name:hover {
             text-decoration: underline;
             cursor: pointer;
         }
+
         .active {
             text-decoration: underline;
         }

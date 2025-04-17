@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
-import { MoodsGalleryService } from '../../../services/moods-gallery.service';
-import { DisplayService } from '../../../services/display.service';
+import { MoodsGalleryService } from '../../../services/user-interface/moods-gallery.service';
+import { DisplayService } from '../../../services/user-interface/display.service';
 import { DisplayModes } from '../../../enumerations/display-modes';
 
 @Component({

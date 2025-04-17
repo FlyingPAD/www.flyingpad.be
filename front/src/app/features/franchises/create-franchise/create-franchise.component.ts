@@ -47,7 +47,7 @@ export class CreateFranchiseComponent implements OnInit, OnDestroy {
     })
   }
 
-  public onSubmit(): void {
+  public createFranchise(): void {
     if (this.formGroup.valid) {
       let media = this.mediaArray?.value
 
@@ -71,7 +71,7 @@ export class CreateFranchiseComponent implements OnInit, OnDestroy {
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        this.onSubmit()
+        this.createFranchise()
         break
     }
   }

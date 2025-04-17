@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { UserService } from '../../services/http/user.service';
 import { Router } from '@angular/router';
-import { ImageUrlService } from '../../services/image-url.service';
+import { ImageUrlService } from '../../services/user-interface/image-url.service';
 import { environment } from '../../../environments/environment';
 import { MoodService } from '../../services/http/mood.service';
 

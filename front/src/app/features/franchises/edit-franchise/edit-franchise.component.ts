@@ -1,23 +1,26 @@
-import { Component, EventEmitter, HostListener, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FranchiseFull, MediumCheckBox } from '../../../interfaces/franchise';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FranchiseUpdateForm } from '../../../interfaces/forms-update';
 import { FranchiseService } from '../../../services/http/franchise.service';
+import { DialogService } from '../../../services/user-interface/dialog.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-edit-franchise',
-  templateUrl: './edit-franchise.component.html',
-  styleUrl: './edit-franchise.component.scss'
+  templateUrl: './edit-franchise.component.html'
 })
-export class EditFranchiseComponent implements OnInit {
+export class EditFranchiseComponent implements OnInit, OnDestroy {
+  #franchiseService = inject(FranchiseService)
+  #dialogService = inject(DialogService)
+  #formBuilder = inject(FormBuilder)
+
   @Input() franchise: FranchiseFull | undefined = undefined
   @Output() setViewMode = new EventEmitter<void>()
 
-  #franchiseService = inject(FranchiseService)
-  #formBuilder = inject(FormBuilder)
+  #destroy$ = new Subject<void>()
 
   public formGroup!: FormGroup
-  public isDeleteDialogOpen: boolean = false
 
 
   ngOnInit(): void {
@@ -29,8 +32,14 @@ export class EditFranchiseComponent implements OnInit {
       })
 
       this.#franchiseService.getMediaCheckBoxesByFranchise(this.franchise.businessId)
+        .pipe(takeUntil(this.#destroy$))
         .subscribe(media => this.populateCategories(media))
     }
+  }
+
+  ngOnDestroy(): void {
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   get mediaArray(): FormArray {
@@ -49,18 +58,10 @@ export class EditFranchiseComponent implements OnInit {
     })
   }
 
-  public openDeleteDialog(): void {
-    this.isDeleteDialogOpen = true
-  }
-  public closeDeleteDialog(): void {
-    this.isDeleteDialogOpen = false
-  }
-  public closeDeleteDialogEmit(): void {
-    this.isDeleteDialogOpen = false
-    this.setViewMode.emit()
-  }
+  public toggleDialog(): void { this.#dialogService.toggleDialog() }
+  public handleSetViewMode(): void { this.setViewMode.emit() }
 
-  public onSubmit(): void {
+  public updateFranchise(): void {
     if (this.formGroup.valid && this.franchise) {
       let selectedMedia = this.formGroup.value.media
         .filter((media: { isChecked: boolean }) => media.isChecked)
@@ -73,7 +74,9 @@ export class EditFranchiseComponent implements OnInit {
         mediaIds: selectedMedia
       }
 
-      this.#franchiseService.updateFranchise(form).subscribe(response => { if (response.success) this.setViewMode.emit() })
+      this.#franchiseService.updateFranchise(form)
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe(response => { if (response.success) this.setViewMode.emit() })
     }
   }
 
@@ -81,7 +84,7 @@ export class EditFranchiseComponent implements OnInit {
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        this.onSubmit()
+        this.updateFranchise()
         break
     }
   }
