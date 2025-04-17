@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FranchiseLight } from '../../../interfaces/franchise';
 import { ModelFull } from '../../../interfaces/model';
 import { ActiveEntity } from '../../../enumerations/gallery-mode';
-import { MoodsGalleryService } from '../../../services/moods-gallery.service';
+import { MoodsGalleryService } from '../../../services/user-interface/moods-gallery.service';
 
 @Component({
   selector: 'app-related-franchises',

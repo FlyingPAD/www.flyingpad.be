@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ImageUrlService } from '../../services/image-url.service';
+import { ImageUrlService } from '../../services/user-interface/image-url.service';
 import { environment } from '../../../environments/environment';
 import { MoodService } from '../../services/http/mood.service';
 

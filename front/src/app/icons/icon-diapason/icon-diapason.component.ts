@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { ThemeService } from '../../services/theme.service';
+import { ThemeService } from '../../services/user-interface/theme.service';
 
 @Component({
   selector: 'app-icon-diapason',

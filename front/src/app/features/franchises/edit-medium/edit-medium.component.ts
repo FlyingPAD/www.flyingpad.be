@@ -1,26 +1,27 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MediumFull } from '../../../interfaces/franchise';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { MediumUpdateForm } from '../../../interfaces/forms-update';
 import { FranchiseService } from '../../../services/http/franchise.service';
+import { DialogService } from '../../../services/user-interface/dialog.service';
 
 @Component({
   selector: 'app-edit-medium',
-  templateUrl: './edit-medium.component.html',
-  styleUrl: './edit-medium.component.scss'
+  templateUrl: './edit-medium.component.html'
 })
 export class EditMediumComponent implements OnInit, OnDestroy {
+  #franchiseService = inject(FranchiseService)
+  #dialogService = inject(DialogService)
+  #formBuilder = inject(FormBuilder)
+
   @Input() medium: MediumFull | undefined = undefined
   @Output() setViewMode = new EventEmitter<void>()
 
-  #franchiseService = inject(FranchiseService)
-  #formBuilder = inject(FormBuilder)
+  #destroy$ = new Subject<void>()
 
-  #subscription = new Subscription()
-
-  public isDeleteDialogOpen: boolean = false
   public editFormGroup!: FormGroup
+
 
   ngOnInit(): void {
     this.editFormGroup = this.#formBuilder.group({
@@ -30,21 +31,14 @@ export class EditMediumComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
-  public openDeleteDialog(): void {
-    this.isDeleteDialogOpen = true
-  }
-  public closeDeleteDialog(): void {
-    this.isDeleteDialogOpen = false
-  }
-  public closeDeleteDialogEmit(): void {
-    this.isDeleteDialogOpen = false
-    this.setViewMode.emit()
-  }
+  public toggleDialog(): void { this.#dialogService.toggleDialog() }
+  public handleSetViewMode(): void { this.setViewMode.emit() }
 
-  public onSubmit(): void {
+  public updateMedium(): void {
     if (this.editFormGroup.valid && this.medium) {
       let form: MediumUpdateForm = {
         mediumId: this.medium.businessId,
@@ -52,9 +46,9 @@ export class EditMediumComponent implements OnInit, OnDestroy {
         description: this.editFormGroup.value.description
       }
 
-      this.#subscription = this.#franchiseService.updateMedium(form).subscribe((response) => {
-        if (response.success) this.setViewMode.emit()
-      })
+      this.#franchiseService.updateMedium(form)
+      .pipe(takeUntil(this.#destroy$))
+      .subscribe(response => { if (response.success) this.setViewMode.emit() })
     }
   }
 
@@ -62,7 +56,7 @@ export class EditMediumComponent implements OnInit, OnDestroy {
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        this.onSubmit()
+        this.updateMedium()
         break
     }
   }

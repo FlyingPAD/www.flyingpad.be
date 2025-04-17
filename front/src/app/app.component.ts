@@ -1,12 +1,12 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LanguageService } from './services/language.service';
-import { DisplayService } from './services/display.service';
-import { FullScreenService } from './services/full-screen.service';
-import { ThemeService } from './services/theme.service';
+import { LanguageService } from './services/user-interface/language.service';
+import { DisplayService } from './services/user-interface/display.service';
+import { FullScreenService } from './services/user-interface/full-screen.service';
+import { ThemeService } from './services/user-interface/theme.service';
 import { GdprService } from './services/gdpr.service';
-import { MenuService } from './services/menu.service';
-import { ButtonTopService } from './services/button-top.service';
+import { MenuService } from './services/user-interface/menu.service';
+import { ButtonTopService } from './services/user-interface/button-top.service';
 import { TokenService } from './services/token.service';
 import { AuthenticationService } from './services/http/authentication.service';
 

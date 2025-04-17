@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NotificationService } from '../../services/notification.service';
+import { NotificationService } from '../../services/user-interface/notification.service';
 import { MoodService } from '../../services/http/mood.service';
 import { ImageCreateForm } from '../../interfaces/forms-create';
 

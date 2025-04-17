@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ButtonTopService } from '../../services/button-top.service';
+import { ButtonTopService } from '../../services/user-interface/button-top.service';
 import { ActiveEntity, GalleryMode } from '../../enumerations/gallery-mode';
-import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { MoodsGalleryService } from '../../services/user-interface/moods-gallery.service';
 import { GalleryType } from '../../enumerations/gallery-type';
 import { FranchiseService } from '../../services/http/franchise.service';
 import { ModelService } from '../../services/http/model.service';

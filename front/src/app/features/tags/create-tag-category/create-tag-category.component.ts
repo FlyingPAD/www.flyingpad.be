@@ -6,22 +6,20 @@ import { TagService } from '../../../services/http/tag.service';
 
 @Component({
   selector: 'app-create-tag-category',
-  templateUrl: './create-tag-category.component.html',
-  styleUrl: './create-tag-category.component.scss'
+  templateUrl: './create-tag-category.component.html'
 })
 export class CreateTagCategoryComponent implements OnDestroy {
-  @Output() setViewMode = new EventEmitter<void>()
-
   #tagService = inject(TagService)
   #formBuilder = inject(FormBuilder)
 
-  createFormGroup: FormGroup = this.#formBuilder.group({
-    name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
-  })
+  @Output() setViewMode = new EventEmitter<void>()
 
   #destroy$ = new Subject<void>()
 
+  public formGroup: FormGroup = this.#formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]]
+  })
 
   ngOnDestroy(): void {
     this.#destroy$.next()
@@ -30,11 +28,11 @@ export class CreateTagCategoryComponent implements OnDestroy {
 
   public onSubmit(): void {
     let form: TagCategoryCreateForm = {
-      name: this.createFormGroup.value.name,
-      description: this.createFormGroup.value.description,
+      name: this.formGroup.value.name,
+      description: this.formGroup.value.description,
     }
 
-    if (this.createFormGroup.valid) {
+    if (this.formGroup.valid) {
       this.#tagService.createTagCategory(form)
         .pipe(takeUntil(this.#destroy$))
         .subscribe(response => { if (response.success) this.setViewMode.emit() })

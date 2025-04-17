@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { DetailedMood, MoodLight } from '../../../interfaces/mood';
-import { MenuService } from '../../../services/menu.service';
+import { MenuService } from '../../../services/user-interface/menu.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { MoodsGalleryService } from '../../../services/moods-gallery.service';
+import { MoodsGalleryService } from '../../../services/user-interface/moods-gallery.service';
 import { GalleryType } from '../../../enumerations/gallery-type';
 
 @Component({

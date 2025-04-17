@@ -1,7 +1,7 @@
 <div class="edition"> 
-    <h2 class="h2">Create new tag.</h2>
+    <h2 class="h2">Create New Tag</h2>
     
-    <form [formGroup]="createFormGroup">
+    <form [formGroup]="formGroup">
         <input type="text" formControlName="name" placeholder="Name">
         <input type="text" formControlName="description" placeholder="Description">  
         <select formControlName="tagCategoryId">
@@ -11,7 +11,7 @@
         </select> 
     </form>
 
-    <a class="edition-button" [class.edition-button-disabled]="createFormGroup.invalid" (click)="onSubmit()">Submit</a>
+    <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="createTag()">Submit</a>
 </div>
 
-<app-spacer height="150px" />
+<app-spacer />

@@ -2,8 +2,8 @@ import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/http/authentication.service';
-import { ImageUrlService } from '../../services/image-url.service';
-import { LanguageService } from '../../services/language.service';
+import { ImageUrlService } from '../../services/user-interface/image-url.service';
+import { LanguageService } from '../../services/user-interface/language.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MoodService } from '../../services/http/mood.service';
 

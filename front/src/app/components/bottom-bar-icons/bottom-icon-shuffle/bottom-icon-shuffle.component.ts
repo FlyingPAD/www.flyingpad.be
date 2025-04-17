@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { DisplayService } from '../../../services/display.service';
+import { DisplayService } from '../../../services/user-interface/display.service';
 import { DisplayModes } from '../../../enumerations/display-modes';
 
 @Component({

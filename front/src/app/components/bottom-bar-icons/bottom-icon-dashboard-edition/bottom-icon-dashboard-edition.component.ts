@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { DashboardViewMode } from '../../../enumerations/view-modes';
-import { DashboardService } from '../../../services/dashboard.service';
+import { DashboardService } from '../../../services/user-interface/dashboard.service';
 
 @Component({
   selector: 'app-bottom-icon-dashboard-edition',

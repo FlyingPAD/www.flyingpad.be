@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ButtonTopService } from '../../services/button-top.service';
+import { ButtonTopService } from '../../services/user-interface/button-top.service';
 import { TagService } from '../../services/http/tag.service';
-import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { MoodsGalleryService } from '../../services/user-interface/moods-gallery.service';
 import { GalleryType } from '../../enumerations/gallery-type';
 import { StateService } from '../../services/custom-state/state.service';
 import { Router } from '@angular/router';

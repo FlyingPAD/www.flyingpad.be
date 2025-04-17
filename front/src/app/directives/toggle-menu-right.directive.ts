@@ -1,5 +1,5 @@
 import { Directive, HostListener, inject } from '@angular/core';
-import { MenuService } from '../services/menu.service';
+import { MenuService } from '../services/user-interface/menu.service';
 
 @Directive({
   selector: '[appToggleRightMenu]'
@@ -10,7 +10,7 @@ export class ToggleMenuRightDirective {
   @HostListener('click')
   @HostListener('window:keydown', ['$event'])
   toggleMoodInfo(event?: KeyboardEvent): void {
-    if (!event || event.key === 'Enter') {
+    if (!event || event.key === 'Control') {
       this.#menuService.toggleRightMenu()
     }
   }

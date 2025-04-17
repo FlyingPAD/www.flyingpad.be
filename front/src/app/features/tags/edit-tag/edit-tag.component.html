@@ -1,26 +1,23 @@
-<div class="edition"> 
-    <h2 class="h2">Edit current tag.</h2>
+<div class="edition">
+    <h2 class="h2">Edit Current Tag</h2>
 
-    <form [formGroup]="editFormGroup">
+    <form [formGroup]="formGroup">
         <input type="text" formControlName="name">
-        <input type="text" formControlName="description">    
+        <input type="text" formControlName="description">
         <select formControlName="tagCategoryId">
-            <option *ngFor="let category of tagCategories" [value]="category.businessId" [selected]="tag?.tagCategoryId === category.businessId">
+            <option *ngFor="let category of tagCategories" [value]="category.businessId"
+                [selected]="tag?.tagCategoryId === category.businessId">
                 {{category.name}}
             </option>
-        </select>  
+        </select>
     </form>
 
-    <a class="edition-button" [class.edition-button-disabled]="editFormGroup.invalid" (click)="onSubmit()">Submit</a>
-    <a class="edition-button" (click)="openDeleteDialog()">Delete</a>
+    <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="updateTag()">Submit</a>
+    <a class="edition-button" (click)="toggleDialog()">Delete</a>
 </div>
 
-<app-spacer height="150px" />
+<app-spacer />
 
-@if(isDeleteDialogOpen) {
-    <app-dialog (dialog)="closeDeleteDialog()">
-        <app-delete-tag [tag]="tag" [tagCategoryId]="tag?.tagCategoryId" (toggleDialog)="closeDeleteDialogEmit()" />
-    </app-dialog>
-}
-
-<app-overlay [isOverlayOn]="isDeleteDialogOpen" (toggle)="closeDeleteDialog()" />
+<app-dialog>
+    <app-delete-tag [tag]="tag" [tagCategoryId]="tag?.tagCategoryId" (setViewMode)="handleSetViewMode()" />
+</app-dialog>

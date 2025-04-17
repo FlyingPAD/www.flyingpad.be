@@ -11,7 +11,7 @@
         <app-edit-mood-score [moodScore]="moodsFlow()?.mood.score" (updateMoodScore)="updateMoodScore($event)" />
     </div>
     <div class="buttons">
-        <div class="button" (click)="toggleEntityInfo()">{{ 'title.delete' | translate }}</div>
+        <div class="button" (click)="toggleDialog()">{{ 'title.delete' | translate }}</div>
     </div>
 }
 

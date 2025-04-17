@@ -2,9 +2,9 @@ import { inject, Injectable, Signal } from '@angular/core';
 import { BehaviorSubject, combineLatest, fromEvent } from 'rxjs';
 import { debounceTime, startWith, map } from 'rxjs/operators';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { DisplayModes } from '../enumerations/display-modes';
-import { DisplayOrientations } from '../enumerations/display-orientations';
-import { DisplayInfo } from '../interfaces/display-info';
+import { DisplayModes } from '../../enumerations/display-modes';
+import { DisplayOrientations } from '../../enumerations/display-orientations';
+import { DisplayInfo } from '../../interfaces/display-info';
 import { MenuService } from './menu.service';
 
 @Injectable({

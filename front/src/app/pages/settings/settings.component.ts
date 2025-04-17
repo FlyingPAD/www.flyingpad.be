@@ -1,12 +1,12 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { LanguageService } from '../../services/language.service';
-import { DisplayService } from '../../services/display.service';
-import { FullScreenService } from '../../services/full-screen.service';
+import { LanguageService } from '../../services/user-interface/language.service';
+import { DisplayService } from '../../services/user-interface/display.service';
+import { FullScreenService } from '../../services/user-interface/full-screen.service';
 import { Theme } from '../../enumerations/supported-themes';
-import { ThemeService } from '../../services/theme.service';
-import { ImageUrlService } from '../../services/image-url.service';
+import { ThemeService } from '../../services/user-interface/theme.service';
+import { ImageUrlService } from '../../services/user-interface/image-url.service';
 import { SupportedLanguages } from '../../enumerations/supported-languages';
-import { ButtonTopService } from '../../services/button-top.service';
+import { ButtonTopService } from '../../services/user-interface/button-top.service';
 
 @Component({
   selector: 'app-settings',

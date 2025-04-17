@@ -4,7 +4,7 @@ import { GetStatisticsResponse, Statistics } from '../../interfaces/statistics';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { NotificationService } from '../notification.service';
+import { NotificationService } from '../user-interface/notification.service';
 
 @Injectable({
   providedIn: 'root'

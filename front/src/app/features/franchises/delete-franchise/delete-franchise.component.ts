@@ -1,29 +1,37 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
 import { FranchiseFull } from '../../../interfaces/franchise';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { FranchiseService } from '../../../services/http/franchise.service';
+import { DialogService } from '../../../services/user-interface/dialog.service';
 
 @Component({
   selector: 'app-delete-franchise',
-  templateUrl: './delete-franchise.component.html',
-  styleUrl: './delete-franchise.component.scss'
+  templateUrl: './delete-franchise.component.html'
 })
 export class DeleteFranchiseComponent implements OnDestroy {
-  @Input() franchise : FranchiseFull | undefined = undefined
-  @Output() toggleDialog = new EventEmitter<void>()
-
   #franchiseService = inject(FranchiseService)
+  #dialogService = inject(DialogService)
 
-  #subscription = new Subscription()  
+  @Input() franchise: FranchiseFull | undefined = undefined
+  @Output() setViewMode = new EventEmitter<void>()
+
+  #destroy$ = new Subject<void>()
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
-  public deleteLink(): void {
-    if(this.franchise) {
-      this.#subscription = this.#franchiseService.deleteFranchise(this.franchise.businessId).subscribe(
-        (response) => {if(response.success) this.toggleDialog.emit()})
+  public deleteFranchise(): void {
+    if (this.franchise) {
+      this.#franchiseService.deleteFranchise(this.franchise.businessId)
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe(response => {
+          if (response.success) {
+            this.#dialogService.toggleDialog()
+            this.setViewMode.emit()
+          }
+        })
     }
   }
 }

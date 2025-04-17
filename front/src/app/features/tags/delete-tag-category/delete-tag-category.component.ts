@@ -1,29 +1,38 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
 import { TagCategoryFull } from '../../../interfaces/tag';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { TagService } from '../../../services/http/tag.service';
+import { DialogService } from '../../../services/user-interface/dialog.service';
 
 @Component({
   selector: 'app-delete-tag-category',
-  templateUrl: './delete-tag-category.component.html',
-  styleUrl: './delete-tag-category.component.scss'
+  templateUrl: './delete-tag-category.component.html'
 })
 export class DeleteTagCategoryComponent implements OnDestroy {
-  @Input() tagCategory: TagCategoryFull | undefined = undefined
-  @Output() toggleDialog = new EventEmitter<void>()
-
   #tagService = inject(TagService)
+  #dialogService = inject(DialogService)
 
-  #subscription = new Subscription()
+  @Input() tagCategory: TagCategoryFull | undefined = undefined
+  @Output() setViewMode = new EventEmitter<void>()
+
+  #destroy$ = new Subject<void>()
+
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   public deleteTagCategory(): void {
-    if (this.tagCategory != undefined) {
-      this.#subscription = this.#tagService.deleteTagCategory(this.tagCategory.businessId).subscribe(
-        (response) => { if (response.success) this.toggleDialog.emit() })
+    if (this.tagCategory) {
+      this.#tagService.deleteTagCategory(this.tagCategory.businessId)
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe(response => {
+          if (response.success) {
+            this.#dialogService.toggleDialog()
+            this.setViewMode.emit()
+          }
+        })
     }
   }
 }

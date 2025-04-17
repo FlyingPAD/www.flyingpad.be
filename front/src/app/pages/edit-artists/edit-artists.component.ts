@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ArtistLight } from '../../interfaces/artist';
 import { ArtistService } from '../../services/http/artist.service';
 import { StorageService } from '../../services/storage.service';
-import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { MoodsGalleryService } from '../../services/user-interface/moods-gallery.service';
 import { EditArtistsViewMode } from '../../enumerations/view-modes-edition';
 import { GalleryType } from '../../enumerations/gallery-type';
 import { StateService } from '../../services/custom-state/state.service';

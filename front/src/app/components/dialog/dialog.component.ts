@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { DialogService } from '../../services/user-interface/dialog.service';
 
 @Component({
   selector: 'app-dialog',
@@ -7,7 +7,7 @@ import { MoodsGalleryService } from '../../services/moods-gallery.service';
   styleUrl: './dialog.component.scss'
 })
 export class DialogComponent {
-  #moodsGalleryService = inject(MoodsGalleryService)
+  #dialogService = inject(DialogService)
 
-  public entityInfoToggle = this.#moodsGalleryService.entityInfoToggle
+  public dialogToggle = this.#dialogService.dialogToggle
 }

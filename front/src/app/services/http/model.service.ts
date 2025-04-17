@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { NotificationService } from '../notification.service';
+import { NotificationService } from '../user-interface/notification.service';
 import { combineLatest, map, Observable, shareReplay, startWith, Subject, switchMap, tap, of, merge, distinctUntilChanged, catchError, withLatestFrom } from 'rxjs';
 import { ModelCreateForm } from '../../interfaces/forms-create';
 import { GetAllModelsResponse, GetModelResponse, ModelFull, ModelLight } from '../../interfaces/model';

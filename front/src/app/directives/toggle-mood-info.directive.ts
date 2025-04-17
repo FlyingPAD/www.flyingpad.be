@@ -1,5 +1,5 @@
 import { Directive, HostListener, inject } from '@angular/core';
-import { MoodsGalleryService } from '../services/moods-gallery.service';
+import { MoodsGalleryService } from '../services/user-interface/moods-gallery.service';
 
 @Directive({
   selector: '[appToggleMoodInfo]'

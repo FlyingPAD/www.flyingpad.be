@@ -1,7 +1,7 @@
 import { Injectable, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject } from 'rxjs';
-import { DashboardViewMode } from '../enumerations/view-modes';
+import { DashboardViewMode } from '../../enumerations/view-modes';
 
 @Injectable({
   providedIn: 'root'

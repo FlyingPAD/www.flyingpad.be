@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { ModelLight } from '../../../interfaces/model';
 import { FranchiseFull } from '../../../interfaces/franchise';
-import { MoodsGalleryService } from '../../../services/moods-gallery.service';
+import { MoodsGalleryService } from '../../../services/user-interface/moods-gallery.service';
 import { ActiveEntity } from '../../../enumerations/gallery-mode';
 
 @Component({

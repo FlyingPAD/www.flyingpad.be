@@ -5,10 +5,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm } from '../../interfaces/relations';
 import { RelationsService } from '../../services/http/relations.service';
 import { MoodService } from '../../services/http/mood.service';
-import { MoodsGalleryService } from '../../services/moods-gallery.service';
+import { MoodsGalleryService } from '../../services/user-interface/moods-gallery.service';
 import { EditMoodViewMode } from '../../enumerations/view-modes-edition';
 import { Router } from '@angular/router';
 import { GalleryType } from '../../enumerations/gallery-type';
+import { DialogService } from '../../services/user-interface/dialog.service';
 
 @Component({
   selector: 'app-edit-mood',
@@ -20,6 +21,7 @@ export class EditMoodComponent implements OnDestroy {
   #moodService = inject(MoodService)
   #relationService = inject(RelationsService)
   #moodsGalleryService = inject(MoodsGalleryService)
+  #dialogService = inject(DialogService)
   #formBuilder = inject(FormBuilder)
   #router = inject(Router)
 
@@ -46,8 +48,8 @@ export class EditMoodComponent implements OnDestroy {
 
   public backToGallery(): void { this.#router.navigateByUrl('/central-gallery') }
 
-  public toggleEntityInfo(): void {
-    this.#moodsGalleryService.toggleEntityInfo()
+  public toggleDialog(): void {
+    this.#dialogService.toggleDialog()
   }
 
   public onSave(): void {

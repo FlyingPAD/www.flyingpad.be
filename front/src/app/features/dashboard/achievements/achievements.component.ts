@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { Achievement } from '../../../interfaces/achievement';
 import { Router } from '@angular/router';
-import { ToolsService } from '../../../services/tools.service';
+import { ToolsService } from '../../../services/user-interface/tools.service';
 import { ToolsViewMode } from '../../../enumerations/view-modes';
 
 @Component({

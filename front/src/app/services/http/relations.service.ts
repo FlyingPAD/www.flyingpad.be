@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { NotificationService } from '../notification.service';
+import { NotificationService } from '../user-interface/notification.service';
 import { tap } from 'rxjs';
 import { BaseResponse } from '../../interfaces/base-response';
 import { RelationsMoodTagForm, RelationsMoodArtistForm, RelationsMoodModelForm } from '../../interfaces/relations';

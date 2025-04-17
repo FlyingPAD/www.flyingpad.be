@@ -6,8 +6,7 @@ import { FranchiseService } from '../../../services/http/franchise.service';
 
 @Component({
   selector: 'app-create-medium',
-  templateUrl: './create-medium.component.html',
-  styleUrl: './create-medium.component.scss'
+  templateUrl: './create-medium.component.html'
 })
 export class CreateMediumComponent implements OnDestroy {
   @Output() setViewMode = new EventEmitter<void>()
@@ -27,7 +26,7 @@ export class CreateMediumComponent implements OnDestroy {
     this.#destroy$.complete()
   }
 
-  public onSubmit(): void {
+  public createMedium(): void {
     let form: MediumCreateForm = {
       name: this.formGroup.value.name,
       description: this.formGroup.value.description,
@@ -44,7 +43,7 @@ export class CreateMediumComponent implements OnDestroy {
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        this.onSubmit()
+        this.createMedium()
         break
     }
   }

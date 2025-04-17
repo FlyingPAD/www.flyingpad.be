@@ -5,28 +5,29 @@ import { Subject, takeUntil } from 'rxjs';
 import { TagUpdateForm } from '../../../interfaces/forms-update';
 import { TagCategoryLight } from '../../../interfaces/tag';
 import { TagService } from '../../../services/http/tag.service';
+import { DialogService } from '../../../services/user-interface/dialog.service';
 
 @Component({
   selector: 'app-edit-tag',
   templateUrl: './edit-tag.component.html'
 })
 export class EditTagComponent implements OnInit, OnDestroy {
+  #tagService = inject(TagService)
+  #dialogService = inject(DialogService)
+  #formBuilder = inject(FormBuilder)
+
   @Input() tag: TagFull | undefined = undefined
   @Input() tagCategories: TagCategoryLight[] = []
 
   @Output() setViewMode = new EventEmitter<void>()
 
-  #tagService = inject(TagService)
-  #formBuilder = inject(FormBuilder)
-
   #destroy$ = new Subject<void>()
 
-  public isDeleteDialogOpen: boolean = false
-  public editFormGroup!: FormGroup
+  public formGroup!: FormGroup
 
 
   ngOnInit(): void {
-    this.editFormGroup = this.#formBuilder.group({
+    this.formGroup = this.#formBuilder.group({
       name: [this.tag?.name, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       description: [this.tag?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       tagCategoryId: [this.tag?.tagCategoryId, Validators.required]
@@ -38,30 +39,24 @@ export class EditTagComponent implements OnInit, OnDestroy {
     this.#destroy$.complete()
   }
 
-  public openDeleteDialog(): void {
-    this.isDeleteDialogOpen = true
-  }
-  public closeDeleteDialog(): void {
-    this.isDeleteDialogOpen = false
-  }
-  public closeDeleteDialogEmit(): void {
-    this.isDeleteDialogOpen = false
-    this.setViewMode.emit()
-  }
 
-  public onSubmit(): void {
+  public toggleDialog(): void { this.#dialogService.toggleDialog() }
+  public handleSetViewMode(): void { this.setViewMode.emit() }
+
+  public updateTag(): void {
     let form: TagUpdateForm = {
       tagId: this.tag ? this.tag.businessId : 0,
-      name: this.editFormGroup.value.name,
-      description: this.editFormGroup.value.description,
-      tagCategoryId: this.editFormGroup.value.tagCategoryId
+      name: this.formGroup.value.name,
+      description: this.formGroup.value.description,
+      tagCategoryId: this.formGroup.value.tagCategoryId
     }
 
-    if (this.editFormGroup.valid) {
+    if (this.formGroup.valid) {
       this.#tagService.updateTag(form)
-      .pipe(takeUntil(this.#destroy$))
-      .subscribe(response => {
-        if(response.success) this.setViewMode.emit() })
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe(response => {
+          if (response.success) this.setViewMode.emit()
+        })
     }
   }
 
@@ -69,7 +64,7 @@ export class EditTagComponent implements OnInit, OnDestroy {
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        this.onSubmit()
+        this.updateTag()
         break
     }
   }

@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ButtonTopService } from '../../services/button-top.service';
-import { ScriptsService } from '../../services/scripts.service';
-import { DisplayService } from '../../services/display.service';
+import { ButtonTopService } from '../../services/user-interface/button-top.service';
+import { ScriptsService } from '../../services/user-interface/scripts.service';
+import { DisplayService } from '../../services/user-interface/display.service';
 import { ScriptsViewMode } from '../../enumerations/view-modes';
 import { DisplayModes } from '../../enumerations/display-modes';
 
