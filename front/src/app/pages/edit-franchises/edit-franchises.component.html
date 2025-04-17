@@ -48,8 +48,8 @@
                 <app-icon-plus size="25px" class="icon" />
                 <p>to add a new franchise.</p>
             </div>
-        }
-        @if((franchisesFlow()?.franchisesByMedium?.length || 0) > elementsPerPage) {
+        }        
+        @if((filterFranchises()?.length || 0) > elementsPerPage) {
             <div class="pagination-row">
                 <div class="pagination">
                     <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />

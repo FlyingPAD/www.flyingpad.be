@@ -1,6 +1,7 @@
 <div class="edition">
-  <h2 class="h2">Create new artist</h2>
-  <form [formGroup]="form">
+  <h2 class="h2">Create New Artist</h2>
+  
+  <form [formGroup]="formGroup">
     <input type="text" formControlName="name" placeholder="Full Name">
     <input type="text" formControlName="description" placeholder="Description">
     <div class="checkboxes" formArrayName="styles">
@@ -12,6 +13,8 @@
       </div>
     </div>
   </form>
-  <a class="edition-button" [class.edition-button-disabled]="form.invalid" (click)="onSubmit()">Submit</a>
+
+  <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="createArtist()">Submit</a>
 </div>
-<div class="spacer150"></div>
+
+<app-spacer />

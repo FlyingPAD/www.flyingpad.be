@@ -1,29 +1,30 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ModelFull } from '../../../interfaces/model';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { ModelUpdateForm } from '../../../interfaces/forms-update';
 import { FranchiseCheckBox } from '../../../interfaces/franchise';
 import { ModelService } from '../../../services/http/model.service';
 import { FranchiseService } from '../../../services/http/franchise.service';
+import { DialogService } from '../../../services/user-interface/dialog.service';
 
 @Component({
   selector: 'app-edit-model',
-  templateUrl: './edit-model.component.html',
-  styleUrl: './edit-model.component.scss'
+  templateUrl: './edit-model.component.html'
 })
 export class EditModelComponent implements OnInit, OnDestroy {
-  @Input() model: ModelFull | undefined = undefined
-  @Output() showListTrigger = new EventEmitter<void>()
-
   #modelService = inject(ModelService)
   #franchiseService = inject(FranchiseService)
+  #dialogService = inject(DialogService)
   #formBuilder = inject(FormBuilder)
 
-  #subscription = new Subscription()
+  @Input() model: ModelFull | undefined = undefined
+  @Output() setViewMode = new EventEmitter<void>()
+
+  #destroy$ = new Subject<void>()
 
   public formGroup!: FormGroup
-  public isDeleteDialogOpen: boolean = false
+
 
   ngOnInit(): void {
     if (this.model) {
@@ -37,12 +38,14 @@ export class EditModelComponent implements OnInit, OnDestroy {
       })
 
       this.#franchiseService.getFranchisesCheckBoxesByModel(this.model.businessId)
+        .pipe(takeUntil(this.#destroy$))
         .subscribe(franchises => this.populateCategories(franchises))
     }
   }
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   get franchisesArray(): FormArray {
@@ -61,18 +64,10 @@ export class EditModelComponent implements OnInit, OnDestroy {
     })
   }
 
-  public openDeleteDialog(): void {
-    this.isDeleteDialogOpen = true
-  }
-  public closeDeleteDialog(): void {
-    this.isDeleteDialogOpen = false
-  }
-  public closeDeleteDialogEmit(): void {
-    this.isDeleteDialogOpen = false
-    this.showListTrigger.emit()
-  }
+  public toggleDialog(): void { this.#dialogService.toggleDialog() }
+  public handleSetViewMode(): void { this.setViewMode.emit() }
 
-  public onSubmit(): void {
+  public updateModel(): void {
     if (this.formGroup.valid && this.model) {
       let selectedFranchises = this.formGroup.value.franchises
         .filter((franchise: { isChecked: boolean }) => franchise.isChecked)
@@ -87,8 +82,9 @@ export class EditModelComponent implements OnInit, OnDestroy {
         description: this.formGroup.value.description,
         franchisesIds: selectedFranchises
       }
-      this.#subscription = this.#modelService.updateModel(form).subscribe(response => { 
-        if (response.success) this.showListTrigger.emit() })
+      this.#modelService.updateModel(form)
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe(response => { if (response.success) this.setViewMode.emit() })
     }
   }
 
@@ -96,7 +92,7 @@ export class EditModelComponent implements OnInit, OnDestroy {
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        this.onSubmit()
+        this.updateModel()
         break
     }
   }

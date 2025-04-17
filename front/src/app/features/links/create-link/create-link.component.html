@@ -1,5 +1,6 @@
 <div class="edition">
-  <h2 class="h2">Create new link</h2>
+  <h2 class="h2">Create New Link</h2>
+
   <form [formGroup]="formGroup">
     <input type="text" formControlName="name" placeholder="Full Name">
     <input type="text" formControlName="description" placeholder="Description">
@@ -13,6 +14,8 @@
       </div>
     </div>
   </form>
-  <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="onSubmit()">Submit</a>
+
+  <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="createLink()">Submit</a>
 </div>
-<app-spacer height="150px" />
+
+<app-spacer />

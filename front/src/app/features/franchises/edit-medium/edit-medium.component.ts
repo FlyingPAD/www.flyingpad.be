@@ -20,11 +20,11 @@ export class EditMediumComponent implements OnInit, OnDestroy {
 
   #destroy$ = new Subject<void>()
 
-  public editFormGroup!: FormGroup
+  public formGroup!: FormGroup
 
 
   ngOnInit(): void {
-    this.editFormGroup = this.#formBuilder.group({
+    this.formGroup = this.#formBuilder.group({
       name: [this.medium?.name, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       description: [this.medium?.description, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]]
     })
@@ -39,16 +39,16 @@ export class EditMediumComponent implements OnInit, OnDestroy {
   public handleSetViewMode(): void { this.setViewMode.emit() }
 
   public updateMedium(): void {
-    if (this.editFormGroup.valid && this.medium) {
+    if (this.formGroup.valid && this.medium) {
       let form: MediumUpdateForm = {
         mediumId: this.medium.businessId,
-        name: this.editFormGroup.value.name,
-        description: this.editFormGroup.value.description
+        name: this.formGroup.value.name,
+        description: this.formGroup.value.description
       }
 
       this.#franchiseService.updateMedium(form)
-      .pipe(takeUntil(this.#destroy$))
-      .subscribe(response => { if (response.success) this.setViewMode.emit() })
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe(response => { if (response.success) this.setViewMode.emit() })
     }
   }
 

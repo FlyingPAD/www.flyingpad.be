@@ -1,25 +1,25 @@
-import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { StyleUpdateForm } from '../../../interfaces/forms-update';
 import { ArtistService } from '../../../services/http/artist.service';
 import { StyleFull } from '../../../interfaces/artist';
+import { DialogService } from '../../../services/user-interface/dialog.service';
 
 @Component({
   selector: 'app-edit-style',
-  templateUrl: './edit-style.component.html',
-  styleUrl: './edit-style.component.scss'
+  templateUrl: './edit-style.component.html'
 })
 export class EditStyleComponent implements OnInit, OnDestroy {
-  @Input() style: StyleFull | undefined = undefined
-  @Output() trigger = new EventEmitter<void>()
-
   #artistService = inject(ArtistService)
+  #dialogService = inject(DialogService)
   #formBuilder = inject(FormBuilder)
 
-  #subscription = new Subscription()
+  @Input() style: StyleFull | undefined = undefined
+  @Output() setViewMode = new EventEmitter<void>()
 
-  public isDeleteDialogOpen: boolean = false
+  #destroy$ = new Subject<void>()
+
   public formGroup!: FormGroup
 
   ngOnInit(): void {
@@ -30,23 +30,14 @@ export class EditStyleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
-  public openDeleteDialog(): void {
-    this.isDeleteDialogOpen = true
-  }
+  public toggleDialog(): void { this.#dialogService.toggleDialog() }
+  public handleSetViewMode(): void { this.setViewMode.emit() }
 
-  public closeDeleteDialog(): void {
-    this.isDeleteDialogOpen = false
-  }
-  
-  public closeDeleteDialogEmit(): void {
-    this.isDeleteDialogOpen = false
-    this.trigger.emit()
-  }
-
-  public onSubmit(): void {
+  public updateStyle(): void {
     if (this.formGroup.valid && this.style) {
       let form: StyleUpdateForm = {
         styleId: this.style.businessId,
@@ -55,8 +46,19 @@ export class EditStyleComponent implements OnInit, OnDestroy {
       }
 
       if (this.formGroup.valid) {
-        this.#subscription = this.#artistService.updateStyle(form).subscribe((response) => { if (response.success) this.trigger.emit() })
+        this.#artistService.updateStyle(form)
+          .pipe(takeUntil(this.#destroy$))
+          .subscribe((response) => { if (response.success) this.setViewMode.emit() })
       }
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.updateStyle()
+        break
     }
   }
 }

@@ -85,6 +85,7 @@ export class EditModelsComponent implements OnInit {
 
   public filterModels(): ModelLight[] {
     const models = this.modelsFlow()?.models ?? []
+    
     return models.filter(m =>
       m.pseudonym.toLowerCase().includes(this.searchModelsSignal().toLowerCase())
     )

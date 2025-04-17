@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { LinkCreateForm } from '../../../interfaces/forms-create';
-import { LinkCategoryCheckBox, LinkCategoryLight } from '../../../interfaces/link';
+import { LinkCategoryLight } from '../../../interfaces/link';
 import { LinkService } from '../../../services/http/link.service';
 
 @Component({
@@ -29,9 +29,7 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
       name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       url: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(255)]],
-      linkCategories: this.#builder.array(
-        this.linkCategories.map(category => this.createCategoryFormGroup(category))
-      )
+      linkCategories: this.#builder.array(this.linkCategories.map(category => this.createCategoryFormGroup(category)))
     })
   }
 
@@ -48,17 +46,7 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
     })
   }
 
-  private createLink(form: LinkCreateForm): void {
-    this.#linkService.createLink(form)
-      .pipe(takeUntil(this.#destroy$))
-      .subscribe(response => {
-        if (response.success) {
-          this.setViewMode.emit()
-        }
-      })
-  }
-
-  public onSubmit(): void {
+  public createLink(): void {
     if (this.formGroup.valid) {
       let categories = this.linkCategoriesArray?.value
 
@@ -71,7 +59,14 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
             .filter((category: { isChecked: boolean }) => category.isChecked)
             .map((category: { businessId: number }) => category.businessId)
         }
-        this.createLink(form)
+
+        this.#linkService.createLink(form)
+          .pipe(takeUntil(this.#destroy$))
+          .subscribe(response => {
+            if (response.success) {
+              this.setViewMode.emit()
+            }
+          })
       }
     }
   }
@@ -80,7 +75,7 @@ export class CreateLinkComponent implements OnInit, OnDestroy {
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        this.onSubmit()
+        this.createLink()
         break
     }
   }
