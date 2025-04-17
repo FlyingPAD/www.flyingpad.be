@@ -1,12 +1,12 @@
 <div class="edition">
-    <h2 class="h2">Edit current medium</h2>
+    <h2 class="h2">Edit Current Medium</h2>
 
-    <form [formGroup]="editFormGroup">
+    <form [formGroup]="formGroup">
         <input type="text" formControlName="name">
         <input type="text" formControlName="description">
     </form>
 
-    <a class="edition-button" [class.edition-button-disabled]="editFormGroup.invalid" (click)="updateMedium()">Submit</a>
+    <a class="edition-button" [class.edition-button-disabled]="formGroup.invalid" (click)="updateMedium()">Submit</a>
     <a class="edition-button" (click)="toggleDialog()">Delete</a>
 </div>
 

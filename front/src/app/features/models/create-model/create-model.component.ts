@@ -1,23 +1,22 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { ModelCreateForm } from '../../../interfaces/forms-create';
 import { FranchiseLight } from '../../../interfaces/franchise';
 import { ModelService } from '../../../services/http/model.service';
 
 @Component({
   selector: 'app-create-model',
-  templateUrl: './create-model.component.html',
-  styleUrl: './create-model.component.scss'
+  templateUrl: './create-model.component.html'
 })
 export class CreateModelComponent implements OnInit, OnDestroy {
   @Input() franchises: FranchiseLight[] = []
-  @Output() trigger = new EventEmitter<void>()
+  @Output() setViewMode = new EventEmitter<void>()
 
   #modelService = inject(ModelService)
   #formBuilder = inject(FormBuilder)
 
-  #subscription = new Subscription()
+  #destroy$ = new Subject<void>()
   public formGroup!: FormGroup
 
   get franchisesArray(): FormArray {
@@ -38,7 +37,8 @@ export class CreateModelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   private createFranchiseFormGroup(franchise: FranchiseLight): FormGroup {
@@ -49,7 +49,7 @@ export class CreateModelComponent implements OnInit, OnDestroy {
     })
   }
 
-  public onSubmit(): void {
+  public createModel(): void {
     if (this.formGroup.valid) {
       let franchises = this.franchisesArray?.value
 
@@ -65,8 +65,9 @@ export class CreateModelComponent implements OnInit, OnDestroy {
             .map((franchise: { businessId: number }) => franchise.businessId)
         }
 
-        this.#subscription = this.#modelService.createModel(form).subscribe(response => { 
-          if (response.success) this.trigger.emit() })
+        this.#modelService.createModel(form)
+          .pipe(takeUntil(this.#destroy$))
+          .subscribe(response => { if (response.success) this.setViewMode.emit() })
       }
     }
   }
@@ -75,7 +76,7 @@ export class CreateModelComponent implements OnInit, OnDestroy {
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        this.onSubmit()
+        this.createModel()
         break
     }
   }

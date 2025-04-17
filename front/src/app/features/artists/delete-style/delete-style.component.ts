@@ -1,28 +1,37 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { ArtistService } from '../../../services/http/artist.service';
 import { StyleFull } from '../../../interfaces/artist';
+import { DialogService } from '../../../services/user-interface/dialog.service';
 
 @Component({
   selector: 'app-delete-style',
-  templateUrl: './delete-style.component.html',
-  styleUrl: './delete-style.component.scss'
+  templateUrl: './delete-style.component.html'
 })
 export class DeleteStyleComponent implements OnDestroy {
-  @Input() style: StyleFull | undefined = undefined
-  @Output() toggleDialog = new EventEmitter<void>()
-
   #artistService = inject(ArtistService)
+  #dialogService = inject(DialogService)
 
-  #subscription = new Subscription()
+  @Input() style: StyleFull | undefined = undefined
+  @Output() setViewMode = new EventEmitter<void>()
+
+  #destroy$ = new Subject<void>()
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
-  delete(): void {
-    if(this.style != undefined) {
-      this.#subscription = this.#artistService.deleteStyle(this.style.businessId).subscribe(
-        (response) => { if(response.success) this.toggleDialog.emit() })
+
+  public deleteStyle(): void {
+    if (this.style) {
+      this.#artistService.deleteStyle(this.style.businessId)
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe(response => {
+          if (response.success) {
+            this.#dialogService.toggleDialog()
+            this.setViewMode.emit()
+          }
+        })
     }
   }
 }

@@ -1,12 +1,15 @@
-<h3 class="dialog-h3">Delete artist</h3>
+<h3 class="dialog-h3">Delete Artist</h3>
 <hr class="dialog-hr">    
+
 <p class="p">You are about to permanently delete :</p>
 <p class="dialog-entity-name">' {{ artist?.name }} '</p>
 <p class="p">This action <u>cannot</u> be undone !</p>
 <hr class="dialog-hr">    
 <p><span class="span-warning">Attention :</span> This will also remove all associated relations.</p>    
+
 <hr class="dialog-hr">    
-<p class="p">Are you sure you want to proceed ?</p>    
+<p class="p">Are you sure you want to proceed ?</p>  
+
 <div class="buttons">
-    <div class="button" (click)="delete()">YES</div>
+    <div class="button" (click)="deleteArtist()">YES</div>
 </div>

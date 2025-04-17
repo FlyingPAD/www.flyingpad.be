@@ -48,7 +48,7 @@
                 <p>to add a new link.</p>
             </div>
         }
-        @if((linksFlow()?.linksByCategory?.length || 0) > elementsPerPage) {
+        @if((filterLinks()?.length || 0) > elementsPerPage) {
             <div class="pagination-row">
                 <div class="pagination">
                     <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />
@@ -62,13 +62,13 @@
     <app-create-link [linkCategories]="linksFlow()?.linkCategories || []" (setViewMode)="setViewMode(viewModes.ListView)" />
 }
 @if (currentViewMode === viewModes.LinkCategoryCreationView) {
-    <app-create-link-category (trigger)="setViewMode(viewModes.ListView)" />
+    <app-create-link-category (setViewMode)="setViewMode(viewModes.ListView)" />
 }
 @if (currentViewMode === viewModes.LinkEditionView) {
-    <app-edit-link [link]="linksFlow()?.link" (trigger)="setViewMode(viewModes.ListView)" />
+    <app-edit-link [link]="linksFlow()?.link" (setViewMode)="setViewMode(viewModes.ListView)" />
 }
 @if (currentViewMode === viewModes.LinkCategoryEditionView) {
-    <app-edit-link-category [linkCategory]="linksFlow()?.linkCategory" (showListTrigger)="setViewMode(viewModes.ListView)" />
+    <app-edit-link-category [linkCategory]="linksFlow()?.linkCategory" (setViewMode)="setViewMode(viewModes.ListView)" />
 }
 
 <app-right-column>

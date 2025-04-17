@@ -47,6 +47,13 @@
                 <p>to add a new artist.</p>
             </div>
         }
+        @if((filterArtists()?.length || 0) > elementsPerPage) {
+            <div class="pagination-row">
+                <div class="pagination">
+                    <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />
+                </div>
+            </div>
+        }
     }
 </div>
 
@@ -54,27 +61,19 @@
     <app-create-artist [styles]="artistsFlow()?.styles || []" (setViewMode)="setViewMode(viewModes.ListView)" />
 }
 @if (currentViewMode === viewModes.StyleCreationView) {
-    <app-create-style (trigger)="setViewMode(viewModes.ListView)" />
+    <app-create-style (setViewMode)="setViewMode(viewModes.ListView)" />
 }
 @if (currentViewMode === viewModes.ArtistEditionView) {
-    <app-edit-artist [artist]="artistsFlow()?.artist" (trigger)="setViewMode(viewModes.ListView)" />
+    <app-edit-artist [artist]="artistsFlow()?.artist" (setViewMode)="setViewMode(viewModes.ListView)" />
 }
 @if (currentViewMode === viewModes.StyleEditionView) {
-    <app-edit-style [style]="artistsFlow()?.style" (trigger)="setViewMode(viewModes.ListView)" />
+    <app-edit-style [style]="artistsFlow()?.style" (setViewMode)="setViewMode(viewModes.ListView)" />
 }
 
 <app-right-column>
     <app-right-column-generic-list [items]="artistsFlow()?.styles || []" 
         [selectedItemId]="artistsFlow()?.style?.businessId" (setSelectedItemId)="setStyleId($event)" />
 </app-right-column>
-
-@if((artistsFlow()?.artistsByStyle?.length || 0) > elementsPerPage) {
-    <div class="pagination-row">
-        <div class="pagination">
-            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />
-        </div>
-    </div>
-}
 
 <app-spacer />
 

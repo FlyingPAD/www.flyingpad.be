@@ -1,21 +1,20 @@
 import { Component, EventEmitter, HostListener, inject, OnDestroy, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { LinkCategoryCreateForm } from '../../../interfaces/forms-create';
 import { LinkService } from '../../../services/http/link.service';
 
 @Component({
   selector: 'app-create-link-category',
-  templateUrl: './create-link-category.component.html',
-  styleUrl: './create-link-category.component.scss'
+  templateUrl: './create-link-category.component.html'
 })
 export class CreateLinkCategoryComponent implements OnDestroy {
-  @Output() trigger = new EventEmitter<void>()
-
   #linkService = inject(LinkService)
   #formBuilder = inject(FormBuilder)
 
-  #subscription = new Subscription()
+  @Output() setViewMode = new EventEmitter<void>()
+
+  #destroy$ = new Subject<void>()
 
   public formGroup: FormGroup = this.#formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
@@ -23,19 +22,20 @@ export class CreateLinkCategoryComponent implements OnDestroy {
   })
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
-  onSubmit(): void {
+  public createLinkCategory(): void {
     let form: LinkCategoryCreateForm = {
       name: this.formGroup.value.name,
       description: this.formGroup.value.description,
     }
 
     if (this.formGroup.valid) {
-      this.#subscription = this.#linkService.createLinkCategory(form).subscribe((response) => {
-        if (response.success) this.trigger.emit()
-      })
+      this.#linkService.createLinkCategory(form)
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe(response => { if (response.success) this.setViewMode.emit() })
     }
   }
 
@@ -43,7 +43,7 @@ export class CreateLinkCategoryComponent implements OnDestroy {
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        this.onSubmit()
+        this.createLinkCategory()
         break
     }
   }

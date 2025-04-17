@@ -50,7 +50,7 @@
                 <p>to add a new tag.</p>
             </div>
         }
-        @if((tagsFlow()?.tagsByCategory?.length || 0) > elementsPerPage) {
+        @if((filterTags()?.length || 0) > elementsPerPage) {
             <div class="pagination-row">
                 <div class="pagination">
                     <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />

@@ -3,22 +3,29 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { LinkCategoryCheckBox, LinkFull } from '../../../interfaces/link';
 import { LinkUpdateForm } from '../../../interfaces/forms-update';
 import { LinkService } from '../../../services/http/link.service';
+import { Subject, takeUntil } from 'rxjs';
+import { DialogService } from '../../../services/user-interface/dialog.service';
 
 @Component({
   selector: 'app-edit-link',
-  templateUrl: './edit-link.component.html',
-  styleUrls: ['./edit-link.component.scss']
+  templateUrl: './edit-link.component.html'
 })
 export class EditLinkComponent implements OnInit {
-  @Input() link: LinkFull | undefined = undefined
-  @Output() trigger = new EventEmitter<void>()
-
   #linkService = inject(LinkService)
+  #dialogService = inject(DialogService)
   #formBuilder = inject(FormBuilder)
 
+  @Input() link: LinkFull | undefined = undefined
+  @Output() setViewMode = new EventEmitter<void>()
+
+  #destroy$ = new Subject<void>()
+
   public formGroup!: FormGroup
-  public isDeleteDialogOpen: boolean = false
-  
+
+  get linkCategoriesArray(): FormArray {
+    return this.formGroup.get('linkCategories') as FormArray
+  }
+
 
   ngOnInit(): void {
     if (this.link) {
@@ -34,11 +41,12 @@ export class EditLinkComponent implements OnInit {
     }
   }
 
-  get linkCategoriesArray(): FormArray {
-    return this.formGroup.get('linkCategories') as FormArray
+  ngOnDestroy(): void {
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
-  populateCategories(categories: LinkCategoryCheckBox[]): void {
+  private populateCategories(categories: LinkCategoryCheckBox[]): void {
     categories.forEach(category => {
       this.linkCategoriesArray.push(
         this.#formBuilder.group({
@@ -50,18 +58,10 @@ export class EditLinkComponent implements OnInit {
     })
   }
 
-  openDeleteDialog(): void {
-    this.isDeleteDialogOpen = true
-  }
-  closeDeleteDialog(): void {
-    this.isDeleteDialogOpen = false
-  }
-  closeDeleteDialogEmit(): void {
-    this.isDeleteDialogOpen = false
-    this.trigger.emit()
-  }
+  public toggleDialog(): void { this.#dialogService.toggleDialog() }
+  public handleSetViewMode(): void { this.setViewMode.emit() }
 
-  public onSubmit(): void {
+  public updateLink(): void {
     if (this.formGroup.valid && this.link) {
       let selectedCategories = this.formGroup.value.linkCategories
         .filter((category: { isChecked: boolean }) => category.isChecked)
@@ -75,7 +75,9 @@ export class EditLinkComponent implements OnInit {
         linkCategoryIds: selectedCategories
       }
 
-      this.#linkService.updateLink(form).subscribe(response => { if (response.success) this.trigger.emit() })
+      this.#linkService.updateLink(form)
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe(response => { if (response.success) this.setViewMode.emit() })
     }
   }
 
@@ -83,7 +85,7 @@ export class EditLinkComponent implements OnInit {
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
-        this.onSubmit()
+        this.updateLink()
         break
     }
   }

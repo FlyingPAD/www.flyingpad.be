@@ -31,10 +31,10 @@
         }
     }
     @if(currentViewMode === viewModes.ModelCreationView) {
-        <app-create-model [franchises]="franchisesFlow()?.franchises || []" (trigger)="setViewMode(viewModes.ListView)" />
+        <app-create-model [franchises]="franchisesFlow()?.franchises || []" (setViewMode)="setViewMode(viewModes.ListView)" />
     }
     @if(currentViewMode === viewModes.ModelEditionView) {
-        <app-edit-model [model]="modelsFlow()?.model" (showListTrigger)="setViewMode(viewModes.ListView)" />
+        <app-edit-model [model]="modelsFlow()?.model" (setViewMode)="setViewMode(viewModes.ListView)" />
     }
 </div>
 

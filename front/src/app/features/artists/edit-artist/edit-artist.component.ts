@@ -1,26 +1,26 @@
-import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ArtistFull, StyleCheckBox } from '../../../interfaces/artist';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ArtistUpdateForm } from '../../../interfaces/forms-update';
 import { ArtistService } from '../../../services/http/artist.service';
 import { Subject, takeUntil } from 'rxjs';
+import { DialogService } from '../../../services/user-interface/dialog.service';
 
 @Component({
   selector: 'app-edit-artist',
-  templateUrl: './edit-artist.component.html',
-  styleUrl: './edit-artist.component.scss'
+  templateUrl: './edit-artist.component.html'
 })
 export class EditArtistComponent implements OnInit, OnDestroy {
-  @Input() artist: ArtistFull | undefined = undefined
-  @Output() trigger = new EventEmitter<void>()
-
   #artistService = inject(ArtistService)
+  #dialogService = inject(DialogService)
   #formBuilder = inject(FormBuilder)
+
+  @Input() artist: ArtistFull | undefined = undefined
+  @Output() setViewMode = new EventEmitter<void>()
 
   #destroy$ = new Subject<void>()
 
   formGroup!: FormGroup
-  isDeleteDialogOpen: boolean = false
 
 
   ngOnInit(): void {
@@ -58,18 +58,10 @@ export class EditArtistComponent implements OnInit, OnDestroy {
     })
   }
 
-  public openDeleteDialog(): void {
-    this.isDeleteDialogOpen = true
-  }
-  public closeDeleteDialog(): void {
-    this.isDeleteDialogOpen = false
-  }
-  public closeDeleteDialogEmit(): void {
-    this.isDeleteDialogOpen = false
-    this.trigger.emit()
-  }
+  public toggleDialog(): void { this.#dialogService.toggleDialog() }
+  public handleSetViewMode(): void { this.setViewMode.emit() }
 
-  public onSubmit(): void {
+  public updateArtist(): void {
     if (this.formGroup.valid && this.artist) {
       let selectedStyles = this.formGroup.value.styles
         .filter((style: { isChecked: boolean }) => style.isChecked)
@@ -83,8 +75,17 @@ export class EditArtistComponent implements OnInit, OnDestroy {
       }
 
       this.#artistService.updateArtist(form)
-      .pipe(takeUntil(this.#destroy$))
-      .subscribe((response) => { if (response.success) this.trigger.emit() })
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe((response) => { if (response.success) this.setViewMode.emit() })
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.updateArtist()
+        break
     }
   }
 }
