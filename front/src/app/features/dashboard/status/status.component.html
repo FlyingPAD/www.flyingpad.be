@@ -2,33 +2,39 @@
     <div class="status">
         <div class="thumbnail">
             @if(moodsFlow()?.mood.type == 1) {
-                <img src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood.businessId}}.{{moodsFlow()?.mood.extension}}" (click)="goToCurrentMood()" />
+                <img src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood.businessId}}.{{moodsFlow()?.mood.extension}}" (click)="goToMood()" />
                 }
                 @if(moodsFlow()?.mood.type == 2) {
-                <img src="{{environment}}/Content/video_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+                <img src="{{environment}}/Content/video_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToMood()" />
                 }
                 @if(moodsFlow()?.mood.type == 3) {
-                <img src="{{environment}}/Content/txt_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+                <img src="{{environment}}/Content/txt_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToMood()" />
                 }
                 @if(moodsFlow()?.mood.type == 4) {
-                <img src="{{environment}}/Content/youtube_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToCurrentMood()" />
+                <img src="{{environment}}/Content/youtube_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToMood()" />
                 }
         </div>
         <div class="mood-informations">
             <p> ▸ {{ moodsFlow()?.mood?.name }}</p>   
             <p> ▸ {{ moodsFlow()?.mood?.description }}</p>
-            <hr>
-            @for (franchise of moodsFlow()?.mood?.relatedFranchises; track $index) {
-                <p> ▸ {{ franchise.name }}</p>
-            }
-            <hr>
-            @for (artist of moodsFlow()?.mood?.relatedArtists; track $index) {
-                <p> ▸ {{ artist.name }}</p>
-            }
-            <hr>
-            @for (model of moodsFlow()?.mood?.relatedModels; track $index) {
-                <p> ▸ {{ model.pseudonym }}</p>
-            }
+            <hr *ngIf="moodsFlow()?.mood?.relatedFranchises.length">
+            <div class="related-tags">
+                @for (franchise of moodsFlow()?.mood?.relatedFranchises; track $index) {
+                    <p class="tag" (click)="goToFranchise(franchise.businessId)">{{ franchise.name }}</p>
+                }
+            </div>
+            <hr *ngIf="moodsFlow()?.mood?.relatedArtists.length">
+            <div class="related-tags">
+                @for (artist of moodsFlow()?.mood?.relatedArtists; track $index) {
+                    <p class="tag" (click)="goToArtist(artist.businessId)">{{ artist.name }}</p>
+                }
+            </div>
+            <hr *ngIf="moodsFlow()?.mood?.relatedModels.length">
+            <div class="related-tags">
+                @for (model of moodsFlow()?.mood?.relatedModels; track $index) {
+                    <p class="tag" (click)="goToModel(model.businessId)">{{ model.pseudonym }}</p>
+                }
+            </div>
         </div>
     </div>
 </div>
@@ -36,7 +42,7 @@
 <div class="main-frame">
     <div class="related-tags">
         @for (tag of moodsFlow()?.mood.relatedTags; track $index) {
-            <p class="tag" (click)="goToCurrentTag(tag.businessId)">{{ tag.name }}</p>
+            <p class="tag" (click)="goToTag(tag.businessId)">{{ tag.name }}</p>
         }
     </div>
 </div>

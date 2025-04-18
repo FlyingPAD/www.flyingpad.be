@@ -6,6 +6,7 @@ import { MoodScoreUpdate } from '../../interfaces/forms-update';
 import { Subject, takeUntil } from 'rxjs';
 import { MoodService } from '../../services/http/mood.service';
 import { Router } from '@angular/router';
+import { PaginationService } from '../../services/user-interface/pagination.service';
 
 @Component({
   selector: 'app-multi-tag',
@@ -16,6 +17,7 @@ export class MultiTagComponent implements OnDestroy {
   #multiTagService = inject(MultiTagService)
   #notificationService = inject(NotificationService)
   #moodService = inject(MoodService)
+  #paginationService = inject(PaginationService)
   #router = inject(Router)
 
   #destroy$ = new Subject<void>()
@@ -23,14 +25,19 @@ export class MultiTagComponent implements OnDestroy {
   public moodsFlow = this.#moodService.moodsFlow
   public selectedMoods = this.#multiTagService.selectedMoods
 
-  public itemsPerPage: number = 36
-  public currentPage: number = 1
+  public itemsPerPage: number = this.#paginationService.ITEMS_PER_PAGE
+  public currentPage = this.#paginationService.galleryCurrentPage
+
   public environment = environment.apiBaseUrl
 
 
   ngOnDestroy(): void {
     this.#destroy$.next()
     this.#destroy$.complete()
+  }
+
+  public setCurrentPage(page: number): void {
+    this.#paginationService.setGalleryCurrentPage(page)
   }
 
   public selectionToggle(moodId: number): void {

@@ -243,7 +243,8 @@ import { ToggleMoodSizeDirective } from './directives/toggle-mood-size.directive
 import { BottomToggleMoodSizeComponent } from './components/bottom-bar-icons/bottom-toggle-mood-size/bottom-toggle-mood-size.component';
 import { BottomToggleMoodInfoComponent } from './components/bottom-bar-icons/bottom-toggle-mood-info/bottom-toggle-mood-info.component';
 import { BottomToggleEntityInfoComponent } from './components/bottom-bar-icons/bottom-toggle-entity-info/bottom-toggle-entity-info.component';
-import { ToggleDialogDirective } from './directives/toggle-dialog.directive'
+import { ToggleDialogDirective } from './directives/toggle-dialog.directive';
+import { PrototypeComponent } from './features/tools/prototype/prototype.component'
 
 export function HttpLoaderFactory(http: HttpClient) {
   const version = environment.translationVersion
@@ -514,6 +515,7 @@ export function appInitializerFactory(translate: TranslateService) {
     BottomToggleMoodSizeComponent,
     BottomToggleMoodInfoComponent,
     BottomToggleEntityInfoComponent,
+    PrototypeComponent,
   ],
   imports: [
     BrowserModule,
