@@ -1,7 +1,7 @@
 @if(galleryType() === galleryTypes.Gallery) {
 @if(moods?.length) {
 <div [ngClass]="isRightMenuOn() ? 'gallery menu-open' : 'gallery' ">
-    <div *ngFor="let mood of moods || [] | paginate : { itemsPerPage : itemsPerPage, currentPage : currentPage }">
+    <div *ngFor="let mood of moods || [] | paginate : { itemsPerPage : itemsPerPage, currentPage : currentPage() }">
         <section>
             @if(mood.type == 1) {
             <img [class.active]="currentMood?.businessId === mood.businessId"
@@ -39,11 +39,12 @@
 <div class="pagination-row">
     @if(moods && moods.length > itemsPerPage) {
     <div class="pagination">
-        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="currentPage = $event" />
+        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />
     </div>
     }
 </div>
-<app-spacer height="150px" />
+
+<app-spacer />
 }
 
 @if(galleryType() === galleryTypes.Details) {

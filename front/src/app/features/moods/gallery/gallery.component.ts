@@ -5,6 +5,7 @@ import { MenuService } from '../../../services/user-interface/menu.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { MoodsGalleryService } from '../../../services/user-interface/moods-gallery.service';
 import { GalleryType } from '../../../enumerations/gallery-type';
+import { PaginationService } from '../../../services/user-interface/pagination.service';
 
 @Component({
   selector: 'app-gallery',
@@ -14,6 +15,7 @@ import { GalleryType } from '../../../enumerations/gallery-type';
 export class GalleryComponent implements OnInit, OnDestroy {
   #menuService = inject(MenuService)
   #moodsGalleryService = inject(MoodsGalleryService)
+  #paginationService = inject(PaginationService)
 
   @Input() moods: MoodLight[] | undefined
   @Input() currentMood: DetailedMood | undefined
@@ -30,8 +32,9 @@ export class GalleryComponent implements OnInit, OnDestroy {
   public isRightMenuOn = this.#menuService.isRightMenuOn
 
   public environment = environment.apiBaseUrl
-  public itemsPerPage: number = 36
-  public currentPage: number = 1
+
+  public itemsPerPage: number = this.#paginationService.ITEMS_PER_PAGE
+  public currentPage = this.#paginationService.galleryCurrentPage
 
 
   ngOnInit(): void {
@@ -46,11 +49,14 @@ export class GalleryComponent implements OnInit, OnDestroy {
     this.destroy$.next()
     this.destroy$.complete()
   }
-  
+
   private resetPagination(): void {
-    this.currentPage = 1
+    this.#paginationService.resetGalleryCurrentPage()
   }
 
+  public setCurrentPage(page: number): void {
+    this.#paginationService.setGalleryCurrentPage(page) 
+  }
   public handleSetMood(moodId: number): void {
     this.setMood.emit(moodId)
   }
