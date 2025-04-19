@@ -8,6 +8,10 @@ export interface CreateMoodVideoResponse extends BaseResponse {
     moodId?: number
 }
 
+export interface CreateMoodYouTubeVideoResponse extends BaseResponse {
+    moodId?: number
+}
+
 export interface CreateTagCategoryResponse extends BaseResponse {
     tagCategoryId?: number
 }

@@ -33,6 +33,7 @@ import { MultiTagTagsComponent } from './pages/multi-tag-tags/multi-tag-tags.com
 import { CentralGalleryComponent } from './pages/central-gallery/central-gallery.component';
 import { EditMoodComponent } from './pages/edit-mood/edit-mood.component';
 import { MultiTagComponent } from './pages/multi-tag/multi-tag.component';
+import { CreateMoodVideoYoutubeComponent } from './pages/create-mood-video-youtube/create-mood-video-youtube.component';
 
 const routes: Routes = [
   // Layout ' Home '.
@@ -58,8 +59,9 @@ const routes: Routes = [
       { path: 'moods/multi-tag-artists', component: MultiTagArtistsComponent, title: 'Flying PAD | Multi Tag Artists' },
       { path: 'moods/multi-tag-models', component: MultiTagModelsComponent, title: 'Flying PAD | Multi Tag Models' },
       { path: 'moods/multi-tag-tags', component: MultiTagTagsComponent, title: 'Flying PAD | Multi Tag Tags' },
-      { path: 'moods/create-mood-image', component: CreateMoodImageComponent, title: 'Flying PAD | Create Mood(s)' },
-      { path: 'moods/create-mood-video', component: CreateMoodVideoComponent, title: 'Flying PAD | Create Mood(s)' },
+      { path: 'moods/create-mood-image', component: CreateMoodImageComponent, title: 'Flying PAD | Create Image(s)' },
+      { path: 'moods/create-mood-video', component: CreateMoodVideoComponent, title: 'Flying PAD | Create Video(s)' },
+      { path: 'moods/create-mood-video-youtube', component: CreateMoodVideoYoutubeComponent, title: 'Flying PAD | Create YouTube Video(s)' },
       { path: 'moods/edit-mood', component: EditMoodComponent, title: 'Flying PAD | Edit Mood' },
       { path: 'tags', component: TagsComponent, title: 'Flying PAD | Tags Gallery' },
       { path: 'media', component: MediaComponent, title: 'Flying PAD | Media' },
