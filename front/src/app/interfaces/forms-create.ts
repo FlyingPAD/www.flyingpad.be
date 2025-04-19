@@ -23,6 +23,12 @@ export interface VideoCreateForm {
     url: string
 }
 
+export interface YouTubeVideoCreateForm {
+    name: string
+    description: string
+    url: string
+}
+
 export interface TagCategoryCreateForm {
     name : string
     description : string

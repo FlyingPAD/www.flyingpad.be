@@ -19,4 +19,5 @@ public interface IMoodRepository : IBaseRepository<Mood>
     System.Threading.Tasks.Task UpdateMultiTags(Guid[] moodIds, Guid[] tagsToAdd, Guid[] tagsToRemove);
     System.Threading.Tasks.Task AddImageSpecificTags(Image image);
     System.Threading.Tasks.Task AddVideoSpecificTags(Video video);
+    System.Threading.Tasks.Task AddYouTubeVideoSpecificTags(VideoYouTube youTubeVideo);
 }

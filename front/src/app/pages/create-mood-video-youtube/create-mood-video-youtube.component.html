@@ -1,0 +1,38 @@
+<h1 class="h1">Ajouter Vidéo YouTube</h1>
+
+<div class="edition">
+    <form [formGroup]="formGroup" (ngSubmit)="createYoutubeVideo()">
+        <div class="file">
+            <div class="info-flex">
+                <input type="text" id="name" formControlName="name"  placeholder="Name">
+                <div class="error" *ngIf="name?.touched && name?.invalid">
+                    <small *ngIf="name?.errors?.['required']">Le Nom est requis.</small>
+                    <small *ngIf="name?.errors?.['maxlength']">Max 100 caractères.</small>
+                </div>
+            </div>
+    
+            <div class="info-flex">
+                <input type="text" id="description" formControlName="description" placeholder="Description">
+                <div class="error" *ngIf="description?.touched && description?.invalid">
+                    <small *ngIf="description?.errors?.['maxlength']">Max 300 caractères.</small>
+                </div>
+            </div>
+    
+            <div class="info-flex">
+                <input type="text" id="url" formControlName="url" placeholder="URL YouTube">
+                <div class="error" *ngIf="url?.touched && url?.invalid">
+                    <small *ngIf="url?.errors?.['required']">L’URL est requise.</small>
+                    <small *ngIf="url?.errors?.['pattern']">URL YouTube invalide.</small>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<app-spacer height="75px" />
+
+<app-bottom-bar>
+    <app-bottom-icon-back />
+    <app-bottom-icon-to-top />
+    <app-bottom-icon-save [ngClass]="{ 'disabled': formGroup.invalid }" (triggerSave)="createYoutubeVideo()" />
+</app-bottom-bar>

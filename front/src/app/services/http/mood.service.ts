@@ -18,8 +18,8 @@ import { FranchiseLight, GetFranchisesByMoodResponse } from '../../interfaces/fr
 import { GetModelsByMoodResponse, GetModelsCheckBoxesByMoodResponse, ModelCheckBox, ModelLight } from '../../interfaces/model';
 import { GetTagsByMoodResponse, GetTagsCheckBoxesByMoodResponse, TagLight, TagsCheckBoxesList } from '../../interfaces/tag';
 import { StatisticsService } from './statistics.service';
-import { CreateMoodImageResponse, CreateMoodVideoResponse } from '../../interfaces/responses-create';
-import { ImageCreateForm, VideoCreateForm } from '../../interfaces/forms-create';
+import { CreateMoodImageResponse, CreateMoodVideoResponse, CreateMoodYouTubeVideoResponse } from '../../interfaces/responses-create';
+import { ImageCreateForm, VideoCreateForm, YouTubeVideoCreateForm } from '../../interfaces/forms-create';
 import { ActiveEntity, GalleryMode } from '../../enumerations/gallery-mode';
 import { MoodsGalleryService } from '../user-interface/moods-gallery.service';
 
@@ -377,6 +377,19 @@ export class MoodService {
         else this.#notificationService.error(response.message)
       }),
       catchError(() => of({ success: false, message: 'Error', moodId: undefined } as CreateMoodVideoResponse)))
+  }
+
+  public createYouTubeVideo(form: YouTubeVideoCreateForm): Observable<CreateMoodYouTubeVideoResponse> {
+    return this.#http.post<CreateMoodYouTubeVideoResponse>(`${this.#url}Moods/CreateMoodVideoYouTube`, form).pipe(
+      tap(response => {
+        if (response.success) {
+          this.#refreshMoods$.next()
+          this.#stateService.setMoodId(response.moodId)
+          this.#statisticsService.refreshStatistics()
+        }
+        else this.#notificationService.error(response.message)
+      }),
+      catchError(() => of({ success: false, message: 'Error', moodId: undefined } as CreateMoodYouTubeVideoResponse)))
   }
 
   public updateMood(form: MoodUpdateForm): Observable<BaseResponse> {

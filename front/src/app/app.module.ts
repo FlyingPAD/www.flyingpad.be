@@ -244,7 +244,8 @@ import { BottomToggleMoodSizeComponent } from './components/bottom-bar-icons/bot
 import { BottomToggleMoodInfoComponent } from './components/bottom-bar-icons/bottom-toggle-mood-info/bottom-toggle-mood-info.component';
 import { BottomToggleEntityInfoComponent } from './components/bottom-bar-icons/bottom-toggle-entity-info/bottom-toggle-entity-info.component';
 import { ToggleDialogDirective } from './directives/toggle-dialog.directive';
-import { PrototypeComponent } from './features/tools/prototype/prototype.component'
+import { PrototypeComponent } from './features/tools/prototype/prototype.component';
+import { CreateMoodVideoYoutubeComponent } from './pages/create-mood-video-youtube/create-mood-video-youtube.component'
 
 export function HttpLoaderFactory(http: HttpClient) {
   const version = environment.translationVersion
@@ -516,6 +517,7 @@ export function appInitializerFactory(translate: TranslateService) {
     BottomToggleMoodInfoComponent,
     BottomToggleEntityInfoComponent,
     PrototypeComponent,
+    CreateMoodVideoYoutubeComponent,
   ],
   imports: [
     BrowserModule,
