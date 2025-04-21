@@ -11,7 +11,7 @@
                 <img src="{{environment}}/Content/txt_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToMood()" />
                 }
                 @if(moodsFlow()?.mood.type == 4) {
-                <img src="{{environment}}/Content/youtube_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToMood()" />
+                <img [src]="'https://img.youtube.com/vi/' + moodsFlow()!.mood.url + '/hqdefault.jpg'" (click)="goToMood()" />
                 }
         </div>
         <div class="mood-informations">

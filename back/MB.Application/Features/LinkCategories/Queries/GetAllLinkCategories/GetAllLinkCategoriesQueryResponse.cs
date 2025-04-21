@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.LinkCategories.Queries.GetAllLinkCategories;
+﻿namespace MB.Application.Features.LinkCategories.Queries.GetAllLinkCategories;
 
 public class GetAllLinkCategoriesQueryResponse : BaseResponse
 {

@@ -1,4 +1,4 @@
-﻿using MB.Application.Models;
+﻿using MB.Application;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 

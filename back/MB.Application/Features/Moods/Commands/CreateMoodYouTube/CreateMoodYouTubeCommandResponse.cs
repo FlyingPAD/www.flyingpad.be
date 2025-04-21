@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Moods.Commands.CreateMoodYouTube;
+﻿namespace MB.Application.Features.Moods.Commands.CreateMoodYouTube;
 
 public class CreateMoodYouTubeCommandResponse : BaseResponse
 {

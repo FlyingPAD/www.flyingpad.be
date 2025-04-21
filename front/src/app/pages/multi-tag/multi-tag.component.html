@@ -21,7 +21,8 @@
 
 <div *ngIf="moodsFlow()?.moods?.length; else loading">
     <div class="gallery">
-        <div *ngFor="let mood of moodsFlow()?.moods || [] | paginate : { itemsPerPage : itemsPerPage, currentPage : currentPage() }">
+        <div
+            *ngFor="let mood of moodsFlow()?.moods || [] | paginate : { itemsPerPage : itemsPerPage, currentPage : currentPage() }">
             <section>
                 <div class="mood-container">
                     <div *ngIf="mood.type == 1">
@@ -40,8 +41,8 @@
                             (click)="selectionToggle(mood.businessId)" />
                     </div>
                     <div *ngIf="mood.type == 4">
-                        <img class="vid-youtube" src="{{environment}}/Content/youtube_thumbs/{{mood.businessId}}.jpg"
-                            [class.active]="checkIfSelected(mood.businessId)"
+                        <img class="vid-youtube" [class.active]="checkIfSelected(mood.businessId)"
+                            [src]="'https://img.youtube.com/vi/' + mood.url + '/hqdefault.jpg'"
                             (click)="selectionToggle(mood.businessId)" />
                     </div>
                     <div class="mood-score">
@@ -60,11 +61,11 @@
 </ng-template>
 
 @if((moodsFlow()?.moods?.length || 0) > itemsPerPage) {
-    <div class="pagination-row">
-        <div class="pagination">
-            <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />
-        </div>
+<div class="pagination-row">
+    <div class="pagination">
+        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />
     </div>
+</div>
 }
 
 <app-spacer />

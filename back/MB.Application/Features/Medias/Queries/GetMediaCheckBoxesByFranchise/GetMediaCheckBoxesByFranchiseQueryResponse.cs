@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Medias.Queries.GetMediaCheckBoxesByFranchise
+﻿namespace MB.Application.Features.Medias.Queries.GetMediaCheckBoxesByFranchise
 {
     public class GetMediaCheckBoxesByFranchiseQueryResponse : BaseResponse
     {

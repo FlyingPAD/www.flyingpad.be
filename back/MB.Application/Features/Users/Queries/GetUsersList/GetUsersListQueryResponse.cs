@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Users.Queries.GetUsersList;
+﻿namespace MB.Application.Features.Users.Queries.GetUsersList;
 
 public class GetUsersListQueryResponse : BaseResponse
 {

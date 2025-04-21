@@ -15,7 +15,6 @@ public class CreateMoodYouTubeCommandHandler(IBaseRepository<VideoYouTube> video
         {
             Name = request.Name,
             Description = request.Description,
-            Type = 4,
             Url = request.Url
         };
 

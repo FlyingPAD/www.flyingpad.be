@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Tags.Queries.GetAllTags;
+﻿namespace MB.Application.Features.Tags.Queries.GetAllTags;
 
 public class GetAllTagsQueryResponse : BaseResponse
 {

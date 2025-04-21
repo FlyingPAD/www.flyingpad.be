@@ -22,7 +22,7 @@ namespace MB.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MB.Domain.Entities.Artist", b =>
+            modelBuilder.Entity("MB.Domain.ArtistAggregate.Artist", b =>
                 {
                     b.Property<int>("EntityId")
                         .ValueGeneratedOnAdd()
@@ -68,11 +68,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 1,
-                            BusinessId = new Guid("6474aa79-7d0d-470b-b2e9-78c736150223"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5319),
+                            BusinessId = new Guid("146cf1e9-2426-4282-9da4-68bc006c8e74"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1238),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5322),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1240),
                             ModifiedBy = "",
                             Name = "# Unknown Artist",
                             Pseudonym = ""
@@ -80,11 +80,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 2,
-                            BusinessId = new Guid("2d4c789b-9cf2-4036-b0b4-c6791cf7b6bc"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5332),
+                            BusinessId = new Guid("170ef61e-7c45-41d3-945d-193cbf25bdc1"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1252),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5332),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1253),
                             ModifiedBy = "",
                             Name = "/ Unknown 2D Animator",
                             Pseudonym = ""
@@ -92,11 +92,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 3,
-                            BusinessId = new Guid("ae49deb7-51a9-41ae-9443-207ab1f3f2c9"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5335),
+                            BusinessId = new Guid("fe105f22-e819-41b2-8130-2ef294c95878"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1255),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5335),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1255),
                             ModifiedBy = "",
                             Name = "/ Unknown 2D Illustrator",
                             Pseudonym = ""
@@ -104,11 +104,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 4,
-                            BusinessId = new Guid("ac5dd538-0a72-4ccf-b3bd-526ebc7feb48"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5337),
+                            BusinessId = new Guid("aa08397c-13e6-4c3f-8dc7-bc4787819518"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1258),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5338),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1258),
                             ModifiedBy = "",
                             Name = "/ Unknown 3D Animator",
                             Pseudonym = ""
@@ -116,11 +116,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 5,
-                            BusinessId = new Guid("caaf6d01-fae6-4b86-a6ad-5e7553001ca7"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5352),
+                            BusinessId = new Guid("8f9bff5a-d72b-47aa-81ea-8628c869fdb1"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1264),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5353),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1264),
                             ModifiedBy = "",
                             Name = "/ Unknown 3D Sculptor",
                             Pseudonym = ""
@@ -128,11 +128,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 6,
-                            BusinessId = new Guid("4c9dcd10-9012-4caa-a574-acc69856a107"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5357),
+                            BusinessId = new Guid("8e7fefea-3aab-4382-adb9-4e0cacafa905"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1269),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5357),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1269),
                             ModifiedBy = "",
                             Name = "/ Unknown A.I. User",
                             Pseudonym = ""
@@ -140,11 +140,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 7,
-                            BusinessId = new Guid("74b5e98f-1059-49dd-896a-268168d7446e"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5359),
+                            BusinessId = new Guid("efb4d174-4631-4830-8681-cecaac64929d"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1271),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5360),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1271),
                             ModifiedBy = "",
                             Name = "/ Unknown Musician",
                             Pseudonym = ""
@@ -152,11 +152,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 8,
-                            BusinessId = new Guid("474df0a0-e2e9-4c31-9ce3-1836b2846403"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5362),
+                            BusinessId = new Guid("7d418d2f-60af-448f-a4a4-b83030da3d64"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1274),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5362),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1274),
                             ModifiedBy = "",
                             Name = "/ Unknown Photographer",
                             Pseudonym = ""
@@ -164,11 +164,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 9,
-                            BusinessId = new Guid("0e75999d-056b-45b6-bc0a-2f6d18852e61"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5367),
+                            BusinessId = new Guid("40ab667c-bfa2-4ef6-bc21-acd0085d116e"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1279),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5367),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1279),
                             ModifiedBy = "",
                             Name = "/ Unknown Sculptor",
                             Pseudonym = ""
@@ -176,11 +176,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 10,
-                            BusinessId = new Guid("1001dcf2-23c5-4774-9f1f-8b46d3072b70"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5371),
+                            BusinessId = new Guid("2bba982d-4f4a-4150-a8c5-c8ea941fa23f"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1283),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5371),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1283),
                             ModifiedBy = "",
                             Name = "/ Unknown Videast",
                             Pseudonym = ""
@@ -188,11 +188,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 11,
-                            BusinessId = new Guid("3f67291f-f96c-4150-a9bb-336efc0c43b5"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5373),
+                            BusinessId = new Guid("cac5e592-f7d0-4fb1-a6b8-109ef8a94a99"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1286),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5373),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1286),
                             ModifiedBy = "",
                             Name = "/ Unknown Writer",
                             Pseudonym = ""
@@ -200,11 +200,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 12,
-                            BusinessId = new Guid("efb78ded-55b4-4771-87ef-e4f2786bdf7c"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5375),
+                            BusinessId = new Guid("78f2bbca-945d-4d88-a588-966ea2cddca2"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1288),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5375),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1288),
                             ModifiedBy = "",
                             Name = "Flying PAD",
                             Pseudonym = ""
@@ -212,11 +212,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 13,
-                            BusinessId = new Guid("ea9e4c61-c699-4027-acf2-43c8484b4d2b"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5380),
+                            BusinessId = new Guid("21dc4cbf-5b9b-42a1-a332-74d1d390ae38"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1293),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5381),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1293),
                             ModifiedBy = "",
                             Name = "Soën9048",
                             Pseudonym = ""
@@ -224,11 +224,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 14,
-                            BusinessId = new Guid("94ab930c-8c6f-4b1f-8f82-df61e992490c"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5383),
+                            BusinessId = new Guid("cf3a7701-c45e-44c2-bab2-0ff4cf6e3107"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1295),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5383),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1295),
                             ModifiedBy = "",
                             Name = "CohesivePanda",
                             Pseudonym = ""
@@ -236,11 +236,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 15,
-                            BusinessId = new Guid("12b9b48d-c95e-4684-b65b-2b45aac4b9fe"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5385),
+                            BusinessId = new Guid("021944ea-f19e-4703-b83f-868069eb42fe"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1298),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5385),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1298),
                             ModifiedBy = "",
                             Name = "Nobuo Uematsu",
                             Pseudonym = ""
@@ -248,11 +248,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 16,
-                            BusinessId = new Guid("ea38f327-b7bd-483f-a6e4-75852918e1a8"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5389),
+                            BusinessId = new Guid("a0ba59ce-4988-4d0f-991c-a2f86f4f20c0"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1300),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5389),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1300),
                             ModifiedBy = "",
                             Name = "Eichiro Oda",
                             Pseudonym = ""
@@ -260,11 +260,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 17,
-                            BusinessId = new Guid("4a4f6e77-81fd-438a-9b95-fc0872c94da0"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5393),
+                            BusinessId = new Guid("e7c9c44f-57ef-4487-af3f-5290dc29f8c6"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1305),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5394),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1305),
                             ModifiedBy = "",
                             Name = "Masashi Kishimoto",
                             Pseudonym = ""
@@ -272,11 +272,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 18,
-                            BusinessId = new Guid("1167acee-f7aa-4bc0-919e-ff0bc7318d0b"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5397),
+                            BusinessId = new Guid("633baf0e-0634-4f5d-9c70-0e18562fa94b"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1376),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5397),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1377),
                             ModifiedBy = "",
                             Name = "Dali",
                             Pseudonym = ""
@@ -284,11 +284,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 19,
-                            BusinessId = new Guid("a7ac7882-7623-4f00-9aff-0464bbe4f023"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5399),
+                            BusinessId = new Guid("e358ed8e-02cc-4016-8efb-5e9f0cc50cae"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1380),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5400),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1380),
                             ModifiedBy = "",
                             Name = "Yoko Shimomura",
                             Pseudonym = ""
@@ -296,11 +296,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 20,
-                            BusinessId = new Guid("fcf34677-6e2e-48b0-af05-f5efd89c9ed5"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5402),
+                            BusinessId = new Guid("4db5d504-7fbf-412b-b9fa-e50319c3b9b3"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1382),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5403),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1383),
                             ModifiedBy = "",
                             Name = "Michael Jackson",
                             Pseudonym = ""
@@ -308,11 +308,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 21,
-                            BusinessId = new Guid("13c8768f-639d-4bcd-aea2-4868a916ece1"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5407),
+                            BusinessId = new Guid("a015ceb7-4520-4275-85b1-67b5e63f52a1"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1388),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5407),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1388),
                             ModifiedBy = "",
                             Name = "CG5",
                             Pseudonym = ""
@@ -320,11 +320,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 22,
-                            BusinessId = new Guid("ad3aeaa2-8563-4f2d-aafc-ec9d15dee9f1"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5409),
+                            BusinessId = new Guid("b194e7e3-33d0-4e96-8376-11d21dd55650"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1390),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5410),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1390),
                             ModifiedBy = "",
                             Name = "TryHardNinja",
                             Pseudonym = ""
@@ -332,1088 +332,18 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 23,
-                            BusinessId = new Guid("3429aa84-0691-467f-808a-e3599e532a99"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5412),
+                            BusinessId = new Guid("1799729a-5e71-4010-a8d1-11ddde9fc055"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1392),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5412),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1393),
                             ModifiedBy = "",
                             Name = "Jacob Collier",
                             Pseudonym = ""
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Board", b =>
-                {
-                    b.Property<int>("EntityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
-
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("EntityId");
-
-                    b.ToTable("Boards");
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.Book", b =>
-                {
-                    b.Property<int>("EntityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
-
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EntityId");
-
-                    b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.Franchise", b =>
-                {
-                    b.Property<int>("EntityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
-
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("EntityId");
-
-                    b.ToTable("Franchises");
-
-                    b.HasData(
-                        new
-                        {
-                            EntityId = 1,
-                            BusinessId = new Guid("12e05c53-3909-4a94-a959-0e4b3aa4352c"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6004),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6005),
-                            ModifiedBy = "",
-                            Name = "Flying PAD"
-                        },
-                        new
-                        {
-                            EntityId = 2,
-                            BusinessId = new Guid("57c8c81b-c722-46c3-9157-cefa1c0a4b0e"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6009),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6010),
-                            ModifiedBy = "",
-                            Name = "Street Fighter"
-                        },
-                        new
-                        {
-                            EntityId = 3,
-                            BusinessId = new Guid("ae6dda27-b4c7-4180-818c-494ac20b3659"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6012),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6012),
-                            ModifiedBy = "",
-                            Name = "# Unrelated Franchise"
-                        });
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.Link", b =>
-                {
-                    b.Property<int>("EntityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
-
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EntityId");
-
-                    b.ToTable("Links");
-
-                    b.HasData(
-                        new
-                        {
-                            EntityId = 1,
-                            BusinessId = new Guid("087e1528-4d31-4bb4-8a25-0b89b85e7446"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6432),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6433),
-                            ModifiedBy = "",
-                            Name = "KVR",
-                            Url = "https://www.kvraudio.com/"
-                        },
-                        new
-                        {
-                            EntityId = 2,
-                            BusinessId = new Guid("47f91262-1374-4501-a36d-9bb73979958e"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6439),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6439),
-                            ModifiedBy = "",
-                            Name = "MuseScore",
-                            Url = "https://musescore.com/"
-                        },
-                        new
-                        {
-                            EntityId = 3,
-                            BusinessId = new Guid("cccd10fb-2176-4261-8610-9e5b3e4db3e4"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6442),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6442),
-                            ModifiedBy = "",
-                            Name = "Native Instruments",
-                            Url = "https://www.native-instruments.com"
-                        },
-                        new
-                        {
-                            EntityId = 4,
-                            BusinessId = new Guid("6953123c-737f-4297-835f-deba47a427c9"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6448),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6448),
-                            ModifiedBy = "",
-                            Name = "Steinberg",
-                            Url = "https://www.steinberg.net/"
-                        },
-                        new
-                        {
-                            EntityId = 5,
-                            BusinessId = new Guid("62a2d810-f056-4999-8df5-668ba402fa14"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6450),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6451),
-                            ModifiedBy = "",
-                            Name = "Clés pour l'harmonie",
-                            Url = "http://www.jo-anger-weller.com/102/cles-pour-lharmonie/"
-                        },
-                        new
-                        {
-                            EntityId = 6,
-                            BusinessId = new Guid("6c422575-f5c5-4d68-a814-ebcf3f27311e"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6454),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6454),
-                            ModifiedBy = "",
-                            Name = "Google | Metronome",
-                            Url = "https://www.google.com/search?q=metronome"
-                        },
-                        new
-                        {
-                            EntityId = 7,
-                            BusinessId = new Guid("2ee4fea2-96f6-4b19-8660-9d4c0639d2eb"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6457),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6457),
-                            ModifiedBy = "",
-                            Name = "Google | Stopwatch",
-                            Url = "https://www.google.com/search?q=stopwatch"
-                        },
-                        new
-                        {
-                            EntityId = 8,
-                            BusinessId = new Guid("e2efa77b-6e90-4759-b6b8-23ffba223914"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6462),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6462),
-                            ModifiedBy = "",
-                            Name = "Google | Timer",
-                            Url = "https://www.google.com/search?q=timer"
-                        },
-                        new
-                        {
-                            EntityId = 9,
-                            BusinessId = new Guid("a82becbf-fd14-456f-a309-770d5295865b"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6464),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6464),
-                            ModifiedBy = "",
-                            Name = "Mangold Project",
-                            Url = "https://www.youtube.com/@MangoldProject"
-                        },
-                        new
-                        {
-                            EntityId = 10,
-                            BusinessId = new Guid("309171ce-045e-4111-a960-cc1b65ffd4d1"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6468),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6468),
-                            ModifiedBy = "",
-                            Name = "# YouTube",
-                            Url = "https://www.youtube.com"
-                        },
-                        new
-                        {
-                            EntityId = 11,
-                            BusinessId = new Guid("2276790e-1f0d-48d3-bca7-5c000cb8b166"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6470),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6470),
-                            ModifiedBy = "",
-                            Name = "Piano Jazz Concept",
-                            Url = "https://www.youtube.com/@Pianojazzconcept"
-                        },
-                        new
-                        {
-                            EntityId = 12,
-                            BusinessId = new Guid("2307bedd-500c-40f8-8c8e-f01810878d38"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6475),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6475),
-                            ModifiedBy = "",
-                            Name = "Rick Beato",
-                            Url = "https://www.youtube.com/@RickBeato"
-                        },
-                        new
-                        {
-                            EntityId = 13,
-                            BusinessId = new Guid("4fdd917c-76c8-4691-818c-26c746f754a8"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6477),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6478),
-                            ModifiedBy = "",
-                            Name = "Pianote",
-                            Url = "https://www.youtube.com/@PianoteOfficial"
-                        },
-                        new
-                        {
-                            EntityId = 14,
-                            BusinessId = new Guid("6451f38f-c82c-43ac-ad59-fd67ad8961ee"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6480),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6480),
-                            ModifiedBy = "",
-                            Name = "TryHardNinja",
-                            Url = "https://www.youtube.com/@TryHardNinja"
-                        },
-                        new
-                        {
-                            EntityId = 15,
-                            BusinessId = new Guid("b14c54ef-56ca-4a8a-ad98-539c1fef0790"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6482),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6482),
-                            ModifiedBy = "",
-                            Name = "Kyle Allen Music",
-                            Url = "https://www.youtube.com/@KyleAllenMusic"
-                        },
-                        new
-                        {
-                            EntityId = 16,
-                            BusinessId = new Guid("24c8c5cc-e2d9-4310-9103-b9becd0a2c53"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6487),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6487),
-                            ModifiedBy = "",
-                            Name = "Ableton",
-                            Url = "https://www.youtube.com/@Ableton"
-                        },
-                        new
-                        {
-                            EntityId = 17,
-                            BusinessId = new Guid("5e3c4bc7-45d7-4b37-903c-68e30dde3c00"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6489),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6490),
-                            ModifiedBy = "",
-                            Name = "La Machine à Mixer",
-                            Url = "https://www.youtube.com/@lamachineamixer"
-                        },
-                        new
-                        {
-                            EntityId = 18,
-                            BusinessId = new Guid("26e12197-b17b-4bea-aac4-88e0f8411687"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6493),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6493),
-                            ModifiedBy = "",
-                            Name = "Audiofanzine",
-                            Url = "https://www.youtube.com/@audiofanzine"
-                        },
-                        new
-                        {
-                            EntityId = 19,
-                            BusinessId = new Guid("ca214cda-976d-4830-a6cf-571fb0f2804d"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6495),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6496),
-                            ModifiedBy = "",
-                            Name = "Cubase",
-                            Url = "https://www.youtube.com/@Cubase"
-                        },
-                        new
-                        {
-                            EntityId = 20,
-                            BusinessId = new Guid("a7711324-8092-4a0d-8b78-dac4ab11a1a7"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6500),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6500),
-                            ModifiedBy = "",
-                            Name = "Ten Second Songs",
-                            Url = "https://www.youtube.com/@TenSecondSongs"
-                        },
-                        new
-                        {
-                            EntityId = 21,
-                            BusinessId = new Guid("7310fd2a-a1e3-4def-a6fc-d7d48962692d"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6503),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6503),
-                            ModifiedBy = "",
-                            Name = "The Piano Guys",
-                            Url = "https://www.youtube.com/@thepianoguys"
-                        },
-                        new
-                        {
-                            EntityId = 22,
-                            BusinessId = new Guid("0789db51-2a84-4cad-9da1-a11831583d45"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6585),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6585),
-                            ModifiedBy = "",
-                            Name = "CG5",
-                            Url = "https://www.youtube.com/@CG5"
-                        },
-                        new
-                        {
-                            EntityId = 23,
-                            BusinessId = new Guid("cb4fe7bd-0486-4cd9-82d4-ca7413e627c1"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6590),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6590),
-                            ModifiedBy = "",
-                            Name = "Native Instruments",
-                            Url = "https://www.youtube.com/@NativeInstruments"
-                        },
-                        new
-                        {
-                            EntityId = 24,
-                            BusinessId = new Guid("8ede7d47-4823-4727-afc8-d4fb0a84af4a"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6595),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6595),
-                            ModifiedBy = "",
-                            Name = "Ken Tamplin Vocal Academy",
-                            Url = "https://www.youtube.com/@kentamplin"
-                        },
-                        new
-                        {
-                            EntityId = 25,
-                            BusinessId = new Guid("e623e89e-c14c-4548-bd0c-19d5036e303a"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6598),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6598),
-                            ModifiedBy = "",
-                            Name = "Pentatonix",
-                            Url = "https://www.youtube.com/@PTXofficial"
-                        },
-                        new
-                        {
-                            EntityId = 26,
-                            BusinessId = new Guid("69e1f32e-14dd-4612-b1b0-81f896506b72"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6600),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6600),
-                            ModifiedBy = "",
-                            Name = "Recording Revolution",
-                            Url = "https://www.youtube.com/@recordingrevolution"
-                        },
-                        new
-                        {
-                            EntityId = 27,
-                            BusinessId = new Guid("0ef50bc3-3359-4f1b-b3e3-c69126625c8f"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6602),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6603),
-                            ModifiedBy = "",
-                            Name = "Jacob Collier",
-                            Url = "https://www.youtube.com/@jacobcollier"
-                        },
-                        new
-                        {
-                            EntityId = 28,
-                            BusinessId = new Guid("6cab3d6d-e43d-464b-a320-bca5288c60f3"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6607),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6608),
-                            ModifiedBy = "",
-                            Name = "Orchestration Online",
-                            Url = "https://www.youtube.com/@OrchestrationOnline"
-                        },
-                        new
-                        {
-                            EntityId = 29,
-                            BusinessId = new Guid("31b48e63-66f8-41c7-a6f4-b45244230891"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6610),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6610),
-                            ModifiedBy = "",
-                            Name = "Nuendo",
-                            Url = "https://www.youtube.com/@Nuendo"
-                        },
-                        new
-                        {
-                            EntityId = 30,
-                            BusinessId = new Guid("ae771762-8a67-489e-ab13-d05a2fb652d3"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6612),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6612),
-                            ModifiedBy = "",
-                            Name = "reFX",
-                            Url = "https://www.youtube.com/@reFXaudio"
-                        },
-                        new
-                        {
-                            EntityId = 31,
-                            BusinessId = new Guid("35c54110-69cf-4a01-8c58-7bae813ad09b"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6615),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6615),
-                            ModifiedBy = "",
-                            Name = "Steinberg",
-                            Url = "https://www.youtube.com/@steinberg"
-                        });
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.LinkCategory", b =>
-                {
-                    b.Property<int>("EntityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
-
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("EntityId");
-
-                    b.ToTable("LinkCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            EntityId = 1,
-                            BusinessId = new Guid("d7e86fb3-0464-4058-a672-2013c8a44d60"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6700),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6700),
-                            ModifiedBy = "",
-                            Name = "Audio"
-                        },
-                        new
-                        {
-                            EntityId = 2,
-                            BusinessId = new Guid("4b834e67-4f30-420d-9a0e-d752634b7909"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6705),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6706),
-                            ModifiedBy = "",
-                            Name = "Audio | Mix & Master"
-                        },
-                        new
-                        {
-                            EntityId = 3,
-                            BusinessId = new Guid("edadfed7-1c9f-4225-98e1-2c97f550ac45"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6708),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6708),
-                            ModifiedBy = "",
-                            Name = "Audio | Sound Design"
-                        },
-                        new
-                        {
-                            EntityId = 4,
-                            BusinessId = new Guid("55968b21-09b9-4299-9223-5f187c4ea5b1"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6710),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6710),
-                            ModifiedBy = "",
-                            Name = "Books"
-                        },
-                        new
-                        {
-                            EntityId = 5,
-                            BusinessId = new Guid("6fcfed49-729f-419c-9590-2fc14a6a07f9"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6715),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6715),
-                            ModifiedBy = "",
-                            Name = "Books | Harmony"
-                        },
-                        new
-                        {
-                            EntityId = 6,
-                            BusinessId = new Guid("41825bff-f0e7-4956-92ea-c2e2f8ff3256"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6718),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6719),
-                            ModifiedBy = "",
-                            Name = "Software"
-                        },
-                        new
-                        {
-                            EntityId = 7,
-                            BusinessId = new Guid("f40b9139-74f8-4878-8e2c-f8a08c4df854"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6721),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6721),
-                            ModifiedBy = "",
-                            Name = "Software | D.A.W."
-                        },
-                        new
-                        {
-                            EntityId = 8,
-                            BusinessId = new Guid("502e4eac-e81a-421c-8da8-5217c5104bd9"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6723),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6723),
-                            ModifiedBy = "",
-                            Name = "Software | V.S.T."
-                        },
-                        new
-                        {
-                            EntityId = 9,
-                            BusinessId = new Guid("85a4bc76-4700-4470-a240-ea1f0f49895c"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6728),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6728),
-                            ModifiedBy = "",
-                            Name = "Software | Music Notation"
-                        },
-                        new
-                        {
-                            EntityId = 10,
-                            BusinessId = new Guid("d0b85ba7-1e1a-4bd0-9e4c-3a33088163d7"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6731),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6731),
-                            ModifiedBy = "",
-                            Name = "Tools"
-                        },
-                        new
-                        {
-                            EntityId = 11,
-                            BusinessId = new Guid("ee07143b-4ec4-4d73-8cdc-97ee6683e180"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6733),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6734),
-                            ModifiedBy = "",
-                            Name = "Tools | Global"
-                        },
-                        new
-                        {
-                            EntityId = 12,
-                            BusinessId = new Guid("3bbefcf6-4d42-441d-af47-d9e5b53b7b5e"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6736),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6736),
-                            ModifiedBy = "",
-                            Name = "YouTube"
-                        },
-                        new
-                        {
-                            EntityId = 13,
-                            BusinessId = new Guid("67e67ff8-feed-4c67-a6c1-8dc818831d1b"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6741),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6741),
-                            ModifiedBy = "",
-                            Name = "YouTube | Artists"
-                        },
-                        new
-                        {
-                            EntityId = 14,
-                            BusinessId = new Guid("741b1697-e70f-40b1-b1d9-10baa20c75c6"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6744),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6745),
-                            ModifiedBy = "",
-                            Name = "YouTube | Audio"
-                        },
-                        new
-                        {
-                            EntityId = 15,
-                            BusinessId = new Guid("aea868e4-b24f-4f62-9eef-f3724d8d3051"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6747),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6747),
-                            ModifiedBy = "",
-                            Name = "YouTube | Piano & Keys"
-                        });
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.Media", b =>
-                {
-                    b.Property<int>("EntityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
-
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("EntityId");
-
-                    b.ToTable("Medias");
-
-                    b.HasData(
-                        new
-                        {
-                            EntityId = 1,
-                            BusinessId = new Guid("6ae3670b-ccfd-4074-a73a-66c52dbc2102"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6064),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6064),
-                            ModifiedBy = "",
-                            Name = "# Unrelated"
-                        },
-                        new
-                        {
-                            EntityId = 2,
-                            BusinessId = new Guid("3674240e-1dda-4532-b39e-4369e62b8a01"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6069),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6069),
-                            ModifiedBy = "",
-                            Name = "# Unknown"
-                        },
-                        new
-                        {
-                            EntityId = 3,
-                            BusinessId = new Guid("ce7f0bc3-1a35-41b8-bb38-1a52c24ac1b0"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6071),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6072),
-                            ModifiedBy = "",
-                            Name = "# Super Franchise"
-                        },
-                        new
-                        {
-                            EntityId = 4,
-                            BusinessId = new Guid("0943e04a-2520-453a-80bc-2094e720fa23"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6074),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6074),
-                            ModifiedBy = "",
-                            Name = "TV"
-                        },
-                        new
-                        {
-                            EntityId = 5,
-                            BusinessId = new Guid("fa774ecf-8dc9-4a2b-ba08-b4609d49b623"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6079),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6079),
-                            ModifiedBy = "",
-                            Name = "Radio"
-                        },
-                        new
-                        {
-                            EntityId = 6,
-                            BusinessId = new Guid("92c12bdf-b096-41af-85d6-7900aede5742"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6083),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6083),
-                            ModifiedBy = "",
-                            Name = "YouTube"
-                        },
-                        new
-                        {
-                            EntityId = 7,
-                            BusinessId = new Guid("4fd62d13-465d-4ba3-85df-09e8422d87fc"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6131),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6131),
-                            ModifiedBy = "",
-                            Name = "Capcom"
-                        },
-                        new
-                        {
-                            EntityId = 8,
-                            BusinessId = new Guid("2a47996c-23b8-438e-bacd-207949017c07"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6135),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6135),
-                            ModifiedBy = "",
-                            Name = "Square-Enix"
-                        },
-                        new
-                        {
-                            EntityId = 9,
-                            BusinessId = new Guid("a74bf801-f339-4a15-a99c-2f85ca0de97f"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6144),
-                            CreatedBy = "",
-                            Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6145),
-                            ModifiedBy = "",
-                            Name = "Flying PAD"
-                        });
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.Model", b =>
-                {
-                    b.Property<int>("EntityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
-
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pseudonym")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EntityId");
-
-                    b.ToTable("Models");
-
-                    b.HasData(
-                        new
-                        {
-                            EntityId = 1,
-                            BusinessId = new Guid("a22e068a-7bca-4ee5-a340-293ca2941707"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6952),
-                            CreatedBy = "",
-                            Description = "",
-                            FirstName = "",
-                            Gender = "",
-                            LastName = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6952),
-                            ModifiedBy = "",
-                            Pseudonym = "# Unknown Model"
-                        },
-                        new
-                        {
-                            EntityId = 2,
-                            BusinessId = new Guid("93d3d076-bcbd-4f58-82ac-d17b1300d124"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6962),
-                            CreatedBy = "",
-                            Description = "",
-                            FirstName = "",
-                            Gender = "",
-                            LastName = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6962),
-                            ModifiedBy = "",
-                            Pseudonym = "# Unrelated Model"
-                        },
-                        new
-                        {
-                            EntityId = 3,
-                            BusinessId = new Guid("db028903-5ffc-4a2d-b556-b1513077f1b1"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6964),
-                            CreatedBy = "",
-                            Description = "",
-                            FirstName = "Tony",
-                            Gender = "M",
-                            LastName = "Van Langenhove",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(6965),
-                            ModifiedBy = "",
-                            Pseudonym = "Flying PAD"
-                        });
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.Mood", b =>
-                {
-                    b.Property<int>("EntityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
-
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
-                    b.Property<string>("Extension")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("Score")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("EntityId");
-
-                    b.ToTable("Moods");
-
-                    b.HasDiscriminator().HasValue("Mood");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.RelationArtistStyle", b =>
+            modelBuilder.Entity("MB.Domain.ArtistAggregate.RelationArtistStyle", b =>
                 {
                     b.Property<int>("ArtistId")
                         .HasColumnType("int");
@@ -1495,7 +425,190 @@ namespace MB.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationBookFranchise", b =>
+            modelBuilder.Entity("MB.Domain.ArtistAggregate.RelationLinkArtist", b =>
+                {
+                    b.Property<int>("LinkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArtistId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LinkId", "ArtistId");
+
+                    b.HasIndex("ArtistId");
+
+                    b.ToTable("RLinkArtist");
+                });
+
+            modelBuilder.Entity("MB.Domain.ArtistAggregate.RelationLinkModel", b =>
+                {
+                    b.Property<int>("LinkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ModelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LinkId", "ModelId");
+
+                    b.HasIndex("ModelId");
+
+                    b.ToTable("RLinkModel");
+                });
+
+            modelBuilder.Entity("MB.Domain.BoardAggregate.Board", b =>
+                {
+                    b.Property<int>("EntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
+
+                    b.Property<Guid>("BusinessId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("EntityId");
+
+                    b.ToTable("Boards");
+                });
+
+            modelBuilder.Entity("MB.Domain.BookAggregate.Book", b =>
+                {
+                    b.Property<int>("EntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
+
+                    b.Property<Guid>("BusinessId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EntityId");
+
+                    b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("MB.Domain.FranchiseAggregate.Franchise", b =>
+                {
+                    b.Property<int>("EntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
+
+                    b.Property<Guid>("BusinessId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("EntityId");
+
+                    b.ToTable("Franchises");
+
+                    b.HasData(
+                        new
+                        {
+                            EntityId = 1,
+                            BusinessId = new Guid("922543b2-09fc-47dd-9368-02a790c463dc"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1803),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1803),
+                            ModifiedBy = "",
+                            Name = "Flying PAD"
+                        },
+                        new
+                        {
+                            EntityId = 2,
+                            BusinessId = new Guid("99db88b3-e269-40a6-b6d1-eee504015da4"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1809),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1809),
+                            ModifiedBy = "",
+                            Name = "Street Fighter"
+                        },
+                        new
+                        {
+                            EntityId = 3,
+                            BusinessId = new Guid("ca6646a8-4f2a-438f-be2d-2ca137618ba5"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1813),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1813),
+                            ModifiedBy = "",
+                            Name = "# Unrelated Franchise"
+                        });
+                });
+
+            modelBuilder.Entity("MB.Domain.FranchiseAggregate.RelationBookFranchise", b =>
                 {
                     b.Property<int>("BookId")
                         .HasColumnType("int");
@@ -1510,22 +623,7 @@ namespace MB.Persistence.Migrations
                     b.ToTable("RBookFranchise");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationBookModel", b =>
-                {
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ModelId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookId", "ModelId");
-
-                    b.HasIndex("ModelId");
-
-                    b.ToTable("RBookModel");
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.RelationFranchiseMedia", b =>
+            modelBuilder.Entity("MB.Domain.FranchiseAggregate.RelationFranchiseMedia", b =>
                 {
                     b.Property<int>("FranchiseId")
                         .HasColumnType("int");
@@ -1557,49 +655,424 @@ namespace MB.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationFranchiseModel", b =>
+            modelBuilder.Entity("MB.Domain.LinkAggregate.Link", b =>
                 {
-                    b.Property<int>("FranchiseId")
+                    b.Property<int>("EntityId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ModelId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
 
-                    b.HasKey("FranchiseId", "ModelId");
+                    b.Property<Guid>("BusinessId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasIndex("ModelId");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.ToTable("RFranchiseModel");
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EntityId");
+
+                    b.ToTable("Links");
 
                     b.HasData(
                         new
                         {
-                            FranchiseId = 1,
-                            ModelId = 3
+                            EntityId = 1,
+                            BusinessId = new Guid("92c535ab-b245-45ab-9f30-f79ef97c20d3"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2103),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2103),
+                            ModifiedBy = "",
+                            Name = "KVR",
+                            Url = "https://www.kvraudio.com/"
                         },
                         new
                         {
-                            FranchiseId = 3,
-                            ModelId = 2
+                            EntityId = 2,
+                            BusinessId = new Guid("963a71d9-17b3-4053-9a30-8409166e00c0"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2108),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2108),
+                            ModifiedBy = "",
+                            Name = "MuseScore",
+                            Url = "https://musescore.com/"
+                        },
+                        new
+                        {
+                            EntityId = 3,
+                            BusinessId = new Guid("66d140c5-e068-4376-bfe4-23de6f7bbf90"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2111),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2111),
+                            ModifiedBy = "",
+                            Name = "Native Instruments",
+                            Url = "https://www.native-instruments.com"
+                        },
+                        new
+                        {
+                            EntityId = 4,
+                            BusinessId = new Guid("f97061d7-f972-48ab-b65d-710d4aae287e"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2118),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2118),
+                            ModifiedBy = "",
+                            Name = "Steinberg",
+                            Url = "https://www.steinberg.net/"
+                        },
+                        new
+                        {
+                            EntityId = 5,
+                            BusinessId = new Guid("5e1d816b-1ca6-448b-9422-a8352a957cf4"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2121),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2121),
+                            ModifiedBy = "",
+                            Name = "Clés pour l'harmonie",
+                            Url = "http://www.jo-anger-weller.com/102/cles-pour-lharmonie/"
+                        },
+                        new
+                        {
+                            EntityId = 6,
+                            BusinessId = new Guid("a79c6948-bd5f-4d38-b88e-61f754777317"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2125),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2125),
+                            ModifiedBy = "",
+                            Name = "Google | Metronome",
+                            Url = "https://www.google.com/search?q=metronome"
+                        },
+                        new
+                        {
+                            EntityId = 7,
+                            BusinessId = new Guid("fa08be28-8a3d-4ba8-aa1b-fe56ec61810a"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2128),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2128),
+                            ModifiedBy = "",
+                            Name = "Google | Stopwatch",
+                            Url = "https://www.google.com/search?q=stopwatch"
+                        },
+                        new
+                        {
+                            EntityId = 8,
+                            BusinessId = new Guid("120a1a43-9d9e-4db2-88cf-3b8332d6e5f8"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2133),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2133),
+                            ModifiedBy = "",
+                            Name = "Google | Timer",
+                            Url = "https://www.google.com/search?q=timer"
+                        },
+                        new
+                        {
+                            EntityId = 9,
+                            BusinessId = new Guid("e68cba04-a16f-4d7b-a607-a91ef20e6371"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2135),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2135),
+                            ModifiedBy = "",
+                            Name = "Mangold Project",
+                            Url = "https://www.youtube.com/@MangoldProject"
+                        },
+                        new
+                        {
+                            EntityId = 10,
+                            BusinessId = new Guid("9ee6ea79-8f52-4e7d-af0b-497bc1f2db10"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2139),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2139),
+                            ModifiedBy = "",
+                            Name = "# YouTube",
+                            Url = "https://www.youtube.com"
+                        },
+                        new
+                        {
+                            EntityId = 11,
+                            BusinessId = new Guid("97e05b7c-164d-4289-8ba9-bdb6be2d7e4e"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2141),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2142),
+                            ModifiedBy = "",
+                            Name = "Piano Jazz Concept",
+                            Url = "https://www.youtube.com/@Pianojazzconcept"
+                        },
+                        new
+                        {
+                            EntityId = 12,
+                            BusinessId = new Guid("4843ee50-b9aa-4215-ba0e-12e0355add68"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2146),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2146),
+                            ModifiedBy = "",
+                            Name = "Rick Beato",
+                            Url = "https://www.youtube.com/@RickBeato"
+                        },
+                        new
+                        {
+                            EntityId = 13,
+                            BusinessId = new Guid("a8f177cd-d51d-4fbb-81e2-0340088be630"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2149),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2149),
+                            ModifiedBy = "",
+                            Name = "Pianote",
+                            Url = "https://www.youtube.com/@PianoteOfficial"
+                        },
+                        new
+                        {
+                            EntityId = 14,
+                            BusinessId = new Guid("a8b23cd8-a9f5-410e-b565-03add719f870"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2151),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2151),
+                            ModifiedBy = "",
+                            Name = "TryHardNinja",
+                            Url = "https://www.youtube.com/@TryHardNinja"
+                        },
+                        new
+                        {
+                            EntityId = 15,
+                            BusinessId = new Guid("c05a5c4f-a78c-44c7-a7f1-60e29536662a"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2154),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2154),
+                            ModifiedBy = "",
+                            Name = "Kyle Allen Music",
+                            Url = "https://www.youtube.com/@KyleAllenMusic"
+                        },
+                        new
+                        {
+                            EntityId = 16,
+                            BusinessId = new Guid("df455711-6a8b-46df-b79f-3e182611b4d5"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2158),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2159),
+                            ModifiedBy = "",
+                            Name = "Ableton",
+                            Url = "https://www.youtube.com/@Ableton"
+                        },
+                        new
+                        {
+                            EntityId = 17,
+                            BusinessId = new Guid("0fb11071-0508-4cca-acb7-0bc7d7d31b2e"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2161),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2161),
+                            ModifiedBy = "",
+                            Name = "La Machine à Mixer",
+                            Url = "https://www.youtube.com/@lamachineamixer"
+                        },
+                        new
+                        {
+                            EntityId = 18,
+                            BusinessId = new Guid("1c3056b0-0266-4916-abe8-0fd4224f06ae"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2164),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2165),
+                            ModifiedBy = "",
+                            Name = "Audiofanzine",
+                            Url = "https://www.youtube.com/@audiofanzine"
+                        },
+                        new
+                        {
+                            EntityId = 19,
+                            BusinessId = new Guid("4e404d4b-ad66-4eef-ab74-f50fe4e3fded"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2168),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2168),
+                            ModifiedBy = "",
+                            Name = "Cubase",
+                            Url = "https://www.youtube.com/@Cubase"
+                        },
+                        new
+                        {
+                            EntityId = 20,
+                            BusinessId = new Guid("84b11926-8add-4abf-99dc-7a0d5f52a441"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2173),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2173),
+                            ModifiedBy = "",
+                            Name = "Ten Second Songs",
+                            Url = "https://www.youtube.com/@TenSecondSongs"
+                        },
+                        new
+                        {
+                            EntityId = 21,
+                            BusinessId = new Guid("01fb8fe3-c596-429d-97f4-c78a9d5e28e2"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2175),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2176),
+                            ModifiedBy = "",
+                            Name = "The Piano Guys",
+                            Url = "https://www.youtube.com/@thepianoguys"
+                        },
+                        new
+                        {
+                            EntityId = 22,
+                            BusinessId = new Guid("b03e20fa-999f-4bac-a05d-865c88981149"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2178),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2178),
+                            ModifiedBy = "",
+                            Name = "CG5",
+                            Url = "https://www.youtube.com/@CG5"
+                        },
+                        new
+                        {
+                            EntityId = 23,
+                            BusinessId = new Guid("0a65719a-ce29-4ba1-a6bc-f78121f0989b"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2180),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2181),
+                            ModifiedBy = "",
+                            Name = "Native Instruments",
+                            Url = "https://www.youtube.com/@NativeInstruments"
+                        },
+                        new
+                        {
+                            EntityId = 24,
+                            BusinessId = new Guid("3169b4fa-d31d-4f29-a192-cc039e7a1c77"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2185),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2185),
+                            ModifiedBy = "",
+                            Name = "Ken Tamplin Vocal Academy",
+                            Url = "https://www.youtube.com/@kentamplin"
+                        },
+                        new
+                        {
+                            EntityId = 25,
+                            BusinessId = new Guid("d6ba1a79-f462-48ab-8e5d-c6f9cb0fb4fe"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2187),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2188),
+                            ModifiedBy = "",
+                            Name = "Pentatonix",
+                            Url = "https://www.youtube.com/@PTXofficial"
+                        },
+                        new
+                        {
+                            EntityId = 26,
+                            BusinessId = new Guid("d908ca64-669d-4670-acca-61e437e21958"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2190),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2190),
+                            ModifiedBy = "",
+                            Name = "Recording Revolution",
+                            Url = "https://www.youtube.com/@recordingrevolution"
+                        },
+                        new
+                        {
+                            EntityId = 27,
+                            BusinessId = new Guid("94a6a584-3d54-472a-8c5a-3cfaad2515f9"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2193),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2193),
+                            ModifiedBy = "",
+                            Name = "Jacob Collier",
+                            Url = "https://www.youtube.com/@jacobcollier"
+                        },
+                        new
+                        {
+                            EntityId = 28,
+                            BusinessId = new Guid("189050d0-c7db-4142-b195-5202d3c16345"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2197),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2197),
+                            ModifiedBy = "",
+                            Name = "Orchestration Online",
+                            Url = "https://www.youtube.com/@OrchestrationOnline"
+                        },
+                        new
+                        {
+                            EntityId = 29,
+                            BusinessId = new Guid("d699acd8-bd20-40d6-b042-50c82b548bc2"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2200),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2200),
+                            ModifiedBy = "",
+                            Name = "Nuendo",
+                            Url = "https://www.youtube.com/@Nuendo"
+                        },
+                        new
+                        {
+                            EntityId = 30,
+                            BusinessId = new Guid("183906ba-4035-4c9f-826f-da8585483914"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2202),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2203),
+                            ModifiedBy = "",
+                            Name = "reFX",
+                            Url = "https://www.youtube.com/@reFXaudio"
+                        },
+                        new
+                        {
+                            EntityId = 31,
+                            BusinessId = new Guid("956298b0-9fe5-4e2b-8512-f6c75cb1bfc9"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2205),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2205),
+                            ModifiedBy = "",
+                            Name = "Steinberg",
+                            Url = "https://www.youtube.com/@steinberg"
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationLinkArtist", b =>
-                {
-                    b.Property<int>("LinkId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ArtistId")
-                        .HasColumnType("int");
-
-                    b.HasKey("LinkId", "ArtistId");
-
-                    b.HasIndex("ArtistId");
-
-                    b.ToTable("RLinkArtist");
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.RelationLinkCategory", b =>
+            modelBuilder.Entity("MB.Domain.LinkAggregate.RelationLinkCategory", b =>
                 {
                     b.Property<int>("LinkId")
                         .HasColumnType("int");
@@ -1826,22 +1299,544 @@ namespace MB.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationLinkModel", b =>
+            modelBuilder.Entity("MB.Domain.LinkCategoryAggregate.LinkCategory", b =>
                 {
-                    b.Property<int>("LinkId")
+                    b.Property<int>("EntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
+
+                    b.Property<Guid>("BusinessId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("EntityId");
+
+                    b.ToTable("LinkCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            EntityId = 1,
+                            BusinessId = new Guid("ca44e74c-9a47-4932-88da-944a26f0bbe0"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2294),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2295),
+                            ModifiedBy = "",
+                            Name = "Audio"
+                        },
+                        new
+                        {
+                            EntityId = 2,
+                            BusinessId = new Guid("3f3bca58-3fc3-40ac-87a1-1c2fd68015eb"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2301),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2301),
+                            ModifiedBy = "",
+                            Name = "Audio | Mix & Master"
+                        },
+                        new
+                        {
+                            EntityId = 3,
+                            BusinessId = new Guid("42926187-e86d-48de-9910-45b52bb7bfea"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2303),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2304),
+                            ModifiedBy = "",
+                            Name = "Audio | Sound Design"
+                        },
+                        new
+                        {
+                            EntityId = 4,
+                            BusinessId = new Guid("88210f2b-f385-4b4d-9c97-b1debc3d3630"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2306),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2306),
+                            ModifiedBy = "",
+                            Name = "Books"
+                        },
+                        new
+                        {
+                            EntityId = 5,
+                            BusinessId = new Guid("40c4d3f2-deb8-4716-925d-0dbabf996fbe"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2310),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2311),
+                            ModifiedBy = "",
+                            Name = "Books | Harmony"
+                        },
+                        new
+                        {
+                            EntityId = 6,
+                            BusinessId = new Guid("b4541aee-d8b2-472f-8485-f2696688c4a9"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2314),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2314),
+                            ModifiedBy = "",
+                            Name = "Software"
+                        },
+                        new
+                        {
+                            EntityId = 7,
+                            BusinessId = new Guid("8e55d966-8e05-4d47-b536-97477cb2d8ef"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2316),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2317),
+                            ModifiedBy = "",
+                            Name = "Software | D.A.W."
+                        },
+                        new
+                        {
+                            EntityId = 8,
+                            BusinessId = new Guid("a0be2dae-8258-4e49-b967-1a98eeb101ae"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2319),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2319),
+                            ModifiedBy = "",
+                            Name = "Software | V.S.T."
+                        },
+                        new
+                        {
+                            EntityId = 9,
+                            BusinessId = new Guid("12a901ca-190b-466a-877f-54132f607b12"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2324),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2324),
+                            ModifiedBy = "",
+                            Name = "Software | Music Notation"
+                        },
+                        new
+                        {
+                            EntityId = 10,
+                            BusinessId = new Guid("31eb18a2-c98e-43c0-9b5f-e05377edb516"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2327),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2328),
+                            ModifiedBy = "",
+                            Name = "Tools"
+                        },
+                        new
+                        {
+                            EntityId = 11,
+                            BusinessId = new Guid("fa13f53b-b4ad-4ad4-a7c7-7bfed049e7cf"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2330),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2330),
+                            ModifiedBy = "",
+                            Name = "Tools | Global"
+                        },
+                        new
+                        {
+                            EntityId = 12,
+                            BusinessId = new Guid("884e6dd2-4672-4b60-bb62-6c932741e502"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2332),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2332),
+                            ModifiedBy = "",
+                            Name = "YouTube"
+                        },
+                        new
+                        {
+                            EntityId = 13,
+                            BusinessId = new Guid("f4080549-69a6-488c-836b-8e36024e3bf3"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2337),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2337),
+                            ModifiedBy = "",
+                            Name = "YouTube | Artists"
+                        },
+                        new
+                        {
+                            EntityId = 14,
+                            BusinessId = new Guid("907b6da8-47e2-4172-bb2e-5d5eee576d1e"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2339),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2339),
+                            ModifiedBy = "",
+                            Name = "YouTube | Audio"
+                        },
+                        new
+                        {
+                            EntityId = 15,
+                            BusinessId = new Guid("2d1ee3c8-a8be-4bd7-88a7-b1b2934a2484"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2342),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2342),
+                            ModifiedBy = "",
+                            Name = "YouTube | Piano & Keys"
+                        });
+                });
+
+            modelBuilder.Entity("MB.Domain.MediumAggregate.Media", b =>
+                {
+                    b.Property<int>("EntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
+
+                    b.Property<Guid>("BusinessId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("EntityId");
+
+                    b.ToTable("Medias");
+
+                    b.HasData(
+                        new
+                        {
+                            EntityId = 1,
+                            BusinessId = new Guid("1226dcba-a2e7-4ef1-80cf-791bbd7470e7"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1863),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1863),
+                            ModifiedBy = "",
+                            Name = "# Unrelated"
+                        },
+                        new
+                        {
+                            EntityId = 2,
+                            BusinessId = new Guid("353ba6d1-36cc-4060-8ac5-1d8073d545c7"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1868),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1868),
+                            ModifiedBy = "",
+                            Name = "# Unknown"
+                        },
+                        new
+                        {
+                            EntityId = 3,
+                            BusinessId = new Guid("32025ef8-98d1-4175-b98a-b7a5674d2b55"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1871),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1872),
+                            ModifiedBy = "",
+                            Name = "# Super Franchise"
+                        },
+                        new
+                        {
+                            EntityId = 4,
+                            BusinessId = new Guid("702e9c52-793a-419f-b30b-f96b43e55e03"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1875),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1875),
+                            ModifiedBy = "",
+                            Name = "TV"
+                        },
+                        new
+                        {
+                            EntityId = 5,
+                            BusinessId = new Guid("6b0ea01a-9c35-4a5b-893e-3a1e5b1e1ece"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1880),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1880),
+                            ModifiedBy = "",
+                            Name = "Radio"
+                        },
+                        new
+                        {
+                            EntityId = 6,
+                            BusinessId = new Guid("77881dbd-b1cd-4a9d-9b5d-ee39ff53e832"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1884),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1885),
+                            ModifiedBy = "",
+                            Name = "YouTube"
+                        },
+                        new
+                        {
+                            EntityId = 7,
+                            BusinessId = new Guid("c00c7468-8fc4-409f-9fbe-1bf999604e7a"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1887),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1888),
+                            ModifiedBy = "",
+                            Name = "Capcom"
+                        },
+                        new
+                        {
+                            EntityId = 8,
+                            BusinessId = new Guid("26b4f8f7-2202-4d51-8239-bad55e5926b1"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1890),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1890),
+                            ModifiedBy = "",
+                            Name = "Square-Enix"
+                        },
+                        new
+                        {
+                            EntityId = 9,
+                            BusinessId = new Guid("31eda03c-4483-4198-b76f-1defbd44588e"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1895),
+                            CreatedBy = "",
+                            Description = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1895),
+                            ModifiedBy = "",
+                            Name = "Flying PAD"
+                        });
+                });
+
+            modelBuilder.Entity("MB.Domain.ModelAggregate.Model", b =>
+                {
+                    b.Property<int>("EntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
+
+                    b.Property<Guid>("BusinessId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Pseudonym")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EntityId");
+
+                    b.ToTable("Models");
+
+                    b.HasData(
+                        new
+                        {
+                            EntityId = 1,
+                            BusinessId = new Guid("051bd2d2-386a-41c8-a68b-8fb2fb6107f8"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2714),
+                            CreatedBy = "",
+                            Description = "",
+                            FirstName = "",
+                            Gender = "",
+                            LastName = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2715),
+                            ModifiedBy = "",
+                            Pseudonym = "# Unknown Model"
+                        },
+                        new
+                        {
+                            EntityId = 2,
+                            BusinessId = new Guid("9e8be2ca-8890-4628-b69a-bb664aeac37c"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2730),
+                            CreatedBy = "",
+                            Description = "",
+                            FirstName = "",
+                            Gender = "",
+                            LastName = "",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2730),
+                            ModifiedBy = "",
+                            Pseudonym = "# Unrelated Model"
+                        },
+                        new
+                        {
+                            EntityId = 3,
+                            BusinessId = new Guid("f931276a-7788-4c01-b62f-f291d93d4306"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2734),
+                            CreatedBy = "",
+                            Description = "",
+                            FirstName = "Tony",
+                            Gender = "M",
+                            LastName = "Van Langenhove",
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2735),
+                            ModifiedBy = "",
+                            Pseudonym = "Flying PAD"
+                        });
+                });
+
+            modelBuilder.Entity("MB.Domain.ModelAggregate.RelationBookModel", b =>
+                {
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<int>("ModelId")
                         .HasColumnType("int");
 
-                    b.HasKey("LinkId", "ModelId");
+                    b.HasKey("BookId", "ModelId");
 
                     b.HasIndex("ModelId");
 
-                    b.ToTable("RLinkModel");
+                    b.ToTable("RBookModel");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationMoodArtist", b =>
+            modelBuilder.Entity("MB.Domain.ModelAggregate.RelationFranchiseModel", b =>
+                {
+                    b.Property<int>("FranchiseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ModelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FranchiseId", "ModelId");
+
+                    b.HasIndex("ModelId");
+
+                    b.ToTable("RFranchiseModel");
+
+                    b.HasData(
+                        new
+                        {
+                            FranchiseId = 1,
+                            ModelId = 3
+                        },
+                        new
+                        {
+                            FranchiseId = 3,
+                            ModelId = 2
+                        });
+                });
+
+            modelBuilder.Entity("MB.Domain.MoodAggregate.Mood", b =>
+                {
+                    b.Property<int>("EntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntityId"));
+
+                    b.Property<Guid>("BusinessId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Extension")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("EntityId");
+
+                    b.ToTable("Moods", (string)null);
+
+                    b.HasDiscriminator<int>("Type").HasValue(0);
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("MB.Domain.MoodAggregate.RelationMoodArtist", b =>
                 {
                     b.Property<int>("MoodId")
                         .HasColumnType("int");
@@ -1983,7 +1978,7 @@ namespace MB.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationMoodFranchise", b =>
+            modelBuilder.Entity("MB.Domain.MoodAggregate.RelationMoodFranchise", b =>
                 {
                     b.Property<int>("MoodId")
                         .HasColumnType("int");
@@ -1998,7 +1993,7 @@ namespace MB.Persistence.Migrations
                     b.ToTable("RMoodFranchise");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationMoodModel", b =>
+            modelBuilder.Entity("MB.Domain.MoodAggregate.RelationMoodModel", b =>
                 {
                     b.Property<int>("MoodId")
                         .HasColumnType("int");
@@ -2140,7 +2135,7 @@ namespace MB.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationMoodTag", b =>
+            modelBuilder.Entity("MB.Domain.MoodAggregate.RelationMoodTag", b =>
                 {
                     b.Property<int>("MoodId")
                         .HasColumnType("int");
@@ -2777,7 +2772,7 @@ namespace MB.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Style", b =>
+            modelBuilder.Entity("MB.Domain.StyleAggregate.Style", b =>
                 {
                     b.Property<int>("EntityId")
                         .ValueGeneratedOnAdd()
@@ -2819,116 +2814,116 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 1,
-                            BusinessId = new Guid("72704b8b-bc47-43ce-b406-9fdba9e581e8"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5653),
+                            BusinessId = new Guid("d502dae3-6fd8-4969-a66c-58c316d7cbaf"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1624),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5654),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1624),
                             ModifiedBy = "",
                             Name = "2D"
                         },
                         new
                         {
                             EntityId = 2,
-                            BusinessId = new Guid("c385c04f-d112-4364-888b-d091af445b5d"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5675),
+                            BusinessId = new Guid("312b346f-bf8e-4ccf-aff0-7c133db9e5b1"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1635),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5675),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1636),
                             ModifiedBy = "",
                             Name = "2D Animation"
                         },
                         new
                         {
                             EntityId = 3,
-                            BusinessId = new Guid("71025cd2-e032-4bbe-b4ea-140e8ac19dbc"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5678),
+                            BusinessId = new Guid("056570ae-d8ae-4dd4-a346-213ceea3929a"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1638),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5678),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1638),
                             ModifiedBy = "",
                             Name = "3D"
                         },
                         new
                         {
                             EntityId = 4,
-                            BusinessId = new Guid("56ccb58f-a9f5-4ee1-a23a-09e17284b8fa"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5681),
+                            BusinessId = new Guid("e2def073-6391-4840-ae3f-1a7ef4084024"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1641),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5681),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1641),
                             ModifiedBy = "",
                             Name = "3D Animation"
                         },
                         new
                         {
                             EntityId = 5,
-                            BusinessId = new Guid("52e6821e-3b8a-4f1b-83ad-d6ed50236238"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5683),
+                            BusinessId = new Guid("1c2d57ec-2fb4-41d5-8c63-b861c108f6eb"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1643),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5683),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1644),
                             ModifiedBy = "",
                             Name = "Architecture"
                         },
                         new
                         {
                             EntityId = 6,
-                            BusinessId = new Guid("1ab6a9af-e986-4200-a4ae-312cf80a6ba8"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5689),
+                            BusinessId = new Guid("0e48abdc-e2b9-4c79-88bc-d45720edd1ba"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1650),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5689),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1650),
                             ModifiedBy = "",
                             Name = "Writer"
                         },
                         new
                         {
                             EntityId = 7,
-                            BusinessId = new Guid("3dd51a94-eeaf-43c9-a956-ed952db3a917"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5692),
+                            BusinessId = new Guid("271d6073-a1b5-4dca-85d5-5b3f55e239fa"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1652),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5692),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1652),
                             ModifiedBy = "",
                             Name = "Music"
                         },
                         new
                         {
                             EntityId = 8,
-                            BusinessId = new Guid("b83ef4b9-d55e-418b-95ee-cc2224419761"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5694),
+                            BusinessId = new Guid("6e941a8c-3ad4-4fe4-9cd4-84fd35622bce"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1655),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5694),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1655),
                             ModifiedBy = "",
                             Name = "Photo"
                         },
                         new
                         {
                             EntityId = 9,
-                            BusinessId = new Guid("b346cf13-8c3b-4554-8faa-0a3e8d495fa9"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5696),
+                            BusinessId = new Guid("f799b33d-2e31-4d02-952d-fa089aca44dc"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1657),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5697),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1658),
                             ModifiedBy = "",
                             Name = "Video"
                         },
                         new
                         {
                             EntityId = 10,
-                            BusinessId = new Guid("40a11fa8-7a82-44bf-aaf2-9a7370339d18"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5702),
+                            BusinessId = new Guid("21ab1bd2-cf7f-4340-8587-6548c41b018f"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1663),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(5702),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(1664),
                             ModifiedBy = "",
                             Name = "Video Games"
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Tag", b =>
+            modelBuilder.Entity("MB.Domain.TagAggregate.Tag", b =>
                 {
                     b.Property<int>("EntityId")
                         .ValueGeneratedOnAdd()
@@ -2980,11 +2975,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 1,
-                            BusinessId = new Guid("fc4a6764-068f-43cf-92ef-df5b0b8e5f4f"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7699),
+                            BusinessId = new Guid("a805c62c-f0dd-411d-990e-b520497d499d"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4014),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7699),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4015),
                             ModifiedBy = "",
                             Name = "# All Files",
                             TagCategoryId = 1
@@ -2992,11 +2987,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 2,
-                            BusinessId = new Guid("c67ea4fa-8f9b-4fa9-bcdd-68be47d2d6dd"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7708),
+                            BusinessId = new Guid("e5e85de0-b7fe-42dd-b9b2-4bee21edfe0b"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4023),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7708),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4023),
                             ModifiedBy = "",
                             Name = "Audio",
                             TagCategoryId = 2
@@ -3004,11 +2999,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 3,
-                            BusinessId = new Guid("9dacf778-8b69-491f-8782-85ca99727bc8"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7711),
+                            BusinessId = new Guid("7bb2772c-27d2-4385-b605-0cdf59dff443"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4031),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7711),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4031),
                             ModifiedBy = "",
                             Name = "Document",
                             TagCategoryId = 2
@@ -3016,11 +3011,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 4,
-                            BusinessId = new Guid("c16882ad-6fb7-44f1-9fd6-b18aed640c0b"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7714),
+                            BusinessId = new Guid("c5273aff-12f9-40c4-adc8-fe0ce01c5c70"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4033),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7714),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4034),
                             ModifiedBy = "",
                             Name = "Image",
                             TagCategoryId = 2
@@ -3028,11 +3023,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 5,
-                            BusinessId = new Guid("b5e3b098-ae6e-40cb-8ebb-ab4ad20f0580"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7717),
+                            BusinessId = new Guid("89f57d6b-38d9-4e58-8618-ab5624b67740"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4036),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7717),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4036),
                             ModifiedBy = "",
                             Name = "Video",
                             TagCategoryId = 2
@@ -3040,11 +3035,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 6,
-                            BusinessId = new Guid("8997bb74-b640-4ed1-94e7-cd5d24e7e5fd"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7722),
+                            BusinessId = new Guid("c59b2485-771d-4eeb-916e-7e6678aa202e"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4039),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7723),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4040),
                             ModifiedBy = "",
                             Name = "*.txt",
                             TagCategoryId = 3
@@ -3052,11 +3047,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 7,
-                            BusinessId = new Guid("9eafe9be-034d-4115-b427-d74a278ddfc6"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7725),
+                            BusinessId = new Guid("f9398a88-2de9-4585-a672-4b2fe867319d"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4044),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7725),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4044),
                             ModifiedBy = "",
                             Name = "*.bmp",
                             TagCategoryId = 4
@@ -3064,11 +3059,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 8,
-                            BusinessId = new Guid("a26c8682-d2c7-47ef-b344-82d5fab671a8"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7727),
+                            BusinessId = new Guid("2fa2591e-6c91-4af2-88e1-f57ea1d3f09d"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4047),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7727),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4047),
                             ModifiedBy = "",
                             Name = "*.gif",
                             TagCategoryId = 4
@@ -3076,11 +3071,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 9,
-                            BusinessId = new Guid("d115ea6d-f75f-4db6-81fc-c10e2bebe704"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7730),
+                            BusinessId = new Guid("f6384f85-658e-47ea-8f68-738621418548"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4049),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7730),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4049),
                             ModifiedBy = "",
                             Name = "*.jpeg",
                             TagCategoryId = 4
@@ -3088,11 +3083,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 10,
-                            BusinessId = new Guid("5641be90-130e-42de-96f5-e4d4dcf6aee6"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7735),
+                            BusinessId = new Guid("f34cf5b8-0c61-4995-aeb6-bdb076527001"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4052),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7736),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4053),
                             ModifiedBy = "",
                             Name = "*.jpg",
                             TagCategoryId = 4
@@ -3100,11 +3095,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 11,
-                            BusinessId = new Guid("942e4ca9-4cca-49de-a0d0-5c4cb8bd6a0d"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7738),
+                            BusinessId = new Guid("ba51ce48-d19e-45c5-928f-f175bc8ce3d0"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4057),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7738),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4057),
                             ModifiedBy = "",
                             Name = "*.png",
                             TagCategoryId = 4
@@ -3112,11 +3107,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 12,
-                            BusinessId = new Guid("cebb5a5d-09c6-4ced-8695-781d01a0b239"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7740),
+                            BusinessId = new Guid("6b2d1f62-682f-481c-9245-ccf5373c16f4"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4060),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7740),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4060),
                             ModifiedBy = "",
                             Name = "*.webp",
                             TagCategoryId = 4
@@ -3124,11 +3119,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 13,
-                            BusinessId = new Guid("b3147945-1cd5-44a8-a339-859d79a2db28"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7743),
+                            BusinessId = new Guid("fd25b95b-4ecd-41a7-88dd-8b75d29325dd"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4062),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7743),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4062),
                             ModifiedBy = "",
                             Name = "*.mp4",
                             TagCategoryId = 5
@@ -3136,11 +3131,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 14,
-                            BusinessId = new Guid("1237e4a1-b5a6-4dd1-bf61-319ffa81a253"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7747),
+                            BusinessId = new Guid("f6aed2d3-be42-4095-8544-3cded57feba3"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4064),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7748),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4065),
                             ModifiedBy = "",
                             Name = "*.webm",
                             TagCategoryId = 5
@@ -3148,11 +3143,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 15,
-                            BusinessId = new Guid("ff6f1a45-4af8-45a4-a131-ad0f895dbfae"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7750),
+                            BusinessId = new Guid("d19f62ac-9a3c-4389-830a-68d12c20bc61"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4069),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7750),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4069),
                             ModifiedBy = "",
                             Name = "Landscape",
                             TagCategoryId = 6
@@ -3160,11 +3155,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 16,
-                            BusinessId = new Guid("cd931e81-ad11-4b61-842d-6287cfe071a5"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7752),
+                            BusinessId = new Guid("e3964e69-c1e4-4a8e-bc0e-309860c3c052"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4071),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7753),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4072),
                             ModifiedBy = "",
                             Name = "Landscape ( 16:9 )",
                             TagCategoryId = 6
@@ -3172,11 +3167,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 17,
-                            BusinessId = new Guid("d479486b-cb23-4270-abd2-10d30227b500"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7755),
+                            BusinessId = new Guid("730c393a-fa9f-4551-99c7-760e130bbc10"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4074),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7755),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4074),
                             ModifiedBy = "",
                             Name = "Portrait",
                             TagCategoryId = 6
@@ -3184,11 +3179,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 18,
-                            BusinessId = new Guid("c9e04048-220b-462a-aca3-f5ad93a030c4"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7761),
+                            BusinessId = new Guid("8797dc74-e414-44c3-a954-7f96c472d179"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4077),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7761),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4078),
                             ModifiedBy = "",
                             Name = "Portrait ( 16:9 )",
                             TagCategoryId = 6
@@ -3196,11 +3191,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 19,
-                            BusinessId = new Guid("94681ea2-fc59-460f-af3c-d72feb45bfad"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7763),
+                            BusinessId = new Guid("bbf01adf-b1a1-4cb4-9c52-9d25aac08986"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4082),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7763),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4082),
                             ModifiedBy = "",
                             Name = "Square",
                             TagCategoryId = 6
@@ -3208,11 +3203,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 20,
-                            BusinessId = new Guid("a1380df3-636f-4753-9b7f-346682875b81"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7765),
+                            BusinessId = new Guid("d5c12951-b91c-4299-9f7e-38c9ac407f5c"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4084),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7766),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4085),
                             ModifiedBy = "",
                             Name = "2D",
                             TagCategoryId = 7
@@ -3220,11 +3215,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 21,
-                            BusinessId = new Guid("9d934316-7619-473a-8807-eec8d4461981"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7768),
+                            BusinessId = new Guid("f1343f49-5632-4f8e-96e1-5a247983dfbe"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4088),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7768),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4088),
                             ModifiedBy = "",
                             Name = "2D | Anim",
                             TagCategoryId = 7
@@ -3232,11 +3227,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 22,
-                            BusinessId = new Guid("6ecf618e-6490-4dd4-a1ac-6f95545a69ef"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7773),
+                            BusinessId = new Guid("141c255c-6639-43f6-ab43-d37b48a65101"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4090),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7773),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4090),
                             ModifiedBy = "",
                             Name = "3D",
                             TagCategoryId = 7
@@ -3244,11 +3239,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 23,
-                            BusinessId = new Guid("68531915-7c03-44f1-a04f-d47a7ff740cd"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7775),
+                            BusinessId = new Guid("ef1a9fe7-86ed-4f1d-b3d9-fdb902bb8bb0"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4095),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7775),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4095),
                             ModifiedBy = "",
                             Name = "3D | Anim",
                             TagCategoryId = 7
@@ -3256,11 +3251,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 24,
-                            BusinessId = new Guid("e3ecec5e-d6e2-44a6-89a5-532ab7e2e504"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7823),
+                            BusinessId = new Guid("a29d4f64-da45-4c9e-899d-667e64d31f14"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4097),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7823),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4098),
                             ModifiedBy = "",
                             Name = "Photo",
                             TagCategoryId = 7
@@ -3268,11 +3263,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 25,
-                            BusinessId = new Guid("7e3bcd2e-ba46-4bd3-82ce-12156b257e48"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7827),
+                            BusinessId = new Guid("1b1e7510-cd02-4a3d-ad2a-04390d9172ff"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4100),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7827),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4100),
                             ModifiedBy = "",
                             Name = "Photo | Anim",
                             TagCategoryId = 7
@@ -3280,11 +3275,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 26,
-                            BusinessId = new Guid("62e18619-44eb-4048-95ce-88bad44f5be0"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7832),
+                            BusinessId = new Guid("acf52c3a-a69c-4971-80b9-1b67d3d9c0ae"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4102),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7833),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4102),
                             ModifiedBy = "",
                             Name = "E.D.M.",
                             TagCategoryId = 8
@@ -3292,11 +3287,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 27,
-                            BusinessId = new Guid("2fca0dc3-8bc1-4db2-ade0-7a6c88aae392"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7835),
+                            BusinessId = new Guid("3370ef82-bafb-4240-9851-60b45941c816"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4107),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7835),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4107),
                             ModifiedBy = "",
                             Name = "Jazz",
                             TagCategoryId = 8
@@ -3304,11 +3299,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 28,
-                            BusinessId = new Guid("8af16353-550f-4717-a9c5-e32ac14169fc"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7837),
+                            BusinessId = new Guid("82308f0c-9529-48db-938f-be0edd97726a"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4109),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7837),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4110),
                             ModifiedBy = "",
                             Name = "Metal",
                             TagCategoryId = 8
@@ -3316,11 +3311,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 29,
-                            BusinessId = new Guid("b2fee316-0fb7-4382-bb59-9c897c5dcf99"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7840),
+                            BusinessId = new Guid("81d8bf48-abe4-4fef-874a-e4978d612770"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4112),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7840),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4112),
                             ModifiedBy = "",
                             Name = "Orchestral",
                             TagCategoryId = 8
@@ -3328,11 +3323,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 30,
-                            BusinessId = new Guid("bbea7209-7045-4ec9-8d72-c47991c7a724"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7844),
+                            BusinessId = new Guid("4eea340d-7220-4548-91f9-2be60eab516e"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4114),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7845),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4115),
                             ModifiedBy = "",
                             Name = "Pop Music",
                             TagCategoryId = 8
@@ -3340,11 +3335,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 31,
-                            BusinessId = new Guid("b153e640-58a2-454c-b059-eb1309fff275"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7847),
+                            BusinessId = new Guid("e8d8c221-0cad-4e39-ab80-68fd6fe95663"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4119),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7847),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4119),
                             ModifiedBy = "",
                             Name = "Rap",
                             TagCategoryId = 8
@@ -3352,11 +3347,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 32,
-                            BusinessId = new Guid("abd7e6bc-967c-4d84-a7c1-ff262001cc5c"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7849),
+                            BusinessId = new Guid("edf08791-daa8-4de8-8056-4f8fe2cef4a8"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4121),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7849),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4122),
                             ModifiedBy = "",
                             Name = "Rock",
                             TagCategoryId = 8
@@ -3364,11 +3359,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 33,
-                            BusinessId = new Guid("e1075dbb-2795-407e-8346-99918dd7cbef"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7852),
+                            BusinessId = new Guid("3adf28d9-a9da-4dfe-acb0-345887ab0686"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4124),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7852),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4124),
                             ModifiedBy = "",
                             Name = "Traditional",
                             TagCategoryId = 8
@@ -3376,11 +3371,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 34,
-                            BusinessId = new Guid("4b136590-e529-41d1-8074-937b431b673f"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7858),
+                            BusinessId = new Guid("27d5df6c-3cd4-4195-a152-d8e7815f0e00"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4127),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7858),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4128),
                             ModifiedBy = "",
                             Name = "# Music Theory",
                             TagCategoryId = 9
@@ -3388,11 +3383,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 35,
-                            BusinessId = new Guid("3fe867aa-d428-4c90-98ed-b556f0f85f34"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7860),
+                            BusinessId = new Guid("812d8fec-0286-4431-914f-5fec018ea760"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4132),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7860),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4132),
                             ModifiedBy = "",
                             Name = "# Harmony",
                             TagCategoryId = 9
@@ -3400,11 +3395,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 36,
-                            BusinessId = new Guid("c7a478cc-ca22-4226-a910-a41d26fcd534"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7862),
+                            BusinessId = new Guid("d438812c-f950-40f1-8b72-49527096fa3c"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4134),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7863),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4135),
                             ModifiedBy = "",
                             Name = "Chords",
                             TagCategoryId = 9
@@ -3412,11 +3407,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 37,
-                            BusinessId = new Guid("a752f99c-3540-483e-a0ac-65a6b06fb1c4"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7865),
+                            BusinessId = new Guid("6c28ba68-de0c-4c27-a216-4fa665f4a42e"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4137),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7865),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4137),
                             ModifiedBy = "",
                             Name = "Harmonics",
                             TagCategoryId = 9
@@ -3424,11 +3419,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 38,
-                            BusinessId = new Guid("bcccb0cc-33a2-4629-86e7-2a5ba3140dde"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7869),
+                            BusinessId = new Guid("c42be781-4a81-4744-a3c7-582208a71eec"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4139),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7870),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4139),
                             ModifiedBy = "",
                             Name = "Intervals",
                             TagCategoryId = 9
@@ -3436,11 +3431,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 39,
-                            BusinessId = new Guid("59c128a7-dc3f-4164-8e42-cd6d2d97f770"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7872),
+                            BusinessId = new Guid("f83d78e1-dc53-42f5-8810-57cfdcd8bf02"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4144),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7872),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4144),
                             ModifiedBy = "",
                             Name = "Rythm",
                             TagCategoryId = 9
@@ -3448,11 +3443,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 40,
-                            BusinessId = new Guid("eca2002c-e286-4515-bab4-5a2c7c2b32eb"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7874),
+                            BusinessId = new Guid("e20bf3a6-69de-49b8-9b32-cf3e59ed7204"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4146),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7875),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4147),
                             ModifiedBy = "",
                             Name = "Scales",
                             TagCategoryId = 9
@@ -3460,11 +3455,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 41,
-                            BusinessId = new Guid("74da3d2c-6e91-4203-a417-aa1c03fc2838"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7877),
+                            BusinessId = new Guid("39a03afb-54a4-4f69-b46d-99a6b4a93f02"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4149),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7877),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4149),
                             ModifiedBy = "",
                             Name = "Modes",
                             TagCategoryId = 9
@@ -3472,11 +3467,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 42,
-                            BusinessId = new Guid("cb8bb9a8-b973-46b6-b8d6-bc8d7707f45f"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7881),
+                            BusinessId = new Guid("35f6de74-3d5f-4704-91bf-67ea94dc6d16"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4151),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7882),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4151),
                             ModifiedBy = "",
                             Name = "# Keys",
                             TagCategoryId = 10
@@ -3484,11 +3479,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 43,
-                            BusinessId = new Guid("8cda5df4-6f05-4d30-9a42-21ecfae51401"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7884),
+                            BusinessId = new Guid("84527b62-283c-41cf-b401-2e395706994b"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4157),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7884),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4157),
                             ModifiedBy = "",
                             Name = "Piano",
                             TagCategoryId = 10
@@ -3496,11 +3491,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 44,
-                            BusinessId = new Guid("8cc1d0a3-9c58-4e93-bd29-1a9da90e4a28"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7886),
+                            BusinessId = new Guid("cd6b1fba-ae17-4911-a157-f672d98ad368"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4159),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7886),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4159),
                             ModifiedBy = "",
                             Name = "# Brass",
                             TagCategoryId = 11
@@ -3508,11 +3503,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 45,
-                            BusinessId = new Guid("511bb77b-4217-43b5-89d6-ef48f47e7f11"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7889),
+                            BusinessId = new Guid("c3474d63-cea5-4dbf-a691-8c02a4bc54dc"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4162),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7889),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4162),
                             ModifiedBy = "",
                             Name = "Trombone",
                             TagCategoryId = 11
@@ -3520,11 +3515,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 46,
-                            BusinessId = new Guid("c15920a2-9a83-499e-94f8-ed7446a303d6"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7893),
+                            BusinessId = new Guid("493c0120-956a-44fc-ad34-84de4e31d98a"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4164),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7894),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4164),
                             ModifiedBy = "",
                             Name = "# Strings",
                             TagCategoryId = 12
@@ -3532,11 +3527,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 47,
-                            BusinessId = new Guid("9d8b91e5-28dc-4485-91d9-d0e5b3707eee"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7897),
+                            BusinessId = new Guid("c6405e42-343c-4fb1-8ade-5d2c81b338b6"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4169),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7897),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4169),
                             ModifiedBy = "",
                             Name = "Violin",
                             TagCategoryId = 12
@@ -3544,11 +3539,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 48,
-                            BusinessId = new Guid("58ab8c99-6dcc-4696-ba94-8caac54dee9b"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7899),
+                            BusinessId = new Guid("fb9b46a9-5885-4c41-9845-43c5df7502a3"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4171),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7899),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4171),
                             ModifiedBy = "",
                             Name = "# Percussions",
                             TagCategoryId = 13
@@ -3556,11 +3551,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 49,
-                            BusinessId = new Guid("015bbdc3-ab12-4bc7-946e-63d884614142"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7902),
+                            BusinessId = new Guid("3862bc8f-87bb-49b1-91ad-881385ae553f"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4174),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7902),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4174),
                             ModifiedBy = "",
                             Name = "Drums",
                             TagCategoryId = 13
@@ -3568,11 +3563,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 50,
-                            BusinessId = new Guid("6cfaec0b-c239-4cf4-8c05-346ff5dbafc8"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7906),
+                            BusinessId = new Guid("62fc554e-58ec-4c3b-b258-175b2a63b1b1"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4176),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7906),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4176),
                             ModifiedBy = "",
                             Name = "# Woodwinds",
                             TagCategoryId = 14
@@ -3580,11 +3575,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 51,
-                            BusinessId = new Guid("702a5398-b551-455e-9626-10d42608185c"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7909),
+                            BusinessId = new Guid("3fa18361-cf38-4023-ba8b-cb4f19133bf7"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4181),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7909),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4181),
                             ModifiedBy = "",
                             Name = "Clarinet",
                             TagCategoryId = 14
@@ -3592,11 +3587,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 52,
-                            BusinessId = new Guid("81f77883-f662-4929-8ad2-affd64d8a907"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7911),
+                            BusinessId = new Guid("d0d841dd-1a2b-48a9-80cd-58e03ed3e129"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4183),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7911),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4183),
                             ModifiedBy = "",
                             Name = "# Audio",
                             TagCategoryId = 15
@@ -3604,11 +3599,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 53,
-                            BusinessId = new Guid("09506f47-c606-44a1-895b-1af28ddc75c6"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7913),
+                            BusinessId = new Guid("5bcae623-fee0-4925-9d79-56d71e738b1d"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4186),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7914),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4186),
                             ModifiedBy = "",
                             Name = "Mixing",
                             TagCategoryId = 15
@@ -3616,11 +3611,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 54,
-                            BusinessId = new Guid("de7382f6-1166-4b2d-9f67-cc179532399d"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7918),
+                            BusinessId = new Guid("83f241f4-abd6-45c6-ab7e-7d818f5d37d5"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4188),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7918),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4188),
                             ModifiedBy = "",
                             Name = "Mastering",
                             TagCategoryId = 15
@@ -3628,11 +3623,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 55,
-                            BusinessId = new Guid("421c2f9d-160b-4b65-bb81-2f8132f5e548"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7921),
+                            BusinessId = new Guid("da969a41-6cf1-4270-8273-91a2368c03fb"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4193),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7921),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4193),
                             ModifiedBy = "",
                             Name = "Recording",
                             TagCategoryId = 15
@@ -3640,11 +3635,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 56,
-                            BusinessId = new Guid("4428165c-9848-4017-906e-8caf6ddbca43"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7923),
+                            BusinessId = new Guid("95c2a62f-0021-4c06-9a88-dd0726e32495"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4195),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7923),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4196),
                             ModifiedBy = "",
                             Name = "Production",
                             TagCategoryId = 15
@@ -3652,11 +3647,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 57,
-                            BusinessId = new Guid("3615dab6-ed6c-4961-8e3c-c5d4cefb0e9a"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7925),
+                            BusinessId = new Guid("ae4ffe14-bc18-42b8-b1f9-14380cdba0d7"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4198),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7926),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4198),
                             ModifiedBy = "",
                             Name = "Sound Design",
                             TagCategoryId = 15
@@ -3664,11 +3659,11 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 58,
-                            BusinessId = new Guid("1dd5ed59-4506-4f3b-97cb-e11d1b93551d"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7930),
+                            BusinessId = new Guid("1b481d28-b524-40b6-ab46-d9f8552c31f8"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4200),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7930),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4200),
                             ModifiedBy = "",
                             Name = "Memes",
                             TagCategoryId = 16
@@ -3676,18 +3671,18 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 59,
-                            BusinessId = new Guid("c6291096-f342-40ab-9d1b-a35d5491caa3"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7932),
+                            BusinessId = new Guid("cb6f70b0-00cb-4f38-b102-ab592dc9768f"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4205),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7933),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4205),
                             ModifiedBy = "",
                             Name = "# Guitar",
                             TagCategoryId = 17
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.TagCategory", b =>
+            modelBuilder.Entity("MB.Domain.TagCategoryAggregate.TagCategory", b =>
                 {
                     b.Property<int>("EntityId")
                         .ValueGeneratedOnAdd()
@@ -3729,193 +3724,193 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 1,
-                            BusinessId = new Guid("54e69ca1-4496-48e5-b915-d8f3bd521762"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8026),
+                            BusinessId = new Guid("ec9a7bbc-6d7e-4b85-9711-0cb1ba9fd84d"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4354),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8026),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4355),
                             ModifiedBy = "",
                             Name = "#"
                         },
                         new
                         {
                             EntityId = 2,
-                            BusinessId = new Guid("1cf814a4-fb51-471f-be51-1ae1a7bf2991"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8030),
+                            BusinessId = new Guid("b4cae43f-ade2-4146-948e-56e3b4596fc4"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4360),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8031),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4360),
                             ModifiedBy = "",
                             Name = "# File"
                         },
                         new
                         {
                             EntityId = 3,
-                            BusinessId = new Guid("3ae3bfe0-941f-47e4-bfa5-0eca15cfa7ee"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8036),
+                            BusinessId = new Guid("33d3b5ee-5ae9-4b17-9396-385b5cb4fc19"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4363),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8036),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4363),
                             ModifiedBy = "",
                             Name = "# File ext. | Doc."
                         },
                         new
                         {
                             EntityId = 4,
-                            BusinessId = new Guid("d4ffe766-83a4-4899-91f8-2925d93578be"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8038),
+                            BusinessId = new Guid("2acfe1cc-8885-460a-9ea2-235896c4a444"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4370),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8038),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4370),
                             ModifiedBy = "",
                             Name = "# File ext. | Image"
                         },
                         new
                         {
                             EntityId = 5,
-                            BusinessId = new Guid("92eaa16f-3b25-4766-969b-22fc9faa6ecb"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8041),
+                            BusinessId = new Guid("53c2cb84-5d81-47f4-bde1-3de6a2a68805"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4374),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8041),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4374),
                             ModifiedBy = "",
                             Name = "# File ext. | Video"
                         },
                         new
                         {
                             EntityId = 6,
-                            BusinessId = new Guid("bb6df9b2-cfd2-4486-8c53-d18cbabc684c"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8044),
+                            BusinessId = new Guid("07d4cfeb-275e-4359-a904-7b94c4422b99"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4379),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8044),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4379),
                             ModifiedBy = "",
                             Name = "# File Format"
                         },
                         new
                         {
                             EntityId = 7,
-                            BusinessId = new Guid("f426ab3b-78be-489e-92f1-b86a0468db0c"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8049),
+                            BusinessId = new Guid("4f35aad2-d3af-4f64-812d-4a607880f256"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4382),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8049),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4382),
                             ModifiedBy = "",
                             Name = "# File Render"
                         },
                         new
                         {
                             EntityId = 8,
-                            BusinessId = new Guid("17c18b0a-de9d-488b-a00d-3638bbec3fea"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8052),
+                            BusinessId = new Guid("0dc01a5b-5ebe-4445-ad07-e921db5e5697"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4387),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8052),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4388),
                             ModifiedBy = "",
                             Name = "Music Genre"
                         },
                         new
                         {
                             EntityId = 9,
-                            BusinessId = new Guid("0442e7dc-43af-4204-98fa-fa3b540396b1"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8055),
+                            BusinessId = new Guid("961d58a8-5b6a-4a8f-8e21-50ff1e579832"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4390),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8055),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4390),
                             ModifiedBy = "",
                             Name = "Music Theory"
                         },
                         new
                         {
                             EntityId = 10,
-                            BusinessId = new Guid("c01d1ab8-6df8-4e88-93b0-e647a5265be3"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8059),
+                            BusinessId = new Guid("affa2a8f-1e25-4ee9-a4f9-9a4a3a299ddc"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4394),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8059),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4394),
                             ModifiedBy = "",
                             Name = "Keys"
                         },
                         new
                         {
                             EntityId = 11,
-                            BusinessId = new Guid("382d4ffe-fe2e-4f92-b8fa-04a9bcfdec29"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8064),
+                            BusinessId = new Guid("807dce70-3cbb-4fbd-8125-85f50c509957"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4397),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8064),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4397),
                             ModifiedBy = "",
                             Name = "Brass"
                         },
                         new
                         {
                             EntityId = 12,
-                            BusinessId = new Guid("c7595837-4670-4d28-b94b-2a441be805c7"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8066),
+                            BusinessId = new Guid("5e482498-f196-428d-9626-801804879738"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4403),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8067),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4403),
                             ModifiedBy = "",
                             Name = "Strings"
                         },
                         new
                         {
                             EntityId = 13,
-                            BusinessId = new Guid("fc42134d-83e3-4f09-b98f-d3765e610ef3"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8069),
+                            BusinessId = new Guid("0cf69978-c6e8-485f-b3da-ff6eab735ed6"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4406),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8069),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4406),
                             ModifiedBy = "",
                             Name = "Percussions"
                         },
                         new
                         {
                             EntityId = 14,
-                            BusinessId = new Guid("ead8e75b-10d4-49c4-af09-f9de208d6eed"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8071),
+                            BusinessId = new Guid("3682bb09-1174-4384-bdf4-36a27c5a5a71"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4409),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8072),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4409),
                             ModifiedBy = "",
                             Name = "Woodwinds"
                         },
                         new
                         {
                             EntityId = 15,
-                            BusinessId = new Guid("436dd40b-9865-47a4-a8b1-936462238188"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8076),
+                            BusinessId = new Guid("0d1930bc-562c-448a-9e04-6cd5b0ed1a35"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4412),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8077),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4412),
                             ModifiedBy = "",
                             Name = "Audio"
                         },
                         new
                         {
                             EntityId = 16,
-                            BusinessId = new Guid("3ceebad9-8a3f-43d2-8795-a72af9a2c5ab"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8079),
+                            BusinessId = new Guid("8eebf040-ca0c-4d75-8168-6ecbfc63c3b0"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4417),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8079),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4417),
                             ModifiedBy = "",
                             Name = "Fun"
                         },
                         new
                         {
                             EntityId = 17,
-                            BusinessId = new Guid("2ecb0cb6-8910-4bd1-b94f-89703e0ff235"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8132),
+                            BusinessId = new Guid("8f83fa0f-ee53-4d3e-a451-612c7ffb28fa"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4420),
                             CreatedBy = "",
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8132),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4420),
                             ModifiedBy = "",
                             Name = "Guitar"
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Task", b =>
+            modelBuilder.Entity("MB.Domain.TaskAggregate.Task", b =>
                 {
                     b.Property<int>("EntityId")
                         .ValueGeneratedOnAdd()
@@ -3955,7 +3950,7 @@ namespace MB.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
-                        .HasDefaultValue("02/06/2025 10:10:33");
+                        .HasDefaultValue("04/21/2025 16:16:48");
 
                     b.Property<int>("TaskCategoryId")
                         .HasColumnType("int");
@@ -3970,20 +3965,20 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 1,
-                            BusinessId = new Guid("1104e0d4-ff7a-42e4-811e-ddca85ceab63"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8258),
+                            BusinessId = new Guid("0b71aa0f-d9d9-485b-9c3d-44755d6d0cf2"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4548),
                             CreatedBy = "",
-                            DateEnd = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8254),
-                            DateStart = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8254),
+                            DateEnd = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4546),
+                            DateStart = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4544),
                             Description = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8258),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4548),
                             ModifiedBy = "",
                             Name = "Check Mails",
                             TaskCategoryId = 5
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.TaskCategory", b =>
+            modelBuilder.Entity("MB.Domain.TaskCategoryAggregate.TaskCategory", b =>
                 {
                     b.Property<int>("EntityId")
                         .ValueGeneratedOnAdd()
@@ -4021,56 +4016,56 @@ namespace MB.Persistence.Migrations
                         new
                         {
                             EntityId = 1,
-                            BusinessId = new Guid("09d6240d-1999-45c8-9d39-b7d7440cfaae"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8195),
+                            BusinessId = new Guid("afd568a8-ff56-4d48-a2e0-0f0367bb9f26"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4481),
                             CreatedBy = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8196),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4482),
                             ModifiedBy = "",
                             Name = "PAD Mobile"
                         },
                         new
                         {
                             EntityId = 2,
-                            BusinessId = new Guid("fb78a808-d9de-44cd-be1d-2bee5d345576"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8204),
+                            BusinessId = new Guid("87eb1767-5f6b-4449-ab0c-6e39de623d07"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4487),
                             CreatedBy = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8205),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4487),
                             ModifiedBy = "",
                             Name = "PAD Cave"
                         },
                         new
                         {
                             EntityId = 3,
-                            BusinessId = new Guid("693ed30f-fd38-476c-9699-4e1f17481056"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8207),
+                            BusinessId = new Guid("cf42e875-f35e-4778-8ae4-e81b0743aff4"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4493),
                             CreatedBy = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8207),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4493),
                             ModifiedBy = "",
                             Name = "PAD Kids"
                         },
                         new
                         {
                             EntityId = 4,
-                            BusinessId = new Guid("9e465935-83c0-49c1-8da6-d2cda1d23fb0"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8210),
+                            BusinessId = new Guid("072e8b8f-17cb-48b4-b3f8-5aac2eca4586"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4496),
                             CreatedBy = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8210),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4496),
                             ModifiedBy = "",
                             Name = "Shopping"
                         },
                         new
                         {
                             EntityId = 5,
-                            BusinessId = new Guid("0c94e728-62de-4e73-9fd5-af56622e1b6c"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8212),
+                            BusinessId = new Guid("1f0293ff-34fc-4eb4-bf87-0670b5efd2e1"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4499),
                             CreatedBy = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8212),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4499),
                             ModifiedBy = "",
                             Name = "Work"
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.User", b =>
+            modelBuilder.Entity("MB.Domain.UserAggregate.User", b =>
                 {
                     b.Property<int>("EntityId")
                         .ValueGeneratedOnAdd()
@@ -4141,18 +4136,18 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 1,
                             Birthdate = new DateTime(1982, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            BusinessId = new Guid("0a6e300a-6865-4e49-a2b7-1c4129a84fae"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8691),
+                            BusinessId = new Guid("dfae075f-b927-4adc-8dd2-abb4882c854c"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4965),
                             CreatedBy = "",
                             Email = "tonyvan@live.fr",
                             Experience = 0,
                             FirstName = "Tony",
                             LastName = "Van Langenhove",
                             Level = 1,
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8692),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(4966),
                             ModifiedBy = "",
-                            PasswordHash = new byte[] { 232, 162, 202, 60, 39, 249, 151, 99, 122, 165, 70, 210, 199, 67, 112, 205, 5, 203, 50, 19, 43, 115, 131, 250, 172, 108, 31, 172, 21, 19, 207, 141, 92, 106, 157, 242, 1, 167, 167, 68, 210, 56, 55, 152, 145, 230, 154, 116, 97, 20, 220, 133, 163, 110, 128, 129, 116, 140, 18, 66, 91, 145, 203, 90 },
-                            PasswordSalt = new byte[] { 255, 183, 122, 173, 171, 113, 249, 143, 5, 164, 90, 143, 176, 84, 217, 251, 148, 33, 14, 17, 101, 4, 78, 126, 180, 16, 222, 126, 161, 73, 152, 91, 190, 134, 237, 170, 247, 63, 243, 55, 7, 125, 91, 86, 132, 217, 126, 152, 246, 243, 71, 77, 129, 81, 50, 109, 214, 185, 133, 201, 175, 36, 32, 164, 155, 196, 128, 236, 19, 43, 187, 96, 252, 158, 181, 131, 81, 242, 244, 190, 244, 204, 189, 213, 64, 222, 175, 23, 7, 236, 123, 216, 76, 102, 7, 95, 82, 210, 129, 252, 130, 68, 67, 165, 159, 202, 164, 207, 162, 252, 106, 26, 252, 228, 78, 235, 237, 12, 192, 126, 37, 109, 174, 163, 188, 137, 152, 59 },
+                            PasswordHash = new byte[] { 105, 241, 128, 147, 125, 180, 119, 119, 221, 9, 200, 142, 210, 17, 55, 212, 47, 51, 17, 23, 147, 183, 188, 30, 171, 151, 210, 228, 106, 46, 172, 135, 71, 105, 101, 37, 99, 215, 179, 249, 237, 189, 97, 200, 55, 128, 116, 244, 55, 10, 77, 132, 154, 179, 169, 220, 17, 176, 137, 185, 244, 191, 112, 98 },
+                            PasswordSalt = new byte[] { 250, 228, 219, 255, 108, 7, 32, 2, 226, 215, 96, 160, 48, 166, 84, 90, 180, 12, 211, 9, 26, 163, 173, 95, 194, 207, 57, 131, 50, 106, 252, 58, 3, 121, 32, 3, 111, 129, 102, 218, 242, 194, 236, 7, 135, 27, 152, 8, 18, 109, 26, 239, 146, 12, 0, 101, 136, 100, 77, 74, 4, 89, 251, 59, 205, 37, 254, 170, 54, 163, 118, 171, 154, 46, 243, 156, 136, 218, 133, 70, 52, 244, 78, 12, 37, 146, 48, 200, 162, 132, 113, 151, 215, 202, 233, 147, 141, 167, 232, 23, 99, 179, 189, 191, 85, 151, 240, 170, 82, 151, 54, 153, 133, 79, 18, 46, 213, 21, 197, 147, 244, 240, 121, 86, 80, 229, 53, 141 },
                             Role = 2,
                             UserName = ""
                         },
@@ -4160,18 +4155,18 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 2,
                             Birthdate = new DateTime(1975, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            BusinessId = new Guid("26e43f61-040d-4ac7-94ed-7aa6056355be"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8774),
+                            BusinessId = new Guid("ac7932ab-38ff-457f-bfb0-a5474e587af0"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(5102),
                             CreatedBy = "",
                             Email = "floppy@gmail.com",
                             Experience = 0,
                             FirstName = "Floppy",
                             LastName = "Disk",
                             Level = 1,
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8774),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(5102),
                             ModifiedBy = "",
-                            PasswordHash = new byte[] { 34, 20, 57, 5, 245, 42, 199, 219, 96, 213, 83, 42, 153, 130, 113, 78, 71, 157, 33, 88, 129, 60, 93, 233, 143, 250, 165, 222, 91, 73, 164, 149, 204, 102, 28, 0, 187, 5, 149, 252, 139, 119, 80, 94, 144, 117, 77, 188, 170, 204, 15, 136, 114, 15, 229, 103, 140, 124, 51, 221, 81, 132, 234, 51 },
-                            PasswordSalt = new byte[] { 51, 168, 92, 171, 52, 154, 28, 138, 8, 94, 171, 158, 161, 211, 71, 218, 76, 237, 17, 103, 184, 30, 37, 20, 106, 212, 208, 35, 62, 184, 57, 183, 21, 173, 69, 16, 28, 242, 28, 134, 115, 30, 131, 180, 110, 128, 22, 209, 144, 252, 240, 63, 240, 35, 40, 249, 106, 105, 55, 135, 61, 166, 235, 89, 77, 201, 119, 203, 118, 4, 112, 227, 68, 134, 230, 107, 25, 235, 254, 140, 86, 201, 1, 79, 185, 53, 91, 163, 45, 231, 70, 144, 177, 27, 22, 94, 58, 214, 75, 54, 237, 83, 25, 17, 231, 48, 235, 189, 213, 75, 151, 99, 1, 1, 95, 123, 33, 32, 44, 11, 58, 167, 80, 187, 130, 244, 123, 40 },
+                            PasswordHash = new byte[] { 245, 51, 66, 4, 91, 162, 86, 229, 94, 43, 141, 139, 72, 61, 97, 225, 149, 247, 92, 34, 167, 10, 102, 22, 231, 132, 150, 14, 231, 195, 33, 126, 218, 8, 167, 122, 29, 123, 0, 22, 201, 41, 229, 56, 77, 225, 34, 81, 154, 224, 220, 56, 210, 176, 204, 157, 154, 242, 33, 208, 53, 156, 145, 88 },
+                            PasswordSalt = new byte[] { 254, 39, 182, 131, 64, 147, 112, 37, 72, 175, 245, 48, 112, 39, 19, 161, 125, 74, 249, 5, 231, 100, 136, 67, 14, 212, 30, 7, 101, 164, 23, 4, 10, 63, 98, 246, 14, 207, 228, 165, 119, 194, 77, 17, 83, 10, 157, 44, 62, 91, 253, 165, 227, 15, 218, 144, 73, 30, 79, 103, 187, 93, 191, 198, 178, 148, 2, 214, 64, 76, 209, 85, 85, 143, 63, 103, 198, 206, 103, 163, 221, 217, 163, 71, 16, 249, 170, 57, 241, 175, 81, 139, 246, 100, 173, 81, 160, 5, 133, 74, 79, 45, 176, 195, 208, 98, 191, 189, 15, 205, 59, 83, 116, 141, 219, 211, 56, 155, 154, 209, 212, 207, 43, 192, 151, 77, 230, 1 },
                             Role = 1,
                             UserName = ""
                         },
@@ -4179,18 +4174,18 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 3,
                             Birthdate = new DateTime(1980, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            BusinessId = new Guid("769d970b-6ef9-422c-8fa6-c06510461a74"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8831),
+                            BusinessId = new Guid("5745e0df-8a00-4bd1-ae96-d7096b1f0024"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(5170),
                             CreatedBy = "",
                             Email = "vincent.megag@gmail.com",
                             Experience = 0,
                             FirstName = "Vincent",
                             LastName = "Megag",
                             Level = 1,
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8831),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(5170),
                             ModifiedBy = "",
-                            PasswordHash = new byte[] { 204, 121, 123, 15, 40, 41, 230, 182, 19, 38, 63, 227, 89, 157, 134, 177, 10, 39, 113, 108, 234, 34, 150, 17, 185, 240, 21, 118, 53, 46, 93, 158, 168, 86, 70, 48, 228, 69, 183, 221, 122, 113, 200, 43, 251, 224, 226, 111, 249, 112, 20, 63, 67, 193, 155, 99, 154, 162, 82, 142, 222, 168, 166, 12 },
-                            PasswordSalt = new byte[] { 235, 223, 30, 238, 45, 130, 249, 14, 96, 75, 199, 35, 186, 55, 13, 144, 173, 81, 73, 176, 186, 205, 127, 210, 164, 243, 124, 36, 184, 189, 224, 127, 14, 35, 78, 36, 39, 23, 137, 51, 168, 144, 6, 144, 116, 31, 222, 194, 189, 167, 255, 218, 179, 1, 254, 251, 233, 143, 137, 55, 109, 151, 189, 205, 175, 228, 159, 236, 248, 190, 55, 30, 121, 196, 17, 1, 209, 48, 60, 46, 97, 74, 230, 141, 211, 129, 37, 206, 135, 182, 155, 188, 186, 45, 123, 137, 72, 226, 150, 146, 167, 151, 153, 237, 22, 226, 206, 63, 200, 86, 213, 9, 131, 16, 86, 98, 112, 240, 156, 165, 86, 191, 119, 45, 158, 224, 89, 115 },
+                            PasswordHash = new byte[] { 19, 208, 216, 56, 128, 104, 62, 215, 0, 15, 103, 147, 191, 184, 254, 97, 9, 130, 98, 110, 231, 253, 31, 207, 238, 188, 197, 134, 140, 195, 148, 123, 128, 195, 111, 37, 61, 228, 88, 63, 233, 5, 80, 8, 208, 141, 144, 171, 235, 158, 201, 12, 246, 47, 218, 59, 140, 226, 55, 240, 25, 176, 213, 112 },
+                            PasswordSalt = new byte[] { 142, 114, 244, 246, 61, 58, 88, 5, 215, 158, 249, 18, 155, 193, 173, 189, 254, 123, 212, 37, 69, 143, 20, 215, 76, 40, 56, 231, 117, 73, 219, 53, 87, 208, 159, 254, 93, 9, 79, 221, 88, 125, 254, 46, 117, 54, 17, 180, 80, 1, 33, 116, 36, 178, 226, 65, 46, 91, 106, 45, 89, 192, 73, 202, 243, 156, 160, 125, 70, 231, 49, 109, 163, 38, 15, 92, 122, 218, 60, 136, 220, 159, 131, 236, 139, 172, 129, 182, 237, 54, 48, 139, 39, 20, 88, 65, 131, 197, 205, 71, 2, 32, 100, 8, 139, 254, 1, 245, 24, 127, 213, 144, 126, 188, 249, 144, 239, 232, 221, 14, 140, 93, 184, 184, 80, 11, 36, 109 },
                             Role = 2,
                             UserName = ""
                         },
@@ -4198,26 +4193,26 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 4,
                             Birthdate = new DateTime(1980, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            BusinessId = new Guid("a748fcb6-086e-4838-9467-9841b0a21a93"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8892),
+                            BusinessId = new Guid("23a92409-11b7-42e6-81d1-1c0712185c14"),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(5233),
                             CreatedBy = "",
                             Email = "test@test.com",
                             Experience = 0,
                             FirstName = "Admin",
                             LastName = "...",
                             Level = 1,
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(8893),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(5233),
                             ModifiedBy = "",
-                            PasswordHash = new byte[] { 166, 14, 102, 98, 220, 236, 64, 23, 136, 110, 223, 98, 54, 84, 85, 124, 107, 45, 214, 173, 233, 212, 79, 196, 75, 120, 187, 218, 123, 44, 95, 16, 156, 160, 3, 208, 156, 12, 82, 247, 9, 167, 231, 47, 8, 59, 173, 118, 50, 246, 106, 199, 74, 103, 135, 189, 248, 246, 168, 13, 77, 150, 160, 207 },
-                            PasswordSalt = new byte[] { 239, 222, 113, 178, 29, 251, 194, 187, 125, 44, 28, 225, 253, 73, 34, 47, 122, 54, 137, 112, 194, 126, 228, 97, 243, 45, 127, 133, 135, 82, 136, 55, 250, 173, 25, 72, 5, 163, 150, 32, 137, 244, 158, 85, 30, 254, 46, 130, 13, 134, 109, 180, 73, 241, 36, 205, 61, 70, 74, 202, 110, 200, 165, 200, 69, 121, 148, 159, 130, 252, 165, 238, 113, 109, 17, 89, 185, 180, 226, 40, 97, 104, 142, 120, 210, 3, 181, 53, 196, 119, 206, 176, 105, 163, 9, 101, 246, 134, 196, 177, 51, 36, 24, 220, 50, 210, 44, 194, 121, 77, 110, 235, 255, 197, 171, 116, 145, 111, 142, 190, 167, 234, 70, 137, 6, 46, 79, 142 },
+                            PasswordHash = new byte[] { 239, 14, 153, 84, 15, 181, 27, 14, 87, 218, 160, 155, 209, 179, 125, 183, 217, 246, 195, 17, 109, 236, 243, 199, 61, 161, 238, 189, 38, 188, 213, 17, 148, 204, 90, 83, 190, 206, 119, 116, 135, 168, 30, 7, 245, 133, 208, 212, 87, 198, 74, 55, 118, 155, 247, 223, 249, 185, 66, 166, 176, 22, 109, 4 },
+                            PasswordSalt = new byte[] { 13, 85, 49, 207, 138, 15, 248, 216, 241, 203, 218, 18, 154, 62, 248, 110, 170, 215, 228, 62, 86, 13, 2, 148, 29, 193, 74, 225, 158, 69, 113, 208, 168, 134, 152, 207, 249, 132, 205, 48, 138, 53, 146, 161, 241, 79, 251, 12, 37, 223, 35, 178, 26, 219, 22, 24, 201, 54, 14, 50, 97, 83, 99, 143, 34, 166, 141, 132, 226, 18, 232, 254, 201, 47, 196, 6, 57, 24, 137, 251, 125, 65, 244, 106, 189, 101, 249, 30, 99, 219, 59, 158, 177, 164, 211, 73, 254, 100, 130, 30, 165, 98, 242, 139, 162, 43, 97, 237, 179, 225, 153, 131, 248, 133, 79, 225, 210, 230, 98, 30, 103, 97, 0, 235, 200, 255, 136, 109 },
                             Role = 2,
                             UserName = ""
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Document", b =>
+            modelBuilder.Entity("MB.Domain.MoodAggregate.Document", b =>
                 {
-                    b.HasBaseType("MB.Domain.Entities.Mood");
+                    b.HasBaseType("MB.Domain.MoodAggregate.Mood");
 
                     b.Property<int>("Size")
                         .HasColumnType("int");
@@ -4228,12 +4223,12 @@ namespace MB.Persistence.Migrations
                                 .HasColumnName("Document_Size");
                         });
 
-                    b.HasDiscriminator().HasValue("Document");
+                    b.HasDiscriminator().HasValue(3);
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Image", b =>
+            modelBuilder.Entity("MB.Domain.MoodAggregate.Image", b =>
                 {
-                    b.HasBaseType("MB.Domain.Entities.Mood");
+                    b.HasBaseType("MB.Domain.MoodAggregate.Mood");
 
                     b.Property<int>("Height")
                         .HasColumnType("int");
@@ -4244,18 +4239,18 @@ namespace MB.Persistence.Migrations
                     b.Property<int>("Width")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("Image");
+                    b.HasDiscriminator().HasValue(1);
 
                     b.HasData(
                         new
                         {
                             EntityId = 1,
                             BusinessId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7010),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2831),
                             CreatedBy = "",
                             Description = "In Chords Chart",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7010),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2831),
                             ModifiedBy = "",
                             Name = " Major Key Notes",
                             Score = 0,
@@ -4268,11 +4263,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 2,
                             BusinessId = new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7026),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2849),
                             CreatedBy = "",
                             Description = "7 Notes, 7 Positions",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7026),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2850),
                             ModifiedBy = "",
                             Name = "Major Diatonic Scales",
                             Score = 0,
@@ -4285,11 +4280,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 3,
                             BusinessId = new Guid("cccccccc-cccc-cccc-cccc-cccccccccccc"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7031),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2857),
                             CreatedBy = "",
                             Description = "Fundamental Positions",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7031),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2857),
                             ModifiedBy = "",
                             Name = "Piano Chords",
                             Score = 0,
@@ -4302,11 +4297,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 4,
                             BusinessId = new Guid("dddddddd-dddd-dddd-dddd-dddddddddddd"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7037),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2863),
                             CreatedBy = "",
                             Description = "5 Notes, 5 Positions",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7037),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2864),
                             ModifiedBy = "",
                             Name = "Pentatonic Scales",
                             Score = 0,
@@ -4319,11 +4314,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 5,
                             BusinessId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa1"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7041),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2875),
                             CreatedBy = "",
                             Description = "Color Measure",
                             Extension = "png",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7041),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2875),
                             ModifiedBy = "",
                             Name = "Intervals",
                             Score = 0,
@@ -4336,11 +4331,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 6,
                             BusinessId = new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb1"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7045),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2885),
                             CreatedBy = "",
                             Description = "Absolute Basics",
                             Extension = "png",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7046),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2886),
                             ModifiedBy = "",
                             Name = "Time Measure",
                             Score = 0,
@@ -4353,11 +4348,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 7,
                             BusinessId = new Guid("cccccccc-cccc-cccc-cccc-ccccccccccc1"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7049),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2892),
                             CreatedBy = "",
                             Description = "Natural Order",
                             Extension = "webp",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7049),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2892),
                             ModifiedBy = "",
                             Name = "Harmonics",
                             Score = 0,
@@ -4370,11 +4365,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 8,
                             BusinessId = new Guid("dddddddd-dddd-dddd-dddd-ddddddddddd1"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7051),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2899),
                             CreatedBy = "",
                             Description = "Communication is important",
                             Extension = "png",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7052),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2899),
                             ModifiedBy = "",
                             Name = "Guitar Vocabulary",
                             Score = 0,
@@ -4387,11 +4382,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 9,
                             BusinessId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa2"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7055),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2904),
                             CreatedBy = "",
                             Description = "Diatonic Chords in C Major",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7055),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2905),
                             ModifiedBy = "",
                             Name = "Piano Chords",
                             Score = 0,
@@ -4404,11 +4399,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 10,
                             BusinessId = new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb2"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7059),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2913),
                             CreatedBy = "",
                             Description = "Mmm... You can tell, right ?",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7059),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2913),
                             ModifiedBy = "",
                             Name = "Piano Scales",
                             Score = 0,
@@ -4421,11 +4416,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 11,
                             BusinessId = new Guid("cccccccc-cccc-cccc-cccc-ccccccccccc2"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7062),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2919),
                             CreatedBy = "",
                             Description = "Overview",
                             Extension = "gif",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7062),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2919),
                             ModifiedBy = "",
                             Name = "Tessitures",
                             Score = 0,
@@ -4438,11 +4433,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 12,
                             BusinessId = new Guid("dddddddd-dddd-dddd-dddd-ddddddddddd2"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7067),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2925),
                             CreatedBy = "",
                             Description = "Circle of Life",
                             Extension = "png",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7068),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2926),
                             ModifiedBy = "",
                             Name = "Chord Wheel",
                             Score = 0,
@@ -4455,11 +4450,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 13,
                             BusinessId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa3"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7071),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2936),
                             CreatedBy = "",
                             Description = " ... ",
                             Extension = "jpeg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7071),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2936),
                             ModifiedBy = "",
                             Name = "The Mix is Almost Perfect",
                             Score = 0,
@@ -4472,11 +4467,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 14,
                             BusinessId = new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb3"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7075),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2941),
                             CreatedBy = "",
                             Description = "Basic Chords / Different Keys",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7075),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2942),
                             ModifiedBy = "",
                             Name = "Guitar Progressions",
                             Score = 0,
@@ -4489,11 +4484,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 15,
                             BusinessId = new Guid("cccccccc-cccc-cccc-cccc-ccccccccccc3"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7078),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2948),
                             CreatedBy = "",
                             Description = "Les 3, c'est NON !",
                             Extension = "jpeg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7078),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2949),
                             ModifiedBy = "",
                             Name = "Vous le voulez comment votre projet ?",
                             Score = 0,
@@ -4506,11 +4501,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 16,
                             BusinessId = new Guid("dddddddd-dddd-dddd-dddd-ddddddddddd3"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7081),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2955),
                             CreatedBy = "",
                             Description = "1, 2, 3, 4, 5",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7082),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2955),
                             ModifiedBy = "",
                             Name = "Fingers Numerotation",
                             Score = 0,
@@ -4523,11 +4518,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 17,
                             BusinessId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa4"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7085),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2962),
                             CreatedBy = "",
                             Description = "My actual Keyboard",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7085),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2962),
                             ModifiedBy = "",
                             Name = "Roland FP-30",
                             Score = 0,
@@ -4540,11 +4535,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 18,
                             BusinessId = new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb4"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7089),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2970),
                             CreatedBy = "",
                             Description = "How to build a chord",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7090),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2971),
                             ModifiedBy = "",
                             Name = "Chord Formula's",
                             Score = 0,
@@ -4557,11 +4552,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 19,
                             BusinessId = new Guid("cccccccc-cccc-cccc-cccc-ccccccccccc4"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7092),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2980),
                             CreatedBy = "",
                             Description = "Valeurs de Temps",
                             Extension = "webp",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7092),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2980),
                             ModifiedBy = "",
                             Name = "Time Values",
                             Score = 0,
@@ -4574,11 +4569,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 20,
                             BusinessId = new Guid("dddddddd-dddd-dddd-dddd-ddddddddddd4"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7098),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2985),
                             CreatedBy = "",
                             Description = "Fundamental Positions",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7098),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(2985),
                             ModifiedBy = "",
                             Name = "Guitar Chords ( B )",
                             Score = 0,
@@ -4591,11 +4586,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 21,
                             BusinessId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa5"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7102),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(3076),
                             CreatedBy = "",
                             Description = "Primary Modes",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7102),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(3077),
                             ModifiedBy = "",
                             Name = "Modes starting in C",
                             Score = 0,
@@ -4608,11 +4603,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 22,
                             BusinessId = new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb5"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7105),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(3085),
                             CreatedBy = "",
                             Description = "Good luck finding the good one ...",
                             Extension = "jpg",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7105),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(3085),
                             ModifiedBy = "",
                             Name = "Guitar Chords",
                             Score = 0,
@@ -4625,11 +4620,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 23,
                             BusinessId = new Guid("cccccccc-cccc-cccc-cccc-ccccccccccc5"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7108),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(3092),
                             CreatedBy = "",
                             Description = "Une approche parmis tant d'autres",
                             Extension = "png",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7108),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(3092),
                             ModifiedBy = "",
                             Name = "Intervalles",
                             Score = 0,
@@ -4640,9 +4635,9 @@ namespace MB.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Video", b =>
+            modelBuilder.Entity("MB.Domain.MoodAggregate.Video", b =>
                 {
-                    b.HasBaseType("MB.Domain.Entities.Mood");
+                    b.HasBaseType("MB.Domain.MoodAggregate.Mood");
 
                     b.Property<int>("Duration")
                         .HasColumnType("int");
@@ -4668,18 +4663,18 @@ namespace MB.Persistence.Migrations
                                 .HasColumnName("Video_Width");
                         });
 
-                    b.HasDiscriminator().HasValue("Video");
+                    b.HasDiscriminator().HasValue(2);
 
                     b.HasData(
                         new
                         {
                             EntityId = 55,
                             BusinessId = new Guid("cccccccc-cccc-cccc-cccc-cccccccccc55"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7171),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(3252),
                             CreatedBy = "",
                             Description = " Bendy & The Ink Machine ",
                             Extension = "mp4",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7172),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(3254),
                             ModifiedBy = "",
                             Name = "BATIM - Build our Machine",
                             Score = 0,
@@ -4691,26 +4686,26 @@ namespace MB.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.VideoYouTube", b =>
+            modelBuilder.Entity("MB.Domain.MoodAggregate.VideoYouTube", b =>
                 {
-                    b.HasBaseType("MB.Domain.Entities.Mood");
+                    b.HasBaseType("MB.Domain.MoodAggregate.Mood");
 
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("VideoYouTube");
+                    b.HasDiscriminator().HasValue(4);
 
                     b.HasData(
                         new
                         {
                             EntityId = 85,
                             BusinessId = new Guid("cccccccc-cccc-cccc-cccc-cccccccccc85"),
-                            Created = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7219),
+                            Created = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(3360),
                             CreatedBy = "",
                             Description = "...",
                             Extension = "",
-                            Modified = new DateTime(2025, 2, 6, 9, 10, 33, 28, DateTimeKind.Utc).AddTicks(7219),
+                            Modified = new DateTime(2025, 4, 21, 14, 16, 48, 471, DateTimeKind.Utc).AddTicks(3360),
                             ModifiedBy = "",
                             Name = "Mario Bros 3 Cover",
                             Score = 0,
@@ -4719,15 +4714,15 @@ namespace MB.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationArtistStyle", b =>
+            modelBuilder.Entity("MB.Domain.ArtistAggregate.RelationArtistStyle", b =>
                 {
-                    b.HasOne("MB.Domain.Entities.Artist", "Artist")
+                    b.HasOne("MB.Domain.ArtistAggregate.Artist", "Artist")
                         .WithMany("ArtistStyles")
                         .HasForeignKey("ArtistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MB.Domain.Entities.Style", "Style")
+                    b.HasOne("MB.Domain.StyleAggregate.Style", "Style")
                         .WithMany("ArtistStyles")
                         .HasForeignKey("StyleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4738,15 +4733,53 @@ namespace MB.Persistence.Migrations
                     b.Navigation("Style");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationBookFranchise", b =>
+            modelBuilder.Entity("MB.Domain.ArtistAggregate.RelationLinkArtist", b =>
                 {
-                    b.HasOne("MB.Domain.Entities.Book", "Book")
+                    b.HasOne("MB.Domain.ArtistAggregate.Artist", "Artist")
+                        .WithMany("LinkArtists")
+                        .HasForeignKey("ArtistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MB.Domain.LinkAggregate.Link", "Link")
+                        .WithMany("LinkArtists")
+                        .HasForeignKey("LinkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Artist");
+
+                    b.Navigation("Link");
+                });
+
+            modelBuilder.Entity("MB.Domain.ArtistAggregate.RelationLinkModel", b =>
+                {
+                    b.HasOne("MB.Domain.LinkAggregate.Link", "Link")
+                        .WithMany("LinkModels")
+                        .HasForeignKey("LinkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MB.Domain.ModelAggregate.Model", "Model")
+                        .WithMany("LinkModels")
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Link");
+
+                    b.Navigation("Model");
+                });
+
+            modelBuilder.Entity("MB.Domain.FranchiseAggregate.RelationBookFranchise", b =>
+                {
+                    b.HasOne("MB.Domain.BookAggregate.Book", "Book")
                         .WithMany("BookFranchise")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MB.Domain.Entities.Franchise", "Franchise")
+                    b.HasOne("MB.Domain.FranchiseAggregate.Franchise", "Franchise")
                         .WithMany("BookFranchise")
                         .HasForeignKey("FranchiseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4757,34 +4790,15 @@ namespace MB.Persistence.Migrations
                     b.Navigation("Franchise");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationBookModel", b =>
+            modelBuilder.Entity("MB.Domain.FranchiseAggregate.RelationFranchiseMedia", b =>
                 {
-                    b.HasOne("MB.Domain.Entities.Book", "Book")
-                        .WithMany("BookModel")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MB.Domain.Entities.Model", "Model")
-                        .WithMany("BookModel")
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Model");
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.RelationFranchiseMedia", b =>
-                {
-                    b.HasOne("MB.Domain.Entities.Franchise", "Franchise")
+                    b.HasOne("MB.Domain.FranchiseAggregate.Franchise", "Franchise")
                         .WithMany("FranchiseMedias")
                         .HasForeignKey("FranchiseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MB.Domain.Entities.Media", "Media")
+                    b.HasOne("MB.Domain.MediumAggregate.Media", "Media")
                         .WithMany("FranchiseMedias")
                         .HasForeignKey("MediaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4795,53 +4809,15 @@ namespace MB.Persistence.Migrations
                     b.Navigation("Media");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationFranchiseModel", b =>
+            modelBuilder.Entity("MB.Domain.LinkAggregate.RelationLinkCategory", b =>
                 {
-                    b.HasOne("MB.Domain.Entities.Franchise", "Franchise")
-                        .WithMany("FranchiseModels")
-                        .HasForeignKey("FranchiseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MB.Domain.Entities.Model", "Model")
-                        .WithMany("FranchiseModels")
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Franchise");
-
-                    b.Navigation("Model");
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.RelationLinkArtist", b =>
-                {
-                    b.HasOne("MB.Domain.Entities.Artist", "Artist")
-                        .WithMany("LinkArtists")
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MB.Domain.Entities.Link", "Link")
-                        .WithMany("LinkArtists")
-                        .HasForeignKey("LinkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Artist");
-
-                    b.Navigation("Link");
-                });
-
-            modelBuilder.Entity("MB.Domain.Entities.RelationLinkCategory", b =>
-                {
-                    b.HasOne("MB.Domain.Entities.LinkCategory", "LinkCategory")
+                    b.HasOne("MB.Domain.LinkCategoryAggregate.LinkCategory", "LinkCategory")
                         .WithMany("RLinkCategories")
                         .HasForeignKey("LinkCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MB.Domain.Entities.Link", "Link")
+                    b.HasOne("MB.Domain.LinkAggregate.Link", "Link")
                         .WithMany("LinkCategories")
                         .HasForeignKey("LinkId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4852,34 +4828,53 @@ namespace MB.Persistence.Migrations
                     b.Navigation("LinkCategory");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationLinkModel", b =>
+            modelBuilder.Entity("MB.Domain.ModelAggregate.RelationBookModel", b =>
                 {
-                    b.HasOne("MB.Domain.Entities.Link", "Link")
-                        .WithMany("LinkModels")
-                        .HasForeignKey("LinkId")
+                    b.HasOne("MB.Domain.BookAggregate.Book", "Book")
+                        .WithMany("BookModel")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MB.Domain.Entities.Model", "Model")
-                        .WithMany("LinkModels")
+                    b.HasOne("MB.Domain.ModelAggregate.Model", "Model")
+                        .WithMany("BookModel")
                         .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Link");
+                    b.Navigation("Book");
 
                     b.Navigation("Model");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationMoodArtist", b =>
+            modelBuilder.Entity("MB.Domain.ModelAggregate.RelationFranchiseModel", b =>
                 {
-                    b.HasOne("MB.Domain.Entities.Artist", "Artist")
+                    b.HasOne("MB.Domain.FranchiseAggregate.Franchise", "Franchise")
+                        .WithMany("FranchiseModels")
+                        .HasForeignKey("FranchiseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MB.Domain.ModelAggregate.Model", "Model")
+                        .WithMany("FranchiseModels")
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Franchise");
+
+                    b.Navigation("Model");
+                });
+
+            modelBuilder.Entity("MB.Domain.MoodAggregate.RelationMoodArtist", b =>
+                {
+                    b.HasOne("MB.Domain.ArtistAggregate.Artist", "Artist")
                         .WithMany("MoodArtists")
                         .HasForeignKey("ArtistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MB.Domain.Entities.Mood", "Mood")
+                    b.HasOne("MB.Domain.MoodAggregate.Mood", "Mood")
                         .WithMany("MoodArtists")
                         .HasForeignKey("MoodId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4890,15 +4885,15 @@ namespace MB.Persistence.Migrations
                     b.Navigation("Mood");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationMoodFranchise", b =>
+            modelBuilder.Entity("MB.Domain.MoodAggregate.RelationMoodFranchise", b =>
                 {
-                    b.HasOne("MB.Domain.Entities.Franchise", "Franchise")
+                    b.HasOne("MB.Domain.FranchiseAggregate.Franchise", "Franchise")
                         .WithMany("MoodFranchises")
                         .HasForeignKey("FranchiseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MB.Domain.Entities.Mood", "Mood")
+                    b.HasOne("MB.Domain.MoodAggregate.Mood", "Mood")
                         .WithMany("MoodFranchises")
                         .HasForeignKey("MoodId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4909,15 +4904,15 @@ namespace MB.Persistence.Migrations
                     b.Navigation("Mood");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationMoodModel", b =>
+            modelBuilder.Entity("MB.Domain.MoodAggregate.RelationMoodModel", b =>
                 {
-                    b.HasOne("MB.Domain.Entities.Model", "Model")
+                    b.HasOne("MB.Domain.ModelAggregate.Model", "Model")
                         .WithMany("MoodModels")
                         .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MB.Domain.Entities.Mood", "Mood")
+                    b.HasOne("MB.Domain.MoodAggregate.Mood", "Mood")
                         .WithMany("MoodModels")
                         .HasForeignKey("MoodId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4928,15 +4923,15 @@ namespace MB.Persistence.Migrations
                     b.Navigation("Mood");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.RelationMoodTag", b =>
+            modelBuilder.Entity("MB.Domain.MoodAggregate.RelationMoodTag", b =>
                 {
-                    b.HasOne("MB.Domain.Entities.Mood", "Mood")
+                    b.HasOne("MB.Domain.MoodAggregate.Mood", "Mood")
                         .WithMany("MoodTags")
                         .HasForeignKey("MoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MB.Domain.Entities.Tag", "Tag")
+                    b.HasOne("MB.Domain.TagAggregate.Tag", "Tag")
                         .WithMany("MoodTags")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4947,9 +4942,9 @@ namespace MB.Persistence.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Tag", b =>
+            modelBuilder.Entity("MB.Domain.TagAggregate.Tag", b =>
                 {
-                    b.HasOne("MB.Domain.Entities.TagCategory", "TagCategory")
+                    b.HasOne("MB.Domain.TagCategoryAggregate.TagCategory", "TagCategory")
                         .WithMany("Tags")
                         .HasForeignKey("TagCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4958,9 +4953,9 @@ namespace MB.Persistence.Migrations
                     b.Navigation("TagCategory");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Task", b =>
+            modelBuilder.Entity("MB.Domain.TaskAggregate.Task", b =>
                 {
-                    b.HasOne("MB.Domain.Entities.TaskCategory", "TaskCategory")
+                    b.HasOne("MB.Domain.TaskCategoryAggregate.TaskCategory", "TaskCategory")
                         .WithMany("Tasks")
                         .HasForeignKey("TaskCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4969,7 +4964,7 @@ namespace MB.Persistence.Migrations
                     b.Navigation("TaskCategory");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Artist", b =>
+            modelBuilder.Entity("MB.Domain.ArtistAggregate.Artist", b =>
                 {
                     b.Navigation("ArtistStyles");
 
@@ -4978,14 +4973,14 @@ namespace MB.Persistence.Migrations
                     b.Navigation("MoodArtists");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Book", b =>
+            modelBuilder.Entity("MB.Domain.BookAggregate.Book", b =>
                 {
                     b.Navigation("BookFranchise");
 
                     b.Navigation("BookModel");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Franchise", b =>
+            modelBuilder.Entity("MB.Domain.FranchiseAggregate.Franchise", b =>
                 {
                     b.Navigation("BookFranchise");
 
@@ -4996,7 +4991,7 @@ namespace MB.Persistence.Migrations
                     b.Navigation("MoodFranchises");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Link", b =>
+            modelBuilder.Entity("MB.Domain.LinkAggregate.Link", b =>
                 {
                     b.Navigation("LinkArtists");
 
@@ -5005,17 +5000,17 @@ namespace MB.Persistence.Migrations
                     b.Navigation("LinkModels");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.LinkCategory", b =>
+            modelBuilder.Entity("MB.Domain.LinkCategoryAggregate.LinkCategory", b =>
                 {
                     b.Navigation("RLinkCategories");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Media", b =>
+            modelBuilder.Entity("MB.Domain.MediumAggregate.Media", b =>
                 {
                     b.Navigation("FranchiseMedias");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Model", b =>
+            modelBuilder.Entity("MB.Domain.ModelAggregate.Model", b =>
                 {
                     b.Navigation("BookModel");
 
@@ -5026,7 +5021,7 @@ namespace MB.Persistence.Migrations
                     b.Navigation("MoodModels");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Mood", b =>
+            modelBuilder.Entity("MB.Domain.MoodAggregate.Mood", b =>
                 {
                     b.Navigation("MoodArtists");
 
@@ -5037,22 +5032,22 @@ namespace MB.Persistence.Migrations
                     b.Navigation("MoodTags");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Style", b =>
+            modelBuilder.Entity("MB.Domain.StyleAggregate.Style", b =>
                 {
                     b.Navigation("ArtistStyles");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.Tag", b =>
+            modelBuilder.Entity("MB.Domain.TagAggregate.Tag", b =>
                 {
                     b.Navigation("MoodTags");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.TagCategory", b =>
+            modelBuilder.Entity("MB.Domain.TagCategoryAggregate.TagCategory", b =>
                 {
                     b.Navigation("Tags");
                 });
 
-            modelBuilder.Entity("MB.Domain.Entities.TaskCategory", b =>
+            modelBuilder.Entity("MB.Domain.TaskCategoryAggregate.TaskCategory", b =>
                 {
                     b.Navigation("Tasks");
                 });

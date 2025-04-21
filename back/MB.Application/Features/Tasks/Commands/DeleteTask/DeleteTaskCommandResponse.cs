@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Tasks.Commands.DeleteTask;
+﻿namespace MB.Application.Features.Tasks.Commands.DeleteTask;
 
 public class DeleteTaskCommandResponse : BaseResponse
 {

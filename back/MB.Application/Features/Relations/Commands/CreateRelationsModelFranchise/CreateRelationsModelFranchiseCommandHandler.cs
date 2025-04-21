@@ -1,6 +1,5 @@
 ﻿using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
-using MB.Application.Models;
 using MediatR;
 
 namespace MB.Application.Features.Relations.Commands.CreateRelationsModelFranchise;

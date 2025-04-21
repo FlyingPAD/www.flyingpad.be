@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Models.Queries.CountModels;
+﻿namespace MB.Application.Features.Models.Queries.CountModels;
 
 public class CountModelsQueryResponse : BaseResponse
 {

@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Styles.Queries.GetAllStyles;
+﻿namespace MB.Application.Features.Styles.Queries.GetAllStyles;
 
 public class GetAllStylesQueryResponse : BaseResponse
 {

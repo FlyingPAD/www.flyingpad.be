@@ -145,6 +145,7 @@ export class MoodService {
       return combineLatest([media$, tags$, models$, artists$, franchises$]).pipe(
         map(([mediaProps, tags, models, artists, franchises]) => ({
           ...mood,
+          url: mediaProps.url,
           ...mediaProps,
           relatedTags: tags,
           relatedModels: models,
@@ -160,7 +161,7 @@ export class MoodService {
     let storedMoodId = this.#storageService.getItem(StorageProperties.StateMoodId)
     if (storedMoodId != null) { this.#stateService.setMoodId(storedMoodId as number) }
   }
-
+  
   private getMoodsByFilter(filter: MoodFilter): Observable<MoodLight[]> {
     switch (filter.type) {
       case GalleryMode.Tag:

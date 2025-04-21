@@ -19,7 +19,7 @@
             </div>
     
             <div class="info-flex">
-                <input type="text" id="url" formControlName="url" placeholder="URL YouTube">
+                <input type="text" id="url" formControlName="url" placeholder="YouTube Video ID">
                 <div class="error" *ngIf="url?.touched && url?.invalid">
                     <small *ngIf="url?.errors?.['required']">L’URL est requise.</small>
                     <small *ngIf="url?.errors?.['pattern']">URL YouTube invalide.</small>

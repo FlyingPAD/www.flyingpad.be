@@ -1,8 +1,6 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Moods.Queries.GetMoodsByModel;
+﻿namespace MB.Application.Features.Moods.Queries.GetMoodsByModel;
 
 public class GetMoodsByModelQueryResponse : BaseResponse
 {
-    public List<GetMoodsByModelQueryDto> Moods { get; set; } = [];
+    public List<MoodLightDto> Moods { get; set; } = [];
 }

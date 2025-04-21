@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Statistics.Queries.GetStatistics;
+﻿namespace MB.Application.Features.Statistics.Queries.GetStatistics;
 
 public class GetStatisticsQueryResponse : BaseResponse
 {

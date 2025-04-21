@@ -47,10 +47,7 @@ export class EditMoodComponent implements OnDestroy {
   }
 
   public backToGallery(): void { this.#router.navigateByUrl('/central-gallery') }
-
-  public toggleDialog(): void {
-    this.#dialogService.toggleDialog()
-  }
+  public toggleDialog(): void { this.#dialogService.toggleDialog() }
 
   public onSave(): void {
     if (this.viewMode() === EditMoodViewMode.InfoView) this.updateMoodInfo()
@@ -133,6 +130,7 @@ export class EditMoodComponent implements OnDestroy {
       if (response.success) {
         this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
         this.#moodsGalleryService.setEditMoodViewMode(EditMoodViewMode.InfoView)
+        this.toggleDialog()
         this.backToGallery()
       }
     })

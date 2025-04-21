@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Users.Commands.CreateUser;
+﻿namespace MB.Application.Features.Users.Commands.CreateUser;
 
 public class CreateUserCommandResponse : BaseResponse
 {

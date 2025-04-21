@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
+using MB.Application;
 using MB.Application.Exceptions;
-using MB.Application.Models;
 using System.Text.Json;
 
 namespace MB.API.Middlewares;

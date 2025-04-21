@@ -1,4 +1,5 @@
-﻿using MB.Application.Features.Artists.Commands.CreateArtist;
+﻿using MB.Application;
+using MB.Application.Features.Artists.Commands.CreateArtist;
 using MB.Application.Features.Artists.Commands.DeleteArtist;
 using MB.Application.Features.Artists.Commands.UpdateArtist;
 using MB.Application.Features.Artists.Queries.CountArtists;
@@ -8,7 +9,6 @@ using MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 using MB.Application.Features.Artists.Queries.GetArtistsByMood;
 using MB.Application.Features.Artists.Queries.GetArtistsByStyle;
 using MB.Application.Features.Artists.Queries.GetArtistsPage;
-using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,5 +1,4 @@
-﻿using MB.Application.Models;
-using MediatR;
+﻿using MediatR;
 
 namespace MB.Application.Features.Models.Commands.DeleteModel;
 

@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Links.Commands.CreateLink;
+﻿namespace MB.Application.Features.Links.Commands.CreateLink;
 
 public class CreateLinkCommandResponse : BaseResponse
 {

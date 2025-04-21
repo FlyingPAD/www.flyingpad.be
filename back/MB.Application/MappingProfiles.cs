@@ -42,13 +42,7 @@ using MB.Application.Features.Models.Queries.GetModelsByMood;
 using MB.Application.Features.Moods.Commands.CreateMoodImage;
 using MB.Application.Features.Moods.Commands.DeleteMood;
 using MB.Application.Features.Moods.Commands.UpdateMood;
-using MB.Application.Features.Moods.Queries.GetAllMoods;
 using MB.Application.Features.Moods.Queries.GetMoodById;
-using MB.Application.Features.Moods.Queries.GetMoodsByArtist;
-using MB.Application.Features.Moods.Queries.GetMoodsByFranchise;
-using MB.Application.Features.Moods.Queries.GetMoodsByModel;
-using MB.Application.Features.Moods.Queries.GetMoodsByTag;
-using MB.Application.Features.Moods.Queries.GetMoodsByTagCategory;
 using MB.Application.Features.Moods.Queries.GetRandomMood;
 using MB.Application.Features.Styles.Commands.DeleteStyle;
 using MB.Application.Features.Styles.Commands.UpdateStyle;
@@ -102,14 +96,9 @@ public class MappingProfiles : Profile
         CreateMap<Mood, CreateMoodImageCommandResponse>().ReverseMap();
         CreateMap<Mood, UpdateMoodCommand>().ReverseMap();
         CreateMap<Mood, DeleteMoodCommand>().ReverseMap();
-        CreateMap<Mood, GetAllMoodsQueryDto>().ReverseMap();
+
         CreateMap<Mood, GetMoodByIdQueryDto>().ReverseMap();
         CreateMap<Mood, GetRandomMoodQueryDto>().ReverseMap();
-        CreateMap<Mood, GetMoodsByTagQueryDto>().ReverseMap();
-        CreateMap<Mood, GetMoodsByTagCategoryQueryDto>().ReverseMap();
-        CreateMap<Mood, GetMoodsByArtistQueryDto>().ReverseMap();
-        CreateMap<Mood, GetMoodsByModelQueryDto>().ReverseMap();
-        CreateMap<Mood, GetMoodsByFranchiseQueryDto>().ReverseMap();
 
         // Images.
         CreateMap<Image, GetOneImageDetailsQueryVm>().ReverseMap();

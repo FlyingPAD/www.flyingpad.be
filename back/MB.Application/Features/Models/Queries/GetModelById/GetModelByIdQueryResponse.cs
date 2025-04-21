@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Models.Queries.GetModelById;
+﻿namespace MB.Application.Features.Models.Queries.GetModelById;
 
 public class GetModelByIdQueryResponse : BaseResponse
 {

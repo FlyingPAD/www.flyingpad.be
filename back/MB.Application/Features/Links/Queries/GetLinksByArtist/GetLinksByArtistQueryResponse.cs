@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Links.Queries.GetLinksByArtist
+﻿namespace MB.Application.Features.Links.Queries.GetLinksByArtist
 {
     public class GetLinksByArtistQueryResponse : BaseResponse
     {

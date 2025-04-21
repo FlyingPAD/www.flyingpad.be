@@ -12,6 +12,11 @@ export interface MoodLight {
   description: string
   extension: string
   score: number
+  url?: string
+  width?: number
+  height?: number
+  duration?: number
+  size?: number
 }
 
 export interface MoodFull {
@@ -25,6 +30,7 @@ export interface MoodFull {
   description: string
   score: number
   extension: string
+  url?: string
 }
 
 export interface DetailedMood extends MoodFull {

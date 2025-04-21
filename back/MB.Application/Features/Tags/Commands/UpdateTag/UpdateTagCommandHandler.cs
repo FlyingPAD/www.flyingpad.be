@@ -1,5 +1,4 @@
-﻿using MB.Application.Models;
-using MediatR;
+﻿using MediatR;
 using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MB.Domain.TagAggregate;

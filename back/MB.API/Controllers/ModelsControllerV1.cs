@@ -1,4 +1,5 @@
-﻿using MB.Application.Features.Models.Commands.CreateModel;
+﻿using MB.Application;
+using MB.Application.Features.Models.Commands.CreateModel;
 using MB.Application.Features.Models.Commands.DeleteModel;
 using MB.Application.Features.Models.Commands.UpdateModel;
 using MB.Application.Features.Models.Queries.CountModels;
@@ -7,7 +8,6 @@ using MB.Application.Features.Models.Queries.GetModelById;
 using MB.Application.Features.Models.Queries.GetModelCheckBoxesByMood;
 using MB.Application.Features.Models.Queries.GetModelsByFranchise;
 using MB.Application.Features.Models.Queries.GetModelsByMood;
-using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

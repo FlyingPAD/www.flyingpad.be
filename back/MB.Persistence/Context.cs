@@ -35,11 +35,6 @@ public class Context(DbContextOptions<Context> options) : DbContext(options)
     public DbSet<Board> Boards { get; set; }
     public DbSet<Book> Books { get; set; }
 
-    // Extensions.
-    public DbSet<Document> ExtDocument { get; set; }
-    public DbSet<Image> ExtImage { get; set; }
-    public DbSet<Video> ExtVideo { get; set; }
-    public DbSet<VideoYouTube> ExtVideoYouTube { get; set; }
 
     // Relations.
     public DbSet<RelationArtistStyle> RArtistStyle { get; set; }

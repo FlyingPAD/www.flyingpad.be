@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core'
+import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core'
 import { MoodService } from '../../services/http/mood.service'
 import { Subject, takeUntil } from 'rxjs'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
@@ -18,6 +18,10 @@ export class CreateMoodVideoYoutubeComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>()
 
   public formGroup!: FormGroup
+
+  get name() { return this.formGroup.get('name') }
+  get description() { return this.formGroup.get('description') }
+  get url() { return this.formGroup.get('url') }
 
 
   ngOnInit(): void {
@@ -54,7 +58,12 @@ export class CreateMoodVideoYoutubeComponent implements OnInit, OnDestroy {
       })
   }
 
-  get name() { return this.formGroup.get('name') }
-  get description() { return this.formGroup.get('description') }
-  get url() { return this.formGroup.get('url') }
+  @HostListener('window:keydown', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Enter':
+        this.createYoutubeVideo()
+        break
+    }
+  }
 }

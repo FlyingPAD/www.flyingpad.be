@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Models.Commands.CreateModel;
+﻿namespace MB.Application.Features.Models.Commands.CreateModel;
 
 public class CreateModelCommandResponse : BaseResponse
 {

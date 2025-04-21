@@ -1,11 +1,11 @@
-﻿using MB.Application.Features.Medias.Commands.CreateMedium;
+﻿using MB.Application;
+using MB.Application.Features.Medias.Commands.CreateMedium;
 using MB.Application.Features.Medias.Commands.DeleteMedium;
 using MB.Application.Features.Medias.Commands.UpdateMedium;
 using MB.Application.Features.Medias.Queries.CountMedia;
 using MB.Application.Features.Medias.Queries.GetAllMedia;
 using MB.Application.Features.Medias.Queries.GetMediaCheckBoxesByFranchise;
 using MB.Application.Features.Medias.Queries.GetMediumById;
-using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

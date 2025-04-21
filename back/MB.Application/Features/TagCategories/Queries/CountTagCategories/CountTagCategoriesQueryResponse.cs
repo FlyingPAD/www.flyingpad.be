@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.TagCategories.Queries.CountTagCategories;
+﻿namespace MB.Application.Features.TagCategories.Queries.CountTagCategories;
 
 public class CountTagCategoriesQueryResponse : BaseResponse
 {

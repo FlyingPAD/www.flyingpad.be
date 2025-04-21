@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.Moods.Queries.CountMoods;
+﻿namespace MB.Application.Features.Moods.Queries.CountMoods;
 
 public class CountMoodsQueryResponse : BaseResponse
 {

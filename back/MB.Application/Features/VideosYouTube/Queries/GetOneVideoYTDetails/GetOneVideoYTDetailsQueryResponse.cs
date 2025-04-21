@@ -1,6 +1,4 @@
-﻿using MB.Application.Models;
-
-namespace MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetails;
+﻿namespace MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetails;
 
 public class GetOneVideoYTDetailsQueryResponse : BaseResponse
 {

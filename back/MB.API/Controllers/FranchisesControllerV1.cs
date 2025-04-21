@@ -1,4 +1,5 @@
-﻿using MB.Application.Features.Franchises.Commands.CreateFranchise;
+﻿using MB.Application;
+using MB.Application.Features.Franchises.Commands.CreateFranchise;
 using MB.Application.Features.Franchises.Commands.DeleteFranchise;
 using MB.Application.Features.Franchises.Commands.UpdateFranchise;
 using MB.Application.Features.Franchises.Queries.CountFranchises;
@@ -8,7 +9,6 @@ using MB.Application.Features.Franchises.Queries.GetFranchisesByModel;
 using MB.Application.Features.Franchises.Queries.GetFranchisesByMood;
 using MB.Application.Features.Franchises.Queries.GetFranchisesCheckBoxesByModel;
 using MB.Application.Features.Franchises.Queries.GetFranchisesList;
-using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
