@@ -323,6 +323,26 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         await _context.SaveChangesAsync();
     }
 
+    public async System.Threading.Tasks.Task AddSoundCloudAudioSpecificTags(AudioSoundCloud audioSoundCloud)
+    {
+        List<int> soundCloudAudioSpecificTags = [];
+
+        var tagAllFiles = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "# All Files");
+        if (tagAllFiles != null) soundCloudAudioSpecificTags.Add(tagAllFiles.EntityId);
+
+        var tagNewFile = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "New Files");
+        if (tagNewFile != null) soundCloudAudioSpecificTags.Add(tagNewFile.EntityId);
+
+        var relations = soundCloudAudioSpecificTags.Select(tagId => new RelationMoodTag
+        {
+            MoodId = audioSoundCloud.EntityId,
+            TagId = tagId
+        }).ToList();
+
+        await _context.RMoodTag.AddRangeAsync(relations);
+        await _context.SaveChangesAsync();
+    }
+
     public async System.Threading.Tasks.Task UpdateMultiTags(Guid[] moodIds, Guid[] tagsToAdd, Guid[] tagsToRemove)
     {
         var moodEntities = await _context.Moods

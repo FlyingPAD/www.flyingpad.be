@@ -23,6 +23,7 @@ public class MoodConfiguration : IEntityTypeConfiguration<Mood>
             .HasValue<Image>(1)
             .HasValue<Video>(2)
             .HasValue<Document>(3)
-            .HasValue<VideoYouTube>(4);
+            .HasValue<VideoYouTube>(4)
+            .HasValue<AudioSoundCloud>(5);
     }
 }

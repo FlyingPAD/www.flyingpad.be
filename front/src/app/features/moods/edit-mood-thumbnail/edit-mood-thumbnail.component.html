@@ -1,9 +1,18 @@
 <div class="thumbnail">
     @if(mood.type == 1){
-        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" (click)="handleBackToGallery()"/>
+        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}" (click)="handleBackToGallery()" />
     }
     @if(mood.type == 2){
-        <img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg" (click)="handleBackToGallery()"/>
+        <img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg" (click)="handleBackToGallery()" />
+    }
+    @if(mood.type == 3){
+        <img src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg" (click)="handleBackToGallery()" />
+    }
+    @if(mood.type == 4){
+        <img [src]="'https://img.youtube.com/vi/' + mood.url + '/hqdefault.jpg'" (click)="handleBackToGallery()" />
+    }
+    @if(mood.type == 5){
+        <img [src]="mood.thumbnailUrl" (click)="handleBackToGallery()" />
     }
 </div>
 

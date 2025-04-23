@@ -7,6 +7,7 @@
 	<ItemGroup>
 	  <None Remove="BaseResponse.cs~RFc9efcd0.TMP" />
 	  <None Remove="Features\Moods\Commands\CreateMoodYouTube\CreateMoodYouTubeCommandHandler.cs~RF23969e5.TMP" />
+	  <None Remove="Features\Moods\Commands\CreateMoodYouTube\CreateMoodYouTubeCommandResponse.cs~RFea8431.TMP" />
 	  <None Remove="Features\Moods\Queries\GetAllMoodsQueryDto .cs~RFc993477.TMP" />
 	  <None Remove="Features\Moods\Queries\GetAllMoodsQueryDto .cs~RFc9a1f15.TMP" />
 	  <None Remove="Features\Moods\Queries\GetCommonTagsByMoods\GetCommonTagsByMoodsQueryResponse.cs~RF22a0b05.TMP" />

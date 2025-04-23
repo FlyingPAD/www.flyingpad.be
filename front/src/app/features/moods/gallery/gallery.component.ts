@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { DetailedMood, MoodLight } from '../../../interfaces/mood';
 import { MenuService } from '../../../services/user-interface/menu.service';
@@ -42,6 +42,7 @@ export class GalleryComponent implements OnInit, OnChanges, OnDestroy {
   public currentPage = this.#paginationService.galleryCurrentPage
 
   public safeYouTubeUrl: SafeResourceUrl | null = null
+  public safeSoundCloudUrl: SafeResourceUrl | null = null
 
 
   ngOnInit(): void {
@@ -51,10 +52,12 @@ export class GalleryComponent implements OnInit, OnChanges, OnDestroy {
         .subscribe(() => this.resetPagination())
     }
 
+    this.updateSafeSoundCloudUrl()
     this.updateSafeYoutubeUrl()
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.updateSafeSoundCloudUrl()
     this.updateSafeYoutubeUrl()
   }
 
@@ -73,6 +76,17 @@ export class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     this.safeYouTubeUrl = this.#sanitizer.bypassSecurityTrustResourceUrl(
       `https://www.youtube.com/embed/${url}`
     )
+  }
+
+  private updateSafeSoundCloudUrl(): void {
+    // currentMood vient de DetailedMood, qui a embedUrl pour type 5
+    if (this.currentMood?.type === 5 && this.currentMood.embedUrl) {
+      this.safeSoundCloudUrl = this.#sanitizer.bypassSecurityTrustResourceUrl(
+        this.currentMood.embedUrl
+      )
+    } else {
+      this.safeSoundCloudUrl = null
+    }
   }
 
   private resetPagination(): void {

@@ -18,10 +18,11 @@ import { FranchiseLight, GetFranchisesByMoodResponse } from '../../interfaces/fr
 import { GetModelsByMoodResponse, GetModelsCheckBoxesByMoodResponse, ModelCheckBox, ModelLight } from '../../interfaces/model';
 import { GetTagsByMoodResponse, GetTagsCheckBoxesByMoodResponse, TagLight, TagsCheckBoxesList } from '../../interfaces/tag';
 import { StatisticsService } from './statistics.service';
-import { CreateMoodImageResponse, CreateMoodVideoResponse, CreateMoodYouTubeVideoResponse } from '../../interfaces/responses-create';
-import { ImageCreateForm, VideoCreateForm, YouTubeVideoCreateForm } from '../../interfaces/forms-create';
+import { CreateMoodImageResponse, CreateMoodSoundCloudAudioResponse, CreateMoodVideoResponse, CreateMoodYouTubeVideoResponse } from '../../interfaces/responses-create';
+import { ImageCreateForm, SoundCloudAudioCreateForm, VideoCreateForm, YouTubeVideoCreateForm } from '../../interfaces/forms-create';
 import { ActiveEntity, GalleryMode } from '../../enumerations/gallery-mode';
 import { MoodsGalleryService } from '../user-interface/moods-gallery.service';
+import { AudioSoundCloud, GetOneAudioSoundCloudDetailsResponse } from '../../interfaces/mood-audio-soundcloud';
 
 type MoodFilter =
   | { type: GalleryMode.Tag, id: number }
@@ -96,13 +97,19 @@ export class MoodService {
   #mood$ = this.#stateService.moodId$.pipe(
     startWith(undefined),
     switchMap(moodId => {
-      if (moodId == undefined) return this.getRandomMood()
-      else return this.getMoodById(moodId)
+      if (moodId == undefined) {
+        return this.getRandomMood();
+      } else {
+        return this.getMoodById(moodId);
+      }
     }),
     switchMap(mood => {
-      if (!mood || !mood.businessId) return of(undefined)
+      if (!mood || !mood.businessId) {
+        return of(undefined);
+      }
 
-      let media$: Observable<any>
+      let media$: Observable<any>;
+
       switch (mood.type) {
         case 1:
           media$ = this.getImage(mood.businessId).pipe(
@@ -112,8 +119,9 @@ export class MoodService {
               height: image?.height,
               size: image?.size
             }))
-          )
-          break
+          );
+          break;
+
         case 2:
           media$ = this.getVideo(mood.businessId).pipe(
             map(video => ({
@@ -123,39 +131,54 @@ export class MoodService {
               duration: video?.duration,
               size: video?.size
             }))
-          )
-          break
+          );
+          break;
+
         case 4:
           media$ = this.getVideoYoutube(mood.businessId).pipe(
             map(videoYouTube => ({
               mediaType: 'VideoYouTube',
               url: videoYouTube?.url
             }))
-          )
-          break
+          );
+          break;
+
+        case 5:
+          media$ = this.getAudioSoundCloud(mood.businessId).pipe(
+            map(audio => ({
+              mediaType: 'AudioSoundCloud',
+              url: audio?.url,
+              embedUrl: audio?.embedUrl,           // ← on récupère l’URL du player
+              thumbnailUrl: audio?.thumbnailUrl    // ← on récupère la vignette
+            }))
+          );
+          break;
+
         default:
-          media$ = of({})
+          media$ = of({});
       }
 
-      const tags$ = this.getTagsByMood(mood.businessId)
-      const models$ = this.getModelsByMood(mood.businessId)
-      const artists$ = this.getArtistsByMood(mood.businessId)
-      const franchises$ = this.getFranchisesByMood(mood.businessId)
+      const tags$ = this.getTagsByMood(mood.businessId);
+      const models$ = this.getModelsByMood(mood.businessId);
+      const artists$ = this.getArtistsByMood(mood.businessId);
+      const franchises$ = this.getFranchisesByMood(mood.businessId);
 
       return combineLatest([media$, tags$, models$, artists$, franchises$]).pipe(
         map(([mediaProps, tags, models, artists, franchises]) => ({
           ...mood,
           url: mediaProps.url,
+          embedUrl: mediaProps.embedUrl,         // ← injection dans DetailedMood
+          thumbnailUrl: mediaProps.thumbnailUrl, // ← idem
           ...mediaProps,
           relatedTags: tags,
           relatedModels: models,
           relatedArtists: artists,
           relatedFranchises: franchises
         }))
-      )
+      );
     }),
     startWith(undefined)
-  )
+  );
 
   constructor() {
     let storedMoodId = this.#storageService.getItem(StorageProperties.StateMoodId)
@@ -318,6 +341,15 @@ export class MoodService {
       catchError(() => of(undefined)))
   }
 
+  public getAudioSoundCloud(businessId: number): Observable<AudioSoundCloud | undefined> {
+    return this.#http.get<GetOneAudioSoundCloudDetailsResponse>(`${this.#url}AudioSoundCloud/GetOneDetails/${businessId}`).pipe(
+      tap(response => {
+        if (!response.success) this.#notificationService.error(response.message)
+      }),
+      map(response => response.audioSoundCloud),
+      catchError(() => of(undefined)))
+  }
+
   public getTagsCheckBoxesByMood(moodId: number): Observable<TagsCheckBoxesList[]> {
     return this.#http.get<GetTagsCheckBoxesByMoodResponse>(`${this.#url}Tags/GetCheckBoxesByMood/${moodId}`).pipe(
       tap(response => {
@@ -391,6 +423,19 @@ export class MoodService {
         else this.#notificationService.error(response.message)
       }),
       catchError(() => of({ success: false, message: 'Error', moodId: undefined } as CreateMoodYouTubeVideoResponse)))
+  }
+
+  public createSoundCloudAudio(form: SoundCloudAudioCreateForm): Observable<CreateMoodSoundCloudAudioResponse> {
+    return this.#http.post<CreateMoodSoundCloudAudioResponse>(`${this.#url}Moods/CreateMoodAudioSoundCloud`, form).pipe(
+      tap(response => {
+        if (response.success) {
+          this.#refreshMoods$.next()
+          this.#stateService.setMoodId(response.moodId)
+          this.#statisticsService.refreshStatistics()
+        }
+        else this.#notificationService.error(response.message)
+      }),
+      catchError(() => of({ success: false, message: 'Error', moodId: undefined } as CreateMoodSoundCloudAudioResponse)))
   }
 
   public updateMood(form: MoodUpdateForm): Observable<BaseResponse> {

@@ -14,6 +14,7 @@ public static class InfrastructureServiceRegistration
         services.AddScoped<EmailJob>();
 
         services.AddHttpClient();
+        services.AddTransient<ISoundCloudService, SoundCloudOembedService>();
 
         return services;
     }

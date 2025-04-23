@@ -6,6 +6,9 @@
 		<UserSecretsId>ab38e41c-cf7c-44b9-a838-1d3d0a1186c0</UserSecretsId>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Controllers\VideoYouTubeControllerV1.cs~RFf938b8.TMP" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<_ContentIncludedByDefault Remove="appsettings.Production.json" />
@@ -18,20 +21,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MediatR" Version="12.4.1" />
+		<PackageReference Include="MediatR" Version="12.5.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
-		<PackageReference Include="Serilog" Version="4.0.2" />
-		<PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
-		<PackageReference Include="Serilog.Sinks.Async" Version="2.0.0" />
+		<PackageReference Include="Serilog" Version="4.2.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+		<PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" />
 		<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.4">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="System.Text.Json" Version="8.0.5" />
+		<PackageReference Include="System.Text.Json" Version="9.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>

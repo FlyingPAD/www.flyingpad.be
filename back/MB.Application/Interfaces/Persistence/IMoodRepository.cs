@@ -20,4 +20,5 @@ public interface IMoodRepository : IBaseRepository<Mood>
     System.Threading.Tasks.Task AddImageSpecificTags(Image image);
     System.Threading.Tasks.Task AddVideoSpecificTags(Video video);
     System.Threading.Tasks.Task AddYouTubeVideoSpecificTags(VideoYouTube youTubeVideo);
+    System.Threading.Tasks.Task AddSoundCloudAudioSpecificTags(AudioSoundCloud soundCloudAudio);
 }

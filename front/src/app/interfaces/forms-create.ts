@@ -29,6 +29,12 @@ export interface YouTubeVideoCreateForm {
     url: string
 }
 
+export interface SoundCloudAudioCreateForm {
+    name: string
+    description: string
+    url: string
+}
+
 export interface TagCategoryCreateForm {
     name : string
     description : string
