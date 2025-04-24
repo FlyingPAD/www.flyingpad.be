@@ -41,9 +41,10 @@
                             (click)="selectionToggle(mood.businessId)" />
                     </div>
                     <div *ngIf="mood.type == 4">
-                        <img class="vid-youtube" [class.active]="checkIfSelected(mood.businessId)"
-                            [src]="'https://img.youtube.com/vi/' + mood.url + '/hqdefault.jpg'"
-                            (click)="selectionToggle(mood.businessId)" />
+                        <img class="vid-youtube" [class.active]="checkIfSelected(mood.businessId)" [src]="'https://img.youtube.com/vi/' + mood.url + '/hqdefault.jpg'" (click)="selectionToggle(mood.businessId)" />
+                    </div>
+                    <div *ngIf="mood.type == 5">
+                        <img [class.active]="checkIfSelected(mood.businessId)" [src]="mood.thumbnailUrl" (click)="selectionToggle(mood.businessId)"  />
                     </div>
                     <div class="mood-score">
                         {{ mood.score }}
