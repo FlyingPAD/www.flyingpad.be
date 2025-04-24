@@ -1,5 +1,4 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Features.Moods.Mapper;
 using MB.Application.Interfaces.Persistence;
 using MediatR;
 

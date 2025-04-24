@@ -6,6 +6,7 @@ using MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 using MB.Application.Features.Artists.Queries.GetArtistsByMood;
 using MB.Application.Features.Artists.Queries.GetArtistsByStyle;
 using MB.Application.Features.Artists.Queries.GetArtistsPage;
+using MB.Application.Features.AudioSoundCloud.Queries.GetSoundCloudAudioById;
 using MB.Application.Features.Franchises.Commands.DeleteFranchise;
 using MB.Application.Features.Franchises.Commands.UpdateFranchise;
 using MB.Application.Features.Franchises.Queries.GetFranchiseById;
@@ -108,6 +109,9 @@ public class MappingProfiles : Profile
 
         // Videos YouTube.
         CreateMap<VideoYouTube, GetOneVideoYTDetailsQueryDto>().ReverseMap();
+
+        // Audio SoundCloud.
+        CreateMap<AudioSoundCloud, GetSoundCloudAudioByIdQueryDto>().ReverseMap();
 
         // Tag Categories.
         CreateMap<TagCategory, DeleteTagCategoryCommand>().ReverseMap();

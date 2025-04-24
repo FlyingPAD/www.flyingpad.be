@@ -1,8 +1,6 @@
 ﻿using MB.Application.Features.Moods.Queries;
 using MB.Domain.MoodAggregate;
 
-namespace MB.Application.Features.Moods.Mapper;
-
 public static class MoodMapper
 {
     public static List<MoodLightDto> ToListItemDtos(IEnumerable<Mood> moods)
@@ -18,11 +16,13 @@ public static class MoodMapper
                 Description = m.Description,
                 Extension = m.Extension,
                 Score = m.Score,
-                Url = null,
                 Width = null,
                 Height = null,
                 Duration = null,
-                Size = null
+                Size = null,
+                Url = null,
+                ThumbnailUrl = null,
+                EmbedUrl = null
             };
 
             switch (m)
@@ -45,7 +45,14 @@ public static class MoodMapper
                     break;
 
                 case VideoYouTube yt:
+                    // Url stocke ici l'ID YouTube
                     dto.Url = yt.Url;
+                    break;
+
+                case MB.Domain.MoodAggregate.AudioSoundCloud sc:
+                    // On alimente les deux nouvelles props
+                    dto.ThumbnailUrl = sc.ThumbnailUrl;
+                    dto.EmbedUrl = sc.EmbedUrl;
                     break;
             }
 

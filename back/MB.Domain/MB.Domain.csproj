@@ -6,5 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="AuditableEntity.cs~RF2611606.TMP" />
+    <None Remove="MoodAggregate\AudioSoundCloud.cs~RF2bd0a8d.TMP" />
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@ using MB.Application.Features.Moods.Commands.CreateMood;
 using MB.Application.Features.Moods.Commands.CreateMoodImage;
 using MB.Application.Features.Moods.Commands.CreateMoodVideo;
 using MB.Application.Features.Moods.Commands.CreateMoodYouTube;
+using MB.Application.Features.Moods.Commands.CreateSoundCloudAudio;
 using MB.Application.Features.Moods.Commands.DeleteMood;
 using MB.Application.Features.Moods.Commands.MultiTags;
 using MB.Application.Features.Moods.Commands.UpdateMood;
@@ -33,23 +34,28 @@ public class MoodsControllerV1(IMediator mediator) : ControllerBase
 
     [HttpPost("Create")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<CreateMoodCommandResponse>> Create([FromBody] CreateMoodCommand createMoodCommand)
-        => Ok(await _mediator.Send(createMoodCommand));
+    public async Task<ActionResult<CreateMoodCommandResponse>> Create([FromBody] CreateMoodCommand command)
+        => Ok(await _mediator.Send(command));
 
     [HttpPost("CreateMoodImage")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<CreateMoodImageCommandResponse>> CreateImage([FromBody] CreateMoodImageCommand createMoodImageCommand)
-        => Ok(await _mediator.Send(createMoodImageCommand));
+    public async Task<ActionResult<CreateMoodImageCommandResponse>> CreateImage([FromBody] CreateMoodImageCommand command)
+        => Ok(await _mediator.Send(command));
 
     [HttpPost("CreateMoodVideo")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<CreateMoodVideoCommandResponse>> CreateVideo([FromBody] CreateMoodVideoCommand createMoodVideoCommand)
-    => Ok(await _mediator.Send(createMoodVideoCommand));
+    public async Task<ActionResult<CreateMoodVideoCommandResponse>> CreateVideo([FromBody] CreateMoodVideoCommand command)
+        => Ok(await _mediator.Send(command));
 
     [HttpPost("CreateMoodVideoYouTube")]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<ActionResult<CreateMoodYouTubeCommandResponse>> CreateVideoYouTube([FromBody] CreateMoodYouTubeCommand createMoodYouTubeCommand)
-    => Ok(await _mediator.Send(createMoodYouTubeCommand));
+    public async Task<ActionResult<CreateMoodYouTubeCommandResponse>> CreateVideoYouTube([FromBody] CreateMoodYouTubeCommand command)
+        => Ok(await _mediator.Send(command));
+
+    [HttpPost("CreateMoodAudioSoundCloud")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    public async Task<ActionResult<CreateSoundCloudAudioCommandResponse>> CreateAudioSoundCloud([FromBody] CreateSoundCloudAudioCommand command)
+        => Ok(await _mediator.Send(command));
 
     [HttpGet("Count")]
     public async Task<ActionResult<CountMoodsQueryResponse>> Count()
@@ -73,7 +79,7 @@ public class MoodsControllerV1(IMediator mediator) : ControllerBase
 
     [HttpGet("GetByTagCategory/{tagCategoryId}")]
     public async Task<ActionResult<GetMoodsByTagCategoryQueryResponse>> GetByTagCategory(Guid tagCategoryId)
-    => Ok(await _mediator.Send(new GetMoodsByTagCategoryQuery { TagCategoryId = tagCategoryId }));
+        => Ok(await _mediator.Send(new GetMoodsByTagCategoryQuery { TagCategoryId = tagCategoryId }));
 
     [HttpGet("GetByArtist/{artistId}")]
     public async Task<ActionResult<GetMoodsByArtistQueryResponse>> GetByArtist(Guid artistId)
@@ -99,7 +105,7 @@ public class MoodsControllerV1(IMediator mediator) : ControllerBase
     [HttpPost("MultiTags")]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<ActionResult<BaseResponse>> MultiTags([FromBody] MultiTagsCommand command)
-    => Ok(await _mediator.Send(command));
+        => Ok(await _mediator.Send(command));
 
     [HttpPut("UpdateScore")]
     [Authorize(AuthenticationSchemes = "Bearer")]

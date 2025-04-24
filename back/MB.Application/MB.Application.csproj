@@ -10,6 +10,7 @@
 	  <None Remove="Features\Moods\Queries\GetAllMoodsQueryDto .cs~RFc993477.TMP" />
 	  <None Remove="Features\Moods\Queries\GetAllMoodsQueryDto .cs~RFc9a1f15.TMP" />
 	  <None Remove="Features\Moods\Queries\GetCommonTagsByMoods\GetCommonTagsByMoodsQueryResponse.cs~RF22a0b05.TMP" />
+	  <None Remove="Features\Moods\Queries\MoodLightDto.cs~RF2c00937.TMP" />
 	  <None Remove="Features\Users\Queries\GetUserById\GetUserByIdQueryResponse.cs~RF24afae8.TMP" />
 	</ItemGroup>
 
