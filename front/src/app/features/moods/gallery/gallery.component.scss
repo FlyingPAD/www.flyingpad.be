@@ -139,11 +139,25 @@
             border: none;
         }
     }
+
+    .type-5 {
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .type-4 iframe {
+            max-width: 100%;
+            max-height: 100%;
+            border: none;
+        }
+    }
 }
 
 @media (max-width: 768px) {
     .viewer {
-        .type-1 {                
+        .type-1 {
             width: 100%;
             height: auto;
 
@@ -152,6 +166,7 @@
                 height: auto;
             }
         }
+
         .type-2 {
             width: 100%;
             height: auto;
