@@ -12,6 +12,10 @@ export interface CreateMoodYouTubeVideoResponse extends BaseResponse {
     moodId?: number
 }
 
+export interface CreateMoodSoundCloudAudioResponse extends BaseResponse {
+    moodId?: number
+}
+
 export interface CreateTagCategoryResponse extends BaseResponse {
     tagCategoryId?: number
 }
