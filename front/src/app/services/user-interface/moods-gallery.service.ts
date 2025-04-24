@@ -28,7 +28,7 @@ export class MoodsGalleryService {
   
 
   public moodSizeToggle = signal<boolean>(false)
-  public moodInfoToggle = signal<boolean>(true)
+  public moodInfoToggle = signal<boolean>(false)
 
 
   constructor() {
