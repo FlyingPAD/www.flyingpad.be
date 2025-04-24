@@ -34,6 +34,7 @@ import { CentralGalleryComponent } from './pages/central-gallery/central-gallery
 import { EditMoodComponent } from './pages/edit-mood/edit-mood.component';
 import { MultiTagComponent } from './pages/multi-tag/multi-tag.component';
 import { CreateMoodVideoYoutubeComponent } from './pages/create-mood-video-youtube/create-mood-video-youtube.component';
+import { CreateMoodAudioSoundcloudComponent } from './pages/create-mood-audio-soundcloud/create-mood-audio-soundcloud.component';
 
 const routes: Routes = [
   // Layout ' Home '.
@@ -62,6 +63,7 @@ const routes: Routes = [
       { path: 'moods/create-mood-image', component: CreateMoodImageComponent, title: 'Flying PAD | Create Image(s)' },
       { path: 'moods/create-mood-video', component: CreateMoodVideoComponent, title: 'Flying PAD | Create Video(s)' },
       { path: 'moods/create-mood-video-youtube', component: CreateMoodVideoYoutubeComponent, title: 'Flying PAD | Create YouTube Video(s)' },
+      { path: 'moods/create-mood-audio-soundcloud', component: CreateMoodAudioSoundcloudComponent, title: 'Flying PAD | Create SoundCloud Audio' },
       { path: 'moods/edit-mood', component: EditMoodComponent, title: 'Flying PAD | Edit Mood' },
       { path: 'tags', component: TagsComponent, title: 'Flying PAD | Tags Gallery' },
       { path: 'media', component: MediaComponent, title: 'Flying PAD | Media' },
