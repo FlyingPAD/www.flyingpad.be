@@ -5,6 +5,8 @@
         "update": "Update",
         "add-image": "Add Image(s)",
         "add-video": "Add Video(s)",
+        "add-video-youtube": "Add YouTube Video",
+        "add-audio-soundcloud": "Add SoundCloud Audio",
         "full-flow": "Full Flow",
         "display-mode": "Display Mode",
         "window-size": "Window Size",

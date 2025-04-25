@@ -19,7 +19,6 @@
         </p>
       </div>
     </div>
-
     <div class="box link tweak" routerLink="/tags/edition">
       <div class="group">
         <div class="group-icon">
@@ -33,7 +32,6 @@
         <p>{{ statistics()?.totalTagCategories }}</p>
       </div>
     </div>
-
     <div class="box link tweak" routerLink="/models/edition">
       <div class="group">
         <div class="group-icon">
@@ -52,7 +50,6 @@
         <p>{{ statistics()?.malesPercentage | number:'1.2-2' }} % ( {{ statistics()?.totalMales | number:'3.0' }} )</p>
       </div>
     </div>
-
     <div class="box link tweak" routerLink="/artists/edition">
       <div class="group">
         <div class="group-icon">
@@ -70,7 +67,6 @@
         <p>{{ statistics()?.totalRelationsArtistStyle }}</p>
       </div>
     </div>
-
     <div class="box tweak">
       <div class="group">
         <p>Relations Mood / Tag :</p>
@@ -85,7 +81,6 @@
         <p>{{ statistics()?.totalRelationsMoodArtist | number:'3.0' }}</p>
       </div>
     </div>
-
     <div class="box link tweak" routerLink="/franchises/edition">
       <div class="group">
         <div class="group-icon">
@@ -103,7 +98,6 @@
         <p>{{ statistics()?.totalRelationsFranchiseMedium }}</p>
       </div>
     </div>
-
     <div class="box tweak">
       <div class="group">
         <p>Relations Franchise / Model :</p>
@@ -114,7 +108,6 @@
         <p>{{ statistics()?.totalRelationsMoodFranchise }}</p>
       </div>
     </div>
-
     <div class="box link tweak" routerLink="/links/edition">
       <div class="group">
         <div class="group-icon">
@@ -132,7 +125,6 @@
         <p>{{ statistics()?.totalRelationsLinkCategory }}</p>
       </div>
     </div>
-
     <div class="box tweak">
       <div class="group">
         <p>Relations Link / Artist :</p>
@@ -143,14 +135,17 @@
         <p>{{ statistics()?.totalRelationsLinkModel }}</p>
       </div>
     </div>
-
     <div class="box tweak">
       <div class="group">
         <p><b>Total Users</b> :</p>
         <p><b>{{ statistics()?.totalUsers }}</b></p>
       </div>
     </div>
+  </div>
+</div>
 
+<div class="main-frame">
+  <div class="statistics">
     <div class="box link tweak" routerLink="/moods/create-mood-image">
       <div class="group">
         <div class="group-icon">
@@ -159,7 +154,6 @@
         </div>
       </div>
     </div>
-
     <div class="box link tweak" routerLink="/moods/create-mood-video">
       <div class="group">
         <div class="group-icon">
@@ -168,24 +162,21 @@
         </div>
       </div>
     </div>
-
     <div class="box link tweak" routerLink="/moods/create-mood-video-youtube">
       <div class="group">
         <div class="group-icon">
-          <app-icon-mood class="img" size="30px" />
-          <p>Ajouter Vidéo YouTube</p>
+          <app-icon-mood color="#db0000" class="img" size="30px" />
+          <p>{{ 'title.add-video-youtube' | translate }}</p>
         </div>
       </div>
     </div>
-
     <div class="box link tweak" routerLink="/moods/create-mood-audio-soundcloud">
       <div class="group">
         <div class="group-icon">
-          <app-icon-mood class="img" size="30px" />
-          <p>Ajouter Audio SoundCloud</p>
+          <app-icon-mood color="#db7901" class="img" size="30px" />
+          <p>{{ 'title.add-audio-soundcloud' | translate }}</p>
         </div>
       </div>
     </div>
-    
   </div>
 </div>

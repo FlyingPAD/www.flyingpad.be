@@ -22,13 +22,13 @@
                 (click)="handleSetMood(mood.businessId)" />
             }
             @if(mood.type == 4) {
-            <img class="vid-youtube" [class.active]="currentMood?.businessId === mood.businessId"
+            <img class="youtube" [class.active]="currentMood?.businessId === mood.businessId"
                 [appScrollActive]="currentMood?.businessId === mood.businessId"
                 [src]="'https://img.youtube.com/vi/' + mood.url + '/hqdefault.jpg'"
                 (click)="handleSetMood(mood.businessId)" />
             }
             @if(mood.type == 5) {
-            <img [class.active]="currentMood?.businessId === mood.businessId"
+            <img class="soundcloud" [class.active]="currentMood?.businessId === mood.businessId"
                 [appScrollActive]="currentMood?.businessId === mood.businessId" [src]="mood.thumbnailUrl"
                 (click)="handleSetMood(mood.businessId)" />
             }
