@@ -45,8 +45,18 @@
             box-shadow: 0 0 0 1px var(--colorMain);
         }
 
-        .vid-youtube {
+        .youtube {
             box-shadow: 0 0 0 1px red;
+        }
+        .youtube:hover {
+            border: 10px solid red;
+        }
+
+        .soundcloud {
+            box-shadow: 0 0 0 1px darkorange;
+        }
+        .soundcloud:hover {
+            border: 10px solid darkorange;
         }
 
         .active {
@@ -60,36 +70,6 @@
 
 .menu-open {
     margin-right: 330px;
-}
-
-@media screen and (max-width: 550px) {
-    .gallery {
-        columns: 2;
-    }
-}
-
-@media screen and (min-width: 550px) and (max-width: 850px) {
-    .gallery {
-        columns: 3;
-    }
-}
-
-@media screen and (min-width: 850px) and (max-width: 1150px) {
-    .gallery {
-        columns: 4;
-    }
-}
-
-@media screen and (min-width: 1150px) and (max-width: 1500px) {
-    .gallery {
-        columns: 2;
-    }
-}
-
-@media screen and (max-width: 1150px) {
-    .gallery {
-        margin: 0;
-    }
 }
 
 .viewer {
@@ -158,6 +138,36 @@
             border: none;
             transition: width 0.3s ease;
         }
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .gallery {
+        columns: 2;
+    }
+}
+
+@media screen and (min-width: 550px) and (max-width: 850px) {
+    .gallery {
+        columns: 3;
+    }
+}
+
+@media screen and (min-width: 850px) and (max-width: 1150px) {
+    .gallery {
+        columns: 4;
+    }
+}
+
+@media screen and (min-width: 1150px) and (max-width: 1500px) {
+    .gallery {
+        columns: 2;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .gallery {
+        margin: 0;
     }
 }
 
