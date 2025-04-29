@@ -169,6 +169,16 @@ export class CentralGalleryComponent {
     this.isShuffleActive = false
   }
 
+  public validateDescription(separator: boolean, description: string | undefined): string {
+    if (description && description != "..." && description != "") {
+      if(separator) {
+        return "| " + description
+      }
+      else return "- " + description
+    } 
+    else return "" 
+  }
+
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) {
     switch (event.key) {

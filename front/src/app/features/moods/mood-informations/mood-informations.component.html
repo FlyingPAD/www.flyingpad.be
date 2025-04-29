@@ -36,17 +36,17 @@
         <p>{{ mood?.score | number : '3.0'}}</p>
     </div>
 
-    <div class="flex">
-        <p>{{ 'title.size' | translate }}</p>
-        <p>{{ typeCheck(mood).size | formatSize:2 }}</p>
-    </div>
-
-    <div class="flex">
-        <p>Extension</p>
-        <p>*.{{ typeCheck(mood).extension }}</p>
-    </div>
-
     @if(mood?.type === 1 || mood?.type === 2) {
+        <div class="flex">
+            <p>{{ 'title.size' | translate }}</p>
+            <p>{{ typeCheck(mood).size | formatSize:2 }}</p>
+        </div>
+    
+        <div class="flex">
+            <p>Extension</p>
+            <p>*.{{ typeCheck(mood).extension }}</p>
+        </div>
+
         <div class="flex">
             <p>{{ 'title.height' | translate }}</p>
             <p>{{ typeCheck(mood).height }} pixels</p>

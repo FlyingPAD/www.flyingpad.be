@@ -10,6 +10,12 @@
         align-items: flex-start;
     }
 
+    .tags-wrapper {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
     .tags-card {
         width: 247px;
         border: 1px solid var(--colorMainOpacity3);
@@ -20,7 +26,6 @@
 
         .tags-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             background-color: var(--colorMainOpacity2);
             padding: 8px 10px;
@@ -31,49 +36,45 @@
             }
 
             h3 {
+                flex: 1;
                 font-size: 13px;
-                font-weight: initial;
                 color: var(--colorMain);
                 margin: 0;
-                overflow: hidden;
                 white-space: nowrap;
+                overflow: hidden;
                 text-overflow: ellipsis;
             }
 
-            .tags-actions {
-                button {
-                    background: none;
-                    border: none;
-                    cursor: pointer;
-                    padding: 5px;
-                    font-size: 16px;
-                    color: var(--colorMain);
-                    transition: color 0.3s ease;
+            .toggle-category {
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 5px;
+                transition: color 0.3s ease;
 
-                    &:hover {
-                        color: var(--colorMainOpacity7);
-                    }
+                &:hover {
+                    color: var(--colorMainOpacity7);
+                }
 
-                    .arrow {
-                        display: inline-block;
-                        width: 8px;
-                        height: 8px;
-                        border: solid var(--colorMain);
-                        border-width: 0 2px 2px 0;
-                        transform: rotate(45deg);
-                        transition: transform 0.3s ease;
-                    }
+                .arrow {
+                    display: inline-block;
+                    width: 8px;
+                    height: 8px;
+                    border: solid var(--colorMain);
+                    border-width: 0 2px 2px 0;
+                    transform: rotate(45deg);
+                    transition: transform 0.3s ease;
+                }
 
-                    .arrow.expanded {
-                        transform: rotate(225deg);
-                    }
+                .arrow.expanded {
+                    transform: rotate(225deg);
                 }
             }
-        }
 
-        .tags-header:hover {
-            background-color: var(--colorMainOpacity1);
-            transition-duration: 300ms;
+            &:hover {
+                background-color: var(--colorMainOpacity1);
+                transition-duration: 300ms;
+            }
         }
 
         .tags-content {
@@ -92,23 +93,36 @@
                         color: var(--colorMain);
                         text-decoration: none;
                         padding: 4px;
-                        border: 1px solid transparent;
                         border-radius: 3px;
                         cursor: pointer;
                     }
 
                     a:hover {
                         text-decoration: underline;
-                        transition-duration: 300ms;
                     }
 
                     a.active {
                         background-color: var(--colorMain);
                         color: var(--colorWhite);
-                        transition-duration: 300ms;
                     }
                 }
             }
+        }
+    }
+
+    .navigate-category {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        transition: color 0.3s ease;
+        align-self: center;
+        /* centre vertical sur la carte */
+        font-size: 16px;
+        color: var(--colorMain);
+
+        &:hover {
+            color: var(--colorMainOpacity7);
         }
     }
 }

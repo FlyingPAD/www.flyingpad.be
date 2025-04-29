@@ -59,12 +59,10 @@
     <app-the-octave *ngSwitchCase="viewModes.TheOctave" />
 </ng-container>    
 
-<app-spacer height="200px" />
+<app-spacer />
 
-@if(displayInfo().mode === displayModes.Mobile) {
-    <app-bottom-bar>
-        <app-bottom-icon-back />
-        <app-bottom-icon-to-top />
-        <app-bottom-toggle-right-menu />
-    </app-bottom-bar>
-}
+<app-bottom-bar>
+    <app-bottom-icon-back />
+    <app-bottom-icon-to-top />
+    <app-bottom-toggle-right-menu />
+</app-bottom-bar>

@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ButtonTopService } from '../../services/user-interface/button-top.service';
 import { ActiveEntity, GalleryMode } from '../../enumerations/gallery-mode';
 import { MoodsGalleryService } from '../../services/user-interface/moods-gallery.service';
 import { GalleryType } from '../../enumerations/gallery-type';
@@ -13,12 +12,11 @@ import { StateService } from '../../services/custom-state/state.service';
   templateUrl: './media.component.html',
   styleUrls: ['./media.component.scss']
 })
-export class MediaComponent implements OnInit, OnDestroy {
+export class MediaComponent implements OnInit {
   #stateService = inject(StateService)
   #franchiseService = inject(FranchiseService)
   #modelService = inject(ModelService)
   #moodsGalleryService = inject(MoodsGalleryService)
-  #buttonTopService = inject(ButtonTopService)
   #router = inject(Router)
 
   public franchisesFlow = this.#franchiseService.franchisesFlow
@@ -29,12 +27,7 @@ export class MediaComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.#buttonTopService.setShowButtonTop(true)
     this.focusOnSelectedItem()
-  }
-
-  ngOnDestroy(): void {
-    this.#buttonTopService.setShowButtonTop(false)
   }
 
   public isMediumExpanded(mediumId: number): boolean {

@@ -1,4 +1,5 @@
 <app-spacer height="5px" />
+
 <div class="media-container">
     <div *ngFor="let medium of franchisesFlow()?.mediaList" class="media-category">
         <div [appScrollActive]="isMediumExpanded(medium.businessId)" scrollPosition="top" [scrollOffset]="100"
@@ -49,4 +50,10 @@
         </div>
     </div>
 </div>
-<app-spacer height="150px" />
+
+<app-spacer />
+
+<app-bottom-bar>
+    <app-bottom-icon-back />
+    <app-bottom-icon-to-top />
+</app-bottom-bar>
