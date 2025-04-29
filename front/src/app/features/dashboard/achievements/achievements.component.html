@@ -5,7 +5,7 @@
     @for(achievement of achievements; track achievement.id) {
     @if(achievement.category === 'standard') {
     @if(achievement.unlocked) {
-    <div class="achievement" (click)="displayAchievement(achievement)">
+    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
       <div class="icon done">
         <app-icon-coin size="75px" />
       </div>
@@ -13,7 +13,7 @@
     </div>
     }
     @else {
-    <div class="achievement" (click)="displayAchievement(achievement)">
+    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
       <div class="icon">
         <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
       </div>
@@ -35,7 +35,7 @@
     @for(achievement of achievements; track achievement.id) {
     @if(achievement.category === 'notes-bass') {
     @if(achievement.unlocked) {
-    <div class="achievement" (click)="displayAchievement(achievement)">
+    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
       <div class="icon done">
         <app-icon-coin size="75px" />
       </div>
@@ -43,7 +43,7 @@
     </div>
     }
     @else {
-    <div class="achievement" (click)="displayAchievement(achievement)">
+    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
       <div class="icon">
         <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
       </div>
@@ -63,7 +63,7 @@
     @for(achievement of achievements; track achievement.id) {
     @if(achievement.category === 'notes-alto') {
     @if(achievement.unlocked) {
-    <div class="achievement" (click)="displayAchievement(achievement)">
+    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
       <div class="icon done">
         <app-icon-coin size="75px" />
       </div>
@@ -71,7 +71,7 @@
     </div>
     }
     @else {
-    <div class="achievement" (click)="displayAchievement(achievement)">
+    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
       <div class="icon">
         <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
       </div>
@@ -91,7 +91,7 @@
     @for(achievement of achievements; track achievement.id) {
     @if(achievement.category === 'notes-treble') {
     @if(achievement.unlocked) {
-    <div class="achievement" (click)="displayAchievement(achievement)">
+    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
       <div class="icon done">
         <app-icon-coin size="75px" />
       </div>
@@ -99,7 +99,7 @@
     </div>
     }
     @else {
-    <div class="achievement" (click)="displayAchievement(achievement)">
+    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
       <div class="icon">
         <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
       </div>
@@ -111,29 +111,26 @@
   </div>
 </div>
 
-@if(isDialogOpen) {
-<app-dialog (dialog)="toggleDialog()">
-  <div class="dialog">
-    @if(this.currentAchievement.unlocked) {
-      <app-icon-coin class="icon" size="100px" />
-      <div>
-        <p class="title"><b>{{ currentAchievement.title }}</b></p>
-        <p class="date">{{ currentAchievement.date | date }}</p>
-        <p>{{ currentAchievement.done }}</p>
-        <p>( + {{ currentAchievement.xpValue }} XP )</p>
-      </div>
+<app-dialog>
+  @if(currentAchievement) {
+  <div class="dialog-body">
+    @if(currentAchievement.unlocked) {
+    <app-icon-coin class="icon" size="100px" />
+    <div>
+      <p class="title"><b>{{ currentAchievement.title }}</b></p>
+      <p class="date">{{ currentAchievement.date | date }}</p>
+      <p>{{ currentAchievement.done }}</p>
+      <p>( + {{ currentAchievement.xpValue }} XP )</p>
+    </div>
     }
     @else {
-      <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" class="icon" size="100px" />
-      <div>
-        <p class="title"><b>{{ currentAchievement.title }}</b></p>
-        <p>{{ currentAchievement.goal }}</p>
-        <p>( + {{ currentAchievement.xpValue }} XP )</p>
-      </div>
+    <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" class="icon" size="100px" />
+    <div>
+      <p class="title"><b>{{ currentAchievement.title }}</b></p>
+      <p>{{ currentAchievement.goal }}</p>
+      <p>( + {{ currentAchievement.xpValue }} XP )</p>
+    </div>
     }
-
   </div>
+  }
 </app-dialog>
-}
-
-<app-overlay [isOverlayOn]="isDialogOpen" (toggle)="toggleDialog()" />

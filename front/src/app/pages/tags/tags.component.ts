@@ -1,5 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ButtonTopService } from '../../services/user-interface/button-top.service';
+import { Component, inject, OnInit } from '@angular/core';
 import { TagService } from '../../services/http/tag.service';
 import { MoodsGalleryService } from '../../services/user-interface/moods-gallery.service';
 import { GalleryType } from '../../enumerations/gallery-type';
@@ -12,11 +11,10 @@ import { GalleryMode } from '../../enumerations/gallery-mode';
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss']
 })
-export class TagsComponent implements OnInit, OnDestroy {
+export class TagsComponent implements OnInit {
   #stateService = inject(StateService)
   #tagService = inject(TagService)
   #moodsGalleryService = inject(MoodsGalleryService)
-  #buttonTopService = inject(ButtonTopService)
   #router = inject(Router)
 
   public tagsFlow = this.#tagService.tagsFlow
@@ -25,7 +23,6 @@ export class TagsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     window.scrollTo(0, 0)
-    this.#buttonTopService.setShowButtonTop(true)
 
     const currentFlow = this.tagsFlow()
 
@@ -33,10 +30,6 @@ export class TagsComponent implements OnInit, OnDestroy {
       const categoryId = currentFlow.tagCategory.businessId
       this.expandedCategories[categoryId] = true
     }
-  }
-
-  ngOnDestroy(): void {
-    this.#buttonTopService.setShowButtonTop(false)
   }
 
   public isCategoryExpanded(categoryId: number): boolean {
@@ -60,6 +53,13 @@ export class TagsComponent implements OnInit, OnDestroy {
     this.setTagId(tagId)
     this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
     this.#moodsGalleryService.setGalleryMode(GalleryMode.Tag)
+    this.#router.navigateByUrl('/central-gallery')
+  }
+
+  public goToCategory(categoryId: number): void {
+    this.setTagCategoryId(categoryId)
+    this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
+    this.#moodsGalleryService.setGalleryMode(GalleryMode.TagCategory)
     this.#router.navigateByUrl('/central-gallery')
   }
 }

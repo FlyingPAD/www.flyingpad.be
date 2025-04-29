@@ -16,11 +16,6 @@ export class AchievementsComponent {
   @Input() achievements: Achievement[] = []
 
   public currentAchievement!: Achievement
-  public isDialogOpen: boolean = false
-
-  public toggleDialog(): void {
-    this.isDialogOpen = !this.isDialogOpen
-  }
 
   public setAchievement(achievement: Achievement): void {
     this.currentAchievement = achievement
@@ -28,7 +23,6 @@ export class AchievementsComponent {
 
   public displayAchievement(achievement: Achievement): void {
     this.setAchievement(achievement)
-    this.toggleDialog()
   }
 
   public GoToNotesTrainer(): void {

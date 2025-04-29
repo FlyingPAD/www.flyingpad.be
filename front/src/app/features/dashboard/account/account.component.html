@@ -68,9 +68,11 @@
                 <div class="button" (click)="toggleEdition()">{{ 'title.cancel' | translate }}</div>
             </div>
         </form>
-        <app-spacer height="25px" />
-        <div class="buttons">
-            <div class="button" routerLink="/users/delete-user/{{user().businessId}}">{{ 'title.delete' | translate }}</div>
-        </div>
     }
+</div>
+
+<app-spacer height="15px" />
+
+<div class="buttons">
+    <div class="button" routerLink="/users/delete-user/{{user().businessId}}">{{ 'title.delete' | translate }}</div>
 </div>
