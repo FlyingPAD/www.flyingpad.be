@@ -1,3 +1,5 @@
+@if(user().role === 2) {
 <div (click)="setViewMode()" class="bottom-bar-icon" [class.active]="currentViewMode() === viewModes.Edition">
         <app-icon-edit class="icon" size="25px" />
 </div>
+}

@@ -1,6 +1,6 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces;
 using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Services;
 using MediatR;
 
 namespace MB.Application.Features.Auth.Queries.Login;

@@ -1,19 +1,34 @@
 import { Achievement } from "./achievement"
-import { BaseResponse } from "./base-response"
+import { BaseResponse } from "./http/base-response"
+import { League } from "./league";
+import { Season } from "./season";
 
 export interface User {
-    created: Date
-    modified: Date
-    email: string
-    businessId: number
-    userName: string
-    firstName: string
-    lastName: string
-    birthdate: Date
-    role: number
-    level: number
-    experience: number
-    achievements: Achievement[]
+    // Identité & contact
+    businessId: number;
+    userName: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    isEmailVerified: boolean;
+
+    // Profil
+    birthdate: Date;
+    role: number;
+
+    // Gamification
+    level: number;
+    experience: number;
+    seasonScore: number
+    season?: Season;
+    league?: League;
+    achievements: Achievement[];
+
+    // Auditing
+    created: Date;
+    createdBy?: string;
+    modified: Date;
+    modifiedBy?: string;
 }
 
 export interface GetUserResponse extends BaseResponse {
@@ -22,4 +37,8 @@ export interface GetUserResponse extends BaseResponse {
 
 export interface UserUpdateResponse extends BaseResponse {
     updatedUser: User
+}
+
+export interface GetAllUsersResponse extends BaseResponse {
+    users: User[]
 }

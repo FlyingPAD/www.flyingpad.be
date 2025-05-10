@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { LinkCategoryCheckBox, LinkFull } from '../../../interfaces/link';
-import { LinkUpdateForm } from '../../../interfaces/forms-update';
+import { LinkUpdateForm } from '../../../interfaces/http/forms-update';
 import { LinkService } from '../../../services/http/link.service';
 import { Subject, takeUntil } from 'rxjs';
 import { DialogService } from '../../../services/user-interface/dialog.service';

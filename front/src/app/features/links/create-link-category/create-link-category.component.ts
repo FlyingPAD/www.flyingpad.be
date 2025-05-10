@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, inject, OnDestroy, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { LinkCategoryCreateForm } from '../../../interfaces/forms-create';
+import { LinkCategoryCreateForm } from '../../../interfaces/http/forms-create';
 import { LinkService } from '../../../services/http/link.service';
 
 @Component({

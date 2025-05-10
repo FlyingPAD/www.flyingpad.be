@@ -3,8 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { NotificationService } from '../user-interface/notification.service';
 import { tap } from 'rxjs';
-import { BaseResponse } from '../../interfaces/base-response';
-import { RelationsMoodTagForm, RelationsMoodArtistForm, RelationsMoodModelForm } from '../../interfaces/relations';
+import { BaseResponse } from '../../interfaces/http/base-response';
+import { RelationsMoodTagForm, RelationsMoodArtistForm, RelationsMoodModelForm } from '../../interfaces/http/relations';
 import { StateService } from '../custom-state/state.service';
 import { StatisticsService } from './statistics.service';
 

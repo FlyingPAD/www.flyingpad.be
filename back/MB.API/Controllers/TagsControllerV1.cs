@@ -1,5 +1,4 @@
-﻿using MB.Application;
-using MB.Application.Features.Tags.Commands.CreateTag;
+﻿using MB.Application.Features.Tags.Commands.CreateTag;
 using MB.Application.Features.Tags.Commands.DeleteTag;
 using MB.Application.Features.Tags.Commands.UpdateTag;
 using MB.Application.Features.Tags.Queries.CountTags;
@@ -9,6 +8,7 @@ using MB.Application.Features.Tags.Queries.GetTagsByCategory;
 using MB.Application.Features.Tags.Queries.GetTagsByMood;
 using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
+using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

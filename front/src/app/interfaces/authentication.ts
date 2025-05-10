@@ -1,13 +1,17 @@
-import { BaseResponse } from "./base-response";
+import { BaseResponse } from "./http/base-response";
+
+export type CaptchaType = 'v2' | 'v3'
 
 export interface UserRegisterForm {
-    pseudonym: string
+    userName: string
     firstName: string
     lastName: string
     birthdate: Date
     email: string
     pass: string
     confirmPass: string
+    captchaToken: string
+    captchaType: CaptchaType
 }
 
 export interface UserLoginForm {
@@ -21,4 +25,8 @@ export interface RegisterCommandResponse extends BaseResponse {
 
 export interface LoginQueryResponse extends BaseResponse {
     token : string
+}
+
+export interface ConfirmEmailResponse extends BaseResponse {
+    
 }

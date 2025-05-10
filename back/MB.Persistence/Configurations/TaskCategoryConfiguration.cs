@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MB.Domain.TaskCategoryAggregate;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MB.Domain.TaskCategoryAggregate;
 
 namespace MB.Persistence.Configurations;
 

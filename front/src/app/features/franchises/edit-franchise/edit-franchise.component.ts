@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FranchiseFull, MediumCheckBox } from '../../../interfaces/franchise';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FranchiseUpdateForm } from '../../../interfaces/forms-update';
+import { FranchiseUpdateForm } from '../../../interfaces/http/forms-update';
 import { FranchiseService } from '../../../services/http/franchise.service';
 import { DialogService } from '../../../services/user-interface/dialog.service';
 import { Subject, takeUntil } from 'rxjs';

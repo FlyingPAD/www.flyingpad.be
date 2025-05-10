@@ -26,6 +26,7 @@ export class DisplayService {
   ]).pipe(
     map(([width, height, mode, orientation]) => ({ width, height, mode, orientation }))
   )
+
   public displayInfo: Signal<DisplayInfo> = toSignal(this.displayInfo$, {
     initialValue: {
       width: window.innerWidth,
@@ -37,10 +38,7 @@ export class DisplayService {
 
   constructor() {
     fromEvent(window, 'resize')
-      .pipe(
-        debounceTime(25),
-        startWith(null)
-      )
+      .pipe(debounceTime(25), startWith(null))
       .subscribe(() => {
         this.#windowWidth.next(window.innerWidth)
         this.#windowHeight.next(window.innerHeight)
@@ -48,29 +46,18 @@ export class DisplayService {
         this.#displayOrientation.next(this.detectDisplayOrientation())
       })
 
-    if (this.displayInfo().mode === 'Desktop') {
-      this.#menuService.openRightMenu()
-    }
-    else {
-      this.#menuService.closeRightMenu()
-    }
+    if (this.displayInfo().mode === 'Desktop') this.#menuService.openRightMenu()
+    else this.#menuService.closeRightMenu()
   }
 
   private detectDisplayMode(): DisplayModes {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      || window.innerWidth < this.MOBILE_BREAKPOINT
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < this.MOBILE_BREAKPOINT
     return isMobile ? DisplayModes.Mobile : DisplayModes.Desktop
   }
 
   private detectDisplayOrientation(): DisplayOrientations {
-    if (window.innerWidth > window.innerHeight) {
-      return DisplayOrientations.Landscape
-    }
-    else if (window.innerWidth < window.innerHeight) {
-      return DisplayOrientations.Portrait
-    }
-    else {
-      return DisplayOrientations.Square
-    }
+    if (window.innerWidth > window.innerHeight) return DisplayOrientations.Landscape
+    else if (window.innerWidth < window.innerHeight) return DisplayOrientations.Portrait
+    else return DisplayOrientations.Square
   }
 }

@@ -2,18 +2,14 @@
 using System.Net.Http.Json;
 using HtmlAgilityPack;
 using MB.Application.Interfaces.Infrastructure;
+using MB.Infrastructure.Models;
 
 
 namespace MB.Infrastructure.Services;
 
-public class SoundCloudOembedService : ISoundCloudService
+public class SoundCloudOembedService(IHttpClientFactory httpClientFactory) : ISoundCloudService
 {
-    private readonly IHttpClientFactory _httpClientFactory;
-
-    public SoundCloudOembedService(IHttpClientFactory httpClientFactory)
-    {
-        _httpClientFactory = httpClientFactory;
-    }
+    private readonly IHttpClientFactory _httpClientFactory = httpClientFactory;
 
     public async Task<(string ThumbnailUrl, string EmbedUrl)> GetOembedAsync(string trackUrl)
     {

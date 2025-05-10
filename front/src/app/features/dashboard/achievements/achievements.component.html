@@ -1,136 +1,32 @@
 <div class="main-frame">
-  <h1 class="frame-title">Achievements</h1>
-  <hr class="dialog-hr">
-  <div class="category">
-    @for(achievement of achievements; track achievement.id) {
-    @if(achievement.category === 'standard') {
-    @if(achievement.unlocked) {
-    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
-      <div class="icon done">
-        <app-icon-coin size="75px" />
-      </div>
-      <p class="limit">{{ achievement.title }}</p>
+  <ng-container *ngFor="let group of grouped">
+    <h1 class="frame-title">{{ titleFor(group.category) }} <span *ngIf="titleFor(group.category) === 'Achievements'">( {{ user().achievements.length }} / {{ achievements.length }} )</span></h1>   
+
+    <hr class="dialog-hr">
+
+    <div class="category">
+      <ng-container *ngFor="let ach of group.items">
+        <div appToggleDialog class="achievement" (click)="displayAchievement(ach)">
+          <div class="icon" [class.done]="ach.unlockedAt">
+            <app-icon-coin size="75px" [colorInner]="ach.unlockedAt ? undefined : 'grey'" [colorOuter]="ach.unlockedAt ? 'gold' : 'darkgrey'" />
+          </div>
+          <p class="limit">{{ ach.title }}</p>
+        </div>
+      </ng-container>
     </div>
-    }
-    @else {
-    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
-      <div class="icon">
-        <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
-      </div>
-      <p class="limit">{{ achievement.title }}</p>
-    </div>
-    }
-    }
-    }
-  </div>
-  <h1 class="link" (click)="GoToNotesTrainer()">Notes Master</h1>
-  <hr class="dialog-hr">
-  <div class="category">
-    <div class="achievement">
-      <div class="icon-title">
-        <app-icon-clef-bass size="75px" />
-      </div>
-      <p>Bass Clef</p>
-    </div>
-    @for(achievement of achievements; track achievement.id) {
-    @if(achievement.category === 'notes-bass') {
-    @if(achievement.unlocked) {
-    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
-      <div class="icon done">
-        <app-icon-coin size="75px" />
-      </div>
-      <p class="limit">{{ achievement.title }}</p>
-    </div>
-    }
-    @else {
-    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
-      <div class="icon">
-        <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
-      </div>
-      <p class="limit">{{ achievement.title }}</p>
-    </div>
-    }
-    }
-    }
-  </div>
-  <div class="category">
-    <div class="achievement">
-      <div class="icon-title">
-        <app-icon-clef-alto size="75px" />
-      </div>
-      <p>Alto Clef</p>
-    </div>
-    @for(achievement of achievements; track achievement.id) {
-    @if(achievement.category === 'notes-alto') {
-    @if(achievement.unlocked) {
-    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
-      <div class="icon done">
-        <app-icon-coin size="75px" />
-      </div>
-      <p class="limit">{{ achievement.title }}</p>
-    </div>
-    }
-    @else {
-    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
-      <div class="icon">
-        <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
-      </div>
-      <p class="limit">{{ achievement.title }}</p>
-    </div>
-    }
-    }
-    }
-  </div>
-  <div class="category">
-    <div class="achievement">
-      <div class="icon-title">
-        <app-icon-clef-treble size="75px" />
-      </div>
-      <p>Treble Clef</p>
-    </div>
-    @for(achievement of achievements; track achievement.id) {
-    @if(achievement.category === 'notes-treble') {
-    @if(achievement.unlocked) {
-    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
-      <div class="icon done">
-        <app-icon-coin size="75px" />
-      </div>
-      <p class="limit">{{ achievement.title }}</p>
-    </div>
-    }
-    @else {
-    <div appToggleDialog class="achievement" (click)="displayAchievement(achievement)">
-      <div class="icon">
-        <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" size="75px" />
-      </div>
-      <p class="limit">{{ achievement.title }}</p>
-    </div>
-    }
-    }
-    }
-  </div>
+  </ng-container>
 </div>
 
 <app-dialog>
   @if(currentAchievement) {
-  <div class="dialog-body">
-    @if(currentAchievement.unlocked) {
-    <app-icon-coin class="icon" size="100px" />
-    <div>
-      <p class="title"><b>{{ currentAchievement.title }}</b></p>
-      <p class="date">{{ currentAchievement.date | date }}</p>
-      <p>{{ currentAchievement.done }}</p>
-      <p>( + {{ currentAchievement.xpValue }} XP )</p>
+    <div class="dialog-body">
+      <app-icon-coin class="icon" size="100px" [colorInner]="currentAchievement.unlockedAt ? undefined : 'grey'" [colorOuter]="currentAchievement.unlockedAt ? 'gold' : 'darkgrey'" />
+      <div>
+        <p class="title"><b>{{ currentAchievement.title }}</b></p>
+        <p *ngIf="currentAchievement.unlockedAt" class="date">{{ currentAchievement.unlockedAt | date }}</p>
+        <p>{{ currentAchievement.unlockedAt ? currentAchievement.doneMessage : currentAchievement.goal }}</p>
+        <p>( + {{ currentAchievement.xpReward }} XP )</p>
+      </div>
     </div>
-    }
-    @else {
-    <app-icon-coin [colorInner]="'grey'" [colorOuter]="'darkgrey'" class="icon" size="100px" />
-    <div>
-      <p class="title"><b>{{ currentAchievement.title }}</b></p>
-      <p>{{ currentAchievement.goal }}</p>
-      <p>( + {{ currentAchievement.xpValue }} XP )</p>
-    </div>
-    }
-  </div>
   }
 </app-dialog>

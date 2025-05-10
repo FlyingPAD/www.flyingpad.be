@@ -1,6 +1,14 @@
 <div class="dashboard">
   <app-dashboard-header [user]="user()" />
 
+  @if (!user().isEmailVerified) {
+    <app-email-verification />
+  }
+
+  @if(viewMode() === viewModes.Status) {
+    <app-user-cards [user]="user()" />
+  }
+
   @if(viewMode() === viewModes.Status) {
   <app-status />
   }
@@ -14,11 +22,13 @@
   }
 
   @if(viewMode() === viewModes.Achievements) {
-  <app-achievements [achievements]="user().achievements" />
+  <app-achievements />
   }
+
+  <!-- <app-banner-pad-station /> -->
 </div>
 
-<app-spacer height="175px" />
+<app-spacer />
 
 <app-bottom-bar>
   <app-bottom-icon-dashboard-status />

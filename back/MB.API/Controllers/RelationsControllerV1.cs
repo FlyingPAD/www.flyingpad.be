@@ -1,10 +1,10 @@
-﻿using MB.Application;
-using MB.Application.Features.Relations.Commands.CreateRelationsModelFranchise;
+﻿using MB.Application.Features.Relations.Commands.CreateRelationsModelFranchise;
 using MB.Application.Features.Relations.Commands.CreateRelationsMoodArtist;
 using MB.Application.Features.Relations.Commands.CreateRelationsMoodModel;
 using MB.Application.Features.Relations.Commands.CreateRelationsMoodTags;
 using MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByArtist;
 using MB.Application.Features.Relations.Queries.CheckRelationsArtistStyleByStyle;
+using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

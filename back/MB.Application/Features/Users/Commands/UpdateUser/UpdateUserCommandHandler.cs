@@ -13,20 +13,27 @@ public class UpdateUserCommandHandler(IMapper mapper, IBaseRepository<User> user
 
     public async Task<UpdateUserCommandResponse> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetByBusinessIdAsync(request.BusinessId)
+        // 1) Récupérer l'utilisateur par BusinessId (GUID)
+        var user = await _userRepository
+            .GetByBusinessIdAsync(request.BusinessId)
             ?? throw new NotFoundException("User not found.");
 
-        user.UserName = request.UserName;
-        user.FirstName = request.FirstName;
-        user.LastName = request.LastName;
-        user.Birthdate = request.Birthdate;
+        // 2) Appliquer la mise à jour via la méthode métier
+        user.UpdateProfile(
+            userName: request.UserName,
+            firstName: request.FirstName,
+            lastName: request.LastName,
+            birthdate: request.Birthdate
+        );
 
+        // 3) Persister
         await _userRepository.UpdateAsync(user);
 
+        // 4) Retourner le DTO mis à jour
         return new UpdateUserCommandResponse
         {
             Success = true,
-            Message = "User Updated",
+            Message = "User updated successfully.",
             UpdatedUser = _mapper.Map<UpdateUserCommandDto>(user)
         };
     }

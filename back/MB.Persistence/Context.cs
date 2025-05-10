@@ -13,6 +13,10 @@ using MB.Domain.TagAggregate;
 using MB.Domain.TagCategoryAggregate;
 using MB.Domain.TaskCategoryAggregate;
 using MB.Domain.UserAggregate;
+using MB.Domain.SeasonAggregate;
+using MB.Domain.LeagueAggregate;
+using MB.Domain.LevelAggregate;
+using MB.Domain.AchievementAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence;
@@ -32,9 +36,9 @@ public class Context(DbContextOptions<Context> options) : DbContext(options)
     public DbSet<Domain.TaskAggregate.Task> Tasks { get; set; }
     public DbSet<TaskCategory> TaskCategories { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<EmailVerificationToken> EmailVerificationTokens { get; set; }
     public DbSet<Board> Boards { get; set; }
     public DbSet<Book> Books { get; set; }
-
 
     // Relations.
     public DbSet<RelationArtistStyle> RArtistStyle { get; set; }
@@ -50,15 +54,18 @@ public class Context(DbContextOptions<Context> options) : DbContext(options)
     public DbSet<RelationBookFranchise> RBookFranchise { get; set; }
     public DbSet<RelationBookModel> RBookModel { get; set; }
 
+    // Gamification
+    public DbSet<Season> Seasons { get; set; }
+    public DbSet<LeagueDefinition> LeagueDefinitions { get; set; }
+    public DbSet<LevelDefinition> LevelDefinitions { get; set; }
+    public DbSet<AchievementDefinition> AchievementDefinitions { get; set; }
+    public DbSet<UserAchievement> UserAchievements { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(Context).Assembly);
-
-        PostDeployment.AddData(modelBuilder);
     }
 
-    // Handles the AutitableEntity Properties on Creation & Modification.
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
         foreach (var entry in ChangeTracker.Entries<AuditableEntity>())

@@ -3,20 +3,25 @@
         <div class="close-button" routerLink="/home" [class]="closeButtonIsOn ? 'on' : 'off' ">
             <app-icon-plus class=icon size="25px" direction="diagonal" />
         </div>
+
         <div class="languages" (click)="languageMenuToggle()" [class.active]="isLanguageMenuON">
             <img [src]="getImageURL(false, 'icons-flags', currentLanguage(), 'png')" />
             <span>{{ currentLanguage() === 'fr' ? 'Français' : 'English' }}</span>
         </div>
+
         <app-language-menu-home [isMenuOn]="isLanguageMenuON" (menuToggle)="languageMenuToggle()" />
+
         <div class="login-form">
             <img class="logo" [src]="getImageURL(true, 'images-logo', 'logo-3', 'png')" />
             <div class="menu">
                 <a routerLink="/sign-up" routerLinkActive="active">{{ 'title.sign-up' | translate }}</a>
                 <a routerLink="/log-in" routerLinkActive="active">{{ 'title.log-in' | translate }}</a>
             </div>
+
             <form [formGroup]="formGroup">
                 <div>
-                    <input type="email" id="in_email" formControlName="email" placeholder="example@domain.com">
+                    <input type="email" id="in_email" formControlName="email" placeholder="example@domain.com" autocomplete="email">
+
                     <div *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.errors">
                         <p class="error" *ngIf="formGroup.get('email')?.errors?.['required']">
                             Email is required.
@@ -30,7 +35,8 @@
                     </div>
                 </div>
                 <div>
-                    <input type="password" id="in_password" formControlName="password" placeholder="●●●●●●●●">
+                    <input type="password" id="in_password" formControlName="password" placeholder="●●●●●●●●"  autocomplete="current-password">
+
                     <div *ngIf="formGroup.get('password')?.touched && formGroup.get('password')?.errors">
                         <p class="error" *ngIf="formGroup.get('password')?.errors?.['required']">
                             A password is required.
@@ -40,12 +46,15 @@
                         </p>
                     </div>
                 </div>
+
                 <hr>
+
                 <div class="buttons">
                     <div class="button button-disabled" *ngIf="formGroup.invalid">{{ 'title.sign-in' | translate }}</div>
                     <div class="button" (click)="onLogin()" *ngIf="formGroup.valid">{{ 'title.sign-in' | translate }}</div>
                 </div>
             </form>
+
             <div class="message">
                 <p routerLink="/sign-up">{{ 'message.sign-up' | translate }} <span>{{ 'title.sign-up' | translate }}.</span></p>
             </div>
@@ -53,18 +62,12 @@
     </div>
     <div class="right">
         @if(moodsFlow()?.mood?.type === 1) {
-            @if (moodsFlow()?.mood?.height === moodsFlow()?.mood?.width) {
-            <img class="mood-square"
-              src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-            }
-            @if (moodsFlow()?.mood?.height > moodsFlow()?.mood?.width) {
-            <img class="mood-portrait"
-              src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-            }
-            @if (moodsFlow()?.mood?.height < moodsFlow()?.mood?.width) {
-            <img class="mood-landscape"
-              src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-            }
-          }
+        <img *ngIf="moodsFlow()?.mood?.height === moodsFlow()?.mood?.width" class="mood-square"
+            src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+        <img *ngIf="moodsFlow()?.mood?.height > moodsFlow()?.mood?.width" class="mood-portrait"
+            src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+        <img *ngIf="moodsFlow()?.mood?.height < moodsFlow()?.mood?.width" class="mood-landscape"
+            src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+        }
     </div>
 </div>

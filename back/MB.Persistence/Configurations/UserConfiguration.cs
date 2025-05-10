@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MB.Domain.UserAggregate;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MB.Domain.UserAggregate;
 
 namespace MB.Persistence.Configurations;
 
@@ -8,21 +8,52 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.HasKey(entity => entity.EntityId);
+        // Table & clé
+        builder.ToTable("Users");
+        builder.HasKey(u => u.EntityId);
+        builder.Property(u => u.EntityId).ValueGeneratedOnAdd();
 
-        builder.Property(entity => entity.EntityId)
-            .ValueGeneratedOnAdd();
+        // Identité et contact
+        builder.Property(u => u.UserName).IsRequired().HasMaxLength(50);
+        builder.Property(u => u.FirstName).IsRequired().HasMaxLength(50);
+        builder.Property(u => u.LastName).IsRequired().HasMaxLength(50);
+        builder.Property(u => u.Email).IsRequired().HasMaxLength(200);
 
-        builder.Property(entity => entity.UserName)
-            .IsRequired()
-            .HasMaxLength(50);
+        // Authentification
+        builder.Property(u => u.PasswordHash).IsRequired(false);
+        builder.Property(u => u.PasswordSalt).IsRequired(false);
 
-        builder.Property(entity => entity.FirstName)
-            .IsRequired()
-            .HasMaxLength(50);
+        // Progression
+        builder.Property(u => u.Experience).IsRequired().HasDefaultValue(0);
+        builder.Property(u => u.Level).IsRequired().HasDefaultValue(1);
+        builder.Property(u => u.SeasonScore).IsRequired().HasDefaultValue(0);
 
-        builder.Property(entity => entity.LastName)
-            .IsRequired()
-            .HasMaxLength(50);
+        // Statut email
+        builder.Property(u => u.IsEmailVerified).IsRequired();
+
+        // Rôles & date de naissance
+        builder.Property(u => u.Role).IsRequired();
+        builder.Property(u => u.Birthdate).IsRequired();
+
+        // Relations
+        builder.HasMany(u => u.EmailVerificationTokens)
+               .WithOne(t => t.User)
+               .HasForeignKey(t => t.UserId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasMany(u => u.Achievements)
+               .WithOne(ua => ua.User)
+               .HasForeignKey(ua => ua.UserId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasOne(u => u.Season)
+               .WithMany()
+               .HasForeignKey(u => u.SeasonId)
+               .OnDelete(DeleteBehavior.SetNull);
+
+        builder.HasOne(u => u.LeagueDefinition)
+               .WithMany()
+               .HasForeignKey(u => u.LeagueDefinitionId)
+               .OnDelete(DeleteBehavior.SetNull);
     }
 }

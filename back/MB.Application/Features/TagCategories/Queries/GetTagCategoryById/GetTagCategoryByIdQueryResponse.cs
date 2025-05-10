@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.TagCategories.Queries.GetTagCategoryById;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.TagCategories.Queries.GetTagCategoryById;
 
 public class GetTagCategoryByIdQueryResponse : BaseResponse
 {

@@ -5,6 +5,22 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="PostDeployment.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Configurations\ImageConfiguration.cs~RF3f30cbc.TMP" />
+    <None Remove="Configurations\LinkCategoryConfiguration.cs~RF3f34fb0.TMP" />
+    <None Remove="Configurations\LinkConfiguration.cs~RF3f38b33.TMP" />
+    <None Remove="Configurations\MediaConfiguration.cs~RF3f3c955.TMP" />
+    <None Remove="Configurations\StyleConfiguration.cs~RF3f43bb6.TMP" />
+    <None Remove="Configurations\VideoConfiguration.cs~RF3f7a985.TMP" />
+    <None Remove="Repositories\Definitions\AchievementDefinitionsRepository.cs~RF8f2439.TMP" />
+    <None Remove="Repositories\Definitions\AchievementDefinitionsRepository.cs~RF91b276.TMP" />
+    <None Remove="Repositories\EmailVerificationTokenRepository.cs~RF5379bc5.TMP" />
+    <None Remove="Repositories\EmailVerificationTokenRepository.cs~RF548bae3.TMP" />
+    <None Remove="Repositories\UserRepository.cs~RFcd04a07.TMP" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

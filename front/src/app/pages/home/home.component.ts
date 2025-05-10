@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   
 
   ngOnInit() : void {
-    if(this.user()?.role === 2) {
+    if(this.user()?.role === 1 || this.user()?.role === 2) {
       this.#router.navigateByUrl('/dashboard')
     }
   }

@@ -205,3 +205,33 @@ p {
     height: 50px;
     width: 50px;
 }
+
+.achievements-unlocked {
+    width: 80%;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: var(--colorWhiteOpacity5);
+    border: 1px solid var(--colorMain);
+    border-radius: 8px;
+    text-align: center;
+
+    p {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 10px;
+    }
+
+    li {
+        margin: 4px 0;
+    }
+
+    .link {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}

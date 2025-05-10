@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Franchises.Queries.GetFranchisesByMedium;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Franchises.Queries.GetFranchisesByMedium;
 
 public class GetFranchisesByMediumQueryResponse : BaseResponse
 {

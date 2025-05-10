@@ -3,17 +3,17 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { NotificationService } from '../user-interface/notification.service';
 import { combineLatest, map, Observable, shareReplay, startWith, Subject, switchMap, tap, of, merge, distinctUntilChanged, catchError, withLatestFrom } from 'rxjs';
-import { ModelCreateForm } from '../../interfaces/forms-create';
+import { ModelCreateForm } from '../../interfaces/http/forms-create';
 import { GetAllModelsResponse, GetModelResponse, ModelFull, ModelLight } from '../../interfaces/model';
-import { BaseResponse } from '../../interfaces/base-response';
-import { ModelUpdateForm } from '../../interfaces/forms-update';
+import { BaseResponse } from '../../interfaces/http/base-response';
+import { ModelUpdateForm } from '../../interfaces/http/forms-update';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { StateService } from '../custom-state/state.service';
 import { StorageService } from '../storage.service';
 import { StorageProperties } from '../../enumerations/storage-properties';
 import { FranchiseLight, GetFranchisesByModelResponse } from '../../interfaces/franchise';
 import { StatisticsService } from './statistics.service';
-import { CreateModelResponse } from '../../interfaces/responses-create';
+import { CreateModelResponse } from '../../interfaces/http/responses-create';
 
 @Injectable({
   providedIn: 'root'

@@ -3,6 +3,7 @@ using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
 using MB.Domain.TagAggregate;
 using MB.Domain.TagCategoryAggregate;
+using MB.Application.Models;
 
 namespace MB.Application.Features.Tags.Commands.UpdateTag;
 

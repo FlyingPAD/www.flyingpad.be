@@ -1,4 +1,6 @@
 ﻿using FluentValidation;
+using MB.Application.Interfaces.Services;
+using MB.Application.Services;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -14,6 +16,12 @@ public static class ApplicationServiceRegistration
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+        services.AddScoped<ITokenManager, TokenManager>();
+
+        services.AddScoped<IEmailTokenCleanupService, EmailTokenCleanupService>();
+        services.AddScoped<IDailyReportService, DailyReportService>();
+        services.AddScoped<ISeasonService, SeasonService>();
 
         return services;
     }

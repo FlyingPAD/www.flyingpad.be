@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit
 import { ModelFull } from '../../../interfaces/model';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { ModelUpdateForm } from '../../../interfaces/forms-update';
+import { ModelUpdateForm } from '../../../interfaces/http/forms-update';
 import { FranchiseCheckBox } from '../../../interfaces/franchise';
 import { ModelService } from '../../../services/http/model.service';
 import { FranchiseService } from '../../../services/http/franchise.service';

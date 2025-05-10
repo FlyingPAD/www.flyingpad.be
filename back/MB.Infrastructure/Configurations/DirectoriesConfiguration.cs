@@ -11,8 +11,6 @@ public static class DirectoriesConfiguration
             @"Content/img_thumbs",
             @"Content/video",
             @"Content/video_thumbs",
-            @"Content/txt",
-            @"Content/txt_thumbs",
         };
 
         foreach (var path in paths)

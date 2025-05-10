@@ -15,12 +15,8 @@ export class MultiTagService {
 
     let newSelection: number[]
 
-    if (index === -1) {
-      newSelection = [...currentMoods, moodId]
-    }
-    else {
-      newSelection = currentMoods.filter(id => id !== moodId)
-    }
+    if (index === -1) newSelection = [...currentMoods, moodId]
+    else newSelection = currentMoods.filter(id => id !== moodId)
 
     this.#selectedMoods.next(newSelection)
   }

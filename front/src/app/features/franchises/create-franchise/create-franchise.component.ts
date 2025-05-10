@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit
 import { MediumLight } from '../../../interfaces/franchise';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { FranchiseCreateForm } from '../../../interfaces/forms-create';
+import { FranchiseCreateForm } from '../../../interfaces/http/forms-create';
 import { FranchiseService } from '../../../services/http/franchise.service';
 
 @Component({

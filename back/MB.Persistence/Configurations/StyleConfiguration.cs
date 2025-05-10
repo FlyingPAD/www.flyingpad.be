@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MB.Domain.StyleAggregate;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MB.Domain.StyleAggregate;
 
 namespace MB.Persistence.Configurations;
 

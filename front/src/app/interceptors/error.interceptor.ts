@@ -1,43 +1,50 @@
+// src/app/interceptors/error.interceptor.ts
 import { Injectable, inject } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { NotificationService } from '../services/user-interface/notification.service';
-import { BaseResponse } from '../interfaces/base-response';
+import { LoggingService } from '../services/logging.service';
+import { BaseResponse } from '../interfaces/http/base-response';
+import { CustomError } from '../interfaces/error';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  #notificationService = inject(NotificationService)
+  #notification = inject(NotificationService);
+  #logger       = inject(LoggingService);
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        let errorMessage = 'An error occurred'
+        let userMessage = 'Une erreur est survenue.';
+        const body      = error.error as BaseResponse;
+        const needV2    = (error.error as any).needV2 === true;
 
         if (error.error instanceof ErrorEvent) {
-          // Client Error :
-          errorMessage = `Client Error: ${error.error.message}`
-        } 
-        else {
-          // Server Error :
-          const serverResponse = error.error as BaseResponse
-
-          if (serverResponse && typeof serverResponse.message === 'string') {
-            errorMessage = serverResponse.message
-
-            if (serverResponse.validationErrors && serverResponse.validationErrors.length) {
-              errorMessage += ' - ' + serverResponse.validationErrors.join(', ')
+          userMessage = `Erreur réseau : ${error.error.message}`;
+          this.#logger.error(error.error, 'Network');
+        } else {
+          if (body?.message) {
+            userMessage = body.message;
+            if (body.validationErrors?.length) {
+              userMessage += ' — ' + body.validationErrors.join(', ');
             }
-          } 
-          else {
-            // Fallback :
-            errorMessage = `Server Error Status: ${error.status}, Message: ${error.message}`
+          } else {
+            userMessage = `Erreur serveur (${error.status})`;
           }
+          this.#logger.error(error, 'HTTP');
         }
 
-        this.#notificationService.error(errorMessage, 'Server Error')
-        return throwError(() => new Error(errorMessage))
+        console.log('[Interceptor] needV2 =', needV2, 'message =', userMessage);
+
+        if (!needV2) {
+          this.#notification.error(userMessage, 'Erreur');
+        }
+        this.#logger.error(error, 'Interceptor');
+
+        const enriched: CustomError = { original: error, needV2 };
+        return throwError(() => enriched);
       })
-    )
+    );
   }
 }

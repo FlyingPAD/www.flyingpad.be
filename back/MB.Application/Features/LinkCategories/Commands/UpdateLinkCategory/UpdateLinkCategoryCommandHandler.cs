@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
+using MB.Application.Models;
 using MB.Domain.LinkCategoryAggregate;
 using MediatR;
 

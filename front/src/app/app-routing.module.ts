@@ -4,7 +4,6 @@ import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LogInErrorComponent } from './pages/log-in-error/log-in-error.component';
-import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
 import { CreateMoodImageComponent } from './pages/create-mood-image/create-mood-image.component';
 import { MultiTagArtistsComponent } from './pages/multi-tag-artists/multi-tag-artists.component';
@@ -35,6 +34,11 @@ import { EditMoodComponent } from './pages/edit-mood/edit-mood.component';
 import { MultiTagComponent } from './pages/multi-tag/multi-tag.component';
 import { CreateMoodVideoYoutubeComponent } from './pages/create-mood-video-youtube/create-mood-video-youtube.component';
 import { CreateMoodAudioSoundcloudComponent } from './pages/create-mood-audio-soundcloud/create-mood-audio-soundcloud.component';
+import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
+import { LadderComponent } from './pages/ladder/ladder.component';
+import { UserLeagueComponent } from './pages/user-league/user-league.component';
+import { UserProfilePublicComponent } from './pages/user-profile-public/user-profile-public.component';
+import { NotesComponent } from './pages/notes/notes.component';
 
 const routes: Routes = [
   // Layout ' Home '.
@@ -67,8 +71,7 @@ const routes: Routes = [
       { path: 'moods/edit-mood', component: EditMoodComponent, title: 'Flying PAD | Edit Mood' },
       { path: 'tags', component: TagsComponent, title: 'Flying PAD | Tags Gallery' },
       { path: 'media', component: MediaComponent, title: 'Flying PAD | Media' },
-      { path: 'not-found', component: NotFoundComponent, title: 'Flying PAD | Not Found' },
-      { path: 'register', component: UserRegisterComponent, title: 'Flying PAD | Register' }
+      { path: 'not-found', component: NotFoundComponent, title: 'Flying PAD | Not Found' }
     ]
   },
 
@@ -93,7 +96,12 @@ const routes: Routes = [
     path: '', component: LayoutEmptyComponent, children: [
       { path: 'log-in', component: LogInComponent, title: 'Flying PAD | Log in' },
       { path: 'log-in/error', component: LogInErrorComponent, title: 'Flying PAD | Log in Error' },
-      { path: 'sign-up', component: SignUpComponent, title: 'Flying PAD | Sign up' }
+      { path: 'sign-up', component: SignUpComponent, title: 'Flying PAD | Sign up' },
+      { path: 'confirm-email/:token', component: ConfirmEmailComponent, title: 'Flying PAD | Confirm e-Mail' },
+      { path: 'ladder', component: LadderComponent, title: 'Flying PAD | Ladder' },
+      { path: 'user-league', component: UserLeagueComponent, title: 'Flying PAD | Ladder' },
+      { path: 'user-profile', component: UserProfilePublicComponent, title: 'Flying PAD | User Profile' },
+      { path: 'notes', component: NotesComponent, title: 'Flying PAD | Notes' }
     ]
   },
 

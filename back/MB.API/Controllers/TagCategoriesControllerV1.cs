@@ -7,7 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using MB.Application.Features.TagCategories.Queries.GetAllTagCategories;
-using MB.Application;
+using MB.Application.Models;
 
 namespace MB.API.Controllers;
 

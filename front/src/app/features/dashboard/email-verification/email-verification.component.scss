@@ -1,0 +1,40 @@
+.main-frame {
+  background-color: #f9f9f9;
+}
+
+.hub-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.warning {
+  color: #d97706;
+}
+
+.send-btn {
+  background: none;
+  border: none;
+  color: #0366d6;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font: inherit;
+}
+
+.send-btn[disabled] {
+  opacity: 0.6;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.info {
+  margin-top: 0.75rem;
+  color: #22863a;
+}
+
+.error {
+  margin-top: 0.75rem;
+  color: #cb2431;
+}

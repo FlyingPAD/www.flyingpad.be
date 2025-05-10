@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Moods.Commands.CreateMoodVideo;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Moods.Commands.CreateMoodVideo;
 
 public class CreateMoodVideoCommandResponse : BaseResponse
 {
