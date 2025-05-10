@@ -38,20 +38,26 @@ export class UserService {
   #publicUser = new BehaviorSubject<User>(this.DEFAULT_USER)
   public publicUser: Signal<User> = toSignal(this.#publicUser, { initialValue: this.DEFAULT_USER })
 
-  public updatePublicUser(userId: number): void {
-    this.getPublicUserById(userId).subscribe()
-  }
-
   #achievements = new BehaviorSubject<NewAchievement[]>([]);
-  public achievements: Signal<NewAchievement[]> = toSignal(this.#achievements, {
-    initialValue: []
-  })
+  public achievements: Signal<NewAchievement[]> = toSignal(this.#achievements, { initialValue: [] })
 
   private refreshUser(): void {
     const biz = this.user().businessId;
     const role = this.user().role;
     this.getUser(biz, role).subscribe();
     this.getUserAchievements(biz).subscribe();
+  }
+
+  public updatePublicUser(userId: number): void {
+    this.getPublicUserById(userId).subscribe()
+  }
+
+  public setDefaultUser(): void {
+    this.#user.next(this.DEFAULT_USER);
+  }
+
+  public getAllUsers(): Observable<User[]> {
+    return this.#http.get<GetAllUsersResponse>(`${this.#url}Users/GetAll`).pipe(map(response => response.users))
   }
 
   public getUser(userBusinessId: number, role: number): Observable<User> {
@@ -73,7 +79,7 @@ export class UserService {
     )
   }
 
-  public getUserAchievements( userBusinessId: number): Observable<NewAchievement[]> {
+  public getUserAchievements(userBusinessId: number): Observable<NewAchievement[]> {
     return this.#http.get<GetUserAchievementsResponse>(`${this.#url}Users/${userBusinessId}/Achievements`).pipe(
       map(resp => resp.achievements),
       tap(list => this.#achievements.next(list))
@@ -116,13 +122,5 @@ export class UserService {
         this.#toastr.success(resp.message);
       })
     )
-  }
-
-  public setDefaultUser(): void {
-    this.#user.next(this.DEFAULT_USER);
-  }
-
-  public getAllUsers(): Observable<User[]> {
-    return this.#http.get<GetAllUsersResponse>(`${this.#url}Users/GetAll`).pipe(map(response => response.users))
   }
 }
