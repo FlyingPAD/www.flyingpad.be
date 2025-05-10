@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using MB.Application.Models;
+using MediatR;
 
 namespace MB.Application.Features.TagCategories.Commands.DeleteTagCategory;
 

@@ -3,7 +3,7 @@ import { MoodService } from '../../services/http/mood.service'
 import { Subject, takeUntil } from 'rxjs'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
-import { YouTubeVideoCreateForm } from '../../interfaces/forms-create'
+import { YouTubeVideoCreateForm } from '../../interfaces/http/forms-create'
 
 @Component({
   selector: 'app-create-mood-video-youtube',

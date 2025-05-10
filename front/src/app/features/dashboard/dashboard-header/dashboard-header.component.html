@@ -1,24 +1,11 @@
 <div class="main-frame">
-    <div class="user-header">
+    <div class="dashboard-header">
         <img src="../../../assets/icons-avatars/mood.png" />
         <div class="user-info">
-            <div class="user-name">
-                <app-icon-coin class="icon" size="25px" [colorOuter]="'#cd7f32'" />
-                <h1>{{user.userName}}</h1>
-            </div>
-            <div class="row">
-                <p> ▸ {{ 'title.level' | translate }}</p>
-                <p>{{ user.level }}</p>
-            </div>
-            <div class="row">
-                <p> ▸ {{ 'title.experience' | translate }}</p>
-                <p>{{ user.experience }} XP</p>
-            </div>
-            <div class="row">
-                <p> ▸ {{ 'title.league' | translate }}</p>
-                <p>Bronze </p>
-            </div>
+            <h1>{{user.userName}}</h1>
+            <p>( {{user.email}} )</p>
         </div>
     </div>
-    <p class="subscription">  ▸  <b>{{ 'title.subscription' | translate }}</b> {{ user.created | localizedDate }}</p>
 </div>
+
+<p class="subscription">  ▸  <b>{{ 'title.subscription' | translate }}</b> {{ user.created | localizedDate }}</p>

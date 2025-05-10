@@ -15,7 +15,7 @@
     </p>
 }
 @if(galleryType() === galleryTypes.Details) {
-    <p class="sticky-label"> ▸ <b>{{ moodsFlow()?.mood?.name }}</b> | {{ moodsFlow()?.mood?.description }}</p>
+    <p class="sticky-label"> ▸ <b>{{ moodsFlow()?.mood?.name }}</b> {{ validateDescription(true, moodsFlow()?.mood?.description) }}</p>
 
     <app-mood-informations [mood]="moodsFlow()?.mood" [infoIsActive]="moodInfoToggle()" (artistId)="setAndSwitchToArtist($event)"
     (modelId)="setAndSwitchToModel($event)" (franchiseId)="setAndSwitchToFranchise($event)" />

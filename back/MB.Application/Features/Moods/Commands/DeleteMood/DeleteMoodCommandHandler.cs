@@ -2,6 +2,7 @@
 using MB.Application.Interfaces.Persistence;
 using MediatR;
 using MB.Application.Interfaces.Infrastructure;
+using MB.Application.Models;
 
 namespace MB.Application.Features.Moods.Commands.DeleteMood;
 

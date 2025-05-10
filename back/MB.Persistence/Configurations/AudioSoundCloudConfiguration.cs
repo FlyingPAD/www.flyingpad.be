@@ -8,16 +8,15 @@ public class AudioSoundCloudConfiguration : IEntityTypeConfiguration<AudioSoundC
 {
     public void Configure(EntityTypeBuilder<AudioSoundCloud> builder)
     {
-        builder.ToTable("Moods");               // on reste bien sur la table Moods
+        builder.ToTable("Moods");
         builder.Property(a => a.Url)
-               .HasColumnName("Url");          // déjà en place
+               .HasColumnName("Url");
 
-        // Il faut ajouter ces deux lignes :
         builder.Property(a => a.ThumbnailUrl)
                .HasColumnName("ThumbnailUrl")
-               .IsRequired();                  // ou .IsRequired(false) si tu veux autoriser NULL
+               .IsRequired();
         builder.Property(a => a.EmbedUrl)
                .HasColumnName("EmbedUrl")
-               .IsRequired();                  // idem
+               .IsRequired();
     }
 }

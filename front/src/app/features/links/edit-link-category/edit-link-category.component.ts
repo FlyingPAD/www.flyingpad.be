@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostListener, inject, Input, OnChanges, OnDest
 import { LinkCategoryFull } from '../../../interfaces/link';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { LinkCategoryUpdateForm } from '../../../interfaces/forms-update';
+import { LinkCategoryUpdateForm } from '../../../interfaces/http/forms-update';
 import { LinkService } from '../../../services/http/link.service';
 import { DialogService } from '../../../services/user-interface/dialog.service';
 

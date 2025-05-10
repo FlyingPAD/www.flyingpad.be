@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../services/user-interface/notification.service';
 import { MoodService } from '../../services/http/mood.service';
-import { ImageCreateForm } from '../../interfaces/forms-create';
+import { ImageCreateForm } from '../../interfaces/http/forms-create';
 
 @Component({
   selector: 'app-create-mood-image',

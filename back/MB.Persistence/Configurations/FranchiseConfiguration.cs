@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MB.Domain.FranchiseAggregate;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MB.Domain.FranchiseAggregate;
 
 namespace MB.Persistence.Configurations;
 

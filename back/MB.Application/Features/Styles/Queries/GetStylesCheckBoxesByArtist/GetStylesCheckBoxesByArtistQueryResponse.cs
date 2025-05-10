@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Styles.Queries.GetStylesCheckBoxesByArtist;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Styles.Queries.GetStylesCheckBoxesByArtist;
 
 public class GetStylesCheckBoxesByArtistQueryResponse : BaseResponse
 {

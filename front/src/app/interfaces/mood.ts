@@ -1,5 +1,5 @@
 import { ArtistLight } from "./artist";
-import { BaseResponse } from "./base-response";
+import { BaseResponse } from "./http/base-response";
 import { FranchiseLight } from "./franchise";
 import { ModelLight } from "./model";
 import { TagLight } from "./tag";

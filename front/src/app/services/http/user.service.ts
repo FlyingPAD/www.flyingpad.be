@@ -1,19 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Signal, inject } from '@angular/core';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
-import { GetUserResponse, User, UserUpdateResponse } from '../../interfaces/user';
+import { GetAllUsersResponse, GetUserResponse, User, UserUpdateResponse } from '../../interfaces/user';
+import { GetUserAchievementsResponse, NewAchievement } from '../../interfaces/achievement';
 import { environment } from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
-import { UserUpdateForm } from '../../interfaces/forms-update';
+import { UserUpdateForm } from '../../interfaces/http/forms-update';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { BaseResponse } from '../../interfaces/http/base-response';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class UserService {
   #http = inject(HttpClient)
   #toastr = inject(ToastrService)
-  #url: string = environment.apiBaseUrl + '/api/V1/'
+  #url = environment.apiBaseUrl + '/api/V1/'
 
   private readonly DEFAULT_USER: User = {
     businessId: 0,
@@ -27,216 +27,102 @@ export class UserService {
     role: 0,
     level: 0,
     experience: 0,
-    achievements: []
-  }
-  #user = new BehaviorSubject<User>(this.DEFAULT_USER)
-  public user = toSignal(this.#user) as Signal<User>
+    seasonScore: 0,
+    achievements: [],
+    isEmailVerified: false
+  };
 
-  public getUser(userId: number, role: number): Observable<User> {
-    return this.#http.get<GetUserResponse>(`${this.#url}Users/GetUser/${userId}`).pipe(
-      map(response => response.user),
-      tap(user => {
-        user.role = role
-        user.achievements = [
-          {
-            id: 1,
-            title: 'Official Member',
-            goal: 'Create an account',
-            done: 'You created an account :)',
-            category: 'standard',
-            date: new Date(),
-            unlocked: true,
-            xpValue: 50
-          },
-          // notes-bass
-          {
-            id: 2,
-            title: 'Novice',
-            goal: 'Survive 10 seconds.',
-            done: 'You lasted 10 sec. !!',
-            category: 'notes-bass',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          {
-            id: 3,
-            title: 'Intermediate',
-            goal: 'Survive 20 seconds.',
-            done: 'You lasted 20 sec. !!',
-            category: 'notes-bass',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          {
-            id: 4,
-            title: 'Advanced',
-            goal: 'Survive 30 seconds.',
-            done: 'You lasted 30 sec. !!',
-            category: 'notes-bass',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          {
-            id: 5,
-            title: 'Expert',
-            goal: 'Survive 40 seconds.',
-            done: 'You lasted 40 sec. !!',
-            category: 'notes-bass',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          {
-            id: 6,
-            title: 'Master',
-            goal: 'Survive 50 seconds.',
-            done: 'You lasted 50 sec. !!',
-            category: 'notes-bass',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          // notes-alto
-          {
-            id: 7,
-            title: 'Novice',
-            goal: 'Survive 10 seconds.',
-            done: 'You lasted 10 sec. !!',
-            category: 'notes-alto',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          {
-            id: 8,
-            title: 'Intermediate',
-            goal: 'Survive 20 seconds.',
-            done: 'You lasted 20 sec. !!',
-            category: 'notes-alto',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          {
-            id: 9,
-            title: 'Advanced',
-            goal: 'Survive 30 seconds.',
-            done: 'You lasted 30 sec. !!',
-            category: 'notes-alto',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          {
-            id: 10,
-            title: 'Expert',
-            goal: 'Survive 40 seconds.',
-            done: 'You lasted 40 sec. !!',
-            category: 'notes-alto',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          {
-            id: 11,
-            title: 'Master',
-            goal: 'Survive 50 seconds.',
-            done: 'You lasted 50 sec. !!',
-            category: 'notes-alto',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          // notes-treble
-          {
-            id: 12,
-            title: 'Novice',
-            goal: 'Survive 10 seconds.',
-            done: 'You lasted 10 sec. !!',
-            category: 'notes-treble',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          {
-            id: 13,
-            title: 'Intermediate',
-            goal: 'Survive 20 seconds.',
-            done: 'You lasted 20 sec. !!',
-            category: 'notes-treble',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          {
-            id: 14,
-            title: 'Advanced',
-            goal: 'Survive 30 seconds.',
-            done: 'You lasted 30 sec. !!',
-            category: 'notes-treble',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          {
-            id: 15,
-            title: 'Expert',
-            goal: 'Survive 40 seconds.',
-            done: 'You lasted 40 sec. !!',
-            category: 'notes-treble',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          },
-          {
-            id: 16,
-            title: 'Master',
-            goal: 'Survive 50 seconds.',
-            done: 'You lasted 50 sec. !!',
-            category: 'notes-treble',
-            date: undefined,
-            unlocked: false,
-            xpValue: 50
-          }
-        ]        
-        this.#user.next(user)
+  #user = new BehaviorSubject<User>(this.DEFAULT_USER)
+  public user: Signal<User> = toSignal(this.#user, { initialValue: this.DEFAULT_USER })
+
+  #publicUser = new BehaviorSubject<User>(this.DEFAULT_USER)
+  public publicUser: Signal<User> = toSignal(this.#publicUser, { initialValue: this.DEFAULT_USER })
+
+  public updatePublicUser(userId: number): void {
+    this.getPublicUserById(userId).subscribe()
+  }
+
+  #achievements = new BehaviorSubject<NewAchievement[]>([]);
+  public achievements: Signal<NewAchievement[]> = toSignal(this.#achievements, {
+    initialValue: []
+  })
+
+  private refreshUser(): void {
+    const biz = this.user().businessId;
+    const role = this.user().role;
+    this.getUser(biz, role).subscribe();
+    this.getUserAchievements(biz).subscribe();
+  }
+
+  public getUser(userBusinessId: number, role: number): Observable<User> {
+    return this.#http.get<GetUserResponse>(`${this.#url}Users/GetUser/${userBusinessId}`).pipe(
+      map(resp => resp.user),
+      tap(u => {
+        u.role = role
+        this.#user.next(u)
       })
     )
   }
 
-  public updatePlayerExperience(score: number): void {
-    const user = this.user()
-    if (user) {
-      const updatedUser = { ...user, experience: user.experience + score }
-      this.#user.next(updatedUser)
-    }
+  public getPublicUserById(userBusinessId: number): Observable<User> {
+    return this.#http.get<GetUserResponse>(`${this.#url}Users/GetUser/${userBusinessId}`).pipe(
+      map(resp => resp.user),
+      tap(u => {
+        this.#publicUser.next(u)
+      })
+    )
   }
 
-  public obtainAchievement(tableEntry: number): void {
-    const user = this.user()
-    if (user && tableEntry >= 0 && tableEntry < user.achievements.length) {
-      const updatedAchievements = user.achievements.map((achievement, index) =>
-        index === tableEntry ? { ...achievement, unlocked: true, date: new Date() } : achievement
-      )
-      this.#user.next({ ...user, achievements: updatedAchievements })
-      this.updatePlayerExperience(user.achievements[tableEntry].xpValue)
-    }
+  public getUserAchievements( userBusinessId: number): Observable<NewAchievement[]> {
+    return this.#http.get<GetUserAchievementsResponse>(`${this.#url}Users/${userBusinessId}/Achievements`).pipe(
+      map(resp => resp.achievements),
+      tap(list => this.#achievements.next(list))
+    )
+  }
+
+  public unlockAchievement(userBusinessId: number, achievementBusinessId: number): Observable<BaseResponse> {
+    return this.#http.post<BaseResponse>(`${this.#url}Users/UnlockAchievement`, { userBusinessId, achievementBusinessId }).pipe(tap(() => this.refreshUser()))
+  }
+
+  public unlockAchievements(userBusinessId: number, achievementBusinessIds: number[]): Observable<BaseResponse> {
+    return this.#http.post<BaseResponse>(`${this.#url}Users/UnlockAchievements`, { userBusinessId, achievementBusinessIds }).pipe(tap(() => this.refreshUser()))
+  }
+
+  public gainExperience(userBusinessId: number, xp: number): Observable<BaseResponse> {
+    return this.#http.post<BaseResponse>(`${this.#url}Users/GainExperience`, { userBusinessId: userBusinessId, xp }).pipe(
+      tap(() => {
+        const biz = this.user().businessId;
+        const role = this.user().role;
+        this.getUser(biz, role).subscribe();
+      })
+    )
+  }
+
+  public gainSeasonScore(userBusinessId: number, score: number): Observable<BaseResponse> {
+    return this.#http.post<BaseResponse>(`${this.#url}Users/GainSeasonScore`, { userBusinessId: userBusinessId, score }).pipe(
+      tap(() => {
+        const biz = this.user().businessId;
+        const role = this.user().role;
+        this.getUser(biz, role).subscribe();
+      })
+    )
   }
 
   public updateUser(form: UserUpdateForm): Observable<UserUpdateResponse> {
     return this.#http.put<UserUpdateResponse>(`${this.#url}Users/Update/`, form).pipe(
-      tap(response => {
-        const updatedUser = { ...this.user(), ...response.updatedUser }
-        this.#user.next(updatedUser)
-        this.#toastr.success(response.message)
+      tap(resp => {
+        const u = { ...this.user(), ...resp.updatedUser };
+        this.#user.next(u);
+        this.#toastr.success(resp.message);
       })
     )
   }
 
   public setDefaultUser(): void {
-    this.#user.next(this.DEFAULT_USER)
+    this.#user.next(this.DEFAULT_USER);
+  }
+
+  public getAllUsers(): Observable<User[]> {
+    return this.#http.get<GetAllUsersResponse>(`${this.#url}Users/GetAll`).pipe(map(response => response.users))
   }
 }

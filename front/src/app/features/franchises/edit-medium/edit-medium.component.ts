@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit
 import { MediumFull } from '../../../interfaces/franchise';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { MediumUpdateForm } from '../../../interfaces/forms-update';
+import { MediumUpdateForm } from '../../../interfaces/http/forms-update';
 import { FranchiseService } from '../../../services/http/franchise.service';
 import { DialogService } from '../../../services/user-interface/dialog.service';
 

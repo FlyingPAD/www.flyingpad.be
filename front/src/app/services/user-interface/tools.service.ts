@@ -7,7 +7,7 @@ import { ToolsViewMode } from '../../enumerations/view-modes';
   providedIn: 'root'
 })
 export class ToolsService {
-  #toolsViewMode$ = new BehaviorSubject<string>(ToolsViewMode.ChordWriter)
+  #toolsViewMode$ = new BehaviorSubject<string>(ToolsViewMode.CircleOfFifths)
 
   public toolsViewMode = toSignal(this.#toolsViewMode$) as Signal<ToolsViewMode>
 

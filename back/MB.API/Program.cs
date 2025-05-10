@@ -2,6 +2,7 @@ using Hangfire;
 using MB.API.Configurations;
 using MB.API.Middlewares;
 using MB.Application;
+using MB.Application.Services;
 using MB.Infrastructure;
 using MB.Persistence;
 using Serilog;
@@ -22,7 +23,7 @@ public class Program
             builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddPersistenceServices(builder.Configuration);
-
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddCustomHangfire(builder.Configuration);
             builder.Services.AddCustomSwagger();
             builder.Services.AddControllers();

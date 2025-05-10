@@ -1,8 +1,8 @@
 import { Component, HostListener, inject, OnDestroy } from '@angular/core';
-import { MoodScoreUpdate, MoodUpdateForm } from '../../interfaces/forms-update';
+import { MoodScoreUpdate, MoodUpdateForm } from '../../interfaces/http/forms-update';
 import { Subject, takeUntil } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm } from '../../interfaces/relations';
+import { RelationsMoodArtistForm, RelationsMoodModelForm, RelationsMoodTagForm } from '../../interfaces/http/relations';
 import { RelationsService } from '../../services/http/relations.service';
 import { MoodService } from '../../services/http/mood.service';
 import { MoodsGalleryService } from '../../services/user-interface/moods-gallery.service';

@@ -1,4 +1,4 @@
-import { BaseResponse } from "./base-response";
+import { BaseResponse } from "./http/base-response";
 
 export interface Image {
     businessId: number

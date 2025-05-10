@@ -42,13 +42,13 @@
             </a>
             <span>Notes Trainer</span>
         </div>
-        <div class="icon">
+        <!-- <div class="icon">
             <a [appScrollActive]="currentViewMode() === viewModes.TimeLine" [class.active]="currentViewMode() === viewModes.TimeLine" 
                 (click)="setToolsViewMode(viewModes.TimeLine)">
                 <app-icon-timeline size="65px" />
             </a>
             <span>Timeline</span>
-        </div>
+        </div> -->
         <div class="icon">
             <a [appScrollActive]="currentViewMode() === viewModes.GuitarTuner" [class.active]="currentViewMode() === viewModes.GuitarTuner" 
                 (click)="setToolsViewMode(viewModes.GuitarTuner)">
@@ -56,13 +56,13 @@
             </a>
             <span>Guitar Tuner</span>
         </div>
-        <div class="icon">
+        <!-- <div class="icon">
             <a [appScrollActive]="currentViewMode() === viewModes.ChordWriter" [class.active]="currentViewMode() === viewModes.ChordWriter" 
                 (click)="setToolsViewMode(viewModes.ChordWriter)">
                 <app-icon-mood size="65px" />
             </a>
             <span>Chord Writer</span>
-        </div>
+        </div> -->
     </div>
 </app-right-column>
 
@@ -72,6 +72,6 @@
 <app-metronome *ngIf="currentViewMode() === viewModes.Metronome" />
 <app-flying-keys-mini *ngIf="currentViewMode() === viewModes.Keyboard" />
 <app-trainer-notes *ngIf="currentViewMode() === viewModes.NotesTrainer" />
-<app-timeline *ngIf="currentViewMode() === viewModes.TimeLine" />
+<!-- <app-timeline *ngIf="currentViewMode() === viewModes.TimeLine" /> -->
 <app-guitar-tuner *ngIf="currentViewMode() === viewModes.GuitarTuner" />
-<app-chord-writer *ngIf="currentViewMode() === viewModes.ChordWriter" />
+<!-- <app-chord-writer *ngIf="currentViewMode() === viewModes.ChordWriter" /> -->

@@ -23,7 +23,7 @@
             transition-duration: 300ms;
         }
 
-        @media(max-width: 550px) {
+        @media(max-width: 1200px) {
             img {
                 width: 95%;
                 height: auto;
@@ -65,51 +65,5 @@
         box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
         border: 3px solid var(--colorMain);
         transition-duration: 300ms;
-    }
-}
-
-.hub-message {
-    font-size: 15px;
-    color: var(--colorMain);
-
-    a {
-        text-decoration: none;
-        background-color: var(--colorWhiteOpacity5);
-        border: 3px solid var(--colorMainOpacity2);
-        border-radius: 10px;
-
-        font-size: 14px;
-        color: var(--colorMain);
-
-        padding: 10px;
-        margin: 3px;
-
-        cursor: pointer;
-    }
-
-    a:hover {
-        background-color: var(--colorWhite);
-        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
-        border: 3px solid var(--colorMain);
-        transition-duration: 300ms;
-    }
-
-    span {
-        text-decoration: none;
-        background-color: rgb(224, 224, 224);
-        border: 3px solid rgba(128, 128, 128, 0.2);
-        border-radius: 10px;
-
-        font-size: 14px;
-        color: var(--colorMain);
-
-        padding: 10px;
-        margin: 3px;
-
-        cursor: pointer;
-    }
-
-    span:hover {
-        cursor: not-allowed;
     }
 }

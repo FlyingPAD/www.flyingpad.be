@@ -1,41 +1,125 @@
+<!-- src/app/pages/sign-up/sign-up.component.html -->
 <div class="log-in">
     <div class="left">
-        <div class="close-button" routerLink="/home" [class]="closeButtonIsOn ? 'on' : 'off' ">
-            <app-icon-plus class=icon size="25px" direction="diagonal" />
+        <div class="close-button" routerLink="/home" [class]="closeButtonIsOn ? 'on' : 'off'">
+            <app-icon-plus class="icon" size="25px" direction="diagonal" />
         </div>
+
         <div class="languages" (click)="languageMenuToggle()" [class.active]="isLanguageMenuON">
             <img [src]="getImageURL(false, 'icons-flags', currentLanguage(), 'png')" />
             <span>{{ currentLanguage() === 'fr' ? 'Français' : 'English' }}</span>
         </div>
-        <app-language-menu-home [isMenuOn]="isLanguageMenuON" (menuToggle)="languageMenuToggle()" />
+
+        <app-language-menu-home [isMenuOn]="isLanguageMenuON" (menuToggle)="languageMenuToggle()">
+        </app-language-menu-home>
+
         <div class="login-form">
             <img class="logo" [src]="getImageURL(true, 'images-logo', 'logo-3', 'png')" />
             <div class="menu">
                 <a routerLink="/sign-up" routerLinkActive="active">{{ 'title.sign-up' | translate }}</a>
                 <a routerLink="/log-in" routerLinkActive="active">{{ 'title.log-in' | translate }}</a>
             </div>
-            <form>
-                <p>{{ 'message.account-closed' | translate }}</p>
+
+            <form [formGroup]="formGroup" autocomplete="off">
+                <!-- tous vos champs existants inchangés -->
+                <div>
+                    <input type="text" formControlName="userName" placeholder="Username" autocomplete="off" />
+                    <div *ngIf="formGroup.get('userName')?.touched && formGroup.get('userName')?.errors">
+                        <p class="error" *ngIf="formGroup.get('userName')?.errors?.['required']">Username is required.
+                        </p>
+                        <p class="error" *ngIf="formGroup.get('userName')?.errors?.['maxLength']">Username must not
+                            exceed 50 characters.</p>
+                    </div>
+                </div>
+                <div>
+                    <input type="text" formControlName="firstName" placeholder="First Name" autocomplete="given-name" />
+                    <div *ngIf="formGroup.get('firstName')?.touched && formGroup.get('firstName')?.errors">
+                        <p class="error" *ngIf="formGroup.get('firstName')?.errors?.['required']">First name is
+                            required.</p>
+                        <p class="error" *ngIf="formGroup.get('firstName')?.errors?.['maxLength']">First name must not
+                            exceed 50 characters.</p>
+                    </div>
+                </div>
+                <div>
+                    <input type="text" formControlName="lastName" placeholder="Last Name" autocomplete="family-name" />
+                    <div *ngIf="formGroup.get('lastName')?.touched && formGroup.get('lastName')?.errors">
+                        <p class="error" *ngIf="formGroup.get('lastName')?.errors?.['required']">Last name is required.
+                        </p>
+                        <p class="error" *ngIf="formGroup.get('lastName')?.errors?.['maxLength']">Last name must not
+                            exceed 50 characters.</p>
+                    </div>
+                </div>
+                <div>
+                    <input type="date" formControlName="birthdate" />
+                    <div *ngIf="formGroup.get('birthdate')?.touched && formGroup.get('birthdate')?.errors">
+                        <p class="error" *ngIf="formGroup.get('birthdate')?.errors?.['required']">Birthdate is required.
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <input type="email" formControlName="email" placeholder="example@domain.com" autocomplete="email" />
+                    <div *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.errors">
+                        <p class="error" *ngIf="formGroup.get('email')?.errors?.['required']">Email is required.</p>
+                        <p class="error" *ngIf="formGroup.get('email')?.errors?.['email']">Please enter a valid email
+                            address.</p>
+                        <p class="error" *ngIf="formGroup.get('email')?.errors?.['maxLength']">The email must not exceed
+                            384 characters.</p>
+                    </div>
+                </div>
+                <div>
+                    <input type="password" formControlName="pass" placeholder="Min. 8 characters"
+                        autocomplete="new-password" />
+                    <div *ngIf="formGroup.get('pass')?.touched && formGroup.get('pass')?.errors">
+                        <p class="error" *ngIf="formGroup.get('pass')?.errors?.['required']">A password is required.</p>
+                        <p class="error" *ngIf="formGroup.get('pass')?.errors?.['minlength']">The password must be at
+                            least 8 characters long.</p>
+                    </div>
+                </div>
+                <div>
+                    <input type="password" formControlName="confirmPass" placeholder="Confirm Password"
+                        autocomplete="new-password" />
+                    <div *ngIf="formGroup.touched && formGroup.hasError('passwordMismatch')">
+                        <p class="error">Passwords must match.</p>
+                    </div>
+                </div>
+
+                <hr />
+
+                <ng-container *ngIf="useV2">
+                    <div class="captcha-wrapper">
+                        <re-captcha [siteKey]="recaptchaSiteKeyV2" (resolved)="onV2Resolved($event)"></re-captcha>
+                        <div *ngIf="v2Error" class="error">Veuillez prouver que vous n’êtes pas un robot.</div>
+                    </div>
+                    <hr />
+                </ng-container>
+
+                <ng-container *ngIf="!useV2">
+                    <div class="buttons">
+                        <div class="button button-disabled" *ngIf="formGroup.invalid">{{ 'title.sign-up' | translate }}
+                        </div>
+                        <div class="button" (click)="onSubmit()" *ngIf="formGroup.valid">{{ 'title.sign-up' | translate
+                            }}</div>
+                    </div>
+                </ng-container>
             </form>
+
             <div class="message">
-                <p routerLink="/log-in">{{ 'message.log-in' | translate }} <span>{{ 'title.log-in' | translate }}.</span></p>
+                <p>
+                    {{ 'message.log-in' | translate }}
+                    <span routerLink="/log-in"> {{ 'title-log-in' | translate }}.</span>
+                </p>
             </div>
         </div>
     </div>
+
     <div class="right">
         @if(moodsFlow()?.mood?.type === 1) {
-            @if (moodsFlow()?.mood?.height === moodsFlow()?.mood?.width) {
-            <img class="mood-square"
-              src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-            }
-            @if (moodsFlow()?.mood?.height > moodsFlow()?.mood?.width) {
-            <img class="mood-portrait"
-              src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-            }
-            @if (moodsFlow()?.mood?.height < moodsFlow()?.mood?.width) {
-            <img class="mood-landscape"
-              src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-            }
-          }
+        <img *ngIf="moodsFlow()?.mood?.height === moodsFlow()?.mood?.width" class="mood-square"
+            src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+        <img *ngIf="moodsFlow()?.mood?.height > moodsFlow()?.mood?.width" class="mood-portrait"
+            src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+        <img *ngIf="moodsFlow()?.mood?.height < moodsFlow()?.mood?.width" class="mood-landscape"
+            src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+        }
     </div>
 </div>

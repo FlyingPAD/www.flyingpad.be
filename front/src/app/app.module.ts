@@ -1,3 +1,4 @@
+import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY, RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
@@ -15,7 +16,6 @@ import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LogInErrorComponent } from './pages/log-in-error/log-in-error.component';
-import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.component';
 import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circle-of-fifths.component';
 import { DiapasonComponent } from './features/tools/diapason/diapason.component';
@@ -246,7 +246,15 @@ import { BottomToggleEntityInfoComponent } from './components/bottom-bar-icons/b
 import { ToggleDialogDirective } from './directives/toggle-dialog.directive';
 import { PrototypeComponent } from './features/tools/prototype/prototype.component';
 import { CreateMoodVideoYoutubeComponent } from './pages/create-mood-video-youtube/create-mood-video-youtube.component';
-import { CreateMoodAudioSoundcloudComponent } from './pages/create-mood-audio-soundcloud/create-mood-audio-soundcloud.component'
+import { CreateMoodAudioSoundcloudComponent } from './pages/create-mood-audio-soundcloud/create-mood-audio-soundcloud.component';
+import { EmailVerificationComponent } from './features/dashboard/email-verification/email-verification.component';
+import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
+import { BannerPadStationComponent } from './features/dashboard/banner-pad-station/banner-pad-station.component';
+import { LadderComponent } from './pages/ladder/ladder.component';
+import { UserCardsComponent } from './features/dashboard/user-cards/user-cards.component';
+import { UserLeagueComponent } from './pages/user-league/user-league.component';
+import { UserProfilePublicComponent } from './pages/user-profile-public/user-profile-public.component'
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   const version = environment.translationVersion
@@ -320,7 +328,6 @@ export function appInitializerFactory(translate: TranslateService) {
     SignUpComponent,
     LogInComponent,
     LogInErrorComponent,
-    UserRegisterComponent,
     // Components.
     AppComponent,
     CurrentTimeComponent,
@@ -369,8 +376,8 @@ export function appInitializerFactory(translate: TranslateService) {
     // Models.
     CreateModelComponent,
     EditModelComponent,
-    DeleteModelComponent,  
-    RelatedFranchisesComponent,  
+    DeleteModelComponent,
+    RelatedFranchisesComponent,
     // Artists.
     CreateArtistComponent,
     CreateStyleComponent,
@@ -520,12 +527,22 @@ export function appInitializerFactory(translate: TranslateService) {
     PrototypeComponent,
     CreateMoodVideoYoutubeComponent,
     CreateMoodAudioSoundcloudComponent,
+    EmailVerificationComponent,
+    ConfirmEmailComponent,
+    BannerPadStationComponent,
+    LadderComponent,
+    UserCardsComponent,
+    UserLeagueComponent,
+    UserProfilePublicComponent,
   ],
   imports: [
+    RecaptchaModule,
+    RecaptchaFormsModule,
+    RecaptchaV3Module,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
       timeOut: 2500,
@@ -554,9 +571,10 @@ export function appInitializerFactory(translate: TranslateService) {
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializerFactory, deps: [TranslateService], multi: true },
-    [CookieService],           
+    [CookieService],
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: RECAPTCHA_V3_SITE_KEY, useValue: environment.recaptchaSiteKeyV3 }
   ],
   bootstrap: [AppComponent]
 })

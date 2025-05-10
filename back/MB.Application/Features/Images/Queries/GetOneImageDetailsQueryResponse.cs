@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Images.Queries;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Images.Queries;
 
 public class GetOneImageDetailsQueryResponse : BaseResponse
 {

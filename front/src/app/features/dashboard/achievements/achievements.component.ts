@@ -1,32 +1,60 @@
-import { Component, inject, Input } from '@angular/core';
-import { Achievement } from '../../../interfaces/achievement';
-import { Router } from '@angular/router';
-import { ToolsService } from '../../../services/user-interface/tools.service';
-import { ToolsViewMode } from '../../../enumerations/view-modes';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { NewAchievement } from '../../../interfaces/achievement';
+import { UserService } from '../../../services/http/user.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-achievements',
   templateUrl: './achievements.component.html',
-  styleUrl: './achievements.component.scss'
+  styleUrls: ['./achievements.component.scss']
 })
-export class AchievementsComponent {
-  #toolsService = inject(ToolsService)
-  #router = inject(Router)
+export class AchievementsComponent implements OnInit, OnDestroy {
+  #userService = inject(UserService)
 
-  @Input() achievements: Achievement[] = []
+  #destroy$ = new Subject<void>()
 
-  public currentAchievement!: Achievement
+  public user = this.#userService.user
+  public achievements: NewAchievement[] = []
+  public grouped: { category: string; items: NewAchievement[] }[] = []
 
-  public setAchievement(achievement: Achievement): void {
-    this.currentAchievement = achievement
+  public currentAchievement!: NewAchievement
+
+
+  ngOnInit(): void {
+    const bizId = this.#userService.user().businessId;
+    if (!bizId) return;
+
+    this.#userService.getUserAchievements(bizId)
+      .pipe(takeUntil(this.#destroy$))
+      .subscribe(list => {
+        this.achievements = list
+        this.grouped = Object.entries(
+          list.reduce((acc, ach) => {
+            (acc[ach.category] ||= []).push(ach)
+            return acc;
+          }, {} as Record<string, NewAchievement[]>)
+        )
+          .map(([category, items]) => ({ category, items }))
+      })
   }
 
-  public displayAchievement(achievement: Achievement): void {
-    this.setAchievement(achievement)
+  ngOnDestroy(): void {
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
-  public GoToNotesTrainer(): void {
-    this.#toolsService.setToolsViewMode(ToolsViewMode.NotesTrainer)
-    this.#router.navigateByUrl('/tools')
+
+  public displayAchievement(ach: NewAchievement) {
+    this.currentAchievement = ach
+  }
+
+  public titleFor(category: string): string {
+    switch (category) {
+      case 'standard': return 'Achievements';
+      case 'notes-bass': return 'Bass Clef';
+      case 'notes-alto': return 'Alto Clef';
+      case 'notes-treble': return 'Treble Clef';
+      default: return category.charAt(0).toUpperCase() + category.slice(1);
+    }
   }
 }

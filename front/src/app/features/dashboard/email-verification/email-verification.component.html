@@ -1,0 +1,22 @@
+<div class="main-frame">
+    <p class="hub-message">
+        <span class="warning"><strong>Your account is NOT verified</strong></span>
+        <span><strong>Verify your email</strong> to unlock all features of the app.</span>
+        <button class="send-btn" (click)="sendVerificationLink()" [disabled]="isLoading()">
+            @if (isLoading()) {
+            Envoi en cours…
+            } 
+            
+            @else {
+            Send verification e-Mail
+            }
+        </button>
+    </p>
+
+    @if (infoMessage()) {
+    <p class="info">{{ infoMessage() }}</p>
+    } 
+    @else if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+    }
+</div>

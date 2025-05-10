@@ -2,7 +2,7 @@ import { Component, HostListener, inject, OnDestroy } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { MultiTagService } from '../../services/multi-tag.service';
 import { NotificationService } from '../../services/user-interface/notification.service';
-import { MoodScoreUpdate } from '../../interfaces/forms-update';
+import { MoodScoreUpdate } from '../../interfaces/http/forms-update';
 import { Subject, takeUntil } from 'rxjs';
 import { MoodService } from '../../services/http/mood.service';
 import { Router } from '@angular/router';

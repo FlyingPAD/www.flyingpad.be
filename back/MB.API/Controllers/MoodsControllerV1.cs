@@ -1,5 +1,4 @@
-﻿using MB.Application;
-using MB.Application.Features.Moods.Commands.CreateMood;
+﻿using MB.Application.Features.Moods.Commands.CreateMood;
 using MB.Application.Features.Moods.Commands.CreateMoodImage;
 using MB.Application.Features.Moods.Commands.CreateMoodVideo;
 using MB.Application.Features.Moods.Commands.CreateMoodYouTube;
@@ -19,6 +18,7 @@ using MB.Application.Features.Moods.Queries.GetMoodsByModel;
 using MB.Application.Features.Moods.Queries.GetMoodsByTag;
 using MB.Application.Features.Moods.Queries.GetMoodsByTagCategory;
 using MB.Application.Features.Moods.Queries.GetRandomMood;
+using MB.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,0 +1,26 @@
+<h1 class="h1">My League</h1>
+
+<div class="main-frame">
+    <p>{{user().league?.name}} ( {{ user().league?.minExperience}} - {{ user().league?.maxExperience}} XP )</p>
+    <app-icon-coin colorOuter='gold' size="50px" />
+</div>
+
+<div class="main-frame">
+    @for (user of users; track $index) {
+        <div class="user">
+            @if(user.userName && user.userName != '') {
+                <div>{{ user.userName }}</div>
+            }
+            @else {
+                <div>{{ user.email }}</div>
+            }
+            <div>Level {{ user.level }}</div>
+            <div>{{ user.experience }} XP</div>
+        </div>      
+    }
+</div>
+
+<app-bottom-bar>
+    <app-bottom-icon-back />
+    <app-bottom-icon-to-top />
+</app-bottom-bar>

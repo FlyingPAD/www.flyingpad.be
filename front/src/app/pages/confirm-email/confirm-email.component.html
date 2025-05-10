@@ -1,0 +1,18 @@
+<div class="confirm-container" *ngIf="status === 'pending'">
+    <p>Confirming your email…</p>
+</div>
+
+<div class="confirm-container success" *ngIf="status === 'success'">
+    <p>✅ Your email address has been confirmed!</p>
+    <p>You will be redirected to the dashboard in {{ countdown }} second{{ countdown > 1 ? 's' : '' }}.</p>
+    <button (click)="redirectNow()" class="redirect-button">
+        Click here to proceed now
+    </button>
+</div>
+
+<div class="confirm-container error" *ngIf="status === 'error'">
+    <p>❌ Error: Invalid or expired link.</p>
+    <button routerLink="/email-verification" class="redirect-button">
+        Resend verification link
+    </button>
+</div>

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, inject, OnDestroy, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { TagCategoryCreateForm } from '../../../interfaces/forms-create';
+import { TagCategoryCreateForm } from '../../../interfaces/http/forms-create';
 import { TagService } from '../../../services/http/tag.service';
 
 @Component({

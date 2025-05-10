@@ -10,6 +10,8 @@ import { TokenService } from '../token.service';
 import { NotificationService } from '../user-interface/notification.service';
 import { StorageService } from '../storage.service';
 import { StorageProperties } from '../../enumerations/storage-properties';
+import { CustomError } from '../../interfaces/error';
+import { BaseResponse } from '../../interfaces/http/base-response';
 
 @Injectable({
   providedIn: 'root'
@@ -27,14 +29,6 @@ export class AuthenticationService {
 
   private clearStorage(): void {
     this.#storageService.removeItem(StorageProperties.StateArtistId)
-    this.#storageService.removeItem(StorageProperties.StateFranchiseId)
-    this.#storageService.removeItem(StorageProperties.StateLinkId)
-    this.#storageService.removeItem(StorageProperties.StateLinkCategoryId)
-    this.#storageService.removeItem(StorageProperties.StateMediumId)
-    this.#storageService.removeItem(StorageProperties.StateModelId)
-    this.#storageService.removeItem(StorageProperties.StateMoodId)
-    this.#storageService.removeItem(StorageProperties.StateStyleId)
-    this.#storageService.removeItem(StorageProperties.StateTagId)
     this.#storageService.removeItem(StorageProperties.StateTagCategoryId)
   }
 
@@ -43,15 +37,12 @@ export class AuthenticationService {
       tap(response => {
         if (response.success) {
           this.#tokenService.storeToken(response.token)
-          this.authenticate(response.token)
+          this.authenticate(response.token);
           this.#notificationService.success(response.message)
-        } else {
-          this.#notificationService.error(response.message)
-        }
+        } 
+        else this.#notificationService.error(response.message)
       }),
-      catchError(error => {     
-        return throwError(() => error)
-      })
+      catchError(error => throwError(() => error))
     )
   }
 
@@ -62,9 +53,11 @@ export class AuthenticationService {
           this.#tokenService.storeToken(response.token)
           this.authenticate(response.token)
           this.#notificationService.success(response.message)
-        }
+        } 
         else this.#notificationService.error(response.message)
-      }))
+      }),
+      catchError((err: CustomError) => throwError(() => err))
+    )
   }
 
   public logout(): void {
@@ -83,10 +76,21 @@ export class AuthenticationService {
   }
 
   public authenticate(token: string): void {
-    let userId = this.#tokenService.getUserIdFromToken(token)
-    let role = this.#tokenService.getUserRoleFromToken(token)
-    
+    const userId = this.#tokenService.getUserIdFromToken(token)
+    const role = this.#tokenService.getUserRoleFromToken(token)
     this.#userService.getUser(userId, role).subscribe()
     this.acceptConnection()
+  }
+
+  public sendVerificationEmail(): Observable<BaseResponse> {
+    return this.#http.post<BaseResponse>(`${this.#url}Auth/SendVerificationEmail`, {}).pipe(
+        catchError(err => {
+          return throwError(() => err)
+        })
+      )
+  }
+
+  public confirmEmail(token: string): Observable<BaseResponse> {
+    return this.#http.post<BaseResponse>(`${this.#url}Auth/ConfirmEmail`, { token } )
   }
 }

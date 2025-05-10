@@ -1,0 +1,18 @@
+.user {
+    display: flex;
+    align-items: center;
+
+    div {
+        width: 250px;
+        
+        background-color: var(--colorWhiteOpacity5);
+        border: 3px solid var(--colorMainOpacity2);
+        border-radius: 10px;
+
+        font-size: 14px;
+        color: var(--colorMain);
+
+        padding: 10px;
+        margin: 3px;
+    }
+}

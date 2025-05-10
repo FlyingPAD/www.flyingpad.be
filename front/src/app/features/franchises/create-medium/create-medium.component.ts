@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, inject, OnDestroy, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { MediumCreateForm } from '../../../interfaces/forms-create';
+import { MediumCreateForm } from '../../../interfaces/http/forms-create';
 import { FranchiseService } from '../../../services/http/franchise.service';
 
 @Component({

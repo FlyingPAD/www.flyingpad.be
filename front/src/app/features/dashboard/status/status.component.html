@@ -2,7 +2,8 @@
     <div class="status">
         <div class="thumbnail">
             @if(moodsFlow()?.mood.type == 1) {
-            <img src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood.businessId}}.{{moodsFlow()?.mood.extension}}" (click)="goToMood()" />
+            <img src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood.businessId}}.{{moodsFlow()?.mood.extension}}"
+                (click)="goToMood()" />
             }
             @if(moodsFlow()?.mood.type == 2) {
             <img src="{{environment}}/Content/video_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToMood()" />
@@ -11,7 +12,8 @@
             <img src="{{environment}}/Content/txt_thumbs/{{moodsFlow()?.mood.businessId}}.jpg" (click)="goToMood()" />
             }
             @if(moodsFlow()?.mood.type == 4) {
-            <img [src]="'https://img.youtube.com/vi/' + moodsFlow()!.mood.url + '/hqdefault.jpg'" (click)="goToMood()" />
+            <img [src]="'https://img.youtube.com/vi/' + moodsFlow()!.mood.url + '/hqdefault.jpg'"
+                (click)="goToMood()" />
             }
             @if(moodsFlow()?.mood.type == 5) {
             <img [src]="moodsFlow()?.mood.thumbnailUrl" (click)="goToMood()" />
@@ -49,10 +51,3 @@
         }
     </div>
 </div>
-
-@if(displayInfo().mode === displayModes.Desktop) {
-<div class="main-frame">
-    <p class="hub-message"> ▸ Download <b>PAD Station</b> : <a href="/assets/hub/PAD-Station.msi">Windows x64</a>
-        <span>MacOS</span></p>
-</div>
-}

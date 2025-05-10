@@ -1,0 +1,43 @@
+<div class="user-statistics">
+    <div class="statistic">
+        <p class="title">{{ 'title.level' | translate }}</p>
+        <div class="icon">
+            <app-icon-statistics class="icon" size="35px" />
+        </div>
+        <p class="value">{{ user.level }}</p>
+    </div>
+    <div class="statistic">
+        <p class="title">{{ 'title.experience' | translate }}</p>
+        <div class="icon">
+            <app-icon-star class="icon" size="35px" />
+        </div>
+        <p class="value">{{ user.experience }} XP</p>
+    </div>
+    <div class="statistic" (click)="goTo('ladder')">
+        <p class="title">Season Score</p>
+        <div class="icon">
+            <app-icon-dollar class="icon" size="35px" />
+        </div>
+        <p class="value">{{ user.seasonScore }}</p>
+    </div>
+    <div class="statistic" (click)="goTo('user-league')">
+        <p class="title">{{ 'title.league' | translate }}</p>
+        <div class="icon">
+            <app-icon-coin class="icon" size="35px" [colorOuter]="'#cd7f32'" />
+        </div>
+        <p class="value">{{user.league?.name}}</p>
+    </div>
+    <div class="statistic" (click)="goToAchievements()">
+        <p class="title">{{ 'title.achievements' | translate }}</p>
+        <div class="icon">
+            <app-icon-coin class="icon" size="35px" [colorOuter]="'gold'" />
+        </div>
+        <p class="value">{{user.achievements.length}}</p>
+    </div>
+    <div class="statistic" (click)="goTo('ladder')">
+        <p class="title">Ladder</p>
+        <div class="icon">
+            <app-icon-go class="icon" size="35px" />
+        </div>
+    </div>
+</div>

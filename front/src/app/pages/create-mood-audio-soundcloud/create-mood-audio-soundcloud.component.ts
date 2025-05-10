@@ -2,7 +2,7 @@ import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/cor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { YouTubeVideoCreateForm } from '../../interfaces/forms-create';
+import { YouTubeVideoCreateForm } from '../../interfaces/http/forms-create';
 import { MoodService } from '../../services/http/mood.service';
 
 @Component({

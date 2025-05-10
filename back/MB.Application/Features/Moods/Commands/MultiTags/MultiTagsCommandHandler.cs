@@ -1,4 +1,5 @@
 ﻿using MB.Application.Interfaces.Persistence;
+using MB.Application.Models;
 using MediatR;
 
 namespace MB.Application.Features.Moods.Commands.MultiTags

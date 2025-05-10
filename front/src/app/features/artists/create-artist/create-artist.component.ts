@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { ArtistCreateForm } from '../../../interfaces/forms-create';
+import { ArtistCreateForm } from '../../../interfaces/http/forms-create';
 import { ArtistService } from '../../../services/http/artist.service';
 import { StyleLight } from '../../../interfaces/artist';
 

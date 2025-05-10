@@ -1,4 +1,6 @@
-﻿namespace MB.Application.Features.Moods.Commands.CreateSoundCloudAudio;
+﻿using MB.Application.Models;
+
+namespace MB.Application.Features.Moods.Commands.CreateSoundCloudAudio;
 
 public class CreateSoundCloudAudioCommandResponse : BaseResponse
 {

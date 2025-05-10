@@ -1,4 +1,5 @@
 ﻿using MB.Application.Interfaces.Infrastructure;
+using MB.Infrastructure.Jobs;
 using MB.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,10 +12,20 @@ public static class InfrastructureServiceRegistration
     {
         services.AddScoped<IFileService, FileService>();
         services.AddScoped<IEMailService, EMailService>();
-        services.AddScoped<EmailJob>();
 
-        services.AddHttpClient();
+        services
+          .AddHttpClient<CaptchaValidator>()
+          .Services
+          .AddScoped<ICaptchaValidator>(sp => sp.GetRequiredService<CaptchaValidator>());
+
         services.AddTransient<ISoundCloudService, SoundCloudOembedService>();
+
+        services.AddScoped<DailyReportJob>();
+        services.AddScoped<CleanupExpiredTokensJob>();
+        services.AddScoped<ProcessSeasonsJob>();
+
+        services.AddScoped<MB.Domain.UserAggregate.Interfaces.IUserFactory, MB.Infrastructure.Services.Factories.UserFactory>();
+
 
         return services;
     }

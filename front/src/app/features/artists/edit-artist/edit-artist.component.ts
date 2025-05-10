@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ArtistFull, StyleCheckBox } from '../../../interfaces/artist';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ArtistUpdateForm } from '../../../interfaces/forms-update';
+import { ArtistUpdateForm } from '../../../interfaces/http/forms-update';
 import { ArtistService } from '../../../services/http/artist.service';
 import { Subject, takeUntil } from 'rxjs';
 import { DialogService } from '../../../services/user-interface/dialog.service';

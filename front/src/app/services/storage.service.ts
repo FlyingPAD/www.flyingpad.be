@@ -7,21 +7,17 @@ import { NotificationService } from './user-interface/notification.service';
 export class StorageService {
   #notificationService = inject(NotificationService)
 
-  setItem(key: string, value: any): void {
+  public setItem(key: string, value: any): void {
     try {
-      if (value === undefined) {
-        localStorage.removeItem(key)
-      } 
-      else {
-        localStorage.setItem(key, JSON.stringify(value))
-      }
+      if (value === undefined) localStorage.removeItem(key) 
+      else localStorage.setItem(key, JSON.stringify(value))
     } 
     catch (error) {
       this.#notificationService.error(`Error saving item ${key}`, 'Error')
     }
   }
 
-  getItem<T>(key: string): T | null {
+  public getItem<T>(key: string): T | null {
     try {
       const item = localStorage.getItem(key)
       return item ? JSON.parse(item) as T : null
@@ -32,7 +28,7 @@ export class StorageService {
     }
   }
 
-  removeItem(key: string): void {
+  public removeItem(key: string): void {
     try {
       localStorage.removeItem(key)
     }
@@ -41,7 +37,7 @@ export class StorageService {
     }
   }
 
-  clearAll(): void {
+  public clearAll(): void {
     try {
       localStorage.clear()
     }

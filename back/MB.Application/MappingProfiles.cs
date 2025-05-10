@@ -70,17 +70,21 @@ using MB.Application.Features.Tasks.Queries.GetTaskDetails;
 using MB.Application.Features.Tasks.Queries.GetTasksList;
 using MB.Application.Features.Users.Commands.DeleteUser;
 using MB.Application.Features.Users.Commands.UpdateUser;
+using MB.Application.Features.Users.Queries.GetAllUsers;
 using MB.Application.Features.Users.Queries.GetUserById;
-using MB.Application.Features.Users.Queries.GetUsersList;
 using MB.Application.Features.Videos.Queries.GetOneVideoDetails;
 using MB.Application.Features.VideosYouTube.Queries.GetOneVideoYTDetails;
+using MB.Application.Models;
+using MB.Domain.AchievementAggregate;
 using MB.Domain.ArtistAggregate;
 using MB.Domain.FranchiseAggregate;
+using MB.Domain.LeagueAggregate;
 using MB.Domain.LinkAggregate;
 using MB.Domain.LinkCategoryAggregate;
 using MB.Domain.MediumAggregate;
 using MB.Domain.ModelAggregate;
 using MB.Domain.MoodAggregate;
+using MB.Domain.SeasonAggregate;
 using MB.Domain.StyleAggregate;
 using MB.Domain.TagAggregate;
 using MB.Domain.TagCategoryAggregate;
@@ -203,10 +207,50 @@ public class MappingProfiles : Profile
         CreateMap<Domain.TaskAggregate.Task, DeleteTaskCommand>().ReverseMap();
 
         // Users.
-        CreateMap<User, GetUsersListQueryDto>().ReverseMap();
-        CreateMap<User, GetUserByIdQueryDto>().ReverseMap();
+        CreateMap<User, GetAllUsersQueryDto>()
+            .ForMember(dest => dest.BusinessId,
+                       opt => opt.MapFrom(u => u.BusinessId))
+            .ForMember(dest => dest.Achievements,
+                       opt => opt.MapFrom(u => u.Achievements));
+
+        CreateMap<User, GetUserByIdQueryDto>()
+            .ForMember(d => d.BusinessId, o => o.MapFrom(u => u.BusinessId))
+            .ForMember(d => d.Season, o => o.MapFrom(u => u.Season))
+            .ForMember(d => d.League, o => o.MapFrom(u => u.LeagueDefinition))
+            .ForMember(d => d.Achievements, o => o.MapFrom(u => u.Achievements))
+            .ForMember(d => d.SeasonScore, opt => opt.MapFrom(u => u.SeasonScore));
+
         CreateMap<User, UpdateUserCommandDto>().ReverseMap();
         CreateMap<User, UpdateUserCommand>().ReverseMap();
         CreateMap<User, DeleteUserCommand>().ReverseMap();
+
+        // Season -> SeasonDto
+        CreateMap<Season, SeasonDto>()
+            .ForMember(d => d.BusinessId, o => o.MapFrom(s => s.BusinessId));
+
+        // LeagueDefinition -> LeagueDto
+        CreateMap<LeagueDefinition, LeagueDto>()
+            .ForMember(d => d.BusinessId, o => o.MapFrom(l => l.BusinessId))
+            .ForMember(d => d.MinExperience, o => o.MapFrom(l => l.MinExperience))
+            .ForMember(d => d.MaxExperience, o => o.MapFrom(l => l.MaxExperience))
+            .ForMember(d => d.Order, o => o.MapFrom(l => l.Order))
+            .ForMember(d => d.IconCssClass, o => o.MapFrom(l => l.IconCssClass));
+
+        // Mapping pour chaque achievement
+        CreateMap<UserAchievement, AchievementDto>()
+            .ForMember(dest => dest.BusinessId,
+                       opt => opt.MapFrom(src => src.BusinessId))
+            .ForMember(dest => dest.Title,
+                       opt => opt.MapFrom(src => src.Definition.Title))
+            .ForMember(dest => dest.Goal,
+                       opt => opt.MapFrom(src => src.Definition.Goal))
+            .ForMember(dest => dest.DoneMessage,
+                       opt => opt.MapFrom(src => src.Definition.DoneMessage))
+            .ForMember(dest => dest.Category,
+                       opt => opt.MapFrom(src => src.Definition.Category))
+            .ForMember(dest => dest.XpReward,
+                       opt => opt.MapFrom(src => src.Definition.XpReward))
+            .ForMember(dest => dest.UnlockedAt,
+                       opt => opt.MapFrom(src => src.UnlockedAt));
     }
 }
