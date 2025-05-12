@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserUpdateForm } from '../../interfaces/http/forms-update';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BaseResponse } from '../../interfaces/http/base-response';
+import { AchievementCode } from '../../types/AchievementCode';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -86,12 +87,12 @@ export class UserService {
     )
   }
 
-  public unlockAchievement(userBusinessId: number, achievementBusinessId: number): Observable<BaseResponse> {
-    return this.#http.post<BaseResponse>(`${this.#url}Users/UnlockAchievement`, { userBusinessId, achievementBusinessId }).pipe(tap(() => this.refreshUser()))
+  public unlockAchievement(userBusinessId: number, achievementCode: AchievementCode): Observable<BaseResponse> {
+    return this.#http.post<BaseResponse>(`${this.#url}Users/UnlockAchievement`, { userBusinessId, achievementCode }).pipe(tap(() => this.refreshUser()))
   }
 
-  public unlockAchievements(userBusinessId: number, achievementBusinessIds: number[]): Observable<BaseResponse> {
-    return this.#http.post<BaseResponse>(`${this.#url}Users/UnlockAchievements`, { userBusinessId, achievementBusinessIds }).pipe(tap(() => this.refreshUser()))
+  public unlockAchievements(userBusinessId: number, achievementCodes: AchievementCode[]): Observable<BaseResponse> {
+    return this.#http.post<BaseResponse>(`${this.#url}Users/UnlockAchievements`, { userBusinessId, achievementCodes }).pipe(tap(() => this.refreshUser()))
   }
 
   public gainExperience(userBusinessId: number, xp: number): Observable<BaseResponse> {

@@ -26,6 +26,8 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IAuthRepository, AuthRepository>();
         services.AddScoped<IEmailVerificationTokenRepository, EmailVerificationTokenRepository>();
         services.AddScoped<IFranchiseRepository, FranchiseRepository>();
+        services.AddScoped<ILeagueDefinitionsRepository, LeagueDefinitionsRepository>();
+        services.AddScoped<ILevelDefinitionRepository, LevelDefinitionRepository>();
         services.AddScoped<ILinkCategoryRepository, LinkCategoryRepository>();
         services.AddScoped<ILinkRepository, LinkRepository>();
         services.AddScoped<IMediaRepository, MediaRepository>();

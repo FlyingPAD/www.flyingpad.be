@@ -1,3 +1,4 @@
+import { AchievementCode } from "../types/AchievementCode"
 import { BaseResponse } from "./http/base-response"
 
 export interface Achievement {
@@ -12,13 +13,14 @@ export interface Achievement {
 }
 
 export interface NewAchievement {
-    businessId: number;
-    title: string;
-    goal: string;
-    doneMessage: string;
-    category: string;
-    xpReward: number;
-    unlockedAt?: Date;
+    code: AchievementCode
+    businessId: number
+    title: string
+    goal: string
+    doneMessage: string
+    category: string
+    xpReward: number
+    unlockedAt?: Date
 }
 
 export interface GetUserAchievementsResponse extends BaseResponse {

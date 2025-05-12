@@ -2,6 +2,7 @@
 
 public class AchievementDefinition : AuditableEntity
 {
+    public string Code { get; private set; } = string.Empty;
     public string Title { get; private set; } = string.Empty;
     public string Goal { get; private set; } = string.Empty;
     public string DoneMessage { get; private set; } = string.Empty;
@@ -12,6 +13,7 @@ public class AchievementDefinition : AuditableEntity
     private AchievementDefinition() { }
 
     public AchievementDefinition(
+        string code,
         string title,
         string goal,
         string doneMessage,
@@ -19,6 +21,7 @@ public class AchievementDefinition : AuditableEntity
         int xpReward,
         string? iconUrl = null)
     {
+        Code = code;
         Title = title;
         Goal = goal;
         DoneMessage = doneMessage;

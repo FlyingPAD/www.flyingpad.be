@@ -1,5 +1,6 @@
 ﻿using MB.Domain.AchievementAggregate;
 using MB.Domain.LeagueAggregate;
+using MB.Domain.LevelAggregate;
 using MB.Domain.SeasonAggregate;
 
 namespace MB.Domain.UserAggregate;
@@ -7,9 +8,9 @@ namespace MB.Domain.UserAggregate;
 public class User : AuditableEntity
 {
     // Identité et contact
-    public string UserName { get; private set; } = string.Empty;
-    public string FirstName { get; private set; } = string.Empty;
-    public string LastName { get; private set; } = string.Empty;
+    public string? UserName { get; private set; }
+    public string? FirstName { get; private set; }
+    public string? LastName { get; private set; }
     public string Email { get; private set; } = string.Empty;
     public bool IsEmailVerified { get; private set; }
 
@@ -24,7 +25,7 @@ public class User : AuditableEntity
 
     // Rôles et date de naissance
     public int Role { get; private set; } = 1;
-    public DateTime Birthdate { get; private set; } = DateTime.MinValue;
+    public DateTime? Birthdate { get; private set; }
 
     // Associations
     private readonly List<EmailVerificationToken> _emailVerificationTokens = [];
@@ -47,44 +48,24 @@ public class User : AuditableEntity
 
     // Factory de création initiale
     public static User Register(
-        string userName,
-        string firstName,
-        string lastName,
         string email,
         byte[] passwordHash,
-        byte[] passwordSalt,
-        DateTime birthdate)
+        byte[] passwordSalt
+    )
     {
-        if (string.IsNullOrWhiteSpace(userName)) throw new ArgumentException("UserName requis", nameof(userName));
-        if (string.IsNullOrWhiteSpace(firstName)) throw new ArgumentException("FirstName requis", nameof(firstName));
-        if (string.IsNullOrWhiteSpace(lastName)) throw new ArgumentException("LastName requis", nameof(lastName));
         if (string.IsNullOrWhiteSpace(email)) throw new ArgumentException("Email requis", nameof(email));
         if (passwordHash == null || passwordHash.Length == 0) throw new ArgumentException("Hash requis", nameof(passwordHash));
         if (passwordSalt == null || passwordSalt.Length == 0) throw new ArgumentException("Salt requis", nameof(passwordSalt));
 
         return new User
         {
-            UserName = userName,
-            FirstName = firstName,
-            LastName = lastName,
             Email = email,
             PasswordHash = passwordHash,
             PasswordSalt = passwordSalt,
-            Birthdate = birthdate,
-            IsEmailVerified = false,
-            Experience = 0,
-            Level = 1,
-            Role = 1
         };
     }
 
-    // ------------------------
-    // Méthodes métier (mutations autorisées)
-    // ------------------------
 
-    /// <summary>
-    /// Met à jour les informations de profil.
-    /// </summary>
     public void UpdateProfile(string userName, string firstName, string lastName, DateTime birthdate)
     {
         if (string.IsNullOrWhiteSpace(userName)) throw new ArgumentException("UserName requis", nameof(userName));
@@ -97,18 +78,12 @@ public class User : AuditableEntity
         Birthdate = birthdate;
     }
 
-    /// <summary>
-    /// Change le rôle de l'utilisateur.
-    /// </summary>
     public void ChangeRole(int newRole)
     {
         if (newRole < 0) throw new ArgumentException("Role invalide", nameof(newRole));
         Role = newRole;
     }
 
-    /// <summary>
-    /// Modifie l'adresse email et marque à vérifier.
-    /// </summary>
     public void ChangeEmail(string newEmail)
     {
         if (string.IsNullOrWhiteSpace(newEmail)) throw new ArgumentException("Email requis", nameof(newEmail));
@@ -116,9 +91,6 @@ public class User : AuditableEntity
         IsEmailVerified = false;
     }
 
-    /// <summary>
-    /// Met à jour le hachage du mot de passe.
-    /// </summary>
     public void ChangePassword(byte[] newHash, byte[] newSalt)
     {
         if (newHash == null || newHash.Length == 0) throw new ArgumentException("Hash requis", nameof(newHash));
@@ -128,32 +100,20 @@ public class User : AuditableEntity
         PasswordSalt = newSalt;
     }
 
-    /// <summary>
-    /// Valide l'email de l'utilisateur.
-    /// </summary>
     public void VerifyEmail() => IsEmailVerified = true;
 
-    /// <summary>
-    /// Ajoute de l'expérience.
-    /// </summary>
     public void GainExperience(int xp)
     {
         if (xp <= 0) return;
         Experience += xp;
     }
 
-    /// <summary>
-    /// Met à jour le niveau.
-    /// </summary>
     public void UpdateLevel(int newLevel)
     {
         if (newLevel <= 0) return;
         Level = newLevel;
     }
 
-    /// <summary>
-    /// Débloque un achievement et donne son XP.
-    /// </summary>
     public void UnlockAchievement(AchievementDefinition def)
     {
         ArgumentNullException.ThrowIfNull(def);
@@ -165,9 +125,6 @@ public class User : AuditableEntity
         GainExperience(def.XpReward);
     }
 
-    /// <summary>
-    /// Participe à une saison.
-    /// </summary>
     public void ParticipateInSeason(Season season)
     {
         ArgumentNullException.ThrowIfNull(season);
@@ -175,9 +132,6 @@ public class User : AuditableEntity
         Season = season;
     }
 
-    /// <summary>
-    /// Met à jour la ligue de l'utilisateur.
-    /// </summary>
     public void UpdateLeague(LeagueDefinition league)
     {
         ArgumentNullException.ThrowIfNull(league);
@@ -185,20 +139,37 @@ public class User : AuditableEntity
         LeagueDefinition = league;
     }
 
-    /// <summary>
-    /// Ajoute des points au score de saison (jamais en dessous de zéro).
-    /// </summary>
     public void GainSeasonPoints(int points)
     {
         if (points == 0) return;
         SeasonScore = Math.Max(0, SeasonScore + points);
     }
 
-    /// <summary>
-    /// Réinitialise le score de saison (appelée après calcul des promotions).
-    /// </summary>
     public void ResetSeasonScore()
     {
         SeasonScore = 0;
+    }
+
+    public void RecalculateLevel(
+        IEnumerable<LevelDefinition> levelDefs,
+        Func<int, string> levelToCode,
+        Func<string, AchievementDefinition?> findAch
+    )
+    {
+        var matching = levelDefs
+            .Where(ld => Experience >= ld.MinExperience)
+            .OrderByDescending(ld => ld.MinExperience)
+            .FirstOrDefault();
+
+        if (matching is null || matching.LevelNumber == Level)
+            return;
+
+        Level = matching.LevelNumber;
+
+        // Déblocage du succès de niveau
+        var code = levelToCode(Level);
+        var def = findAch(code);
+        if (def != null)
+            UnlockAchievement(def);
     }
 }

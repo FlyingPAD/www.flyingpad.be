@@ -35,6 +35,7 @@ public class GetUserAchievementsQueryHandler(
         var all = definitions
             .Select(def => new GetUserAchievementsQueryDto
             {
+                Code = def.Code,
                 BusinessId = def.BusinessId,
                 Title = def.Title,
                 Goal = def.Goal,

@@ -9,13 +9,12 @@ namespace MB.Application.Features.Auth.Commands.ConfirmEmail;
 public class ConfirmEmailCommandHandler(
     IUserRepository userRepo,
     IEmailVerificationTokenRepository tokenRepo,
-    IBaseRepository<AchievementDefinition> achievementDefRepo,
-    IUserAchievementRepository userAchievementRepo)
-        : IRequestHandler<ConfirmEmailCommand, BaseResponse>
+    IAchievementDefinitionsRepository achievementDefRepo,
+    IUserAchievementRepository userAchievementRepo) : IRequestHandler<ConfirmEmailCommand, BaseResponse>
 {
     private readonly IUserRepository _userRepo = userRepo;
     private readonly IEmailVerificationTokenRepository _tokenRepo = tokenRepo;
-    private readonly IBaseRepository<AchievementDefinition> _achievementDefRepo = achievementDefRepo;
+    private readonly IAchievementDefinitionsRepository _achievementDefRepo = achievementDefRepo;
     private readonly IUserAchievementRepository _userAchievementRepo = userAchievementRepo;
 
     public async Task<BaseResponse> Handle(
@@ -38,11 +37,9 @@ public class ConfirmEmailCommandHandler(
         // 3) Marquer l’email comme vérifié
         user.VerifyEmail();
 
-        // 4) Débloquer le succès "Email Verified" (BusinessId inline)
+        // 4) Débloquer le succès "Email Verified" via son code métier
         var emailDef = await _achievementDefRepo
-            .GetByBusinessIdAsync(
-                Guid.Parse("9c2f1e4a-3d7b-4f8c-9a07-1b2c3d4e5f60")
-            );
+            .GetByCodeAsync(AchievementCodes.EmailVerified);
         if (emailDef is not null)
         {
             // 4.1) Création du UserAchievement

@@ -7,9 +7,11 @@
   <ItemGroup>
     <None Remove="AuditableEntity.cs~RF2611606.TMP" />
     <None Remove="MoodAggregate\AudioSoundCloud.cs~RF2bd0a8d.TMP" />
+    <None Remove="SeasonAggregate\Season.cs~RF2c1fb04.TMP" />
     <None Remove="UserAggregate\EmailVerificationToken.cs~RF4b1ec42.TMP" />
     <None Remove="UserAggregate\EmailVerificationToken.cs~RF4b7e291.TMP" />
     <None Remove="UserAggregate\EmailVerificationToken.cs~RFa858726.TMP" />
     <None Remove="UserAggregate\Interfaces\IUserFactory.cs~RFb73db8a.TMP" />
+    <None Remove="UserAggregate\Interfaces\IUserFactory.cs~RFd2612d.TMP" />
   </ItemGroup>
 </Project>

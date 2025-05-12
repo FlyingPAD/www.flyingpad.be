@@ -3,10 +3,6 @@ import { BaseResponse } from "./http/base-response";
 export type CaptchaType = 'v2' | 'v3'
 
 export interface UserRegisterForm {
-    userName: string
-    firstName: string
-    lastName: string
-    birthdate: Date
     email: string
     pass: string
     confirmPass: string

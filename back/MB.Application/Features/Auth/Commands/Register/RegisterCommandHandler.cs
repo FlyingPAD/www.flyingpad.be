@@ -13,7 +13,7 @@ public class RegisterCommandHandler(
     ITokenManager tokenManager,
     ICaptchaValidator captchaValidator,
     IUserFactory userFactory,
-    IBaseRepository<AchievementDefinition> achievementDefRepo,
+    IAchievementDefinitionsRepository achievementDefRepo,
     IBaseRepository<LeagueDefinition> leagueDefRepo,
     ISeasonRepository seasonRepo,
     IUserRepository userRepo) : IRequestHandler<RegisterCommand, RegisterCommandResponse>
@@ -22,7 +22,7 @@ public class RegisterCommandHandler(
     private readonly ITokenManager _tokenManager = tokenManager;
     private readonly ICaptchaValidator _captchaValidator = captchaValidator;
     private readonly IUserFactory _userFactory = userFactory;
-    private readonly IBaseRepository<AchievementDefinition> _achievementDefRepo = achievementDefRepo;
+    private readonly IAchievementDefinitionsRepository _achievementDefRepo = achievementDefRepo;
     private readonly IBaseRepository<LeagueDefinition> _leagueDefRepo = leagueDefRepo;
     private readonly ISeasonRepository _seasonRepo = seasonRepo;
     private readonly IUserRepository _userRepo = userRepo;
@@ -57,38 +57,38 @@ public class RegisterCommandHandler(
 
         // 3) Création initiale et enregistrement de l'utilisateur
         var user = _userFactory.Create(
-            userName: request.UserName,
-            firstName: request.FirstName,
-            lastName: request.LastName,
+            userName: null,
+            firstName: null,
+            lastName: null,
             email: request.Email,
             plainPassword: request.Pass,
-            birthdate: request.Birthdate ?? default
+            birthdate: null
         );
         var registeredUser = await _authRepository.RegisterAsync(user);
 
         // 4) Affecter la saison en cours
         var currentSeason = await _seasonRepo.GetCurrentSeasonAsync(DateTime.UtcNow);
         if (currentSeason is not null)
-        {
             registeredUser.ParticipateInSeason(currentSeason);
-        }
 
         // 5) Placer directement en ligue "Wood"
-        var allLeagues = await _leagueDefRepo.GetAllAsync();
-        var woodLeague = allLeagues
+        var woodLeague = (await _leagueDefRepo.GetAllAsync())
             .FirstOrDefault(l => l.MinExperience == 0 && l.Order == 1);
         if (woodLeague is not null)
         {
             registeredUser.UpdateLeague(woodLeague);
+
+            // Débloquer l'achievement "WoodLeague"
+            var woodAchievement = await _achievementDefRepo.GetByCodeAsync(AchievementCodes.WoodLeague);
+            if (woodAchievement != null)
+                registeredUser.UnlockAchievement(woodAchievement);
         }
 
-        // 6) Débloquer l'achievement « Official Member »
+        // 6) Débloquer l'achievement « Official Member » via son code métier
         var officialDef = await _achievementDefRepo
-            .GetByBusinessIdAsync(Guid.Parse("f47ac10b-58cc-4372-a567-0e02b2c3d479"));
+            .GetByCodeAsync(AchievementCodes.OfficialMember);
         if (officialDef is not null)
-        {
             registeredUser.UnlockAchievement(officialDef);
-        }
 
         // 7) Sauvegarde finale
         await _userRepo.UpdateAsync(registeredUser);

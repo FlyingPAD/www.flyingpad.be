@@ -46,4 +46,12 @@ public class UserRepository(Context context) : BaseRepository<User>(context), IU
         _context.Users.Update(user);
         await _context.SaveChangesAsync();
     }
+
+    public async Task<IList<User>> GetAllFullAsync() =>
+    await _context.Users
+        .Include(u => u.Achievements)
+            .ThenInclude(ua => ua.Definition)
+        .Include(u => u.Season)
+        .Include(u => u.LeagueDefinition)
+        .ToListAsync();
 }

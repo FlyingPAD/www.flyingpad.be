@@ -11,4 +11,5 @@ public interface IUserRepository : IBaseRepository<User>
     Task<IList<User>> GetAllWithLeagueAsync();
     Task<User?> GetByBusinessIdFullAsync(Guid businessId);
     Task UpdateAggregateAsync(User user);
+    Task<IList<User>> GetAllFullAsync();
 }
