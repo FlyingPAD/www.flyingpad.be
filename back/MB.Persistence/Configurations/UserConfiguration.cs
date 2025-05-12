@@ -14,10 +14,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.EntityId).ValueGeneratedOnAdd();
 
         // Identité et contact
-        builder.Property(u => u.UserName).IsRequired().HasMaxLength(50);
-        builder.Property(u => u.FirstName).IsRequired().HasMaxLength(50);
-        builder.Property(u => u.LastName).IsRequired().HasMaxLength(50);
-        builder.Property(u => u.Email).IsRequired().HasMaxLength(200);
+        builder.Property(u => u.Email).IsRequired().HasMaxLength(254);
+        builder.Property(u => u.UserName).IsRequired(false).HasMaxLength(50);
+        builder.Property(u => u.FirstName).IsRequired(false).HasMaxLength(50);
+        builder.Property(u => u.LastName).IsRequired(false).HasMaxLength(50);
 
         // Authentification
         builder.Property(u => u.PasswordHash).IsRequired(false);
@@ -29,11 +29,11 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.SeasonScore).IsRequired().HasDefaultValue(0);
 
         // Statut email
-        builder.Property(u => u.IsEmailVerified).IsRequired();
+        builder.Property(u => u.IsEmailVerified).IsRequired().HasDefaultValue(false);
 
         // Rôles & date de naissance
-        builder.Property(u => u.Role).IsRequired();
-        builder.Property(u => u.Birthdate).IsRequired();
+        builder.Property(u => u.Role).IsRequired().HasDefaultValue(1);
+        builder.Property(u => u.Birthdate).IsRequired(false);
 
         // Relations
         builder.HasMany(u => u.EmailVerificationTokens)

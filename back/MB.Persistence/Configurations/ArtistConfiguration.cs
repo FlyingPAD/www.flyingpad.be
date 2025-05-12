@@ -16,9 +16,5 @@ public class ArtistConfiguration : IEntityTypeConfiguration<Artist>
         builder.Property(entity => entity.Name)
             .IsRequired()
             .HasMaxLength(50);
-
-        builder.HasData(
-            new Artist { EntityId = 1, BusinessId = Guid.Parse("aaaaaaaa-bbbb-cccc-dddd-000000000001"), Name = "# Unknown Artist" }
-        );
     }
 }

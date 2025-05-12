@@ -238,6 +238,8 @@ public class MappingProfiles : Profile
 
         // Mapping pour chaque achievement
         CreateMap<UserAchievement, AchievementDto>()
+            .ForMember(dest => dest.Code,
+               opt => opt.MapFrom(src => src.Definition.Code))
             .ForMember(dest => dest.BusinessId,
                        opt => opt.MapFrom(src => src.BusinessId))
             .ForMember(dest => dest.Title,

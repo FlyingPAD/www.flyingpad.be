@@ -11,6 +11,7 @@ import { DashboardViewMode } from '../../../enumerations/view-modes';
 import { getNotesForClef, notesREF } from '../../../data/trainer-notes-data';
 import { Subject } from 'rxjs';
 import { NewAchievement } from '../../../interfaces/achievement';
+import { AchievementCode } from '../../../types/AchievementCode';
 
 @Component({
   selector: 'app-trainer-notes',
@@ -143,23 +144,21 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
     const achievedThresholds = this.thresholds.filter(th => this.run >= th);
 
     // 2) repérer les achievements à débloquer
-    const toUnlock: NewAchievement[] = achievedThresholds
+    const toUnlock: AchievementCode[] = achievedThresholds
       .map(th => this.achievements().find(a =>
         !a.unlockedAt &&
         a.category === 'note-master' &&
         a.title.toLowerCase().includes(clef) &&
         a.goal.includes(`${th} seconds`)
       ))
-      .filter((a): a is NewAchievement => !!a);
-
-    const toUnlockIds    = toUnlock.map(a => a.businessId);
-    const toUnlockTitles = toUnlock.map(a => a.title);
+      .filter((a): a is NewAchievement => !!a)
+      .map(a => a.code); // Utilisation du code des achievements
 
     // ** Appel batch unique ** 
-    if (toUnlockIds.length > 0) {
-      this.#userService.unlockAchievements(biz, toUnlockIds)
+    if (toUnlock.length > 0) {
+      this.#userService.unlockAchievements(biz, toUnlock)
         .subscribe({
-          next: () => this.afterUnlock(toUnlockTitles),
+          next: () => this.afterUnlock(toUnlock),
           error: err => console.error('Erreur unlock achievements', err)
         });
     } else {
@@ -168,7 +167,8 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
   }
 
   /** Factorisation de la mise à jour du score de saison et du message */
-  private afterUnlock(unlockedTitles: string[]): void {
+  private afterUnlock(unlockedCodes: AchievementCode[]): void {
+    const unlockedTitles = unlockedCodes.map(code => code.replace(/([A-Z])/g, ' $1').trim()); // Transforme les codes en titres lisibles
     this.#userService.gainSeasonScore(this.user().businessId, this.score)
       .subscribe({
         next: () => {

@@ -12,4 +12,17 @@ public class AchievementDefinitionsRepository(Context context) : BaseRepository<
                              .Where(d => businessIds.Contains(d.BusinessId))
                              .ToListAsync();
     }
+
+    public async Task<AchievementDefinition?> GetByCodeAsync(string code)
+    {
+        return await _context.Set<AchievementDefinition>()
+                             .FirstOrDefaultAsync(a => a.Code == code);
+    }
+
+    public async Task<IList<AchievementDefinition>> GetByCodesAsync(IEnumerable<string> codes)
+    {
+        return await _context.Set<AchievementDefinition>()
+                             .Where(a => codes.Contains(a.Code))
+                             .ToListAsync();
+    }
 }

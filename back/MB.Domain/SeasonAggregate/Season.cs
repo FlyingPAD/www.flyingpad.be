@@ -1,7 +1,4 @@
-﻿using MB.Domain.LeagueAggregate;
-using MB.Domain.UserAggregate;
-
-namespace MB.Domain.SeasonAggregate;
+﻿namespace MB.Domain.SeasonAggregate;
 
 public class Season : AuditableEntity
 {
@@ -19,10 +16,4 @@ public class Season : AuditableEntity
     }
 
     public bool IsActive => DateTime.UtcNow >= StartsAt && DateTime.UtcNow <= EndsAt;
-
-    // Méthode pour clôture et promotion/démotion
-    public void CloseSeason(IEnumerable<User> users, IEnumerable<LeagueDefinition> leagues)
-    {
-        // Implémenter la logique de promotion/démotion
-    }
 }

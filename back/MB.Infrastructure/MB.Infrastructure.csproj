@@ -7,6 +7,7 @@
   <ItemGroup>
     <None Remove="Jobs\CleanupExpiredTokensJob.cs~RF628edc9.TMP" />
     <None Remove="Jobs\CleanupExpiredTokensJob.cs~RF681bd81.TMP" />
+    <None Remove="Jobs\ProcessSeasonsJob.cs~RF2ba2c2d.TMP" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Hangfire.AspNetCore" Version="1.8.14" />

@@ -8,11 +8,13 @@
 	  <None Remove="BaseResponse.cs~RFc9efcd0.TMP" />
 	  <None Remove="Features\Auth\Commands\ConfirmEmail\ConfirmEmailCommand.cs~RF51936f2.TMP" />
 	  <None Remove="Features\Auth\Commands\ConfirmEmail\ConfirmEMailCommandHandler.cs~RF520c650.TMP" />
+	  <None Remove="Features\Auth\Commands\Register\RegisterCommand.cs~RFcf851f.TMP" />
 	  <None Remove="Features\Moods\Commands\CreateMoodYouTube\CreateMoodYouTubeCommandHandler.cs~RF23969e5.TMP" />
 	  <None Remove="Features\Moods\Queries\GetAllMoodsQueryDto .cs~RFc993477.TMP" />
 	  <None Remove="Features\Moods\Queries\GetAllMoodsQueryDto .cs~RFc9a1f15.TMP" />
 	  <None Remove="Features\Moods\Queries\GetCommonTagsByMoods\GetCommonTagsByMoodsQueryResponse.cs~RF22a0b05.TMP" />
 	  <None Remove="Features\Moods\Queries\MoodLightDto.cs~RF2c00937.TMP" />
+	  <None Remove="Features\Users\Commands\UnlockAchievements\UnlockAchievementsCommand.cs~RF297e853.TMP" />
 	  <None Remove="Features\Users\Commands\UpdateUser\UpdateUserCommandValidator.cs~RFcb976b4.TMP" />
 	  <None Remove="Features\Users\Queries\GetAllUsers\GetAllUsersQuery.cs~RF9d62ed8.TMP" />
 	  <None Remove="Features\Users\Queries\GetAllUsers\GetAllUsersQueryResponse.cs~RF9d5bd32.TMP" />
