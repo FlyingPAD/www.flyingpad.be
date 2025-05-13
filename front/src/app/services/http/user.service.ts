@@ -39,7 +39,7 @@ export class UserService {
   #publicUser = new BehaviorSubject<User>(this.DEFAULT_USER)
   public publicUser: Signal<User> = toSignal(this.#publicUser, { initialValue: this.DEFAULT_USER })
 
-  #achievements = new BehaviorSubject<NewAchievement[]>([]);
+  #achievements = new BehaviorSubject<NewAchievement[]>([])
   public achievements: Signal<NewAchievement[]> = toSignal(this.#achievements, { initialValue: [] })
 
   private refreshUser(): void {
@@ -64,19 +64,17 @@ export class UserService {
   public getUser(userBusinessId: number, role: number): Observable<User> {
     return this.#http.get<GetUserResponse>(`${this.#url}Users/GetUser/${userBusinessId}`).pipe(
       map(resp => resp.user),
-      tap(u => {
-        u.role = role
-        this.#user.next(u)
+      tap(user => {
+        user.role = role
+        this.#user.next(user)
       })
     )
   }
 
   public getPublicUserById(userBusinessId: number): Observable<User> {
     return this.#http.get<GetUserResponse>(`${this.#url}Users/GetUser/${userBusinessId}`).pipe(
-      map(resp => resp.user),
-      tap(u => {
-        this.#publicUser.next(u)
-      })
+      map(response => response.user),
+      tap(user => { this.#publicUser.next(user) })
     )
   }
 

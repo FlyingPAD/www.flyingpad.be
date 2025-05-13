@@ -1,26 +1,48 @@
-<h1 class="h1">My League</h1>
+<h1 class="h1" *ngIf="league?.leagueName === 'Wood' ">Wood League</h1>
+<h1 class="h1" *ngIf="league?.leagueName === 'Stone' ">Stone League</h1>
+<h1 class="h1" *ngIf="league?.leagueName === 'Bronze' ">Bronze League</h1>
+<h1 class="h1" *ngIf="league?.leagueName === 'Silver' ">Silver League</h1>
+<h1 class="h1" *ngIf="league?.leagueName === 'Crystal' ">Crystal League</h1>
+<h1 class="h1" *ngIf="league?.leagueName === 'Elite' ">Elite League</h1>
+<h1 class="h1" *ngIf="league?.leagueName === 'Champion' ">Champion League</h1>
+<h1 class="h1" *ngIf="league?.leagueName === 'Legend' ">Legend League</h1>
 
-<div class="main-frame">
-    <p>{{user().league?.name}} ( {{ user().league?.minExperience}} - {{ user().league?.maxExperience}} XP )</p>
-    <app-icon-coin colorOuter='gold' size="50px" />
+<div clas="icon">
+  <app-league-wood class="icon" *ngIf="league?.leagueName === 'Wood'" />
+  <app-league-stone class="icon" *ngIf="league?.leagueName === 'Stone'" />
+  <app-league-bronze class="icon" *ngIf="league?.leagueName === 'Bronze'" />
+  <app-league-silver class="icon" *ngIf="league?.leagueName === 'Silver'" />
+  <app-league-crystal class="icon" *ngIf="league?.leagueName === 'Crystal'" />
+  <app-league-elite class="icon" *ngIf="league?.leagueName === 'Elite'" />
+  <app-league-champion class="icon" *ngIf="league?.leagueName === 'Champion'" />
+  <app-league-legend class="icon" *ngIf="league?.leagueName === 'Legend'" />
 </div>
 
-<div class="main-frame">
-    @for (user of users; track $index) {
-        <div class="user">
-            @if(user.userName && user.userName != '') {
-                <div>{{ user.userName }}</div>
-            }
-            @else {
-                <div>{{ user.email }}</div>
-            }
-            <div>Level {{ user.level }}</div>
-            <div>{{ user.experience }} XP</div>
-        </div>      
-    }
-</div>
+<ng-container *ngIf="league">
+  <section *ngIf="promotedMembers.length > 0">
+    <div class="main-frame">
+      <h2 class="frame-title"> ▸ Ready for Promotion ( + {{ league.maxExperience }})</h2>
+      <hr class="dialog-hr">
+      <div class="user" *ngFor="let m of promotedMembers; trackBy: trackById">
+        <div>{{ m.userName }}</div>
+        <div>Score : {{ m.seasonScore }}</div>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="stayingMembers.length > 0">
+    <div class="main-frame">
+      <h2 class="frame-title"> ▸ Holding Ground</h2>
+      <hr class="dialog-hr">
+      <div class="user" *ngFor="let m of stayingMembers; trackBy: trackById">
+        <div>{{ m.userName }}</div>
+        <div>Score : <b>{{ m.seasonScore }}</b></div>
+      </div>
+    </div>
+  </section>
+</ng-container>
 
 <app-bottom-bar>
-    <app-bottom-icon-back />
-    <app-bottom-icon-to-top />
+  <app-bottom-icon-back />
+  <app-bottom-icon-to-top />
 </app-bottom-bar>

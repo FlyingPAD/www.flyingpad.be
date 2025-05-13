@@ -253,7 +253,15 @@ import { BannerPadStationComponent } from './features/dashboard/banner-pad-stati
 import { LadderComponent } from './pages/ladder/ladder.component';
 import { UserCardsComponent } from './features/dashboard/user-cards/user-cards.component';
 import { UserLeagueComponent } from './pages/user-league/user-league.component';
-import { UserProfilePublicComponent } from './pages/user-profile-public/user-profile-public.component'
+import { UserProfilePublicComponent } from './pages/user-profile-public/user-profile-public.component';
+import { LeagueWoodComponent } from './icons-svg/leagues/league-wood/league-wood.component';
+import { LeagueStoneComponent } from './icons-svg/leagues/league-stone/league-stone.component';
+import { LeagueBronzeComponent } from './icons-svg/leagues/league-bronze/league-bronze.component';
+import { LeagueSilverComponent } from './icons-svg/leagues/league-silver/league-silver.component';
+import { LeagueCrystalComponent } from './icons-svg/leagues/league-crystal/league-crystal.component';
+import { LeagueChampionComponent } from './icons-svg/leagues/league-champion/league-champion.component';
+import { LeagueEliteComponent } from './icons-svg/leagues/league-elite/league-elite.component';
+import { LeagueLegendComponent } from './icons-svg/leagues/league-legend/league-legend.component'
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -534,6 +542,14 @@ export function appInitializerFactory(translate: TranslateService) {
     UserCardsComponent,
     UserLeagueComponent,
     UserProfilePublicComponent,
+    LeagueWoodComponent,
+    LeagueStoneComponent,
+    LeagueBronzeComponent,
+    LeagueSilverComponent,
+    LeagueCrystalComponent,
+    LeagueChampionComponent,
+    LeagueEliteComponent,
+    LeagueLegendComponent,
   ],
   imports: [
     RecaptchaModule,

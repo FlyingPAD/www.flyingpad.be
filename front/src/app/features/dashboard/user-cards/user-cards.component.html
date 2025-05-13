@@ -14,7 +14,7 @@
         <p class="value">{{ user.experience }} XP</p>
     </div>
     <div class="statistic">
-        <p class="title">Season Score</p>
+        <p class="title">Score</p>
         <div class="icon">
             <app-icon-dollar class="icon" size="35px" />
         </div>
@@ -23,7 +23,14 @@
     <div class="statistic" (click)="goTo('user-league')">
         <p class="title">{{ 'title.league' | translate }}</p>
         <div class="icon">
-            <app-icon-coin class="icon" size="35px" [colorOuter]="'#cd7f32'" />
+            <app-league-wood class="icon" *ngIf="user.league?.name === 'Wood'" />
+            <app-league-stone class="icon" *ngIf="user.league?.name === 'Stone'" />
+            <app-league-bronze class="icon" *ngIf="user.league?.name === 'Bronze'" />
+            <app-league-silver class="icon" *ngIf="user.league?.name === 'Silver'" />
+            <app-league-crystal class="icon" *ngIf="user.league?.name === 'Crystal'" />
+            <app-league-elite class="icon" *ngIf="user.league?.name === 'Elite'" />
+            <app-league-champion class="icon" *ngIf="user.league?.name === 'Champion'" />
+            <app-league-legend class="icon" *ngIf="user.league?.name === 'Legend'" />
         </div>
         <p class="value">{{user.league?.name}}</p>
     </div>
@@ -35,7 +42,7 @@
         <p class="value">{{user.achievements.length}}</p>
     </div>
     <div class="statistic" (click)="goTo('ladder')">
-        <p class="title">Ladder</p>
+        <p class="title">{{ 'title.leaderboard' | translate }}</p>
         <div class="icon">
             <app-icon-go class="icon" size="35px" />
         </div>

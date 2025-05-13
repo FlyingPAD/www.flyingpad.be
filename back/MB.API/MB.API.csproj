@@ -9,6 +9,8 @@
 	<ItemGroup>
 	  <None Remove="Configurations\HangfireApplicationExtension.cs~RF68073ab.TMP" />
 	  <None Remove="Configurations\HangfireApplicationExtension.cs~RF6833b86.TMP" />
+	  <None Remove="Controllers\LeaguesControllerV1.cs~RF347fe25.TMP" />
+	  <None Remove="Controllers\SeasonControllerV1.cs~RFc01670.TMP" />
 	</ItemGroup>
 
 	<ItemGroup>

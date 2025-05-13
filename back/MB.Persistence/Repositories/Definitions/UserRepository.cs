@@ -42,7 +42,6 @@ public class UserRepository(Context context) : BaseRepository<User>(context), IU
 
     public async Task UpdateAggregateAsync(User user)
     {
-        // Cet appel parcourt tout le graphe d’objets (User + ses Achievements non persistés)
         _context.Users.Update(user);
         await _context.SaveChangesAsync();
     }
@@ -54,4 +53,13 @@ public class UserRepository(Context context) : BaseRepository<User>(context), IU
         .Include(u => u.Season)
         .Include(u => u.LeagueDefinition)
         .ToListAsync();
+
+    public async Task<IReadOnlyList<User>> GetByLeagueDefinitionIdAsync(int leagueDefinitionId, CancellationToken ct = default)
+    {
+        return await _context.Set<User>()
+                             .AsNoTracking()
+                             .Where(u => u.LeagueDefinitionId == leagueDefinitionId)
+                             .OrderByDescending(u => u.SeasonScore)
+                             .ToListAsync(ct);
+    }
 }

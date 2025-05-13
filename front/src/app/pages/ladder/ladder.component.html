@@ -1,17 +1,17 @@
 <div *ngIf="loading" class="loading">Chargement du ladder…</div>
 <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
 
-<h1 class="h1">Ladder</h1>
+<h1 class="h1">{{ 'title.leaderboard' | translate }}</h1>
+
+<p class="p">Période du {{ season?.startsAt | date:'dd / MM / yyyy' }} au {{ season?.endsAt | date:'dd / MM / yyyy' }}</p>
 
 <div class="main-frame">
   <table *ngIf="!loading && !errorMsg" class="ladder-table">
     <thead>
       <tr>
         <th>#</th>
-        <th>{{ 'title.user-name' | translate }}</th>
-        <th>Season Score</th>
-        <th>{{ 'title.level' | translate }}</th>
-        <th>{{ 'title.experience' | translate }}</th>
+        <th>{{ 'title.name' | translate }}</th>
+        <th>Score</th>
         <th>{{ 'title.league' | translate }}</th>
       </tr>
     </thead>
@@ -20,9 +20,14 @@
         <td>{{ i + 1 }}</td>
         <td><span (click)="goToUserProfile(e.businessId)">{{ e.userName }}</span></td>
         <td>{{ e.seasonScore }}</td>
-        <td>{{ e.level }}</td>
-        <td>{{ e.experience }} XP</td>
-        <td>{{ e.leagueName }}</td>
+        <td *ngIf="e.leagueName === 'Wood'"><app-league-wood class="icon" /></td>
+        <td *ngIf="e.leagueName === 'Stone'"><app-league-stone class="icon" /></td>
+        <td *ngIf="e.leagueName === 'Bronze'"><app-league-bronze class="icon" /></td>
+        <td *ngIf="e.leagueName === 'Silver'"><app-league-silver class="icon" /></td>
+        <td *ngIf="e.leagueName === 'Crystal'"><app-league-crystal class="icon" /></td>
+        <td *ngIf="e.leagueName === 'Elite'"><app-league-elite class="icon" /></td>
+        <td *ngIf="e.leagueName === 'Champion'"><app-league-champion class="icon" /></td>
+        <td *ngIf="e.leagueName === 'Legend'"><app-league-legend class="icon" /></td>
       </tr>
     </tbody>
   </table>
