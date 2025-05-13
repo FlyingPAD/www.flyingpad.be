@@ -76,7 +76,9 @@
     "experience": "Expérience",
     "level": "Niveau",
     "league": "Ligue",
-    "title": "Titre"
+    "title": "Titre",
+    "name": "Nom",
+    "leaderboard": "Classement"
   },
   "message": {
     "404": "La page n'a pas été trouvée.",

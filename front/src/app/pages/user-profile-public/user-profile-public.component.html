@@ -1,21 +1,50 @@
-<h1 class="h1">User Profile ( public )</h1>
-
+<h1 class="h1">{{ user().userName }}</h1>
 <div class="main-frame">
-    <p>{{ user().userName }}</p>
-    <hr class="hr-dialog">
-    <p>{{ user().seasonScore }}</p>
-    <p>{{ 'title.level' | translate }} {{ user().level }}</p>
-    <p>{{ user().experience }} XP</p>
-    <p>{{ user().league?.name }}</p>
+    <div class="profile">
+        <div class="flex">
+            <p *ngIf="user().league?.name === 'Wood'" ><b>Wood League</b></p>
+            <p *ngIf="user().league?.name === 'Stone'" ><b>Stone League</b></p>
+            <p *ngIf="user().league?.name === 'Bronze'" ><b>Bronze League</b></p>
+            <p *ngIf="user().league?.name === 'Silver'" ><b>Silver League</b></p>
+            <p *ngIf="user().league?.name === 'Crystal'" ><b>Crystal League</b></p>
+            <p *ngIf="user().league?.name === 'Elite'" ><b>Elite League</b></p>
+            <p *ngIf="user().league?.name === 'Champion'" ><b>Champion League</b></p>
+            <p *ngIf="user().league?.name === 'Legend'" ><b>Legend League</b></p>
+
+            <app-league-wood class="icon" *ngIf="user().league?.name === 'Wood'" />
+            <app-league-stone class="icon" *ngIf="user().league?.name === 'Stone'" />
+            <app-league-bronze class="icon" *ngIf="user().league?.name === 'Bronze'" />
+            <app-league-silver class="icon" *ngIf="user().league?.name === 'Silver'" />
+            <app-league-crystal class="icon" *ngIf="user().league?.name === 'Crystal'" />
+            <app-league-elite class="icon" *ngIf="user().league?.name === 'Elite'" />
+            <app-league-champion class="icon" *ngIf="user().league?.name === 'Champion'" />
+            <app-league-legend class="icon" *ngIf="user().league?.name === 'Legend'" />
+        </div>
+        <div class="flex">
+            <p><b>Score</b></p>
+            <p>{{user().seasonScore}}</p>
+        </div>
+        <div class="flex">
+            <p><b>{{ 'title.level' | translate }}</b></p>
+            <p>{{user().level}}</p>
+        </div>
+        <div class="flex">
+            <p><b>{{ 'title.experience' | translate }}</b></p>
+            <p>{{user().experience}}</p>
+        </div>
+    </div>
 </div>
 
 <div class="main-frame">
-    <p>Achievements ( {{ user().achievements.length }} )</p>
-    <hr class="hr-dialog">
-    <div *ngfor="let achievement of user().achievements" class="achievement">
-        <p>{{ achievement.name }}</p>
-        <p>{{ achievement.description }}</p>
-        <p>{{ achievement.date | date: 'dd/MM/yyyy' }}</p>
+    <p class="frame-title">Achievements ( {{ user().achievements.length }} )</p>
+    <hr class="dialog-hr">
+    <div class="category">
+        @for (achievement of user().achievements; track $index) {
+        <div class="achievement">
+            <div class="icon"><app-icon-coin size="50px" colorOuter="gold" /></div>
+            <p class="limit">{{ achievement.title }}</p>
+        </div>
+        }
     </div>
 </div>
 

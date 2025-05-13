@@ -18,10 +18,7 @@
           <div class="tag-list">
             @for (tag of tagList.tags; track $index) {
             <div class="tag-item">
-              <a id="{{tag.businessId}}" [class.active]="tag.businessId === tagsFlow()?.tag?.businessId"
-                (click)="goToTag(tag.businessId)">
-                ▸ {{ tag.name }}
-              </a>
+              <a id="{{tag.businessId}}" [class.active]="tag.businessId === tagsFlow()?.tag?.businessId" (click)="goToTag(tag.businessId)"> ▸ {{ tag.name }}</a>
             </div>
             }
           </div>

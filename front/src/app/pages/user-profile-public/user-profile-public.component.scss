@@ -1,0 +1,122 @@
+.category {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    margin-bottom: 35px;
+
+    .achievement {
+        margin: 15px;
+
+        cursor: pointer;
+
+        .icon-title {
+            width: 95px;
+            height: 95px;
+
+            background-color: var(--colorWhiteOpacity5);
+            border: 8px solid var(--colorMain);
+            border-radius: 20px;
+            box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            cursor: initial;
+        }
+
+        .icon {
+            width: 95px;
+            height: 95px;
+
+            background-color: var(--colorWhiteOpacity5);
+            border: 8px solid var(--colorMain);
+            border-radius: 20px;
+            box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            opacity: 0.8;
+        }
+
+        .icon:hover {
+            opacity: 1;
+            transition: 300ms;
+        }
+
+        .done {
+            border: 8px solid gold;
+            box-shadow: 0 3px 4px 0px goldenrod;
+            background-color: goldenrod;
+        }
+
+        p {
+            color: var(--colorMain);
+            font-size: 11px;
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+}
+
+.profile {
+    margin: auto;
+
+    .flex {
+        height: 25px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        background-color: var(--colorWhiteOpacity7);
+        border-radius: 5px;
+
+        padding: 15px;
+        margin-bottom: 15px;
+
+        p {
+            margin: 0;
+            color: var(--colorMain);
+            font-size: 14px;
+            letter-spacing: 1px;
+
+            a:hover {
+                text-decoration: underline;
+            }
+        }
+        input {
+            width: 150px;
+            margin: 0;
+            padding: 5px;
+            border-radius: 5px;
+
+            text-align: right;
+            color: var(--colorMain);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+    }
+
+    .flex_created {
+        margin: 30px;
+        margin-top: 15px;
+        margin-bottom: 0;
+
+        .box_created {
+            display: flex;
+            justify-content: space-between;
+
+            p {
+                margin: 0;
+                margin-bottom: 5px;
+                text-align: center;
+                color: var(--colorMainOpacity8);
+                font-size: 13px;
+            }
+        }
+    }
+}

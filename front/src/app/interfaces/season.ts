@@ -1,6 +1,11 @@
+import { BaseResponse } from "./http/base-response"
+
 export interface Season {
-    businessId: number;
-    name: string;
-    startsAt: Date;
-    endsAt: Date;
+    name: string
+    startsAt: Date
+    endsAt: Date
+}
+
+export interface GetCurrentSeasonResponse extends BaseResponse {
+    currentSeason: Season 
 }

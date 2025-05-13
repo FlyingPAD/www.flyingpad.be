@@ -1,32 +1,32 @@
 <div class="main-frame">
-  <ng-container *ngFor="let group of grouped">
-    <h1 class="frame-title">{{ titleFor(group.category) }} <span *ngIf="titleFor(group.category) === 'Achievements'">( {{ user().achievements.length }} / {{ achievements.length }} )</span></h1>   
+  <h1 class="frame-title center"> {{ 'title.achievements' | translate }} ( {{ totalUnlocked }} / {{ achievements.length }} )</h1>
 
-    <hr class="dialog-hr">
-
-    <div class="category">
-      <ng-container *ngFor="let ach of group.items">
-        <div appToggleDialog class="achievement" (click)="displayAchievement(ach)">
-          <div class="icon" [class.done]="ach.unlockedAt">
-            <app-icon-coin size="75px" [colorInner]="ach.unlockedAt ? undefined : 'grey'" [colorOuter]="ach.unlockedAt ? 'gold' : 'darkgrey'" />
-          </div>
-          <p class="limit">{{ ach.title }}</p>
-        </div>
-      </ng-container>
+  @for (group of grouped; track $index) {
+  <h1 class="frame-title"> ▸ {{ titleFor(group.category) }} <span>( {{ group.unlockedCount }} / {{ group.items.length }} ) </span></h1>
+  <hr class="dialog-hr">
+  <div class="category">
+    @for (ach of group.items; track $index) {
+    <div appToggleDialog class="achievement" (click)="displayAchievement(ach)">
+      <div class="icon" [class.done]="ach.unlockedAt">
+        <app-icon-coin size="75px" [colorInner]="ach.unlockedAt ? undefined : 'grey'" [colorOuter]="ach.unlockedAt ? 'gold' : 'darkgrey'" />
+      </div>
+      <p class="limit">{{ ach.title }}</p>
     </div>
-  </ng-container>
+    }
+  </div>
+  }
 </div>
 
 <app-dialog>
   @if(currentAchievement) {
-    <div class="dialog-body">
-      <app-icon-coin class="icon" size="100px" [colorInner]="currentAchievement.unlockedAt ? undefined : 'grey'" [colorOuter]="currentAchievement.unlockedAt ? 'gold' : 'darkgrey'" />
-      <div>
-        <p class="title"><b>{{ currentAchievement.title }}</b></p>
-        <p *ngIf="currentAchievement.unlockedAt" class="date">{{ currentAchievement.unlockedAt | date }}</p>
-        <p>{{ currentAchievement.unlockedAt ? currentAchievement.doneMessage : currentAchievement.goal }}</p>
-        <p>( + {{ currentAchievement.xpReward }} XP )</p>
-      </div>
+  <div class="dialog-body">
+    <app-icon-coin class="icon" size="100px" [colorInner]="currentAchievement.unlockedAt ? undefined : 'grey'" [colorOuter]="currentAchievement.unlockedAt ? 'gold' : 'darkgrey'" />
+    <div>
+      <p class="title"><b>{{ currentAchievement.title }}</b></p>
+      <p *ngIf="currentAchievement.unlockedAt" class="date">{{ currentAchievement.unlockedAt | date }}</p>
+      <p>{{ currentAchievement.unlockedAt ? currentAchievement.doneMessage : currentAchievement.goal }}</p>
+      <p>( + {{ currentAchievement.xpReward }} XP )</p>
     </div>
+  </div>
   }
 </app-dialog>
