@@ -9,6 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PortalModule } from '@angular/cdk/portal';
+
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
@@ -116,51 +121,51 @@ import { LayoutAboutComponent } from './layouts/layout-about/layout-about.compon
 import { MusicPrinciplesComponent } from './features/scripts/music-principles/music-principles.component';
 import { StatusComponent } from './features/dashboard/status/status.component';
 import { AchievementsComponent } from './features/dashboard/achievements/achievements.component';
-import { IconStarComponent } from './icons/icon-star/icon-star.component';
-import { IconEditComponent } from './icons/icon-edit/icon-edit.component';
-import { IconUserComponent } from './icons/icon-user/icon-user.component';
-import { IconMoodComponent } from './icons/icon-mood/icon-mood.component';
-import { IconStatisticsComponent } from './icons/icon-statistics/icon-statistics.component';
-import { IconTagComponent } from './icons/icon-tag/icon-tag.component';
-import { IconLinkComponent } from './icons/icon-link/icon-link.component';
-import { IconDollarComponent } from './icons/icon-dollar/icon-dollar.component';
-import { IconArtistComponent } from './icons/icon-artist/icon-artist.component';
-import { IconModelComponent } from './icons/icon-model/icon-model.component';
+import { IconStarComponent } from './icons-svg/menu/icon-star/icon-star.component';
+import { IconEditComponent } from './icons-svg/menu/icon-edit/icon-edit.component';
+import { IconUserComponent } from './icons-svg/menu/icon-user/icon-user.component';
+import { IconMoodComponent } from './icons-svg/menu/icon-mood/icon-mood.component';
+import { IconStatisticsComponent } from './icons-svg/menu/icon-statistics/icon-statistics.component';
+import { IconTagComponent } from './icons-svg/menu/icon-tag/icon-tag.component';
+import { IconLinkComponent } from './icons-svg/menu/icon-link/icon-link.component';
+import { IconDollarComponent } from './icons-svg/menu/icon-dollar/icon-dollar.component';
+import { IconArtistComponent } from './icons-svg/menu/icon-artist/icon-artist.component';
+import { IconModelComponent } from './icons-svg/menu/icon-model/icon-model.component';
 import { DashboardEditionMenuComponent } from './features/dashboard/dashboard-edition-menu/dashboard-edition-menu.component';
 import { AccountComponent } from './features/dashboard/account/account.component';
 import { DashboardHeaderComponent } from './features/dashboard/dashboard-header/dashboard-header.component';
-import { IconCoinComponent } from './icons/icon-coin/icon-coin.component';
-import { IconHomeComponent } from './icons/icon-home/icon-home.component';
-import { IconScriptComponent } from './icons/icon-script/icon-script.component';
-import { IconToolsComponent } from './icons/icon-tools/icon-tools.component';
-import { IconMoodsComponent } from './icons/icon-moods/icon-moods.component';
-import { IconMediaComponent } from './icons/icon-media/icon-media.component';
-import { IconLogoutComponent } from './icons/icon-logout/icon-logout.component';
-import { IconSettingsComponent } from './icons/icon-settings/icon-settings.component';
-import { IconHamburgerComponent } from './icons/icon-hamburger/icon-hamburger.component';
-import { IconArrowComponent } from './icons/icon-arrow/icon-arrow.component';
-import { IconQuestionComponent } from './icons/icon-question/icon-question.component';
-import { IconInfoComponent } from './icons/icon-info/icon-info.component';
-import { IconPlayComponent } from './icons/icon-play/icon-play.component';
-import { IconStopComponent } from './icons/icon-stop/icon-stop.component';
-import { IconResetComponent } from './icons/icon-reset/icon-reset.component';
-import { IconPlusComponent } from './icons/icon-plus/icon-plus.component';
-import { IconListComponent } from './icons/icon-list/icon-list.component';
-import { IconGoComponent } from './icons/icon-go/icon-go.component';
-import { IconBackComponent } from './icons/icon-back/icon-back.component';
-import { IconArrowShortComponent } from './icons/icon-arrow-short/icon-arrow-short.component';
-import { IconWheelComponent } from './icons/icon-wheel/icon-wheel.component';
-import { IconOpenComponent } from './icons/icon-open/icon-open.component';
-import { IconGoogleComponent } from './icons/icon-google/icon-google.component';
-import { IconGoogleLensComponent } from './icons/icon-google-lens/icon-google-lens.component';
-import { IconPlayShuffleComponent } from './icons/icon-play-shuffle/icon-play-shuffle.component';
-import { LogoFacebookComponent } from './icons/logo-facebook/logo-facebook.component';
-import { LogoInstagramComponent } from './icons/logo-instagram/logo-instagram.component';
-import { LogoYoutubeComponent } from './icons/logo-youtube/logo-youtube.component';
-import { LogoSoundcloudComponent } from './icons/logo-soundcloud/logo-soundcloud.component';
+import { IconCoinComponent } from './icons-svg/menu/icon-coin/icon-coin.component';
+import { IconHomeComponent } from './icons-svg/menu/icon-home/icon-home.component';
+import { IconScriptComponent } from './icons-svg/menu/icon-script/icon-script.component';
+import { IconToolsComponent } from './icons-svg/menu/icon-tools/icon-tools.component';
+import { IconMoodsComponent } from './icons-svg/menu/icon-moods/icon-moods.component';
+import { IconMediaComponent } from './icons-svg/menu/icon-media/icon-media.component';
+import { IconLogoutComponent } from './icons-svg/menu/icon-logout/icon-logout.component';
+import { IconSettingsComponent } from './icons-svg/menu/icon-settings/icon-settings.component';
+import { IconHamburgerComponent } from './icons-svg/menu/icon-hamburger/icon-hamburger.component';
+import { IconArrowComponent } from './icons-svg/menu/icon-arrow/icon-arrow.component';
+import { IconQuestionComponent } from './icons-svg/menu/icon-question/icon-question.component';
+import { IconInfoComponent } from './icons-svg/menu/icon-info/icon-info.component';
+import { IconPlayComponent } from './icons-svg/menu/icon-play/icon-play.component';
+import { IconStopComponent } from './icons-svg/menu/icon-stop/icon-stop.component';
+import { IconResetComponent } from './icons-svg/menu/icon-reset/icon-reset.component';
+import { IconPlusComponent } from './icons-svg/menu/icon-plus/icon-plus.component';
+import { IconListComponent } from './icons-svg/menu/icon-list/icon-list.component';
+import { IconGoComponent } from './icons-svg/menu/icon-go/icon-go.component';
+import { IconBackComponent } from './icons-svg/menu/icon-back/icon-back.component';
+import { IconArrowShortComponent } from './icons-svg/menu/icon-arrow-short/icon-arrow-short.component';
+import { IconWheelComponent } from './icons-svg/menu/icon-wheel/icon-wheel.component';
+import { IconOpenComponent } from './icons-svg/menu/icon-open/icon-open.component';
+import { IconGoogleComponent } from './icons-svg/menu/icon-google/icon-google.component';
+import { IconGoogleLensComponent } from './icons-svg/menu/icon-google-lens/icon-google-lens.component';
+import { IconPlayShuffleComponent } from './icons-svg/menu/icon-play-shuffle/icon-play-shuffle.component';
+import { LogoFacebookComponent } from './icons-svg/logo/logo-facebook/logo-facebook.component';
+import { LogoInstagramComponent } from './icons-svg/logo/logo-instagram/logo-instagram.component';
+import { LogoYoutubeComponent } from './icons-svg/logo/logo-youtube/logo-youtube.component';
+import { LogoSoundcloudComponent } from './icons-svg/logo/logo-soundcloud/logo-soundcloud.component';
 import { EditMoodComponent } from './pages/edit-mood/edit-mood.component';
 import { EditMoodMenuComponent } from './features/moods/edit-mood-menu/edit-mood-menu.component';
-import { IconSaveComponent } from './icons/icon-save/icon-save.component';
+import { IconSaveComponent } from './icons-svg/menu/icon-save/icon-save.component';
 import { EditMoodThumbnailComponent } from './features/moods/edit-mood-thumbnail/edit-mood-thumbnail.component';
 import { EditMoodModelsComponent } from './features/moods/edit-mood-models/edit-mood-models.component';
 import { EditMoodArtistsComponent } from './features/moods/edit-mood-artists/edit-mood-artists.component';
@@ -168,42 +173,42 @@ import { EditMoodFormComponent } from './features/moods/edit-mood-form/edit-mood
 import { EditMoodTagsComponent } from './features/moods/edit-mood-tags/edit-mood-tags.component';
 import { EditMoodScoreComponent } from './features/moods/edit-mood-score/edit-mood-score.component';
 import { SpacerComponent } from './components/spacer/spacer.component';
-import { IconDiapasonComponent } from './icons/icon-diapason/icon-diapason.component';
-import { IconKeyboardComponent } from './icons/icon-keyboard/icon-keyboard.component';
+import { IconDiapasonComponent } from './icons-svg/tools/icon-diapason/icon-diapason.component';
+import { IconKeyboardComponent } from './icons-svg/tools/icon-keyboard/icon-keyboard.component';
 import { MusicArsenalComponent } from './features/scripts/music-arsenal/music-arsenal.component';
 import { IntroductionComponent } from './features/scripts/introduction/introduction.component';
 import { RythmicArsenalComponent } from './features/scripts/rythmic-arsenal/rythmic-arsenal.component';
 import { MelodicArsenalComponent } from './features/scripts/melodic-arsenal/melodic-arsenal.component';
 import { HarmonicArsenalComponent } from './features/scripts/harmonic-arsenal/harmonic-arsenal.component';
-import { IconTimelineComponent } from './icons/icon-timeline/icon-timeline.component';
+import { IconTimelineComponent } from './icons-svg/tools/icon-timeline/icon-timeline.component';
 import { TimbreComponent } from './features/scripts/timbre/timbre.component';
 import { TonesComponent } from './features/scripts/tones/tones.component';
 import { TimeValuesComponent } from './features/scripts/time-values/time-values.component';
-import { IconClefBassComponent } from './icons/icon-clef-bass/icon-clef-bass.component';
-import { IconClefTrebleComponent } from './icons/icon-clef-treble/icon-clef-treble.component';
-import { IconClefAltoComponent } from './icons/icon-clef-alto/icon-clef-alto.component';
+import { IconClefBassComponent } from './icons-svg/clef/icon-clef-bass/icon-clef-bass.component';
+import { IconClefTrebleComponent } from './icons-svg/clef/icon-clef-treble/icon-clef-treble.component';
+import { IconClefAltoComponent } from './icons-svg/clef/icon-clef-alto/icon-clef-alto.component';
 import { TheOctaveComponent } from './features/scripts/the-octave/the-octave.component';
 import { PointOfViewComponent } from './features/scripts/point-of-view/point-of-view.component';
 import { TimeSignatureComponent } from './features/scripts/time-signature/time-signature.component';
 import { ScrollDirective } from './directives/scroll.directive';
-import { TimeValueSixteenthComponent } from './icons/time-value-sixteenth/time-value-sixteenth.component';
-import { TimeValueWholeComponent } from './icons/time-value-whole/time-value-whole.component';
-import { TimeValueHalfComponent } from './icons/time-value-half/time-value-half.component';
-import { TimeValueQuarterComponent } from './icons/time-value-quarter/time-value-quarter.component';
-import { TimeValueEighthComponent } from './icons/time-value-eighth/time-value-eighth.component';
+import { TimeValueSixteenthComponent } from './icons-svg/time-values/time-value-sixteenth/time-value-sixteenth.component';
+import { TimeValueWholeComponent } from './icons-svg/time-values/time-value-whole/time-value-whole.component';
+import { TimeValueHalfComponent } from './icons-svg/time-values/time-value-half/time-value-half.component';
+import { TimeValueQuarterComponent } from './icons-svg/time-values/time-value-quarter/time-value-quarter.component';
+import { TimeValueEighthComponent } from './icons-svg/time-values/time-value-eighth/time-value-eighth.component';
 import { MultiTagTagsComponent } from './pages/multi-tag-tags/multi-tag-tags.component';
-import { TimeValueRestEighthComponent } from './icons/time-value-rest-eighth/time-value-rest-eighth.component';
-import { TimeValueRestSixteenthComponent } from './icons/time-value-rest-sixteenth/time-value-rest-sixteenth.component';
-import { TimeValueRestHalfComponent } from './icons/time-value-rest-half/time-value-rest-half.component';
-import { TimeValueRestQuarterComponent } from './icons/time-value-rest-quarter/time-value-rest-quarter.component';
-import { TimeValueRestWholeComponent } from './icons/time-value-rest-whole/time-value-rest-whole.component';
+import { TimeValueRestEighthComponent } from './icons-svg/time-values/time-value-rest-eighth/time-value-rest-eighth.component';
+import { TimeValueRestSixteenthComponent } from './icons-svg/time-values/time-value-rest-sixteenth/time-value-rest-sixteenth.component';
+import { TimeValueRestHalfComponent } from './icons-svg/time-values/time-value-rest-half/time-value-rest-half.component';
+import { TimeValueRestQuarterComponent } from './icons-svg/time-values/time-value-rest-quarter/time-value-rest-quarter.component';
+import { TimeValueRestWholeComponent } from './icons-svg/time-values/time-value-rest-whole/time-value-rest-whole.component';
 import { environment } from '../environments/environment';
 import { ScrollToTopDirective } from './directives/scroll-to-top.directive';
-import { IconMenuRightComponent } from './icons/icon-menu-right/icon-menu-right.component';
+import { IconMenuRightComponent } from './icons-svg/menu/icon-menu-right/icon-menu-right.component';
 import { ToggleMenuRightDirective } from './directives/toggle-menu-right.directive';
 import { GoBackDirective } from './directives/go-back.directive';
 import { MetronomeComponent } from './features/tools/metronome/metronome.component';
-import { IconMetronomeComponent } from './icons/icon-metronome/icon-metronome.component';
+import { IconMetronomeComponent } from './icons-svg/tools/icon-metronome/icon-metronome.component';
 import { GalleryComponent } from './features/moods/gallery/gallery.component';
 import { MoodInformationsComponent } from './features/moods/mood-informations/mood-informations.component';
 import { CentralGalleryComponent } from './pages/central-gallery/central-gallery.component';
@@ -237,7 +242,6 @@ import { BottomIconDashboardAccountComponent } from './components/bottom-bar-ico
 import { ChordWriterComponent } from './features/tools/chord-writer/chord-writer.component';
 import { SongWriterComponent } from './features/tools/song-writer/song-writer.component';
 import { SongWriterTestComponent } from './features/tools/song-writer-test/song-writer-test.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ToggleMoodInfoDirective } from './directives/toggle-mood-info.directive';
 import { ToggleMoodSizeDirective } from './directives/toggle-mood-size.directive';
 import { BottomToggleMoodSizeComponent } from './components/bottom-bar-icons/bottom-toggle-mood-size/bottom-toggle-mood-size.component';
@@ -261,7 +265,8 @@ import { LeagueSilverComponent } from './icons-svg/leagues/league-silver/league-
 import { LeagueCrystalComponent } from './icons-svg/leagues/league-crystal/league-crystal.component';
 import { LeagueChampionComponent } from './icons-svg/leagues/league-champion/league-champion.component';
 import { LeagueEliteComponent } from './icons-svg/leagues/league-elite/league-elite.component';
-import { LeagueLegendComponent } from './icons-svg/leagues/league-legend/league-legend.component'
+import { LeagueLegendComponent } from './icons-svg/leagues/league-legend/league-legend.component';
+import { NotificationComponent } from './components/notification/notification.component'
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -550,6 +555,7 @@ export function appInitializerFactory(translate: TranslateService) {
     LeagueChampionComponent,
     LeagueEliteComponent,
     LeagueLegendComponent,
+    NotificationComponent,
   ],
   imports: [
     RecaptchaModule,
@@ -583,7 +589,9 @@ export function appInitializerFactory(translate: TranslateService) {
         deps: [HttpClient]
       }
     }),
-    DragDropModule
+    DragDropModule,
+    OverlayModule,
+    PortalModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializerFactory, deps: [TranslateService], multi: true },

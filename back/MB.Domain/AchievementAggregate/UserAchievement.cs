@@ -17,7 +17,7 @@ public class UserAchievement : AuditableEntity
         {
             UserId = userId,
             AchievementDefinitionId = def.EntityId,
-            UnlockedAt = DateTime.UtcNow
+            UnlockedAt = DateTime.UtcNow,
         };
     }
 }

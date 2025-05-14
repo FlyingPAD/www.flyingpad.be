@@ -3,6 +3,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { UserService } from '../../services/http/user.service';
 import { LeagueService } from '../../services/http/league.service';
 import { LeagueWithRankingDto, LeagueMemberDto } from '../../interfaces/league';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-league',
@@ -10,10 +11,11 @@ import { LeagueWithRankingDto, LeagueMemberDto } from '../../interfaces/league';
   styleUrls: ['./user-league.component.scss']
 })
 export class UserLeagueComponent implements OnInit, OnDestroy {
-  readonly #userService = inject(UserService)
-  readonly #leagueService = inject(LeagueService)
+  #userService = inject(UserService)
+  #leagueService = inject(LeagueService)
+  #router = inject(Router)
 
-  readonly #destroy$ = new Subject<void>()
+  #destroy$ = new Subject<void>()
 
   public league: LeagueWithRankingDto | null = null
   public stayingMembers: LeagueMemberDto[] = []
@@ -48,7 +50,8 @@ export class UserLeagueComponent implements OnInit, OnDestroy {
     this.#destroy$.complete()
   }
 
-  trackById(_: number, member: LeagueMemberDto) {
-    return member.id
+  public goToUserProfile(userId: number): void {
+    this.#userService.updatePublicUser(userId)
+    this.#router.navigateByUrl('user-profile')
   }
 }

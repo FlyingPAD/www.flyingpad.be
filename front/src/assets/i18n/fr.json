@@ -98,7 +98,34 @@
     "log-in": "Vous avez déjà un compte ?"
   },
   "validation-message": {
-      "name-required": "Le nom est requis.",
-      "description-required": "La description est requise."
+    "name-required": "Le nom est requis.",
+    "description-required": "La description est requise."
+  },
+  "leagues": {
+    "wood": "Bois",
+    "stone": "Pierre",
+    "bronze": "Bronze",
+    "silver": "Argent",
+    "crystal": "Cristal",
+    "elite": "Élite",
+    "champion": "Champion",
+    "legend": "Légende",
+    "wood-league": "Ligue Bois",
+    "stone-league": "Ligue Pierre",
+    "bronze-league": "Ligue Bronze",
+    "silver-league": "Ligue Argent",
+    "crytsal-league": "Ligue de Cristal",
+    "elite-league": "Ligue de l'Élite",
+    "champion-league": "Ligue des Champions",
+    "legend-league": "Ligue des Légendes",
+    "holding-ground": "Restent en ligue",
+    "ready-for-promotion": "Prêts pour la promotion",
+    "promotion-treshold": "Seuil de Promotion"
+  },
+  "seasons": {
+    "days-left": "jours restants",
+    "period": "Période",
+    "from": "du",
+    "to": "au"
   }
 }

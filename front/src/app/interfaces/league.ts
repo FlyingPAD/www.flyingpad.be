@@ -9,13 +9,13 @@ export interface League {
   iconCssClass?: string
 }
 export interface LeagueMemberDto {
-  id: number
+  businessId: number
   userName: string
   seasonScore: number
 }
 
 export interface LeagueWithRankingDto {
-  leagueId: number
+  businessId: number
   leagueName: string
   minExperience: number
   maxExperience: number

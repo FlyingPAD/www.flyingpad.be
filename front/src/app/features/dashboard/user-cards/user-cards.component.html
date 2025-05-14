@@ -32,7 +32,14 @@
             <app-league-champion class="icon" *ngIf="user.league?.name === 'Champion'" />
             <app-league-legend class="icon" *ngIf="user.league?.name === 'Legend'" />
         </div>
-        <p class="value">{{user.league?.name}}</p>
+        <p class="value" *ngIf="user.league?.name === 'Wood'">{{ 'leagues.wood' | translate }}</p>
+        <p class="value" *ngIf="user.league?.name === 'Stone'">{{ 'leagues.stone' | translate }}</p>
+        <p class="value" *ngIf="user.league?.name === 'Bronze'">{{ 'leagues.bronze' | translate }}</p>
+        <p class="value" *ngIf="user.league?.name === 'Silver'">{{ 'leagues.silver' | translate }}</p>
+        <p class="value" *ngIf="user.league?.name === 'Crystal'">{{ 'leagues.crystal' | translate }}</p>
+        <p class="value" *ngIf="user.league?.name === 'Elite'">{{ 'leagues.elite' | translate }}</p>
+        <p class="value" *ngIf="user.league?.name === 'Champion'">{{ 'leagues.champion' | translate }}</p>
+        <p class="value" *ngIf="user.league?.name === 'Legend'">{{ 'leagues.legend' | translate }}</p>
     </div>
     <div class="statistic" (click)="goToAchievements()">
         <p class="title">{{ 'title.achievements' | translate }}</p>

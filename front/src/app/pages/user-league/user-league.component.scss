@@ -1,22 +1,133 @@
-.user {
-    display: flex;
-    align-items: center;
+.loading,
+.error {
+    margin: 1rem 0;
+    font-weight: bold;
+    color: #555;
+}
 
-    div {
-        width: 100%;
-        background-color: var(--colorWhiteOpacity5);
-        border: 3px solid var(--colorMainOpacity2);
-        border-radius: 10px;
+.error {
+    color: #c00;
+}
 
-        font-size: 14px;
-        color: var(--colorMain);
-
-        padding: 10px;
-        margin: 3px;
-    }
+.mini {
+    font-size: 13px;
 }
 
 .icon {
     display: flex;
     justify-content: center;
+}
+
+.leaderboard {
+    .league-header {
+        display: flex;
+        align-items: center;
+
+        p {
+            margin-right: 1px;
+            font-size: 17px;
+            font-weight: bold;
+            color: var(--colorMain);
+        }
+    }
+
+    .dialog-hr {
+        border: none;
+        border-top: 1px solid var(--colorMainOpacity2);
+        margin: 0.5rem 0 1rem;
+    }
+
+    .frame-title {
+        font-size: 14px;
+        margin-bottom: 0.5rem;
+        color: var(--colorMain);
+    }
+
+    .entry-header {
+        display: flex;
+        justify-content: space-between;
+
+        .name,
+        .score {
+            font-size: 12px;
+            color: var(--colorMain);
+            margin: 0;
+        }
+
+        .name {
+            padding-left: 55px;
+        }
+
+        .score {
+            padding-right: 60px;
+        }
+    }
+
+    .entry {
+        display: flex;
+        align-items: center;
+
+        .position {
+            width: 35px;
+            height: 35px;
+            background-color: var(--colorMainOpacity6);
+            border-radius: 5px;
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--colorWhiteOpacity8);
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .user-name {
+            flex-grow: 1;
+            height: 35px;
+            background-color: var(--colorMainOpacity1);
+            border-radius: 5px;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            font-size: 15px;
+            color: var(--colorMain);
+            cursor: pointer;
+            transition: background-color 300ms;
+
+            &:hover {
+                background-color: var(--colorMainOpacity2);
+            }
+        }
+
+        .score {
+            width: 75px;
+            height: 35px;
+            background-color: var(--colorMainOpacity1);
+            border-radius: 5px;
+            margin: 5px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 15px;
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--colorMain);
+        }
+
+        .gold {
+            background-color: rgba(255, 231, 94, 0.693);
+            color: var(--colorMain) !important;
+        }
+
+        .silver {
+            background-color: rgba(217, 217, 217, 0.698);
+            color: var(--colorMain) !important;
+        }
+
+        .bronze {
+            background-color: rgba(222, 184, 135, 0.835);
+            color: var(--colorMain) !important;
+        }
+    }
 }

@@ -210,53 +210,53 @@ hr {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-    
+
         font-size: 15px;
         color: var(--colorMain);
-    
+
         margin: 0;
-    
+
         a {
             text-decoration: none;
             background-color: var(--colorWhiteOpacity5);
             border: 3px solid var(--colorMainOpacity2);
             border-radius: 10px;
-    
+
             font-size: 14px;
             color: var(--colorMain);
-    
+
             padding: 10px;
             margin: 3px;
-    
+
             cursor: pointer;
         }
-    
+
         a:hover {
             background-color: var(--colorWhite);
             box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
             border: 3px solid var(--colorMain);
             transition-duration: 300ms;
         }
-    
+
         span {
             text-decoration: none;
             background-color: rgb(224, 224, 224);
             border: 3px solid rgba(128, 128, 128, 0.2);
             border-radius: 10px;
-    
+
             font-size: 14px;
             color: var(--colorMain);
-    
+
             padding: 10px;
             margin: 3px;
-    
+
             cursor: pointer;
         }
-    
+
         span:hover {
             cursor: not-allowed;
         }
-    
+
         .warning {
             color: darkred;
         }
@@ -274,4 +274,24 @@ hr {
 .g-recaptcha {
 
     z-index: 9999;
+}
+
+
+// CDK Overlay
+.cdk-overlay-container {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.cdk-overlay-pane.centered-overlay {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  pointer-events: auto;
 }

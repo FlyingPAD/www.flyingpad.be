@@ -1,0 +1,9 @@
+<div class="notif-container" [class.leave]="isLeaving" (click)="onClick()">
+  <app-icon-coin class="icon" [size]="data.iconSize || '80px'"
+    [colorOuter]="data.iconOuterColor || 'darkgrey'"></app-icon-coin>
+  <div class="text">
+    <h3 class="title">{{ data.title }}</h3>
+    <p class="message">{{ data.message }}</p>
+    <small *ngIf="data.subMessage">{{ data.subMessage }}</small>
+  </div>
+</div>

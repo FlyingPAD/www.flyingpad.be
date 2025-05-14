@@ -2,36 +2,49 @@
 <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
 
 <h1 class="h1">{{ 'title.leaderboard' | translate }}</h1>
+<p class="p">{{ 'seasons.period' | translate }} {{ 'seasons.from' | translate }} {{ season?.startsAt | date:'dd / MM / yyyy' }} {{ 'seasons.to' | translate }} {{ season?.endsAt | date:'dd / MM / yyyy' }}</p>
+<p class="p mini">( {{ daysLeft }} {{ 'seasons.days-left' | translate }} )</p>
 
-<p class="p">Période du {{ season?.startsAt | date:'dd / MM / yyyy' }} au {{ season?.endsAt | date:'dd / MM / yyyy' }}</p>
+<div class="leaderboard" *ngIf="!loading && !errorMsg">
+  @for (group of entriesByLeague; track $index) {
+  <div class="main-frame">
+    <div class="league-header">
+      <p class="icon"><app-league-wood *ngIf="group.leagueName === 'Wood'" /></p>
+      <p class="icon"><app-league-stone *ngIf="group.leagueName === 'Stone'" /></p>
+      <p class="icon"><app-league-bronze *ngIf="group.leagueName === 'Bronze'" /></p>
+      <p class="icon"><app-league-silver *ngIf="group.leagueName === 'Silver'" /></p>
+      <p class="icon"><app-league-crystal *ngIf="group.leagueName === 'Crystal'" /></p>
+      <p class="icon"><app-league-elite *ngIf="group.leagueName === 'Elite'" /></p>
+      <p class="icon"><app-league-champion *ngIf="group.leagueName === 'Champion'" /></p>
+      <p class="icon"><app-league-legend *ngIf="group.leagueName === 'Legend'" /></p>
 
-<div class="main-frame">
-  <table *ngIf="!loading && !errorMsg" class="ladder-table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>{{ 'title.name' | translate }}</th>
-        <th>Score</th>
-        <th>{{ 'title.league' | translate }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let e of entries; let i = index">
-        <td>{{ i + 1 }}</td>
-        <td><span (click)="goToUserProfile(e.businessId)">{{ e.userName }}</span></td>
-        <td>{{ e.seasonScore }}</td>
-        <td *ngIf="e.leagueName === 'Wood'"><app-league-wood class="icon" /></td>
-        <td *ngIf="e.leagueName === 'Stone'"><app-league-stone class="icon" /></td>
-        <td *ngIf="e.leagueName === 'Bronze'"><app-league-bronze class="icon" /></td>
-        <td *ngIf="e.leagueName === 'Silver'"><app-league-silver class="icon" /></td>
-        <td *ngIf="e.leagueName === 'Crystal'"><app-league-crystal class="icon" /></td>
-        <td *ngIf="e.leagueName === 'Elite'"><app-league-elite class="icon" /></td>
-        <td *ngIf="e.leagueName === 'Champion'"><app-league-champion class="icon" /></td>
-        <td *ngIf="e.leagueName === 'Legend'"><app-league-legend class="icon" /></td>
-      </tr>
-    </tbody>
-  </table>
+      <p class="league-title" *ngIf="group.leagueName === 'Wood'">{{ 'leagues.wood-league' | translate }}</p>
+      <p class="league-title" *ngIf="group.leagueName === 'Stone'">{{ 'leagues.stone-league' | translate }}</p>
+      <p class="league-title" *ngIf="group.leagueName === 'Bronze'">{{ 'leagues.bronze-league' | translate }}</p>
+      <p class="league-title" *ngIf="group.leagueName === 'Silver'">{{ 'leagues.silver-league' | translate }}</p>
+      <p class="league-title" *ngIf="group.leagueName === 'Crystal'">{{ 'leagues.crystal-league' | translate }}</p>
+      <p class="league-title" *ngIf="group.leagueName === 'Elite'">{{ 'leagues.elite-league' | translate }}</p>
+      <p class="league-title" *ngIf="group.leagueName === 'Champion'">{{ 'leagues.champion-league' | translate }}</p>
+      <p class="league-title" *ngIf="group.leagueName === 'Legend'">{{ 'leagues.legend-league' | translate }}</p>
+    </div>
+
+    <hr class="dialog-hr">
+
+    <div class="entry-header">
+      <p class="name">{{ 'title.name' | translate }}</p>
+      <p class="score">Score</p>
+    </div>
+
+    <div class="entry" *ngFor="let entry of group.entries; let idx = index">
+      <p class="position" [ngClass]="{ gold: idx===0, silver: idx===1, bronze: idx===2 }">#{{ idx + 1 }}</p>
+      <p class="user-name" (click)="goToUserProfile(entry.businessId)">{{ entry.userName }}</p>
+      <p class="score">{{ entry.seasonScore }}</p>
+    </div>
+  </div>
+  }
 </div>
+
+<app-spacer />
 
 <app-bottom-bar>
   <app-bottom-icon-back />
