@@ -16,6 +16,7 @@
     <None Remove="Configurations\VideoConfiguration.cs~RF3f7a985.TMP" />
     <None Remove="Repositories\Definitions\AchievementDefinitionsRepository.cs~RF8f2439.TMP" />
     <None Remove="Repositories\Definitions\AchievementDefinitionsRepository.cs~RF91b276.TMP" />
+    <None Remove="Repositories\Definitions\UserAchievementRepository.cs~RF76b91ea.TMP" />
     <None Remove="Repositories\EmailVerificationTokenRepository.cs~RF5379bc5.TMP" />
     <None Remove="Repositories\EmailVerificationTokenRepository.cs~RF548bae3.TMP" />
     <None Remove="Repositories\UserRepository.cs~RFcd04a07.TMP" />

@@ -2,11 +2,11 @@
 
 public class LeagueWithRankingDto
 {
-    public int LeagueId { get; init; }
+    public Guid BusinessId { get; init; }
     public string LeagueName { get; init; } = default!;
     public string? IconCssClass { get; init; }
     public int MinExperience { get; set; }
     public int? MaxExperience { get; set; }
     public int Order { get; init; }
-    public IReadOnlyList<LeagueMemberDto> Members { get; init; } = Array.Empty<LeagueMemberDto>();
+    public IReadOnlyList<LeagueMemberDto> Members { get; init; } = [];
 }

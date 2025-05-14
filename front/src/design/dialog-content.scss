@@ -8,6 +8,11 @@
     color: var(--colorMain);
 }
 
+.dialog-p-title {
+    color: var(--colorMain);
+    text-align: center;
+}
+
 .dialog-entity-name {
     margin: 0;
     margin-top: 15px;
@@ -17,6 +22,7 @@
     color: var(--colorMainOpacity7);
     font-weight: bold;
 }
+
 .dialog-hr {
     color: var(--colorMainOpacity1);
     margin-bottom: 15px;

@@ -5,9 +5,8 @@
     <app-email-verification />
   }
 
-  @if(viewMode() === viewModes.Status) {
-    <app-user-cards [user]="user()" />
-  }
+  <app-user-cards [user]="user()" />
+
 
   @if(viewMode() === viewModes.Status) {
   <app-status />

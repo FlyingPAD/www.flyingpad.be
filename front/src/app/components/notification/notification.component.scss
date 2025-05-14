@@ -1,0 +1,39 @@
+@keyframes pop-in {
+  0%   { opacity: 0; transform: scale(0.5); }
+  70%  { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pop-out {
+  0%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+
+.notif-container {
+  max-width: 360px;
+  
+  position: relative;
+  overflow: visible;
+
+  display: flex;
+  align-items: center;
+
+  background: var(--colorMainOpacity8);
+  border-radius: 10px;
+  
+  padding: 25px;
+  
+  color: var(--colorWhite);
+
+  cursor: pointer;
+  animation: pop-in 500ms cubic-bezier(.17,.67,.83,.67) forwards;
+}
+
+.notif-container.leave {
+  animation: pop-out 300ms ease-in forwards;
+}
+
+.icon    { flex-shrink: 0; }
+.text    { margin-left: 12px; }
+.title   { margin: 0; font-size: 16px; font-weight: bold; }
+.message { margin: 4px 0; font-size: 14px; }

@@ -32,12 +32,10 @@
                 <app-icon-tools class="svg-icon" size="25px" />
                 <p>{{ 'title.tools' | translate }}</p>
             </a>
-            @if(!isUserConnected) {
-                <a routerLink="/links" routerLinkActive="active" (click)="handleMenuMobile()">
-                    <app-icon-link class="svg-icon" size="25px" />
-                    <p>{{ 'title.links' | translate }}</p>
-                </a>
-            }
+            <a routerLink="/links" routerLinkActive="active" (click)="handleMenuMobile()">
+                <app-icon-link class="svg-icon" size="25px" />
+                <p>{{ 'title.links' | translate }}</p>
+            </a>
             <a routerLink="/central-gallery" routerLinkActive="active" (click)="handleMenuToggle()">
                 <app-icon-moods class="svg-icon" size="25px" />
                 <p>Moods</p>

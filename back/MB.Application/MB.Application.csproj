@@ -28,6 +28,7 @@
 	  <None Remove="Interfaces\Infrastructure\IDailyReportService.cs~RF64bfe0b.TMP" />
 	  <None Remove="Interfaces\Persistence\IAchievementDefinitionsRepository.cs~RF918c7f.TMP" />
 	  <None Remove="Interfaces\Persistence\IEmailVerificationTokenRepository.cs~RF54a5421.TMP" />
+	  <None Remove="Interfaces\Persistence\IUserAchievementRepository.cs~RF754751b.TMP" />
 	  <None Remove="Models\BaseResponse.cs~RF665f458.TMP" />
 	  <None Remove="Models\DailyReportModel.cs~RF6674d12.TMP" />
 	</ItemGroup>
