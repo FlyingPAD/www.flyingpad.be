@@ -268,19 +268,16 @@ hr {
     }
 }
 
-
-/* 1) reCAPTCHA v3 badge */
+// Hide reCAPTCHA badge on all pages except signup page
 .grecaptcha-badge {
-
-    z-index: 9999;
+  visibility: hidden !important;
+  z-index: 0 !important;
 }
 
-/* 2) reCAPTCHA v2 “case à cocher” visible */
-.g-recaptcha {
-
-    z-index: 9999;
+body.signup-page .grecaptcha-badge {
+  visibility: visible !important;
+  z-index: 9999 !important;
 }
-
 
 // CDK Overlay
 .cdk-overlay-container {
