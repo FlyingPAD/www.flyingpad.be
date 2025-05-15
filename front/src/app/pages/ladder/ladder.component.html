@@ -3,7 +3,9 @@
 
 <h1 class="h1">{{ 'title.leaderboard' | translate }}</h1>
 <p class="p">{{ 'seasons.period' | translate }} {{ 'seasons.from' | translate }} {{ season?.startsAt | date:'dd / MM / yyyy' }} {{ 'seasons.to' | translate }} {{ season?.endsAt | date:'dd / MM / yyyy' }}</p>
-<p class="p mini">( {{ daysLeft }} {{ 'seasons.days-left' | translate }} )</p>
+<p class="p mini">
+  {{ remainingDays }} {{ 'seasons.days' | translate }} - {{ remainingHours | number: '2.0' }}:{{ remainingMinutes | number: '2.0' }}:{{ remainingSeconds | number: '2.0' }} {{ 'seasons.left' | translate }}
+</p>
 
 <div class="leaderboard" *ngIf="!loading && !errorMsg">
   @for (group of entriesByLeague; track $index) {

@@ -126,6 +126,8 @@
     "days-left": "jours restants",
     "period": "Période",
     "from": "du",
-    "to": "au"
+    "to": "au",
+    "days": "jours",
+    "left": "restants"
   }
 }
