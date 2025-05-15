@@ -74,6 +74,12 @@
     }
 }
 
+@media(max-width: 768px) {
+    .category {
+        justify-content: center;
+    }
+}
+
 .dialog-body {
     display: flex;
     align-items: center;

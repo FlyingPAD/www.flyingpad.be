@@ -13,4 +13,6 @@ public interface IUserRepository : IBaseRepository<User>
     Task UpdateAggregateAsync(User user);
     Task<IList<User>> GetAllFullAsync();
     Task<IReadOnlyList<User>> GetByLeagueDefinitionIdAsync(int leagueDefinitionId, CancellationToken ct = default);
+    Task<IList<int>> GetAllUserIdsAsync();
+    Task<User?> GetByIdFullAsync(int id);
 }

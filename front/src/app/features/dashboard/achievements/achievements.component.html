@@ -1,9 +1,11 @@
 <div class="main-frame">
-  <h1 class="frame-title center"> {{ 'title.achievements' | translate }} ( {{ totalUnlocked }} / {{ achievements.length }} )</h1>
+  <h1 class="frame-title center"> {{ 'title.achievements' | translate }} <span>( {{ totalUnlocked }} / {{ achievements.length }} )</span></h1>
 
   @for (group of grouped; track $index) {
+  <hr class="dialog-hr">
   <h1 class="frame-title"> ▸ {{ titleFor(group.category) }} <span>( {{ group.unlockedCount }} / {{ group.items.length }} ) </span></h1>
   <hr class="dialog-hr">
+
   <div class="category">
     @for (ach of group.items; track $index) {
     <div appToggleDialog class="achievement" (click)="displayAchievement(ach)">

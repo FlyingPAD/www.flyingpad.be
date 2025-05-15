@@ -22,7 +22,7 @@ public class GetLeaderboardQueryHandler(IUserRepository userRepo, IMapper mapper
         var entries = ordered.Select(u => new LeaderboardEntryDto
         {
             BusinessId = u.BusinessId.ToString(),
-            UserName = u.UserName,
+            UserName = u.UserName ?? "-",
             Level = u.Level,
             Experience = u.Experience,
             SeasonScore = u.SeasonScore,

@@ -16,4 +16,11 @@ public class Season : AuditableEntity
     }
 
     public bool IsActive => DateTime.UtcNow >= StartsAt && DateTime.UtcNow <= EndsAt;
+
+    public void Close(DateTime endAt)
+    {
+        if (endAt < StartsAt)
+            throw new ArgumentException("La fin doit être après le début", nameof(endAt));
+        EndsAt = endAt;
+    }
 }

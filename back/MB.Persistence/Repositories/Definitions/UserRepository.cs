@@ -42,14 +42,20 @@ public class UserRepository(Context context) : BaseRepository<User>(context), IU
 
     public async Task UpdateAggregateAsync(User user)
     {
+        // 1) On « nettoie » tout ce qui était tracké avant
+        _context.ChangeTracker.Clear();
+
+        // 2) On attache l'utilisateur (et tout ce que vous voulez persister)
         _context.Users.Update(user);
+
+        // 3) On sauvegarde
         await _context.SaveChangesAsync();
     }
 
     public async Task<IList<User>> GetAllFullAsync() =>
     await _context.Users
+        .AsNoTracking()
         .Include(u => u.Achievements)
-            .ThenInclude(ua => ua.Definition)
         .Include(u => u.Season)
         .Include(u => u.LeagueDefinition)
         .ToListAsync();
@@ -61,5 +67,22 @@ public class UserRepository(Context context) : BaseRepository<User>(context), IU
                              .Where(u => u.LeagueDefinitionId == leagueDefinitionId)
                              .OrderByDescending(u => u.SeasonScore)
                              .ToListAsync(ct);
+    }
+
+    public async Task<IList<int>> GetAllUserIdsAsync()
+    {
+        // On ne charge que l’ID, pas tout le graphe
+        return await _context.Users
+            .Select(u => u.EntityId)
+            .ToListAsync();
+    }
+
+    public async Task<User?> GetByIdFullAsync(int id)
+    {
+        return await _context.Users
+            .Include(u => u.Achievements).ThenInclude(ua => ua.Definition)
+            .Include(u => u.Season)
+            .Include(u => u.LeagueDefinition)
+            .SingleOrDefaultAsync(u => u.EntityId == id);
     }
 }
