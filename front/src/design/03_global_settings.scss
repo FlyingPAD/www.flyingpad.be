@@ -204,6 +204,11 @@ hr {
         font-size: 17px;
         font-weight: bold;
         color: var(--colorMain);
+
+        span {
+            font-weight: normal;
+            font-size: 13px;
+        }
     }
 
     .hub-message {

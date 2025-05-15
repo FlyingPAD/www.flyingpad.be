@@ -9,20 +9,23 @@ public class AchievementDefinitionsRepository(Context context) : BaseRepository<
     public async Task<IList<AchievementDefinition>> GetByBusinessIdsAsync(IEnumerable<Guid> businessIds)
     {
         return await _context.Set<AchievementDefinition>()
-                             .Where(d => businessIds.Contains(d.BusinessId))
-                             .ToListAsync();
+            .AsNoTracking()
+            .Where(d => businessIds.Contains(d.BusinessId))
+            .ToListAsync();
     }
 
     public async Task<AchievementDefinition?> GetByCodeAsync(string code)
     {
         return await _context.Set<AchievementDefinition>()
-                             .FirstOrDefaultAsync(a => a.Code == code);
+            .AsNoTracking()
+            .FirstOrDefaultAsync(a => a.Code == code);
     }
 
     public async Task<IList<AchievementDefinition>> GetByCodesAsync(IEnumerable<string> codes)
     {
         return await _context.Set<AchievementDefinition>()
-                             .Where(a => codes.Contains(a.Code))
-                             .ToListAsync();
+            .AsNoTracking()
+            .Where(a => codes.Contains(a.Code))
+            .ToListAsync();
     }
 }
