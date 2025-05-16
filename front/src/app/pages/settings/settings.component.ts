@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LanguageService } from '../../services/user-interface/language.service';
 import { DisplayService } from '../../services/user-interface/display.service';
 import { FullScreenService } from '../../services/user-interface/full-screen.service';
@@ -6,20 +6,18 @@ import { Theme } from '../../enumerations/supported-themes';
 import { ThemeService } from '../../services/user-interface/theme.service';
 import { ImageUrlService } from '../../services/user-interface/image-url.service';
 import { SupportedLanguages } from '../../enumerations/supported-languages';
-import { ButtonTopService } from '../../services/user-interface/button-top.service';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent implements OnInit, OnDestroy {
+export class SettingsComponent {
   #languageService = inject(LanguageService)
   #displayService = inject(DisplayService)
   #fullScreenService = inject(FullScreenService)
   #themeService = inject(ThemeService)
   #imageUrlService = inject(ImageUrlService)
-  #buttonTopService = inject(ButtonTopService)
 
   public currentLanguage = this.#languageService.currentLanguage
   public displayInfos = this.#displayService.displayInfo
@@ -33,18 +31,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
     return Object.keys(this.Theme) as Array<keyof typeof Theme>
   }
 
-  ngOnInit(): void {
-    this.#buttonTopService.setShowButtonTop(true)
-  }
-
-  ngOnDestroy(): void {
-    this.#buttonTopService.setShowButtonTop(false)
-  }
-
   public currentThemeKey(): keyof typeof Theme {
-    return Object.keys(this.Theme).find(
-      key => this.Theme[key as keyof typeof Theme] === this.currentTheme()
-    ) as keyof typeof Theme
+    return Object.keys(this.Theme).find( key => this.Theme[key as keyof typeof Theme] === this.currentTheme() ) as keyof typeof Theme
   }
 
   public changeTheme(selectedThemeKey: keyof typeof Theme): void {
@@ -72,10 +60,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   public getImageURL(theme: boolean, folderName: string, imageName: string, imageExtension: string): string {
-    if (theme) {
-      return this.#imageUrlService.getImageURL(folderName, imageName, imageExtension)
-    } else {
-      return this.#imageUrlService.getImageURLNoTheme(folderName, imageName, imageExtension)
-    }
+    if (theme) return this.#imageUrlService.getImageURL(folderName, imageName, imageExtension)
+    else return this.#imageUrlService.getImageURLNoTheme(folderName, imageName, imageExtension)
   }
 }

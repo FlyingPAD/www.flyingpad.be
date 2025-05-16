@@ -54,6 +54,12 @@
             background-color: rgba(255, 255, 255, 0.3);
         }
 
+        select {
+            option {
+                text-align: center;
+            }
+        }
+
         select.button {
             width: 123px;
             height: 37px;
