@@ -92,7 +92,7 @@
     "account-settings": "Éditez vos paramètres de compte - nom, courriel, mot de passe, adresse.",
     "account-closed": "Les inscriptions sont fermées pour le moment, revenez plus tard.",
     "gdpr": "Ce site web utilise des cookies.",
-    "home-quote": "Chaque seconde compte ...",
+    "home-quote": "L'apprentissage musical, libre et accessible.",
     "home-cta": "Mettons-nous au travail !",
     "sign-up": "Vous n'avez pas de compte ?",
     "log-in": "Vous avez déjà un compte ?"
@@ -129,5 +129,8 @@
     "to": "au",
     "days": "jours",
     "left": "restants"
+  },
+  "system": {
+    "loading": "Chargement"
   }
 }
