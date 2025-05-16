@@ -1,7 +1,7 @@
 import { BaseResponse } from "./http/base-response"
 
 export interface LeaderboardEntry {
-    businessId: string
+    businessId: number
     userName: string
     level: number
     experience: number

@@ -1,5 +1,11 @@
-<div *ngIf="loading" class="loading">Chargement du ladder…</div>
-<div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+<div *ngIf="loading" class="loading">
+  <img src="../../../assets/spinner.gif" alt="Loading" />
+  <p class="p">Loading ...</p>
+</div>
+
+<div *ngIf="errorMsg">
+  <p class="p error">{{ errorMsg }}</p>
+</div>
 
 <h1 class="h1">{{ 'title.leaderboard' | translate }}</h1>
 <p class="p">{{ 'seasons.period' | translate }} {{ 'seasons.from' | translate }} {{ season?.startsAt | date:'dd / MM / yyyy' }} {{ 'seasons.to' | translate }} {{ season?.endsAt | date:'dd / MM / yyyy' }}</p>
