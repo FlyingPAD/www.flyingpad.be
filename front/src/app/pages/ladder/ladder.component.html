@@ -1,19 +1,21 @@
-<div *ngIf="loading" class="loading">
-  <img src="../../../assets/spinner.gif" alt="Loading" />
-  <p class="p">Loading ...</p>
+<div class="loading" *ngIf="loading">
+  <div>
+    <img src="../../../assets/spinner.gif" alt="Loading" />
+    <p class="p">{{ 'system.loading' | translate }} ...</p>
+  </div>
 </div>
 
 <div *ngIf="errorMsg">
   <p class="p error">{{ errorMsg }}</p>
 </div>
 
-<h1 class="h1">{{ 'title.leaderboard' | translate }}</h1>
-<p class="p">{{ 'seasons.period' | translate }} {{ 'seasons.from' | translate }} {{ season?.startsAt | date:'dd / MM / yyyy' }} {{ 'seasons.to' | translate }} {{ season?.endsAt | date:'dd / MM / yyyy' }}</p>
-<p class="p mini">
-  {{ remainingDays }} {{ 'seasons.days' | translate }} - {{ remainingHours | number: '2.0' }}:{{ remainingMinutes | number: '2.0' }}:{{ remainingSeconds | number: '2.0' }} {{ 'seasons.left' | translate }}
-</p>
-
 <div class="leaderboard" *ngIf="!loading && !errorMsg">
+  <h1 class="h1">{{ 'title.leaderboard' | translate }}</h1>
+  <p class="p">{{ 'seasons.period' | translate }} {{ 'seasons.from' | translate }} {{ season?.startsAt | date:'dd / MM / yyyy' }} {{ 'seasons.to' | translate }} {{ season?.endsAt | date:'dd / MM / yyyy' }}</p>
+  <p class="p mini">
+    {{ remainingDays }} {{ 'seasons.days' | translate }} - {{ remainingHours | number: '2.0' }}:{{ remainingMinutes | number: '2.0' }}:{{ remainingSeconds | number: '2.0' }} {{ 'seasons.left' | translate }}
+  </p>
+
   @for (group of entriesByLeague; track $index) {
   <div class="main-frame">
     <div class="league-header">

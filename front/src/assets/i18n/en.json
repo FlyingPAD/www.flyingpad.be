@@ -92,7 +92,7 @@
         "account-settings": "Edit your account settings - name, email, password, address.",
         "account-closed": "Registration are closed for now ... Please come back later.",
         "gdpr": "This website uses cookies.",
-        "home-quote": "Every second matters ...",
+        "home-quote": "Music education. Free. For everyone.",
         "home-cta": "Let's get to work !",
         "sign-up": "You don't have an account ?",
         "log-in": "Already have an account ?"
@@ -129,5 +129,8 @@
         "to": "to",
         "days": "days",
         "left": "left"
+    },
+    "system": {
+        "loading": "Loading"
     }
 }
