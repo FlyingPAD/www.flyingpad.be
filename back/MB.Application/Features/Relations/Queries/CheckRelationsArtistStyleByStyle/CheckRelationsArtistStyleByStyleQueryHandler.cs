@@ -12,7 +12,7 @@ public class CheckRelationsArtistStyleByStyleQueryHandler(IBaseRepository<Relati
 
     public async Task<CheckRelationsArtistStyleByStyleQueryResponse> Handle(CheckRelationsArtistStyleByStyleQuery request, CancellationToken cancellationToken)
     {
-        int? stylePrimaryId = await _styleRepository.GetPrimaryIdByBusinessIdAsync(request.StyleId);
+        int? stylePrimaryId = await _styleRepository.GetEntityIdByBusinessIdAsync(request.StyleId, cancellationToken);
 
         if (!stylePrimaryId.HasValue)
         {

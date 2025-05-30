@@ -85,11 +85,6 @@ export class MultiTagArtistsComponent implements OnInit, OnDestroy {
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent): void {
     switch (event.key) {
-      case 'Backspace':
-        this.#router.navigateByUrl('/moods/multi-tag')
-        break
-    }    
-    switch (event.key) {
       case 'Enter':
         this.onSubmit()
         break

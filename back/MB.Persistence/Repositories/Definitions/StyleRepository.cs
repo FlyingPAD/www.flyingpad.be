@@ -1,5 +1,5 @@
 ﻿using MB.Application.Features.Styles.Queries.GetStylesCheckBoxesByArtist;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Domain.StyleAggregate;
 using Microsoft.EntityFrameworkCore;
 

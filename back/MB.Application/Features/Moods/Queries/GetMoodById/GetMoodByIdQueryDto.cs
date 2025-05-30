@@ -12,4 +12,5 @@ public class GetMoodByIdQueryDto
     public string Description { get; set; } = string.Empty;
     public string Extension {  get; set; } = string.Empty;
     public int Score { get; set; }
+    public int Position { get; set; }
 }

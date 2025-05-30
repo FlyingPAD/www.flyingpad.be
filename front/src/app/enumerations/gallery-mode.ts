@@ -1,4 +1,5 @@
 export enum GalleryMode {
+    New = "new",
     Default = "default",
     Tag = 'tag',
     TagCategory = 'tag-category',

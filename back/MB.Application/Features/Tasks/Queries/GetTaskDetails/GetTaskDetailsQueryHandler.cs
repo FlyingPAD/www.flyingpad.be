@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MB.Application.Features.Tasks.Queries.GetTaskDetails;
 using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.Tasks.Queries.GetTasksDetails;

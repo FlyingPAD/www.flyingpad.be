@@ -1,6 +1,8 @@
 ﻿using MB.Application.Features.Moods.Queries;
 using MB.Domain.MoodAggregate;
 
+namespace MB.Application.Features.Moods.Mapper;
+
 public static class MoodMapper
 {
     public static List<MoodLightDto> ToListItemDtos(IEnumerable<Mood> moods)
@@ -16,6 +18,7 @@ public static class MoodMapper
                 Description = m.Description,
                 Extension = m.Extension,
                 Score = m.Score,
+                Position = m.Position,
                 Width = null,
                 Height = null,
                 Duration = null,

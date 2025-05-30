@@ -9,6 +9,11 @@ export interface MoodScoreUpdate {
     value: number
 }
 
+export interface MoodPositionUpdate {
+    moodIds: number[]
+    position: number
+}
+
 export interface TagCategoryUpdateForm {
     tagCategoryId: number
     name: string

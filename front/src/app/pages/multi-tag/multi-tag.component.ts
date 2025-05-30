@@ -2,11 +2,12 @@ import { Component, HostListener, inject, OnDestroy } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { MultiTagService } from '../../services/multi-tag.service';
 import { NotificationService } from '../../services/user-interface/notification.service';
-import { MoodScoreUpdate } from '../../interfaces/http/forms-update';
+import { MoodPositionUpdate, MoodScoreUpdate } from '../../interfaces/http/forms-update';
 import { Subject, takeUntil } from 'rxjs';
 import { MoodService } from '../../services/http/mood.service';
 import { Router } from '@angular/router';
 import { PaginationService } from '../../services/user-interface/pagination.service';
+import { MenuService } from '../../services/user-interface/menu.service';
 
 @Component({
   selector: 'app-multi-tag',
@@ -18,6 +19,7 @@ export class MultiTagComponent implements OnDestroy {
   #notificationService = inject(NotificationService)
   #moodService = inject(MoodService)
   #paginationService = inject(PaginationService)
+  #menuService = inject(MenuService)
   #router = inject(Router)
 
   #destroy$ = new Subject<void>()
@@ -27,6 +29,7 @@ export class MultiTagComponent implements OnDestroy {
 
   public itemsPerPage: number = this.#paginationService.ITEMS_PER_PAGE
   public currentPage = this.#paginationService.galleryCurrentPage
+  public isRightMenuOpen = this.#menuService.isRightMenuOn
 
   public environment = environment.apiBaseUrl
 
@@ -75,6 +78,47 @@ export class MultiTagComponent implements OnDestroy {
           .subscribe()
       })
     }
+  }
+
+  public updateMoodPosition(position: number): void {
+    const currentSelection = this.selectedMoods()
+
+    if (currentSelection.length === 0) {
+      this.#notificationService.warning('No Moods Selected')
+      return
+    }
+    const form: MoodPositionUpdate = { moodIds: currentSelection, position: position }
+
+    this.#moodService.updateMoodPosition(form)
+      .pipe(takeUntil(this.#destroy$))
+      .subscribe()
+  }
+
+  public delete(): void {
+    const selectedMoodIds = this.selectedMoods()
+
+    if (selectedMoodIds.length === 0) {
+      this.#notificationService.warning('No Moods Selected')
+      return
+    }
+
+    selectedMoodIds.forEach(moodId => {
+      this.#moodService.deleteMood(moodId)
+        .pipe(takeUntil(this.#destroy$))
+        .subscribe()
+    })
+
+    this.resetSelection()
+  }
+
+  public approveMoods(): void {
+    const selectedMoodIds = this.selectedMoods()
+
+    this.#moodService.approveMoods(selectedMoodIds)
+      .pipe(takeUntil(this.#destroy$))
+      .subscribe()
+
+    this.resetSelection()
   }
 
   @HostListener('window:keydown', ['$event'])

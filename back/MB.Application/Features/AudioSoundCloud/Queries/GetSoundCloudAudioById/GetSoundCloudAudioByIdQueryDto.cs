@@ -11,6 +11,7 @@ public class GetSoundCloudAudioByIdQueryDto
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public int Score { get; set; }
+    public int Posiion { get; set; }
     public string Extension { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
     public string ThumbnailUrl { get; set; } = string.Empty;

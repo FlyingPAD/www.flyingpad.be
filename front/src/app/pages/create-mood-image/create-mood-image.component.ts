@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { NotificationService } from '../../services/user-interface/notification.service';
 import { MoodService } from '../../services/http/mood.service';
 import { ImageCreateForm } from '../../interfaces/http/forms-create';
+import { MoodsGalleryService } from '../../services/user-interface/moods-gallery.service';
+import { GalleryMode } from '../../enumerations/gallery-mode';
+import { GalleryType } from '../../enumerations/gallery-type';
 
 @Component({
   selector: 'app-create-mood-image',
@@ -12,6 +15,7 @@ import { ImageCreateForm } from '../../interfaces/http/forms-create';
 })
 export class CreateMoodImageComponent {
   #moodService = inject(MoodService)
+  #moodsGalleryService = inject(MoodsGalleryService)
   #builder = inject(FormBuilder)
   #router = inject(Router)
   #notificationService = inject(NotificationService)
@@ -95,6 +99,8 @@ export class CreateMoodImageComponent {
       for (let i = 0; i < this.forms.length; i++) {
         this.#moodService.createImage( this.forms[i].value ).subscribe()   
       }
+      this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
+      this.#moodsGalleryService.setGalleryMode(GalleryMode.New)
       this.#router.navigateByUrl('/central-gallery')
     }
     else this.#notificationService.warning('No images selected.')

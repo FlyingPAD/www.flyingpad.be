@@ -267,7 +267,6 @@ import { LeagueChampionComponent } from './icons-svg/leagues/league-champion/lea
 import { LeagueEliteComponent } from './icons-svg/leagues/league-elite/league-elite.component';
 import { LeagueLegendComponent } from './icons-svg/leagues/league-legend/league-legend.component';
 import { NotificationComponent } from './components/notification/notification.component';
-import { SvgImgChordWheelComponent } from './svg-images/svg-img-chord-wheel/svg-img-chord-wheel.component'
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -556,8 +555,7 @@ export function appInitializerFactory(translate: TranslateService) {
     LeagueChampionComponent,
     LeagueEliteComponent,
     LeagueLegendComponent,
-    NotificationComponent,
-    SvgImgChordWheelComponent,
+    NotificationComponent
   ],
   imports: [
     RecaptchaModule,

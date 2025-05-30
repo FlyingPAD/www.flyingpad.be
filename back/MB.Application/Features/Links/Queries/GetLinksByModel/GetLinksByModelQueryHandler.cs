@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Domain.ModelAggregate;
 using MediatR;
 
@@ -14,7 +15,7 @@ namespace MB.Application.Features.Links.Queries.GetLinksByModel
 
         public async Task<GetLinksByModelQueryResponse> Handle(GetLinksByModelQuery request, CancellationToken cancellationToken)
         {
-            int modelId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId)
+            int modelId = await _modelRepository.GetEntityIdByBusinessIdAsync(request.ModelId, cancellationToken)
                 ?? throw new NotFoundException("Model not found.");
 
             var links = await _linkRepository.GetLinksByModel(modelId);

@@ -1,5 +1,5 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Application.Models;
 using MediatR;
 
@@ -12,7 +12,7 @@ public class CreateRelationsModelFranchiseCommandHandler(IModelRepository modelR
 
     public async Task<BaseResponse> Handle(CreateRelationsModelFranchiseCommand request, CancellationToken cancellationToken)
     {
-        var modelId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId)
+        var modelId = await _modelRepository.GetEntityIdByBusinessIdAsync(request.ModelId, cancellationToken)
             ?? throw new NotFoundException("Model not found.");
 
         var franchiseIds = await _franchiseRepository.GetPrimaryIdsByBusinessIdsAsync(request.FranchiseIds);

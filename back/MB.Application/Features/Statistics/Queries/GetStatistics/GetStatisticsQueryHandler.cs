@@ -64,6 +64,8 @@ public class GetStatisticsQueryHandler(
         var totalMoods = await _moodRepository.CountAsync();
         var totalImages = await _moodRepository.CountAsync(mood => mood.Type == 1);
         var totalVideos = await _moodRepository.CountAsync(mood => mood.Type == 2);
+        var totalYouTubeVideos = await _moodRepository.CountAsync(mood => mood.Type == 4);
+        var totalSoundCloudAudios = await _moodRepository.CountAsync(mood => mood.Type == 5);
         var totalTags = await _tagRepository.CountAsync();
         var totalTagCategories = await _tagCategoryRepository.CountAsync();
         var totalArtists = await _artistRepository.CountAsync();
@@ -97,6 +99,10 @@ public class GetStatisticsQueryHandler(
                 ImagesPercentage = totalMoods > 0 ? (totalImages / (double)totalMoods) * 100 : 0,
                 TotalVideos = totalVideos,
                 VideosPercentage = totalMoods > 0 ? (totalVideos / (double)totalMoods) * 100 : 0,
+                TotalYouTubeVideos = totalYouTubeVideos,
+                YouTubeVideosPercentage = totalMoods > 0 ? (totalYouTubeVideos) / (double)totalMoods * 100 : 0,
+                TotalSoundCloudAudios = totalSoundCloudAudios,
+                SoundCloudAudiosPercentage = totalSoundCloudAudios > 0 ? (totalSoundCloudAudios) / (double)totalMoods * 100 : 0,
                 TotalTags = totalTags,
                 TotalTagCategories = totalTagCategories,
                 TotalArtists = totalArtists,

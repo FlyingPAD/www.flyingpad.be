@@ -1,7 +1,7 @@
 ﻿using MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckBoxesByLink;
 using MB.Domain.LinkCategoryAggregate;
 
-namespace MB.Application.Interfaces.Persistence;
+namespace MB.Application.Interfaces.Persistence.Definitions;
 
 public interface ILinkCategoryRepository : IBaseRepository<LinkCategory>
 {

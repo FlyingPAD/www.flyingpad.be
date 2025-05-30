@@ -3,7 +3,7 @@ using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
 using MB.Domain.TagAggregate;
 
-namespace MB.Application.Interfaces.Persistence;
+namespace MB.Application.Interfaces.Persistence.Definitions;
 
 public interface ITagRepository : IBaseRepository<Tag>
 {

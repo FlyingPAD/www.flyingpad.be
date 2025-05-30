@@ -23,27 +23,17 @@
                     <input type="email" id="in_email" formControlName="email" placeholder="example@domain.com" autocomplete="email">
 
                     <div *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.errors">
-                        <p class="error" *ngIf="formGroup.get('email')?.errors?.['required']">
-                            Email is required.
-                        </p>
-                        <p class="error" *ngIf="formGroup.get('email')?.errors?.['email']">
-                            Please enter a valid email address.
-                        </p>
-                        <p class="error" *ngIf="formGroup.get('email')?.errors?.['maxLength']">
-                            The email must not exceed 384 characters.
-                        </p>
+                        <p class="error" *ngIf="formGroup.get('email')?.errors?.['required']">Email is required.</p>
+                        <p class="error" *ngIf="formGroup.get('email')?.errors?.['email']">Please enter a valid email address.</p>
+                        <p class="error" *ngIf="formGroup.get('email')?.errors?.['maxLength']">The email must not exceed 384 characters.</p>
                     </div>
                 </div>
                 <div>
-                    <input type="password" id="in_password" formControlName="password" placeholder="●●●●●●●●"  autocomplete="current-password">
+                    <input type="password" id="in_password" formControlName="password" placeholder="●●●●●●●●" autocomplete="current-password">
 
                     <div *ngIf="formGroup.get('password')?.touched && formGroup.get('password')?.errors">
-                        <p class="error" *ngIf="formGroup.get('password')?.errors?.['required']">
-                            A password is required.
-                        </p>
-                        <p class="error" *ngIf="formGroup.get('password')?.errors?.['minLength']">
-                            The password must be at least 8 characters long.
-                        </p>
+                        <p class="error" *ngIf="formGroup.get('password')?.errors?.['required']">A password is required.</p>
+                        <p class="error" *ngIf="formGroup.get('password')?.errors?.['minLength']">The password must be at least 8 characters long.</p>
                     </div>
                 </div>
 
@@ -68,6 +58,9 @@
             src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
         <img *ngIf="moodsFlow()?.mood?.height < moodsFlow()?.mood?.width" class="mood-landscape"
             src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+        }
+        @if(moodsFlow()?.mood?.type !== 1) {
+        <img class="mood-square" src="../../../assets/chord-wheel.png" />
         }
     </div>
 </div>

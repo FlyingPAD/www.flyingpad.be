@@ -12,6 +12,7 @@ export interface MoodLight {
   description: string
   extension: string
   score: number
+  position: number
   url?: string
   width?: number
   height?: number
@@ -31,6 +32,7 @@ export interface MoodFull {
   name: string
   description: string
   score: number
+  position: number
   extension: string
   url?: string
   thumbnailUrl?: string

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace MB.Application.Features.Moods.Commands.CreateMoodVideo;
+namespace MB.Application.Features.Moods.Commands.CreateMoodVideoCommand;
 
 public class CreateMoodVideoCommand : IRequest<CreateMoodVideoCommandResponse>
 {

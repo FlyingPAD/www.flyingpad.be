@@ -1,109 +1,101 @@
-import { Component, inject } from '@angular/core';
+// src/app/components/create-mood-video/create-mood-video.component.ts
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MoodService } from '../../services/http/mood.service';
+import { VideoCreateForm } from '../../interfaces/http/forms-create';
 
 @Component({
   selector: 'app-create-mood-video',
   templateUrl: './create-mood-video.component.html',
-  styleUrl: './create-mood-video.component.scss'
+  styleUrls: ['./create-mood-video.component.scss']
 })
-export class CreateMoodVideoComponent {
-  #moodService = inject(MoodService)
-  #formBuilder = inject(FormBuilder)
-  #router = inject(Router)
+export class CreateMoodVideoComponent implements OnInit {
+  private fb = inject(FormBuilder);
+  private moodService = inject(MoodService);
+  private router = inject(Router);
 
-  form: FormGroup = this.#formBuilder.group({ title: [''] })
+  form!: FormGroup;
 
-  public name!: string
-  public extension!: string
-  public size!: number
+  // Ces propriétés sont utilisées par votre template
+  public url!: string;
+  public size!: number;
+  public extension!: string;
+  public width!: number;
+  public height!: number;
+  public duration!: number;
 
-  url!: string
+  // On ne stocke plus que le File brut
+  private file!: File;
 
-  width!: number
-  height!: number
-  duration!: number
-  sourcefile!: string
-
-  loadFile(event: any): void {
-    this.getFileDetails(event)
-
-    if (
-      this.extension === "video/mp4" && this.size < 50000000 ||
-      this.extension === "video/webm" && this.size < 50000000) {
-      this.videoForm(event)
-    }
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      name:        ['...', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      description: ['...50_000_000', [Validators.required, Validators.minLength(1), Validators.maxLength(500)]]
+    });
   }
 
-  getFileDetails(event: any): void {
-    for (var i = 0; i < event.target.files.length; i++) {
-      this.name = event.target.files[i].name;
-      this.extension = event.target.files[i].type;
-      this.size = event.target.files[i].size;
+  loadFile(event: Event): void {
+    const input = (event.target as HTMLInputElement);
+    if (!input.files?.length) {
+      return;
     }
-  }
-  videoForm(event: any): void {
-    var reader = new FileReader()
 
-    reader.onload = (event: any) => {
-      this.url = event.target.result;
-      this.sourcefile = reader?.result as string;
+    this.file      = input.files[0];
+    this.size      = this.file.size;
+    this.extension = this.file.type.split('/')[1] ?? '';
 
-      this.form = this.#formBuilder.group
-        ({
-          title: ["...", [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-          description: ["...", [Validators.required, Validators.minLength(1), Validators.maxLength(500)]],
-          type: [2],
-          size: [this.size],
-          extension: [this.extension.substring(6)],
-          height: [this.height],
-          width: [this.width],
-          duration: [Math.floor(this.duration)],
-          sourcefile: [this.sourcefile]
-        })
+    // Valider le format et la taille
+    if (!['mp4', 'webm'].includes(this.extension) || this.size > 50_000_000) {
+      alert('Format non supporté (MP4/WEBM) ou fichier trop volumineux (> 50 Mo).');
+      this.url = '';
+      return;
     }
-    reader.onerror = (event: any) => {
-      console.log("File could not be read: " + event.target.error.code);
-    }
-    this.getVideoDetails(event.target.files[0])
-    reader.readAsDataURL(event.target.files[0])
-  }
 
-  getVideoDetails(file: File) {
-    var reader = new FileReader();
+    // Générer l’aperçu en base64
+    const reader = new FileReader();
     reader.onload = (e: any) => {
-      var video = document.createElement('video');
-      video.src = e.target.result;
-      video.onloadedmetadata = (ev: any) => {
-        this.width = ev.target.videoWidth;
-        this.height = ev.target.videoHeight;
-        this.duration = ev.target.duration;
-      };
+      this.url = e.target.result as string;
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(this.file);
+
+    // Récupérer les métadonnées vidéo
+    const videoEl = document.createElement('video');
+    videoEl.src = URL.createObjectURL(this.file);
+    videoEl.onloadedmetadata = (e: any) => {
+      this.width    = e.target.videoWidth;
+      this.height   = e.target.videoHeight;
+      this.duration = Math.floor(e.target.duration);
+      URL.revokeObjectURL(videoEl.src);
+    };
   }
 
-  public onSubmit(): void {
-    this.form = this.#formBuilder.group
-      ({
-        title: ["...", [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-        description: ["...", [Validators.required, Validators.minLength(1), Validators.maxLength(500)]],
-        type: [2],
-        size: [this.size],
-        extension: [this.extension.substring(6)],
-        height: [this.height],
-        width: [this.width],
-        duration: [Math.floor(this.duration)],
-        sourceFile: [this.sourcefile]
-      })
-    if (this.form.valid) {
-      this.#moodService.createVideo(this.form.value).subscribe({
-        next: () => {
-          this.#router.navigateByUrl('/central-gallery')
-        },
-        error: (e) => console.error(e),
-      })
+  onSubmit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
     }
+
+    // Construction de l’objet typé à envoyer
+    const payload: VideoCreateForm = {
+      name:        this.form.value.name,
+      description: this.form.value.description,
+      size:        this.size,
+      extension:   this.extension,
+      height:      this.height,
+      width:       this.width,
+      duration:    this.duration,
+      sourceFile:  this.url
+    };
+
+    this.moodService.createVideo(payload).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/central-gallery');
+      },
+      error: err => {
+        console.error(err);
+        alert('Une erreur est survenue lors de l’upload.');
+      }
+    });
   }
 }

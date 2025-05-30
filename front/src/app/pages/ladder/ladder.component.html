@@ -13,7 +13,9 @@
   <h1 class="h1">{{ 'title.leaderboard' | translate }}</h1>
   <p class="p">{{ 'seasons.period' | translate }} {{ 'seasons.from' | translate }} {{ season?.startsAt | date:'dd / MM / yyyy' }} {{ 'seasons.to' | translate }} {{ season?.endsAt | date:'dd / MM / yyyy' }}</p>
   <p class="p mini">
-    {{ remainingDays }} {{ 'seasons.days' | translate }} - {{ remainingHours | number: '2.0' }}:{{ remainingMinutes | number: '2.0' }}:{{ remainingSeconds | number: '2.0' }} {{ 'seasons.left' | translate }}
+    <span *ngIf="remainingDays > 0">{{ remainingDays }} {{ 'seasons.days' | translate }} - </span>    
+    {{ remainingHours | number: '2.0' }}:{{ remainingMinutes | number: '2.0' }}:{{ remainingSeconds | number: '2.0' }} 
+    {{ 'seasons.left' | translate }}
   </p>
 
   @for (group of entriesByLeague; track $index) {
@@ -47,7 +49,7 @@
 
     <div class="entry" *ngFor="let entry of group.entries; let idx = index">
       <p class="position" [ngClass]="{ gold: idx===0, silver: idx===1, bronze: idx===2 }">#{{ idx + 1 }}</p>
-      <p class="user-name" (click)="goToUserProfile(entry.businessId)">{{ entry.userName }}</p>
+      <p class="user-name" (click)="goToUserProfile(entry.businessId)">{{ entry.userName !== '-' ? entry.userName : '[ Unknown ]' }}</p>
       <p class="score">{{ entry.seasonScore }}</p>
     </div>
   </div>

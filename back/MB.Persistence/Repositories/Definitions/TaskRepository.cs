@@ -1,4 +1,4 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Interfaces.Persistence.Definitions;
 
 namespace MB.Persistence.Repositories.Definitions
 {

@@ -1,6 +1,6 @@
 ﻿using MB.Domain.LevelAggregate;
 
-namespace MB.Application.Interfaces.Persistence;
+namespace MB.Application.Interfaces.Persistence.Definitions;
 
 public interface ILevelDefinitionRepository : IBaseRepository<LevelDefinition>
 {

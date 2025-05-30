@@ -1,7 +1,7 @@
 ﻿using MB.Application.Features.Styles.Queries.GetStylesCheckBoxesByArtist;
 using MB.Domain.StyleAggregate;
 
-namespace MB.Application.Interfaces.Persistence;
+namespace MB.Application.Interfaces.Persistence.Definitions;
 
 public interface IStyleRepository : IBaseRepository<Style>
 {

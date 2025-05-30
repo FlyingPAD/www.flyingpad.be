@@ -1,5 +1,5 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Application.Models;
 using MediatR;
 
@@ -12,7 +12,7 @@ public class UpdateArtistCommandHandler(IArtistRepository artistRepository, ISty
 
     public async Task<BaseResponse> Handle(UpdateArtistCommand request, CancellationToken cancellationToken)
     {
-        var artistId = await _artistRepository.GetPrimaryIdByBusinessIdAsync(request.ArtistId)
+        var artistId = await _artistRepository.GetEntityIdByBusinessIdAsync(request.ArtistId, cancellationToken)
             ?? throw new NotFoundException("Artist not found.");
 
         var artist = await _artistRepository.GetArtistWithStylesAsync(artistId)

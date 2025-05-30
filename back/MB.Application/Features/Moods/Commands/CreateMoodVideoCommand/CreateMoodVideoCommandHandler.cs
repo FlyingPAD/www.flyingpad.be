@@ -1,9 +1,10 @@
 ﻿using MB.Application.Interfaces.Infrastructure;
 using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Domain.MoodAggregate;
 using MediatR;
 
-namespace MB.Application.Features.Moods.Commands.CreateMoodVideo;
+namespace MB.Application.Features.Moods.Commands.CreateMoodVideoCommand;
 
 public class CreateMoodVideoCommandHandler(
     IFileService fileService,

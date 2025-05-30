@@ -1,4 +1,4 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Domain;
 using MB.Domain.LinkAggregate;
 using Microsoft.EntityFrameworkCore;

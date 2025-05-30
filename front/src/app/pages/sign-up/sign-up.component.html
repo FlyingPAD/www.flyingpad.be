@@ -27,27 +27,29 @@
                     </div>
                 </div>
                 <div>
-                    <input type="password" formControlName="pass" placeholder="Min. 8 characters" autocomplete="new-password" />
+                    <input type="password" formControlName="pass" placeholder="Min. 8 characters"
+                        autocomplete="new-password" />
                     <div *ngIf="formGroup.get('pass')?.touched && formGroup.get('pass')?.errors">
                         <p class="error" *ngIf="formGroup.get('pass')?.errors?.['required']">A password is required.</p>
                         <p class="error" *ngIf="formGroup.get('pass')?.errors?.['minlength']">The password must be at least 8 characters long.</p>
                     </div>
                 </div>
                 <div>
-                    <input type="password" formControlName="confirmPass" placeholder="Confirm Password" autocomplete="new-password" />
+                    <input type="password" formControlName="confirmPass" placeholder="Confirm Password"
+                        autocomplete="new-password" />
                     <div *ngIf="formGroup.touched && formGroup.hasError('passwordMismatch')">
                         <p class="error">Passwords must match.</p>
                     </div>
                 </div>
 
-                <hr />
+                <hr>
 
                 <ng-container *ngIf="useV2">
                     <div class="captcha-wrapper">
                         <re-captcha [siteKey]="recaptchaSiteKeyV2" (resolved)="onV2Resolved($event)"></re-captcha>
                         <div *ngIf="v2Error" class="error">Veuillez prouver que vous n’êtes pas un robot.</div>
                     </div>
-                    <hr />
+                    <hr>
                 </ng-container>
 
                 <ng-container *ngIf="!useV2">
@@ -72,6 +74,9 @@
             src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
         <img *ngIf="moodsFlow()?.mood?.height < moodsFlow()?.mood?.width" class="mood-landscape"
             src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+        }
+        @if(moodsFlow()?.mood?.type !== 1) {
+        <img class="mood-square" src="../../../assets/chord-wheel.png" />
         }
     </div>
 </div>

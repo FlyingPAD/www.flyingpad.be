@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckBoxesByLink
@@ -13,7 +13,7 @@ namespace MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckB
 
         public async Task<GetLinkCategoriesCheckBoxesByLinkQueryResponse> Handle(GetLinkCategoriesCheckBoxesByLinkQuery request, CancellationToken cancellationToken)
         {
-            int linkId = await _linkRepo.GetPrimaryIdByBusinessIdAsync(request.LinkId)
+            int linkId = await _linkRepo.GetEntityIdByBusinessIdAsync(request.LinkId, cancellationToken)
                 ?? throw new NotFoundException("Link not found.");
 
             var categories = await _linkCategoryRepo.GetCheckBoxesByLink(linkId);

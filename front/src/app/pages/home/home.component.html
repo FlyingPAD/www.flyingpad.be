@@ -10,19 +10,22 @@
 
   <div class="right">
     @if(moodsFlow()?.mood?.type === 1) {
-      @if (moodsFlow()?.mood?.height === moodsFlow()?.mood?.width) {
-        <img class="mood-square" src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-      }
-      @if (moodsFlow()?.mood?.height > moodsFlow()?.mood?.width) {
-        <img class="mood-portrait" src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-      }
-      @if (moodsFlow()?.mood?.height < moodsFlow()?.mood?.width) {
-        <img class="mood-landscape" src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-      }
+    @if (moodsFlow()?.mood?.height === moodsFlow()?.mood?.width) {
+    <img class="mood-square"
+      src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+    }
+    @if (moodsFlow()?.mood?.height > moodsFlow()?.mood?.width) {
+    <img class="mood-portrait"
+      src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+    }
+    @if (moodsFlow()?.mood?.height
+    < moodsFlow()?.mood?.width) { <img class="mood-landscape"
+      src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+    }
     }
     @if(moodsFlow()?.mood?.type !== 1) {
-      <img class="mood-square" src="../../../assets/chord-wheel.png" />
+    <img class="mood-square" src="../../../assets/chord-wheel.png" />
     }
   </div>
-  
+
 </div>

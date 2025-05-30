@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.Styles.Queries.GetStylesCheckBoxesByArtist;
@@ -13,7 +13,7 @@ public class GetStylesCheckBoxesByArtistQueryHandler(IMapper mapper, IArtistRepo
 
     public async Task<GetStylesCheckBoxesByArtistQueryResponse> Handle(GetStylesCheckBoxesByArtistQuery request, CancellationToken cancellationToken)
     {
-        var artistId = await _artistRepository.GetPrimaryIdByBusinessIdAsync(request.ArtistId)
+        var artistId = await _artistRepository.GetEntityIdByBusinessIdAsync(request.ArtistId, cancellationToken)
             ?? throw new NotFoundException("Artist not found.");
         
         var styles = await _styleRepository.GetCheckBoxesByArtist(artistId);

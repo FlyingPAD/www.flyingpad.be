@@ -8,6 +8,7 @@ public class MoodLightDto
     public string Description { get; set; } = "";
     public string Extension { get; set; } = "";
     public int Score { get; set; }
+    public int Position { get; set; }
 
     public int? Width { get; set; }
     public int? Height { get; set; }

@@ -7,37 +7,44 @@
         </div>
         <div class="box-social">
             <div class="social">
-                <a target="_blank" href="https://www.facebook.com/FlyingPAD"><app-logo-facebook class="icon-social" size="55px" /></a>
+                <a target="_blank" href="https://www.facebook.com/FlyingPAD"><app-logo-facebook class="icon-social"
+                        size="55px" /></a>
                 <p>Facebook</p>
             </div>
             <div class="social">
-                <a target="_blank" href="https://www.instagram.com/tony_van_langenhove/"><app-logo-instagram class="icon-social" size="55px" /></a>
+                <a target="_blank" href="https://www.instagram.com/tony_van_langenhove/"><app-logo-instagram
+                        class="icon-social" size="55px" /></a>
                 <p>Instagram</p>
             </div>
             <div class="social">
-                <a target="_blank" href="https://www.youtube.com/@flyingpad"><app-logo-youtube class="icon-social" size="55px" /></a>
+                <a target="_blank" href="https://www.youtube.com/@flyingpad"><app-logo-youtube class="icon-social"
+                        size="55px" /></a>
                 <p>YouTube</p>
             </div>
             <div class="social">
-                <a target="_blank" href="https://soundcloud.com/flyingpad"><app-logo-soundcloud class="icon-social" size="55px" /></a>
+                <a target="_blank" href="https://soundcloud.com/flyingpad"><app-logo-soundcloud class="icon-social"
+                        size="55px" /></a>
                 <p>Soundcloud</p>
             </div>
         </div>
     </div>
     <div class="right">
         @if(moodsFlow()?.mood?.type === 1) {
-            @if (moodsFlow()?.mood?.height === moodsFlow()?.mood?.width) {
-            <img class="mood-square"
-                src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-            }
-            @if (moodsFlow()?.mood?.height > moodsFlow()?.mood?.width) {
-            <img class="mood-portrait"
-                src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-            }
-            @if (moodsFlow()?.mood?.height
-            < moodsFlow()?.mood?.width) { <img class="mood-landscape"
-                src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-            }
+        @if (moodsFlow()?.mood?.height === moodsFlow()?.mood?.width) {
+        <img class="mood-square"
+            src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+        }
+        @if (moodsFlow()?.mood?.height > moodsFlow()?.mood?.width) {
+        <img class="mood-portrait"
+            src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+        }
+        @if (moodsFlow()?.mood?.height
+        < moodsFlow()?.mood?.width) { <img class="mood-landscape"
+            src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+        }
+        }
+        @if(moodsFlow()?.mood?.type !== 1) {
+        <img class="mood-square" src="../../../assets/chord-wheel.png" />
         }
     </div>
 </div>

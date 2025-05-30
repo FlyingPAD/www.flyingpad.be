@@ -36,7 +36,6 @@ public class TagConfiguration : IEntityTypeConfiguration<Tag>
 
         builder.HasData(
             new Tag { EntityId = 1, BusinessId = Guid.Parse("3f1b2d5a-7e89-4c11-a2f3-1d4b6c7e8f90"), Name = "# All Files", TagCategoryId = 1 },
-            new Tag { EntityId = 2, BusinessId = Guid.Parse("b4c3d2e1-5f6a-4b7c-8d9e-0a1b2c3d4e5f"), Name = "New Files", TagCategoryId = 1 },
             new Tag { EntityId = 3, BusinessId = Guid.Parse("7e6d5c4b-3a2f-1e0d-9c8b-7a6f5e4d3c2b"), Name = "Audio", TagCategoryId = 2 },
             new Tag { EntityId = 4, BusinessId = Guid.Parse("1a2b3c4d-5e6f-7081-92a3-b4c5d6e7f8a9"), Name = "Image", TagCategoryId = 2 },
             new Tag { EntityId = 5, BusinessId = Guid.Parse("0f9e8d7c-6b5a-4c3d-2e1f-0a9b8c7d6e5f"), Name = "Video", TagCategoryId = 2 },

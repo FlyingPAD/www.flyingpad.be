@@ -1,5 +1,5 @@
 ﻿using MB.Application.Features.Moods.Queries.GetCommonTagsByMoods;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 public class GetCommonTagsByMoodsQueryHandler(IMoodRepository moodRepository) : IRequestHandler<GetCommonTagsByMoodsQuery, GetCommonTagsByMoodsQueryResponse>

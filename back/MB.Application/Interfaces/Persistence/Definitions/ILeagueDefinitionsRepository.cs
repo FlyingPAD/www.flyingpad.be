@@ -1,6 +1,6 @@
 ﻿using MB.Domain.LeagueAggregate;
 
-namespace MB.Application.Interfaces.Persistence;
+namespace MB.Application.Interfaces.Persistence.Definitions;
 
 public interface ILeagueDefinitionsRepository : IBaseRepository<LeagueDefinition>
 {

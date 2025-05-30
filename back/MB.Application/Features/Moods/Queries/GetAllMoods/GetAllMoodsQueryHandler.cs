@@ -1,4 +1,5 @@
-﻿using MB.Application.Interfaces.Persistence;
+﻿using MB.Application.Features.Moods.Mapper;
+using MB.Application.Interfaces.Persistence;
 using MB.Domain.MoodAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

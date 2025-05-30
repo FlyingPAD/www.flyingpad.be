@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.Links.Queries.GetLinksByCategory;
@@ -13,7 +13,7 @@ public class GetLinksByCategoryQueryHandler(ILinkRepository linkRepository, ILin
 
     public async Task<GetLinksByCategoryQueryResponse> Handle(GetLinksByCategoryQuery request, CancellationToken cancellationToken)
     {
-        int linkCategoryId = await _linkCategoryRepository.GetPrimaryIdByBusinessIdAsync(request.LinkCategoryId)
+        int linkCategoryId = await _linkCategoryRepository.GetEntityIdByBusinessIdAsync(request.LinkCategoryId, cancellationToken)
             ?? throw new NotFoundException("Link category not found.");
 
         var links = await _linkRepository.GetLinksListByCategory(linkCategoryId);

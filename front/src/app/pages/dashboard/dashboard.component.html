@@ -2,13 +2,11 @@
   <app-dashboard-header [user]="user()" />
 
   @if (!user().isEmailVerified) {
-    <app-email-verification />
+  <app-email-verification />
   }
 
-  <app-user-cards [user]="user()" />
-
-
   @if(viewMode() === viewModes.Status) {
+  <app-user-cards [user]="user()" />
   <app-status />
   }
 

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.Franchises.Queries.GetFranchisesByMood;
@@ -14,7 +14,7 @@ public class GetFranchisesByMoodQueryHandler(IMapper mapper, IFranchiseRepositor
 
     public async Task<GetFranchisesByMoodQueryResponse> Handle(GetFranchisesByMoodQuery request, CancellationToken cancellationToken)
     {
-        var moodId = await _moodRepository.GetPrimaryIdByBusinessIdAsync(request.MoodId)
+        var moodId = await _moodRepository.GetEntityIdByBusinessIdAsync(request.MoodId)
             ?? throw new NotFoundException("Mood not found.");
 
         var models = await _modelRepository.GetModelsByMood(moodId);

@@ -1,6 +1,6 @@
 ﻿using MB.Domain.TaskCategoryAggregate;
 
-namespace MB.Application.Interfaces.Persistence;
+namespace MB.Application.Interfaces.Persistence.Definitions;
 
 public interface ITaskCategoryRepository : IBaseRepository<TaskCategory>
 {
