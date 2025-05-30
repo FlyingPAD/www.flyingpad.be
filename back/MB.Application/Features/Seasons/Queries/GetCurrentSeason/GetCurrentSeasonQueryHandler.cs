@@ -1,5 +1,5 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.Seasons.Queries.GetCurrentSeason;

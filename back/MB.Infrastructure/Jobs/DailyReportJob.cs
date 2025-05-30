@@ -13,23 +13,48 @@ public class DailyReportJob(IDailyReportService reportService, IEMailService ema
     {
         var model = await _reportService.GenerateReportAsync();
 
-        var sb = new StringBuilder()
+        var stringBuilderb = new StringBuilder()
+            .AppendLine("<h2>Flying PAD | Daily Report</h2>")
+            .AppendLine("<hr>")
             .AppendLine("<ul>")
             .AppendLine($"  <li>Total Moods                 : {model.TotalMoods}</li>")
             .AppendLine($"  <li>Total Images                : {model.TotalImages} ({model.ImagesPercentage:P2})</li>")
             .AppendLine($"  <li>Total Videos                : {model.TotalVideos} ({model.VideosPercentage:P2})</li>")
+            .AppendLine($"  <li>Total YouTube Videos        : {model.TotalYouTubeVideos} ({model.YouTubeVideosPercentage:P2})</li>")
+            .AppendLine($"  <li>Total SoundCloud Audios     : {model.TotalSoundCloudAudios} ({model.SoundCloudAudiosPercentage:P2})</li>")
+            .AppendLine("</ul>")
+            .AppendLine("<hr>")
+            .AppendLine("<ul>")
             .AppendLine($"  <li>Total Tags                  : {model.TotalTags}</li>")
             .AppendLine($"  <li>Total Tag Categories        : {model.TotalTagCategories}</li>")
+            .AppendLine("</ul>")
+            .AppendLine("<hr>")
+            .AppendLine("<ul>")
             .AppendLine($"  <li>Total Artists               : {model.TotalArtists}</li>")
             .AppendLine($"  <li>Total Styles                : {model.TotalStyles}</li>")
+            .AppendLine("</ul>")
+            .AppendLine("<hr>")
+            .AppendLine("<ul>")
             .AppendLine($"  <li>Total Media                 : {model.TotalMedia}</li>")
             .AppendLine($"  <li>Total Franchises            : {model.TotalFranchises}</li>")
+            .AppendLine("</ul>")
+            .AppendLine("<hr>")
+            .AppendLine("<ul>")
             .AppendLine($"  <li>Total Models                : {model.TotalModels}</li>")
             .AppendLine($"  <li>Total Males                 : {model.TotalMales} ({model.MalesPercentage:P2})</li>")
             .AppendLine($"  <li>Total Females               : {model.TotalFemales} ({model.FemalesPercentage:P2})</li>")
+            .AppendLine("</ul>")
+            .AppendLine("<hr>")
+            .AppendLine("<ul>")
             .AppendLine($"  <li>Total Links                 : {model.TotalLinks}</li>")
             .AppendLine($"  <li>Total Link Categories       : {model.TotalLinkCategories}</li>")
+            .AppendLine("</ul>")
+            .AppendLine("<hr>")
+            .AppendLine("<ul>")
             .AppendLine($"  <li>Total Users                 : {model.TotalUsers}</li>")
+            .AppendLine("</ul>")
+            .AppendLine("<hr>")
+            .AppendLine("<ul>")
             .AppendLine($"  <li>Relations Artist-Style      : {model.TotalRelationsArtistStyle}</li>")
             .AppendLine($"  <li>Relations Franchise-Media   : {model.TotalRelationsFranchiseMedium}</li>")
             .AppendLine($"  <li>Relations Franchise-Model   : {model.TotalRelationsFranchiseModel}</li>")
@@ -40,13 +65,16 @@ public class DailyReportJob(IDailyReportService reportService, IEMailService ema
             .AppendLine($"  <li>Relations Mood-Franchise    : {model.TotalRelationsMoodFranchise}</li>")
             .AppendLine($"  <li>Relations Mood-Model        : {model.TotalRelationsMoodModel}</li>")
             .AppendLine($"  <li>Relations Mood-Tag          : {model.TotalRelationsMoodTag}</li>")
+            .AppendLine("</ul>")
+            .AppendLine("<hr>")
+            .AppendLine("<ul>")
             .AppendLine($"  <li>Expired Tokens Purged       : {model.ExpiredTokenCount}</li>")
             .AppendLine("</ul>");
 
         await _emailService.SendEmailAsync(
             toEmail: "tonyvan@live.fr",
             subject: "Flying PAD | Daily Report",
-            body: sb.ToString()
+            body: stringBuilderb.ToString()
         );
     }
 }

@@ -11,6 +11,7 @@ public class GetOneImageDetailsQueryVm
     public string Name { get; set; } = string.Empty;
     public string? Description { get; set; } = string.Empty;
     public int Score { get; set; } = 0;
+    public int Posiion { get; set; }
     public string Extension { get; set; } = string.Empty;
     public int Size { get; set; } = 0;
     public int Height { get; set; } = 0;

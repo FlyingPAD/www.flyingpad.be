@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Domain.MoodAggregate;
 using MediatR;
 
@@ -14,7 +15,7 @@ public class GetModelCheckBoxesByMoodQueryHandler(IMapper mapper, IBaseRepositor
 
     public async Task<GetModelCheckBoxesByMoodQueryResponse> Handle(GetModelCheckBoxesByMoodQuery request, CancellationToken cancellationToken)
     {
-        int moodId = await _moodRepo.GetPrimaryIdByBusinessIdAsync(request.MoodId)
+        int moodId = await _moodRepo.GetEntityIdByBusinessIdAsync(request.MoodId, cancellationToken)
             ?? throw new NotFoundException("Mood not found.");
 
         var models = await _modelRepo.GetModelsCheckBoxesByMood(moodId);

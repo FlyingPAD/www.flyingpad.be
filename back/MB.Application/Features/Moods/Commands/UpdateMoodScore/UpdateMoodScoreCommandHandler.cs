@@ -1,5 +1,5 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Application.Models;
 using MediatR;
 
@@ -11,7 +11,7 @@ public class UpdateMoodScoreCommandHandler(IMoodRepository repository) : IReques
 
     public async Task<BaseResponse> Handle(UpdateMoodScoreCommand request, CancellationToken cancellationToken)
     {
-        int moodId = await _repository.GetPrimaryIdByBusinessIdAsync(request.MoodId)
+        int moodId = await _repository.GetEntityIdByBusinessIdAsync(request.MoodId)
             ?? throw new NotFoundException("Mood not found.");
 
         await _repository.UpdateScore(moodId, request.Value);

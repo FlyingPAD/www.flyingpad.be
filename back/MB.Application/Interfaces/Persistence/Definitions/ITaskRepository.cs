@@ -1,4 +1,4 @@
-﻿namespace MB.Application.Interfaces.Persistence;
+﻿namespace MB.Application.Interfaces.Persistence.Definitions;
 
 public interface ITaskRepository : IBaseRepository<Domain.TaskAggregate.Task>
 {

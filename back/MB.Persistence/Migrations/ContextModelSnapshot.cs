@@ -91,11 +91,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("f47ac10b-58cc-4372-a567-0e02b2c3d479"),
                             Category = "standard",
                             Code = "OfficialMember",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5174),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1124),
                             CreatedBy = "Administrator",
                             DoneMessage = "You created an account :)",
                             Goal = "Create an account",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5177),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1127),
                             ModifiedBy = "Administrator",
                             Title = "Official Member",
                             XpReward = 50
@@ -106,11 +106,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("9c2f1e4a-3d7b-4f8c-9a07-1b2c3d4e5f60"),
                             Category = "standard",
                             Code = "EmailVerified",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5195),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1143),
                             CreatedBy = "Administrator",
                             DoneMessage = "Your email is verified!",
                             Goal = "Verify your email address",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5195),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1144),
                             ModifiedBy = "Administrator",
                             Title = "Email Verified",
                             XpReward = 50
@@ -121,11 +121,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("ac5f6d7b-8c9d-4e0f-1a2b-3c4d5e6f7a8b"),
                             Category = "standard",
                             Code = "ProfileCompleted",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5199),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1149),
                             CreatedBy = "Administrator",
                             DoneMessage = "Your profile is complete!",
                             Goal = "Complete your profile (add name, birthdate)",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5200),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1149),
                             ModifiedBy = "Administrator",
                             Title = "Profile Completed",
                             XpReward = 75
@@ -136,11 +136,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("b1e2c3d4-f5a6-7b8c-9d0e-1f2a3b4c5d6e"),
                             Category = "note-master",
                             Code = "NoviceBass",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5203),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1153),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 10 sec. !!",
                             Goal = "Survive 10 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5203),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1153),
                             ModifiedBy = "Administrator",
                             Title = "Novice (bass)",
                             XpReward = 50
@@ -151,11 +151,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f"),
                             Category = "note-master",
                             Code = "IntermediateBass",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5207),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1155),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 20 sec. !!",
                             Goal = "Survive 20 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5207),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1156),
                             ModifiedBy = "Administrator",
                             Title = "Intermediate (bass)",
                             XpReward = 50
@@ -166,11 +166,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("d3e4f5a6-b7c8-9d0e-1a2b-3b4c5d6e7f80"),
                             Category = "note-master",
                             Code = "AdvancedBass",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5229),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1159),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 30 sec. !!",
                             Goal = "Survive 30 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5229),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1159),
                             ModifiedBy = "Administrator",
                             Title = "Advanced (bass)",
                             XpReward = 50
@@ -181,11 +181,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("e4f5a6b7-c8d9-0e1f-2a3b-4c5d6e7f8091"),
                             Category = "note-master",
                             Code = "ExpertBass",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5233),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1181),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 40 sec. !!",
                             Goal = "Survive 40 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5233),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1181),
                             ModifiedBy = "Administrator",
                             Title = "Expert (bass)",
                             XpReward = 50
@@ -196,11 +196,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("f5a6b7c8-d9e0-1f2a-3b4c-5d6e7f8091a2"),
                             Category = "note-master",
                             Code = "MasterBass",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5236),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1184),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 50 sec. !!",
                             Goal = "Survive 50 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5237),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1184),
                             ModifiedBy = "Administrator",
                             Title = "Master (bass)",
                             XpReward = 50
@@ -211,11 +211,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("a6b7c8d9-e0f1-2a3b-4c5d-6e7f8091a2b3"),
                             Category = "note-master",
                             Code = "NoviceAlto",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5240),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1186),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 10 sec. !!",
                             Goal = "Survive 10 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5240),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1187),
                             ModifiedBy = "Administrator",
                             Title = "Novice (alto)",
                             XpReward = 50
@@ -226,11 +226,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("b7c8d9e0-f1a2-3b4c-5d6e-7f8091a2b3c4"),
                             Category = "note-master",
                             Code = "IntermediateAlto",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5243),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1189),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 20 sec. !!",
                             Goal = "Survive 20 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5243),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1189),
                             ModifiedBy = "Administrator",
                             Title = "Intermediate (alto)",
                             XpReward = 50
@@ -241,11 +241,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("c8d9e0f1-a2b3-4c5d-6e7f-8091a2b3c4d5"),
                             Category = "note-master",
                             Code = "AdvancedAlto",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5248),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1191),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 30 sec. !!",
                             Goal = "Survive 30 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5248),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1191),
                             ModifiedBy = "Administrator",
                             Title = "Advanced (alto)",
                             XpReward = 50
@@ -256,11 +256,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("d9e0f1a2-b3c4-5d6e-7f80-91a2b3c4d5e6"),
                             Category = "note-master",
                             Code = "ExpertAlto",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5251),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1193),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 40 sec. !!",
                             Goal = "Survive 40 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5251),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1194),
                             ModifiedBy = "Administrator",
                             Title = "Expert (alto)",
                             XpReward = 50
@@ -271,11 +271,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("e0f1a2b3-c4d5-6e7f-8091-a2b3c4d5e6f7"),
                             Category = "note-master",
                             Code = "MasterAlto",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5253),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1196),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 50 sec. !!",
                             Goal = "Survive 50 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5254),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1196),
                             ModifiedBy = "Administrator",
                             Title = "Master (alto)",
                             XpReward = 50
@@ -286,11 +286,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("f1a2b3c4-d5e6-7f80-91a2-b3c4d5e6f7a8"),
                             Category = "note-master",
                             Code = "NoviceTreble",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5259),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1198),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 10 sec. !!",
                             Goal = "Survive 10 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5259),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1198),
                             ModifiedBy = "Administrator",
                             Title = "Novice (treble)",
                             XpReward = 50
@@ -301,11 +301,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("a2b3c4d5-e6f7-8091-a2b3-c4d5e6f7a8b9"),
                             Category = "note-master",
                             Code = "IntermediateTreble",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5262),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1215),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 20 sec. !!",
                             Goal = "Survive 20 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5262),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1215),
                             ModifiedBy = "Administrator",
                             Title = "Intermediate (treble)",
                             XpReward = 50
@@ -316,11 +316,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("b3c4d5e6-f7a8-091a-2b3c-4d5e6f7a8b9c"),
                             Category = "note-master",
                             Code = "AdvancedTreble",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5264),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1217),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 30 sec. !!",
                             Goal = "Survive 30 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5265),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1218),
                             ModifiedBy = "Administrator",
                             Title = "Advanced (treble)",
                             XpReward = 50
@@ -331,11 +331,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("c4d5e6f7-a8b9-0a1b-3c4d-5e6f7a8b9c0d"),
                             Category = "note-master",
                             Code = "ExpertTreble",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5268),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1220),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 40 sec. !!",
                             Goal = "Survive 40 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5268),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1220),
                             ModifiedBy = "Administrator",
                             Title = "Expert (treble)",
                             XpReward = 50
@@ -346,11 +346,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("d5e6f7a8-b9c0-1a2b-3c4d-5e6f7a8b9c0d"),
                             Category = "note-master",
                             Code = "MasterTreble",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5270),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1223),
                             CreatedBy = "Administrator",
                             DoneMessage = "You lasted 50 sec. !!",
                             Goal = "Survive 50 seconds.",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5270),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1223),
                             ModifiedBy = "Administrator",
                             Title = "Master (treble)",
                             XpReward = 50
@@ -361,11 +361,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("e6f7a8b9-c0d1-2a3b-4c5d-6e7f8091a2b3"),
                             Category = "level",
                             Code = "Level2Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5273),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1225),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 2!",
                             Goal = "Reach level 2",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5273),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1225),
                             ModifiedBy = "Administrator",
                             Title = "Level 2 Achieved",
                             XpReward = 0
@@ -376,11 +376,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("f7a8b9c0-d1e2-3a4b-5c6d-7e8f9012a3b4"),
                             Category = "level",
                             Code = "Level3Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5275),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1228),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 3!",
                             Goal = "Reach level 3",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5275),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1228),
                             ModifiedBy = "Administrator",
                             Title = "Level 3 Achieved",
                             XpReward = 0
@@ -391,11 +391,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("a8b9c0d1-e2f3-4a5b-6c7d-8e9f0123b4c5"),
                             Category = "level",
                             Code = "Level4Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5277),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1231),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 4!",
                             Goal = "Reach level 4",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5278),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1232),
                             ModifiedBy = "Administrator",
                             Title = "Level 4 Achieved",
                             XpReward = 0
@@ -406,11 +406,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("b9c0d1e2-f3a4-5b6c-7d8e-9f0123b4c5d6"),
                             Category = "level",
                             Code = "Level5Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5283),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1234),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 5!",
                             Goal = "Reach level 5",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5283),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1234),
                             ModifiedBy = "Administrator",
                             Title = "Level 5 Achieved",
                             XpReward = 0
@@ -421,11 +421,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("c0d1e2f3-a4b5-6c7d-8e9f-0123b4c5d6e7"),
                             Category = "level",
                             Code = "Level6Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5286),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1239),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 6!",
                             Goal = "Reach level 6",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5286),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1240),
                             ModifiedBy = "Administrator",
                             Title = "Level 6 Achieved",
                             XpReward = 0
@@ -436,11 +436,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("d1e2f3a4-b5c6-7d8e-9f01-234b5c6d7e8f"),
                             Category = "level",
                             Code = "Level7Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5288),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1243),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 7!",
                             Goal = "Reach level 7",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5288),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1243),
                             ModifiedBy = "Administrator",
                             Title = "Level 7 Achieved",
                             XpReward = 0
@@ -451,11 +451,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("e2a3b4c5-d6e7-8f90-1a2b-3c4d5e6f7a8b"),
                             Category = "level",
                             Code = "Level8Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5291),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1245),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 8!",
                             Goal = "Reach level 8",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5292),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1246),
                             ModifiedBy = "Administrator",
                             Title = "Level 8 Achieved",
                             XpReward = 0
@@ -466,11 +466,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("f3b4c5d6-e7f8-901a-2b3c-4d5e6f7a8b9c"),
                             Category = "level",
                             Code = "Level9Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5294),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1248),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 9!",
                             Goal = "Reach level 9",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5294),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1248),
                             ModifiedBy = "Administrator",
                             Title = "Level 9 Achieved",
                             XpReward = 0
@@ -481,11 +481,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("a4c5d6e7-f8a9-012b-3c4d-5e6f7a8b9c0d"),
                             Category = "level",
                             Code = "Level10Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5296),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1250),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 10!",
                             Goal = "Reach level 10",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5296),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1250),
                             ModifiedBy = "Administrator",
                             Title = "Level 10 Achieved",
                             XpReward = 0
@@ -496,11 +496,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("b5d6e7f8-a9b0-123c-4d5e-6f7a8b9c0d1e"),
                             Category = "level",
                             Code = "Level11Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5299),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1252),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 11!",
                             Goal = "Reach level 11",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5300),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1252),
                             ModifiedBy = "Administrator",
                             Title = "Level 11 Achieved",
                             XpReward = 0
@@ -511,11 +511,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("c6e7f8a9-b0c1-234d-5e6f-7a8b9c0d1e2f"),
                             Category = "level",
                             Code = "Level12Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5302),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1255),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 12!",
                             Goal = "Reach level 12",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5302),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1255),
                             ModifiedBy = "Administrator",
                             Title = "Level 12 Achieved",
                             XpReward = 0
@@ -526,11 +526,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("d7f8a9b0-c1d2-345e-6f7a-8b9c0d1e2f3a"),
                             Category = "level",
                             Code = "Level13Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5308),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1257),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 13!",
                             Goal = "Reach level 13",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5308),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1258),
                             ModifiedBy = "Administrator",
                             Title = "Level 13 Achieved",
                             XpReward = 0
@@ -541,11 +541,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("e8a9b0c1-d2e3-456f-7a8b-9c0d1e2f3a4b"),
                             Category = "level",
                             Code = "Level14Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5313),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1262),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 14!",
                             Goal = "Reach level 14",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5314),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1262),
                             ModifiedBy = "Administrator",
                             Title = "Level 14 Achieved",
                             XpReward = 0
@@ -556,11 +556,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("f9b0c1d2-e3f4-567a-8b9c-0d1e2f3a4b5c"),
                             Category = "level",
                             Code = "Level15Achieved",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5316),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1264),
                             CreatedBy = "Administrator",
                             DoneMessage = "You reached level 15!",
                             Goal = "Reach level 15",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5316),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1265),
                             ModifiedBy = "Administrator",
                             Title = "Level 15 Achieved",
                             XpReward = 0
@@ -571,11 +571,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("e2f3a4b5-c6d7-8e9f-0123-4b5c6d7e8f90"),
                             Category = "league",
                             Code = "WoodLeague",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5319),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1267),
                             CreatedBy = "Administrator",
                             DoneMessage = "You’re now in Wood league!",
                             Goal = "Be promoted to Wood league",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5319),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1267),
                             ModifiedBy = "Administrator",
                             Title = "Wood League",
                             XpReward = 50
@@ -586,11 +586,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("f3a4b5c6-d7e8-9f01-2345-c6d7e8f901a2"),
                             Category = "league",
                             Code = "StoneLeague",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5321),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1270),
                             CreatedBy = "Administrator",
                             DoneMessage = "You’re now in Stone league!",
                             Goal = "Be promoted to Stone league",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5321),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1270),
                             ModifiedBy = "Administrator",
                             Title = "Stone League",
                             XpReward = 100
@@ -601,11 +601,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("a4b5c6d7-e8f9-0123-4567-d7e8f901a2b3"),
                             Category = "league",
                             Code = "BronzeLeague",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5324),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1273),
                             CreatedBy = "Administrator",
                             DoneMessage = "You’re now in Bronze league!",
                             Goal = "Be promoted to Bronze league",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5324),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1273),
                             ModifiedBy = "Administrator",
                             Title = "Bronze League",
                             XpReward = 150
@@ -616,11 +616,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("b5c6d7e8-f901-2345-6789-e8f901a2b3c4"),
                             Category = "league",
                             Code = "SilverLeague",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5328),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1276),
                             CreatedBy = "Administrator",
                             DoneMessage = "You’re now in Silver league!",
                             Goal = "Be promoted to Silver league",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5328),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1276),
                             ModifiedBy = "Administrator",
                             Title = "Silver League",
                             XpReward = 200
@@ -631,11 +631,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("c6d7e8f9-0123-4567-89a0-f901a2b3c4d5"),
                             Category = "league",
                             Code = "CrystalLeague",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5331),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1278),
                             CreatedBy = "Administrator",
                             DoneMessage = "You’re now in Crystal league!",
                             Goal = "Be promoted to Crystal league",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5331),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1278),
                             ModifiedBy = "Administrator",
                             Title = "Crystal League",
                             XpReward = 250
@@ -646,11 +646,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("d7e8f901-2345-6789-a0b1-0123c4d5e6f7"),
                             Category = "league",
                             Code = "EliteLeague",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5336),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1281),
                             CreatedBy = "Administrator",
                             DoneMessage = "You’re now in Elite league!",
                             Goal = "Be promoted to Elite league",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5337),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1281),
                             ModifiedBy = "Administrator",
                             Title = "Elite League",
                             XpReward = 300
@@ -661,11 +661,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("e8f901a2-3456-789a-0b1c-1234d5e6f7a8"),
                             Category = "league",
                             Code = "ChampionLeague",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5340),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1285),
                             CreatedBy = "Administrator",
                             DoneMessage = "You’re now in Champion league!",
                             Goal = "Be promoted to Champion league",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5340),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1285),
                             ModifiedBy = "Administrator",
                             Title = "Champion League",
                             XpReward = 350
@@ -676,11 +676,11 @@ namespace MB.Persistence.Migrations
                             BusinessId = new Guid("f901a2b3-4567-89a0-b1c2-2345e6f7a8b9"),
                             Category = "league",
                             Code = "LegendLeague",
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5343),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1288),
                             CreatedBy = "Administrator",
                             DoneMessage = "You’re now in Legend league!",
                             Goal = "Be promoted to Legend league",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 308, DateTimeKind.Utc).AddTicks(5344),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 180, DateTimeKind.Utc).AddTicks(1288),
                             ModifiedBy = "Administrator",
                             Title = "Legend League",
                             XpReward = 400
@@ -1023,12 +1023,12 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 1,
                             BusinessId = new Guid("a12f4d56-3b78-4c9e-9a1d-2e3f4b5c6d7e"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7642),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5283),
                             CreatedBy = "Administrator",
                             IconCssClass = "league-wood",
                             MaxExperience = 99,
                             MinExperience = 0,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7645),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5286),
                             ModifiedBy = "Administrator",
                             Name = "Wood",
                             Order = 1
@@ -1037,12 +1037,12 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 2,
                             BusinessId = new Guid("b23e5c67-4c89-5daf-0b2e-3f4a5c6d7e8f"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7663),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5297),
                             CreatedBy = "Administrator",
                             IconCssClass = "league-stone",
                             MaxExperience = 199,
                             MinExperience = 100,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7663),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5297),
                             ModifiedBy = "Administrator",
                             Name = "Stone",
                             Order = 2
@@ -1051,12 +1051,12 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 3,
                             BusinessId = new Guid("c34f6d78-5da0-6ebf-1c3f-4a5b6c7d8e9f"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7667),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5301),
                             CreatedBy = "Administrator",
                             IconCssClass = "league-bronze",
                             MaxExperience = 299,
                             MinExperience = 200,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7667),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5301),
                             ModifiedBy = "Administrator",
                             Name = "Bronze",
                             Order = 3
@@ -1065,12 +1065,12 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 4,
                             BusinessId = new Guid("d45a7e89-6eb1-7fc0-2d4f-5b6c7d8e9f0a"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7670),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5304),
                             CreatedBy = "Administrator",
                             IconCssClass = "league-silver",
                             MaxExperience = 399,
                             MinExperience = 300,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7670),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5304),
                             ModifiedBy = "Administrator",
                             Name = "Silver",
                             Order = 4
@@ -1079,12 +1079,12 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 5,
                             BusinessId = new Guid("e56b8f9a-7fc2-8ad1-3e5f-6c7d8e9f0a1b"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7673),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5307),
                             CreatedBy = "Administrator",
                             IconCssClass = "league-crystal",
                             MaxExperience = 499,
                             MinExperience = 400,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7674),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5307),
                             ModifiedBy = "Administrator",
                             Name = "Crystal",
                             Order = 5
@@ -1093,12 +1093,12 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 6,
                             BusinessId = new Guid("f67c9fab-8ad3-9be2-4f6f-7d8e9f0a1b2c"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7684),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5309),
                             CreatedBy = "Administrator",
                             IconCssClass = "league-elite",
                             MaxExperience = 599,
                             MinExperience = 500,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7685),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5310),
                             ModifiedBy = "Administrator",
                             Name = "Elite",
                             Order = 6
@@ -1107,12 +1107,12 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 7,
                             BusinessId = new Guid("a78d0abc-9be4-acf3-5f7f-8e9f0a1b2c3d"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7687),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5336),
                             CreatedBy = "Administrator",
                             IconCssClass = "league-champion",
                             MaxExperience = 699,
                             MinExperience = 600,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7687),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5336),
                             ModifiedBy = "Administrator",
                             Name = "Champion",
                             Order = 7
@@ -1121,11 +1121,11 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 8,
                             BusinessId = new Guid("b89e1bcd-acf5-bd04-6f8f-9f0a1b2c3d4e"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7689),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5339),
                             CreatedBy = "Administrator",
                             IconCssClass = "league-legend",
                             MinExperience = 700,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 321, DateTimeKind.Utc).AddTicks(7689),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(5339),
                             ModifiedBy = "Administrator",
                             Name = "Legend",
                             Order = 8
@@ -1175,179 +1175,179 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 1,
                             BusinessId = new Guid("a3f1e23c-b7d6-4f8a-9e0f-123456789abc"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1692),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8651),
                             CreatedBy = "Administrator",
                             LevelNumber = 1,
                             MaxExperience = 281,
                             MinExperience = 0,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1693),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8653),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 2,
                             BusinessId = new Guid("b2e1c4d5-e6f7-0a1b-2c3d-4e5f6789abcd"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1701),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8660),
                             CreatedBy = "Administrator",
                             LevelNumber = 2,
                             MaxExperience = 518,
                             MinExperience = 282,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1701),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8660),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 3,
                             BusinessId = new Guid("c3d2e1f4-a5b6-7c8d-9e0f-abcdef012345"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1704),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8663),
                             CreatedBy = "Administrator",
                             LevelNumber = 3,
                             MaxExperience = 799,
                             MinExperience = 519,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1704),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8663),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 4,
                             BusinessId = new Guid("d4e3f2a1-b6c5-8d7e-0f9a-1234bcdef567"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1708),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8666),
                             CreatedBy = "Administrator",
                             LevelNumber = 4,
                             MaxExperience = 1117,
                             MinExperience = 800,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1708),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8666),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 5,
                             BusinessId = new Guid("e5f4a3b2-c1d0-9e8f-7d6c-5b4a3c2d1e0f"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1710),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8668),
                             CreatedBy = "Administrator",
                             LevelNumber = 5,
                             MaxExperience = 1468,
                             MinExperience = 1118,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1710),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8668),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 6,
                             BusinessId = new Guid("f6a5b4c3-d2e1-0f9a-8b7c-6d5e4f3a2b1c"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1720),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8670),
                             CreatedBy = "Administrator",
                             LevelNumber = 6,
                             MaxExperience = 1850,
                             MinExperience = 1469,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1720),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8670),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 7,
                             BusinessId = new Guid("07b6c5d4-e3f2-1a0b-9c8d-7e6f5a4b3c2d"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1722),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8679),
                             CreatedBy = "Administrator",
                             LevelNumber = 7,
                             MaxExperience = 2261,
                             MinExperience = 1851,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1722),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8679),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 8,
                             BusinessId = new Guid("18c7d6e5-f4a3-2b1c-8d7e-9f8a7b6c5d4e"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1724),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8695),
                             CreatedBy = "Administrator",
                             LevelNumber = 8,
                             MaxExperience = 2698,
                             MinExperience = 2262,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1725),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8695),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 9,
                             BusinessId = new Guid("29d8e7f6-a5b4-3c2d-7e8f-0a9b8c7d6e5f"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1727),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8697),
                             CreatedBy = "Administrator",
                             LevelNumber = 9,
                             MaxExperience = 3160,
                             MinExperience = 2699,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1727),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8697),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 10,
                             BusinessId = new Guid("30e9f8a7-b6c5-4d3e-6f7a-1b2c3d4e5f6a"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1729),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8699),
                             CreatedBy = "Administrator",
                             LevelNumber = 10,
                             MaxExperience = 3646,
                             MinExperience = 3161,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1729),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8700),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 11,
                             BusinessId = new Guid("41f0a9b8-c7d6-5e4f-7a8b-2c3d4e5f6a7b"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1731),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8702),
                             CreatedBy = "Administrator",
                             LevelNumber = 11,
                             MaxExperience = 4155,
                             MinExperience = 3647,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1732),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8702),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 12,
                             BusinessId = new Guid("52a1b0c9-d8e7-6f5a-8b9c-3d4e5f6a7b8c"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1734),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8704),
                             CreatedBy = "Administrator",
                             LevelNumber = 12,
                             MaxExperience = 4685,
                             MinExperience = 4156,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1734),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8704),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 13,
                             BusinessId = new Guid("63b2c1d0-e9f8-7a6b-9c0d-4e5f6a7b8c9d"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1736),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8707),
                             CreatedBy = "Administrator",
                             LevelNumber = 13,
                             MaxExperience = 5236,
                             MinExperience = 4686,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1736),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8707),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 14,
                             BusinessId = new Guid("74c3d2e1-f0a9-8b7c-0d1e-5f6a7b8c9d0e"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1741),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8709),
                             CreatedBy = "Administrator",
                             LevelNumber = 14,
                             MaxExperience = 5807,
                             MinExperience = 5237,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1742),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8709),
                             ModifiedBy = "Administrator"
                         },
                         new
                         {
                             EntityId = 15,
                             BusinessId = new Guid("85d4e3f2-a1b0-9c8d-1e2f-6a7b8c9d0e1f"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1744),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8714),
                             CreatedBy = "Administrator",
                             LevelNumber = 15,
                             MinExperience = 5808,
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 322, DateTimeKind.Utc).AddTicks(1744),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 190, DateTimeKind.Utc).AddTicks(8714),
                             ModifiedBy = "Administrator"
                         });
                 });
@@ -1590,11 +1590,18 @@ namespace MB.Persistence.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("Extension")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<bool>("IsApproved")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
@@ -1608,8 +1615,15 @@ namespace MB.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("Position")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
                     b.Property<int>("Score")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
@@ -1816,34 +1830,22 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 1,
                             BusinessId = new Guid("3f1b2d5a-7e89-4c11-a2f3-1d4b6c7e8f90"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2488),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5790),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2489),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5792),
                             ModifiedBy = "Administrator",
                             Name = "# All Files",
                             TagCategoryId = 1
                         },
                         new
                         {
-                            EntityId = 2,
-                            BusinessId = new Guid("b4c3d2e1-5f6a-4b7c-8d9e-0a1b2c3d4e5f"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2498),
-                            CreatedBy = "Administrator",
-                            Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2498),
-                            ModifiedBy = "Administrator",
-                            Name = "New Files",
-                            TagCategoryId = 1
-                        },
-                        new
-                        {
                             EntityId = 3,
                             BusinessId = new Guid("7e6d5c4b-3a2f-1e0d-9c8b-7a6f5e4d3c2b"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2510),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5808),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2510),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5808),
                             ModifiedBy = "Administrator",
                             Name = "Audio",
                             TagCategoryId = 2
@@ -1852,10 +1854,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 4,
                             BusinessId = new Guid("1a2b3c4d-5e6f-7081-92a3-b4c5d6e7f8a9"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2513),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5811),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2513),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5811),
                             ModifiedBy = "Administrator",
                             Name = "Image",
                             TagCategoryId = 2
@@ -1864,10 +1866,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 5,
                             BusinessId = new Guid("0f9e8d7c-6b5a-4c3d-2e1f-0a9b8c7d6e5f"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2516),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5814),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2516),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5814),
                             ModifiedBy = "Administrator",
                             Name = "Video",
                             TagCategoryId = 2
@@ -1876,10 +1878,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 6,
                             BusinessId = new Guid("123e4567-e89b-12d3-a456-426614174000"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2519),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5817),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2519),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5817),
                             ModifiedBy = "Administrator",
                             Name = "*.mp3",
                             TagCategoryId = 3
@@ -1888,10 +1890,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 7,
                             BusinessId = new Guid("9abcdef0-1234-5678-9abc-def012345678"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2521),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5819),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2521),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5819),
                             ModifiedBy = "Administrator",
                             Name = "*.bmp",
                             TagCategoryId = 4
@@ -1900,10 +1902,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 8,
                             BusinessId = new Guid("fedcba98-7654-3210-fedc-ba9876543210"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2523),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5821),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2523),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5822),
                             ModifiedBy = "Administrator",
                             Name = "*.gif",
                             TagCategoryId = 4
@@ -1912,10 +1914,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 9,
                             BusinessId = new Guid("0a1b2c3d-4e5f-6071-8273-94a5b6c7d8e9"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2525),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5823),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2526),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5824),
                             ModifiedBy = "Administrator",
                             Name = "*.jpeg",
                             TagCategoryId = 4
@@ -1924,10 +1926,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 10,
                             BusinessId = new Guid("11223344-5566-7788-99aa-bbccddeeff00"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2528),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5826),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2528),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5826),
                             ModifiedBy = "Administrator",
                             Name = "*.jpg",
                             TagCategoryId = 4
@@ -1936,10 +1938,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 11,
                             BusinessId = new Guid("00ffeedd-ccbb-aaff-8877-665544332211"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2532),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5831),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2533),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5831),
                             ModifiedBy = "Administrator",
                             Name = "*.png",
                             TagCategoryId = 4
@@ -1948,10 +1950,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 12,
                             BusinessId = new Guid("abcdef01-2345-6789-abcd-ef0123456789"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2535),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5834),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2535),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5834),
                             ModifiedBy = "Administrator",
                             Name = "*.webp",
                             TagCategoryId = 4
@@ -1960,10 +1962,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 13,
                             BusinessId = new Guid("56789abc-def0-1234-5678-9abcdef01234"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2538),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5837),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2538),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5837),
                             ModifiedBy = "Administrator",
                             Name = "*.mp4",
                             TagCategoryId = 5
@@ -1972,10 +1974,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 14,
                             BusinessId = new Guid("43210fed-cba9-8765-4321-0fedcba98765"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2540),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5839),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2540),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5840),
                             ModifiedBy = "Administrator",
                             Name = "*.webm",
                             TagCategoryId = 5
@@ -1984,10 +1986,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 15,
                             BusinessId = new Guid("a1b2c3d4-e5f6-7890-ab12-cd34ef56ab78"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2542),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5842),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2543),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5842),
                             ModifiedBy = "Administrator",
                             Name = "Landscape",
                             TagCategoryId = 6
@@ -1996,10 +1998,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 16,
                             BusinessId = new Guid("87654321-0fed-cba9-8765-43210fedcba9"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2545),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5844),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2545),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5844),
                             ModifiedBy = "Administrator",
                             Name = "Landscape ( 16:9 )",
                             TagCategoryId = 6
@@ -2008,10 +2010,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 17,
                             BusinessId = new Guid("deadbeef-0000-1111-2222-333344445555"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2547),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5846),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2547),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5847),
                             ModifiedBy = "Administrator",
                             Name = "Portrait",
                             TagCategoryId = 6
@@ -2020,10 +2022,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 18,
                             BusinessId = new Guid("faceb00c-1234-5678-9abc-def123456789"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2549),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5849),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2550),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5849),
                             ModifiedBy = "Administrator",
                             Name = "Portrait ( 16:9 )",
                             TagCategoryId = 6
@@ -2032,10 +2034,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 19,
                             BusinessId = new Guid("cafebabe-0001-0002-0003-000400050006"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2554),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5854),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 371, DateTimeKind.Utc).AddTicks(2554),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 213, DateTimeKind.Utc).AddTicks(5854),
                             ModifiedBy = "Administrator",
                             Name = "Square ( 1:1 )",
                             TagCategoryId = 6
@@ -2085,10 +2087,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 1,
                             BusinessId = new Guid("3f1b2d5a-7e89-4c11-a2f3-1d4b6c7e8f90"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 370, DateTimeKind.Utc).AddTicks(2889),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 212, DateTimeKind.Utc).AddTicks(9888),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 370, DateTimeKind.Utc).AddTicks(2892),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 212, DateTimeKind.Utc).AddTicks(9890),
                             ModifiedBy = "Administrator",
                             Name = "#"
                         },
@@ -2096,10 +2098,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 2,
                             BusinessId = new Guid("b4c3d2e1-5f6a-4b7c-8d9e-0a1b2c3d4e5f"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 370, DateTimeKind.Utc).AddTicks(2912),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 212, DateTimeKind.Utc).AddTicks(9899),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 370, DateTimeKind.Utc).AddTicks(2912),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 212, DateTimeKind.Utc).AddTicks(9899),
                             ModifiedBy = "Administrator",
                             Name = "# File"
                         },
@@ -2107,10 +2109,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 3,
                             BusinessId = new Guid("0dda8c71-8f2a-4c99-94b1-9adf3e2c5a7b"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 370, DateTimeKind.Utc).AddTicks(2914),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 212, DateTimeKind.Utc).AddTicks(9902),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 370, DateTimeKind.Utc).AddTicks(2915),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 212, DateTimeKind.Utc).AddTicks(9902),
                             ModifiedBy = "Administrator",
                             Name = "# File ext. | Audio"
                         },
@@ -2118,10 +2120,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 4,
                             BusinessId = new Guid("a1b2c3d4-e5f6-7890-ab12-cd34ef56ab79"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 370, DateTimeKind.Utc).AddTicks(2917),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 212, DateTimeKind.Utc).AddTicks(9905),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 370, DateTimeKind.Utc).AddTicks(2918),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 212, DateTimeKind.Utc).AddTicks(9906),
                             ModifiedBy = "Administrator",
                             Name = "# File ext. | Image"
                         },
@@ -2129,10 +2131,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 5,
                             BusinessId = new Guid("11223344-5566-7788-99aa-bbccddeeff11"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 370, DateTimeKind.Utc).AddTicks(2921),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 212, DateTimeKind.Utc).AddTicks(9908),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 370, DateTimeKind.Utc).AddTicks(2921),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 212, DateTimeKind.Utc).AddTicks(9909),
                             ModifiedBy = "Administrator",
                             Name = "# File ext. | Video"
                         },
@@ -2140,10 +2142,10 @@ namespace MB.Persistence.Migrations
                         {
                             EntityId = 6,
                             BusinessId = new Guid("22334455-6677-8899-aabb-ccddeeff2233"),
-                            Created = new DateTime(2025, 5, 14, 10, 16, 18, 370, DateTimeKind.Utc).AddTicks(2924),
+                            Created = new DateTime(2025, 5, 30, 13, 10, 11, 212, DateTimeKind.Utc).AddTicks(9911),
                             CreatedBy = "Administrator",
                             Description = "",
-                            Modified = new DateTime(2025, 5, 14, 10, 16, 18, 370, DateTimeKind.Utc).AddTicks(2924),
+                            Modified = new DateTime(2025, 5, 30, 13, 10, 11, 212, DateTimeKind.Utc).AddTicks(9912),
                             ModifiedBy = "Administrator",
                             Name = "# File Format"
                         });
@@ -2189,7 +2191,7 @@ namespace MB.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
-                        .HasDefaultValue("05/14/2025 12:16:18");
+                        .HasDefaultValue("05/30/2025 15:10:11");
 
                     b.Property<int>("TaskCategoryId")
                         .HasColumnType("int");

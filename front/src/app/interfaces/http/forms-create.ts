@@ -11,16 +11,14 @@ export interface ImageCreateForm {
 }
 
 export interface VideoCreateForm {
-    title: string
+    name: string
     description: string
-    type: number
     size: number
     extension: string
     height: number
     width: number
     duration: number
     sourceFile: string
-    url: string
 }
 
 export interface YouTubeVideoCreateForm {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.Franchises.Queries.GetFranchisesCheckBoxesByModel
@@ -13,7 +13,7 @@ namespace MB.Application.Features.Franchises.Queries.GetFranchisesCheckBoxesByMo
 
         public async Task<GetFranchisesCheckBoxesByModelQueryResponse> Handle(GetFranchisesCheckBoxesByModelQuery request, CancellationToken cancellationToken)
         {
-            int modelId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId)
+            int modelId = await _modelRepository.GetEntityIdByBusinessIdAsync(request.ModelId, cancellationToken)
                 ?? throw new NotFoundException("Model not found.");
 
             var franchises = await _franchiseRepository.GetCheckBoxesByModel(modelId);

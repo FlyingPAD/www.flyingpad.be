@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.Franchises.Queries.GetFranchisesByMedium;
@@ -13,7 +13,7 @@ public class GetFranchisesByMediumQueryHandler(IMapper mapper, IMediaRepository 
 
     public async Task<GetFranchisesByMediumQueryResponse> Handle(GetFranchisesByMediumQuery request, CancellationToken cancellationToken)
     {
-        int mediumId = await _mediaRepo.GetPrimaryIdByBusinessIdAsync(request.MediumId)
+        int mediumId = await _mediaRepo.GetEntityIdByBusinessIdAsync(request.MediumId, cancellationToken)
             ?? throw new NotFoundException("Medium not found.");
 
         var franchises = await _franchiseRepo.GetFranchisesByMedia(mediumId);

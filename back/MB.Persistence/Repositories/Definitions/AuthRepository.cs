@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Domain.UserAggregate;
 
 namespace MB.Persistence.Repositories.Definitions;

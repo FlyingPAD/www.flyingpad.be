@@ -6,6 +6,10 @@ export interface Statistics {
     imagesPercentage: number
     totalVideos: number
     videosPercentage: number
+    totalYouTubeVideos: number
+    youTubeVideosPercentage: number
+    totalSoundCloudAudios: number
+    soundCloudAudiosPercentage: number
     totalTags: number
     totalTagCategories: number
     totalArtists: number

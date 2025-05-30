@@ -1,5 +1,6 @@
 ﻿using MB.Application.Interfaces.Infrastructure;
 using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Domain.MoodAggregate;
 using MediatR;
 
@@ -24,7 +25,8 @@ public class CreateMoodImageCommandHandler(
             Extension = request.Extension,
             Height = request.Height,
             Width = request.Width,
-            Type = 1
+            Type = 1,
+            Score = 0,
         };
 
         var createdImage = await _imageRepository.CreateAsync(image);

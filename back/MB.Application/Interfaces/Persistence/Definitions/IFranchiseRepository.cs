@@ -1,7 +1,7 @@
 ﻿using MB.Application.Features.Franchises.Queries.GetFranchisesCheckBoxesByModel;
 using MB.Domain.FranchiseAggregate;
 
-namespace MB.Application.Interfaces.Persistence;
+namespace MB.Application.Interfaces.Persistence.Definitions;
 
 public interface IFranchiseRepository : IBaseRepository<Franchise>
 {
@@ -10,6 +10,6 @@ public interface IFranchiseRepository : IBaseRepository<Franchise>
     Task<List<Franchise>> GetFranchisesByMedia(int? mediaId);
     Task<IEnumerable<GetFranchisesCheckBoxesByModelQueryDto>> GetCheckBoxesByModel(int modelId);
     Task<Franchise?> GetFranchiseWithMediaAsync(int franchiseId);
-    System.Threading.Tasks.Task AddMediaAsync(int franchiseId, IEnumerable<int> mediaIds);
-    System.Threading.Tasks.Task RemoveMediaAsync(Franchise franchise);
+    Task AddMediaAsync(int franchiseId, IEnumerable<int> mediaIds);
+    Task RemoveMediaAsync(Franchise franchise);
 }

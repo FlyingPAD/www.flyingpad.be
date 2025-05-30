@@ -1,5 +1,13 @@
 <div class="main-frame">
   <div class="statistics">
+    <div class="box link tweak" (click)="goToNewMoods()">
+      <div class="group">
+        <div class="group-icon">
+          <app-icon-moods size="25px" />
+          <p><b>New Moods</b> :</p>
+        </div>
+      </div>
+    </div>
     <div class="box link tweak" routerLink="/central-gallery">
       <div class="group">
         <div class="group-icon">
@@ -16,6 +24,20 @@
       <div class="group">
         <p>▸ Videos :</p>
         <p>{{ statistics()?.videosPercentage | number:'2.2-2' }} % ( {{ statistics()?.totalVideos | number:'4.0' }} )
+        </p>
+      </div>
+    </div>
+    <div class="box tweak">
+      <div class="group">
+        <p>▸ SoundCloud Tracks :</p>
+        <p>{{ statistics()?.soundCloudAudiosPercentage | number:'2.2-2' }} % ( {{ statistics()?.totalSoundCloudAudios |
+          number:'4.0' }} )
+        </p>
+      </div>
+      <div class="group">
+        <p>▸ YouTube Videos :</p>
+        <p>{{ statistics()?.youTubeVideosPercentage | number:'2.2-2' }} % ( {{ statistics()?.totalYouTubeVideos |
+          number:'4.0' }} )
         </p>
       </div>
     </div>

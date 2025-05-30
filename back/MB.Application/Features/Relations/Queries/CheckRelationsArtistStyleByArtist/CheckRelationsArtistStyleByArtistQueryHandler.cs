@@ -11,7 +11,7 @@ public class CheckRelationsArtistStyleByArtistQueryHandler(IBaseRepository<Relat
 
     public async Task<CheckRelationsArtistStyleByArtistQueryResponse> Handle(CheckRelationsArtistStyleByArtistQuery request, CancellationToken cancellationToken)
     {
-        int? artistPrimaryId = await _artistRepository.GetPrimaryIdByBusinessIdAsync(request.ArtistId);
+        int? artistPrimaryId = await _artistRepository.GetEntityIdByBusinessIdAsync(request.ArtistId, cancellationToken);
 
         if (!artistPrimaryId.HasValue)
         {

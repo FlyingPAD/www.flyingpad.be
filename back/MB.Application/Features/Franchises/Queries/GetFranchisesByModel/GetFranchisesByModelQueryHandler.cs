@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.Franchises.Queries.GetFranchisesByModel;
@@ -13,7 +13,7 @@ public class GetFranchisesByModelQueryHandler(IMapper mapper, IFranchiseReposito
 
     public async Task<GetFranchisesByModelQueryResponse> Handle(GetFranchisesByModelQuery request, CancellationToken cancellationToken)
     {
-        var modelId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId)
+        var modelId = await _modelRepository.GetEntityIdByBusinessIdAsync(request.ModelId, cancellationToken)
             ?? throw new NotFoundException("Model not found.");
 
         var franchises = await _franchiseRepository.GetFranchisesByModels([modelId]);

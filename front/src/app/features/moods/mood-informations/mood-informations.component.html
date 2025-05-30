@@ -1,34 +1,35 @@
 <div class="info" [ngClass]="infoIsActive === true ? 'info-on' : 'info-off'">
     @if(user().role === 2) {
-        @if(mood?.relatedModels?.length) {
-            <div class="list_categories">
-                <p class="box-title">{{ 'title.starring' | translate }}</p>
-                <div *ngFor="let model of mood?.relatedModels">
-                    <a (click)="updateModelId(model.businessId)"> ▸ {{model.pseudonym}}</a>
-                </div>
-            </div>
-        }
-
-        @if(mood?.relatedFranchises?.length) {
-            <div class="list_categories">
-                <p>{{ 'title.from' | translate }}</p>
-                <div *ngFor="let franchise of mood?.relatedFranchises">
-                    <a (click)="updateFranchiseId(franchise.businessId)"> ▸ {{franchise.name}}</a>
-                </div>
-            </div>
-        }
-
-        @if(mood?.relatedArtists?.length) {
-            <div class="list_categories">
-                <p class="box-title">{{ 'title.art-by' | translate }}</p>
-                <div *ngFor="let artist of mood?.relatedArtists">
-                    <a (click)="updateArtistId(artist.businessId)"> ▸ {{artist.name}}</a>
-                </div>
-            </div>
-        }
+    @if(mood?.relatedModels?.length) {
+    <div class="list_categories">
+        <p class="box-title">{{ 'title.starring' | translate }}</p>
+        <div *ngFor="let model of mood?.relatedModels">
+            <a (click)="updateModelId(model.businessId)"> ▸ {{model.pseudonym}}</a>
+        </div>
+    </div>
     }
-    @if(user().role !== 2 || !mood?.relatedModels?.length && !mood?.relatedFranchises?.length && !mood?.relatedArtists?.length) {
-        <app-spacer height="15px" />
+
+    @if(mood?.relatedFranchises?.length) {
+    <div class="list_categories">
+        <p>{{ 'title.from' | translate }}</p>
+        <div *ngFor="let franchise of mood?.relatedFranchises">
+            <a (click)="updateFranchiseId(franchise.businessId)"> ▸ {{franchise.name}}</a>
+        </div>
+    </div>
+    }
+
+    @if(mood?.relatedArtists?.length) {
+    <div class="list_categories">
+        <p class="box-title">{{ 'title.art-by' | translate }}</p>
+        <div *ngFor="let artist of mood?.relatedArtists">
+            <a (click)="updateArtistId(artist.businessId)"> ▸ {{artist.name}}</a>
+        </div>
+    </div>
+    }
+    }
+    @if(user().role !== 2 || !mood?.relatedModels?.length && !mood?.relatedFranchises?.length &&
+    !mood?.relatedArtists?.length) {
+    <app-spacer height="15px" />
     }
 
     <div class="flex">
@@ -37,37 +38,37 @@
     </div>
 
     @if(mood?.type === 1 || mood?.type === 2) {
-        <div class="flex">
-            <p>{{ 'title.size' | translate }}</p>
-            <p>{{ typeCheck(mood).size | formatSize:2 }}</p>
-        </div>
-    
-        <div class="flex">
-            <p>Extension</p>
-            <p>*.{{ typeCheck(mood).extension }}</p>
-        </div>
+    <div class="flex">
+        <p>{{ 'title.size' | translate }}</p>
+        <p>{{ typeCheck(mood).size | formatSize:2 }}</p>
+    </div>
 
-        <div class="flex">
-            <p>{{ 'title.height' | translate }}</p>
-            <p>{{ typeCheck(mood).height }} pixels</p>
-        </div>
+    <div class="flex">
+        <p>Extension</p>
+        <p>*.{{ typeCheck(mood).extension }}</p>
+    </div>
 
-        <div class="flex">
-            <p>{{ 'title.width' | translate }}</p>
-            <p>{{ typeCheck(mood).width }} pixels</p>
-        </div>
+    <div class="flex">
+        <p>{{ 'title.height' | translate }}</p>
+        <p>{{ typeCheck(mood).height }} pixels</p>
+    </div>
 
-        <div class="flex">
-            <p>Ratio</p>
-            <p>{{ typeCheck(mood).width | formatRatio:typeCheck(mood).height }}</p>
-        </div>
+    <div class="flex">
+        <p>{{ 'title.width' | translate }}</p>
+        <p>{{ typeCheck(mood).width }} pixels</p>
+    </div>
+
+    <div class="flex">
+        <p>Ratio</p>
+        <p>{{ typeCheck(mood).width | formatRatio:typeCheck(mood).height }}</p>
+    </div>
     }
 
     @if(mood?.type === 2) {
-        <div class="flex">
-            <p>{{ 'title.duration' | translate }}</p>
-            <p>{{typeCheck(mood).duration | formatDuration }}</p>
-        </div>
+    <div class="flex">
+        <p>{{ 'title.duration' | translate }}</p>
+        <p>{{typeCheck(mood).duration | formatDuration }}</p>
+    </div>
     }
 
     <app-spacer height="15px" />

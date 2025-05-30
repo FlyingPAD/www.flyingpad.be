@@ -8,7 +8,7 @@ import { BaseResponse } from '../../interfaces/http/base-response';
 import { GetOneVideoDetailsResponse, Video } from '../../interfaces/mood-video';
 import { GetOneImageDetailsResponse, Image } from '../../interfaces/mood-image';
 import { GetOneVideoYoutubeDetailsResponse, VideoYouTube } from '../../interfaces/mood-video-youtube';
-import { MoodScoreUpdate, MoodUpdateForm, MultiTagsForm } from '../../interfaces/http/forms-update';
+import { MoodPositionUpdate, MoodScoreUpdate, MoodUpdateForm, MultiTagsForm } from '../../interfaces/http/forms-update';
 import { NotificationService } from '../user-interface/notification.service';
 import { StateService } from '../custom-state/state.service';
 import { StorageService } from '../storage.service';
@@ -25,6 +25,7 @@ import { MoodsGalleryService } from '../user-interface/moods-gallery.service';
 import { AudioSoundCloud, GetOneAudioSoundCloudDetailsResponse } from '../../interfaces/mood-audio-soundcloud';
 
 type MoodFilter =
+  | { type: GalleryMode.New }
   | { type: GalleryMode.Tag, id: number }
   | { type: GalleryMode.TagCategory, id: number }
   | { type: GalleryMode.Artist, id: number }
@@ -67,6 +68,8 @@ export class MoodService {
         return { type: GalleryMode.Model, id: modelId }
       }
       switch (galleryMode) {
+        case GalleryMode.New:
+          return { type: GalleryMode.New }
         case GalleryMode.Model:
           return modelId != null ? { type: GalleryMode.Model, id: modelId } : { type: GalleryMode.Default }
         case GalleryMode.Artist:
@@ -184,9 +187,11 @@ export class MoodService {
     let storedMoodId = this.#storageService.getItem(StorageProperties.StateMoodId)
     if (storedMoodId != null) { this.#stateService.setMoodId(storedMoodId as number) }
   }
-  
+
   private getMoodsByFilter(filter: MoodFilter): Observable<MoodLight[]> {
     switch (filter.type) {
+      case GalleryMode.New:
+        return this.getNewMoods()
       case GalleryMode.Tag:
         return this.getMoodsByTag(filter.id)
       case GalleryMode.TagCategory:
@@ -205,6 +210,15 @@ export class MoodService {
 
   public getAllMoods(): Observable<MoodLight[]> {
     return this.#http.get<GetMoodsResponse>(`${this.#url}Moods/GetAll`).pipe(
+      tap(response => {
+        if (!response.success) this.#notificationService.error(response.message)
+      }),
+      map(response => response.moods),
+      catchError(() => of([])))
+  }
+
+  public getNewMoods(): Observable<MoodLight[]> {
+    return this.#http.get<GetMoodsResponse>(`${this.#url}Moods/GetNew`).pipe(
       tap(response => {
         if (!response.success) this.#notificationService.error(response.message)
       }),
@@ -286,7 +300,7 @@ export class MoodService {
       map(response => response.moods),
       catchError(() => of([])))
   }
-  
+
   public getMoodsByModel(modelId: number): Observable<MoodLight[]> {
     return this.#http.get<GetMoodsResponse>(`${this.#url}Moods/GetByModel/${modelId}`).pipe(
       tap(response => {
@@ -385,7 +399,7 @@ export class MoodService {
       map(response => response.commonTags),
       catchError(() => of([])))
   }
-  
+
   public createImage(form: ImageCreateForm): Observable<CreateMoodImageResponse> {
     return this.#http.post<CreateMoodImageResponse>(`${this.#url}Moods/CreateMoodImage`, form).pipe(
       tap(response => {
@@ -464,6 +478,18 @@ export class MoodService {
       catchError(() => of({ success: false, message: 'Error' } as BaseResponse)))
   }
 
+  public updateMoodPosition(form: MoodPositionUpdate): Observable<BaseResponse> {
+    return this.#http.put<BaseResponse>(`${this.#url}Moods/UpdatePosition`, form).pipe(
+      tap(response => {
+        if (response.success) {
+          this.#notificationService.success(response.message)
+          this.#refreshMoods$.next()
+        }
+        else this.#notificationService.error(response.message)
+      }),
+      catchError(() => of({ success: false, message: 'Error' } as BaseResponse)))
+  }
+
   public multiTags(form: MultiTagsForm): Observable<BaseResponse> {
     return this.#http.post<BaseResponse>(this.#url + 'Moods/MultiTags', form).pipe(
       tap(response => {
@@ -475,7 +501,7 @@ export class MoodService {
         else this.#notificationService.error(response.message)
       }),
       catchError(() => of({ success: false, message: 'Error' } as BaseResponse)))
-  }  
+  }
 
   public deleteMood(moodId: number): Observable<BaseResponse> {
     return this.#http.delete<BaseResponse>(`${this.#url}Moods/Delete/${moodId}`).pipe(
@@ -489,6 +515,20 @@ export class MoodService {
         else this.#notificationService.error(response.message)
       }),
       catchError(() => of({ success: false, message: 'Error' } as BaseResponse)))
+  }
+
+  public approveMoods(moodIds: number[]): Observable<BaseResponse> {
+    return this.#http.put<BaseResponse>(`${this.#url}Moods/ApproveMoods`, { moodIds }).pipe(
+      tap(response => {
+        if (response.success) {
+          this.#notificationService.success(response.message)
+          this.#refreshMoods$.next()
+          this.#statisticsService.refreshStatistics()
+        }
+        else this.#notificationService.error(response.message)
+      }),
+      catchError(() => of({ success: false, message: 'Error' } as BaseResponse))
+    )
   }
 
   public moodsFlow = toSignal(

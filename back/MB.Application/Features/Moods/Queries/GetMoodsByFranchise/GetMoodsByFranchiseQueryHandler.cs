@@ -1,5 +1,6 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Features.Moods.Mapper;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.Moods.Queries.GetMoodsByFranchise;
@@ -12,7 +13,7 @@ public class GetMoodsByFranchiseQueryHandler(IModelRepository modelRepository, I
 
     public async Task<GetMoodsByFranchiseQueryResponse> Handle(GetMoodsByFranchiseQuery request, CancellationToken cancellationToken)
     {
-        var franchiseId = await _franchiseRepository.GetPrimaryIdByBusinessIdAsync(request.FranchiseId)
+        var franchiseId = await _franchiseRepository.GetEntityIdByBusinessIdAsync(request.FranchiseId, cancellationToken)
             ?? throw new NotFoundException("Franchise not found.");
 
         var models = await _modelRepository.GetModelsByFranchise(franchiseId);

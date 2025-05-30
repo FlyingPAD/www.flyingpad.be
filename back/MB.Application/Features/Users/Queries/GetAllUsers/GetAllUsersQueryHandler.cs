@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Features.Users.Queries.GetAllUsers;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, GetAllUsersQueryResponse>

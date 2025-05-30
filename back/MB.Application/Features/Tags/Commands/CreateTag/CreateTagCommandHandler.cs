@@ -13,7 +13,7 @@ public class CreateTagCommandHandler(IBaseRepository<Tag> tagRepository, IBaseRe
 
     public async Task<CreateTagCommandResponse> Handle(CreateTagCommand request, CancellationToken cancellationToken)
     {
-        var tagCategoryEntityId = await _tagCategoryRepository.GetPrimaryIdByBusinessIdAsync(request.TagCategoryId)
+        var tagCategoryEntityId = await _tagCategoryRepository.GetEntityIdByBusinessIdAsync(request.TagCategoryId, cancellationToken)
             ?? throw new NotFoundException("Tag category not found.");
 
         var tagToCreate = new Tag

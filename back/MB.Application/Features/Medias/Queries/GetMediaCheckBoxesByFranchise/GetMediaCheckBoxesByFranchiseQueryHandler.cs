@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.Medias.Queries.GetMediaCheckBoxesByFranchise
@@ -13,7 +13,7 @@ namespace MB.Application.Features.Medias.Queries.GetMediaCheckBoxesByFranchise
 
         public async Task<GetMediaCheckBoxesByFranchiseQueryResponse> Handle(GetMediaCheckBoxesByFranchiseQuery request, CancellationToken cancellationToken)
         {
-            int franchiseId = await _franchiseRepository.GetPrimaryIdByBusinessIdAsync(request.FranchiseId)
+            int franchiseId = await _franchiseRepository.GetEntityIdByBusinessIdAsync(request.FranchiseId, cancellationToken)
                 ?? throw new NotFoundException("Franchise not found.");
 
             var media = await _mediaRepository.GetCheckBoxesByFranchise(franchiseId);

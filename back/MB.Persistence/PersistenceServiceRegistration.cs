@@ -1,4 +1,5 @@
 ﻿using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Persistence.Repositories;
 using MB.Persistence.Repositories.Definitions;
 using Microsoft.EntityFrameworkCore;

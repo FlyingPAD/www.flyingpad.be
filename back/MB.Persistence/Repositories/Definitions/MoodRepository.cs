@@ -2,7 +2,7 @@
 using MB.Application.Features.Moods.Queries.GetCommonTagsByMoods;
 using MB.Application.Features.Tags.Queries.GetTagsCheckBoxesByMood;
 using MB.Application.Features.Tags.Queries.GetTagsFullListQuery;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Domain;
 using MB.Domain.MoodAggregate;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +11,14 @@ namespace MB.Persistence.Repositories.Definitions;
 
 public class MoodRepository(Context context) : BaseRepository<Mood>(context), IMoodRepository
 {
+    public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
+    {
+        return await _context.Moods
+                             .Where(mood => businessIds.Contains(mood.BusinessId))
+                             .Select(mood => mood.EntityId)
+                             .ToListAsync();
+    }
+
     public async Task<Mood> GetOneDetailsRandom()
     {
         var ids = await _context.Moods.Select(m => m.EntityId).ToListAsync();
@@ -20,11 +28,27 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         return randomMood!;
     }
 
+    public async Task<List<Mood>> GetNewMoodsAsync(CancellationToken ct)
+    {
+        var moods = await _context.Moods
+            .AsNoTracking()
+            .Where(mood => mood.IsApproved == false)
+            .ToListAsync(cancellationToken: ct);
+
+        return moods;
+    }
+
     public async Task<List<Mood>> GetMoodsByTag(int? tagId)
     {
+        if (!tagId.HasValue) return [];
+
         var moodsByTag = await _context.Moods
-            .Where(mood => mood.MoodTags != null && mood.MoodTags.Any(relation => relation.TagId == tagId))
-            .OrderByDescending(mood => mood.Score)
+            .AsNoTracking()
+            .Where(mood =>
+                mood.IsApproved &&
+                mood.MoodTags != null && 
+                mood.MoodTags.Any(relation => relation.TagId == tagId))
+            .OrderBy(mood => mood.Position == 0 ? int.MaxValue : mood.Position)
             .ToListAsync();
 
         return moodsByTag;
@@ -32,9 +56,15 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
 
     public async Task<List<Mood>> GetMoodsByArtist(int? artistId)
     {
+        if (!artistId.HasValue) return [];
+
         var moodsByArtist = await _context.Moods
-            .Where(mood => mood.MoodArtists != null && mood.MoodArtists.Any(relation => relation.ArtistId == artistId))
-            .OrderByDescending(mood => mood.Score)
+            .AsNoTracking()
+            .Where(mood =>
+                mood.IsApproved &&
+                mood.MoodArtists != null && 
+                mood.MoodArtists.Any(relation => relation.ArtistId == artistId))
+            .OrderBy(mood => mood.Position == 0 ? int.MaxValue : mood.Position)
             .ToListAsync();
 
         return moodsByArtist;
@@ -42,9 +72,15 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
 
     public async Task<List<Mood>> GetMoodsByModel(int? modelId)
     {
+        if (!modelId.HasValue) return [];
+
         var moodsByModel = await _context.Moods
-            .Where(mood => mood.MoodModels != null && mood.MoodModels.Any(relation => relation.ModelId == modelId))
-            .OrderByDescending(mood => mood.Score)
+            .AsNoTracking()
+            .Where(mood =>
+                mood.IsApproved &&
+                mood.MoodModels != null && 
+                mood.MoodModels.Any(relation => relation.ModelId == modelId))
+            .OrderBy(mood => mood.Position == 0 ? int.MaxValue : mood.Position)
             .ToListAsync();
 
         return moodsByModel;
@@ -52,9 +88,15 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
 
     public async Task<List<Mood>> GetMoodsByModels(List<int> modelIds)
     {
+        if (modelIds.Count == 0) return [];
+
         return await _context.Moods
-            .Where(mood => mood.MoodModels != null && mood.MoodModels.Any(relation => modelIds.Contains(relation.ModelId)))
-            .OrderByDescending(mood => mood.Score)
+            .AsNoTracking()
+            .Where(mood =>
+                mood.IsApproved &&
+                mood.MoodModels != null && 
+                mood.MoodModels.Any(relation => modelIds.Contains(relation.ModelId)))
+            .OrderBy(mood => mood.Position == 0 ? int.MaxValue : mood.Position)
             .ToListAsync();
     }
 
@@ -153,9 +195,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         var tagImage = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Image");
         if (tagImage != null) imageSpecificTags.Add(tagImage.EntityId);
 
-        var tagNewFile = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "New Files");
-        if (tagNewFile != null) imageSpecificTags.Add(tagNewFile.EntityId);
-
         // Handle Extensions.
         var tagBmp = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".bmp");
         var tagGif = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".gif");
@@ -237,9 +276,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         var tagVideo = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "Video");
         if (tagVideo != null) videoSpecificTags.Add(tagVideo.EntityId);
 
-        var tagNewFile = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "New Files");
-        if (tagNewFile != null) videoSpecificTags.Add(tagNewFile.EntityId);
-
         // Handle Extensions.
         var tagMp4 = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".mp4");
         var tagWebm = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == ".webm");
@@ -310,9 +346,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         var tagAllFiles = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "# All Files");
         if (tagAllFiles != null) youtubeVideoSpecificTags.Add(tagAllFiles.EntityId);
 
-        var tagNewFile = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "New Files");
-        if (tagNewFile != null) youtubeVideoSpecificTags.Add(tagNewFile.EntityId);
-
         var relations = youtubeVideoSpecificTags.Select(tagId => new RelationMoodTag
         {
             MoodId = videoYouTube.EntityId,
@@ -329,9 +362,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
 
         var tagAllFiles = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "# All Files");
         if (tagAllFiles != null) soundCloudAudioSpecificTags.Add(tagAllFiles.EntityId);
-
-        var tagNewFile = await _context.Tags.FirstOrDefaultAsync(tag => tag.Name == "New Files");
-        if (tagNewFile != null) soundCloudAudioSpecificTags.Add(tagNewFile.EntityId);
 
         var relations = soundCloudAudioSpecificTags.Select(tagId => new RelationMoodTag
         {
@@ -391,7 +421,7 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
                 .Where(mt => tagRemoveIds.Contains(mt.TagId))
                 .ToList();
 
-            if (tagsToActuallyRemove.Any())
+            if (tagsToActuallyRemove.Count != 0)
             {
                 _context.RMoodTag.RemoveRange(tagsToActuallyRemove);
             }

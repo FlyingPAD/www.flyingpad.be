@@ -1,5 +1,6 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Features.Moods.Mapper;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.Moods.Queries.GetMoodsByArtist;
@@ -11,7 +12,7 @@ public class GetMoodsByArtistQueryHandler(IMoodRepository moodRepository, IArtis
 
     public async Task<GetMoodsByArtistQueryResponse> Handle(GetMoodsByArtistQuery request, CancellationToken cancellationToken)
     {
-        var artistId = await _artistRepository.GetPrimaryIdByBusinessIdAsync(request.ArtistId)
+        var artistId = await _artistRepository.GetEntityIdByBusinessIdAsync(request.ArtistId, cancellationToken)
             ?? throw new NotFoundException("Artist not found.");
 
         var moods = await _moodRepository.GetMoodsByArtist(artistId);

@@ -1,11 +1,12 @@
-<p class="sticky-label">Selected Files : 0</p>
 <h1 class="h1">{{ 'title.add-video' | translate }}</h1>
 <p class="p">( MP4, WEBM )</p>
 <p class="p">Maximum file size : 50 Mo</p>
+
 <hr class="dialog-hr">
+
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div id="file_menu">
-        <p><input type="file" (change)="loadFile($event)" multiple></p>
+        <p><input type="file" (change)="loadFile($event)"></p>
     </div>
     <div *ngIf="url">
         <video controls [muted]="true">
@@ -16,8 +17,8 @@
             <h3>Mood Info</h3>
             <hr>
             <div id="info_flex">
-                <p><label for="in_title">Mood Title :</label></p>
-                <input type="text" id="in_title" formControlName="title" required>
+                <p><label for="in_name">Mood Name :</label></p>
+                <input type="text" id="in_name" formControlName="name" required>
             </div>
             <div id="info_flex">
                 <p><label for="in_description">Mood Description :</label></p>

@@ -1,5 +1,6 @@
 ﻿using MB.Application.Interfaces.Infrastructure;
 using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Application.Interfaces.Services;
 using MB.Domain.AchievementAggregate;
 using MB.Domain.LeagueAggregate;

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
 using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Domain.FranchiseAggregate;
 using MediatR;
 
@@ -14,7 +15,7 @@ public class GetModelsByFranchiseQueryHandler(IMapper mapper, IBaseRepository<Fr
 
     public async Task<GetModelsByFranchiseQueryResponse> Handle(GetModelsByFranchiseQuery request, CancellationToken cancellationToken)
     {
-        int franchiseId = await _franchiseRepo.GetPrimaryIdByBusinessIdAsync(request.FranchiseId)
+        int franchiseId = await _franchiseRepo.GetEntityIdByBusinessIdAsync(request.FranchiseId, cancellationToken)
             ?? throw new NotFoundException("Franchise not found.");
 
         var models = await _modelRepo.GetModelsByFranchise(franchiseId);

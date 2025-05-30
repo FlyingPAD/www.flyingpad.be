@@ -1,81 +1,100 @@
 <p class="sticky-label"><b>{{ selectedMoods().length }}</b> Moods Selected</p>
 
-<app-spacer height="25px" />
+<div *ngIf="moodsFlow()?.moods?.length; else loading">
+  <div class="gallery" [class.menu-open]="isRightMenuOpen()">
+    <div
+      *ngFor="let mood of moodsFlow()?.moods || [] | paginate : { itemsPerPage: itemsPerPage, currentPage: currentPage() }">
+      <section>
+        <div class="mood-container">
+          <div class="mood-position" *ngIf="mood.position != 0"># {{ mood.position }}</div>
 
-<div class="buttons">
-    <div class="button" (click)="selectAll()">Select All</div>
-    <div class="button" (click)="invertSelection()">Invert</div>
-    <div class="button" (click)="resetSelection()">Reset</div>
+          <ng-container [ngSwitch]="mood.type">
+            <img *ngSwitchCase="1" src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
+              [class.active]="checkIfSelected(mood.businessId)" (click)="selectionToggle(mood.businessId)" />
+            <img *ngSwitchCase="2" class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
+              [class.active]="checkIfSelected(mood.businessId)" (click)="selectionToggle(mood.businessId)" />
+            <img *ngSwitchCase="3" src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
+              [class.active]="checkIfSelected(mood.businessId)" (click)="selectionToggle(mood.businessId)" />
+            <img *ngSwitchCase="4" class="vid-youtube" src="https://img.youtube.com/vi/{{ mood.url }}/hqdefault.jpg"
+              [class.active]="checkIfSelected(mood.businessId)" (click)="selectionToggle(mood.businessId)" />
+            <img *ngSwitchCase="5" [src]="mood.thumbnailUrl" [class.active]="checkIfSelected(mood.businessId)"
+              (click)="selectionToggle(mood.businessId)" />
+          </ng-container>
+
+          <div class="mood-score" *ngIf="mood.score != 0">{{ mood.score | number : '3.0' }}</div>
+        </div>
+      </section>
+    </div>
+  </div>
 </div>
 
-<div class="edit-score">
-    <div class="score-buttons">
+<ng-template #loading>
+  <div class="empty-moods">
+    <p>No moods found !</p>
+  </div>
+</ng-template>
+
+<div *ngIf="(moodsFlow()?.moods?.length || 0) > itemsPerPage" class="pagination-row">
+  <div class="pagination">
+    <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />
+  </div>
+</div>
+
+<app-spacer />
+
+<app-bottom-bar>
+  <app-bottom-icon-back page="/central-gallery" />
+  <app-bottom-items-length [itemsLength]="moodsFlow()?.moods?.length" />
+  <app-bottom-icon-tag page="/moods/multi-tag-tags" />
+  <app-bottom-icon-to-top />
+  <app-bottom-icon-artist page="/moods/multi-tag-artists" />
+  <app-bottom-icon-model page="/moods/multi-tag-models" />
+  <app-bottom-toggle-right-menu />
+</app-bottom-bar>
+
+<app-right-column>
+  <p class="p"><b>Mood Manager</b></p>
+  <div class="box">
+    <p (click)="selectAll()"><span> ▸ </span>Select All</p>
+    <p (click)="invertSelection()"><span> ▸ </span>Invert Selection</p>
+    <p (click)="resetSelection()"><span> ▸ </span>Reset Selection</p>
+  </div>
+  <hr class="dialog-hr">
+  <p class="p">Score</p>
+  <div class="box">
+    <div class="edit-score">
+      <div class="score-buttons">
         <button (click)="multiScore(-50)">-50</button>
         <button (click)="multiScore(-10)">-10</button>
         <button (click)="multiScore(-1)">-1</button>
         <button (click)="multiScore(1)">+1</button>
         <button (click)="multiScore(10)">+10</button>
         <button (click)="multiScore(50)">+50</button>
+      </div>
     </div>
-</div>
-
-<div *ngIf="moodsFlow()?.moods?.length; else loading">
-    <div class="gallery">
-        <div
-            *ngFor="let mood of moodsFlow()?.moods || [] | paginate : { itemsPerPage : itemsPerPage, currentPage : currentPage() }">
-            <section>
-                <div class="mood-container">
-                    <div *ngIf="mood.type == 1">
-                        <img src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
-                            [class.active]="checkIfSelected(mood.businessId)"
-                            (click)="selectionToggle(mood.businessId)" />
-                    </div>
-                    <div *ngIf="mood.type == 2">
-                        <img class="vid" src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
-                            [class.active]="checkIfSelected(mood.businessId)"
-                            (click)="selectionToggle(mood.businessId)" />
-                    </div>
-                    <div *ngIf="mood.type == 3">
-                        <img src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
-                            [class.active]="checkIfSelected(mood.businessId)"
-                            (click)="selectionToggle(mood.businessId)" />
-                    </div>
-                    <div *ngIf="mood.type == 4">
-                        <img class="vid-youtube" [class.active]="checkIfSelected(mood.businessId)" [src]="'https://img.youtube.com/vi/' + mood.url + '/hqdefault.jpg'" (click)="selectionToggle(mood.businessId)" />
-                    </div>
-                    <div *ngIf="mood.type == 5">
-                        <img [class.active]="checkIfSelected(mood.businessId)" [src]="mood.thumbnailUrl" (click)="selectionToggle(mood.businessId)"  />
-                    </div>
-                    <div class="mood-score">
-                        {{ mood.score }}
-                    </div>
-                </div>
-            </section>
-        </div>
+  </div>
+  <hr class="dialog-hr">
+  <p class="p">Position</p>
+  <div class="box">
+    <div class="edit-score">
+      <div class="score-buttons">
+        <button (click)="updateMoodPosition(-50)">-50</button>
+        <button (click)="updateMoodPosition(-10)">-10</button>
+        <button (click)="updateMoodPosition(-1)">-1</button>
+        <button (click)="updateMoodPosition(1)">+1</button>
+        <button (click)="updateMoodPosition(10)">+10</button>
+        <button (click)="updateMoodPosition(50)">+50</button>
+      </div>
     </div>
-</div>
-
-<ng-template #loading>
-    <div class="loading">
-        <p class="p">Loading ...</p>
-    </div>
-</ng-template>
-
-@if((moodsFlow()?.moods?.length || 0) > itemsPerPage) {
-<div class="pagination-row">
-    <div class="pagination">
-        <pagination-controls previousLabel="" nextLabel="" class="pagination" (pageChange)="setCurrentPage($event)" />
-    </div>
-</div>
-}
-
-<app-spacer />
-
-<app-bottom-bar>
-    <app-bottom-icon-back page="/central-gallery" />
-    <app-bottom-items-length [itemsLength]="moodsFlow()?.moods?.length" />
-    <app-bottom-icon-tag page="/moods/multi-tag-tags" />
-    <app-bottom-icon-to-top />
-    <app-bottom-icon-artist page="/moods/multi-tag-artists" />
-    <app-bottom-icon-model page="/moods/multi-tag-models" />
-</app-bottom-bar>
+  </div>
+  <hr class="dialog-hr">
+  <p class="p">Warning</p>
+  <div class="box">
+    <p (click)="delete()"><span> ▸ </span>Delete Selection</p>
+  </div>
+  <hr class="dialog-hr">
+  <p class="p">Approval</p>
+  <div class="box">
+    <p (click)="approveMoods()"><span> ▸ </span>Approve Selection</p>
+  </div>
+</app-right-column>

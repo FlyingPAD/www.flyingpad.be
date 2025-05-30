@@ -14,10 +14,10 @@ public class UpdateTagCommandHandler(IBaseRepository<Tag> tagRepository, IBaseRe
 
     public async Task<BaseResponse> Handle(UpdateTagCommand request, CancellationToken cancellationToken)
     {
-        var tag = await _tagRepository.GetByBusinessIdAsync(request.TagId)
+        var tag = await _tagRepository.GetByBusinessIdAsync(request.TagId, cancellationToken)
                   ?? throw new NotFoundException("Tag not found.");
 
-        var tagCategoryEntityId = await _tagCategoryRepository.GetPrimaryIdByBusinessIdAsync(request.TagCategoryId)
+        var tagCategoryEntityId = await _tagCategoryRepository.GetEntityIdByBusinessIdAsync(request.TagCategoryId, cancellationToken)
                   ?? throw new NotFoundException("Tag category not found.");
 
         tag.Name = request.Name;

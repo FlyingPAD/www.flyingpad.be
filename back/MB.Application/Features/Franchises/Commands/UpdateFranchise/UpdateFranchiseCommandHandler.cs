@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Application.Models;
 using MediatR;
 
@@ -13,7 +13,7 @@ public class UpdateFranchiseCommandHandler(IFranchiseRepository franchiseReposit
 
     public async Task<BaseResponse> Handle(UpdateFranchiseCommand request, CancellationToken cancellationToken)
     {
-        var franchiseId = await _franchiseRepository.GetPrimaryIdByBusinessIdAsync(request.FranchiseId)
+        var franchiseId = await _franchiseRepository.GetEntityIdByBusinessIdAsync(request.FranchiseId, cancellationToken)
             ?? throw new NotFoundException("Franchise not found.");
 
         var franchise = await _franchiseRepository.GetFranchiseWithMediaAsync(franchiseId)

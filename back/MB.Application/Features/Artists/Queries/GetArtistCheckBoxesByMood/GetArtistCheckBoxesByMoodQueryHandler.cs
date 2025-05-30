@@ -3,6 +3,7 @@ using MediatR;
 using MB.Application.Interfaces.Persistence;
 using MB.Application.Exceptions;
 using MB.Domain.MoodAggregate;
+using MB.Application.Interfaces.Persistence.Definitions;
 
 namespace MB.Application.Features.Artists.Queries.GetArtistCheckBoxesByMood;
 
@@ -14,7 +15,7 @@ public class GetArtistCheckBoxesByMoodQueryHandler(IMapper mapper, IBaseReposito
 
     public async Task<GetArtistCheckBoxesByMoodQueryResponse> Handle(GetArtistCheckBoxesByMoodQuery request, CancellationToken cancellationToken)
     {
-        int moodId = await _moodRepo.GetPrimaryIdByBusinessIdAsync(request.MoodId)
+        int moodId = await _moodRepo.GetEntityIdByBusinessIdAsync(request.MoodId, cancellationToken)
             ?? throw new NotFoundException("Mood not found.");
 
         var artists = await _artistRepo.GetArtistsCheckBoxesByMood(moodId);

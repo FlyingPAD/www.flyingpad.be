@@ -1,5 +1,5 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Application.Models;
 using MediatR;
 
@@ -12,7 +12,7 @@ public class UpdateModelCommandHandler(IModelRepository modelRepository, IFranch
 
     public async Task<BaseResponse> Handle(UpdateModelCommand request, CancellationToken cancellationToken)
     {
-        var modelId = await _modelRepository.GetPrimaryIdByBusinessIdAsync(request.ModelId)
+        var modelId = await _modelRepository.GetEntityIdByBusinessIdAsync(request.ModelId, cancellationToken)
             ?? throw new NotFoundException("Model not found.");
 
         var model = await _modelRepository.GetModelWithFranchisesAsync(modelId)
@@ -23,7 +23,6 @@ public class UpdateModelCommandHandler(IModelRepository modelRepository, IFranch
         model.LastName = request.LastName;
         model.Gender = request.Gender;
         model.Description = request.Description;
-
 
         await _modelRepository.UpdateAsync(model);
 

@@ -1,7 +1,7 @@
 ﻿using MB.Application.Features.Medias.Queries;
 using MB.Domain.MediumAggregate;
 
-namespace MB.Application.Interfaces.Persistence;
+namespace MB.Application.Interfaces.Persistence.Definitions;
 
 public interface IMediaRepository : IBaseRepository<Media>
 {

@@ -1,5 +1,5 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Application.Models;
 using MediatR;
 
@@ -12,7 +12,7 @@ public class UpdateLinkCommandHandler(ILinkRepository linkRepository, ILinkCateg
 
     public async Task<BaseResponse> Handle(UpdateLinkCommand request, CancellationToken cancellationToken)
     {
-        var linkId = await _linkRepository.GetPrimaryIdByBusinessIdAsync(request.LinkId)
+        var linkId = await _linkRepository.GetEntityIdByBusinessIdAsync(request.LinkId, cancellationToken)
             ?? throw new NotFoundException("Link not found.");
 
         var link = await _linkRepository.GetLinkWithCategoriesAsync(linkId)

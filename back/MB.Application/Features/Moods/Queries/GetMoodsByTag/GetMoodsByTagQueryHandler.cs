@@ -1,5 +1,6 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Features.Moods.Mapper;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MediatR;
 
 namespace MB.Application.Features.Moods.Queries.GetMoodsByTag;
@@ -11,7 +12,7 @@ public class GetMoodsByTagQueryHandler(IMoodRepository moodRepository, ITagRepos
 
     public async Task<GetMoodsByTagQueryResponse> Handle(GetMoodsByTagQuery request, CancellationToken cancellationToken)
     {
-        var tagId = await _tagRepository.GetPrimaryIdByBusinessIdAsync(request.TagId)
+        var tagId = await _tagRepository.GetEntityIdByBusinessIdAsync(request.TagId, cancellationToken)
             ?? throw new NotFoundException("Tag not found.");
 
         var moods = await _moodRepository.GetMoodsByTag(tagId);

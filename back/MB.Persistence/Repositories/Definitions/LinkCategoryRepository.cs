@@ -1,5 +1,5 @@
 ﻿using MB.Application.Features.LinkCategories.Queries.GetLinkCategoriesCheckBoxesByLink;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Domain.LinkCategoryAggregate;
 using Microsoft.EntityFrameworkCore;
 

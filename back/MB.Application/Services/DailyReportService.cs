@@ -5,9 +5,7 @@ using MediatR;
 
 namespace MB.Application.Services;
 
-public class DailyReportService(
-    IMediator mediator,
-    IEmailTokenCleanupService cleanupService) : IDailyReportService
+public class DailyReportService(IMediator mediator, IEmailTokenCleanupService cleanupService) : IDailyReportService
 {
     private readonly IMediator _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     private readonly IEmailTokenCleanupService _cleanupService = cleanupService ?? throw new ArgumentNullException(nameof(cleanupService));
@@ -32,6 +30,10 @@ public class DailyReportService(
             ImagesPercentage = stats.ImagesPercentage,
             TotalVideos = stats.TotalVideos,
             VideosPercentage = stats.VideosPercentage,
+            TotalYouTubeVideos = stats.TotalYouTubeVideos,
+            YouTubeVideosPercentage = stats.YouTubeVideosPercentage,
+            TotalSoundCloudAudios = stats.TotalSoundCloudAudios,
+            SoundCloudAudiosPercentage = stats.SoundCloudAudiosPercentage,
             TotalTags = stats.TotalTags,
             TotalTagCategories = stats.TotalTagCategories,
             TotalArtists = stats.TotalArtists,

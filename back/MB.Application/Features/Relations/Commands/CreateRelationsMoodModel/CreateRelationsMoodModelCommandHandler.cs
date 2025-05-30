@@ -1,5 +1,5 @@
 ﻿using MB.Application.Exceptions;
-using MB.Application.Interfaces.Persistence;
+using MB.Application.Interfaces.Persistence.Definitions;
 using MB.Application.Models;
 using MediatR;
 
@@ -12,7 +12,7 @@ public class CreateRelationsMoodModelCommandHandler(IMoodRepository moodReposito
 
     public async Task<BaseResponse> Handle(CreateRelationsMoodModelCommand request, CancellationToken cancellationToken)
     {
-        var moodId = await _moodRepository.GetPrimaryIdByBusinessIdAsync(request.MoodId)
+        var moodId = await _moodRepository.GetEntityIdByBusinessIdAsync(request.MoodId, cancellationToken)
             ?? throw new NotFoundException("Mood not found.");
 
         var modelsPrimaryIds = await _modelRepository.GetPrimaryIdsByBusinessIdsAsync(request.ModelIds);

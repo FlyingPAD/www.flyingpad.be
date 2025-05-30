@@ -1,6 +1,7 @@
 @if(galleryType() === galleryTypes.Gallery) {
     <p class="sticky-label">
-        <span *ngIf="galleryMode() === galleryModes.Default"> ▸ <b>All Files</b> | Full Collection</span>
+        <span *ngIf="galleryMode() === galleryModes.Default"> ▸ <b>All Files</b> | Shuffle</span>
+        <span *ngIf="galleryMode() === galleryModes.New"> ▸ <b>New Moods</b> | Welcome !</span>
         <span *ngIf="galleryMode() === galleryModes.Tag"> ▸ <b>{{ tagsFlow()?.tag?.name }}</b> {{ validateDescription(true, tagsFlow()?.tag?.description) }}</span>
         <span *ngIf="galleryMode() === galleryModes.TagCategory"> ▸ <b>{{ tagsFlow()?.tagCategory?.name }}</b> {{ validateDescription(true, tagsFlow()?.tagCategory?.description )}}</span>
         <span *ngIf="galleryMode() === galleryModes.Artist"> ▸ <b>{{ artistsFlow()?.artist?.name }}</b> {{ validateDescription(true, artistsFlow()?.artist?.description) }}</span>
@@ -89,7 +90,7 @@
             (setFranchise)="setFranchise($event)" (switchToFranchise)="setAndSwitchToFranchise($event)" (switchToModel)="setAndSwitchToModel($event)" />
         }
     }
-    @if(galleryMode() === galleryModes.Default || galleryMode() === galleryModes.Tag || galleryMode() === galleryModes.TagCategory || galleryMode() === galleryModes.Artist) {
+    @if(galleryMode() === galleryModes.Default || galleryMode() === galleryModes.New || galleryMode() === galleryModes.Tag || galleryMode() === galleryModes.TagCategory || galleryMode() === galleryModes.Artist) {
         @if(galleryType() === galleryTypes.Details) {
             <app-related-tags [relatedTags]="moodsFlow()?.mood.relatedTags" [currentTagId]="tagsFlow()?.tag?.businessId" (tagId)="setAndSwitchToTag($event)" />
         }
