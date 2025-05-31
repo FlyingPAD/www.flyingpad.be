@@ -31,7 +31,6 @@ import { authGuard } from './guards/auth.guard';
 import { MultiTagTagsComponent } from './pages/multi-tag-tags/multi-tag-tags.component';
 import { CentralGalleryComponent } from './pages/central-gallery/central-gallery.component';
 import { EditMoodComponent } from './pages/edit-mood/edit-mood.component';
-import { MultiTagComponent } from './pages/multi-tag/multi-tag.component';
 import { CreateMoodVideoYoutubeComponent } from './pages/create-mood-video-youtube/create-mood-video-youtube.component';
 import { CreateMoodAudioSoundcloudComponent } from './pages/create-mood-audio-soundcloud/create-mood-audio-soundcloud.component';
 import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
@@ -39,6 +38,7 @@ import { LadderComponent } from './pages/ladder/ladder.component';
 import { UserLeagueComponent } from './pages/user-league/user-league.component';
 import { UserProfilePublicComponent } from './pages/user-profile-public/user-profile-public.component';
 import { NotesComponent } from './pages/notes/notes.component';
+import { MoodManagerComponent } from './pages/mood-manager/mood-manager.component';
 
 const routes: Routes = [
   // Layout ' Home '.
@@ -60,7 +60,7 @@ const routes: Routes = [
   {
     path: '', component: LayoutMoodsComponent, children: [
       { path: 'central-gallery', component: CentralGalleryComponent, title: 'Flying PAD | Moods Gallery' },
-      { path: 'moods/multi-tag', component: MultiTagComponent, title: 'Flying PAD | Multi Tag' },
+      { path: 'moods/mood-manager', component: MoodManagerComponent, title: 'Flying PAD | Mood Manager' },
       { path: 'moods/multi-tag-artists', component: MultiTagArtistsComponent, title: 'Flying PAD | Multi Tag Artists' },
       { path: 'moods/multi-tag-models', component: MultiTagModelsComponent, title: 'Flying PAD | Multi Tag Models' },
       { path: 'moods/multi-tag-tags', component: MultiTagTagsComponent, title: 'Flying PAD | Multi Tag Tags' },
@@ -107,7 +107,7 @@ const routes: Routes = [
 
   // Or else ...
   { path: '**', redirectTo: 'not-found' },
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

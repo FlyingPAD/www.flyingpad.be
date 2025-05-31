@@ -13,6 +13,8 @@ import { Subject } from 'rxjs';
 import { NewAchievement } from '../../../interfaces/achievement';
 import { AchievementCode } from '../../../types/AchievementCode';
 import { AchievementNotifierService } from '../../../services/achievement-notifier.service';
+import { LanguageService } from '../../../services/user-interface/language.service';
+import { SupportedLanguages } from '../../../enumerations/supported-languages';
 
 @Component({
   selector: 'app-trainer-notes',
@@ -20,16 +22,19 @@ import { AchievementNotifierService } from '../../../services/achievement-notifi
   styleUrls: ['./trainer-notes.component.scss']
 })
 export class TrainerNotesComponent implements OnInit, OnDestroy {
-  #audioService = inject(AudioService);
-  #storageService = inject(StorageService);
-  #userService = inject(UserService);
-  #routerService = inject(Router);
-  #dashboardService = inject(DashboardService);
-  #authService = inject(AuthenticationService);
-  #notifier = inject(AchievementNotifierService);
+  #audioService = inject(AudioService)
+  #languageService = inject(LanguageService)
+  #storageService = inject(StorageService)
+  #userService = inject(UserService)
+  #routerService = inject(Router)
+  #dashboardService = inject(DashboardService)
+  #authService = inject(AuthenticationService)
+  #notifier = inject(AchievementNotifierService)
 
-  private destroy$ = new Subject<void>();
-  private intervalId?: number;
+  private destroy$ = new Subject<void>()
+  private intervalId?: number
+  public currentLanguage = this.#languageService.currentLanguage
+  public supportedLlanguages = SupportedLanguages
 
   // ─── Données utilisateur et achievements ─────────────────────
   public user = this.#userService.user;

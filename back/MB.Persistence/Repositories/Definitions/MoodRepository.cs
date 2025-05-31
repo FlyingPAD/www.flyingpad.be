@@ -11,14 +11,6 @@ namespace MB.Persistence.Repositories.Definitions;
 
 public class MoodRepository(Context context) : BaseRepository<Mood>(context), IMoodRepository
 {
-    public async Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds)
-    {
-        return await _context.Moods
-                             .Where(mood => businessIds.Contains(mood.BusinessId))
-                             .Select(mood => mood.EntityId)
-                             .ToListAsync();
-    }
-
     public async Task<Mood> GetOneDetailsRandom()
     {
         var ids = await _context.Moods.Select(m => m.EntityId).ToListAsync();
@@ -52,6 +44,28 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
             .ToListAsync();
 
         return moodsByTag;
+    }
+
+    public async Task<List<Mood>> GetMoodsByTagCategory(Guid tagCategoryId)
+    {
+        var tagCategory = await _context.TagCategories
+            .Include(tc => tc.Tags)
+            .FirstOrDefaultAsync(tc => tc.BusinessId == tagCategoryId);
+
+        if (tagCategory == null || tagCategory.Tags.Count == 0)
+            return [];
+
+        var tagIds = tagCategory.Tags.Select(tag => tag.EntityId).ToList();
+
+        var moods = await _context.Moods
+            .Where(mood => 
+                mood.IsApproved &&
+                mood.MoodTags != null && 
+                mood.MoodTags.Any(moodTag => tagIds.Contains(moodTag.TagId)))
+            .OrderBy(mood => mood.Position == 0 ? int.MaxValue : mood.Position)
+            .ToListAsync();
+
+        return moods;
     }
 
     public async Task<List<Mood>> GetMoodsByArtist(int? artistId)
@@ -428,25 +442,6 @@ public class MoodRepository(Context context) : BaseRepository<Mood>(context), IM
         }
 
         await _context.SaveChangesAsync();
-    }
-
-    public async Task<List<Mood>> GetMoodsByTagCategory(Guid tagCategoryId)
-    {
-        var tagCategory = await _context.TagCategories
-            .Include(tc => tc.Tags)
-            .FirstOrDefaultAsync(tc => tc.BusinessId == tagCategoryId);
-
-        if (tagCategory == null || tagCategory.Tags.Count == 0)
-            return [];
-
-        var tagIds = tagCategory.Tags.Select(t => t.EntityId).ToList();
-
-        var moods = await _context.Moods
-            .Where(m => m.MoodTags != null && m.MoodTags.Any(mt => tagIds.Contains(mt.TagId)))
-            .OrderByDescending(m => m.Score)
-            .ToListAsync();
-
-        return moods;
     }
 
     public async Task<List<GetCommonTagsByMoodsQueryDto>> GetCommonTagsByMoods(Guid[] moodIds)

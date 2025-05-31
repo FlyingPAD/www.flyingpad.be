@@ -94,7 +94,6 @@ import { EditStyleComponent } from './features/artists/edit-style/edit-style.com
 import { CreateMediumComponent } from './features/franchises/create-medium/create-medium.component';
 import { DeleteMediumComponent } from './features/franchises/delete-medium/delete-medium.component';
 import { EditMediumComponent } from './features/franchises/edit-medium/edit-medium.component';
-import { MultiTagComponent } from './pages/multi-tag/multi-tag.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -267,6 +266,7 @@ import { LeagueChampionComponent } from './icons-svg/leagues/league-champion/lea
 import { LeagueEliteComponent } from './icons-svg/leagues/league-elite/league-elite.component';
 import { LeagueLegendComponent } from './icons-svg/leagues/league-legend/league-legend.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { MoodManagerComponent } from './pages/mood-manager/mood-manager.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -332,7 +332,7 @@ export function appInitializerFactory(translate: TranslateService) {
     LinksComponent,
     CreateMoodImageComponent,
     CreateMoodVideoComponent,
-    MultiTagComponent,
+    MoodManagerComponent,
     MultiTagArtistsComponent,
     MultiTagModelsComponent,
     MultiTagTagsComponent,
@@ -341,6 +341,13 @@ export function appInitializerFactory(translate: TranslateService) {
     SignUpComponent,
     LogInComponent,
     LogInErrorComponent,
+    CreateMoodVideoYoutubeComponent,
+    CreateMoodAudioSoundcloudComponent,
+    EmailVerificationComponent,
+    ConfirmEmailComponent,
+    LadderComponent,
+    UserProfilePublicComponent,
+    UserLeagueComponent,
     // Components.
     AppComponent,
     CurrentTimeComponent,
@@ -369,6 +376,8 @@ export function appInitializerFactory(translate: TranslateService) {
     DashboardEditionMenuComponent,
     AccountComponent,
     DashboardHeaderComponent,
+    BannerPadStationComponent,
+    UserCardsComponent,
     // Moods.
     EditMoodMenuComponent,
     EditMoodThumbnailComponent,
@@ -443,6 +452,10 @@ export function appInitializerFactory(translate: TranslateService) {
     GuitarTunerComponent,
     TimelineComponent,
     MetronomeComponent,
+    ChordWriterComponent,
+    SongWriterComponent,
+    SongWriterTestComponent,
+    PrototypeComponent,
     // SVG Icons.
     IconStarComponent,
     IconEditComponent,
@@ -531,22 +544,10 @@ export function appInitializerFactory(translate: TranslateService) {
     BottomIconDashboardStatusComponent,
     BottomIconDashboardAchievementsComponent,
     BottomIconDashboardAccountComponent,
-    ChordWriterComponent,
-    SongWriterComponent,
-    SongWriterTestComponent,
     BottomToggleMoodSizeComponent,
     BottomToggleMoodInfoComponent,
     BottomToggleEntityInfoComponent,
-    PrototypeComponent,
-    CreateMoodVideoYoutubeComponent,
-    CreateMoodAudioSoundcloudComponent,
-    EmailVerificationComponent,
-    ConfirmEmailComponent,
-    BannerPadStationComponent,
-    LadderComponent,
-    UserCardsComponent,
-    UserLeagueComponent,
-    UserProfilePublicComponent,
+    // Leagues Icons
     LeagueWoodComponent,
     LeagueStoneComponent,
     LeagueBronzeComponent,
@@ -555,6 +556,7 @@ export function appInitializerFactory(translate: TranslateService) {
     LeagueChampionComponent,
     LeagueEliteComponent,
     LeagueLegendComponent,
+
     NotificationComponent
   ],
   imports: [

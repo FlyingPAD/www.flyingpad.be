@@ -22,9 +22,8 @@ export class LanguageService {
   constructor() {
     let storedLanguage: string | null = this.#storageService.getItem(StorageProperties.Language)
 
-    if (storedLanguage) {
-      this.setLanguage(storedLanguage)
-    } else {
+    if (storedLanguage) this.setLanguage(storedLanguage) 
+    else {
       this.#translateService.setDefaultLang(this.DEFAULT_LANGUAGE)
       this.#translateService.use(this.DEFAULT_LANGUAGE)
       this.#storageService.setItem(StorageProperties.Language, this.DEFAULT_LANGUAGE)

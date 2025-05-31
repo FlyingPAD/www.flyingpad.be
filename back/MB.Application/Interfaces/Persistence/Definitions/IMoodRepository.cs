@@ -21,6 +21,5 @@ public interface IMoodRepository : IBaseRepository<Mood>
     Task AddVideoSpecificTags(Video video);
     Task AddYouTubeVideoSpecificTags(VideoYouTube youTubeVideo);
     Task AddSoundCloudAudioSpecificTags(AudioSoundCloud soundCloudAudio);
-    Task<List<int>> GetPrimaryIdsByBusinessIdsAsync(List<Guid> businessIds);
     Task<List<Mood>> GetNewMoodsAsync(CancellationToken ct);
 }
