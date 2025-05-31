@@ -1,10 +1,7 @@
 @if(!gameStart) { <h1>Select your Clef</h1> }
 
 @if(gameStart) {
-<h1>
-  Score : {{ score | number : '3.0' }}
-  <span *ngIf="timer > 0"> | Timer : {{ timer | number : '2.0' }}</span>
-</h1>
+<h1> Score : {{ score | number : '3.0' }}  <span *ngIf="timer > 0"> | Timer : {{ timer | number : '2.0' }}</span></h1>
 }
 
 <div class="trainer">
@@ -12,14 +9,10 @@
   <div class="trainer-container">
     <img src="../../../../assets/app_tools/trainer-notes-back.png" />
 
-    <img *ngIf="gameStart && randomNote.alteration === true" src="../../../../assets/app_tools/sharp.png"
-      [ngClass]="'row' + randomNote.row" />
-    <img *ngIf="gameStart && randomNote.extension === true" src="../../../../assets/app_tools/extension.png"
-      [ngClass]="'row' + randomNote.row" />
-    <img *ngIf="gameStart && randomNote.doubleUp === true" src="../../../../assets/app_tools/extension.png"
-      [ngClass]="'row' + (randomNote.row - 2)" />
-    <img *ngIf="gameStart && randomNote.doubleUp === false" src="../../../../assets/app_tools/extension.png"
-      [ngClass]="'row' + (randomNote.row + 2)" />
+    <img *ngIf="gameStart && randomNote.alteration === true" src="../../../../assets/app_tools/sharp.png" [ngClass]="'row' + randomNote.row" />
+    <img *ngIf="gameStart && randomNote.extension === true" src="../../../../assets/app_tools/extension.png" [ngClass]="'row' + randomNote.row" />
+    <img *ngIf="gameStart && randomNote.doubleUp === true" src="../../../../assets/app_tools/extension.png" [ngClass]="'row' + (randomNote.row - 2)" />
+    <img *ngIf="gameStart && randomNote.doubleUp === false" src="../../../../assets/app_tools/extension.png" [ngClass]="'row' + (randomNote.row + 2)" />
 
     <img *ngIf="gameStart" src="../../../../assets/app_tools/note.png" [ngClass]="'row' + randomNote.row" />
 
@@ -51,26 +44,24 @@
 }
 
 @if(!gameStart) {
-<div class="trainer-buttons">
-  <a class="start" (click)="start()">START GAME</a>
-</div>
-<div class="trainer-buttons">
-  <a class="start" appToggleDialog>Rules</a>
-</div>
+<div class="trainer-buttons"><a class="start" (click)="start()">START GAME</a></div>
+<div class="trainer-buttons"><a class="start" appToggleDialog>Rules</a></div>
 }
 
 @if(gameStart && !gameEnd) {
 <div class="notes">
-  <div *ngFor="let note of notesREF">
-    <a (click)="updateUserNote(note)">{{ note.name }}</a>
-  </div>
+  @if(currentLanguage() === 'fr') {
+    <div *ngFor="let note of notesREF"><a (click)="updateUserNote(note)">{{ note.nameFr }}</a></div>
+  }
+  @if(currentLanguage() === 'en') {
+    <div *ngFor="let note of notesREF"><a (click)="updateUserNote(note)">{{ note.name }}</a></div>
+  }
+
 </div>
 }
 
 @if(gameEnd) {
-<div class="trainer-buttons">
-  <a class="start" (click)="reset()">NEW GAME</a>
-</div>
+<div class="trainer-buttons"><a class="start" (click)="reset()">NEW GAME</a></div>
 }
 
 <app-spacer />

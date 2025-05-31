@@ -2,8 +2,7 @@
 
 <div *ngIf="moodsFlow()?.moods?.length; else loading">
   <div class="gallery" [class.menu-open]="isRightMenuOpen()">
-    <div
-      *ngFor="let mood of moodsFlow()?.moods || [] | paginate : { itemsPerPage: itemsPerPage, currentPage: currentPage() }">
+    <div *ngFor="let mood of moodsFlow()?.moods || [] | paginate : { itemsPerPage: itemsPerPage, currentPage: currentPage() }">
       <section>
         <div class="mood-container">
           <div class="mood-position" *ngIf="mood.position != 0"># {{ mood.position }}</div>
@@ -90,7 +89,7 @@
   <hr class="dialog-hr">
   <p class="p">Warning</p>
   <div class="box">
-    <p (click)="delete()"><span> ▸ </span>Delete Selection</p>
+    <p appToggleDialog><span> ▸ </span>Delete Selection</p>
   </div>
   <hr class="dialog-hr">
   <p class="p">Approval</p>
@@ -98,3 +97,18 @@
     <p (click)="approveMoods()"><span> ▸ </span>Approve Selection</p>
   </div>
 </app-right-column>
+
+<app-dialog>
+    <h3 class="dialog-h3">Delete</h3>
+    <hr class="dialog-hr">
+    <p class="p">You are about to permanently delete :</p>
+    <p class="dialog-entity-name">{{ selectedMoods().length }} Moods</p>
+    <p class="p">This action <u>cannot</u> be undone !</p>
+    <hr class="dialog-hr">
+    <p><span class="span-warning">Warning :</span> This will also remove all associated relations.</p>
+    <hr class="dialog-hr">
+    <p class="p">Are you sure you want to proceed ?</p>
+    <div class="buttons">
+        <div class="button" (click)="delete()">{{ 'title.delete' | translate }}</div>
+    </div>
+</app-dialog>

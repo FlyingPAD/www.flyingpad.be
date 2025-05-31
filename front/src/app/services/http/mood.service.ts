@@ -33,7 +33,6 @@ type MoodFilter =
   | { type: GalleryMode.Franchise, id: number }
   | { type: GalleryMode.Default }
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -100,18 +99,15 @@ export class MoodService {
   #mood$ = this.#stateService.moodId$.pipe(
     startWith(undefined),
     switchMap(moodId => {
-      if (moodId == undefined) {
-        return this.getRandomMood();
-      } else {
-        return this.getMoodById(moodId);
-      }
+      if (moodId == undefined) return this.getRandomMood()
+      else return this.getMoodById(moodId)
     }),
     switchMap(mood => {
       if (!mood || !mood.businessId) {
-        return of(undefined);
+        return of(undefined)
       }
 
-      let media$: Observable<any>;
+      let media$: Observable<any>
 
       switch (mood.type) {
         case 1:
@@ -122,8 +118,8 @@ export class MoodService {
               height: image?.height,
               size: image?.size
             }))
-          );
-          break;
+          )
+          break
 
         case 2:
           media$ = this.getVideo(mood.businessId).pipe(
@@ -134,8 +130,8 @@ export class MoodService {
               duration: video?.duration,
               size: video?.size
             }))
-          );
-          break;
+          )
+          break
 
         case 4:
           media$ = this.getVideoYoutube(mood.businessId).pipe(
@@ -143,22 +139,22 @@ export class MoodService {
               mediaType: 'VideoYouTube',
               url: videoYouTube?.url
             }))
-          );
-          break;
+          )
+          break
 
         case 5:
           media$ = this.getAudioSoundCloud(mood.businessId).pipe(
             map(audio => ({
               mediaType: 'AudioSoundCloud',
               url: audio?.url,
-              embedUrl: audio?.embedUrl,           // ← on récupère l’URL du player
-              thumbnailUrl: audio?.thumbnailUrl    // ← on récupère la vignette
+              embedUrl: audio?.embedUrl,
+              thumbnailUrl: audio?.thumbnailUrl
             }))
-          );
-          break;
+          )
+          break
 
         default:
-          media$ = of({});
+          media$ = of({})
       }
 
       const tags$ = this.getTagsByMood(mood.businessId);
@@ -170,18 +166,18 @@ export class MoodService {
         map(([mediaProps, tags, models, artists, franchises]) => ({
           ...mood,
           url: mediaProps.url,
-          embedUrl: mediaProps.embedUrl,         // ← injection dans DetailedMood
-          thumbnailUrl: mediaProps.thumbnailUrl, // ← idem
+          embedUrl: mediaProps.embedUrl,
+          thumbnailUrl: mediaProps.thumbnailUrl,
           ...mediaProps,
           relatedTags: tags,
           relatedModels: models,
           relatedArtists: artists,
           relatedFranchises: franchises
         }))
-      );
+      )
     }),
     startWith(undefined)
-  );
+  )
 
   constructor() {
     let storedMoodId = this.#storageService.getItem(StorageProperties.StateMoodId)
@@ -452,6 +448,20 @@ export class MoodService {
       catchError(() => of({ success: false, message: 'Error', moodId: undefined } as CreateMoodSoundCloudAudioResponse)))
   }
 
+  public approveMoods(moodIds: number[]): Observable<BaseResponse> {
+    return this.#http.put<BaseResponse>(`${this.#url}Moods/ApproveMoods`, { moodIds }).pipe(
+      tap(response => {
+        if (response.success) {
+          this.#notificationService.success(response.message)
+          this.#refreshMoods$.next()
+          this.#statisticsService.refreshStatistics()
+        }
+        else this.#notificationService.error(response.message)
+      }),
+      catchError(() => of({ success: false, message: 'Error' } as BaseResponse))
+    )
+  }
+
   public updateMood(form: MoodUpdateForm): Observable<BaseResponse> {
     return this.#http.put<BaseResponse>(`${this.#url}Moods/Update`, form).pipe(
       tap(response => {
@@ -517,24 +527,5 @@ export class MoodService {
       catchError(() => of({ success: false, message: 'Error' } as BaseResponse)))
   }
 
-  public approveMoods(moodIds: number[]): Observable<BaseResponse> {
-    return this.#http.put<BaseResponse>(`${this.#url}Moods/ApproveMoods`, { moodIds }).pipe(
-      tap(response => {
-        if (response.success) {
-          this.#notificationService.success(response.message)
-          this.#refreshMoods$.next()
-          this.#statisticsService.refreshStatistics()
-        }
-        else this.#notificationService.error(response.message)
-      }),
-      catchError(() => of({ success: false, message: 'Error' } as BaseResponse))
-    )
-  }
-
-  public moodsFlow = toSignal(
-    combineLatest({
-      moods: this.#moods$,
-      mood: this.#mood$
-    })
-  )
+  public moodsFlow = toSignal(combineLatest({ moods: this.#moods$, mood: this.#mood$ }))
 }

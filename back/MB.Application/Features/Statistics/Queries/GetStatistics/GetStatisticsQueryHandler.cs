@@ -61,6 +61,7 @@ public class GetStatisticsQueryHandler(
     private readonly IBaseRepository<RelationMoodTag> _rMoodTag = rMoodTag;
     public async Task<GetStatisticsQueryResponse> Handle(GetStatisticsQuery request, CancellationToken cancellationToken)
     {
+        var totalNewMoods = await _moodRepository.CountAsync(mood => mood.IsApproved == false);
         var totalMoods = await _moodRepository.CountAsync();
         var totalImages = await _moodRepository.CountAsync(mood => mood.Type == 1);
         var totalVideos = await _moodRepository.CountAsync(mood => mood.Type == 2);
@@ -94,6 +95,7 @@ public class GetStatisticsQueryHandler(
             Success = true,
             Message = "Statistics",
             Statistics = {
+                TotalNewMoods = totalNewMoods,
                 TotalMoods = totalMoods,
                 TotalImages = totalImages,
                 ImagesPercentage = totalMoods > 0 ? (totalImages / (double)totalMoods) * 100 : 0,

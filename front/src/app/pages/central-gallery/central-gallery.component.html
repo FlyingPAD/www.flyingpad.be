@@ -28,7 +28,7 @@
     @if(galleryType() === galleryTypes.Gallery) {
         <app-bottom-icon-back page="/dashboard" />
         <app-bottom-items-length [itemsLength]="moodsFlow()?.moods?.length" />
-        <app-bottom-icon-edit page="/moods/multi-tag" />
+        <app-bottom-icon-edit page="/moods/mood-manager" />
         <app-bottom-icon-to-top />
         @if(galleryMode() === galleryModes.Franchise) {
             <app-bottom-toggle-entity-info />

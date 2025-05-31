@@ -1,6 +1,7 @@
 import { BaseResponse } from "./http/base-response";
 
 export interface Statistics {
+    totalNewMoods: number
     totalMoods: number
     totalImages: number
     imagesPercentage: number

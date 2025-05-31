@@ -3,6 +3,7 @@
 public class GetStatisticsQueryDto
 {
     // Moods
+    public int TotalNewMoods { get; set; }
     public int TotalMoods { get; set; }
     public int TotalImages { get; set; }
     public double ImagesPercentage { get; set; }

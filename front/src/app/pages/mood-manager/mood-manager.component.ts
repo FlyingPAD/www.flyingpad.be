@@ -10,11 +10,11 @@ import { PaginationService } from '../../services/user-interface/pagination.serv
 import { MenuService } from '../../services/user-interface/menu.service';
 
 @Component({
-  selector: 'app-multi-tag',
-  templateUrl: './multi-tag.component.html',
-  styleUrl: './multi-tag.component.scss'
+  selector: 'app-mood-manager',
+  templateUrl: './mood-manager.component.html',
+  styleUrl: './mood-manager.component.scss'
 })
-export class MultiTagComponent implements OnDestroy {
+export class MoodManagerComponent implements OnDestroy {
   #multiTagService = inject(MultiTagService)
   #notificationService = inject(NotificationService)
   #moodService = inject(MoodService)
@@ -113,6 +113,11 @@ export class MultiTagComponent implements OnDestroy {
 
   public approveMoods(): void {
     const selectedMoodIds = this.selectedMoods()
+
+    if (selectedMoodIds.length === 0) {
+      this.#notificationService.warning('No Moods Selected')
+      return
+    }
 
     this.#moodService.approveMoods(selectedMoodIds)
       .pipe(takeUntil(this.#destroy$))
