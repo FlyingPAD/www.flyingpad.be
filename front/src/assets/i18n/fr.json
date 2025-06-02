@@ -132,5 +132,14 @@
   },
   "system": {
     "loading": "Chargement"
+  },
+  "games": {
+    "games": "Jeux",
+    "start-game": "Commencer",
+    "rules": "Règles du Jeu",
+    "new-game": "Nouvelle Partie"
+  },
+  "tools": {
+    "tools": "Outils"
   }
 }

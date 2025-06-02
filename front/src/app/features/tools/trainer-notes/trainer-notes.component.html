@@ -44,8 +44,8 @@
 }
 
 @if(!gameStart) {
-<div class="trainer-buttons"><a class="start" (click)="start()">START GAME</a></div>
-<div class="trainer-buttons"><a class="start" appToggleDialog>Rules</a></div>
+<div class="trainer-buttons"><a class="start" (click)="start()">{{ 'games.start-game' | translate | uppercase }}</a></div>
+<div class="trainer-buttons"><a class="start" appToggleDialog>{{ 'games.rules' | translate }}</a></div>
 }
 
 @if(gameStart && !gameEnd) {
@@ -61,7 +61,7 @@
 }
 
 @if(gameEnd) {
-<div class="trainer-buttons"><a class="start" (click)="reset()">NEW GAME</a></div>
+<div class="trainer-buttons"><a class="start" (click)="reset()">{{ 'games.new-game' | translate }}</a></div>
 }
 
 <app-spacer />
@@ -76,7 +76,7 @@
 
 <app-dialog>
   <div class="dialog">
-    <h3 class="dialog-h3">{{ 'title.rules' | translate }}</h3>
+    <h3 class="dialog-h3">{{ 'games.rules' | translate }}</h3>
     <hr class="dialog-hr">
     <div class="dialog-p-title">Score as much as you can before time's up !</div>
     <hr class="dialog-hr">
