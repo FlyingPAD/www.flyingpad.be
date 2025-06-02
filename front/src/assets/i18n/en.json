@@ -132,5 +132,14 @@
     },
     "system": {
         "loading": "Loading"
+    },
+    "games": {
+        "games": "Games",
+        "start-game": "Start Game",
+        "rules": "Rules",
+        "new-game": "New Game"
+    },
+    "tools": {
+        "tools": "Tools"
     }
 }
