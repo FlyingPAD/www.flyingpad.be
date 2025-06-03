@@ -1,4 +1,4 @@
-@if(!gameStart) { <h1>Select your Clef</h1> }
+@if(!gameStart) { <h1>{{ 'message.select-a-clef' | translate }}</h1> }
 
 @if(gameStart) {
 <h1> Score : {{ score | number : '3.0' }}  <span *ngIf="timer > 0"> | Timer : {{ timer | number : '2.0' }}</span></h1>
@@ -31,16 +31,16 @@
 
 @if(!gameStart) {
 <div class="trainer-buttons">
-  <a [class.active]="clefBass" (click)="clefBassTrigger()">Bass</a>
-  <a [class.active]="clefAlto" (click)="clefAltoTrigger()">Alto</a>
-  <a [class.active]="clefTreble" (click)="clefTrebleTrigger()">Treble</a>
+  <a [class.active]="clefBass" (click)="clefBassTrigger()">{{ 'notes.bass-clef' | translate }}</a>
+  <a [class.active]="clefAlto" (click)="clefAltoTrigger()">{{ 'notes.alto-clef' | translate }}</a>
+  <a [class.active]="clefTreble" (click)="clefTrebleTrigger()">{{ 'notes.treble-clef' | translate }}</a>
 </div>
 }
 
 <p>{{ message }}</p>
 
 @if(gameEnd) {
-<h1>Total Run : {{ run | number : '2.0' }} seconds</h1>
+<h1>{{ 'message.total-run' | translate }} : {{ run | number : '2.0' }} {{ 'games.seconds' | translate }}</h1>
 }
 
 @if(!gameStart) {
@@ -78,14 +78,16 @@
   <div class="dialog">
     <h3 class="dialog-h3">{{ 'games.rules' | translate }}</h3>
     <hr class="dialog-hr">
-    <div class="dialog-p-title">Score as much as you can before time's up !</div>
+    <div class="dialog-p-title">{{ 'message.objective' | translate }}</div>
     <hr class="dialog-hr">
-    <div class="dialog-p"><b>For each correct answer</b></div>
-    <div class="dialog-p"> ▸ Timer + 1 second</div>
+    <div class="dialog-p"><b>{{ 'message.correct-answer' | translate }}</b></div>
+    <app-spacer height="10px" />
+    <div class="dialog-p"> ▸ {{ 'games.timer' | translate }} + 1 {{ 'games.second' | translate }}</div>
     <div class="dialog-p"> ▸ Score + 5</div>
     <hr class="dialog-hr">
-    <div class="dialog-p"><b>For each wrong answer</b></div>
-    <div class="dialog-p"> ▸ Timer - 2 seconds</div>
+    <div class="dialog-p"><b>{{ 'message.wrong-answer' | translate }}</b></div>
+    <app-spacer height="10px" />
+    <div class="dialog-p"> ▸ {{ 'games.timer' | translate }} - 2 {{ 'games.seconds' | translate }}</div>
     <div class="dialog-p"> ▸ Score - 6</div>
   </div>
 </app-dialog>

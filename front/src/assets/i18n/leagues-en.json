@@ -1,0 +1,23 @@
+{
+    "leagues": {
+        "wood": "Wood",
+        "stone": "Stone",
+        "bronze": "Bronze",
+        "silver": "Silver",
+        "crystal": "Crystal",
+        "elite": "Elite",
+        "champion": "Champion",
+        "legend": "Legend",
+        "wood-league": "Wood League",
+        "stone-league": "Stone League",
+        "bronze-league": "Bronze League",
+        "silver-league": "Silver League",
+        "crytsal-league": "Crystal League",
+        "elite-league": "Elite League",
+        "champion-league": "Champions League",
+        "legend-league": "Legend League",
+        "holding-ground": "Holding Ground",
+        "ready-for-promotion": "Ready for promotion",
+        "promotion-treshold": "Promotion treshold"
+    }
+}
