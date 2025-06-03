@@ -32,7 +32,7 @@
                 <p class="tag" (click)="goToArtist(artist.businessId)">{{ artist.name }}</p>
                 }
             </div>
-            <hr *ngIf="moodsFlow()?.mood?.relatedModels.length && moodsFlow()?.mood?.relatedArtists.length">
+            <hr *ngIf="moodsFlow()?.mood?.relatedModels.length">
             <div class="related-tags">
                 @for (model of moodsFlow()?.mood?.relatedModels; track $index) {
                 <p class="tag" (click)="goToModel(model.businessId)">{{ model.pseudonym }}</p>

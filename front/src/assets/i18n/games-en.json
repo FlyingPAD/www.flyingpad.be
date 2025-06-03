@@ -1,0 +1,29 @@
+{
+    "games": {
+        "games": "Games",
+        "start-game": "Start Game",
+        "rules": "Rules",
+        "new-game": "New Game",
+        "timer": "Timer",
+        "seconds": "Seconds",
+        "second": "Second"
+    },
+    "notes": {
+        "bass-clef": "Bass Clef",
+        "treble-clef": "Treble Clef",
+        "alto-clef": "Alto Clef"
+    },
+    "message": {
+        "select-a-clef": "Select a Clef",
+        "get-ready": "Get Ready !",
+        "correct-answer": "For each correct answer",
+        "wrong-answer": "For each wrong answer",
+        "objective": "Score as much as you can before time's up !",
+        "must-select-clef": "You must select a clef first !",
+        "congratulations": "Congratulations !",
+        "total-run": "Total Run",
+        "lets-go": "Let's Go !",
+        "correct": "Yeah ! Keep going !",
+        "wrong": "Oops ! Try again !"
+    }
+}

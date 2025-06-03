@@ -1,7 +1,3 @@
-import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY, RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { TokenInterceptor } from './interceptors/token.interceptor';
-
 import { APP_INITIALIZER, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -14,9 +10,22 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 
+import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY, RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+import { HTTP_INTERCEPTORS, HttpBackend, HttpClient, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+
 import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -34,10 +43,7 @@ import { NotesTradComponent } from './features/scripts/notes-trad/notes-trad.com
 import { NotesComponent } from './features/scripts/notes/notes.component';
 import { PulsationComponent } from './features/scripts/pulsation/pulsation.component';
 import { ScalesComponent } from './features/scripts/scales/scales.component';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { NgxPaginationModule } from 'ngx-pagination';
+
 import { ButtonBackComponent } from './components/button-back/button-back.component';
 import { ButtonTopComponent } from './components/button-top/button-top.component';
 import { CurrentTimeComponent } from './components/current-time/current-time.component';
@@ -95,8 +101,6 @@ import { CreateMediumComponent } from './features/franchises/create-medium/creat
 import { DeleteMediumComponent } from './features/franchises/delete-medium/delete-medium.component';
 import { EditMediumComponent } from './features/franchises/edit-medium/edit-medium.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { FormatRatioPipe } from './pipes/format-ratio.pipe';
@@ -236,7 +240,6 @@ import { BottomIconShuffleComponent } from './components/bottom-bar-icons/bottom
 import { BottomIconRandomMoodComponent } from './components/bottom-bar-icons/bottom-icon-random-mood/bottom-icon-random-mood.component';
 import { BottomIconDashboardEditionComponent } from './components/bottom-bar-icons/bottom-icon-dashboard-edition/bottom-icon-dashboard-edition.component';
 import { BottomIconDashboardStatusComponent } from './components/bottom-bar-icons/bottom-icon-dashboard-status/bottom-icon-dashboard-status.component';
-import { BottomIconDashboardAchievementsComponent } from './components/bottom-bar-icons/bottom-icon-dashboard-achievements/bottom-icon-dashboard-achievements.component';
 import { BottomIconDashboardAccountComponent } from './components/bottom-bar-icons/bottom-icon-dashboard-account/bottom-icon-dashboard-account.component';
 import { ChordWriterComponent } from './features/tools/chord-writer/chord-writer.component';
 import { SongWriterComponent } from './features/tools/song-writer/song-writer.component';
@@ -269,13 +272,16 @@ import { NotificationComponent } from './components/notification/notification.co
 import { MoodManagerComponent } from './pages/mood-manager/mood-manager.component';
 
 
-export function HttpLoaderFactory(http: HttpClient) {
+export function HttpLoaderFactory(httpBackend: HttpBackend) {
   const version = environment.translationVersion
-  return new TranslateHttpLoader(
-    http,
-    './assets/i18n/',
-    `.json?v=${version}`
-  )
+  const suffix = `.json?v=${version}`
+
+  return new MultiTranslateHttpLoader(httpBackend, [
+    { prefix: './assets/i18n/common-', suffix },
+    { prefix: './assets/i18n/games-', suffix },
+    { prefix: './assets/i18n/leagues-', suffix },
+    { prefix: './assets/i18n/seasons-', suffix },
+  ])
 }
 
 export function appInitializerFactory(translate: TranslateService) {
@@ -542,7 +548,6 @@ export function appInitializerFactory(translate: TranslateService) {
     BottomIconRandomMoodComponent,
     BottomIconDashboardEditionComponent,
     BottomIconDashboardStatusComponent,
-    BottomIconDashboardAchievementsComponent,
     BottomIconDashboardAccountComponent,
     BottomToggleMoodSizeComponent,
     BottomToggleMoodInfoComponent,
@@ -584,20 +589,22 @@ export function appInitializerFactory(translate: TranslateService) {
     ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule,
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+        deps: [HttpBackend]
       }
     }),
+
     DragDropModule,
     OverlayModule,
     PortalModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializerFactory, deps: [TranslateService], multi: true },
-    [CookieService],
+    CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: environment.recaptchaSiteKeyV3 }

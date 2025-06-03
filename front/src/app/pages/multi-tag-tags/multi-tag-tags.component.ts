@@ -123,7 +123,7 @@ export class MultiTagTagsComponent implements OnInit, OnDestroy {
   onKeyPress(event: KeyboardEvent): void {
     switch (event.key) {
       case 'Backspace':
-        this.#router.navigateByUrl('/moods/multi-tag')
+        this.#router.navigateByUrl('/moods/mood-manager')
         break
     }
     switch (event.key) {

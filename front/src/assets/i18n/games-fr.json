@@ -1,0 +1,29 @@
+{
+    "games": {
+        "games": "Jeux",
+        "start-game": "Commencer",
+        "rules": "Règles du Jeu",
+        "new-game": "Nouvelle Partie",
+        "timer": "Chronomètre",
+        "seconds": "Secondes",
+        "second": "Seconde"
+    },
+    "notes": {
+        "bass-clef": "Clé de Fa",
+        "treble-clef": "Clé de Sol",
+        "alto-clef": "Clé d'UT 3"
+    },
+    "message": {
+        "select-a-clef": "Choisissez une Clé",
+        "get-ready": "Préparez-vous !",
+        "correct-answer": "Pour chaque bonne réponse",
+        "wrong-answer": "Pour chaque mauvaise réponse",
+        "objective": "Marquez un max avant la fin du temps !",
+        "must-select-clef": "Vous devez d'abord choisir une clé !",
+        "congratulations": "Félicitations !",
+        "total-run": "Durée totale",
+        "lets-go": "C'est parti !",
+        "correct": "Super !!",
+        "wrong": "Raté !"
+    }
+}

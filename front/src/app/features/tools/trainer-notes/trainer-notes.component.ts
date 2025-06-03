@@ -15,6 +15,7 @@ import { AchievementCode } from '../../../types/AchievementCode';
 import { AchievementNotifierService } from '../../../services/achievement-notifier.service';
 import { LanguageService } from '../../../services/user-interface/language.service';
 import { SupportedLanguages } from '../../../enumerations/supported-languages';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-trainer-notes',
@@ -30,6 +31,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
   #dashboardService = inject(DashboardService)
   #authService = inject(AuthenticationService)
   #notifier = inject(AchievementNotifierService)
+  #translateService = inject(TranslateService)
 
   private destroy$ = new Subject<void>()
   private intervalId?: number
@@ -51,7 +53,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
   public clefTreble = false;
 
   // ─── UI ────────────────────────────────────────────────────
-  public message = 'Get Ready !';
+  public message = this.#translateService.instant('message.get-ready')
   public info = false;
   public scoreboard = false;
   public naming = false;
@@ -89,7 +91,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
   // ─── Démarrage / reset ───────────────────────────────────────
   public start(): void {
     if (!this.clefBass && !this.clefAlto && !this.clefTreble) {
-      this.message = 'You must select a clef first !';
+      this.message = this.#translateService.instant('message.must-select-clef')
       return;
     }
     this.reset();
@@ -97,7 +99,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
     this.initializeNotes();
     this.generateRandomNote();
     this.timerStart();
-    this.message = "Let's Go !";
+    this.message = this.#translateService.instant('message.lets-go')
   }
 
   public reset(): void {
@@ -109,7 +111,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
     this.randomNote = new NoteTrainer();
     this.previousRandomNote = new NoteTrainer();
     this.userNote = new NoteTrainer();
-    this.message = 'Get Ready !';
+    this.message = this.#translateService.instant('message.get-ready')
     this.info = false;
     this.naming = false;
   }
@@ -142,7 +144,7 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
   private onGameEnd(): void {
     this.gameEnd = true;
     this.timerStop();
-    this.message = this.score > 0 ? 'Congratulations !' : '…';
+    this.message = this.score > 0 ? this.#translateService.instant('message.congratulations') : '…';
 
     if (!this.#authService.isConnected()) return;
 
@@ -174,9 +176,8 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
           next: () => this.afterUnlock(toUnlock),
           error: err => console.error('Erreur unlock achievements', err)
         });
-    } else {
-      this.afterUnlock([]);
-    }
+    } 
+    else this.afterUnlock([])
   }
 
   // ─── Appelé après le batch d’unlock ─────────────────────────
@@ -219,11 +220,12 @@ export class TrainerNotesComponent implements OnInit, OnDestroy {
 
   private checkNote(): void {
     if (this.userNote.name === this.randomNote.name) {
-      this.timer++; this.score += 5; this.message = 'Yeah ! Keep Going !';
-    } else {
+      this.timer++; this.score += 5; this.message = this.#translateService.instant('message.correct')
+    } 
+    else {
       this.timer = Math.max(0, this.timer - 2);
       this.score -= 6;
-      this.message = `Wrong !! It was ${this.previousRandomNote.name} !!`;
+      this.message = this.#translateService.instant('message.wrong')
     }
   }
 

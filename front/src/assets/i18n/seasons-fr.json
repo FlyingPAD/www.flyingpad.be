@@ -1,0 +1,10 @@
+{
+    "seasons": {
+        "days-left": "jours restants",
+        "period": "Période",
+        "from": "du",
+        "to": "au",
+        "days": "jours",
+        "left": "restants"
+    }
+}
