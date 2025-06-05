@@ -8,29 +8,30 @@
                 [appScrollActive]="currentMood?.businessId === mood.businessId"
                 src="{{environment}}/Content/img_thumbs/{{mood.businessId}}.{{mood.extension}}"
                 (click)="handleSetMood(mood.businessId)" />
+            <div class="mood-title">{{mood?.name}}</div>
             }
             @if(mood.type == 2) {
             <img [class.active]="currentMood?.businessId === mood.businessId"
                 [appScrollActive]="currentMood?.businessId === mood.businessId" class="vid"
                 src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
                 (click)="handleSetMood(mood.businessId)" />
+            <div class="mood-title">{{mood?.name}}</div>
             }
             @if(mood.type == 3) {
-            <img [class.active]="currentMood?.businessId === mood.businessId"
-                [appScrollActive]="currentMood?.businessId === mood.businessId"
-                src="{{environment}}/Content/txt_thumbs/{{mood.businessId}}.jpg"
-                (click)="handleSetMood(mood.businessId)" />
+
             }
             @if(mood.type == 4) {
             <img class="youtube" [class.active]="currentMood?.businessId === mood.businessId"
                 [appScrollActive]="currentMood?.businessId === mood.businessId"
                 [src]="'https://img.youtube.com/vi/' + mood.url + '/hqdefault.jpg'"
                 (click)="handleSetMood(mood.businessId)" />
+            <div class="mood-title">{{mood?.name}}</div>
             }
             @if(mood.type == 5) {
             <img class="soundcloud" [class.active]="currentMood?.businessId === mood.businessId"
                 [appScrollActive]="currentMood?.businessId === mood.businessId" [src]="mood.thumbnailUrl"
                 (click)="handleSetMood(mood.businessId)" />
+            <div class="mood-title">{{mood?.name}}</div>
             }
         </section>
     </div>
@@ -76,7 +77,8 @@
     }
     @if(currentMood.type === 4) {
     <div class="type-4">
-        <iframe [src]="safeYouTubeUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+        <iframe [src]="safeYouTubeUrl" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
         </iframe>
     </div>

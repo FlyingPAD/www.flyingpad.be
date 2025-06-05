@@ -36,7 +36,7 @@
         @if(filterLinks()?.length) {
             <div class="edition-list">
                 <div *ngFor="let link of filterLinks() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage}">
-                    <a [class.active]="link.name === linksFlow()?.link?.name" (click)="setLinkId(link.businessId)"> ▸ {{link.name}}</a>
+                    <a [class.active]="link.name === linksFlow()?.link?.name" (click)="setLinkId(link.businessId)"><span>{{link.description}}</span> ▸ {{link.name}}</a>
                 </div>
             </div>
         }
