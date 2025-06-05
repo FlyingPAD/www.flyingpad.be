@@ -32,7 +32,7 @@
             box-sizing: border-box;
             width: 100%;
             border: 10px solid rgba(255, 255, 255, 0);
-            border-radius: 30px;
+            border-radius: 25px;
             display: block;
         }
 
@@ -92,10 +92,27 @@
             transition: opacity 0.25s ease-in-out;
             pointer-events: none;
         }
+
+        @media (max-width: 550px) {
+            .mood-title {
+                opacity: 1;
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+                transition: opacity 0.25s ease-in-out;
+            }
+        }
     }
 
     section:hover .mood-title {
         opacity: 1;
+    }
+
+    @media (max-width: 550px) {
+        section:hover .mood-title {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            transition: opacity 0.25s ease-in-out;
+        }
     }
 }
 
