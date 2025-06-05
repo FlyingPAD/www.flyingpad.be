@@ -79,7 +79,10 @@
         margin-top: 15px;
 
         a {
+            position: relative;
             display: block;
+
+            height: 30px;
 
             margin: 8px;
             padding: 8px;
@@ -92,13 +95,22 @@
             text-decoration: none;
             font-size: 14px;
             line-height: 20px;
+            text-shadow: 1px 0 0 var(--colorBlackOpacity1);
 
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
 
             z-index: 0;
-            transition-duration: 350ms;
+            transition-duration: 250ms;
+
+            span {
+                position: absolute;
+                top: 25px;
+                left: 15px;
+                font-size: 11px;
+                color: var(--colorMainOpacity7);
+            }
         }
 
         a:hover:not(.active) {
@@ -112,6 +124,10 @@
             background-color: var(--colorMain);
             border: 1px solid var(--colorMain);
             color: var(--colorWhite);
+
+            span {
+                color: var(--colorWhiteOpacity7);
+            }
         }
     }
 
