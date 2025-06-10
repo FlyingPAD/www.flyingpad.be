@@ -13,11 +13,13 @@ export interface Note {
 })
 export class GuitarTunerComponent implements OnInit, OnDestroy {
   #toastr = inject(ToastrService)
+
   private audioContext: AudioContext
   private analyser: AnalyserNode
   private dataArray: Float32Array
   private bufferLength: number
   private streamSource: MediaStreamAudioSourceNode | null = null
+
   currentFrequency: number = 0
   frequencyDifference: number = 0
   targetNote: Note | null = null
@@ -140,7 +142,7 @@ export class GuitarTunerComponent implements OnInit, OnDestroy {
       this.updatePitch()
     }
     catch (error) {
-      this.#toastr.error(`Failed to access microphone : ${error}`)
+      this.#toastr.warning(`You need to allow microphone access to use the tuner.`, 'Microphone Access Denied')
     }
   }
 

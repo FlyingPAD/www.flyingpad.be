@@ -34,7 +34,7 @@ import { LayoutEmptyComponent } from './layouts/layout-empty/layout-empty.compon
 import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circle-of-fifths.component';
 import { DiapasonComponent } from './features/tools/diapason/diapason.component';
 import { FlyingKeysMiniComponent } from './features/tools/flying-keys-mini/flying-keys-mini.component';
-import { TrainerNotesComponent } from './features/tools/trainer-notes/trainer-notes.component';
+import { TrainerNotesComponent } from './features/games/trainer-notes/trainer-notes.component';
 import { ChordsComponent } from './features/scripts/chords/chords.component';
 import { IntervalsComponent } from './features/scripts/intervals/intervals.component';
 import { KeyRefComponent } from './features/scripts/key-ref/key-ref.component';
@@ -270,6 +270,8 @@ import { LeagueEliteComponent } from './icons-svg/leagues/league-elite/league-el
 import { LeagueLegendComponent } from './icons-svg/leagues/league-legend/league-legend.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { MoodManagerComponent } from './pages/mood-manager/mood-manager.component';
+import { GamesComponent } from './pages/games/games.component';
+import { IconGamesComponent } from './icons-svg/menu/icon-games/icon-games.component';
 
 
 export function HttpLoaderFactory(httpBackend: HttpBackend) {
@@ -454,7 +456,6 @@ export function appInitializerFactory(translate: TranslateService) {
     CircleOfFifthsComponent,
     DiapasonComponent,
     FlyingKeysMiniComponent,
-    TrainerNotesComponent,
     GuitarTunerComponent,
     TimelineComponent,
     MetronomeComponent,
@@ -462,6 +463,8 @@ export function appInitializerFactory(translate: TranslateService) {
     SongWriterComponent,
     SongWriterTestComponent,
     PrototypeComponent,
+    // Games
+    TrainerNotesComponent,
     // SVG Icons.
     IconStarComponent,
     IconEditComponent,
@@ -562,7 +565,9 @@ export function appInitializerFactory(translate: TranslateService) {
     LeagueEliteComponent,
     LeagueLegendComponent,
 
-    NotificationComponent
+    NotificationComponent,
+      GamesComponent,
+      IconGamesComponent
   ],
   imports: [
     RecaptchaModule,

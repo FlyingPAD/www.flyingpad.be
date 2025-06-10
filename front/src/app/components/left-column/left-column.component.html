@@ -32,6 +32,10 @@
                 <app-icon-tools class="svg-icon" size="25px" />
                 <p>{{ 'title.tools' | translate }}</p>
             </a>
+            <a routerLink="/games" routerLinkActive="active" (click)="handleMenuMobile()">
+                <app-icon-games class="svg-icon" size="25px" />
+                <p>{{ 'games.games' | translate }}</p>
+            </a>
             <a routerLink="/links" routerLinkActive="active" (click)="handleMenuMobile()">
                 <app-icon-link class="svg-icon" size="25px" />
                 <p>{{ 'title.links' | translate }}</p>

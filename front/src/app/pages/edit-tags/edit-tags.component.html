@@ -36,9 +36,7 @@
             </div>
             <div class="edition-list">
                 <div *ngFor="let tag of filterTags() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage}">
-                    <a [class.active]="tag.businessId === tagsFlow()?.tag?.businessId" (click)="setTagId(tag.businessId)"> ▸
-                        {{ tag.name }}
-                    </a>
+                    <a [class.active]="tag.businessId === tagsFlow()?.tag?.businessId" (click)="setTagId(tag.businessId)"><span>{{ tag.description }}</span> ▸ {{ tag.name }}</a>
                 </div>
             </div>
         }

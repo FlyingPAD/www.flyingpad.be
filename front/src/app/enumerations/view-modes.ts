@@ -13,7 +13,6 @@ export enum ToolsViewMode {
     TimeLine = 'timeline',
     Diapason = 'diapason',
     Keyboard = 'keyboard',
-    NotesTrainer = 'notes-trainer',
     ChordWriter = 'chord-writer'
 }
 
