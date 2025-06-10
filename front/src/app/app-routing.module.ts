@@ -39,6 +39,14 @@ import { UserLeagueComponent } from './pages/user-league/user-league.component';
 import { UserProfilePublicComponent } from './pages/user-profile-public/user-profile-public.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { MoodManagerComponent } from './pages/mood-manager/mood-manager.component';
+import { GamesComponent } from './pages/games/games.component';
+import { TrainerNotesComponent } from './features/games/trainer-notes/trainer-notes.component';
+import { CircleOfFifthsComponent } from './features/tools/circle-of-fifths/circle-of-fifths.component';
+import { ChordWheelComponent } from './features/tools/chord-wheel/chord-wheel.component';
+import { DiapasonComponent } from './features/tools/diapason/diapason.component';
+import { MetronomeComponent } from './features/tools/metronome/metronome.component';
+import { FlyingKeysMiniComponent } from './features/tools/flying-keys-mini/flying-keys-mini.component';
+import { GuitarTunerComponent } from './features/tools/guitar-tuner/guitar-tuner.component';
 
 const routes: Routes = [
   // Layout ' Home '.
@@ -80,6 +88,14 @@ const routes: Routes = [
     path: '', component: LayoutToolsComponent, children: [
       { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard], title: 'Flying PAD | Dashboard' },
       { path: 'tools', component: ToolsComponent, title: 'Flying PAD | Tools' },
+      { path: 'tools/circle-of-fifths', component: CircleOfFifthsComponent, title: 'Flying PAD | Circle of Fifths' },
+      { path: 'tools/chord-wheel', component: ChordWheelComponent, title: 'Flying PAD | Chord Wheel' },
+      { path: 'tools/diapason', component: DiapasonComponent, title: 'Flying PAD | Diapason' },
+      { path: 'tools/metronome', component: MetronomeComponent, title: 'Flying PAD | Metronome' },
+      { path: 'tools/mini-keyboard', component: FlyingKeysMiniComponent, title: 'Flying PAD | Mini Keyboard' },
+      { path: 'tools/guitar-tuner', component: GuitarTunerComponent, title: 'Flying PAD | Guitar Tuner' },
+      { path: 'games', component: GamesComponent, title: 'Flying PAD | Games' },
+      { path: 'games/notes-master', component: TrainerNotesComponent, title: 'Flying PAD | Notes Master' },
       { path: 'scripts', component: ScriptsComponent, title: 'Flying PAD | Scripts' },
       { path: 'links', component: LinksComponent, title: 'Flying PAD | Links Gallery' },
       { path: 'links/edition', component: EditLinksComponent, title: 'Flying PAD | Edit Links' },

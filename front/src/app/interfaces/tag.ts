@@ -13,6 +13,7 @@ export interface TagsCheckBoxesList {
 export interface TagLight {
     businessId: number
     name: string
+    description: string
 }
 export interface TagLightWithCheckBox extends TagLight {
     isChecked: boolean
