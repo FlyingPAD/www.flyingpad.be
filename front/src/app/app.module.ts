@@ -272,6 +272,8 @@ import { NotificationComponent } from './components/notification/notification.co
 import { MoodManagerComponent } from './pages/mood-manager/mood-manager.component';
 import { GamesComponent } from './pages/games/games.component';
 import { IconGamesComponent } from './icons-svg/menu/icon-games/icon-games.component';
+import { UserLevelComponent } from './pages/user-level/user-level.component';
+import { UserScoreComponent } from './pages/user-score/user-score.component';
 
 
 export function HttpLoaderFactory(httpBackend: HttpBackend) {
@@ -340,6 +342,7 @@ export function appInitializerFactory(translate: TranslateService) {
     LinksComponent,
     CreateMoodImageComponent,
     CreateMoodVideoComponent,
+    GamesComponent,
     MoodManagerComponent,
     MultiTagArtistsComponent,
     MultiTagModelsComponent,
@@ -356,6 +359,8 @@ export function appInitializerFactory(translate: TranslateService) {
     LadderComponent,
     UserProfilePublicComponent,
     UserLeagueComponent,
+    UserLevelComponent,
+    UserScoreComponent,
     // Components.
     AppComponent,
     CurrentTimeComponent,
@@ -377,6 +382,7 @@ export function appInitializerFactory(translate: TranslateService) {
     LanguageMenuHomeComponent,
     SpacerComponent,
     RightColumnGenericListComponent,
+    NotificationComponent,
     // => Features :
     // Dashboard.
     StatusComponent,
@@ -502,6 +508,7 @@ export function appInitializerFactory(translate: TranslateService) {
     IconPlayShuffleComponent,
     IconSaveComponent,
     IconMenuRightComponent,
+    IconGamesComponent,
     // Tools Icons
     IconWheelComponent,
     IconDiapasonComponent,
@@ -563,11 +570,7 @@ export function appInitializerFactory(translate: TranslateService) {
     LeagueCrystalComponent,
     LeagueChampionComponent,
     LeagueEliteComponent,
-    LeagueLegendComponent,
-
-    NotificationComponent,
-      GamesComponent,
-      IconGamesComponent
+    LeagueLegendComponent
   ],
   imports: [
     RecaptchaModule,

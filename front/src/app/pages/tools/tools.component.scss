@@ -27,7 +27,8 @@
             border-radius: 10px;
             box-shadow: 0 3px 4px 0px var(--colorMainOpacity3);
 
-            margin: 25px; margin-bottom: 10px;
+            margin: 25px;
+            margin-bottom: 10px;
 
             img {
                 height: 85%;
@@ -63,6 +64,7 @@
         }
     }
 }
+
 @media (max-width: 768px) {
     .tools-icons {
         width: 100%;

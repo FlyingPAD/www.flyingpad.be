@@ -78,7 +78,11 @@
     "league": "Ligue",
     "title": "Titre",
     "name": "Nom",
-    "leaderboard": "Classement"
+    "leaderboard": "Classement",
+    "gallery": "Galerie",
+    "tags": "Mots-clés",
+    "music-theory": "Théorie Musicale",
+    "level-treshold": "Seuil de Niveau"
   },
   "message": {
     "404": "La page n'a pas été trouvée.",

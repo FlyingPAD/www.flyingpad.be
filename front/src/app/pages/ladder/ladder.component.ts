@@ -103,16 +103,28 @@ export class LadderComponent implements OnInit, OnDestroy {
 
   private groupEntries(): void {
     const map = new Map<string, LeaderboardEntry[]>();
+
     for (const e of this.entries) {
       if (!map.has(e.leagueName)) {
-        map.set(e.leagueName, [])
+        map.set(e.leagueName, []);
       }
-      map.get(e.leagueName)!.push(e)
+      map.get(e.leagueName)!.push(e);
     }
-    this.entriesByLeague = Array.from(map.entries()).map(([leagueName, list]) => ({
-      leagueName,
-      entries: list.sort((a, b) => b.seasonScore - a.seasonScore)
-    }))
+
+    const leagueOrder = ['Legend', 'Champion', 'Elite', 'Crystal', 'Silver', 'Bronze', 'Stone', 'Wood'];
+
+    const sortedEntries = leagueOrder.map(leagueName => {
+      const entriesForLeague = map.get(leagueName);
+      if (entriesForLeague) {
+        return {
+          leagueName,
+          entries: entriesForLeague.sort((a, b) => b.seasonScore - a.seasonScore)
+        };
+      }
+      return null;
+    }).filter(group => group !== null);
+
+    this.entriesByLeague = sortedEntries as { leagueName: string, entries: LeaderboardEntry[] }[];
   }
 
   public goToUserProfile(userId: number): void {

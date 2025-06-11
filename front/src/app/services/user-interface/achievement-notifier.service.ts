@@ -3,9 +3,9 @@ import { Subject } from 'rxjs';
 import { concatMap, delay } from 'rxjs/operators';
 import { OverlayService } from './overlay.service';
 import { OverlayConfigService } from './overlay-config.service';
-import { NotificationComponent } from '../components/notification/notification.component';
-import { NewAchievement } from '../interfaces/achievement';
-import { NotificationData } from '../interfaces/notification-data';
+import { NotificationComponent } from '../../components/notification/notification.component';
+import { NewAchievement } from '../../interfaces/achievement';
+import { NotificationData } from '../../interfaces/notification-data';
 
 @Injectable({ providedIn: 'root' })
 export class AchievementNotifierService {

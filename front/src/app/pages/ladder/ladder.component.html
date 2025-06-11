@@ -10,8 +10,12 @@
 </div>
 
 <div class="leaderboard" *ngIf="!loading && !errorMsg">
-  <h1 class="h1">{{ 'title.leaderboard' | translate }}</h1>
-  <p class="p">{{ 'seasons.period' | translate }} {{ 'seasons.from' | translate }} {{ season?.startsAt | date:'dd / MM / yyyy' }} {{ 'seasons.to' | translate }} {{ season?.endsAt | date:'dd / MM / yyyy' }}</p>
+  <div class="super-title">
+    <img src="../../../assets/images-logo/default/logo-2.png">
+    <h1 class="h1">{{ 'title.leaderboard' | translate }}</h1>
+  </div>
+  <hr class="dialog-hr">
+  <p class="p">{{ 'seasons.period' | translate }} {{ 'seasons.from' | translate }} <b>{{ season?.startsAt | date:'dd / MM / yyyy' }}</b> {{ 'seasons.to' | translate }} <b>{{ season?.endsAt | date:'dd / MM / yyyy' }}</b></p>
   <p class="p mini">
     <span *ngIf="remainingDays > 0">{{ remainingDays }} {{ 'seasons.days' | translate }} - </span>    
     {{ remainingHours | number: '2.0' }}:{{ remainingMinutes | number: '2.0' }}:{{ remainingSeconds | number: '2.0' }} 

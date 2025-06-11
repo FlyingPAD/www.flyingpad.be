@@ -1,6 +1,6 @@
 .games-icons {
-    margin: 15px;
-    padding: 15px;
+    width: 500px;
+    margin: auto;
 
     display: flex;
     justify-content: center;
@@ -18,8 +18,8 @@
             justify-content: center;
             align-items: center;
 
-            height: 85px;
-            min-width: 85px;
+            height: 100px;
+            width: 100px;
 
             background-color: var(--colorMainOpacity4);
             border: 3px solid grey;
@@ -27,7 +27,8 @@
             border-radius: 10px;
             box-shadow: 0 3px 4px 0px var(--colorMainOpacity3);
 
-            margin: 15px; margin-bottom: 10px;
+            margin: 25px;
+            margin-bottom: 10px;
 
             img {
                 height: 85%;
@@ -61,5 +62,11 @@
             margin-bottom: 15px;
             color: var(--colorMain);
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .games-icons {
+        width: 100%;
     }
 }

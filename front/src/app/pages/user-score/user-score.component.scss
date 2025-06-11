@@ -1,0 +1,83 @@
+p {
+    color: var(--colorMain);
+}
+
+.leagues {
+    .row-label {
+        display: flex;
+        justify-content: left;
+    }
+
+    .row {
+        height: 50px;
+
+        display: flex;
+        justify-content: left;
+
+        background-color: var(--colorWhiteOpacity1);
+        border: 3px solid var(--colorMainOpacity3);
+        border-radius: 10px;
+
+        margin: 5px;
+    }
+
+    .icon {
+        width: 50px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .name {
+        width: 150px;
+
+        display: flex;
+        align-items: center;
+
+        color: var(--colorMain);
+        font-weight: bold;
+    }
+
+    .treshold {
+        width: 150px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: var(--colorMain);
+        font-weight: bold;
+    }
+}
+
+.label {
+    font-size: 12px;
+}
+
+.supported-games {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .game {
+        background-color: var(--colorWhiteOpacity5);
+        border: 3px solid var(--colorMainOpacity2);
+        border-radius: 10px;
+
+        font-size: 14px;
+        color: var(--colorMain);
+
+        padding: 10px;
+        margin: 3px;
+
+        cursor: pointer;
+    }
+
+    .game:hover {
+        background-color: var(--colorWhite);
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+        border: 3px solid var(--colorMain);
+        transition-duration: 300ms;
+    }
+}

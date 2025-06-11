@@ -3,6 +3,7 @@
         <p [style.fontWeight]="franchisesFlow()?.medium ? 'bold' : 'normal'">{{ franchisesFlow()?.medium?.name || 'Select a category.' }}</p>
         
         <div class="edition-buttons">
+            <app-icon-media class="icon" size="25px" routerLink="/media" />
             <app-icon-list class="icon" [class.active]="currentViewMode === viewModes.ListView" size="25px"
                 (click)="setViewMode(viewModes.ListView)" />
             <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.MediumCreationView"
@@ -72,7 +73,7 @@
     <app-edit-medium [medium]="franchisesFlow()?.medium" (setViewMode)="setViewMode(viewModes.ListView)" />
 }
 
-<app-right-column>
+<app-right-column>   
     <app-right-column-generic-list [items]="franchisesFlow()?.media || []" 
         [selectedItemId]="franchisesFlow()?.medium?.businessId" (setSelectedItemId)="setMediumId($event)" />
 </app-right-column>

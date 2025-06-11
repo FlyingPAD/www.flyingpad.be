@@ -15,11 +15,14 @@ export class UserCardsComponent {
 
   @Input() user!: User
 
+  public currentViewMode = this.#dashboardService.dashboardViewMode
+  public viewModes = DashboardViewMode
+
   public goTo(page: string): void {
     this.#router.navigateByUrl(page)
   }
 
-  public goToAchievements(): void {
-    this.#dashboardService.setDashboardViewMode(DashboardViewMode.Achievements)
+  public setViewMode(mode: DashboardViewMode): void {
+    this.#dashboardService.setDashboardViewMode(mode)
   }
 }
