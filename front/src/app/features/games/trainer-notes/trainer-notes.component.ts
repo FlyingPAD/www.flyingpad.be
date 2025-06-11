@@ -12,7 +12,7 @@ import { getNotesForClef, notesREF } from '../../../data/trainer-notes-data';
 import { Subject } from 'rxjs';
 import { NewAchievement } from '../../../interfaces/achievement';
 import { AchievementCode } from '../../../types/AchievementCode';
-import { AchievementNotifierService } from '../../../services/achievement-notifier.service';
+import { AchievementNotifierService } from '../../../services/user-interface/achievement-notifier.service';
 import { LanguageService } from '../../../services/user-interface/language.service';
 import { SupportedLanguages } from '../../../enumerations/supported-languages';
 import { TranslateService } from '@ngx-translate/core';

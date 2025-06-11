@@ -1,7 +1,10 @@
 .category {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+
+    width: 100%;
+    overflow-x: scroll;
+    scrollbar-width: thin;
 
     margin-bottom: 35px;
 

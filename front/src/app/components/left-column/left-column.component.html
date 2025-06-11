@@ -13,20 +13,20 @@
         </div>
         <div class="menu-elements">
             @if(isUserConnected) {
-                <a routerLink="/dashboard" routerLinkActive="active" (click)="handleMenuMobile()">
-                    <app-icon-user class="svg-icon" size="25px" />
-                    <p>{{ 'title.dashboard' | translate }}</p>
-                </a>
+            <a routerLink="/dashboard" routerLinkActive="active" (click)="handleMenuMobile()">
+                <app-icon-user class="svg-icon" size="25px" />
+                <p>{{ 'title.dashboard' | translate }}</p>
+            </a>
             }
             @if(!isUserConnected) {
-                <a routerLink="/home" routerLinkActive="active" (click)="handleMenuToggle()">
-                    <app-icon-user class="svg-icon" size="25px" />
-                    <p>{{ 'title.home' | translate }}</p>
-                </a>
+            <a routerLink="/home" routerLinkActive="active" (click)="handleMenuToggle()">
+                <app-icon-user class="svg-icon" size="25px" />
+                <p>{{ 'title.home' | translate }}</p>
+            </a>
             }
             <a routerLink="/scripts" routerLinkActive="active" (click)="handleMenuMobile()">
                 <app-icon-script class="svg-icon" size="25px" />
-                <p>Scripts</p>
+                <p>{{ 'title.music-theory' | translate }}</p>
             </a>
             <a routerLink="/tools" routerLinkActive="active" (click)="handleMenuMobile()">
                 <app-icon-tools class="svg-icon" size="25px" />
@@ -42,33 +42,27 @@
             </a>
             <a routerLink="/central-gallery" routerLinkActive="active" (click)="handleMenuToggle()">
                 <app-icon-moods class="svg-icon" size="25px" />
-                <p>Moods</p>
+                <p>{{ 'title.gallery' | translate }}</p>
             </a>
             <a routerLink="/tags" routerLinkActive="active" (click)="handleMenuToggle()">
                 <app-icon-tag class="svg-icon" size="25px" />
-                <p>Tags</p>
+                <p>{{ 'title.tags' | translate }}</p>
             </a>
-            @if(isUserConnected) {
-                <a routerLink="/media" routerLinkActive="active" (click)="handleMenuToggle()">
-                    <app-icon-media class="svg-icon" size="25px" />
-                    <p>Media</p>
-                </a>
-            }
         </div>
     </div>
     <div class="bottom">
         <div class="menu-elements">
             @if(isUserConnected) {
-                <a (click)="handleLogout()" routerLink="/home" (click)="handleMenuToggle()">
-                    <app-icon-logout class="svg-icon" size="25px" />
-                    <p>{{ 'title.logout' | translate }}</p>
-                </a>
+            <a (click)="handleLogout()" routerLink="/home" (click)="handleMenuToggle()">
+                <app-icon-logout class="svg-icon" size="25px" />
+                <p>{{ 'title.logout' | translate }}</p>
+            </a>
             }
             @if(!isUserConnected) {
-                <a routerLink="/log-in" (click)="handleMenuToggle()">
-                    <app-icon-user class="svg-icon" size="25px" />
-                    <p>{{ 'title.log-in' | translate }}</p>
-                </a>
+            <a routerLink="/log-in" (click)="handleMenuToggle()">
+                <app-icon-user class="svg-icon" size="25px" />
+                <p>{{ 'title.log-in' | translate }}</p>
+            </a>
             }
             <a routerLink="/settings" routerLinkActive="active" (click)="handleMenuMobile()">
                 <app-icon-settings class="svg-icon" size="25px" />

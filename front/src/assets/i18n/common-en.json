@@ -78,7 +78,11 @@
         "league": "League",
         "title": "Title",
         "name": "Name",
-        "leaderboard": "Leaderboard"
+        "leaderboard": "Leaderboard",
+        "gallery": "Gallery",
+        "tags": "Tags",
+        "music-theory": "Music Theory",
+        "level-treshold": "Level Treshold"
     },
     "message": {
         "404": "Page was not found.",

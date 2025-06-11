@@ -1,22 +1,22 @@
 <div class="user-cards">
 
-    <div class="user-card">
-        <p class="title">{{ 'title.level' | translate }}</p>
+    <div class="user-card" (click)="setViewMode(viewModes.Achievements)" [class.active]="currentViewMode() === viewModes.Achievements">
+        <p class="title">{{ 'title.achievements' | translate }}</p>
         <div class="icon">
-            <app-icon-statistics class="icon" size="30px" />
+            <app-icon-coin class="icon" size="30px" [colorOuter]="'gold'" />
         </div>
-        <p class="value">{{ user.level }}</p>
+        <p class="value">{{user.achievements.length}}</p>
     </div>
 
-    <div class="user-card">
-        <p class="title">{{ 'title.experience' | translate }}</p>
+    <div class="user-card" (click)="setViewMode(viewModes.Level)" [class.active]="currentViewMode() === viewModes.Level">
+        <p class="title">{{ 'title.level' | translate }} <b>{{ user.level }}</b></p>
         <div class="icon">
             <app-icon-star class="icon" size="30px" />
         </div>
         <p class="value">{{ user.experience }} XP</p>
     </div>
 
-    <div class="user-card">
+    <div class="user-card" (click)="setViewMode(viewModes.Score)" [class.active]="currentViewMode() === viewModes.Score">
         <p class="title">Score</p>
         <div class="icon">
             <app-icon-dollar class="icon" size="30px" />
@@ -46,19 +46,10 @@
         <p class="value" *ngIf="user.league?.name === 'Legend'">{{ 'leagues.legend' | translate }}</p>
     </div>
 
-    <div class="user-card" (click)="goToAchievements()">
-        <p class="title">{{ 'title.achievements' | translate }}</p>
-        <div class="icon">
-            <app-icon-coin class="icon" size="30px" [colorOuter]="'gold'" />
-        </div>
-        <p class="value">{{user.achievements.length}}</p>
-    </div>
-
     <div class="user-card" (click)="goTo('ladder')">
         <p class="title">{{ 'title.leaderboard' | translate }}</p>
         <div class="icon">
             <app-icon-go class="icon" size="30px" />
         </div>
     </div>
-
 </div>

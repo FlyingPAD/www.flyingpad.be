@@ -11,7 +11,7 @@
     scrollbar-color: var(--colorMain) transparent;
 
     .user-card {
-        width: 75px;
+        width: 70px;
         height: 80px;
 
         background-color: var(--colorMainOpacity2);
@@ -52,6 +52,11 @@
     }
 
     .user-card:hover {
+        border: 3px solid var(--colorMain);
+        background-color: var(--colorMainOpacity1);
+    }
+
+    .active {
         border: 3px solid var(--colorMain);
         background-color: var(--colorMainOpacity1);
     }

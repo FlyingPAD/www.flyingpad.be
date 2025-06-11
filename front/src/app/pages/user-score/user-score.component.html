@@ -1,0 +1,80 @@
+<div class="main-frame">
+    <p> ▸ Votre <b>score</b> reflète votre cumul de points par période.</p>
+    <p class="label">Une période = 7 jours, du dimanche minuit au dimanche minuit suivant.</p>
+</div>
+
+<div class="main-frame">
+    <p> ▸ Il sera impacté positivement ou négativement au gré de vos parties sur les jeux suivants</p>
+    <hr class="dialog-hr" />
+    <div class="supported-games">
+        <div class="game" routerLink="/games/notes-master">Notes Master</div>
+    </div>
+</div>
+
+<div class="main-frame">
+    <p><u>Au bout de chaque période</u>, votre score sera ré-évalué !</p>
+    <hr class="dialog-hr" />
+    <p> ▸ S'il est <b>supérieur</b> au seuil de promotion de votre ligue</p>
+    <p> - Vous serez promu à la ligue supérieure</p>
+    <p> - Votre score sera réinitialisé à zéro</p>
+    <hr class="dialog-hr" />
+    <p> ▸ S'il est <b>inférieur</b> au seuil de promotion de votre ligue</p>
+    <p> - Votre ligue et votre score resteront inchangés.</p>
+</div>
+
+<div class="main-frame">
+    <div class="leagues">
+        <div class="row-label">
+            <div class="icon"></div>
+            <div class="name label">{{ 'title.league' | translate }}</div>
+            <div class="treshold label">{{ 'leagues.promotion-treshold' | translate }}</div>
+        </div>
+        <div class="row">
+            <div class="icon"><app-league-wood /></div>
+            <div class="name">{{ 'leagues.wood' | translate }}</div>
+            <div class="treshold">100</div>
+        </div>
+        <div class="row">
+            <div class="icon"><app-league-stone /></div>
+            <div class="name">{{ 'leagues.stone' | translate }}</div>
+            <div class="treshold">200</div>
+        </div>
+        <div class="row">
+            <div class="icon"><app-league-bronze /></div>
+            <div class="name">{{ 'leagues.bronze' | translate }}</div>
+            <div class="treshold">300</div>
+        </div>
+        <div class="row">
+            <div class="icon"><app-league-silver /></div>
+            <div class="name">{{ 'leagues.silver' | translate }}</div>
+            <div class="treshold">400</div>
+        </div>
+        <div class="row">
+            <div class="icon"><app-league-crystal /></div>
+            <div class="name">{{ 'leagues.crystal' | translate }}</div>
+            <div class="treshold">500</div>
+        </div>
+        <div class="row">
+            <div class="icon"><app-league-elite /></div>
+            <div class="name">{{ 'leagues.elite' | translate }}</div>
+            <div class="treshold">600</div>
+        </div>
+        <div class="row">
+            <div class="icon"><app-league-champion /></div>
+            <div class="name">{{ 'leagues.champion' | translate }}</div>
+            <div class="treshold">700</div>
+        </div>
+        <div class="row">
+            <div class="icon"><app-league-legend /></div>
+            <div class="name">{{ 'leagues.legend' | translate }}</div>
+            <div class="treshold"><b>-</b></div>
+        </div>
+    </div>
+</div>
+
+<app-spacer />
+
+<app-bottom-bar>
+    <app-bottom-icon-back />
+    <app-bottom-icon-to-top />
+</app-bottom-bar>

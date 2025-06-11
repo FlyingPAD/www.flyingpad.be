@@ -5,21 +5,30 @@
   <app-email-verification />
   }
 
-  @if(viewMode() === viewModes.Status) {
   <app-user-cards [user]="user()" />
+
+  @if(viewMode() === viewModes.Achievements) {
+  <app-achievements />
+  }
+
+  @if(viewMode() === viewModes.Status) {
   <app-status />
   }
 
+  @if(viewMode() === viewModes.Level) {
+  <app-user-level />
+  }
+
+  @if(viewMode() === viewModes.Score) {
+  <app-user-score />
+  }
+  
   @if(viewMode() === viewModes.Edition) {
   <app-dashboard-edition-menu />
   }
 
   @if(viewMode() === viewModes.Account) {
   <app-account />
-  }
-
-  @if(viewMode() === viewModes.Achievements) {
-  <app-achievements />
   }
 
   <!-- <app-banner-pad-station /> -->

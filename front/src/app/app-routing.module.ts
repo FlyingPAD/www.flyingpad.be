@@ -47,6 +47,8 @@ import { DiapasonComponent } from './features/tools/diapason/diapason.component'
 import { MetronomeComponent } from './features/tools/metronome/metronome.component';
 import { FlyingKeysMiniComponent } from './features/tools/flying-keys-mini/flying-keys-mini.component';
 import { GuitarTunerComponent } from './features/tools/guitar-tuner/guitar-tuner.component';
+import { UserLevelComponent } from './pages/user-level/user-level.component';
+import { UserScoreComponent } from './pages/user-score/user-score.component';
 
 const routes: Routes = [
   // Layout ' Home '.
@@ -116,6 +118,8 @@ const routes: Routes = [
       { path: 'confirm-email/:token', component: ConfirmEmailComponent, title: 'Flying PAD | Confirm e-Mail' },
       { path: 'ladder', component: LadderComponent, title: 'Flying PAD | Ladder' },
       { path: 'user-league', component: UserLeagueComponent, title: 'Flying PAD | Ladder' },
+      { path: 'user-level', component: UserLevelComponent, title: 'Flying PAD | Level' },
+      { path: 'user-score', component: UserScoreComponent, title: 'Flying PAD | Score' },
       { path: 'user-profile', component: UserProfilePublicComponent, title: 'Flying PAD | User Profile' },
       { path: 'notes', component: NotesComponent, title: 'Flying PAD | Notes' }
     ]

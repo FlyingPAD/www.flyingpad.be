@@ -19,6 +19,7 @@
   align-items: center;
 
   background: var(--colorMainOpacity9);
+  border: 5px solid var(--colorMain);
   border-radius: 10px;
   
   padding: 25px;
@@ -35,5 +36,5 @@
 
 .icon    { flex-shrink: 0; }
 .text    { margin-left: 12px; }
-.title   { margin: 0; font-size: 16px; font-weight: bold; }
+.title   { margin: 0; font-size: 16px; font-weight: bold; margin-bottom: 10px;}
 .message { margin: 4px 0; font-size: 14px; }

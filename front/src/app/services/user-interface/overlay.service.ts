@@ -3,7 +3,7 @@ import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { merge, EMPTY, Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
-import { OverlayHandle } from '../interfaces/overlay-handle';
+import { OverlayHandle } from '../../interfaces/overlay-handle';
 
 @Injectable({ providedIn: 'root' })
 export class OverlayService {

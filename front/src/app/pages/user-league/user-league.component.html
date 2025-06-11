@@ -1,7 +1,7 @@
 <div class="leaderboard" *ngIf="league">
   <h1 class="h1" *ngIf="league?.leagueName === 'Wood' ">{{ 'leagues.wood-league' | translate }}</h1>
   <h1 class="h1" *ngIf="league?.leagueName === 'Stone' ">{{ 'leagues.stone-league' | translate }}</h1>
-  <h1 class="h1" *ngIf="league?.leagueName === 'Bronze' ">{{ 'leagues.bronze-league' | translate }}e</h1>
+  <h1 class="h1" *ngIf="league?.leagueName === 'Bronze' ">{{ 'leagues.bronze-league' | translate }}</h1>
   <h1 class="h1" *ngIf="league?.leagueName === 'Silver' ">{{ 'leagues.silver-league' | translate }}</h1>
   <h1 class="h1" *ngIf="league?.leagueName === 'Crystal' ">{{ 'leagues.crystal-league' | translate }}</h1>
   <h1 class="h1" *ngIf="league?.leagueName === 'Elite' ">{{ 'leagues.elite-league' | translate }}</h1>
@@ -19,7 +19,7 @@
     <app-league-legend class="icon" *ngIf="league?.leagueName === 'Legend'" />
   </div>
 
-  <p class="p mini">{{ 'leagues.promotion-treshold' | translate }} : {{ league.maxExperience }}</p>
+  <p class="p mini">{{ 'leagues.promotion-treshold' | translate }} : {{ league.maxExperience + 1}}</p>
 
   <div class="main-frame" *ngIf="promotedMembers.length > 0">
     <section>

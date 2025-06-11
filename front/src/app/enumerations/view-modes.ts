@@ -2,7 +2,9 @@ export enum DashboardViewMode {
     Status = 'status',
     Edition = 'edition',
     Account = 'acount',
-    Achievements = 'achievements'
+    Achievements = 'achievements',
+    Level = 'level',
+    Score = 'Score'
 }
 
 export enum ToolsViewMode {
