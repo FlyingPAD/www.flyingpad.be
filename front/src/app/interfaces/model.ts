@@ -5,6 +5,7 @@ export interface ModelLight {
     businessId: number
     pseudonym: string
     gender: string
+    description: string
 }
 export interface ModelCheckBox extends ModelLight {
     isChecked: boolean

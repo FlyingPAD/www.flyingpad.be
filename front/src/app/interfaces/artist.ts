@@ -3,6 +3,7 @@ import { BaseResponse } from "./http/base-response";
 export interface ArtistLight {
     businessId: number
     name: string
+    description: string
 }
 export interface ArtistCheckBox extends ArtistLight {
     isChecked: boolean

@@ -1,13 +1,18 @@
+<div *ngIf="isLoading" class="loading-overlay">
+  <div class="spinner"></div>
+  <p>Loading ...</p>
+</div>
+
 <div class="tools-icons">
     <div class="icon">
         <a [class.active]="currentViewMode() === viewModes.CircleOfFifths" (click)="setToolsViewMode(viewModes.CircleOfFifths)" routerLink="/tools/circle-of-fifths">
-            <img [src]="getImageURL('icons-tools', 'circle-fifths', 'png')" />
+            <img [src]="getImageURL('icons-tools', 'circle-fifths', 'png')" (load)="onImageLoad()" />
         </a>
         <span>Circle of Fifths</span>
     </div>
     <div class="icon">
         <a [class.active]="currentViewMode() === viewModes.ChordWheel" (click)="setToolsViewMode(viewModes.ChordWheel)" routerLink="/tools/chord-wheel">
-            <img [src]="getImageURL('icons-tools', 'chord-wheel', 'png')" />
+            <img [src]="getImageURL('icons-tools', 'chord-wheel', 'png')" (load)="onImageLoad()" />
         </a>
         <span>Chord Wheel</span>
     </div>
@@ -37,7 +42,7 @@
         </div> -->
     <div class="icon">
         <a [class.active]="currentViewMode() === viewModes.GuitarTuner" (click)="setToolsViewMode(viewModes.GuitarTuner)" routerLink="/tools/guitar-tuner">
-            <img [src]="getImageURL('icons-tools', 'guitar-tuner', 'png')" />
+            <img [src]="getImageURL('icons-tools', 'guitar-tuner', 'png')" (load)="onImageLoad()" />
         </a>
         <span>Guitar Tuner</span>
     </div>

@@ -272,8 +272,8 @@ import { NotificationComponent } from './components/notification/notification.co
 import { MoodManagerComponent } from './pages/mood-manager/mood-manager.component';
 import { GamesComponent } from './pages/games/games.component';
 import { IconGamesComponent } from './icons-svg/menu/icon-games/icon-games.component';
-import { UserLevelComponent } from './pages/user-level/user-level.component';
-import { UserScoreComponent } from './pages/user-score/user-score.component';
+import { UserLevelComponent } from './features/dashboard/user-level/user-level.component';
+import { UserScoreComponent } from './features/dashboard/user-score/user-score.component';
 
 
 export function HttpLoaderFactory(httpBackend: HttpBackend) {

@@ -1,7 +1,7 @@
 <div class="games-icons">
     <div class="icon">
         <a routerLink="/games/notes-master">
-            <img [src]="getImageURL('icons-tools', 'notes-trainer', 'png')" />
+            <img [src]="getImageURL('icons-tools', 'notes-trainer', 'png')" (load)="onImageLoad()" />
         </a>
         <span>Notes Trainer</span>
     </div>

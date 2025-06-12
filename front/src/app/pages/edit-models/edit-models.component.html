@@ -19,7 +19,7 @@
 
         <div class="edition-list">
             <div *ngFor="let model of filterModels() | paginate: { itemsPerPage: elementsPerPage, currentPage: displayPage() }">
-                <a [class.active]="model.pseudonym === modelsFlow()?.model?.pseudonym" (click)="setModelId(model.businessId)">▸ {{ model.pseudonym }}</a>
+                <a [class.active]="model.pseudonym === modelsFlow()?.model?.pseudonym" (click)="setModelId(model.businessId)"><span>{{ model.description }}</span> ▸ {{ model.pseudonym }}</a>
             </div>
         </div>
         @if(filterModels().length > elementsPerPage) {
