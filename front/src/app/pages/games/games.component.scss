@@ -70,3 +70,40 @@
         width: 100%;
     }
 }
+
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: var(--colorWhiteOpacity9);
+    backdrop-filter: blur(5px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999;
+
+    transition-duration: 500ms;
+}
+
+.spinner {
+    border: 4px solid var(--colorMainOpacity2);
+    border-top: 4px solid var(--colorMain);
+    border-radius: 50%;
+
+    width: 40px;
+    height: 40px;
+
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+
+    transition-duration: 500ms;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

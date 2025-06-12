@@ -1,13 +1,5 @@
 <div class="user-cards">
 
-    <div class="user-card" (click)="setViewMode(viewModes.Achievements)" [class.active]="currentViewMode() === viewModes.Achievements">
-        <p class="title">{{ 'title.achievements' | translate }}</p>
-        <div class="icon">
-            <app-icon-coin class="icon" size="30px" [colorOuter]="'gold'" />
-        </div>
-        <p class="value">{{user.achievements.length}}</p>
-    </div>
-
     <div class="user-card" (click)="setViewMode(viewModes.Level)" [class.active]="currentViewMode() === viewModes.Level">
         <p class="title">{{ 'title.level' | translate }} <b>{{ user.level }}</b></p>
         <div class="icon">
@@ -22,6 +14,14 @@
             <app-icon-dollar class="icon" size="30px" />
         </div>
         <p class="value">{{ user.seasonScore }}</p>
+    </div>
+
+    <div class="user-card" (click)="setViewMode(viewModes.Achievements)" [class.active]="currentViewMode() === viewModes.Achievements">
+        <p class="title">{{ 'title.achievements' | translate }}</p>
+        <div class="icon">
+            <app-icon-coin class="icon" size="30px" [colorOuter]="'gold'" />
+        </div>
+        <p class="value">{{user.achievements.length}}</p>
     </div>
 
     <div class="user-card" (click)="goTo('user-league')">

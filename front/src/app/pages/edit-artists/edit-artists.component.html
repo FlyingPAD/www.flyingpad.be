@@ -1,28 +1,20 @@
 <div class="edition">
     <div class="edition-selection">
-        <p [style.fontWeight]="artistsFlow()?.style ? 'bold' : 'normal'">
-            {{ artistsFlow()?.style?.name || 'Select a category.' }}
-        </p>
+        <p [style.fontWeight]="artistsFlow()?.style ? 'bold' : 'normal'">{{ artistsFlow()?.style?.name || 'Select a category.' }}</p>
         <div class="edition-buttons">
-            <app-icon-list class="icon" [class.active]="currentViewMode === viewModes.ListView" size="25px"
-                (click)="setViewMode(viewModes.ListView)" />
-            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.StyleCreationView"
-                size="25px" (click)="setViewMode(viewModes.StyleCreationView)" />
+            <app-icon-list class="icon" [class.active]="currentViewMode === viewModes.ListView" size="25px" (click)="setViewMode(viewModes.ListView)" />
+            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.StyleCreationView" size="25px" (click)="setViewMode(viewModes.StyleCreationView)" />
             @if(artistsFlow()?.style) {
-                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.StyleEditionView"
-                    size="25px" (click)="setViewMode(viewModes.StyleEditionView)" />
+                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.StyleEditionView" size="25px" (click)="setViewMode(viewModes.StyleEditionView)" />
             }
         </div>
     </div>
     <div class="edition-selection">
-        <p [style.fontWeight]="artistsFlow()?.artist ? 'bold' : 'normal'">
-            {{artistsFlow()?.artist?.name || 'Please, select an artist from the list.' }}</p>
+        <p [style.fontWeight]="artistsFlow()?.artist ? 'bold' : 'normal'">{{artistsFlow()?.artist?.name || 'Please, select an artist from the list.' }}</p>
         <div class="edition-buttons">
-            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.ArtistCreationView" size="25px"
-                (click)="setViewMode(viewModes.ArtistCreationView)" />
+            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.ArtistCreationView" size="25px" (click)="setViewMode(viewModes.ArtistCreationView)" />
             @if(artistsFlow()?.artist){
-                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.ArtistEditionView" size="25px"
-                    (click)="setViewMode(viewModes.ArtistEditionView)" />
+                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.ArtistEditionView" size="25px" (click)="setViewMode(viewModes.ArtistEditionView)" />
                 <app-icon-go class="icon" size="25px" (click)="go()" />
             }
         </div>
@@ -32,10 +24,8 @@
         <div class="filter"><input type="text" [(ngModel)]="searchArtists" placeholder="Filter artists ..."></div>
         @if(filterArtists()?.length) {
             <div class="edition-list">
-                <div
-                    *ngFor="let artist of filterArtists() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage}">
-                    <a [class.active]="artist.name === artistsFlow()?.artist?.name" (click)="setArtistId(artist.businessId)"> ▸
-                        {{artist.name}}</a>
+                <div *ngFor="let artist of filterArtists() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage}">
+                    <a [class.active]="artist.name === artistsFlow()?.artist?.name" (click)="setArtistId(artist.businessId)"><span>{{artist.description}}</span> ▸ {{artist.name}}</a>
                 </div>
             </div>
         }
@@ -71,8 +61,7 @@
 }
 
 <app-right-column>
-    <app-right-column-generic-list [items]="artistsFlow()?.styles || []" 
-        [selectedItemId]="artistsFlow()?.style?.businessId" (setSelectedItemId)="setStyleId($event)" />
+    <app-right-column-generic-list [items]="artistsFlow()?.styles || []" [selectedItemId]="artistsFlow()?.style?.businessId" (setSelectedItemId)="setStyleId($event)" />
 </app-right-column>
 
 <app-spacer />

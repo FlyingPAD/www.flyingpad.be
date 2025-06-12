@@ -13,6 +13,7 @@
 	  <None Remove="Features\Leagues\Queries\GetLeagueByName\LeagueWithRankingDto.cs~RF340f250.TMP" />
 	  <None Remove="Features\Leagues\Queries\GetLeagueByName\LeagueWithRankingDto.cs~RF362ce48.TMP" />
 	  <None Remove="Features\LinkCategories\Queries\GetLinkCategoriesCheckBoxesByLink\GetLinkCategoriesCheckBoxesByLinkQuery.cs~RF3e81770.TMP" />
+	  <None Remove="Features\Models\Queries\GetAllModels\GetAllModelsQuery.cs~RF38e93e9.TMP" />
 	  <None Remove="Features\Moods\Commands\ApproveMoods\ApproveMoodsCommand.cs~RF367af2f.TMP" />
 	  <None Remove="Features\Moods\Commands\CreateMoodYouTube\CreateMoodYouTubeCommandHandler.cs~RF23969e5.TMP" />
 	  <None Remove="Features\Moods\Commands\UpdateMoodPosition\UpdateMoodPositionCommand.cs~RF3bcd007.TMP" />
