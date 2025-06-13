@@ -15,37 +15,39 @@
     <h1 class="h1">{{ 'title.leaderboard' | translate }}</h1>
   </div>
   <hr class="dialog-hr">
-  <p class="p">{{ 'seasons.period' | translate }} {{ 'seasons.from' | translate }} <b>{{ season?.startsAt | date:'dd / MM / yyyy' }}</b> {{ 'seasons.to' | translate }} <b>{{ season?.endsAt | date:'dd / MM / yyyy' }}</b></p>
+  <p class="p">{{ 'seasons.period' | translate }} {{ 'seasons.from' | translate }} <b>{{ season?.startsAt | date:'dd /
+      MM / yyyy' }}</b> {{ 'seasons.to' | translate }} <b>{{ season?.endsAt | date:'dd / MM / yyyy' }}</b></p>
   <p class="p mini">
-    <span *ngIf="remainingDays > 0">{{ remainingDays }} {{ 'seasons.days' | translate }} - </span>    
-    {{ remainingHours | number: '2.0' }}:{{ remainingMinutes | number: '2.0' }}:{{ remainingSeconds | number: '2.0' }} 
+    <span *ngIf="remainingDays > 0">{{ remainingDays }} {{ 'seasons.days' | translate }} - </span>
+    {{ remainingHours | number: '2.0' }}:{{ remainingMinutes | number: '2.0' }}:{{ remainingSeconds | number: '2.0' }}
     {{ 'seasons.left' | translate }}
   </p>
 
   @for (group of entriesByLeague; track $index) {
-  <div class="main-frame">
-    <div class="league-header">
-      <p class="icon"><app-league-wood *ngIf="group.leagueName === 'Wood'" /></p>
-      <p class="icon"><app-league-stone *ngIf="group.leagueName === 'Stone'" /></p>
-      <p class="icon"><app-league-bronze *ngIf="group.leagueName === 'Bronze'" /></p>
-      <p class="icon"><app-league-silver *ngIf="group.leagueName === 'Silver'" /></p>
-      <p class="icon"><app-league-crystal *ngIf="group.leagueName === 'Crystal'" /></p>
-      <p class="icon"><app-league-elite *ngIf="group.leagueName === 'Elite'" /></p>
-      <p class="icon"><app-league-champion *ngIf="group.leagueName === 'Champion'" /></p>
-      <p class="icon"><app-league-legend *ngIf="group.leagueName === 'Legend'" /></p>
-
-      <p class="league-title" *ngIf="group.leagueName === 'Wood'">{{ 'leagues.wood-league' | translate }}</p>
-      <p class="league-title" *ngIf="group.leagueName === 'Stone'">{{ 'leagues.stone-league' | translate }}</p>
-      <p class="league-title" *ngIf="group.leagueName === 'Bronze'">{{ 'leagues.bronze-league' | translate }}</p>
-      <p class="league-title" *ngIf="group.leagueName === 'Silver'">{{ 'leagues.silver-league' | translate }}</p>
-      <p class="league-title" *ngIf="group.leagueName === 'Crystal'">{{ 'leagues.crystal-league' | translate }}</p>
-      <p class="league-title" *ngIf="group.leagueName === 'Elite'">{{ 'leagues.elite-league' | translate }}</p>
-      <p class="league-title" *ngIf="group.leagueName === 'Champion'">{{ 'leagues.champion-league' | translate }}</p>
-      <p class="league-title" *ngIf="group.leagueName === 'Legend'">{{ 'leagues.legend-league' | translate }}</p>
+  <div class="header" [ngClass]="group.leagueName.toLowerCase()">
+    <div class="header-title">
+      <div clas="icon">
+        <app-league-wood class="icon" *ngIf="group.leagueName === 'Wood'" />
+        <app-league-stone class="icon" *ngIf="group.leagueName === 'Stone'" />
+        <app-league-bronze class="icon" *ngIf="group.leagueName === 'Bronze'" />
+        <app-league-silver class="icon" *ngIf="group.leagueName === 'Silver'" />
+        <app-league-crystal class="icon" *ngIf="group.leagueName === 'Crystal'" />
+        <app-league-elite class="icon" *ngIf="group.leagueName === 'Elite'" />
+        <app-league-champion class="icon" *ngIf="group.leagueName === 'Champion'" />
+        <app-league-legend class="icon" *ngIf="group.leagueName === 'Legend'" />
+      </div>
+      <h1 *ngIf="group.leagueName === 'Wood' ">{{ 'leagues.wood-league' | translate }}</h1>
+      <h1 *ngIf="group.leagueName === 'Stone' ">{{ 'leagues.stone-league' | translate }}</h1>
+      <h1 *ngIf="group.leagueName === 'Bronze' ">{{ 'leagues.bronze-league' | translate }}</h1>
+      <h1 *ngIf="group.leagueName === 'Silver' ">{{ 'leagues.silver-league' | translate }}</h1>
+      <h1 *ngIf="group.leagueName === 'Crystal' ">{{ 'leagues.crystal-league' | translate }}</h1>
+      <h1 *ngIf="group.leagueName === 'Elite' ">{{ 'leagues.elite-league' | translate }}</h1>
+      <h1 *ngIf="group.leagueName === 'Champion' ">{{ 'leagues.champion-league' | translate }}</h1>
+      <h1 *ngIf="group.leagueName === 'Legend' ">{{ 'leagues.legend-league' | translate }}</h1>
     </div>
+  </div>
 
-    <hr class="dialog-hr">
-
+  <div class="main-frame">
     <div class="entry-header">
       <p class="name">{{ 'title.name' | translate }}</p>
       <p class="score">Score</p>
@@ -53,7 +55,8 @@
 
     <div class="entry" *ngFor="let entry of group.entries; let idx = index">
       <p class="position" [ngClass]="{ gold: idx===0, silver: idx===1, bronze: idx===2 }">#{{ idx + 1 }}</p>
-      <p class="user-name" (click)="goToUserProfile(entry.businessId)">{{ entry.userName !== '-' ? entry.userName : '[ Unknown ]' }}</p>
+      <p class="user-name" (click)="goToUserProfile(entry.businessId)">{{ entry.userName !== '-' ? entry.userName : '[
+        Unknown ]' }}</p>
       <p class="score">{{ entry.seasonScore }}</p>
     </div>
   </div>

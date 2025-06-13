@@ -1,0 +1,112 @@
+:host {
+    display: inline-block;
+    text-align: center;
+}
+
+.card-container {
+    width: 120px;
+    height: 120px;
+    perspective: 1000px;
+    position: relative;
+
+    margin: 25px;
+}
+
+.card-face {
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    border: 5px solid var(--colorMainOpacity5);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px var(--colorMainOpacity5);
+    box-sizing: border-box;
+
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+
+    cursor: pointer;
+
+    /* Shorthand qui anime transform ET border-color */
+    transition:
+        transform 0.6s ease,
+        border-color 300ms ease;
+
+    img {
+        width: 80%;
+        height: 80%;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+}
+
+.card-face:hover {
+    border-color: var(--colorMain);
+    box-shadow: 0 3px 5px var(--colorMainOpacity5);
+}
+
+.card-back {
+    transform: rotateY(0deg);
+}
+
+.card-front {
+    transform: rotateY(180deg);
+}
+
+.card-container.flipped .card-back {
+    transform: rotateY(-180deg);
+}
+
+.card-container.flipped .card-front {
+    transform: rotateY(0deg);
+}
+
+.spinner-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+        font-size: 0.8rem;
+        color: var(--colorMain);
+        margin: 0;
+        text-align: center;
+    }
+}
+
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 4px solid var(--colorMainOpacity3);
+    border-top-color: var(--colorMain);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 0.5rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.card-name {
+    position: absolute;
+    width: 100%;
+
+    p {
+        font-size: 0.8rem;
+        color: var(--colorMain);
+        margin-top: 130px;
+        text-align: center;
+    }
+
+    z-index: 1;
+    pointer-events: none;
+}

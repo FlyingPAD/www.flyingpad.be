@@ -1,8 +1,3 @@
-<div class="games-icons">
-    <div class="icon">
-        <a routerLink="/games/notes-master">
-            <img [src]="getImageURL('icons-tools', 'notes-trainer', 'png')" (load)="onImageLoad()" />
-        </a>
-        <span>Notes Trainer</span>
-    </div>
+<div class="game-cards">
+  <app-flip-card [frontImage]="getImageURL('icons-tools','notes-trainer','png')" cardName="Note Master" routerLink="/games/note-master" />
 </div>

@@ -24,7 +24,7 @@
         <p class="value">{{user.achievements.length}}</p>
     </div>
 
-    <div class="user-card" (click)="goTo('user-league')">
+    <div class="user-card" (click)="setViewMode(viewModes.League)">
         <p class="title">{{ 'title.league' | translate }}</p>
         <div class="icon">
             <app-league-wood class="icon" *ngIf="user.league?.name === 'Wood'" />

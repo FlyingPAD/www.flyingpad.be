@@ -35,7 +35,6 @@ import { CreateMoodVideoYoutubeComponent } from './pages/create-mood-video-youtu
 import { CreateMoodAudioSoundcloudComponent } from './pages/create-mood-audio-soundcloud/create-mood-audio-soundcloud.component';
 import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
 import { LadderComponent } from './pages/ladder/ladder.component';
-import { UserLeagueComponent } from './pages/user-league/user-league.component';
 import { UserProfilePublicComponent } from './pages/user-profile-public/user-profile-public.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { MoodManagerComponent } from './pages/mood-manager/mood-manager.component';
@@ -95,7 +94,7 @@ const routes: Routes = [
       { path: 'tools/mini-keyboard', component: FlyingKeysMiniComponent, title: 'Flying PAD | Mini Keyboard' },
       { path: 'tools/guitar-tuner', component: GuitarTunerComponent, title: 'Flying PAD | Guitar Tuner' },
       { path: 'games', component: GamesComponent, title: 'Flying PAD | Games' },
-      { path: 'games/notes-master', component: TrainerNotesComponent, title: 'Flying PAD | Notes Master' },
+      { path: 'games/note-master', component: TrainerNotesComponent, title: 'Flying PAD | Notes Master' },
       { path: 'scripts', component: ScriptsComponent, title: 'Flying PAD | Scripts' },
       { path: 'links', component: LinksComponent, title: 'Flying PAD | Links Gallery' },
       { path: 'links/edition', component: EditLinksComponent, title: 'Flying PAD | Edit Links' },
@@ -115,7 +114,6 @@ const routes: Routes = [
       { path: 'sign-up', component: SignUpComponent, title: 'Flying PAD | Sign up' },
       { path: 'confirm-email/:token', component: ConfirmEmailComponent, title: 'Flying PAD | Confirm e-Mail' },
       { path: 'ladder', component: LadderComponent, title: 'Flying PAD | Ladder' },
-      { path: 'user-league', component: UserLeagueComponent, title: 'Flying PAD | Ladder' },
       { path: 'user-profile', component: UserProfilePublicComponent, title: 'Flying PAD | User Profile' },
       { path: 'notes', component: NotesComponent, title: 'Flying PAD | Notes' }
     ]

@@ -1,109 +1,16 @@
-.games-icons {
-    width: 500px;
-    margin: auto;
+.game-cards {
+  width: 600px;
+  margin: auto;
+  margin-top: 25px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-
-    .icon {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            height: 100px;
-            width: 100px;
-
-            background-color: var(--colorMainOpacity4);
-            border: 3px solid grey;
-
-            border-radius: 10px;
-            box-shadow: 0 3px 4px 0px var(--colorMainOpacity3);
-
-            margin: 25px;
-            margin-bottom: 10px;
-
-            img {
-                height: 85%;
-                opacity: 0.5;
-            }
-        }
-
-        a:hover:not(.active) {
-            background-color: var(--colorMainOpacity1);
-            border: 3px solid var(--colorMain);
-            transition-duration: 300ms;
-            cursor: pointer;
-
-            img {
-                opacity: 1;
-                transition-duration: 300ms;
-            }
-        }
-
-        .active {
-            background-color: var(--colorMainOpacity1);
-            border: 3px solid var(--colorMain);
-
-            img {
-                opacity: 1;
-            }
-        }
-
-        span {
-            font-size: 13px;
-            margin-bottom: 15px;
-            color: var(--colorMain);
-        }
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 768px) {
-    .games-icons {
-        width: 100%;
-    }
-}
-
-.loading-overlay {
-    position: fixed;
-    inset: 0;
-
-    background: var(--colorWhiteOpacity9);
-    backdrop-filter: blur(5px);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    z-index: 999;
-
-    transition-duration: 500ms;
-}
-
-.spinner {
-    border: 4px solid var(--colorMainOpacity2);
-    border-top: 4px solid var(--colorMain);
-    border-radius: 50%;
-
-    width: 40px;
-    height: 40px;
-
-    animation: spin 1s linear infinite;
-    margin-bottom: 10px;
-
-    transition-duration: 500ms;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+  .game-cards {
+    width: 100%;
+  }
 }

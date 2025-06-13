@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { UserService } from '../../services/http/user.service';
-import { LeagueService } from '../../services/http/league.service';
-import { LeagueWithRankingDto, LeagueMemberDto } from '../../interfaces/league';
+import { UserService } from '../../../services/http/user.service';
+import { LeagueService } from '../../../services/http/league.service';
+import { LeagueWithRankingDto, LeagueMemberDto } from '../../../interfaces/league';
 import { Router } from '@angular/router';
 
 @Component({

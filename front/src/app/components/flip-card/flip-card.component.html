@@ -1,0 +1,22 @@
+<div class="card-container" [class.flipped]="flipped">
+    <div class="card-face card-back">
+        <div *ngIf="frontLoading" class="spinner-placeholder">
+            <div class="spinner"></div>
+            <p>Loading…</p>
+        </div>
+    </div>
+
+    <!-- face avant -->
+    <div class="card-face card-front">
+        <ng-container *ngIf="frontImage; else projectedContent">
+            <img [src]="frontImage" alt="{{ cardName }}" (load)="onFrontLoad()" />
+        </ng-container>
+        <ng-template #projectedContent>
+            <ng-content></ng-content>
+        </ng-template>
+    </div>
+
+    <div class="card-name">
+        <p>{{ cardName }}</p>
+    </div>
+</div>

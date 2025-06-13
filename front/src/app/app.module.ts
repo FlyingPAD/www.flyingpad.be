@@ -258,7 +258,7 @@ import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.compo
 import { BannerPadStationComponent } from './features/dashboard/banner-pad-station/banner-pad-station.component';
 import { LadderComponent } from './pages/ladder/ladder.component';
 import { UserCardsComponent } from './features/dashboard/user-cards/user-cards.component';
-import { UserLeagueComponent } from './pages/user-league/user-league.component';
+import { UserLeagueComponent } from './features/dashboard/user-league/user-league.component';
 import { UserProfilePublicComponent } from './pages/user-profile-public/user-profile-public.component';
 import { LeagueWoodComponent } from './icons-svg/leagues/league-wood/league-wood.component';
 import { LeagueStoneComponent } from './icons-svg/leagues/league-stone/league-stone.component';
@@ -274,6 +274,7 @@ import { GamesComponent } from './pages/games/games.component';
 import { IconGamesComponent } from './icons-svg/menu/icon-games/icon-games.component';
 import { UserLevelComponent } from './features/dashboard/user-level/user-level.component';
 import { UserScoreComponent } from './features/dashboard/user-score/user-score.component';
+import { FlipCardComponent } from './components/flip-card/flip-card.component';
 
 
 export function HttpLoaderFactory(httpBackend: HttpBackend) {
@@ -570,7 +571,8 @@ export function appInitializerFactory(translate: TranslateService) {
     LeagueCrystalComponent,
     LeagueChampionComponent,
     LeagueEliteComponent,
-    LeagueLegendComponent
+    LeagueLegendComponent,
+    FlipCardComponent
   ],
   imports: [
     RecaptchaModule,

@@ -1,51 +1,27 @@
-<div *ngIf="isLoading" class="loading-overlay">
-  <div class="spinner"></div>
-  <p>Loading ...</p>
-</div>
+<div class="tool-cards">
+    <app-flip-card [frontImage]="getImageURL('icons-tools','circle-fifths','png')" cardName="Circle of Fifths" routerLink="/tools/circle-of-fifths" />
+    <app-flip-card [frontImage]="getImageURL('icons-tools','chord-wheel','png')" cardName="Chord Wheel" routerLink="/tools/chord-wheel" />
+    <app-flip-card [frontImage]="getImageURL('icons-tools','guitar-tuner','png')" cardName="Guitar Tuner" routerLink="/tools/guitar-tuner" />
 
-<div class="tools-icons">
-    <div class="icon">
-        <a [class.active]="currentViewMode() === viewModes.CircleOfFifths" (click)="setToolsViewMode(viewModes.CircleOfFifths)" routerLink="/tools/circle-of-fifths">
-            <img [src]="getImageURL('icons-tools', 'circle-fifths', 'png')" (load)="onImageLoad()" />
-        </a>
-        <span>Circle of Fifths</span>
-    </div>
-    <div class="icon">
-        <a [class.active]="currentViewMode() === viewModes.ChordWheel" (click)="setToolsViewMode(viewModes.ChordWheel)" routerLink="/tools/chord-wheel">
-            <img [src]="getImageURL('icons-tools', 'chord-wheel', 'png')" (load)="onImageLoad()" />
-        </a>
-        <span>Chord Wheel</span>
-    </div>
-    <div class="icon">
-        <a [class.active]="currentViewMode() === viewModes.Diapason" (click)="setToolsViewMode(viewModes.Diapason)" routerLink="/tools/diapason">
-            <app-icon-diapason size="85px" />
-        </a>
-        <span>Diapason</span>
-    </div>
-    <div class="icon">
-        <a [class.active]="currentViewMode() === viewModes.Metronome" (click)="setToolsViewMode(viewModes.Metronome)" routerLink="/tools/metronome">
-            <app-icon-metronome size="85px" />
-        </a>
-        <span>Metronome</span>
-    </div>
-    <div class="icon">
-        <a [class.active]="currentViewMode() === viewModes.Keyboard" (click)="setToolsViewMode(viewModes.Keyboard)" routerLink="/tools/mini-keyboard">
-            <app-icon-keyboard size="65px" />
-        </a>
-        <span>Keyboard</span>
-    </div>
+    <app-flip-card cardName="Diapason" routerLink="/tools/diapason">
+        <app-icon-diapason size="80px" />
+    </app-flip-card>
+
+    <app-flip-card cardName="Metronome" routerLink="/tools/metronome">
+        <app-icon-metronome size="80px" />
+    </app-flip-card>
+
+    <app-flip-card cardName="Mini Keyboard" routerLink="/tools/mini-keyboard">
+        <app-icon-keyboard size="60px" />
+    </app-flip-card>
+
     <!-- <div class="icon">
             <a [class.active]="currentViewMode() === viewModes.TimeLine" (click)="setToolsViewMode(viewModes.TimeLine)" routerLink="/tools/timeline">
                 <app-icon-timeline size="65px" />
             </a>
             <span>Timeline</span>
         </div> -->
-    <div class="icon">
-        <a [class.active]="currentViewMode() === viewModes.GuitarTuner" (click)="setToolsViewMode(viewModes.GuitarTuner)" routerLink="/tools/guitar-tuner">
-            <img [src]="getImageURL('icons-tools', 'guitar-tuner', 'png')" (load)="onImageLoad()" />
-        </a>
-        <span>Guitar Tuner</span>
-    </div>
+
     <!-- <div class="icon">
             <a [class.active]="currentViewMode() === viewModes.ChordWriter" (click)="setToolsViewMode(viewModes.ChordWriter)" routerLink="/tools/chord-writer">
                 <app-icon-mood size="65px" />
