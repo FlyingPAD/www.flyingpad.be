@@ -1,0 +1,66 @@
+<div class="user-league" *ngIf="league">
+
+  <div class="header" [ngClass]="league.leagueName.toLowerCase()">
+    <div class="header-title">
+      <div clas="icon">
+        <app-league-wood class="icon" *ngIf="league?.leagueName === 'Wood'" />
+        <app-league-stone class="icon" *ngIf="league?.leagueName === 'Stone'" />
+        <app-league-bronze class="icon" *ngIf="league?.leagueName === 'Bronze'" />
+        <app-league-silver class="icon" *ngIf="league?.leagueName === 'Silver'" />
+        <app-league-crystal class="icon" *ngIf="league?.leagueName === 'Crystal'" />
+        <app-league-elite class="icon" *ngIf="league?.leagueName === 'Elite'" />
+        <app-league-champion class="icon" *ngIf="league?.leagueName === 'Champion'" />
+        <app-league-legend class="icon" *ngIf="league?.leagueName === 'Legend'" />
+      </div>
+      <h1 *ngIf="league?.leagueName === 'Wood' ">{{ 'leagues.wood-league' | translate }}</h1>
+      <h1 *ngIf="league?.leagueName === 'Stone' ">{{ 'leagues.stone-league' | translate }}</h1>
+      <h1 *ngIf="league?.leagueName === 'Bronze' ">{{ 'leagues.bronze-league' | translate }}</h1>
+      <h1 *ngIf="league?.leagueName === 'Silver' ">{{ 'leagues.silver-league' | translate }}</h1>
+      <h1 *ngIf="league?.leagueName === 'Crystal' ">{{ 'leagues.crystal-league' | translate }}</h1>
+      <h1 *ngIf="league?.leagueName === 'Elite' ">{{ 'leagues.elite-league' | translate }}</h1>
+      <h1 *ngIf="league?.leagueName === 'Champion' ">{{ 'leagues.champion-league' | translate }}</h1>
+      <h1 *ngIf="league?.leagueName === 'Legend' ">{{ 'leagues.legend-league' | translate }}</h1>
+    </div>
+  </div>
+
+  <p class="promotion-treshold">  ▸ {{ 'leagues.promotion-treshold' | translate }} : <b>{{ league.maxExperience + 1}}</b></p>
+
+  <div class="main-frame" *ngIf="promotedMembers.length > 0">
+    <section>
+      <h2 class="frame-title"> ▸ {{ 'leagues.ready-for-promotion' | translate }}</h2>
+      <hr class="dialog-hr">
+      <div class="entry-header">
+        <p class="name">{{ 'title.name' | translate }}</p>
+        <p class="score">Score</p>
+      </div>
+      <div class="entry" *ngFor="let member of promotedMembers; let idx = index">
+        <p class="position" [ngClass]="{ gold: idx === 0, silver: idx === 1, bronze: idx === 2 }">#{{ idx + 1 }}</p>
+        <p class="user-name" (click)="goToUserProfile(member.businessId)">{{ member.userName }}</p>
+        <p class="score">{{ member.seasonScore }}</p>
+      </div>
+    </section>
+  </div>
+  
+  <div class="main-frame" *ngIf="stayingMembers.length > 0">
+    <section>
+      <h2 class="frame-title"> ▸ {{ 'leagues.holding-ground' | translate }}</h2>
+      <hr class="dialog-hr">
+      <div class="entry-header">
+        <p class="name">{{ 'title.name' | translate }}</p>
+        <p class="score">Score</p>
+      </div>
+      <div class="entry" *ngFor="let member of stayingMembers; let idx = index">
+        <p class="position" [ngClass]="{ gold: idx === 0, silver: idx === 1, bronze: idx === 2 }">#{{ idx + 1 }}</p>
+        <p class="user-name" (click)="goToUserProfile(member.businessId)">{{ member.userName }}</p>
+        <p class="score">{{ member.seasonScore }}</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<app-spacer />
+
+<app-bottom-bar>
+  <app-bottom-icon-back />
+  <app-bottom-icon-to-top />
+</app-bottom-bar>

@@ -80,6 +80,7 @@ public class UserRepository(Context context) : BaseRepository<User>(context), IU
     public async Task<User?> GetByIdFullAsync(int id)
     {
         return await _context.Users
+            .AsNoTracking()
             .Include(u => u.Achievements).ThenInclude(ua => ua.Definition)
             .Include(u => u.Season)
             .Include(u => u.LeagueDefinition)

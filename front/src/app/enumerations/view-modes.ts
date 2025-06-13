@@ -4,7 +4,8 @@ export enum DashboardViewMode {
     Account = 'acount',
     Achievements = 'achievements',
     Level = 'level',
-    Score = 'Score'
+    Score = 'score',
+    League = 'league'
 }
 
 export enum ToolsViewMode {

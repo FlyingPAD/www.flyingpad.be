@@ -32,7 +32,7 @@ public class SeasonService(
         // 1) Charger ou créer la saison initiale
         var sw1 = Stopwatch.StartNew();
         var seasons = (await _seasonRepo.GetAllAsync(orderBy: s => s.StartsAt, ascending: false)).ToList();
-        var isFirst = !seasons.Any();
+        var isFirst = seasons.Count == 0;
         var last = isFirst
             ? await CreateInitialSeasonAsync(now)
             : seasons.First();
@@ -119,9 +119,14 @@ public class SeasonService(
                     u.ResetSeasonScore();
                     _logger.LogInformation("SeasonScore réinitialisé pour user {UserId}", userId);
 
-                    await _userRepo.UpdateAggregateAsync(u);
                     promotions++;
                 }
+                u.RecalculateLevel(
+                    levelDefs,
+                    AchievementCodes.LevelReached,
+                    code => defsByCode.TryGetValue(code, out var ach) ? ach : null
+                );
+                await _userRepo.UpdateAggregateAsync(u);
             }
             catch (Exception ex)
             {
@@ -138,7 +143,7 @@ public class SeasonService(
         // 5) Clôturer la saison
         var sw5 = Stopwatch.StartNew();
         last.Close(now);
-        await _seasonRepo.UpdateAsync(last);
+        await _seasonRepo.UpdateSeasonAsync(last);
         sw5.Stop();
         _logger.LogInformation(
             "Étape 5 terminée en {Elapsed} ms — saison {SeasonId} fermée à {Time:O}",
@@ -149,7 +154,7 @@ public class SeasonService(
         var nextSunday = GetNextSundayAt2359(now);
         var newName = isFirst ? "Saison initiale" : $"Saison du {now:dd/MM/yyyy}";
         var newSeason = new Season(newName, now, nextSunday);
-        await _seasonRepo.CreateAsync(newSeason);
+        await _seasonRepo.CreateSeasonAsync(newSeason);
         sw6.Stop();
         _logger.LogInformation(
             "Étape 6 terminée en {Elapsed} ms — nouvelle saison Id={Id} [{Starts}→{Ends}]",
@@ -178,7 +183,7 @@ public class SeasonService(
         var end = GetNextSundayAt2359(now);
         var season = new Season("Saison initiale", now, end);
         _logger.LogInformation("Création saison initiale : {Starts}→{Ends}", now, end);
-        await _seasonRepo.CreateAsync(season);
+        await _seasonRepo.CreateSeasonAsync(season);
         return season;
     }
 
