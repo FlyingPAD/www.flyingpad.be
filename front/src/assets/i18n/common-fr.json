@@ -82,7 +82,8 @@
     "gallery": "Galerie",
     "tags": "Mots-clés",
     "music-theory": "Théorie Musicale",
-    "level-treshold": "Seuil de Niveau"
+    "level-treshold": "Seuil de Niveau",
+    "selection": "Sélection"
   },
   "message": {
     "404": "La page n'a pas été trouvée.",
