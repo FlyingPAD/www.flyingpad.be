@@ -176,6 +176,12 @@ header {
         transition-duration: 200ms;
     }
 
+    @media (max-width: 768px) {
+        .sign-up {
+            font-size: 11px;
+        }
+    }
+
     .sign-up:hover {
         background-color: var(--colorWhiteOpacity8);
         border: 2px solid var(--colorMain);
@@ -205,6 +211,12 @@ header {
         color: var(--colorMain);
 
         transition-duration: 200ms;
+    }
+
+    @media (max-width: 768px) {
+        .log-in {
+            font-size: 11px;
+        }
     }
 
     .log-in:hover {

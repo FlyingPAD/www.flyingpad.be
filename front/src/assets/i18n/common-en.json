@@ -82,7 +82,8 @@
         "gallery": "Gallery",
         "tags": "Tags",
         "music-theory": "Music Theory",
-        "level-treshold": "Level Treshold"
+        "level-treshold": "Level Treshold",
+        "selection": "Selection"
     },
     "message": {
         "404": "Page was not found.",

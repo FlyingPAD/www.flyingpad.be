@@ -1,5 +1,12 @@
 <div class="user-cards">
 
+    <div class="user-card" (click)="setViewMode(viewModes.Status)" [class.active]="currentViewMode() === viewModes.Status">
+        <p class="title">{{ 'title.selection' | translate }}</p>
+        <div class="icon">
+            <app-icon-mood class="icon" size="33px" />
+        </div>
+    </div>
+
     <div class="user-card" (click)="setViewMode(viewModes.Level)" [class.active]="currentViewMode() === viewModes.Level">
         <p class="title">{{ 'title.level' | translate }} <b>{{ user.level }}</b></p>
         <div class="icon">
