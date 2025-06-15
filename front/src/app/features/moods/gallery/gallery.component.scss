@@ -21,6 +21,17 @@
     transition-duration: 500ms;
 
     section {
+        /* Évite de couper l’élément entre deux colonnes */
+        break-inside: avoid-column;
+        /* Pour compatibilité WebKit */
+        -webkit-column-break-inside: avoid;
+        /* Pour compatibilité paged media */
+        page-break-inside: avoid;
+
+        /* Optionnel : pour que la bordure soit dupliquée plutôt que fractionnée (WebKit/Firefox) */
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+
         position: relative;
         margin-left: 0px;
         margin-right: 25px;

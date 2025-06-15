@@ -35,25 +35,6 @@ header {
         }
     }
 
-    .logo-mini {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        height: 35px;
-        margin: 5px;
-
-        img {
-            height: 92%;
-        }
-    }
-
-    @media (min-width: 800px) {
-        .logo-mini {
-            display: none;
-        }
-    }
-
     .hamburger {
         display: flex;
         justify-content: center;
@@ -86,12 +67,6 @@ header {
 
         img {
             height: 92%;
-        }
-    }
-
-    @media (max-width: 800px) {
-        .logo {
-            display: none;
         }
     }
 }
