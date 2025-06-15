@@ -8,7 +8,7 @@ import { MenuService } from './services/user-interface/menu.service';
 import { ButtonTopService } from './services/user-interface/button-top.service';
 import { TokenService } from './services/token.service';
 import { AuthenticationService } from './services/http/authentication.service';
-import { filter, Subscription } from 'rxjs';
+import { filter, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -26,17 +26,21 @@ export class AppComponent implements OnInit, OnDestroy {
   #router = inject(Router)
   #renderer = inject(Renderer2)
 
-  #subscription = new Subscription()
+  #destroy$ = new Subject<void>()
 
   public gdprStatus = this.#gdprService.currentStatus
   public showButtonState = this.#buttonTopService.showButtonTop
 
+  public showGDPR: boolean = false
+
   ngOnInit(): void {
+    setTimeout(() => {this.showGDPR = true}, 3000)
+    
     let token = this.#tokenService.retrieveToken()
     if (token) { this.#authenticationService.authenticate(token) }
 
-    this.#subscription = this.#router.events
-      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+    this.#router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd), takeUntil(this.#destroy$))
       .subscribe(e => {
         if (e.urlAfterRedirects.startsWith('/sign-up')) this.#renderer.addClass(document.body, 'signup-page')
         else this.#renderer.removeClass(document.body, 'signup-page')
@@ -44,7 +48,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.#subscription.unsubscribe()
+    this.#destroy$.next()
+    this.#destroy$.complete()
   }
 
   @HostListener('window:keydown', ['$event'])

@@ -1,6 +1,6 @@
 <router-outlet />
 
-@if(gdprStatus() === undefined) {
+@if(gdprStatus() === undefined && showGDPR) {
     <app-gdpr />
 }
 
