@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   public moodsFlow = this.#moodService.moodsFlow
   public user = this.#userService.user
   public environment : string = environment.apiBaseUrl
+  public isLoaded : boolean = false
   
 
   ngOnInit() : void {
@@ -29,5 +30,9 @@ export class HomeComponent implements OnInit {
 
   public getImageURL(folderName: string, imageName: string, imageExtension: string): string { 
     return this.#imageURLService.getImageURL(folderName, imageName, imageExtension)
+  }
+
+  public onImageLoad(): void {
+    this.isLoaded = true
   }
 }

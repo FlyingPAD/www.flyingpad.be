@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { LanguageService } from '../../services/user-interface/language.service';
 import { DisplayService } from '../../services/user-interface/display.service';
-import { FullScreenService } from '../../services/user-interface/full-screen.service';
 import { Theme } from '../../enumerations/supported-themes';
 import { ThemeService } from '../../services/user-interface/theme.service';
 import { ImageUrlService } from '../../services/user-interface/image-url.service';
@@ -15,13 +14,11 @@ import { SupportedLanguages } from '../../enumerations/supported-languages';
 export class SettingsComponent {
   #languageService = inject(LanguageService)
   #displayService = inject(DisplayService)
-  #fullScreenService = inject(FullScreenService)
   #themeService = inject(ThemeService)
   #imageUrlService = inject(ImageUrlService)
 
   public currentLanguage = this.#languageService.currentLanguage
   public displayInfos = this.#displayService.displayInfo
-  public isFullScreen = this.#fullScreenService.isFullscreen
   public currentTheme = this.#themeService.currentTheme
   public Theme = Theme
   public isLanguageMenuON: boolean = false
@@ -45,12 +42,8 @@ export class SettingsComponent {
     this.isLanguageMenuON = false
   }
 
-  public toggleFullScreen(): void {
-    this.#fullScreenService.toggleFullscreen()
-  }
 
   public async factorySettings(): Promise<void> {
-    await this.#fullScreenService.exitFullscreen()
     this.#languageService.resetLanguage()
     this.#themeService.setDefaultTheme()
   }

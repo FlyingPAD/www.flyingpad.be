@@ -2,7 +2,6 @@ import { Component, HostListener, inject, OnDestroy, OnInit, Renderer2 } from '@
 import { NavigationEnd, Router } from '@angular/router';
 import { LanguageService } from './services/user-interface/language.service';
 import { DisplayService } from './services/user-interface/display.service';
-import { FullScreenService } from './services/user-interface/full-screen.service';
 import { ThemeService } from './services/user-interface/theme.service';
 import { GdprService } from './services/gdpr.service';
 import { MenuService } from './services/user-interface/menu.service';
@@ -17,7 +16,6 @@ import { filter, Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
   #displayService = inject(DisplayService)
-  #fullScreenService = inject(FullScreenService)
   #themeService = inject(ThemeService)
   #languageService = inject(LanguageService)
   #menuService = inject(MenuService)

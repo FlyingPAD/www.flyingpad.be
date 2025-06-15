@@ -21,14 +21,6 @@
         <p *ngIf="displayInfos().orientation === 'Square'">{{ 'title.square' | translate }}</p>
     </div>
 
-    @if(displayInfos().mode === 'Desktop') {
-        <div class="row">
-            <p><b>{{ 'title.full-screen' | translate }}</b></p>
-            <p class="button" *ngIf="isFullScreen() === true" (click)="toggleFullScreen()">{{ 'title.disable' | translate }}</p>
-            <p class="button" *ngIf="isFullScreen() === false" (click)="toggleFullScreen()">{{ 'title.enable' | translate }}</p>
-        </div>
-    }
-
     <div class="row">
         <p><b>{{ 'title.language' | translate }}</b></p>
         <div class="dropdown-wrapper">
