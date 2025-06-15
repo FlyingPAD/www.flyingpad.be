@@ -1,31 +1,35 @@
 <div class="home">
-
   <div class="left">
-    <img class="logo" [src]="getImageURL('images-logo', 'logo-1', 'png')" />
-    <p class="p">{{ 'message.home-quote' | translate }}</p>
-    <div class="cta">
-      <a class="button-big" routerLink="/central-gallery">{{ 'message.home-cta' | translate }}</a>
-    </div>
+    <img class="logo" [src]="getImageURL('images-logo', 'logo-1', 'png')" (load)="onImageLoad()" />
+    @if(isLoaded) {
+      <p class="p">{{ 'message.home-quote' | translate }}</p>
+      <div class="cta">
+        <a class="button-big" routerLink="/central-gallery">{{ 'message.home-cta' | translate }}</a>
+      </div>
+    }
+    @else {
+        <div class="spinner-placeholder">
+            <div class="spinner"></div>
+            <p>Loading…</p>
+        </div>
+    }
   </div>
 
   <div class="right">
     @if(moodsFlow()?.mood?.type === 1) {
-    @if (moodsFlow()?.mood?.height === moodsFlow()?.mood?.width) {
-    <img class="mood-square"
-      src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-    }
-    @if (moodsFlow()?.mood?.height > moodsFlow()?.mood?.width) {
-    <img class="mood-portrait"
-      src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-    }
-    @if (moodsFlow()?.mood?.height
-    < moodsFlow()?.mood?.width) { <img class="mood-landscape"
-      src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
-    }
+      @if (moodsFlow()?.mood?.height === moodsFlow()?.mood?.width) {
+        <img class="mood-square"
+        src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+      }
+      @if (moodsFlow()?.mood?.height > moodsFlow()?.mood?.width) {
+        <img class="mood-portrait" src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+      }
+      @if (moodsFlow()?.mood?.height < moodsFlow()?.mood?.width) { 
+        <img class="mood-landscape" src="{{environment}}/Content/img_thumbs/{{moodsFlow()?.mood?.businessId}}.{{moodsFlow()?.mood?.extension}}" />
+        }
     }
     @if(moodsFlow()?.mood?.type !== 1) {
-    <img class="mood-square" src="../../../assets/chord-wheel.png" />
+      <img class="mood-square" src="../../../assets/chord-wheel.png" />
     }
   </div>
-
 </div>

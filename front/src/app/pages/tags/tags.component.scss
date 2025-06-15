@@ -1,11 +1,11 @@
 .tags-container {
-    margin: 25px auto;
+    margin: 20px;
+    margin-left: 35px;
 
     .tags-grid {
         display: flex;
         flex-wrap: wrap;
         gap: 15px;
-        justify-content: center;
         align-items: flex-start;
     }
 
