@@ -12,6 +12,38 @@
         border: 3px solid var(--colorMain);
         border-radius: 10px;
         box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+        display: none;
+    }
+
+    .img-placeholder {
+        padding: 10px;
+
+        height: 55px;
+        width: 55px;
+
+        background-color: var(--colorWhiteOpacity5);
+        border: 3px solid var(--colorMain);
+        border-radius: 10px;
+        box-shadow: 0 3px 4px 0px var(--colorMainOpacity2);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .img-loaded {
+        display: block;
+    }
+
+    .img-loading {
+        display: none;
     }
 
     .user-info {
@@ -19,12 +51,13 @@
         color: var(--colorMain);
 
         h1 {
-            margin: 0;        
-            font-size: 18px;    
+            margin: 0;
+            font-size: 18px;
         }
+
         p {
-            margin: 0;  
-            font-size: 13px;  
+            margin: 0;
+            font-size: 13px;
         }
 
     }
@@ -35,4 +68,14 @@
     margin-top: 15px;
     font-size: 13px;
     color: var(--colorMain);
+}
+
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 4px solid var(--colorMainOpacity3);
+    border-top-color: var(--colorMain);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 0.5rem;
 }
