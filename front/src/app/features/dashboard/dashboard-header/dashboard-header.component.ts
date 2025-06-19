@@ -8,4 +8,10 @@ import { User } from '../../../interfaces/user';
 })
 export class DashboardHeaderComponent {
   @Input() user!: User
+
+  public isLoaded: boolean = false
+
+  public onImageLoad(): void {
+    this.isLoaded = true
+  }
 }

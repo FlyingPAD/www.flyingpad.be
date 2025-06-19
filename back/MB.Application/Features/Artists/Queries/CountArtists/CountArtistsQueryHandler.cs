@@ -1,12 +1,11 @@
-﻿using MB.Application.Interfaces.Persistence;
-using MB.Domain.ArtistAggregate;
+﻿using MB.Application.Interfaces.Persistence.Read;
 using MediatR;
 
 namespace MB.Application.Features.Artists.Queries.CountArtists;
 
-public class CountArtistsQueryHandler(IBaseRepository<Artist> artistRepository) : IRequestHandler<CountArtistsQuery, CountArtistsQueryResponse>
+public class CountArtistsQueryHandler(IReadArtistRepository artistRepository) : IRequestHandler<CountArtistsQuery, CountArtistsQueryResponse>
 {
-    private readonly IBaseRepository<Artist> _artistRepository = artistRepository;
+    private readonly IReadArtistRepository _artistRepository = artistRepository;
 
     public async Task<CountArtistsQueryResponse> Handle(CountArtistsQuery request, CancellationToken cancellationToken)
     {
@@ -14,7 +13,7 @@ public class CountArtistsQueryHandler(IBaseRepository<Artist> artistRepository) 
         {
             Success = true,
             Message = "Artists count completed.",
-            TotalArtists = await _artistRepository.CountAsync()
+            TotalArtists = await _artistRepository.CountAsync(cancellationToken)
         };
     }
 }

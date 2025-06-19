@@ -505,6 +505,7 @@ export class MoodService {
       tap(response => {
         if (response.success) {
           this.#notificationService.success(response.message)
+          
           this.#refreshMoods$.next()
           this.#statisticsService.refreshStatistics()
         }

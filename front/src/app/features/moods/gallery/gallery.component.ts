@@ -114,4 +114,9 @@ export class GalleryComponent implements OnInit, OnChanges, OnDestroy {
       return media
     }
   }
+
+  onLoad(event: Event): void {
+    const imgEl = event.target as HTMLImageElement
+    imgEl.classList.add('loaded')
+  }
 }

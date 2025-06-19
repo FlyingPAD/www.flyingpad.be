@@ -1,6 +1,9 @@
 <div class="main-frame">
     <div class="dashboard-header">
-        <img src="../../../assets/icons-avatars/mood.png" />
+        <img src="../../../assets/icons-avatars/mood.png" (load)="onImageLoad()" [class.img-loaded]="isLoaded" />
+        <div class="img-placeholder" *ngIf="!isLoaded">
+            <div class="spinner"></div>
+        </div>
         <div class="user-info">
             <h1>{{user.userName}}</h1>
             <p>( {{user.email}} )</p>

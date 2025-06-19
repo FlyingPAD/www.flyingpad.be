@@ -45,6 +45,14 @@
             border: 10px solid rgba(255, 255, 255, 0);
             border-radius: 25px;
             display: block;
+            
+            filter: grayscale(100%);
+            opacity: 0;
+            transform: scale(0.95);
+            transition:
+                filter 0.4s ease,
+                opacity 0.4s ease,
+                transform 0.4s ease;
         }
 
         img:hover {
@@ -82,6 +90,12 @@
             transition-duration: 500ms;
         }
 
+        img.loaded {
+            filter: none;
+            opacity: 1;
+            transform: scale(1);
+        }
+
         .mood-title {
             position: absolute;
             bottom: 10px;
@@ -114,7 +128,7 @@
         }
     }
 
-    section:hover .mood-title {
+    section:hover img.loaded + .mood-title {
         opacity: 1;
     }
 

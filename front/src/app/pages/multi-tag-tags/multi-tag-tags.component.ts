@@ -114,7 +114,7 @@ export class MultiTagTagsComponent implements OnInit, OnDestroy {
           this.#multiTagService.resetSelection()
           this.tagsList = []
           this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
-          this.#router.navigateByUrl('/central-gallery')
+          this.#router.navigateByUrl('/moods/mood-manager')
         }
       })
   }

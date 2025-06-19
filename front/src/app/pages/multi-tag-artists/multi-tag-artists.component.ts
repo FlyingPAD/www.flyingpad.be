@@ -76,7 +76,7 @@ export class MultiTagArtistsComponent implements OnInit, OnDestroy {
             this.form.reset()
             this.#multiTagService.resetSelection()
             this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
-            this.#router.navigateByUrl('/central-gallery')
+            this.#router.navigateByUrl('/moods/mood-manager')
           }
         })
     })
