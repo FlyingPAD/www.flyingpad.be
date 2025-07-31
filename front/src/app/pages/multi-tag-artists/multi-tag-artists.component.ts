@@ -1,6 +1,5 @@
 import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { MultiTagService } from '../../services/multi-tag.service'
 import { Router } from '@angular/router'
 import { ArtistCheckBox } from '../../interfaces/artist'
 import { RelationsMoodArtistForm } from '../../interfaces/http/relations'
@@ -10,13 +9,14 @@ import { MoodsGalleryService } from '../../services/user-interface/moods-gallery
 import { GalleryType } from '../../enumerations/gallery-type'
 import { ArtistService } from '../../services/http/artist.service'
 import { Subject, takeUntil } from 'rxjs'
+import { MoodManagerService } from '../../services/mood-manager.service'
 
 @Component({
   selector: 'app-multi-tag-artists',
   templateUrl: './multi-tag-artists.component.html'
 })
 export class MultiTagArtistsComponent implements OnInit, OnDestroy {
-  #multiTagService = inject(MultiTagService)
+  #moodManagerService = inject(MoodManagerService)
   #artistService = inject(ArtistService)
   #relationService = inject(RelationsService)
   #moodsGalleryService = inject(MoodsGalleryService)
@@ -27,7 +27,7 @@ export class MultiTagArtistsComponent implements OnInit, OnDestroy {
   #destroy$ = new Subject<void>()
 
   public artistsFlow = this.#artistService.artistsFlow
-  public selectedMoods = this.#multiTagService.selectedMoods
+  public selectedMoods = this.#moodManagerService.selectedMoods
 
   public searchArtist = ''
   public form!: FormGroup
@@ -74,7 +74,6 @@ export class MultiTagArtistsComponent implements OnInit, OnDestroy {
         .subscribe(response => {
           if (response.success) {
             this.form.reset()
-            this.#multiTagService.resetSelection()
             this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
             this.#router.navigateByUrl('/moods/mood-manager')
           }

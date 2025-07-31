@@ -3,7 +3,7 @@ using MB.Application.Interfaces.Persistence;
 using MB.Domain.FranchiseAggregate;
 using MediatR;
 
-namespace MB.Application.Features.Franchises.Queries.GetFranchisesList;
+namespace MB.Application.Features.Franchises.Queries.GetAllFranchises;
 
 public class GetAllFranchisesQueryHandler(IBaseRepository<Franchise> franchiseRepository, IMapper mapper) : IRequestHandler<GetAllFranchisesQuery, GetAllFranchisesQueryResponse>
 {

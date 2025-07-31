@@ -4,41 +4,33 @@
         
         <div class="edition-buttons">
             <app-icon-media class="icon" size="25px" routerLink="/media" />
-            <app-icon-list class="icon" [class.active]="currentViewMode === viewModes.ListView" size="25px"
-                (click)="setViewMode(viewModes.ListView)" />
-            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.MediumCreationView"
-                size="25px" (click)="setViewMode(viewModes.MediumCreationView)" />                
+            <app-icon-list class="icon" [class.active]="currentViewMode === viewModes.ListView" size="25px" (click)="setViewMode(viewModes.ListView)" />
+            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.MediumCreationView" size="25px" (click)="setViewMode(viewModes.MediumCreationView)" /> 
+
             @if(franchisesFlow()?.medium) {
-                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.MediumEditionView"
-                    size="25px" (click)="setViewMode(viewModes.MediumEditionView)" />
+                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.MediumEditionView" size="25px" (click)="setViewMode(viewModes.MediumEditionView)" />
             }
         </div>
     </div>
     <div class="edition-selection">
-        <p [style.fontWeight]="franchisesFlow()?.franchise ? 'bold' : 'normal'">
-            {{ franchisesFlow()?.franchise?.name || 'Please, select a franchise from the list.' }}</p>
+        <p [style.fontWeight]="franchisesFlow()?.franchise ? 'bold' : 'normal'">{{ franchisesFlow()?.franchise?.name || 'Please, select a franchise from the list.' }}</p>
 
         <div class="edition-buttons">
-            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.FranchiseCreationView" size="25px"
-                (click)="setViewMode(viewModes.FranchiseCreationView)" />
+            <app-icon-plus class="icon" [class.active]="currentViewMode === viewModes.FranchiseCreationView" size="25px" (click)="setViewMode(viewModes.FranchiseCreationView)" />
             @if(franchisesFlow()?.franchise){
-                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.FranchiseEditionView" size="25px"
-                    (click)="setViewMode(viewModes.FranchiseEditionView)" />
+                <app-icon-edit class="icon" [class.active]="currentViewMode === viewModes.FranchiseEditionView" size="25px" (click)="setViewMode(viewModes.FranchiseEditionView)" />
                 <app-icon-go class="icon" size="25px" (click)="go()" />
             }
         </div>
     </div>
 
     @if (currentViewMode === viewModes.ListView) {
-        <div class="filter">
-            <input type="text" [(ngModel)]="searchFranchises" placeholder="Filter franchises ...">
-        </div>
+        <div class="filter"><input type="text" [(ngModel)]="searchFranchises" placeholder="Filter franchises ..."></div>
+
         @if(filterFranchises()?.length) {
             <div class="edition-list">
                 <div *ngFor="let franchise of filterFranchises() || [] | paginate : { itemsPerPage : elementsPerPage, currentPage: currentPage}">
-                    <a [class.active]="franchise.name === franchisesFlow()?.franchise?.name" (click)="setFranchiseId(franchise.businessId)"> ▸
-                        {{ franchise.name }}
-                    </a>
+                    <a [class.active]="franchise.name === franchisesFlow()?.franchise?.name" (click)="setFranchiseId(franchise.businessId)"><span>{{ franchise.description }}</span> ▸ {{ franchise.name }}</a>
                 </div>
             </div>
         }
@@ -74,8 +66,7 @@
 }
 
 <app-right-column>   
-    <app-right-column-generic-list [items]="franchisesFlow()?.media || []" 
-        [selectedItemId]="franchisesFlow()?.medium?.businessId" (setSelectedItemId)="setMediumId($event)" />
+    <app-right-column-generic-list [items]="franchisesFlow()?.media || []" [selectedItemId]="franchisesFlow()?.medium?.businessId" (setSelectedItemId)="setMediumId($event)" />
 </app-right-column>
 
 <app-spacer />

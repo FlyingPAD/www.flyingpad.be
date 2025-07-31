@@ -21,14 +21,9 @@
     transition-duration: 500ms;
 
     section {
-        /* Évite de couper l’élément entre deux colonnes */
         break-inside: avoid-column;
-        /* Pour compatibilité WebKit */
         -webkit-column-break-inside: avoid;
-        /* Pour compatibilité paged media */
         page-break-inside: avoid;
-
-        /* Optionnel : pour que la bordure soit dupliquée plutôt que fractionnée (WebKit/Firefox) */
         box-decoration-break: clone;
         -webkit-box-decoration-break: clone;
 
@@ -43,16 +38,21 @@
             box-sizing: border-box;
             width: 100%;
             border: 10px solid rgba(255, 255, 255, 0);
+            box-shadow: 0 6px 12px 0px rgba(255, 255, 255, 0);
             border-radius: 25px;
             display: block;
             
             filter: grayscale(100%);
             opacity: 0;
             transform: scale(0.95);
+
             transition:
-                filter 0.4s ease,
-                opacity 0.4s ease,
-                transform 0.4s ease;
+                filter       0.4s ease,
+                opacity      0.4s ease,
+                transform    0.4s ease,
+                border-color 0.5s ease,
+                box-shadow   0.5s ease,
+                border-radius 0.5s ease;
         }
 
         img:hover {
@@ -60,15 +60,14 @@
             border-radius: 10px;
             box-shadow: 0 6px 12px 0px var(--colorMain);
             cursor: pointer;
-            transition-duration: 500ms;
         }
 
         .vid {
-            box-shadow: 0 0 0 1px var(--colorMain);
+            outline: 1px solid var(--colorMain);
         }
 
         .youtube {
-            box-shadow: 0 0 0 1px red;
+            outline: 1px solid red;
         }
 
         .youtube:hover {
@@ -76,7 +75,7 @@
         }
 
         .soundcloud {
-            box-shadow: 0 0 0 1px darkorange;
+            outline: 1px solid darkorange;
         }
 
         .soundcloud:hover {

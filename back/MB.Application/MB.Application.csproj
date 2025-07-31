@@ -9,6 +9,7 @@
 	  <None Remove="Features\Auth\Commands\ConfirmEmail\ConfirmEmailCommand.cs~RF51936f2.TMP" />
 	  <None Remove="Features\Auth\Commands\ConfirmEmail\ConfirmEMailCommandHandler.cs~RF520c650.TMP" />
 	  <None Remove="Features\Auth\Commands\Register\RegisterCommand.cs~RFcf851f.TMP" />
+	  <None Remove="Features\Franchises\Queries\GetAllFranchises\GetAllFranchisesQuery.cs~RF3e1bc7.TMP" />
 	  <None Remove="Features\Leagues\Queries\GetLeagueByName\GetLeagueByNameQuery.cs~RF341ef7c.TMP" />
 	  <None Remove="Features\Leagues\Queries\GetLeagueByName\LeagueWithRankingDto.cs~RF340f250.TMP" />
 	  <None Remove="Features\Leagues\Queries\GetLeagueByName\LeagueWithRankingDto.cs~RF362ce48.TMP" />
@@ -37,8 +38,20 @@
 	  <None Remove="Interfaces\Persistence\IAchievementDefinitionsRepository.cs~RF918c7f.TMP" />
 	  <None Remove="Interfaces\Persistence\IEmailVerificationTokenRepository.cs~RF54a5421.TMP" />
 	  <None Remove="Interfaces\Persistence\IUserAchievementRepository.cs~RF754751b.TMP" />
+	  <None Remove="Interfaces\Persistence\Read\IReadArtistRepository.cs~RF13ead8b.TMP" />
 	  <None Remove="Interfaces\Persistence\Read\IReadArtistRepository.cs~RF242134.TMP" />
 	  <None Remove="Interfaces\Persistence\Read\IReadArtistRepository.cs~RF2dd0a3.TMP" />
+	  <None Remove="Interfaces\Persistence\Read\IReadLinkCategoryRepository.cs~RF13ee544.TMP" />
+	  <None Remove="Interfaces\Persistence\Read\IReadLinkRepository.cs~RF1397e26.TMP" />
+	  <None Remove="Interfaces\Persistence\Read\IReadModelRepository.cs~RF13c18c6.TMP" />
+	  <None Remove="Interfaces\Persistence\Read\IReadMoodRepository.cs~RF13dbcd2.TMP" />
+	  <None Remove="Interfaces\Persistence\Read\IReadTagRepository.cs~RF13e11e7.TMP" />
+	  <None Remove="Interfaces\Persistence\Read\IReadUserRepository.cs~RF13b5ebd.TMP" />
+	  <None Remove="Interfaces\Persistence\Write\IWriteFranchiseRepository.cs~RF146374a.TMP" />
+	  <None Remove="Interfaces\Persistence\Write\IWriteLinkCategoryRepository.cs~RF1426f07.TMP" />
+	  <None Remove="Interfaces\Persistence\Write\IWriteLinkCategoryRepository.cs~RF145351c.TMP" />
+	  <None Remove="Interfaces\Persistence\Write\IWriteMediumRepository.cs~RF142c2f4.TMP" />
+	  <None Remove="Interfaces\Persistence\Write\IWriteUserRepository.cs~RF142ef14.TMP" />
 	  <None Remove="Models\BaseResponse.cs~RF665f458.TMP" />
 	  <None Remove="Models\DailyReportModel.cs~RF6674d12.TMP" />
 	</ItemGroup>

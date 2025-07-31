@@ -1,6 +1,5 @@
 import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { MultiTagService } from '../../services/multi-tag.service'
 import { Router } from '@angular/router'
 import { ModelCheckBox } from '../../interfaces/model'
 import { RelationsMoodModelForm } from '../../interfaces/http/relations'
@@ -10,13 +9,14 @@ import { MoodsGalleryService } from '../../services/user-interface/moods-gallery
 import { GalleryType } from '../../enumerations/gallery-type'
 import { ModelService } from '../../services/http/model.service'
 import { Subject, takeUntil } from 'rxjs'
+import { MoodManagerService } from '../../services/mood-manager.service'
 
 @Component({
   selector: 'app-multi-tag-models',
   templateUrl: './multi-tag-models.component.html'
 })
 export class MultiTagModelsComponent implements OnInit, OnDestroy {
-  #multiTagService = inject(MultiTagService)
+  #moodManagerService = inject(MoodManagerService)
   #modelService = inject(ModelService)
   #relationService = inject(RelationsService)
   #moodsGalleryService = inject(MoodsGalleryService)
@@ -27,7 +27,7 @@ export class MultiTagModelsComponent implements OnInit, OnDestroy {
   #destroy$ = new Subject<void>()
 
   public modelsFlow = this.#modelService.modelsFlow
-  public selectedMoods = this.#multiTagService.selectedMoods
+  public selectedMoods = this.#moodManagerService.selectedMoods
 
   public searchModel = ''
   public form!: FormGroup
@@ -74,7 +74,6 @@ export class MultiTagModelsComponent implements OnInit, OnDestroy {
         .subscribe(response => {
           if (response.success) {
             this.form.reset()
-            this.#multiTagService.resetSelection()
             this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
             this.#router.navigateByUrl('/moods/mood-manager')
           }

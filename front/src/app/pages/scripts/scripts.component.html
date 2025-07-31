@@ -7,10 +7,13 @@
             <p [appScrollActive]="currentViewMode() === viewModes.Notation" (click)="setViewMode(viewModes.Notation)" [class.active]="currentViewMode() === viewModes.Notation">▸ La Notation Musicale</p>
             <p [appScrollActive]="currentViewMode() === viewModes.PianoReference" (click)="setViewMode(viewModes.PianoReference)" [class.active]="currentViewMode() === viewModes.PianoReference">▸ La Référence Clavier</p>
             <p [appScrollActive]="currentViewMode() === viewModes.MusicPrinciples" (click)="setViewMode(viewModes.MusicPrinciples)" [class.active]="currentViewMode() === viewModes.MusicPrinciples">▸ Principes élémentaires</p>
+        </section>
+        <section>
+            <h2>Concepts-Clés</h2>
             <p [appScrollActive]="currentViewMode() === viewModes.MusicArsenal" (click)="setViewMode(viewModes.MusicArsenal)" [class.active]="currentViewMode() === viewModes.MusicArsenal">▸ Arsenal Musical</p>
         </section>
         <section>
-            <h2>CONVENTIONS</h2>
+            <h2>Conventions</h2>
             <p [appScrollActive]="currentViewMode() === viewModes.NotesFr" (click)="setViewMode(viewModes.NotesFr)" [class.active]="currentViewMode() === viewModes.NotesFr">▸ Les Notes</p>
             <p [appScrollActive]="currentViewMode() === viewModes.NotesEn" (click)="setViewMode(viewModes.NotesEn)" [class.active]="currentViewMode() === viewModes.NotesEn">▸ Les Notes (en anglais)</p>
             <p [appScrollActive]="currentViewMode() === viewModes.TheOctave"  (click)="setViewMode(viewModes.TheOctave)" [class.active]="currentViewMode() === viewModes.TheOctave">▸ L'Octave</p>
@@ -27,6 +30,7 @@
         <section>
             <h2>Arsenal HARMONIQUE</h2>
             <p [appScrollActive]="currentViewMode() === viewModes.HarmonicArsenal" (click)="setViewMode(viewModes.HarmonicArsenal)" [class.active]="currentViewMode() === viewModes.HarmonicArsenal">▸ Arsenal Harmonique</p>
+            <p [appScrollActive]="currentViewMode() === viewModes.Key" (click)="setViewMode(viewModes.Key)" [class.active]="currentViewMode() === viewModes.Key">▸ La Tonalité</p>
             <p [appScrollActive]="currentViewMode() === viewModes.Chords" (click)="setViewMode(viewModes.Chords)" [class.active]="currentViewMode() === viewModes.Chords">▸ Les Accords</p>
         </section>
         <section>
@@ -57,6 +61,7 @@
     <app-tones *ngSwitchCase="viewModes.Tones" />
     <app-time-values *ngSwitchCase="viewModes.TimeValues" />
     <app-the-octave *ngSwitchCase="viewModes.TheOctave" />
+    <app-key *ngSwitchCase="viewModes.Key" />
 </ng-container>    
 
 <app-spacer />
