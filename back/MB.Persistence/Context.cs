@@ -21,6 +21,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MB.Persistence;
 
+/// <summary>
+/// DÉPRÉCIÉ ( en cours de migration ) : utilisez désormais <see cref="WriteContext"/> pour les écritures
+/// et <see cref="ReadContext"/> pour les lectures.
+/// </summary>
 public class Context(DbContextOptions<Context> options) : DbContext(options)
 {
     public DbSet<Mood> Moods { get; set; }
