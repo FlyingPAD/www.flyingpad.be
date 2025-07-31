@@ -2,6 +2,7 @@
 using MB.Application.Features.Franchises.Commands.DeleteFranchise;
 using MB.Application.Features.Franchises.Commands.UpdateFranchise;
 using MB.Application.Features.Franchises.Queries.CountFranchises;
+using MB.Application.Features.Franchises.Queries.GetAllFranchises;
 using MB.Application.Features.Franchises.Queries.GetFranchiseById;
 using MB.Application.Features.Franchises.Queries.GetFranchisesByMedium;
 using MB.Application.Features.Franchises.Queries.GetFranchisesByModel;

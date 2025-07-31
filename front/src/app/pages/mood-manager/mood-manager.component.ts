@@ -1,6 +1,5 @@
 import { Component, HostListener, inject, OnDestroy } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { MultiTagService } from '../../services/multi-tag.service';
 import { NotificationService } from '../../services/user-interface/notification.service';
 import { MoodPositionUpdate, MoodScoreUpdate } from '../../interfaces/http/forms-update';
 import { Subject, takeUntil } from 'rxjs';
@@ -8,6 +7,7 @@ import { MoodService } from '../../services/http/mood.service';
 import { Router } from '@angular/router';
 import { PaginationService } from '../../services/user-interface/pagination.service';
 import { MenuService } from '../../services/user-interface/menu.service';
+import { MoodManagerService } from '../../services/mood-manager.service';
 
 @Component({
   selector: 'app-mood-manager',
@@ -15,7 +15,7 @@ import { MenuService } from '../../services/user-interface/menu.service';
   styleUrl: './mood-manager.component.scss'
 })
 export class MoodManagerComponent implements OnDestroy {
-  #multiTagService = inject(MultiTagService)
+  #moodManagerService = inject(MoodManagerService)
   #notificationService = inject(NotificationService)
   #moodService = inject(MoodService)
   #paginationService = inject(PaginationService)
@@ -25,7 +25,7 @@ export class MoodManagerComponent implements OnDestroy {
   #destroy$ = new Subject<void>()
 
   public moodsFlow = this.#moodService.moodsFlow
-  public selectedMoods = this.#multiTagService.selectedMoods
+  public selectedMoods = this.#moodManagerService.selectedMoods
 
   public itemsPerPage: number = this.#paginationService.ITEMS_PER_PAGE
   public currentPage = this.#paginationService.galleryCurrentPage
@@ -44,25 +44,25 @@ export class MoodManagerComponent implements OnDestroy {
   }
 
   public selectionToggle(moodId: number): void {
-    this.#multiTagService.selectionToggle(moodId)
+    this.#moodManagerService.selectionToggle(moodId)
   }
 
   public checkIfSelected(moodId: number): boolean {
-    return this.#multiTagService.checkIfSelected(moodId)
+    return this.#moodManagerService.checkIfSelected(moodId)
   }
 
   public selectAll(): void {
     const allIds = this.moodsFlow()?.moods.map(mood => mood.businessId)
-    if (allIds) this.#multiTagService.selectAll(allIds)
+    if (allIds) this.#moodManagerService.selectAll(allIds)
   }
 
   public invertSelection(): void {
     const allIds = this.moodsFlow()?.moods.map(mood => mood.businessId)
-    if (allIds) this.#multiTagService.invertSelection(allIds)
+    if (allIds) this.#moodManagerService.invertSelection(allIds)
   }
 
   public resetSelection(): void {
-    this.#multiTagService.resetSelection()
+    this.#moodManagerService.resetSelection()
   }
 
   public multiScore(score: number): void {

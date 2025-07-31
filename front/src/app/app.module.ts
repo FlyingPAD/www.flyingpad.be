@@ -275,6 +275,8 @@ import { IconGamesComponent } from './icons-svg/menu/icon-games/icon-games.compo
 import { UserLevelComponent } from './features/dashboard/user-level/user-level.component';
 import { UserScoreComponent } from './features/dashboard/user-score/user-score.component';
 import { FlipCardComponent } from './components/flip-card/flip-card.component';
+import { SummaryBeginnerComponent } from './features/scripts/summary-beginner/summary-beginner.component';
+import { KeyComponent } from './features/scripts/key/key.component';
 
 
 export function HttpLoaderFactory(httpBackend: HttpBackend) {
@@ -572,7 +574,9 @@ export function appInitializerFactory(translate: TranslateService) {
     LeagueChampionComponent,
     LeagueEliteComponent,
     LeagueLegendComponent,
-    FlipCardComponent
+    FlipCardComponent,
+    SummaryBeginnerComponent,
+    KeyComponent
   ],
   imports: [
     RecaptchaModule,

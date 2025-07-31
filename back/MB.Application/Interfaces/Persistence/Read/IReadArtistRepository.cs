@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-namespace MB.Application.Interfaces.Persistence.Read;
+﻿namespace MB.Application.Interfaces.Persistence.Read;
 
 public interface IReadArtistRepository
 {

@@ -11,8 +11,8 @@
             <div class="mood-title">{{mood?.name}}</div>
             }
             @if(mood.type == 2) {
-            <img [class.active]="currentMood?.businessId === mood.businessId"
-                [appScrollActive]="currentMood?.businessId === mood.businessId" class="vid"
+            <img class="vid" [class.active]="currentMood?.businessId === mood.businessId"
+                [appScrollActive]="currentMood?.businessId === mood.businessId" 
                 src="{{environment}}/Content/video_thumbs/{{mood.businessId}}.jpg"
                 (click)="handleSetMood(mood.businessId)" (load)="onLoad($event)" />
             <div class="mood-title">{{mood?.name}}</div>

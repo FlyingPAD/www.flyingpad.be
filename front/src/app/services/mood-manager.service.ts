@@ -1,11 +1,11 @@
 import { Injectable, Signal } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MultiTagService {
+export class MoodManagerService {
   #selectedMoods = new BehaviorSubject<number[]>([])
   public selectedMoods = toSignal(this.#selectedMoods) as Signal<number[]>
 

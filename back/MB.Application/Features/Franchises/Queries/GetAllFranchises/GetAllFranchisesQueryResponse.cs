@@ -1,6 +1,6 @@
 ﻿using MB.Application.Models;
 
-namespace MB.Application.Features.Franchises.Queries.GetFranchisesList;
+namespace MB.Application.Features.Franchises.Queries.GetAllFranchises;
 
 public class GetAllFranchisesQueryResponse : BaseResponse
 {

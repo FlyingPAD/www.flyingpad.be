@@ -1,6 +1,5 @@
 import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { MultiTagService } from '../../services/multi-tag.service'
 import { TagsCheckBoxesList } from '../../interfaces/tag'
 import { NotificationService } from '../../services/user-interface/notification.service'
 import { CommonTagsByMoodsForm } from '../../interfaces/mood'
@@ -10,6 +9,7 @@ import { MoodService } from '../../services/http/mood.service'
 import { MoodsGalleryService } from '../../services/user-interface/moods-gallery.service'
 import { GalleryType } from '../../enumerations/gallery-type'
 import { Subject, takeUntil } from 'rxjs'
+import { MoodManagerService } from '../../services/mood-manager.service'
 
 @Component({
   selector: 'app-multi-tag-tags',
@@ -17,7 +17,7 @@ import { Subject, takeUntil } from 'rxjs'
   styleUrls: ['./multi-tag-tags.component.scss']
 })
 export class MultiTagTagsComponent implements OnInit, OnDestroy {
-  #multiTagService = inject(MultiTagService)
+  #moodManagerService = inject(MoodManagerService)
   #tagService = inject(TagService)
   #moodService = inject(MoodService)
   #moodsGalleryService = inject(MoodsGalleryService)
@@ -27,7 +27,7 @@ export class MultiTagTagsComponent implements OnInit, OnDestroy {
   #destroy$ = new Subject<void>()
 
   public tagsFlow = this.#tagService.tagsFlow
-  public selectedMoods = this.#multiTagService.selectedMoods
+  public selectedMoods = this.#moodManagerService.selectedMoods
 
   public tagsList!: TagsCheckBoxesList[]
   private initialCommonTagIds: number[] = []
@@ -111,7 +111,6 @@ export class MultiTagTagsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.#destroy$))
       .subscribe(response => {
         if (response.success) {
-          this.#multiTagService.resetSelection()
           this.tagsList = []
           this.#moodsGalleryService.setGalleryType(GalleryType.Gallery)
           this.#router.navigateByUrl('/moods/mood-manager')

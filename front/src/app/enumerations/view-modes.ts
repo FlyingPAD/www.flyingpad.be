@@ -38,5 +38,6 @@ export enum ScriptsViewMode {
     MelodicArsenal = 'melodic-arsenal',
     Tones = 'tones',
     TimeValues = 'time-values',
-    TheOctave = 'the-octave'
+    TheOctave = 'the-octave',
+    Key = 'key'
 }
